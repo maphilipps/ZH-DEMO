@@ -67,6 +67,6 @@
 /drupal.phar
 /drupal
 
+/recipes/drupal_cms_*
+/recipes/easy_email_*
 
-/recipes/
-!/recipes/adesso_cms_starter

@@ -1,0 +1,23 @@
+name: Paragraph Headline
+description: A component for displaying headlines in paragraphs
+props:
+  attributes:
+    type: object
+    description: HTML attributes for the containing element
+  content_width:
+    type: string
+    description: Width of the content (narrow or full)
+  preheadline:
+    type: string
+    description: Text for the preheadline
+  headline:
+    type: string
+    description: Main headline text
+  heading_level:
+    type: string
+    description: HTML tag for the headline (h1, h2, etc.)
+  subheadline:
+    type: string
+    description: Text for the subheadline
+libraries:
+  - adesso_standard/paragraph-headline

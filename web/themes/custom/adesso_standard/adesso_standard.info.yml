@@ -1,0 +1,18 @@
+name: adesso_standard
+type: theme
+base theme: false
+description: A flexible theme with a responsive, mobile-first layout.
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - adesso_standard/global
+regions:
+  header: 'Header'
+  content: 'Content'
+  footer: 'Footer'
+  footer_bottom: 'Footer Bottom'
+components:
+  namespaces:
+    paragraph-text: components/paragraph-text
+    paragraph-headline: components/paragraph-headline
+

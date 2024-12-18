@@ -1,0 +1,9 @@
+# Main theme library.
+global:
+  css:
+    theme:
+      dist/assets/styles.css: {}
+  js:
+    dist/assets/main.js: {}
+  dependencies:
+    - core/drupal

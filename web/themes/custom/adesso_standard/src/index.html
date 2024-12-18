@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowbite mit SCSS</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body>
+
+<header>
+    <!-- NAVIGATION -->
+    <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+            <a href="https://flowbite.com" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <svg viewBox="20 11 107 40" xmlns="http://www.w3.org/2000/svg" aria-label="Logo adesso" width="10rem"
+                     height="4rem">
+                    <!-- Primary Farbe: RGB(0, 110, 199) -->
+                    <path fill="rgb(0, 110, 199)"
+                          d="M26.8218,20.5164a22.0835,22.0835,0,0,0-5.8081.8l.521,3.2343A23.6564,23.6564,0,0,1,26.23,24.029c2.7134,0,3.2353.4737,3.2353,2.3526v.87H25.1929c-3.4434,0-4.7354,2.4121-4.7354,5.8545,0,2.9228,1.32,5.0439,4.4165,5.0439a9.2611,9.2611,0,0,0,5.043-1.4961l.3418,1.2754H33.708V26.6374C33.708,22.3943,32.1426,20.5164,26.8218,20.5164Zm2.6435,13.39a7.8689,7.8689,0,0,1-3.332,1.15c-1.8359.0674-1.7944-1.7149-1.7944-2.8975,0-1.2861.6045-1.6894,1.9956-1.6894h3.1308Zm17.816-12.8926a23.5514,23.5514,0,0,0-4.5694-.4922c-3.97,0-5.6572,2.0605-5.6572,5.8554v5.835c0,3.9,1.8271,5.9385,5.2705,5.9385a9.0085,9.0085,0,0,0,5.4136-1.793l.46,1.5723h3.37v-24.46l-4.2871.5977Zm0,11.9355A6.0628,6.0628,0,0,1,43.45,34.4958c-1.5811,0-2.1084-.7735-2.1084-2.18V26.2712c0-1.5459.5972-2.0957,2.144-2.0957a19.0043,19.0043,0,0,1,3.7955.457Zm60.6943-12.4348c-5.8086,0-7.3731,3.2-7.3731,6.6787v4.2784c0,3.4794,1.5645,6.68,7.3731,6.68,5.8105,0,7.376-3.2,7.376-6.68V27.1928C115.3516,23.7143,113.7861,20.5141,107.9756,20.5141ZM111.1084,31.61c0,1.9141-.8711,2.9239-3.1328,2.9239-2.2588,0-3.1289-1.01-3.1289-2.9239V27.0532c0-1.9131.87-2.9219,3.1289-2.9219,2.2617,0,3.1328,1.0088,3.1328,2.9219ZM77.8242,27.4843c-2.3144-.4824-2.4228-.581-2.4873-1.9326-.0488-1.04.2422-1.4707,2.0791-1.5566a29.8038,29.8038,0,0,1,4.669.2656l.2558-3.3818a22.2487,22.2487,0,0,0-5.0879-.3506c-4.8164.2275-6.2383,1.7881-6.0781,5.1855.1543,3.2578.6875,4.2754,4.86,5.085,2.7685.5293,3.0009,1.0391,3.0517,2.08.0606,1.2832-.1973,1.7119-2.07,1.8008a18.9013,18.9013,0,0,1-5.0586-.4913l-.4385,3.251a19.874,19.874,0,0,0,5.8682.6963c5.0967-.2412,6.0078-2.2978,5.8535-5.5566C83.0771,29.1123,82.5967,28.51,77.8242,27.4843Zm14.8194,0c-2.3145-.4814-2.4239-.58-2.4883-1.9316-.0489-1.04.2441-1.4717,2.08-1.5576a29.776,29.776,0,0,1,4.6679.2656l.2578-3.3808a22.2081,22.2081,0,0,0-5.0879-.3516c-4.8183.2275-6.2382,1.7891-6.0781,5.1855.1543,3.2578.6875,4.2754,4.8594,5.086,2.7685.5293,3.0019,1.039,3.0508,2.0791.0605,1.2832-.1973,1.7129-2.0684,1.8008a18.9194,18.9194,0,0,1-5.0605-.4913l-.4375,3.251a19.9137,19.9137,0,0,0,5.8691.6973c5.0947-.2422,6.0059-2.2988,5.8525-5.5567C97.8955,29.1132,97.417,28.5107,92.6436,27.4843Zm-30.7-6.9775c-5.4282,0-7.0283,3.0273-7.0283,6.6113v4.4893c0,4.0713,1.8443,6.541,7.167,6.541a14.7822,14.7822,0,0,0,5.6187-.918l.45-3.1757a15.3126,15.3126,0,0,1-5.6265.791c-2.5615-.2559-3.3643-.9766-3.3643-3.0293v-.87h9.4283V27.3271C68.5889,23.6728,67.3711,20.5068,61.9438,20.5068Zm2.6094,7.0293H59.1606v-.835c0-1.6015.73-2.7148,2.8184-2.7148s2.5742,1.1133,2.5742,2.7148Z"/>
+
+                    <!-- Secondary Farbe: RGBA(136, 125, 117, 1) -->
+                    <polygon fill="rgba(136, 125, 117, 1)"
+                             points="126.435 11.012 124.852 11.012 124.852 40.397 114.677 50.573 116.915 50.573 126.435 41.052 126.435 11.012"/>
+                </svg>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Blueprint</span>
+            </a>
+            <button data-collapse-toggle="mega-menu-full-image" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="mega-menu-full-image" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div id="mega-menu-full-image"
+                 class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
+                <ul class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
+                    <li>
+                        <a href="#"
+                           class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                           aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <button id="mega-menu-full-cta-image-button"
+                                data-collapse-toggle="mega-menu-full-image-dropdown"
+                                class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                            Company
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Marketplace</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Resources</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="mega-menu-full-image-dropdown"
+             class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600 hidden">
+            <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-sm text-gray-500 dark:text-gray-400 md:grid-cols-3 md:px-6">
+                <ul class="hidden mb-4 space-y-4 md:mb-0 md:block" aria-labelledby="mega-menu-full-image-button">
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Online Stores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Segmentation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Marketing CRM
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Online Stores
+                        </a>
+                    </li>
+                </ul>
+                <ul class="mb-4 space-y-4 md:mb-0">
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Our Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Terms & Conditions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            License
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                            Resources
+                        </a>
+                    </li>
+                </ul>
+                <a href="#"
+                   class="p-8 bg-local bg-gray-500 bg-center bg-no-repeat bg-cover rounded-lg bg-blend-multiply hover:bg-blend-soft-light dark:hover:bg-blend-darken"
+                   style="background-image: url(/dist/img/mountains.jpg)">
+                    <p class="max-w-xl mb-5 font-extrabold leading-tight tracking-tight text-white">Preview the new
+                        Flowbite dashboard navigation.</p>
+                    <button type="button"
+                            class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-center text-white border border-white rounded-lg hover:bg-white hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-700">
+                        Get started
+                        <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+</header>
+
+<main class="items-center py-10">
+
+    <div class="container mx-auto">
+        <!-- BREADCRUMB -->
+        <nav class="flex mx-auto p-4 my-5" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="#"
+                       class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                             fill="currentColor" viewBox="0 0 20 20">
+                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <a href="#"
+                           class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Projects</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Flowbite</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <!-- END BREADCRUMB -->
+    </div>
+
+    <div class="container mx-auto">
+        <h1 class="text-5xl mb-4">Flowbite Komponente</h1>
+        <h2 class="text-4xl mb-4">Flowbite Komponente</h2>
+        <h3 class="text-3xl mb-4">Flowbite Komponente</h3>
+        <h4 class="text-2xl mb-4">Flowbite Komponente</h4>
+    </div>
+
+
+    <div class="container mx-auto">
+        <div class="w-full">
+            <h2 class="text-lg mb-4 font-bold">TEXT</h2>
+            <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
+                Biete großartige Service-Erlebnisse schnell an – ohne die Komplexität traditioneller ITSM-Lösungen.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400">
+                Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform. Verknüpfe Probleme
+                über Jira hinweg und importiere Daten aus anderen Software-Entwicklungstools, damit deine IT-Support-
+                und Betriebsteams umfassendere Kontextinformationen haben, um schnell auf Anfragen, Vorfälle und
+                Änderungen zu reagieren.
+            </p>
+            <p class="mt-3 mb-3 text-gray-500 dark:text-gray-400 p-2 bg-emerald-200">
+                Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform.
+                <a href="#"
+                   class="font-medium text-blue-600 underline dark:text-blue-500 hover:text-blue-700 hover:no-underline">
+                    Verknüpfe Probleme über Jira hinweg
+                </a> und importiere Daten aus anderen Software-Entwicklungstools.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 my-5">
+                Aufgrund seiner zentralen geografischen Lage in Südeuropa war <a href="#"
+                                                                                 class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Italien</a>
+                historisch gesehen die Heimat zahlreicher Völker und Kulturen.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">TEXT</h2>
+        <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
+            Biete großartige Service-Erlebnisse schnell an – ohne die Komplexität traditioneller ITSM-Lösungen.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+            Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform. Verknüpfe Probleme über
+            Jira hinweg und importiere Daten aus anderen Software-Entwicklungstools, damit deine IT-Support- und
+            Betriebsteams umfassendere Kontextinformationen haben, um schnell auf Anfragen, Vorfälle und Änderungen zu
+            reagieren.
+        </p>
+        <p class="mt-3 mb-3 text-gray-500 dark:text-gray-400 p-2 bg-emerald-200">
+            Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform.
+            <a href="#"
+               class="font-medium text-blue-600 underline dark:text-blue-500 hover:text-blue-700 hover:no-underline">
+                Verknüpfe Probleme über Jira hinweg
+            </a> und importiere Daten aus anderen Software-Entwicklungstools.
+        </p>
+        <p class="text-gray-500 dark:text-gray-400 my-5">
+            Aufgrund seiner zentralen geografischen Lage in Südeuropa war <a href="#"
+                                                                             class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Italien</a>
+            historisch gesehen die Heimat zahlreicher Völker und Kulturen.
+        </p>
+    </div>
+
+    <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-lg mb-4 font-bold">TEXT</h2>
+            <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
+                Biete großartige Service-Erlebnisse schnell an – ohne die Komplexität traditioneller ITSM-Lösungen.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400">
+                Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform. Verknüpfe Probleme
+                über Jira hinweg und importiere Daten aus anderen Software-Entwicklungstools, damit deine IT-Support-
+                und Betriebsteams umfassendere Kontextinformationen haben, um schnell auf Anfragen, Vorfälle und
+                Änderungen zu reagieren.
+            </p>
+            <p class="mt-3 mb-3 text-gray-500 dark:text-gray-400 p-2 bg-emerald-200">
+                Verfolge Arbeiten im gesamten Unternehmen über eine offene, kollaborative Plattform.
+                <a href="#"
+                   class="font-medium text-blue-600 underline dark:text-blue-500 hover:text-blue-700 hover:no-underline">
+                    Verknüpfe Probleme über Jira hinweg
+                </a> und importiere Daten aus anderen Software-Entwicklungstools.
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 my-5">
+                Aufgrund seiner zentralen geografischen Lage in Südeuropa war <a href="#"
+                                                                                 class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Italien</a>
+                historisch gesehen die Heimat zahlreicher Völker und Kulturen.
+            </p>
+        </div>
+    </div>
+
+    <div id="popover-image" role="tooltip"
+         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+        <div class="grid grid-cols-5">
+            <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Über Italien</h3>
+                    <p>Italien liegt in der Mitte des Mittelmeers in Südeuropa und wird auch als Teil Westeuropas
+                        betrachtet. Es ist eine einheitliche parlamentarische Republik mit Rom als Hauptstadt und
+                        größter Stadt.</p>
+                    <a href="#"
+                       class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Weiterlesen
+                        <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="m1 9 4-4-4-4"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <img src="/dist/img/mietze_2.jpg" class="object-cover h-full col-span-2" alt="Kitty-Yo"/>
+        </div>
+        <div data-popper-arrow></div>
+    </div>
+
+    <div class="container mx-auto">
+        <!-- IMAGE -->
+        <div class="max-w-4xl mx-auto my-5">
+            <h2 class="text-lg my-4 font-bold">RESPONSIVE IMAGE - WITH CAPTION</h2>
+            <figure class="relative">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                    <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                    <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                    <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full rounded-lg shadow-lg">
+                </picture>
+                <figcaption class="mt-2 text-sm">
+                    <p>A breathtaking view of nature during sunset.</p>
+                </figcaption>
+            </figure>
+        </div>
+        <!-- END IMAGE -->
+
+
+        <!-- IMAGE -->
+        <div class="my-5">
+            <h2 class="text-lg my-4 font-bold">RESPONSIVE IMAGE - WITH CAPTION</h2>
+            <figure class="relative">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                    <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                    <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                    <img src="/dist/img/mietze_2.jpg" alt="Beautiful scenery" class="w-full rounded-lg shadow-lg">
+                </picture>
+                <figcaption class="mt-2 text-sm">
+                    <p>A breathtaking view of nature during sunset.</p>
+                </figcaption>
+            </figure>
+        </div>
+        <!-- END IMAGE -->
+    </div>
+
+    <div class="container mx-auto">
+        <!-- CARD (LEFT)TEXT -->
+        <h2 class="text-lg mb-4 font-bold">CARD</h2>
+        <h3 class="text-lg mb-4 font-bold">CARD (LEFT IMAGE)</h3>
+        <a href="#"
+           class="flex flex-col items-center mx-auto bg-white rounded-lg md:flex-row md:max-w-4xl  dark:bg-gray-800 my-5">
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                 src="/dist/img/mietze_2.jpg" alt="">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                    Technologieübernahmen 2021</h3>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                    Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer Reihenfolge.</p>
+            </div>
+        </a>
+        <!-- END CARD -->
+
+        <!-- CARD (LEFT)TEXT -->
+        <h3 class="text-lg mb-4 font-bold">CARD (RIGHT IMAGE)</h3>
+        <a href="#"
+           class="flex flex-col items-center mx-auto bg-white rounded-lg md:flex-row-reverse md:max-w-4xl dark:bg-gray-800 my-5">
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-e-lg"
+                 src="/dist/img/mietze_2.jpg" alt="">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                    Technologieübernahmen 2021</h3>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                    Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer Reihenfolge.</p>
+            </div>
+        </a>
+        <!-- END CARD -->
+    </div>
+
+    <div class="container mx-auto">
+        <!-- END CARD / IMAGE TOP-->
+        <h3 class="text-lg mb-4 font-bold">CARD (TOP IMAGE)</h3>
+        <div class="max-w-md mx-auto bg-white rounded-lg dark:bg-gray-800 relative">
+            <img class="rounded-t-lg" src="/dist/img/mietze_1.jpg" alt=""/>
+            <div class="p-5">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                    Technologieübernahmen 2021</h3>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                    Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer Reihenfolge.</p>
+                <a href="#"
+                   class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                   aria-label="Mehr erfahren"
+                >
+                    Mehr erfahren
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD / IMAGE TOP LIST-->
+    <div class="container mx-auto">
+        <h3 class="text-lg my-4 font-bold">CARD LIST</h3>
+        <ul class="flex flex-col lg:flex-row gap-5">
+            <li class="flex-1 bg-white rounded-lg">
+                <div class="overflow-hidden rounded-t-lg">
+                    <img src="/dist/img/nevada.jpg" alt="Teaser Image 1"
+                         class="w-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg">
+                <div class="overflow-hidden rounded-t-lg">
+                    <img src="/dist/img/hippopotamus.jpg" alt="Teaser Image 1"
+                         class="w-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg">
+                <div class="overflow-hidden rounded-t-lg">
+                    <img src="/dist/img/mountain_lake.jpg" alt="Teaser Image 1"
+                         class="w-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- CARD / IMAGE TOP LIST-->
+
+    <!-- CARD / IMAGE TOP LIST-->
+    <div class="container mx-auto">
+        <h3 class="text-lg my-4 font-bold">CARD LIST</h3>
+        <ul class="flex flex-col lg:flex-row gap-5">
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                        Technologieübernahmen 2021</h3>
+                    <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen im
+                        Jahr 2021, in
+                        umgekehrter chronologischer Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- END CARD / IMAGE TOP LIST-->
+
+    <!-- CARD / IMAGE TOP LIST-->
+    <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-lg my-4 font-bold">CARD LIST (NARROW)</h3>
+            <ul class="flex flex-col lg:flex-row gap-5">
+                <li class="flex-1 bg-white rounded-lg relative">
+                    <div class="overflow-hidden rounded-t-lg">
+                        <picture class="w-full object-cover">
+                            <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                            <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                            <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                            <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                        </picture>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </li>
+                <li class="flex-1 bg-white rounded-lg relative">
+                    <div class="overflow-hidden rounded-t-lg">
+                        <picture class="w-full object-cover">
+                            <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                            <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                            <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                            <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                        </picture>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </li>
+                <li class="flex-1 bg-white rounded-lg relative">
+                    <div class="overflow-hidden rounded-t-lg">
+                        <picture class="w-full object-cover">
+                            <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                            <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                            <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                            <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                        </picture>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- END CARD / IMAGE TOP LIST-->
+
+    <!-- CARD / IMAGE TOP LIST-->
+    <div class="container mx-auto">
+        <h3 class="text-lg my-4 font-bold">CARD LIST - STRECHTED LINK</h3>
+        <ul class="flex flex-col lg:flex-row gap-5">
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery" class="w-full">
+                    </picture>
+                    <div class="p-6">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bemerkenswerte
+                            Technologieübernahmen 2021</h3>
+                        <p class="text-gray-600 mb-4">Hier sind die bisher größten Technologieübernahmen von Unternehmen
+                            im
+                            Jahr 2021, in
+                            umgekehrter chronologischer Reihenfolge.</p>
+                        <a href="#"
+                           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                           aria-label="Mehr erfahren"
+                        >
+                            Mehr erfahren
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- END CARD -->
+    </div>
+    <!-- END CARD / IMAGE TOP LIST-->
+
+    <!-- CARD / IMAGE TOP LIST-->
+    <div class="container mx-auto">
+        <h3 class="text-lg my-4 font-bold">CARD LIST - STRECHTED LINK (SCALE)</h3>
+        <ul class="flex flex-col lg:flex-row gap-5">
+            <li class="group flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery"
+                             class="transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-cover w-full h-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Bemerkenswerte Technologieübernahmen 2021</h3>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                        Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer
+                        Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="group flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery"
+                             class="transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-cover w-full h-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Bemerkenswerte Technologieübernahmen 2021</h3>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                        Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer
+                        Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="group flex-1 bg-white rounded-lg relative">
+                <div class="overflow-hidden rounded-t-lg">
+                    <picture class="w-full object-cover">
+                        <source media="(max-width: 640px)" srcset="/dist/img/srcset/640.jpg">
+                        <source media="(max-width: 1023px)" srcset="/dist/img/srcset/1024.jpg">
+                        <source media="(min-width: 1024px)" srcset="/dist/img/srcset/1920.jpg">
+                        <img src="/dist/img/srcset/1920.jpg" alt="Beautiful scenery"
+                             class="transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-cover w-full h-full">
+                    </picture>
+                </div>
+                <div class="p-6">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Bemerkenswerte Technologieübernahmen 2021</h3>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Hier sind die bisher größten
+                        Technologieübernahmen von Unternehmen im Jahr 2021, in umgekehrter chronologischer
+                        Reihenfolge.</p>
+                    <a href="#"
+                       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 before:content[''] before:absolute before:inset-0 before:block before:z-10"
+                       aria-label="Mehr erfahren"
+                    >
+                        Mehr erfahren
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- END CARD -->
+
+    <!-- VIDEO -->
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">VIDEO</h2>
+        <video class="w-full h-auto max-w-full my-5" controls>
+            <source src="/dist/video/flowbite.mp4" type="video/mp4">
+            Ihr Browser unterstützt das Video-Tag nicht.
+        </video>
+    </div>
+    <!-- END VIDEO -->
+
+    <!-- YOUTUBE VIDEO -->
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">YOUTUBE VIDEO</h2>
+        <iframe class="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl"
+                src="https://www.youtube.com/embed/F6aLfXlNy_M" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        <div class="relative aspect-w-16 aspect-h-9">
+            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/F6aLfXlNy_M"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+    <!-- END VIDEO -->
+
+    <!-- ACCORDION -->
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">AKKORDEON</h2>
+        <div id="accordion-collapse" data-accordion="collapse" class="my-5">
+            <h2 id="accordion-collapse-heading-1">
+                <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
+                        aria-controls="accordion-collapse-body-1">
+                    <span>Was ist Flowbite?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite ist eine Open-Source-Bibliothek
+                        interaktiver
+                        Komponenten, die auf Tailwind CSS aufbaut, einschließlich Buttons, Dropdowns, Modals, Navbars
+                        und
+                        mehr.</p>
+                    <p class="text-gray-500 dark:text-gray-400">Schau dir diesen Leitfaden an, um zu lernen, wie du <a
+                            href="/docs/getting-started/introduction/"
+                            class="text-blue-600 dark:text-blue-500 hover:underline">loslegen</a> und noch schneller mit
+                        Komponenten
+                        auf Tailwind CSS-basierend Websites entwickeln kannst.</p>
+                </div>
+            </div>
+            <h2 id="accordion-collapse-heading-2">
+                <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-2">
+                    <span>Gibt es eine Figma-Datei?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite wurde zunächst mit der Figma-Software
+                        konzipiert und gestaltet, sodass alles, was du in der Bibliothek siehst, ein Design-Äquivalent
+                        in
+                        unserer
+                        Figma-Datei hat.</p>
+                    <p class="text-gray-500 dark:text-gray-400">Schau dir das <a href="https://flowbite.com/figma/"
+                                                                                 class="text-blue-600 dark:text-blue-500 hover:underline">Figma
+                        Design-System</a> an, das auf den Utility-Klassen von Tailwind CSS und den Komponenten von
+                        Flowbite
+                        basiert.</p>
+                </div>
+            </div>
+            <h2 id="accordion-collapse-heading-3">
+                <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-3">
+                    <span>Was sind die Unterschiede zwischen Flowbite und Tailwind UI?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+                <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Der Hauptunterschied besteht darin, dass die
+                        Kernkomponenten
+                        von Flowbite Open Source unter der MIT-Lizenz sind, während Tailwind UI ein kostenpflichtiges
+                        Produkt
+                        ist. Ein weiterer Unterschied ist, dass Flowbite auf kleinere und eigenständige Komponenten
+                        setzt,
+                        während
+                        Tailwind UI ganze Seitenabschnitte bietet.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Wir empfehlen jedoch tatsächlich, sowohl Flowbite,
+                        Flowbite
+                        Pro als auch Tailwind UI zu verwenden, da es keinen technischen Grund gibt, warum du nicht das
+                        Beste
+                        aus beiden Welten nutzen solltest.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Erfahre mehr über diese Technologien:</p>
+                    <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                        <li><a href="https://flowbite.com/pro/"
+                               class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite
+                            Pro</a></li>
+                        <li><a href="https://tailwindui.com/" rel="nofollow"
+                               class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-lg mb-4 font-bold">AKKORDEON (NARROW)</h2>
+            <div id="accordion-collapse-narrow" data-accordion="collapse" class="my-5">
+                <h2 id="accordion-collapse-narrow-heading-1">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                            data-accordion-target="#accordion-collapse-narrow-body-1" aria-expanded="true"
+                            aria-controls="accordion-collapse-body-1">
+                        <span>Was ist Flowbite?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-narrow-body-1" class="hidden"
+                     aria-labelledby="accordion-collapse-narrow-heading-1">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite ist eine Open-Source-Bibliothek
+                            interaktiver
+                            Komponenten, die auf Tailwind CSS aufbaut, einschließlich Buttons, Dropdowns, Modals,
+                            Navbars und
+                            mehr.</p>
+                        <p class="text-gray-500 dark:text-gray-400">Schau dir diesen Leitfaden an, um zu lernen, wie du
+                            <a
+                                    href="/docs/getting-started/introduction/"
+                                    class="text-blue-600 dark:text-blue-500 hover:underline">loslegen</a> und noch
+                            schneller mit
+                            Komponenten
+                            auf Tailwind CSS-basierend Websites entwickeln kannst.</p>
+                    </div>
+                </div>
+                <h2 id="accordion-collapse-narrow-heading-2">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                            data-accordion-target="#accordion-collapse-narrow-body-2" aria-expanded="false"
+                            aria-controls="accordion-collapse-narrow-body-2">
+                        <span>Gibt es eine Figma-Datei?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-narrow-body-2" class="hidden"
+                     aria-labelledby="accordion-collapse-narrow-heading-2">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite wurde zunächst mit der Figma-Software
+                            konzipiert und gestaltet, sodass alles, was du in der Bibliothek siehst, ein
+                            Design-Äquivalent in
+                            unserer
+                            Figma-Datei hat.</p>
+                        <p class="text-gray-500 dark:text-gray-400">Schau dir das <a href="https://flowbite.com/figma/"
+                                                                                     class="text-blue-600 dark:text-blue-500 hover:underline">Figma
+                            Design-System</a> an, das auf den Utility-Klassen von Tailwind CSS und den Komponenten von
+                            Flowbite
+                            basiert.</p>
+                    </div>
+                </div>
+                <h2 id="accordion-collapse-narrow-heading-3">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                            data-accordion-target="#accordion-collapse-narrow-body-3" aria-expanded="false"
+                            aria-controls="accordion-collapse-narrow-body-3">
+                        <span>Was sind die Unterschiede zwischen Flowbite und Tailwind UI?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-narrow-body-3" class="hidden"
+                     aria-labelledby="accordion-collapse-narrow-heading-3">
+                    <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Der Hauptunterschied besteht darin, dass die
+                            Kernkomponenten
+                            von Flowbite Open Source unter der MIT-Lizenz sind, während Tailwind UI ein
+                            kostenpflichtiges
+                            Produkt
+                            ist. Ein weiterer Unterschied ist, dass Flowbite auf kleinere und eigenständige Komponenten
+                            setzt,
+                            während
+                            Tailwind UI ganze Seitenabschnitte bietet.</p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Wir empfehlen jedoch tatsächlich, sowohl
+                            Flowbite,
+                            Flowbite
+                            Pro als auch Tailwind UI zu verwenden, da es keinen technischen Grund gibt, warum du nicht
+                            das Beste
+                            aus beiden Welten nutzen solltest.</p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Erfahre mehr über diese Technologien:</p>
+                        <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                            <li>
+                                <a href="https://flowbite.com/pro/"
+                                   class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite
+                                Pro</a>
+                            </li>
+                            <li>
+                                <a href="https://tailwindui.com/" rel="nofollow"
+                                   class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END ACCORDION -->
+
+    <!-- TABS -->
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">TABS</h2>
+        <h3 class="text-lg mb-4 font-bold">TABS - UNDERLINE</h3>
+        <div class="my-5">
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-700 my-5">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
+                    data-tabs-toggle="#default-styled-tab-content"
+                    data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+                    data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+                    role="tablist">
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab"
+                                data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile"
+                                aria-selected="false">Profil
+                        </button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button" role="tab"
+                                aria-controls="dashboard" aria-selected="false">Dashboard
+                        </button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab"
+                                aria-controls="settings" aria-selected="false">Einstellungen
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="contacts-styled-tab" data-tabs-target="#styled-contacts" type="button" role="tab"
+                                aria-controls="contacts" aria-selected="false">Kontakte
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div id="default-styled-tab-content">
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel"
+                     aria-labelledby="profile-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                            class="font-medium text-gray-800 dark:text-white">Inhalt des Profiltabs</strong> verbunden ist.
+                        Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten umgeschaltet.
+                        Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der Inhalte zu steuern.
+                    </p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
+                     aria-labelledby="dashboard-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                            class="font-medium text-gray-800 dark:text-white">Inhalt des Dashboard-Tabs</strong> verbunden
+                        ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten
+                        umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der
+                        Inhalte zu steuern.</p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-settings" role="tabpanel"
+                     aria-labelledby="settings-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                            class="font-medium text-gray-800 dark:text-white">Inhalt des Einstellungen-Tabs</strong>
+                        verbunden ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den
+                        nächsten umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling
+                        der Inhalte zu steuern.</p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-contacts" role="tabpanel"
+                     aria-labelledby="contacts-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                            class="font-medium text-gray-800 dark:text-white">Inhalt des Kontakte-Tabs</strong> verbunden
+                        ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten
+                        umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der
+                        Inhalte zu steuern.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-lg mb-4 font-bold">TABS - UNDERLINE (NARROW)</h3>
+            <div class="my-5">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700 my-5">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-narrow-tab"
+                        data-tabs-toggle="#default-styled-narrow-tab-content"
+                        data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+                        data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+                        role="tablist">
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-narrow-tab"
+                                    data-tabs-target="#narrow-styled-profile" type="button" role="tab" aria-controls="narrow-profile"
+                                    aria-selected="false">Profil
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="dashboard-styled-narrow-tab" data-tabs-target="#narrow-styled-dashboard" type="button" role="tab"
+                                    aria-controls="narrow-dashboard" aria-selected="false">Dashboard
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="settings-styled-narrow-tab" data-tabs-target="#narrow-styled-settings" type="button" role="tab"
+                                    aria-controls="narrow-settings" aria-selected="false">Einstellungen
+                            </button>
+                        </li>
+                        <li role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="contacts-styled-narrow-tab" data-tabs-target="#narrow-styled-contacts" type="button" role="tab"
+                                    aria-controls="narrow-contacts" aria-selected="false">Kontakte
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="default-styled-narrow-tab-content">
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-styled-profile" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                                class="font-medium text-gray-800 dark:text-white">Inhalt des Profiltabs</strong> verbunden ist.
+                            Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten umgeschaltet.
+                            Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der Inhalte zu steuern.
+                        </p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-styled-dashboard" role="tabpanel"
+                         aria-labelledby="dashboard-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                                class="font-medium text-gray-800 dark:text-white">Inhalt des Dashboard-Tabs</strong> verbunden
+                            ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten
+                            umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der
+                            Inhalte zu steuern.</p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-styled-settings" role="tabpanel"
+                         aria-labelledby="settings-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                                class="font-medium text-gray-800 dark:text-white">Inhalt des Einstellungen-Tabs</strong>
+                            verbunden ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den
+                            nächsten umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling
+                            der Inhalte zu steuern.</p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-styled-contacts" role="tabpanel"
+                         aria-labelledby="contacts-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist ein Platzhalterinhalt, der mit dem <strong
+                                class="font-medium text-gray-800 dark:text-white">Inhalt des Kontakte-Tabs</strong> verbunden
+                            ist. Durch Klicken auf einen anderen Tab wird die Sichtbarkeit dieses Tabs für den nächsten
+                            umgeschaltet. Das Tab-JavaScript tauscht Klassen aus, um die Sichtbarkeit und das Styling der
+                            Inhalte zu steuern.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END TABS -->
+
+    <!-- TABS -->
+    <div class="container mx-auto">
+        <h3 class="text-lg mb-4 font-bold">TABS - PILLS</h3>
+        <div class="my-5">
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-700 my-5">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-pills-tab"
+                    data-tabs-toggle="#default-pills-tab-content"
+                    data-tabs-active-classes="text-white bg-blue-600"
+                    data-tabs-inactive-classes="text-gray-500 bg-gray-200 mb-3"
+                    role="tablist">
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block px-4 py-3 rounded-lg" id="profile-tab"
+                                data-tabs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                aria-selected="true">Profil
+                        </button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block px-4 py-3 rounded-lg" id="dashboard-tab"
+                                data-tabs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
+                                aria-selected="false">Dashboard
+                        </button>
+                    </li>
+                    <li class="me-2" role="presentation">
+                        <button class="inline-block px-4 py-3 rounded-lg" id="settings-tab"
+                                data-tabs-target="#pills-settings" type="button" role="tab" aria-controls="pills-settings"
+                                aria-selected="false">Einstellungen
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button class="inline-block px-4 py-3 rounded-lg" id="contacts-tab"
+                                data-tabs-target="#pills-contacts" type="button" role="tab" aria-controls="pills-contacts"
+                                aria-selected="false">Kontakte
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div id="default-pills-tab-content">
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="pills-profile" role="tabpanel"
+                     aria-labelledby="profile-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                            class="font-medium text-gray-800 dark:text-white">Profile-Tab</strong>.</p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="pills-dashboard" role="tabpanel"
+                     aria-labelledby="dashboard-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                            class="font-medium text-gray-800 dark:text-white">Dashboard-Tab</strong>.</p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="pills-settings" role="tabpanel"
+                     aria-labelledby="settings-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                            class="font-medium text-gray-800 dark:text-white">Settings-Tab</strong>.</p>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="pills-contacts" role="tabpanel"
+                     aria-labelledby="contacts-tab">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                            class="font-medium text-gray-800 dark:text-white">Contacts-Tab</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-lg mb-4 font-bold">TABS - PILLS (NARROW)</h3>
+            <div class="my-5">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700 my-5">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-pills-narrow-tab"
+                        data-tabs-toggle="#default-pills-narrow-tab-content"
+                        data-tabs-active-classes="text-white bg-blue-600"
+                        data-tabs-inactive-classes="text-gray-500 bg-gray-200 mb-3"
+                        role="tablist">
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block px-4 py-3 rounded-lg" id="profile-narrow-tab"
+                                    data-tabs-target="#narrow-pills-profile" type="button" role="tab" aria-controls="narrow-pills-profile"
+                                    aria-selected="true">Profil
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block px-4 py-3 rounded-lg" id="dashboard-narrow-tab"
+                                    data-tabs-target="#narrow-pills-dashboard" type="button" role="tab" aria-controls="narrow-pills-dashboard"
+                                    aria-selected="false">Dashboard
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block px-4 py-3 rounded-lg" id="settings-narrow-tab"
+                                    data-tabs-target="#narrow-pills-settings" type="button" role="tab" aria-controls="narrow-pills-settings"
+                                    aria-selected="false">Einstellungen
+                            </button>
+                        </li>
+                        <li role="presentation">
+                            <button class="inline-block px-4 py-3 rounded-lg" id="contacts-narrow-tab"
+                                    data-tabs-target="#narrow-pills-contacts" type="button" role="tab" aria-controls="narrow-pills-contacts"
+                                    aria-selected="false">Kontakte
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="default-pills-narrow-tab-content">
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-pills-profile" role="tabpanel"
+                         aria-labelledby="profile-narrow-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                                class="font-medium text-gray-800 dark:text-white">Profile-Tab</strong>.</p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-pills-dashboard" role="tabpanel"
+                         aria-labelledby="dashboard-narrow-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                                class="font-medium text-gray-800 dark:text-white">Dashboard-Tab</strong>.</p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-pills-settings" role="tabpanel"
+                         aria-labelledby="settings-narrow-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                                class="font-medium text-gray-800 dark:text-white">Settings-Tab</strong>.</p>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="narrow-pills-contacts" role="tabpanel"
+                         aria-labelledby="contacts-narrow-tab">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dies ist der Inhalt für den <strong
+                                class="font-medium text-gray-800 dark:text-white">Contacts-Tab</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END TABS -->
+
+    <!-- FILE UPLOAD -->
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">FILE UPLOAD</h2>
+        <div class="max-w-4xl mx-auto">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+        </div>
+    </div>
+    <div class="container mx-auto">
+        <h2 class="text-lg mb-4 font-bold">FILE UPLOAD</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-center w-full">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                    </div>
+                    <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- END FILE UPLOAD -->
+</main>
+
+<footer class="bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl">
+        <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="#" class=" hover:underline">About</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Careers</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Brand Center</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Discord Server</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Twitter</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Facebook</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Privacy Policy</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Licensing</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">iOS</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Android</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Windows</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">MacOS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700">
+        <div class="mx-auto w-full max-w-screen-xl md:flex md:items-center md:justify-between">
+            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 <a
+                    href="https://www.adesso.de">Blueprint™</a>. All Rights Reserved.</span>
+            <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 8 19">
+                        <path fill-rule="evenodd"
+                              d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="sr-only">Facebook page</span>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 21 16">
+                        <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
+                    </svg>
+                    <span class="sr-only">Discord community</span>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 20 17">
+                        <path fill-rule="evenodd"
+                              d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="sr-only">Twitter page</span>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="sr-only">GitHub account</span>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                              d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="sr-only">Dribbble account</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+</body>
+</html>

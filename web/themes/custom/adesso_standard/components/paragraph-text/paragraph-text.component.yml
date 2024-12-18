@@ -1,0 +1,14 @@
+name: Paragraph Text
+description: A text paragraph component
+props:
+  content:
+    type: array
+    description: The content of the paragraph
+  content_width:
+    type: string
+    description: The width of the content (narrow or full)
+  attributes:
+    type: object
+    description: HTML attributes
+libraries:
+  - adesso_standard/paragraph-text

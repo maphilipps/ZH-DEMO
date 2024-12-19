@@ -293,7 +293,6 @@ function adesso_cms_installer_uninstall_myself(): void {
 function adesso_cms_installer_theme_registry_alter(array &$hooks): void {
   global $install_state;
 
-  dump($install_state);
   $installer_path = $install_state['profiles']['adesso_cms_installer']->getPath();
 
   $hooks['install_page']['path'] = $installer_path . '/templates';

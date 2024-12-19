@@ -1,0 +1,7 @@
+ignore:
+  - '/src/StarterKit.php'
+  - '/adesso_standard.starterkit.yml'
+no_edit: []
+no_rename: []
+info:
+  version: 1.0.0

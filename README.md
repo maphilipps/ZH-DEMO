@@ -1,6 +1,6 @@
-# Drupal CMS
+# adesso CMS
 
-Drupal CMS is a fast-moving open source product that enables site builders to easily create new Drupal sites and extend them with smart defaults, all using their browser.
+adesso CMS is a fast-moving open source product that enables site builders to easily create new Drupal sites and extend them with smart defaults, all using their browser.
 
 ## Getting started
 

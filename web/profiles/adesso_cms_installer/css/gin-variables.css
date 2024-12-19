@@ -8,9 +8,9 @@
 
   --color-focus: var(--gin-color-focus);
   --gin-color-primary: rgb(var(--gin-color-primary-rgb));
-  --gin-color-primary-rgb: 5, 80, 230;
+  --gin-color-primary-rgb: 0, 128, 201;
   --gin-color-primary-light-rgb: 205, 220, 250;
-  --gin-color-primary-hover: #0444c4;
+  --gin-color-primary-hover: #006dc7;
   --gin-color-primary-active: #043cad;
   --gin-bg-app-rgb: 248, 250, 254;
   --gin-bg-header: #e1eafc;

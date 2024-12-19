@@ -21,7 +21,7 @@ hooks:
         - exec: echo 'The node.js container is ready. You can start storybook by typing:'
         - exec: echo 'ddev yarn storybook'
         - exec: echo
-        - exec: echo 'By default it will be available at https://change-me.ddev.site:6006'
+        - exec: echo 'By default it will be available at https://adesso-cms.ddev.site:6006'
         - exec: echo "Use ddev describe to confirm if this doesn't work."
         - exec: echo 'Check the status of startup by running "ddev logs --follow --time"'
         - exec: echo '================================================================================='

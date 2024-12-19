@@ -33,6 +33,8 @@ config:
   strict: false
   import:
     adesso_standard: '*'
+    navigation:
+      - navigation.settings
     linkit:
       - image.style.linkit_result_thumbnail
     image:
@@ -77,6 +79,19 @@ config:
     system.theme:
       simpleConfigUpdate:
         default: adesso_standard
+    gin.settings:
+      simpleConfigUpdate:
+        preset_accent_color: custom
+        accent_color: '#0080c9'
+    navigation.settings:
+      simpleConfigUpdate:
+        logo:
+          provider: custom
+          path: profiles/adesso_cms_installer/images/logo.png
+          max:
+            filesize: 1048576
+            height: 40
+            width: 40
     user.role.content_editor:
       grantPermissionsForEachMediaType:
         - 'create %bundle media'

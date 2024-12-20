@@ -16,6 +16,10 @@
         "starter": {
             "type": "path",
             "url": "recipes/adesso_cms_starter"
+        },
+        "paragraphs": {
+            "type": "path",
+            "url": "recipes/adesso_cms_paragraphs"
         }
     },
     "require": {

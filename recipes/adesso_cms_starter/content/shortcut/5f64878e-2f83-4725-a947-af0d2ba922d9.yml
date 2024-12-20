@@ -3,7 +3,7 @@ _meta:
   entity_type: shortcut
   uuid: 5f64878e-2f83-4725-a947-af0d2ba922d9
   bundle: default
-  default_langcode: en
+  default_langcode: de
 default:
   title:
     -
@@ -16,4 +16,3 @@ default:
       uri: 'internal:/admin/modules/browse'
       title: ''
       options: {  }
-

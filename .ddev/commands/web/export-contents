@@ -1,0 +1,9 @@
+#!/bin/bash
+
+## Description: Export contents
+## Usage: export-contents
+
+rm -rf recipes/adesso_cms_starter/content
+drush dcer node --folder=../recipes/adesso_cms_starter/content
+drush dcer menu_link_content --folder=../recipes/adesso_cms_starter/content
+drush dcer shortcut --folder=../recipes/adesso_cms_starter/content

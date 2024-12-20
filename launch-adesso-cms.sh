@@ -23,5 +23,7 @@ test -d .ddev || ddev config --project-type=drupal11 --docroot=web --php-version
 ddev start
 # Install dependencies if not already done.
 ddev composer install
+# Build the theme if not already done.
+ddev theme build
 # All set, let's get Drupalin'.
 ddev launch

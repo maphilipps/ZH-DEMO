@@ -86,7 +86,7 @@ function adesso_cms_installer_install_tasks_alter(array &$tasks, array $install_
 
   // Set English as the default language; it can be changed mid-stream. We can't
   // use the passed-in $install_state because it's not passed by reference.
-  $GLOBALS['install_state']['parameters'] += ['langcode' => 'en'];
+  $GLOBALS['install_state']['parameters'] += ['langcode' => 'de'];
 
   // Wrap the install_profile_modules() function, which returns a batch job, and
   // add all the necessary operations to apply the chosen template recipe.

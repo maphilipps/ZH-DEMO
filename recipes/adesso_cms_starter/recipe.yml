@@ -8,16 +8,15 @@ recipes:
   - drupal_cms_admin_ui
   - drupal_cms_anti_spam
   - drupal_cms_authentication
-  - drupal_cms_page
   - drupal_cms_privacy_basic
   - drupal_cms_remote_video
   - drupal_cms_seo_basic
   - easy_email_express
+  - adesso_cms_paragraphs
 install:
   - automatic_updates
   - automatic_updates_extensions
   - dashboard
-  - adesso_standard
   - menu_link_content
   - package_manager
   - project_browser
@@ -27,6 +26,7 @@ install:
   - menu_ui
   - shortcut
   - views_ui
+  - default_content
   - vite
 config:
   # If the config we're importing already exists, we don't really care

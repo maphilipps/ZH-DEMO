@@ -28,6 +28,9 @@ components:
     paragraph-text: components/paragraph-text
 dependencies:
   - vite:vite
+vite:
+  enableInAllLibraries: true
+  enableInAllComponents: true
 
 
 

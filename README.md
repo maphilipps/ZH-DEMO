@@ -10,6 +10,14 @@ If you want to run Drupal CMS locally use [DDEV](https://ddev.com), and follow t
 2. Open the command line and `cd` to the root directory of this project
 3. Run the command `./launch-adesso-cms.sh`
 
+### Recreate
+
+If you want to reset the project, you can use the following command:
+
+```bash
+ddev drush sql:create -y
+```
+
 ### Installation options
 
 The Drupal CMS installer offers a list of features preconfigured with smart defaults. You will be able to customize whatever you choose, and add additional features, once you are logged in.

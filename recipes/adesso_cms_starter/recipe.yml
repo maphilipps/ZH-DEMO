@@ -28,6 +28,7 @@ install:
   - shortcut
   - views_ui
   - frontend_editing
+  - storybook
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.

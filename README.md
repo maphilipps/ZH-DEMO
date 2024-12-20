@@ -10,6 +10,24 @@ If you want to run Drupal CMS locally use [DDEV](https://ddev.com), and follow t
 2. Open the command line and `cd` to the root directory of this project
 3. Run the command `./launch-adesso-cms.sh`
 
+
+### Build theme
+
+The theme is built with [Vite](https://vite.dev/). To build the theme, run the following command:
+
+```bash
+ddev theme build
+```
+
+### Run Storybook
+
+```bash
+ddev yarn
+ddev yarn storybook 
+```
+
+Open: https://adesso-cms.ddev.site:6006/
+
 ### Recreate
 
 If you want to reset the project, you can use the following command:

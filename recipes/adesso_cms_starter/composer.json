@@ -17,7 +17,8 @@
         "drupal/easy_email_express": "^1.0.2",
         "drupal/frontend_editing": "^1.8",
         "drupal/pathauto": "^1.13",
-        "drupal/project_browser": "^2-alpha6"
+        "drupal/project_browser": "^2-alpha6",
+        "drupal/storybook": "^1.0"
     },
     "suggest": {
         "drupal/drupal_cms_blog": "Sets up a basic blog, with tagging.",

@@ -67,6 +67,13 @@
 /drupal.phar
 /drupal
 
+# Ignore drupal_cms and easy_email recipes
 /recipes/drupal_cms_*
 /recipes/easy_email_*
 
+# Ignore local development files
+.idea/
+.vscode/
+
+# Ignore node_modules
+node_modules/

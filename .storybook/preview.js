@@ -7,7 +7,7 @@ const preview = {
     },
   },
   server: {
-    url: process.env.STORYBOOK_SERVER_URL || 'http://adesso-drupal-standard.ddev.site/storybook/stories/render',
+    url: process.env.STORYBOOK_SERVER_URL || 'http://adesso-cms.ddev.site/storybook/stories/render',
   },
   parameters: {
     controls: {

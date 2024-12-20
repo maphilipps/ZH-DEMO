@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4709c4d33712c8cb791b6b6ed88f100d",
+    "content-hash": "f03d58f3f254cb0cd0c5b135315164e2",
     "packages": [
         {
             "name": "adesso/adesso_cms_paragraphs",
@@ -36,7 +36,7 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_starter",
-                "reference": "b298dbc1080d3c53664e87697889bb1cdc516a84"
+                "reference": "c73c4308830a3a146b996735c02b7187d065cee1"
             },
             "require": {
                 "adesso/adesso_cms_paragraphs": "*",
@@ -52,7 +52,8 @@
                 "drupal/drupal_cms_seo_basic": "~1.0.0-rc1",
                 "drupal/easy_email_express": "^1.0.2",
                 "drupal/pathauto": "^1.13",
-                "drupal/project_browser": "^2-alpha6"
+                "drupal/project_browser": "^2-alpha6",
+                "drupal/vite": "^1.3"
             },
             "suggest": {
                 "drupal/drupal_cms_blog": "Sets up a basic blog, with tagging.",

@@ -29,6 +29,7 @@ props:
       title: Wide?
       description: It is possible to display a wide button.
     url:
+      type: string
       title: URL
       description: "The button URL. Optional."
       $ref: "ui-patterns://url"

@@ -22,6 +22,6 @@ test -d .ddev || ddev config --project-type=drupal11 --docroot=web --php-version
 # Start your engines.
 ddev start
 # Install dependencies if not already done.
-test -f composer.lock || ddev composer install
+ddev composer install
 # All set, let's get Drupalin'.
 ddev launch

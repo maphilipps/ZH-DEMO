@@ -1,3 +1,5 @@
+import 'flowbite/dist/flowbite.js';
+
 /**
  * @file
  * adesso_standard behaviors.

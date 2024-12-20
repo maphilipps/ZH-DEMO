@@ -1,38 +1,31 @@
-import { defineConfig } from 'vite';
+import {defineConfig, loadEnv} from 'vite'
 import path from 'path';
+import tailwindcss from '@tailwindcss/vite';
+import {globSync} from "glob";
 
-export default defineConfig({
-  root: '.', // Root des Projekts
-  base: '/themes/custom/adesso_standard/', // Pfad zu deinem Custom-Theme
-  build: {
-    outDir: 'dist', // Ordner für die generierten Dateien
-    emptyOutDir: true, // Vorherigen Build löschen
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, './js/adesso-standard.js'), // Passe dies an deine Haupt-JS-Datei an
-        styles: path.resolve(__dirname, './scss/main.scss'),
-      },
-      output: {
-        assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: 'assets/[name].js',
-        entryFileNames: 'assets/[name].js',
-      },
-    },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  css: {
-    postcss: './postcss.config.js', // Verweis auf die PostCSS-Konfiguration
-  },
-  server: {
-    host: '0.0.0.0',
-    port: 3000,
-    strictPort: true,
-    hmr: {
-      host: 'localhost',
-    },
-  },
+const port = 5173
+const origin = `https://adesso-cms.ddev.site:${port}`
+
+
+// const origin = `${process.env.DDEV_PRIMARY_URL}:${port}`
+export default defineConfig(({command, mode}) => {
+    const env = loadEnv(mode, process.cwd(), '')
+    return {
+        plugins: [tailwindcss()], build: {
+            manifest: true,
+            rollupOptions: {
+                input: [...globSync('./js/adesso.js'), ...globSync('./css/adesso.css'),], output: {
+                    assetFileNames: 'assets/[name].[ext]',
+                    chunkFileNames: 'assets/[name].js',
+                    entryFileNames: 'assets/[name].js',
+                },
+            },
+        }, resolve: {
+            alias: {
+                '@': path.resolve(__dirname, './src'),
+            },
+        }, server: {
+            host: "0.0.0.0", port: port, strictPort: true, origin: origin,
+        },
+    }
 });

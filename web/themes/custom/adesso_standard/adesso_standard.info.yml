@@ -26,4 +26,8 @@ regions:
 components:
   namespaces:
     paragraph-text: components/paragraph-text
+dependencies:
+  - vite:vite
+
+
 

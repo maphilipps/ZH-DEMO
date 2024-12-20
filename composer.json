@@ -36,6 +36,7 @@
         "drupal/drupal_cms_project": "*",
         "drupal/drupal_cms_search": "^1.0@RC",
         "drupal/drupal_cms_seo_tools": "^1.0@RC",
+        "drupal/vite": "^1.3",
         "drush/drush": "^13"
     },
     "conflict": {

@@ -27,6 +27,7 @@ install:
   - menu_ui
   - shortcut
   - views_ui
+  - vite
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.

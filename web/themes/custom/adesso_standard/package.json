@@ -1,22 +1,28 @@
 {
   "name": "adesso_standard",
   "private": true,
+  "type": "module",
   "scripts": {
-    "livereload": "livereload --exclusions node_modules/ --exts 'css,js,twig,theme,apng,avif,gif,jpg,jpeg,jfif,pjpeg,pjp,png,svg,webp'",
     "dev": "vite",
     "build": "vite build",
     "watch": "npx tailwindcss -i --watch"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
     "@tailwindcss/typography": "^0.5.15",
-    "livereload": "^0.9.3",
-    "tailwindcss": "^3.4.16"
+    "@tailwindcss/vite": "^4.0.0-beta.8",
+    "glob-all": "^3.3.1",
+    "postcss": "^8.4.49",
+    "resolve-url-loader": "^5.0.0",
+    "tailwindcss": "^4.0.0-beta.8",
+    "vite": "^6.0.3"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
-    "flowbite": "^2.5.2",
+    "flowbite": "^3.0.0-beta.1",
+    "glob": "^11.0.0",
     "npx": "^10.2.2",
-    "postcss": "^8.4.49",
     "sass": "^1.82.0",
     "vite": "^6.0.3"
   }

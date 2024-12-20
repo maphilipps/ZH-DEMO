@@ -9,6 +9,7 @@ If you want to run Drupal CMS locally use [DDEV](https://ddev.com), and follow t
 1. Install DDEV following the documentation at <https://ddev.com/get-started/>
 2. Open the command line and `cd` to the root directory of this project
 3. Run the command `./launch-adesso-cms.sh`
+4. Run the command `ddev watch` to start the vite development server
 
 ### Installation options
 

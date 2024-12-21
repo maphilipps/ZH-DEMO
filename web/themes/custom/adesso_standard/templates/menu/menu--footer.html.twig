@@ -23,64 +23,31 @@
 {% import _self as menus %}
 
 {#
-We call a macro which calls itself to render the full tree.
-https://twig.symfony.com/doc/3.x/tags/macro.html
+  We call a macro which calls itself to render the full tree.
+  @see https://twig.symfony.com/doc/3.x/tags/macro.html
 #}
-{% set attributes = attributes.addClass('menu') %}
 {{ menus.menu_links(items, attributes, 0) }}
 
 {% macro menu_links(items, attributes, menu_level) %}
-  {% set primary_nav_level = 'menu--level-' ~ (menu_level + 1) %}
   {% import _self as menus %}
   {% if items %}
-    {% if menu_level == 0 %}
-      <ul class="grid grid-cols-none gap-8 py-6 lg:py-8 lg:grid-cols-4 md:grid-cols-2">
-    {% elseif menu_level == 1 %}
-      <ul class="text-gray-500 dark:text-gray-400 font-medium space-y-2">
-    {% else %}
-      <ul {{ attributes.addClass('menu', primary_nav_level) }}>
-    {% endif %}
-    {% set attributes = attributes.removeClass(primary_nav_level) %}
-
     {% for item in items %}
-      {% if item.url.isRouted and item.url.routeName == '<nolink>' %}
-        {% set menu_item_type = 'nolink' %}
-      {% elseif item.url.isRouted and item.url.routeName == '<button>' %}
-        {% set menu_item_type = 'button' %}
+      {% if menu_level == 0 %}
+        <div>
+          <h3 class="text-sm/6 font-semibold text-white">
+            {{ item.title }}
+          </h3>
+          <ul{{ attributes.addClass('mt-6 space-y-4').setAttribute('role', 'list') }}>
+            {% if item.below %}
+              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {% endif %}
+          </ul>
+        </div>
       {% else %}
-        {% set menu_item_type = 'link' %}
+        <li{{ item.attributes }}>
+          {{ link(item.title, item.url, create_attribute({'class': ['text-sm/6', 'text-white', 'hover:text-white']})) }}
+        </li>
       {% endif %}
-
-      {% set item_classes = [
-        'menu__item',
-        'menu__item--' ~ menu_item_type,
-        'menu__item--level-' ~ (menu_level + 1),
-        item.in_active_trail ? 'menu__item--active-trail',
-        item.below ? 'menu__item--has-children',
-      ] %}
-
-      {% set link_classes = [
-        'menu__link',
-        'menu__link--' ~ menu_item_type,
-        'menu__link--level-' ~ (menu_level + 1),
-        item.in_active_trail ? 'menu__link--active-trail',
-        item.below ? 'menu__link--has-children',
-      ] %}
-
-      <li{{ item.attributes.addClass(item_classes) }}>
-        {% set aria_id = (item.title ~ '-submenu-' ~ loop.index)|clean_id %}
-
-        {% if menu_item_type == 'nolink' %}
-          <p class="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{ item.title }}</p>
-        {% else %}
-          {{ link(item.title, item.url, {'class': link_classes}) }}
-        {% endif %}
-
-        {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-        {% endif %}
-      </li>
     {% endfor %}
-  </ul>
   {% endif %}
 {% endmacro %}

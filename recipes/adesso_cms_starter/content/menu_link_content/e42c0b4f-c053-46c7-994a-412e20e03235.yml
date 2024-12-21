@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: e42c0b4f-c053-46c7-994a-412e20e03235
+  bundle: menu_link_content
+  default_langcode: de
+  depends:
+    b6f6b772-93fb-4d48-995c-b89fa04e9f29: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Documentation
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:b6f6b772-93fb-4d48-995c-b89fa04e9f29'
+  revision_translation_affected:
+    -
+      value: true

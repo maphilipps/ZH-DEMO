@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{% extends 'region.html.twig'  %}
+
+{% set attributes = attributes.addClass([
+  'mx-auto',
+  'max-w-7xl', 
+  'px-6', 
+  'py-16',
+  'sm:py-24', 
+  'lg:px-8',
+  'lg:py-32'
+]) %}

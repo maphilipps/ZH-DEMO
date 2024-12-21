@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: c60ee3db-6508-47e7-a874-0797543f0eb4
+  bundle: menu_link_content
+  default_langcode: de
+  depends:
+    46bb927e-33a0-416a-b672-5af6cf8194d3: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Marketing
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:46bb927e-33a0-416a-b672-5af6cf8194d3'
+  revision_translation_affected:
+    -
+      value: true

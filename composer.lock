@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f03d58f3f254cb0cd0c5b135315164e2",
+    "content-hash": "058c27c5d503756536dfd349cdc3f6fe",
     "packages": [
         {
             "name": "adesso/adesso_cms_paragraphs",
@@ -2145,6 +2145,57 @@
             "homepage": "https://www.drupal.org/project/ai_provider_openai",
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_provider_openai"
+            }
+        },
+        {
+            "name": "drupal/all_entity_preview",
+            "version": "1.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/all_entity_preview.git",
+                "reference": "1.0.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/all_entity_preview-1.0.0-alpha4.zip",
+                "reference": "1.0.0-alpha4",
+                "shasum": "9cb717fae46aaca2c20dfe11c2ce7988dea459ab"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha4",
+                    "datestamp": "1732188390",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a.dmitriiev",
+                    "homepage": "https://www.drupal.org/user/3235287"
+                },
+                {
+                    "name": "breidert",
+                    "homepage": "https://www.drupal.org/user/135619"
+                },
+                {
+                    "name": "graber",
+                    "homepage": "https://www.drupal.org/user/1599440"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/all_entity_preview",
+            "support": {
+                "source": "https://git.drupalcode.org/project/all_entity_preview"
             }
         },
         {
@@ -15234,6 +15285,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/all_entity_preview": 15,
         "drupal/drupal_cms_search": 5,
         "drupal/drupal_cms_seo_tools": 5
     },

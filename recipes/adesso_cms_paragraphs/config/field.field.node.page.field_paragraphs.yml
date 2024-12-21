@@ -1,3 +1,4 @@
+uuid: a2c045bb-b889-4d1e-82b7-26ae31413657
 langcode: en
 status: true
 dependencies:
@@ -5,8 +6,11 @@ dependencies:
     - field.storage.node.field_paragraphs
     - node.type.page
     - paragraphs.paragraphs_type.card
+    - paragraphs.paragraphs_type.hero
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: _lUckyaZeKxJgCT2SvBw1HCHYy3d-DiettHVLybEzEM
 id: node.page.field_paragraphs
 field_name: field_paragraphs
 entity_type: node
@@ -22,9 +26,13 @@ settings:
   handler_settings:
     target_bundles:
       card: card
+      hero: hero
     negate: 0
     target_bundles_drag_drop:
       card:
         weight: 2
+        enabled: true
+      hero:
+        weight: 3
         enabled: true
 field_type: entity_reference_revisions

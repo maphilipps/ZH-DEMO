@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: d7f4f1b2-af94-46b8-ac63-a8a5b14fb0f5
+  uuid: fc5a95e8-bca0-4ab9-85b4-04a73600a5cd
   bundle: menu_link_content
   default_langcode: de
 default:
@@ -10,17 +10,15 @@ default:
       value: true
   title:
     -
-      value: 'My privacy settings'
+      value: Events
   menu_name:
     -
-      value: footer
+      value: main
   link:
     -
-      uri: 'internal:#'
+      uri: 'internal:/events'
       title: ''
-      options:
-        attributes:
-          rel: open-consent-manager
+      options: {  }
   external:
     -
       value: false

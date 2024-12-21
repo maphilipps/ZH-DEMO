@@ -5,6 +5,7 @@ _meta:
   bundle: page
   default_langcode: de
   depends:
+    070381fc-1329-4f9b-8862-9ef3d549209f: media
     e593b567-2ff6-483e-9d80-ccbd49230c2c: media
 default:
   revision_uid:
@@ -48,6 +49,37 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
+          uuid: 88be63c0-3de0-48ac-bf1b-f4c8d6ca60b3
+          bundle: hero
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1734772890
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_body:
+            -
+              value: '<p>Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>'
+              format: content_format
+          field_image:
+            -
+              entity: 070381fc-1329-4f9b-8862-9ef3d549209f
+          field_title:
+            -
+              value: 'Wir optimieren deine digitale Experience'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
           uuid: f34353f3-829f-4746-8060-0e508578efae
           bundle: card
           default_langcode: de
@@ -74,3 +106,31 @@ default:
           field_title:
             -
               value: 'Ich bin eine Card'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 74b44757-aa31-41cc-a2c6-64907fa0e6d9
+          bundle: card
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1734714850
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_body:
+            -
+              value: '<p>Blablalbalba</p>'
+              format: content_format
+          field_title:
+            -
+              value: Test

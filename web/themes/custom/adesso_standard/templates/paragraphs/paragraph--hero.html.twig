@@ -1,0 +1,31 @@
+<div{{ attributes.addClass('relative') }}>
+    {{ content.frontend_editing }}
+
+    {% embed 'adesso_standard:hero' %}
+
+        {% block image %}
+            {{ content.field_image }}
+        {% endblock %}
+        {% block title %}
+            {{ content.field_title }}
+        {% endblock %}
+
+        {% block text %}
+            {{ content.field_body }}
+        {% endblock %}
+
+        {% block actions %}
+            {% embed 'adesso_standard:button' with {
+                variant: 'default',
+                size: 'sm',
+                wide: false,
+                url: url
+            } %}
+                {% block label %}
+                    {{ 'Read more'|t }}
+                {% endblock %}
+            {% endembed %}
+        {% endblock %}
+
+    {% endembed %}
+</div>

@@ -27,3 +27,20 @@ function adesso_standard_preprocess_page(array &$variables): void {
 function adesso_standard_preprocess_node(array &$variables): void {
 
 }
+
+
+/**
+ * Implements hook_preprocess_HOOK() for field.html.twig.
+ */
+function adesso_standard_preprocess_field(array &$variables): void {
+
+    if (
+        $variables['element']['#field_name'] === 'field_image' &&
+        $variables['element']['#bundle'] === 'hero'
+    ) {
+
+        foreach ($variables['items'] as &$item) {
+            $item['content']['#item_attributes']['class'][] = 'absolute inset-0 -z-10 size-full object-cover';
+        }
+    }
+}

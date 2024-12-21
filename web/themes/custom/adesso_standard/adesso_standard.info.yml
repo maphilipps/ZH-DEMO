@@ -1,6 +1,6 @@
 name: adesso_standard
 type: theme
-'base theme': stable9
+'base theme': false
 # logo: logo.jpg
 # hidden: true
 starterkit: true

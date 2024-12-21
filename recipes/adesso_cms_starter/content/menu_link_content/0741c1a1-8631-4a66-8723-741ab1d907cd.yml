@@ -1,24 +1,24 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: d393a906-1f82-46f3-8c2e-3e1322a717a9
+  uuid: 0741c1a1-8631-4a66-8723-741ab1d907cd
   bundle: menu_link_content
   default_langcode: de
   depends:
-    00d105b3-6f05-40c6-a289-3dd61c89480e: node
+    b6f6b772-93fb-4d48-995c-b89fa04e9f29: menu_link_content
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'Privacy policy'
+      value: Guides
   menu_name:
     -
       value: footer
   link:
     -
-      target_uuid: 00d105b3-6f05-40c6-a289-3dd61c89480e
+      uri: 'internal:/'
       title: ''
       options: {  }
   external:
@@ -26,13 +26,16 @@ default:
       value: false
   rediscover:
     -
-      value: false
+      value: true
   weight:
     -
       value: 0
   expanded:
     -
       value: false
+  parent:
+    -
+      value: 'menu_link_content:b6f6b772-93fb-4d48-995c-b89fa04e9f29'
   revision_translation_affected:
     -
       value: true

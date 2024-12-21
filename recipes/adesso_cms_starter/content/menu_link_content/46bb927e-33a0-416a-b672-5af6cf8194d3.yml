@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 46bb927e-33a0-416a-b672-5af6cf8194d3
+  bundle: menu_link_content
+  default_langcode: de
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Solutions
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: -50
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

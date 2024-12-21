@@ -1,26 +1,26 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: d7f4f1b2-af94-46b8-ac63-a8a5b14fb0f5
+  uuid: a43845b5-f967-4a85-bc9c-243dd906a596
   bundle: menu_link_content
   default_langcode: de
+  depends:
+    1c13aada-3133-4bc0-80a6-7e715e4a7bfc: menu_link_content
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'My privacy settings'
+      value: 'Terms of service'
   menu_name:
     -
       value: footer
   link:
     -
-      uri: 'internal:#'
+      uri: 'internal:/'
       title: ''
-      options:
-        attributes:
-          rel: open-consent-manager
+      options: {  }
   external:
     -
       value: false
@@ -33,6 +33,9 @@ default:
   expanded:
     -
       value: false
+  parent:
+    -
+      value: 'menu_link_content:1c13aada-3133-4bc0-80a6-7e715e4a7bfc'
   revision_translation_affected:
     -
       value: true

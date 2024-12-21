@@ -5,7 +5,7 @@ dependencies:
     - adesso_standard
 id: adesso_standard_primary_local_tasks
 theme: adesso_standard
-region: highlighted
+region: secondary_menu
 weight: -4
 provider: null
 plugin: local_tasks_block

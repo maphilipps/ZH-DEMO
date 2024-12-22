@@ -2,11 +2,11 @@
     {{ content.frontend_editing }}
 
     {% embed 'adesso_standard:hero' %}
-
         {% block image %}
             {{ content.field_image }}
         {% endblock %}
-        {% block title %}
+
+         {% block title %}
             {{ content.field_title }}
         {% endblock %}
 
@@ -26,6 +26,5 @@
                 {% endblock %}
             {% endembed %}
         {% endblock %}
-
     {% endembed %}
 </div>

@@ -40,7 +40,16 @@ function adesso_standard_preprocess_field(array &$variables): void {
     ) {
 
         foreach ($variables['items'] as &$item) {
-            $item['content']['#item_attributes']['class'][] = 'absolute inset-0 -z-10 size-full object-cover';
+            $item['content']['#item_attributes']['class'][] = 'absolute inset-0 -z-20 size-full object-cover';
         }
     }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__HERO().
+ */
+function adesso_standard_preprocess_paragraph__image_text(array &$variables) {
+    $paragraph = $variables['paragraph'];
+    $raw_value = $paragraph->get('field_image_right')->value;
+    $variables['image_right'] = ($raw_value === '1');
 }

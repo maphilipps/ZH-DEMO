@@ -1,0 +1,10 @@
+{% set classes = [
+    'headline',
+    'text-5xl font-semibold tracking-tight text-balance sm:text-8xl',
+     color ?? 'text-black'
+] %}
+
+<{{ as ?? 'h1' }}{{ attributes.addClass(classes) }}>
+{{ text  }}
+
+</{{ as ?? 'h1' }}>

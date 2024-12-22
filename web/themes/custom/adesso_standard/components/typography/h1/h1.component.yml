@@ -1,0 +1,16 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: h1
+status: stable
+props:
+  type: object
+  properties:
+    as:
+      title: "Heading level"
+      type: string
+    color:
+      title: "Color"
+      type: string
+    text:
+      title: "Text"
+      type: string
+      description: "Hero text."

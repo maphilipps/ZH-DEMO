@@ -1,0 +1,57 @@
+{% stories my_image-text with { title: 'Components/Image-Text' } %}
+  {% story default with {
+    name: 'Default',
+    args: {}
+  } %}
+    {% embed 'adesso_standard:image-text' %}
+      {% block image %}
+        Bild
+      {% endblock %}
+
+      {% block title %}
+        Title
+      {% endblock %}
+
+      {% block subtitle %}
+        Sub-Title
+      {% endblock %}
+
+      {% block text %}
+        <p>fsdafads</p>
+      {% endblock %}
+
+      {% block actions %}
+        {% embed 'adesso_standard:button' with {
+            variant: 'default',
+            size: 'sm',
+            wide: false,
+            url: '#'
+        } %}
+          {% block label %}
+            {{ 'Read more'|t }}
+          {% endblock %}
+        {% endembed %}
+      {% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+  {% story with_image with {
+    name: 'With Image',
+    args: {}
+  } %}
+    {% embed 'adesso_standard:image-text' %}
+      {% block image %}
+        Bild
+      {% endblock %}
+
+      {% block title %}
+        Title
+      {% endblock %}
+
+      {% block text %}
+        <p>Das ist mein Text</p>
+      {% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

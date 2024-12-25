@@ -7,7 +7,6 @@ install:
   - adesso_standard
   - frontend_editing
   - storybook
-  - components
   - ui_patterns
   - ui_patterns_layouts
 config:

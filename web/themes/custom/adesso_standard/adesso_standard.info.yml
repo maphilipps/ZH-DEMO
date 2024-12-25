@@ -23,9 +23,6 @@ regions:
   content_below: Content Below
   footer_top: Footer Top
   footer_bottom: Footer Bottom
-components:
-  namespaces:
-    paragraph-text: components/paragraph-text
 dependencies:
   - vite:vite
 vite:

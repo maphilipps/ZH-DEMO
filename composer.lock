@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "021f8984d9d1c9651950198ae8c7f8e4",
+    "content-hash": "5c27352de13b973dad85ee8f8b32a050",
     "packages": [
         {
             "name": "adesso/adesso_cms_paragraphs",
@@ -12,10 +12,9 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_paragraphs",
-                "reference": "3633d4a1b4be5e5d9cbbec994cf6c6c7da7f6019"
+                "reference": "6acf59b78bc1a75863bed6bc7ee017eac8e8bced"
             },
             "require": {
-                "drupal/components": "^3.1",
                 "drupal/drupal_cms_page": "~1.0.0-rc1",
                 "drupal/frontend_editing": "^1.8",
                 "drupal/storybook": "^1.0",
@@ -2815,59 +2814,6 @@
                 "source": "https://git.drupalcode.org/project/coffee",
                 "issues": "https://drupal.org/project/issues/coffee",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/components",
-            "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/components.git",
-                "reference": "3.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/components-3.1.0.zip",
-                "reference": "3.1.0",
-                "shasum": "a9d9f7517f54038d0d6fa68185d80e26d2ad1d8d"
-            },
-            "require": {
-                "drupal/core": "^10.2 || ^11"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "3.1.0",
-                    "datestamp": "1725921122",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "JohnAlbin",
-                    "homepage": "https://www.drupal.org/user/1036766",
-                    "email": "virtually.johnalbin@gmail.com"
-                },
-                {
-                    "name": "johnalbin",
-                    "homepage": "https://www.drupal.org/user/32095"
-                },
-                {
-                    "name": "robloach",
-                    "homepage": "https://www.drupal.org/user/61114"
-                }
-            ],
-            "description": "Registers folders of components defined by your theme or module as Twig namespaces",
-            "homepage": "https://drupal.org/project/components",
-            "support": {
-                "source": "https://git.drupalcode.org/project/components"
             }
         },
         {
@@ -7899,17 +7845,17 @@
         },
         {
             "name": "drupal/ui_patterns",
-            "version": "2.0.0-beta6",
+            "version": "2.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ui_patterns.git",
-                "reference": "2.0.0-beta6"
+                "reference": "2.0.0-rc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ui_patterns-2.0.0-beta6.zip",
-                "reference": "2.0.0-beta6",
-                "shasum": "7988d02223fcd6bfa1e4b6a632185654e0bbe513"
+                "url": "https://ftp.drupal.org/files/projects/ui_patterns-2.0.0-rc1.zip",
+                "reference": "2.0.0-rc1",
+                "shasum": "6e9a64c2522dd212943a2f3fdb1e5aef2db24faa"
             },
             "require": {
                 "drupal/core": "^10.3.4 || ^11",
@@ -7921,11 +7867,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0-beta6",
-                    "datestamp": "1733530985",
+                    "version": "2.0.0-rc1",
+                    "datestamp": "1735066683",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },

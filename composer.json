@@ -64,6 +64,12 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/development.services.yml": {
+                    "mode": "replace",
+                    "path": "assets/development.services.yml"
+                }
             }
         },
         "installer-paths": {

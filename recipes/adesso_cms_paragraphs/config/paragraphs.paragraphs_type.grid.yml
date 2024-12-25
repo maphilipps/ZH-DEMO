@@ -1,0 +1,10 @@
+uuid: 01212019-284e-40f3-9c44-7fe06d43d869
+langcode: de
+status: true
+dependencies: {  }
+id: grid
+label: Grid
+icon_uuid: null
+icon_default: null
+description: 'Ein Grid-Paragraph in Drupal dient zur Darstellung von Inhalten in einem flexiblen, spaltenbasierten Layout. '
+behavior_plugins: {  }

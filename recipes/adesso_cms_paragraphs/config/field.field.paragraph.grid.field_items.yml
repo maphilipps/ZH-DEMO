@@ -1,0 +1,37 @@
+uuid: 6b704a60-3ded-4d5a-9117-d8811c48fadc
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.card
+    - paragraphs.paragraphs_type.grid
+  module:
+    - entity_reference_revisions
+id: paragraph.grid.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: grid
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      card: card
+    negate: 0
+    target_bundles_drag_drop:
+      card:
+        weight: 4
+        enabled: true
+      grid:
+        weight: 5
+        enabled: false
+      hero:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

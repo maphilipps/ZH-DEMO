@@ -7,8 +7,10 @@ dependencies:
     - field.field.paragraph.image_text.field_image_right
     - field.field.paragraph.image_text.field_subtitle
     - field.field.paragraph.image_text.field_title
+    - image.style.16_9_1800x1080_focal_point_webp
     - paragraphs.paragraphs_type.image_text
   module:
+    - media
     - text
 id: paragraph.image_text.default
 targetEntityType: paragraph
@@ -23,11 +25,13 @@ content:
     weight: 4
     region: content
   field_image:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: hidden
     settings:
-      view_mode: default
-      link: true
+      image_link: ''
+      image_style: 16_9_1800x1080_focal_point_webp
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

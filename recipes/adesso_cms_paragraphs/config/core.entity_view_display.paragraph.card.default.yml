@@ -54,7 +54,7 @@ third_party_settings:
                 label: visually_hidden
                 settings:
                   image_link: ''
-                  image_style: 4_3_300x225_focal_point_webp
+                  image_style: 4_3_500x375_focal_point_webp
                   image_loading:
                     attribute: lazy
                 third_party_settings: {  }

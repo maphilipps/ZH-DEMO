@@ -1,0 +1,13 @@
+{
+  "name": "adesso/adesso_cms_ai",
+  "description": "Adds possibility to have an admin chatbot with agents and helps with generating image alt text.",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": ">=10.3",
+    "drupal/ai_provider_groq": "^1.0@beta",
+    "drupal/ai_seo": "^1.0@beta",
+    "drupal/auto_translation": "^1.2",
+    "drupal/drupal_cms_ai": "*"
+  }
+}

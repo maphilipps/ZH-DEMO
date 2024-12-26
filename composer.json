@@ -24,9 +24,14 @@
         "blog": {
             "type": "path",
             "url": "recipes/adesso_cms_blog"
+        },
+        "ai": {
+            "type": "path",
+            "url": "recipes/adesso_cms_ai"
         }
     },
     "require": {
+        "adesso/adesso_cms_ai": "*",
         "adesso/adesso_cms_blog": "*",
         "adesso/adesso_cms_starter": "*",
         "composer/installers": "^2.3",
@@ -36,7 +41,6 @@
         "drupal/core-project-message": "^11.1",
         "drupal/core-recommended": "^11.1",
         "drupal/drupal_cms_accessibility_tools": "*",
-        "drupal/drupal_cms_ai": "*",
         "drupal/drupal_cms_analytics": "*",
         "drupal/drupal_cms_case_study": "*",
         "drupal/drupal_cms_events": "*",

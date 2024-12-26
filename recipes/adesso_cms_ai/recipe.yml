@@ -1,0 +1,9 @@
+name: Analytics
+type: adesso CMS
+description: Sets up tools to track the traffic to your website using Google Analytics and Google Tag Manager.
+
+recipes:
+  - drupal_cms_ai
+
+install:
+  - ai_provider_groq

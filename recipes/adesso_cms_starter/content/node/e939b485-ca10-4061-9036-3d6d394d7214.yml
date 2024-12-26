@@ -30,6 +30,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   moderation_state:
     -
       value: draft
@@ -60,6 +63,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>'
@@ -88,6 +94,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>Ich bin ein Text von Bild &amp; Text</p>'
@@ -122,6 +131,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p><strong>“Erlebe digitale Exzellenz – maßgeschneidert für deine Zielgruppe.”</strong></p><p>&nbsp;</p><p>Wir sind eine innovative Webagentur, die sich darauf spezialisiert hat, digitale Erlebnisse zu schaffen, die begeistern und langfristig wirken. Unser Fokus liegt auf nutzerzentrierten Designs, leistungsstarker Technologie und personalisierten Lösungen, um jede Interaktion deiner Kunden zu einem positiven Erlebnis zu machen.</p><p>&nbsp;</p><p>Mit unserer Expertise in Webdesign, Entwicklung und digitaler Strategie sorgen wir dafür, dass deine Marke nicht nur sichtbar wird, sondern sich nachhaltig abhebt. Lass uns gemeinsam die digitale Experience neu definieren!</p>'
@@ -144,6 +156,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_items:
             -
               entity:
@@ -163,6 +178,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Ich bin eine weitere Card</p>'
@@ -191,6 +209,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Noch ne Card...</p>'
@@ -219,6 +240,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Ich bin eine weitere Card</p>'

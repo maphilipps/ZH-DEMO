@@ -6,6 +6,7 @@ _meta:
   default_langcode: de
   depends:
     1c13aada-3133-4bc0-80a6-7e715e4a7bfc: menu_link_content
+    00d105b3-6f05-40c6-a289-3dd61c89480e: node
 default:
   enabled:
     -
@@ -18,7 +19,7 @@ default:
       value: footer
   link:
     -
-      uri: 'internal:/'
+      target_uuid: 00d105b3-6f05-40c6-a289-3dd61c89480e
       title: ''
       options: {  }
   external:
@@ -26,7 +27,7 @@ default:
       value: false
   rediscover:
     -
-      value: true
+      value: false
   weight:
     -
       value: 0

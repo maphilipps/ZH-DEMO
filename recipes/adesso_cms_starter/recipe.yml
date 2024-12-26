@@ -61,7 +61,7 @@ config:
         allowed_projects:
           recipes:
             - drupal_cms_events
-            - drupal_cms_blog
+            - adesso_cms_blog
             - drupal_cms_case_study
             - drupal_cms_forms
             - drupal_cms_news

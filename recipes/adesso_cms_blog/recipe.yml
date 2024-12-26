@@ -1,0 +1,5 @@
+name: Blog
+type: adesso CMS
+description: 'Sets up a basic blog, with tagging.'
+recipes:
+  - drupal_cms_blog

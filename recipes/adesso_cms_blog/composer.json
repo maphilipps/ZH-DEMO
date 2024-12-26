@@ -1,0 +1,10 @@
+{
+    "name": "adesso/adesso_cms_blog",
+    "description": "Sets up a adesso CMS site with useful features and sample content.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "adesso/adesso_cms_starter": "*",
+        "drupal/drupal_cms_blog": "*"
+    }
+}

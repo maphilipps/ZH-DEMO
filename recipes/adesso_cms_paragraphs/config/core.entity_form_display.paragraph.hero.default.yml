@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.hero.field_title
     - paragraphs.paragraphs_type.hero
   module:
+    - media_library
     - text
 id: paragraph.hero.default
 targetEntityType: paragraph
@@ -22,14 +23,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_image:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 0
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

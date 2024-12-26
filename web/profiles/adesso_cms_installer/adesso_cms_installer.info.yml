@@ -12,3 +12,5 @@ distribution:
 # injecting Stark into it.
 # @see install_profile_info()
 themes: []
+'interface translation project': adesso_cms_installer
+'interface translation server pattern': profiles/%project/translations/%project.%language.po

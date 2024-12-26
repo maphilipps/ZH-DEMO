@@ -1,0 +1,15 @@
+## Funktioniert noch noch noch nicht
+## mehr Infos https://drupal.stackexchange.com/questions/183708/where-are-po-translations-supposed-to-go
+## und https://www.drupal.org/node/1352228
+
+msgid "Give your site a name"
+msgstr "Bitte geben Sie Ihrer Website einen Namen"
+
+msgid "You can change this later."
+msgstr "Sie können dies später ändern."
+
+msgid "Create your account"
+msgstr "Erstellen Sie Ihr Konto"
+
+msgid "Creating an account allows you to log in to your site."
+msgstr "Durch das Erstellen eines Kontos können Sie sich auf Ihrer Website anmelden."

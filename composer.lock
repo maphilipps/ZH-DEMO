@@ -12,10 +12,9 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_ai",
-                "reference": "add6beb37f4e4d94387f576efa1a59cfa17fdcc1"
+                "reference": "0b50260dbd3478298b20ba0389ccee53b7a2a0f3"
             },
             "require": {
-                "drupal/ai_image_alt_text": "^1.0@beta",
                 "drupal/ai_provider_groq": "^1.0@beta",
                 "drupal/ai_seo": "^1.0@beta",
                 "drupal/auto_translation": "^1.2",

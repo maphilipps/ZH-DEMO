@@ -47,6 +47,25 @@ ddev export-contents
 
 It will update the `recipes/adesso_cms_starter/content` directory with the exported content.
 
+### Export blog content
+
+We used the [Default Content](https://git.drupalcode.org/project/default_content) module to export the content. You can export the content with the following command:
+
+```bash
+ddev export-contents-blog
+```
+
+It will update the `recipes/adesso_cms_blog/content` directory with the exported content.
+
+### Export config
+
+@see https://www.drupal.org/project/config_split/issues/2967961#comment-14038206
+
+```bash
+ddev export-config
+./scripts/remove-uuid.sh
+```
+
 ### Use recipes
 
 We used [recipes](https://git.drupalcode.org/project/distributions_recipes/-/blob/1.0.x/docs/recipe.md) to import the content and config.

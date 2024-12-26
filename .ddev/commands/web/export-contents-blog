@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Description: Export contents blog
+## Usage: export-contents-blog
+
+rm -rf recipes/adesso_cms_blog/content
+drush dcer node --property-name=type --property-value=blog --folder=../recipes/adesso_cms_blog/content

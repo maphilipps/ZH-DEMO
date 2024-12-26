@@ -1,0 +1,185 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blog.field_content
+    - field.field.node.blog.field_description
+    - field.field.node.blog.field_featured_image
+    - field.field.node.blog.field_tags
+    - node.type.blog
+  module:
+    - layout_builder
+    - ui_patterns
+    - ui_patterns_layouts
+    - user
+  theme:
+    - adesso_standard
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: 'ui_patterns:adesso_standard:image_text'
+        layout_settings:
+          label: ''
+          context_mapping:
+            entity: layout_builder.entity
+          ui_patterns:
+            component_id: null
+            variant_id: null
+            slots:
+              slots: {  }
+            props:
+              attributes:
+                source_id: attributes
+                source:
+                  value: ''
+              image_right:
+                source_id: checkbox
+              heading_level:
+                source_id: select
+                source:
+                  value: ''
+        components:
+          f1443c81-7f2b-4d27-acb1-008e8e6f2a04:
+            uuid: f1443c81-7f2b-4d27-acb1-008e8e6f2a04
+            region: title
+            configuration:
+              id: 'field_block:node:blog:title'
+              label: Titel
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: ui_patterns_component_per_item
+                label: hidden
+                settings:
+                  ui_patterns:
+                    component_id: 'adesso_standard:h2'
+                    variant_id: null
+                    props:
+                      attributes:
+                        source_id: attributes
+                        source:
+                          value: ''
+                      as:
+                        source_id: textfield
+                        source:
+                          value: ''
+                      color:
+                        source_id: textfield
+                        source:
+                          value: ''
+                      text:
+                        source_id: 'field_property:node:title:value'
+                    slots:
+                      slots: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          cebc5bed-8b6b-4b52-bd85-faeef34f5335:
+            uuid: cebc5bed-8b6b-4b52-bd85-faeef34f5335
+            region: actions
+            configuration:
+              id: 'field_block:node:blog:field_content'
+              label: Content
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_trimmed
+                label: hidden
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          92f6b03a-e1a7-4b6c-80dc-caaf92b418d8:
+            uuid: 92f6b03a-e1a7-4b6c-80dc-caaf92b418d8
+            region: text
+            configuration:
+              id: 'field_block:node:blog:created'
+              label: 'Geschrieben am'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: timestamp_ago
+                label: hidden
+                settings:
+                  future_format: '@interval hence'
+                  past_format: '@interval ago'
+                  granularity: 2
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          c7e68eb5-ca80-4ed9-b874-c6acb8ba7e17:
+            uuid: c7e68eb5-ca80-4ed9-b874-c6acb8ba7e17
+            region: image
+            configuration:
+              id: 'field_block:node:blog:field_featured_image'
+              label: 'Featured image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: 3_2_medium
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.blog.teaser
+targetEntityType: node
+bundle: blog
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: small
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_content: true
+  langcode: true

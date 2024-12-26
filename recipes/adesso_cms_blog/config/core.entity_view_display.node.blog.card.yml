@@ -1,0 +1,158 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.blog.field_content
+    - field.field.node.blog.field_description
+    - field.field.node.blog.field_featured_image
+    - field.field.node.blog.field_tags
+    - node.type.blog
+  module:
+    - layout_builder
+    - ui_patterns
+    - ui_patterns_layouts
+    - user
+  theme:
+    - adesso_standard
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: 'ui_patterns:adesso_standard:card'
+        layout_settings:
+          label: ''
+          context_mapping:
+            entity: layout_builder.entity
+          ui_patterns:
+            component_id: null
+            variant_id: null
+            slots:
+              slots: {  }
+            props:
+              attributes:
+                source_id: attributes
+                source:
+                  value: ''
+              heading_level:
+                source_id: select
+                source:
+                  value: ''
+        components:
+          edb978aa-7e29-465c-8be2-fa39e23c5744:
+            uuid: edb978aa-7e29-465c-8be2-fa39e23c5744
+            region: image
+            configuration:
+              id: 'field_block:node:blog:field_featured_image'
+              label: 'Featured image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          d4b3f3e7-2ede-46f1-a13d-d6eaa1e6cef9:
+            uuid: d4b3f3e7-2ede-46f1-a13d-d6eaa1e6cef9
+            region: title
+            configuration:
+              id: 'field_block:node:blog:title'
+              label: Titel
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          4249398d-e685-4140-9572-f9a592630b57:
+            uuid: 4249398d-e685-4140-9572-f9a592630b57
+            region: actions
+            configuration:
+              id: 'field_block:node:blog:created'
+              label: 'Geschrieben am'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: timestamp_ago
+                label: hidden
+                settings:
+                  future_format: '@interval hence'
+                  past_format: '@interval ago'
+                  granularity: 2
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          53c24254-5012-4fcc-8094-79af9bf0e818:
+            uuid: 53c24254-5012-4fcc-8094-79af9bf0e818
+            region: text
+            configuration:
+              id: 'field_block:node:blog:field_content'
+              label: Content
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_trimmed
+                label: hidden
+                settings:
+                  trim_length: 300
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.blog.card
+targetEntityType: node
+bundle: blog
+mode: card
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: 16_9_medium
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_content: true
+  field_tags: true
+  langcode: true
+  layout_builder__layout: true

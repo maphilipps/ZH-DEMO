@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 70ca65ba-0c77-42eb-a103-68c5e56f9ae6
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: generateImage_n663Mh.jpeg
+  uri:
+    -
+      value: 'public://2024-12/generateImage_n663Mh.jpeg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 7017
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1735221469

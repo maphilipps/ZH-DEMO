@@ -1,0 +1,9 @@
+langcode: de
+status: true
+dependencies: {  }
+id: text
+label: Text
+icon_uuid: null
+icon_default: null
+description: 'Ein Text-Paragraph in Drupal dient zur Eingabe und Darstellung von einfachen oder formatierten Textinhalten. Er kann zur Strukturierung von Absätzen, Einleitungen oder erklärenden Textblöcken verwendet werden.'
+behavior_plugins: {  }

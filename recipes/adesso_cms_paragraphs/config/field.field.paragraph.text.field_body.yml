@@ -4,13 +4,13 @@ dependencies:
   config:
     - field.storage.paragraph.field_body
     - filter.format.content_format
-    - paragraphs.paragraphs_type.hero
+    - paragraphs.paragraphs_type.text
   module:
     - text
-id: paragraph.hero.field_body
+id: paragraph.text.field_body
 field_name: field_body
 entity_type: paragraph
-bundle: hero
+bundle: text
 label: Body
 description: ''
 required: false

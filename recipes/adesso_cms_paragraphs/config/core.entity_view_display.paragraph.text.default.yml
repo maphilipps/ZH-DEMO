@@ -2,26 +2,21 @@ langcode: de
 status: true
 dependencies:
   config:
-    - field.field.paragraph.grid.field_items
-    - paragraphs.paragraphs_type.grid
+    - field.field.paragraph.text.field_body
+    - paragraphs.paragraphs_type.text
   module:
-    - entity_reference_revisions
-    - layout_builder
+    - text
     - ui_patterns
     - ui_patterns_field_formatters
   theme:
     - adesso_standard
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
-id: paragraph.grid.default
+id: paragraph.text.default
 targetEntityType: paragraph
-bundle: grid
+bundle: text
 mode: default
 content:
-  field_items:
-    type: ui_patterns_component
+  field_body:
+    type: ui_patterns_component_per_item
     label: hidden
     settings:
       ui_patterns:
@@ -31,11 +26,11 @@ content:
           attributes:
             source_id: attributes
             source:
-              value: ''
+              value: 'class="max-w-4xl"'
           container_type:
             source_id: select
             source:
-              value: ''
+              value: 'container mx-auto'
           background_image:
             source_id: url
             source:
@@ -55,7 +50,7 @@ content:
           gap:
             source_id: select
             source:
-              value: ''
+              value: gap-0
           gap_lg:
             source_id: select
             source:
@@ -71,15 +66,15 @@ content:
           grid_cols:
             source_id: select
             source:
-              value: ''
+              value: grid-cols-1
           grid_cols_lg:
             source_id: select
             source:
-              value: ''
+              value: 'lg:grid-cols-1'
           grid_cols_md:
             source_id: select
             source:
-              value: 'md:grid-cols-3'
+              value: 'md:grid-cols-1'
           grid_cols_sm:
             source_id: select
             source:
@@ -89,10 +84,8 @@ content:
             sources:
               -
                 source:
-                  type: entity_reference_revisions_entity_view
-                  settings:
-                    view_mode: default
-                source_id: 'field_formatter:paragraph:grid:field_items'
+                  type: text_default
+                source_id: 'field_formatter:paragraph:text:field_body'
                 _weight: '0'
     third_party_settings: {  }
     weight: 0

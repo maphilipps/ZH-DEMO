@@ -1,8 +1,8 @@
 langcode: de
 status: true
 dependencies: {  }
-id: hero
-label: Hero
+id: image_text
+label: 'Bild & Text'
 icon_uuid: null
 icon_default: null
 description: ''

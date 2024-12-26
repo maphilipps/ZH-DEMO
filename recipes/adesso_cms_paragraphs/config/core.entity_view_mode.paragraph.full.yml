@@ -2,9 +2,9 @@ langcode: de
 status: true
 dependencies:
   module:
-    - node
-id: node.hero
-label: Hero
+    - paragraphs
+id: paragraph.full
+label: full
 description: ''
-targetEntityType: node
+targetEntityType: paragraph
 cache: true

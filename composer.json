@@ -77,7 +77,12 @@
                 "[web-root]/sites/development.services.yml": {
                     "mode": "replace",
                     "path": "assets/development.services.yml"
-                }
+                },
+                "[web-root]/sites/default/settings.php": {
+                    "mode": "append",
+                    "path": "assets/settings-append-local.txt"
+                },
+                "[web-root]/sites/settings.local.php": "assets/settings.local.php"
             }
         },
         "installer-paths": {

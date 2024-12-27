@@ -29,6 +29,12 @@ ddev yarn storybook
 
 Open: https://adesso-cms.ddev.site:6006/
 
+#### Generate stories
+
+```bash
+ddev drush storybook:generate-all-stories --uri=https://adesso-cms.ddev.site
+```
+
 ### Recreate
 
 If you want to reset the project, you can use the following command:

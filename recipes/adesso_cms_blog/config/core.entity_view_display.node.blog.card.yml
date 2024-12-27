@@ -41,8 +41,8 @@ third_party_settings:
                 source:
                   value: ''
         components:
-          edb978aa-7e29-465c-8be2-fa39e23c5744:
-            uuid: edb978aa-7e29-465c-8be2-fa39e23c5744
+          d6328556-c48c-4703-a531-376678ed6a8b:
+            uuid: d6328556-c48c-4703-a531-376678ed6a8b
             region: image
             configuration:
               id: 'field_block:node:blog:field_featured_image'
@@ -56,12 +56,12 @@ third_party_settings:
                 type: entity_reference_entity_view
                 label: hidden
                 settings:
-                  view_mode: default
+                  view_mode: 3_2_medium
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          d4b3f3e7-2ede-46f1-a13d-d6eaa1e6cef9:
-            uuid: d4b3f3e7-2ede-46f1-a13d-d6eaa1e6cef9
+          5d82877b-4f3b-41f2-a5b7-90ca382dc50f:
+            uuid: 5d82877b-4f3b-41f2-a5b7-90ca382dc50f
             region: title
             configuration:
               id: 'field_block:node:blog:title'
@@ -75,33 +75,12 @@ third_party_settings:
                 type: string
                 label: hidden
                 settings:
-                  link_to_entity: false
+                  link_to_entity: true
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          4249398d-e685-4140-9572-f9a592630b57:
-            uuid: 4249398d-e685-4140-9572-f9a592630b57
-            region: actions
-            configuration:
-              id: 'field_block:node:blog:created'
-              label: 'Geschrieben am'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: timestamp_ago
-                label: hidden
-                settings:
-                  future_format: '@interval hence'
-                  past_format: '@interval ago'
-                  granularity: 2
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
-          53c24254-5012-4fcc-8094-79af9bf0e818:
-            uuid: 53c24254-5012-4fcc-8094-79af9bf0e818
+          9d67e70e-dad8-419a-a149-2d7c520eff1f:
+            uuid: 9d67e70e-dad8-419a-a149-2d7c520eff1f
             region: text
             configuration:
               id: 'field_block:node:blog:field_content'

@@ -291,7 +291,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: card
       query:
         type: views_query
         options:
@@ -344,7 +344,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 3
+          items_per_page: 4
       empty:
         area:
           id: area
@@ -533,7 +533,7 @@ display:
         type: grid_responsive
         options:
           uses_fields: false
-          columns: 3
+          columns: 4
           cell_min_width: 100
           grid_gutter: 10
           alignment: horizontal
@@ -787,8 +787,18 @@ display:
         operator: AND
         groups:
           1: AND
+      style:
+        type: default
+        options: {  }
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
       defaults:
         exposed_form: false
+        style: false
+        row: false
         filters: false
         filter_groups: false
         header: false
@@ -850,9 +860,24 @@ display:
             field_identifier: ''
           exposed: false
           granularity: second
+      style:
+        type: grid_responsive
+        options:
+          uses_fields: false
+          columns: 3
+          cell_min_width: 100
+          grid_gutter: 10
+          alignment: horizontal
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card
       defaults:
         title: false
         pager: false
+        style: false
+        row: false
         sorts: false
       display_description: ''
       display_extenders: {  }
@@ -970,7 +995,7 @@ display:
         type: grid_responsive
         options:
           uses_fields: false
-          columns: 4
+          columns: 3
           cell_min_width: 100
           grid_gutter: 10
           alignment: horizontal

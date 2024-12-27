@@ -2,17 +2,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.full
     - field.field.node.blog.field_content
     - field.field.node.blog.field_description
     - field.field.node.blog.field_featured_image
     - field.field.node.blog.field_tags
     - node.type.blog
+    - views.view.blog
   module:
     - layout_builder
+    - layout_discovery
+    - media
+    - text
     - ui_patterns
     - ui_patterns_layouts
     - user
+    - views
   theme:
     - adesso_standard
 third_party_settings:
@@ -21,7 +26,7 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: 'ui_patterns:adesso_standard:image_text'
+        layout_id: 'ui_patterns:adesso_standard:hero'
         layout_settings:
           label: ''
           context_mapping:
@@ -36,35 +41,14 @@ third_party_settings:
                 source_id: attributes
                 source:
                   value: ''
-              image_right:
-                source_id: checkbox
               heading_level:
                 source_id: select
                 source:
-                  value: ''
+                  value: '2'
         components:
-          23ddb991-7749-4ffb-89ce-5738c7f491ab:
-            uuid: 23ddb991-7749-4ffb-89ce-5738c7f491ab
+          541132ef-9bd3-42aa-ae59-aa9dba06c6cf:
+            uuid: 541132ef-9bd3-42aa-ae59-aa9dba06c6cf
             region: title
-            configuration:
-              id: 'field_block:node:blog:title'
-              label: Titel
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: string
-                label: hidden
-                settings:
-                  link_to_entity: true
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
-          27a70f50-2072-4c26-b865-e2cd3161dbfa:
-            uuid: 27a70f50-2072-4c26-b865-e2cd3161dbfa
-            region: image
             configuration:
               id: 'field_block:node:blog:field_featured_image'
               label: 'Featured image'
@@ -77,34 +61,58 @@ third_party_settings:
                 type: entity_reference_entity_view
                 label: hidden
                 settings:
-                  view_mode: 3_2_medium
+                  view_mode: 4_3_wide
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          7ce72d20-5962-429c-8d70-9d5e4a4bd213:
-            uuid: 7ce72d20-5962-429c-8d70-9d5e4a4bd213
+          a94d9260-3e3c-452b-8015-529bf8516d23:
+            uuid: a94d9260-3e3c-452b-8015-529bf8516d23
             region: text
             configuration:
-              id: 'field_block:node:blog:created'
-              label: 'Geschrieben am'
+              id: 'field_block:node:blog:title'
+              label: Titel
               label_display: '0'
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: timestamp_ago
+                type: string
                 label: hidden
                 settings:
-                  future_format: '@interval hence'
-                  past_format: '@interval ago'
-                  granularity: 2
+                  link_to_entity: false
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          a46c5886-fa88-4047-ad39-a34390815edf:
-            uuid: a46c5886-fa88-4047-ad39-a34390815edf
+          1c2ba982-b623-4d11-b1aa-4bd6bd0faf4f:
+            uuid: 1c2ba982-b623-4d11-b1aa-4bd6bd0faf4f
             region: actions
+            configuration:
+              id: 'field_block:node:blog:field_tags'
+              label: Tags
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+        components:
+          c2db6e70-29cd-41a7-93a3-ccc34b0d3e30:
+            uuid: c2db6e70-29cd-41a7-93a3-ccc34b0d3e30
+            region: content
             configuration:
               id: 'field_block:node:blog:field_content'
               label: Content
@@ -114,37 +122,58 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: text_trimmed
+                type: text_default
                 label: hidden
-                settings:
-                  trim_length: 400
+                settings: {  }
                 third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
-id: node.blog.teaser
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+        components:
+          2a32b4b6-95f4-4c6c-b3f5-d95172fedc4e:
+            uuid: 2a32b4b6-95f4-4c6c-b3f5-d95172fedc4e
+            region: content
+            configuration:
+              id: 'views_block:blog-related'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.blog.full
 targetEntityType: node
 bundle: blog
-mode: teaser
+mode: full
 content:
   content_moderation_control:
     settings: {  }
     third_party_settings: {  }
     weight: -20
     region: content
-  field_description:
-    type: basic_string
+  field_content:
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_featured_image:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: hidden
     settings:
-      view_mode: small
-      link: false
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: eager
     third_party_settings: {  }
     weight: 0
     region: content
@@ -154,13 +183,10 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 2
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
 hidden:
-  field_content: true
+  field_description: true
   langcode: true
+  layout_builder__layout: true
+  links: true

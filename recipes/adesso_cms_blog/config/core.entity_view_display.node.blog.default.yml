@@ -91,12 +91,27 @@ third_party_settings:
               items_per_page: none
             weight: 4
             additional: {  }
+          6d34aa37-d240-4dbd-bc97-d182dadc68af:
+            uuid: 6d34aa37-d240-4dbd-bc97-d182dadc68af
+            region: content
+            configuration:
+              id: 'extra_field_block:node:blog:content_moderation_control'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 5
+            additional: {  }
         third_party_settings: {  }
 id: node.blog.default
 targetEntityType: node
 bundle: blog
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_content:
     type: text_default
     label: hidden

@@ -1,16 +1,30 @@
-<div class="relative pt-14 overflow-hidden">
-    <div class="absolute inset-0 -z-20 size-full">
-        {% block image %}{% endblock %}
-    </div>
-    <div class="fluid-grid px-safe z-10">
-        <div class="py-32 sm:py-48 lg:py-96 lg:pb-12 col-span-12">
-            <div class="text-left flex flex-col space-y-6">
-                {% block title %}{% endblock %}
-                <div class="text-2xl/10 max-w-2xl text-pretty font-[100] text-white"> {% block text %}{% endblock %}</div>
-                <div class="flex gap-x-6"> {% block actions %}{% endblock %}</div>
-            </div>
-        </div>
-    </div>
-    <div class="absolute overflow-hidden inset-0 bottom-0 -z-10  bg-gradient-to-b from-black/30 via-black/20 to-black"></div>
-</div>
+{% set blockContent %}
 
+    {% block frontend_editing %}
+        {{ content.frontend_editing }}
+    {% endblock %}
+
+        <div class="row-start-1 span-full">
+            {% block image %}{% endblock %}
+        </div>
+
+        <div class="row-start-1 span-full inset-0 bg-neutral/40" aria-hidden="true">
+        </div>
+
+        <article
+                class="row-start-1 isolate span-content md:col-start-[col-1] md:col-span-8 flex h-screen pb-24 stack-4 flex-col justify-end items-start">
+            {% block title %}{% endblock %}
+            <div class="text-2xl/10 max-w-2xl text-pretty font-[100] text-white"> {% block text %}{% endblock %}</div>
+            <div class="flex gap-x-6"> {% block actions %}{% endblock %}</div>
+        </article>
+
+
+{% endset %}
+
+{% embed "adesso_standard:block" %}
+
+    {% block inner %}
+        {{ blockContent }}
+    {% endblock %}
+
+{% endembed %}

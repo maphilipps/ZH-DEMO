@@ -40,7 +40,7 @@ function adesso_standard_preprocess_field(array &$variables): void {
     ) {
 
         foreach ($variables['items'] as &$item) {
-            $item['content']['#item_attributes']['class'][] = 'absolute inset-0 -z-20 size-full object-cover';
+            $item['content']['#item_attributes']['class'][] = 'row-start-1 span-full';
         }
     }
 }

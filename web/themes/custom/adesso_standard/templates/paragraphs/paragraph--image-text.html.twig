@@ -1,7 +1,7 @@
-<div{{ attributes.addClass('relative') }}>
-  {{ content.frontend_editing }}
+
 
   {% embed 'adesso_standard:image-text' with { image_right: image_right } %}
+
 
     {% block image %}
       {{ content.field_image }}
@@ -32,4 +32,3 @@
     {% endblock %}
 
   {% endembed %}
-</div>

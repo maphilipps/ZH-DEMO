@@ -46,7 +46,7 @@
 
 {% if label_hidden %}
     {% if multiple %}
-        <div{{ attributes }}>
+        <div{{ attributes.addClass('row-start-1 span-full') }}>
             {% for item in items %}
                 <div{{ item.attributes }}>{{ item.content }}</div>
             {% endfor %}
@@ -57,7 +57,7 @@
         {% endfor %}
     {% endif %}
 {% else %}
-    <div{{ attributes }}>
+    <div{{ attributes.addClass('row-start-1 span-full') }}>
         <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
         {% if multiple %}
         <div>

@@ -46,24 +46,23 @@
 
 {% if label_hidden %}
     {% if multiple %}
-        <div{{ attributes.addClass('flex flex-col space-y-6') }}>
-            {% for item in items %}
-                <div{{ item.attributes }}>{{ item.content }}</div>
+        <div{{ attributes.addClass('py-12 md:py-16 lg:py-24 stack-12 md:stack-16 lg:stack-24') }}>
+            {% for item in items %}{{ item.content }}
             {% endfor %}
         </div>
     {% else %}
         {% for item in items %}
-            <div{{ attributes }}>{{ item.content }}</div>
+            {{ item.content }}
         {% endfor %}
     {% endif %}
 {% else %}
     <div{{ attributes }}>
         <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
         {% if multiple %}
-        <div{{ attributes.addClass('flex flex-col space-y-8') }}  }}>
+        <div{{ attributes.addClass('py-12 md:py-16 lg:py-24 stack-12 md:stack-16 lg:stack-24') }}  }}>
             {% endif %}
             {% for item in items %}
-                <div{{ item.attributes }}>{{ item.content }}</div>
+                {{ item.content }}
             {% endfor %}
             {% if multiple %}
         </div>

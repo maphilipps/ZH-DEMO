@@ -2,10 +2,9 @@
 global:
   css:
     theme:
-      css/adesso.css: {}
+      dist/assets/adesso.css: {}
   js:
-    js/adesso.js: {}
-
+    dist/assets/adesso.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings

@@ -12,6 +12,7 @@ install:
   - ui_patterns_library
   - ui_patterns_field_formatters
   - ui_patterns_blocks
+  - ui_patterns_views
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.

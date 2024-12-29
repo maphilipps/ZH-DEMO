@@ -12,7 +12,11 @@ dependencies:
     - better_exposed_filters
     - node
     - taxonomy
+    - ui_patterns
+    - ui_patterns_views
     - user
+  theme:
+    - adesso_standard
 id: blog
 label: Blog
 module: views
@@ -992,13 +996,78 @@ display:
           break_phrase: false
           not: true
       style:
-        type: grid_responsive
+        type: ui_patterns
         options:
           uses_fields: false
-          columns: 3
-          cell_min_width: 100
-          grid_gutter: 10
-          alignment: horizontal
+          ui_patterns:
+            ui_patterns:
+              component_id: 'adesso_standard:grid_cols'
+              variant_id: null
+              props:
+                attributes:
+                  source_id: attributes
+                  source:
+                    value: ''
+                container_type:
+                  source_id: select
+                  source:
+                    value: ''
+                background_image:
+                  source_id: url
+                  source:
+                    value: ''
+                background_size:
+                  source_id: select
+                  source:
+                    value: ''
+                background_position:
+                  source_id: select
+                  source:
+                    value: ''
+                background_repeat:
+                  source_id: select
+                  source:
+                    value: ''
+                gap:
+                  source_id: select
+                  source:
+                    value: ''
+                gap_lg:
+                  source_id: select
+                  source:
+                    value: ''
+                gap_md:
+                  source_id: select
+                  source:
+                    value: ''
+                gap_sm:
+                  source_id: select
+                  source:
+                    value: ''
+                grid_cols:
+                  source_id: select
+                  source:
+                    value: grid-cols-3
+                grid_cols_lg:
+                  source_id: select
+                  source:
+                    value: ''
+                grid_cols_md:
+                  source_id: select
+                  source:
+                    value: ''
+                grid_cols_sm:
+                  source_id: select
+                  source:
+                    value: ''
+              slots:
+                items:
+                  sources:
+                    -
+                      source:
+                        ui_patterns_views_field: ''
+                      source_id: view_rows
+                      _weight: '0'
       row:
         type: 'entity:node'
         options:

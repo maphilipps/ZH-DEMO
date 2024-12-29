@@ -12,3 +12,12 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+
+kubectl:
+  tags:
+    - small
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl cluster-info
+    - kubectl config set-context --current --namespace=$KUBENAMESPACE

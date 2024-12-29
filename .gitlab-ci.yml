@@ -17,7 +17,10 @@ include:
 kubectl:
   tags:
     - small
-  image: bitnami/kubectl:latest
+  image: 
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
   script:
     - kubectl cluster-info
     - kubectl config set-context --current --namespace=$KUBENAMESPACE
+  

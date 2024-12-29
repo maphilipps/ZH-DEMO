@@ -2,8 +2,27 @@ name: Blog
 type: adesso CMS
 description: 'Sets up a basic blog, with tagging.'
 recipes:
-  - drupal_cms_blog
+  - drupal_cms_page
+  - core/recipes/tags_taxonomy
+install:
+  - add_content_by_bundle
+  - menu_link_content
+  - shortcut
+  - selective_better_exposed_filters
 config:
-  # If the config we're importing already exists, we don't really care
-  # what it looks like.
   strict: false
+  import:
+    shortcut:
+      - shortcut.set.default
+    system:
+      - system.menu.main
+  actions:
+    user.role.content_editor:
+      grantPermissions:
+        - 'create blog content'
+        - 'delete blog revisions'
+        - 'delete any blog content'
+        - 'edit any blog content'
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['blog']
+

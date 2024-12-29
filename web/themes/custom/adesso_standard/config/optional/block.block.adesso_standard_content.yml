@@ -8,7 +8,7 @@ dependencies:
 id: adesso_standard_content
 theme: adesso_standard
 region: content
-weight: 0
+weight: -5
 provider: null
 plugin: system_main_block
 settings:

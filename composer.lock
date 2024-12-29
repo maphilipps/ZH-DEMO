@@ -36,10 +36,14 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_blog",
-                "reference": "6f43dd8a562243a90a0e6f327ee392408c7ab998"
+                "reference": "38f8d333191ccd2915ada5bd03096021a9ef7b64"
             },
             "require": {
-                "drupal/drupal_cms_blog": "*"
+                "drupal/add_content_by_bundle": "^1.2.2",
+                "drupal/better_exposed_filters": "^7.0",
+                "drupal/core": ">=10.3",
+                "drupal/drupal_cms_content_type_base": "~1.0.0-rc2",
+                "drupal/selective_better_exposed_filters": "^3.0"
             },
             "type": "drupal-recipe",
             "license": [
@@ -3975,38 +3979,6 @@
             "time": "2024-12-17T12:11:01+00:00"
         },
         {
-            "name": "drupal/drupal_cms_blog",
-            "version": "1.0.0-rc2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_blog.git",
-                "reference": "f068f7691be9162cf209b2e669f06243c83caf15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_blog/repository/archive.zip?sha=f068f7691be9162cf209b2e669f06243c83caf15",
-                "reference": "f068f7691be9162cf209b2e669f06243c83caf15",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/add_content_by_bundle": "^1.2.2",
-                "drupal/better_exposed_filters": "^7.0",
-                "drupal/core": ">=10.3",
-                "drupal/drupal_cms_content_type_base": "~1.0.0-rc2",
-                "drupal/selective_better_exposed_filters": "^3.0"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Sets up a basic blog, with tagging.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_blog/-/tree/1.0.0-rc2"
-            },
-            "time": "2024-12-17T13:20:06+00:00"
-        },
-        {
             "name": "drupal/drupal_cms_case_study",
             "version": "1.0.0-rc2",
             "source": {
@@ -6917,7 +6889,7 @@
             ],
             "authors": [
                 {
-                    "name": "Berdir",
+                    "name": "berdir",
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
@@ -6925,7 +6897,7 @@
                     "homepage": "https://www.drupal.org/user/53892"
                 },
                 {
-                    "name": "Kristen Pol",
+                    "name": "kristen pol",
                     "homepage": "https://www.drupal.org/user/8389"
                 },
                 {

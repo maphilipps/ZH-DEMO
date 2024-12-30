@@ -28,6 +28,7 @@ install:
   - views_ui
   - default_content
   - adesso_standard
+  - field_group
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.

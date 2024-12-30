@@ -83,7 +83,7 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_starter",
-                "reference": "2f6578ad254fee1208150389ded4b59fb59b4dd5"
+                "reference": "df6205912c65cd577737e441d75a4eda9303a356"
             },
             "require": {
                 "adesso/adesso_cms_paragraphs": "*",
@@ -98,6 +98,7 @@
                 "drupal/drupal_cms_remote_video": "~1.0.0-rc1",
                 "drupal/drupal_cms_seo_basic": "~1.0.0-rc1",
                 "drupal/easy_email_express": "^1.0.2",
+                "drupal/field_group": "^3.6",
                 "drupal/pathauto": "^1.13",
                 "drupal/project_browser": "^2-alpha6"
             },

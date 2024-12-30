@@ -16,6 +16,7 @@
         "drupal/drupal_cms_remote_video": "~1.0.0-rc1",
         "drupal/drupal_cms_seo_basic": "~1.0.0-rc1",
         "drupal/easy_email_express": "^1.0.2",
+        "drupal/field_group": "^3.6",
         "drupal/pathauto": "^1.13",
         "drupal/project_browser": "^2-alpha6"
     },

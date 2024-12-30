@@ -28,12 +28,17 @@
         "ai": {
             "type": "path",
             "url": "recipes/adesso_cms_ai"
+        },
+        "adesso_standard": {
+            "type": "path",
+            "url": "web/themes/custom/adesso_standard"
         }
     },
     "require": {
         "adesso/adesso_cms_ai": "*",
         "adesso/adesso_cms_blog": "*",
         "adesso/adesso_cms_starter": "*",
+        "adesso/adesso_standard": "*",
         "composer/installers": "^2.3",
         "cweagans/composer-patches": "^1.7",
         "drupal/all_entity_preview": "^1.0@alpha",

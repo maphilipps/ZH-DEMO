@@ -27,7 +27,7 @@ install:
   - shortcut
   - views_ui
   - default_content
-  - vite
+  - adesso_standard
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.

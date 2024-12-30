@@ -1,6 +1,10 @@
 ignore:
   - '/src/StarterKit.php'
   - '/adesso_standard.starterkit.yml'
+  - '/components/**'
+  - '/templates/**'
+  - '/dist/**'
+  - '/node_modules/**'
 no_edit: []
 no_rename: []
 info:

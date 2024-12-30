@@ -14,6 +14,7 @@ final class StarterKit implements StarterKitInterface {
     $info_file = "$working_dir/$machine_name.info.yml";
     $info = Yaml::decode(file_get_contents($info_file));
     unset($info['hidden']);
+    $info['base theme'] = 'adesso_standard';
     file_put_contents($info_file, Yaml::encode($info));
   }
 

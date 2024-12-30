@@ -1,5 +1,19 @@
 # adesso standard Drupal theme
 
+## Use Starterkit
+
+```bash
+ddev php web/core/scripts/drupal generate-theme test_theme --starterkit adesso_standard
+```
+
+See: https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme
+
+### ToDo:
+* add DDEV shortcut
+* add default overwrite component
+* rename adesso.logo, adesso.css, adesso.js to base or default
+* build new theme
+
 ## Components
 
 Drupal SDC Components

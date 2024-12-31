@@ -98,7 +98,7 @@ class CommandLineInstallTest extends TestCase {
     // Process uses a default timeout of 60 seconds. $this->drush() disables
     // it entirely, so do that here too.
     $process->setTimeout(0)->mustRun();
-    $this->assertStringContainsString('Congratulations, you installed Drupal CMS!', $process->getErrorOutput());
+    $this->assertStringContainsString('Congratulations, you installed adesso CMS!', $process->getErrorOutput());
 
     // The core install command write-protects the site directory, which
     // interferes with $this->drush().

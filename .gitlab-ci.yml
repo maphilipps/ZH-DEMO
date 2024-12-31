@@ -1,4 +1,50 @@
 # You can override the included template(s) by including variable overrides
+variables:
+  # For faster performance, don't audit dependencies automatically. We have
+  # a dedicated job for this.
+  COMPOSER_NO_AUDIT: 1
+  COMPOSER_NO_INTERACTION: 1
+  BUILD_DIR: ./
+  _PROJECT_ROOT: $CI_PROJECT_DIR/$BUILD_DIR
+  _WEB_ROOT: web
+
+.deploy-rules: &deploy-rules
+  # Deploy when we push to a release branch (not in a fork).
+  - if: $CI_COMMIT_BRANCH =~ /^([0-9]+\.)?[0-9]+\.x$/ && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+  # Deploy when we push a tag.
+  - if: $CI_COMMIT_TAG
+  # Deploy in scheduled nightly builds.
+  - if: $CI_PIPELINE_SOURCE == "schedule"
+  # Deploy when manually triggered via the web UI.
+  - if: $CI_PIPELINE_SOURCE == "web"
+  # Deploy when manually triggered via the Web IDE.
+  - if: $CI_PIPELINE_SOURCE == "webide"
+  # Don't deploy in any other circumstance.
+  - when: never
+
+# Define when this pipeline runs.
+workflow:
+  rules:
+    # Run on merge requests.
+    - if: $CI_MERGE_REQUEST_IID || $CI_PIPELINE_SOURCE == 'merge_request_event'
+    # Also run in any circumstance where we'd do a deployment.
+    - *deploy-rules
+
+default:
+  # New pushes can stop the current job and start a new one.
+  interruptible: true
+  image:
+    # This image has a version of SQLite that is compatible with Drupal 11.
+    name: 'drupalci/php-8.3-ubuntu-apache:production'
+  retry:
+    max: 2
+    when:
+      - unknown_failure
+      - api_failure
+      - stuck_or_timeout_failure
+      - runner_system_failure
+      - scheduler_failure
+
 # SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
 # Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/pipeline/#customization
 # Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
@@ -14,6 +60,102 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+# Creates a Drupal CMS code base with dev dependencies installed.
+build test project:
+  stage: test
+  script:
+    # Install dependencies.
+    - composer install --working-dir=$BUILD_DIR
+  artifacts:
+    paths:
+      - $BUILD_DIR
+    expire_in: 1 hour
+
+.test-base:
+  stage: test
+  needs:
+    - 'build test project'
+  services:
+    - name: 'drupalci/mysql-8'
+      alias: database
+  variables:
+    DDEV_PRIMARY_URL: http://localhost/$_WEB_ROOT
+    SIMPLETEST_DB: mysql://drupaltestbot:drupaltestbotpw@database/mysql
+    MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome", "goog:chromeOptions":{"w3c": true, "args":["--no-sandbox","--ignore-certificate-errors", "--allow-insecure-localhost", "--headless", "--dns-prefetch-disable"]}}, "http://selenium:4444"]'
+  before_script:
+    # Set up Apache to point to the project's document root.
+    - ln -s -f $_PROJECT_ROOT/$_WEB_ROOT /var/www/html/$_WEB_ROOT
+    - chown -R www-data:www-data $_PROJECT_ROOT/$_WEB_ROOT
+    - service apache2 start
+
+.phpunit-base:
+  extends: .test-base
+  script:
+    - cd $BUILD_DIR
+    - sudo SIMPLETEST_BASE_URL=$DDEV_PRIMARY_URL SIMPLETEST_DB=$SIMPLETEST_DB MINK_DRIVER_ARGS_WEBDRIVER="$MINK_DRIVER_ARGS_WEBDRIVER" SYMFONY_DEPRECATIONS_HELPER=disabled -u www-data vendor/bin/phpunit --display-skipped --log-junit $CI_PROJECT_DIR/junit.xml --configuration=$_WEB_ROOT/core $PHPUNIT_OPTIONS
+  artifacts:
+    paths:
+      - $BUILD_DIR/$_WEB_ROOT/sites/simpletest
+    when: on_failure
+    expire_in: 3 days
+    reports:
+      junit: junit.xml
+
+run PHP tests:
+  extends: .phpunit-base
+  parallel:
+    matrix:
+      *components
+  variables:
+    # Skip performance tests by default.
+    PHPUNIT_OPTIONS: '--exclude-group=OpenTelemetry $CI_PROJECT_DIR/$DIR'
+
+test performance:
+  extends: .phpunit-base
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: selenium
+      variables:
+        JAVA_OPTS: '-Dwebdriver.chrome.logfile=/builds/chromedriver.log'
+        SE_NODE_OVERRIDE_MAX_SESSIONS: 'true'
+        SE_NODE_MAX_SESSIONS: '16'
+        SE_SESSION_RETRY_INTERVAL: '1'
+        SE_SESSION_REQUEST_TIMEOUT: '10'
+        SE_START_XVFB: 'false'
+        SE_START_VNC: 'false'
+    - !reference ['.test-base', 'services']
+  variables:
+    PHPUNIT_OPTIONS: '--group=OpenTelemetry ./recipes/drupal_cms_starter'
+  allow_failure: true
+
+run end-to-end tests:
+  extends: .test-base
+  before_script:
+    # Install Cypress' system dependencies.
+    # See https://docs.cypress.io/guides/getting-started/installing-cypress#UbuntuDebian
+    - apt-get update
+    - apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
+    - !reference ['.test-base', 'before_script']
+  variables:
+    # @see cypress.config.js
+    DDEV_DOCROOT: $_PROJECT_ROOT/$_WEB_ROOT
+  script:
+    - npm clean-install
+    - npm test
+  artifacts:
+    paths:
+      - cypress
+    when: on_failure
+    expire_in: 3 days
+
+audit dependencies:
+  stage: test
+  needs:
+    - 'build test project'
+  script:
+    - composer audit --working-dir=$BUILD_DIR
+  allow_failure: true
 
 deploy-pages:
   stage: deploy

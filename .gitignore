@@ -78,3 +78,4 @@
 # Ignore node_modules
 node_modules/
 install-state.gz
+storybook-static/

@@ -107,7 +107,7 @@ run PHP tests:
       - DIR: recipes/adesso_cms_paragraphs
       - DIR: recipes/adesso_cms_starter
       - DIR: web/profiles/adesso_cms_installer
-      - DIR: web/themes/custom/admin_standard
+      - DIR: web/themes/custom/adesso_standard
   variables:
     # Skip performance tests by default.
     PHPUNIT_OPTIONS: '--exclude-group=OpenTelemetry $CI_PROJECT_DIR/$DIR'

@@ -34,7 +34,6 @@ config:
   # what it looks like.
   strict: false
   import:
-    adesso_standard: '*'
     navigation:
       - navigation.settings
     linkit:

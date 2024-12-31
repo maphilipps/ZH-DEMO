@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\drupal_cms_starter\Functional;
+namespace Drupal\Tests\adesso_cms_paragraphs\Functional;
 
 use Composer\InstalledVersions;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 /**
- * @group drupal_cms_starter
+ * @group adesso_cms_paragraphs
  */
 class ComponentValidationTest extends BrowserTestBase {
 

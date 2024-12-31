@@ -142,7 +142,9 @@ run end-to-end tests:
     # @see cypress.config.js
     DDEV_DOCROOT: $_PROJECT_ROOT/$_WEB_ROOT
   script:
-    - yarn
+    - corepack enable
+    - yarn set version berry
+    - yarn install
     - yarn test
   artifacts:
     paths:

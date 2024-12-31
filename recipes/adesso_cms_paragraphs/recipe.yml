@@ -25,6 +25,10 @@ config:
             - page
           paragraph:
             - card
+            - grid
+            - hero
+            - image_text
+            - text
         hover_highlight: true
         primary_color: '#0081c9'
     core.entity_form_display.node.page.default:

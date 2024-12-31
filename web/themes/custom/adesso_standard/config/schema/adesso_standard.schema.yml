@@ -1,0 +1,18 @@
+adesso_standard.settings:
+  type: theme_settings
+  label: 'adesso UI settings'
+  mapping:
+    third_party_settings:
+      type: mapping
+      label: 'Third party settings'
+      mapping:
+        shortcut:
+          type: mapping
+          label: 'Shortcut'
+          mapping:
+            module_link:
+              type: boolean
+              label: 'Module Link'
+    base_primary_color:
+      type: color_hex
+      label: 'Base Primary Color'

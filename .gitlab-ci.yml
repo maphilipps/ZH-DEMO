@@ -142,8 +142,8 @@ run end-to-end tests:
     # @see cypress.config.js
     DDEV_DOCROOT: $_PROJECT_ROOT/$_WEB_ROOT
   script:
-    - npm clean-install
-    - npm test
+    - yarn
+    - yarn test
   artifacts:
     paths:
       - cypress

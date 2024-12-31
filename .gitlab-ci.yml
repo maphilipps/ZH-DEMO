@@ -8,14 +8,15 @@
 stages:
 - build
 - test
+- deploy
 sast:
   stage: test
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
 
-build:
-  stage: build
+deploy-pages:
+  stage: deploy
   image: node:latest
   cache:
     paths:
@@ -25,6 +26,8 @@ build:
     - yarn set version berry
     - yarn install
     - yarn run build-storybook
+  pages:  # specifies that this is a Pages job
+    expire_in: 1 week
   artifacts:
     paths:
     - storybook-static

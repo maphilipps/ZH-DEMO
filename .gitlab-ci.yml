@@ -25,7 +25,7 @@ deploy-pages:
     - corepack enable
     - yarn set version berry
     - yarn install
-    - yarn run build-storybook
+    - yarn run build-storybook -o public
   pages:  # specifies that this is a Pages job
     expire_in: 1 week
   artifacts:

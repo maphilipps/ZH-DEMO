@@ -127,7 +127,7 @@ test performance:
         SE_START_VNC: 'false'
     - !reference ['.test-base', 'services']
   variables:
-    PHPUNIT_OPTIONS: '--group=OpenTelemetry ./recipes/drupal_cms_starter'
+    PHPUNIT_OPTIONS: '--group=OpenTelemetry ./recipes/adesso_cms_starter'
   allow_failure: true
 
 run end-to-end tests:

@@ -21,6 +21,7 @@ build:
     paths:
       - node_modules/
   script:
+    - corepack enable
     - yarn set version berry
     - yarn install
     - yarn run build-storybook

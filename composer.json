@@ -110,6 +110,9 @@
         "patches": {
             "drupal/default_content": {
                 "Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch"
+            },
+            "drupal/frontend_editing": {
+                "Schema errors for frontend_editing.settings with the following errors": "https://git.drupalcode.org/project/frontend_editing/-/merge_requests/96.diff"
             }
         },
         "drupal-core-project-message": {

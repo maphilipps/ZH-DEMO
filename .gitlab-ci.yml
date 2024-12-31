@@ -106,7 +106,10 @@ run PHP tests:
   extends: .phpunit-base
   parallel:
     matrix:
-      *components
+      - DIR: recipes
+      - DIR: web/modules/custom
+      - DIR: web/profiles
+      - DIR: web/themes/custom
   variables:
     # Skip performance tests by default.
     PHPUNIT_OPTIONS: '--exclude-group=OpenTelemetry $CI_PROJECT_DIR/$DIR'

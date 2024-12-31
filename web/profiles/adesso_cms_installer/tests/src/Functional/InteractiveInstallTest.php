@@ -37,7 +37,7 @@ class InteractiveInstallTest extends InstallerTestBase {
     $optional_recipes = $page->findAll('css', 'input[name^="add_ons["]');
     $this->assertNotEmpty($optional_recipes);
     array_walk($optional_recipes, fn ($checkbox) => $checkbox->check());
-    $page->pressButton('Next');
+    $page->pressButton('Weiter');
 
     // The list of languages should still be exposed to JavaScript.
     $this->assertArrayHasKey('languages', $this->getDrupalSettings());

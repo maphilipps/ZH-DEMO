@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\drupal_cms_starter\Functional;
+namespace Drupal\Tests\adesso_cms_starter\Functional;
 
 use Composer\InstalledVersions;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -26,7 +26,7 @@ class ComponentValidationTest extends BrowserTestBase {
   private function applyRecipe(string $path, array $options = []): void {
     $arguments = [
       (new PhpExecutableFinder())->find(),
-      'core/scripts/drupal',
+      DRUPAL_ROOT . '/core/scripts/drupal',
       'recipe',
       // Never apply recipes interactively.
       '--no-interaction',

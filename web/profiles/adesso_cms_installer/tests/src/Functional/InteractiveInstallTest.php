@@ -44,12 +44,12 @@ class InteractiveInstallTest extends InstallerTestBase {
     // Now we should be asked for the site name, with a default value in place
     // for the truly lazy.
     $assert_session->pageTextContains('Give your site a name');
-    $site_name_field = $assert_session->fieldExists('Site name');
+    $site_name_field = $assert_session->fieldExists('Name der Website');
     $this->assertTrue($site_name_field->hasAttribute('required'));
     $this->assertNotEmpty($site_name_field->getValue());
     // We have to use submitForm() to ensure that batch operations, redirects,
     // and so forth in the remaining install tasks get done.
-    $this->submitForm(['Site name' => 'Installer Test'], 'Next');
+    $this->submitForm(['Name der Website' => 'Installer Test'], 'Next');
 
     // Proceed to the database settings form.
     parent::setUpSettings();

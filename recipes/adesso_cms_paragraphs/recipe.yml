@@ -31,6 +31,20 @@ config:
             - text
         hover_highlight: true
         primary_color: '#0081c9'
+        sidebar_width: 30
+        full_width: 70
+        ajax_content_update: true
+        exclude_fields: {  }
+        automatic_preview: false
+        ui_toggle: true
+        ui_toggle_settings:
+          offset_top: ''
+          offset_bottom: '50'
+          offset_left: ''
+          offset_right: '50'
+        duplicate_action_links:
+          height: 300
+        action_links_in_viewport: _none
     core.entity_form_display.node.page.default:
       setComponent:
         name: field_paragraphs

@@ -49,7 +49,7 @@ class InteractiveInstallTest extends InstallerTestBase {
     $this->assertNotEmpty($site_name_field->getValue());
     // We have to use submitForm() to ensure that batch operations, redirects,
     // and so forth in the remaining install tasks get done.
-    $this->submitForm(['Name der Website' => 'Installer Test'], 'Next');
+    $this->submitForm(['Name der Website' => 'Installer Test'], 'Weiter');
 
     // Proceed to the database settings form.
     parent::setUpSettings();

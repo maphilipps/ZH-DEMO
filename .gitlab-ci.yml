@@ -30,7 +30,7 @@ deploy-pages:
     expire_in: 1 week
   artifacts:
     paths:
-    - storybook-static
+    - public
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
 kubectl:

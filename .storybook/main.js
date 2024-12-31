@@ -2,7 +2,7 @@
 const config = {
   stories: [
     // '../web/themes/**/*.stories.mdx',
-    '../web/themes/**/*.stories.@(json|yml)',
+    '../web/themes/**/*.stories.@(json)',
     // '../web/modules/**/*.stories.mdx',
     // '../web/modules/**/*.stories.@(json|yml)',
   ],

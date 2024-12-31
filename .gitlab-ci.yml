@@ -6,12 +6,26 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
+- build
 - test
 sast:
   stage: test
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+build:
+  stage: build
+  image: node:latest
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - yarn install
+    - yarn run build-storybook
+  artifacts:
+    paths:
+    - storybook-static
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
 kubectl:

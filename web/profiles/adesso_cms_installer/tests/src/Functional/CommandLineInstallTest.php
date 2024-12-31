@@ -88,7 +88,7 @@ class CommandLineInstallTest extends TestCase {
   public function testCoreInstallCommand(): void {
     $command = [
       PHP_BINDIR . '/php',
-      'core/scripts/drupal',
+      DRUPAL_ROOT . '/core/scripts/drupal',
       'install',
       'adesso_cms_installer',
     ];

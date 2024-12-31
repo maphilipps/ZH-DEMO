@@ -39,9 +39,9 @@ config:
         ui_toggle: true
         ui_toggle_settings:
           offset_top: ''
-          offset_bottom: '50'
+          offset_bottom: 50
           offset_left: ''
-          offset_right: '50'
+          offset_right: 50
         duplicate_action_links:
           height: 300
         action_links_in_viewport: _none

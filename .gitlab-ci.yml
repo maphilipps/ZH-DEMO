@@ -7,6 +7,8 @@ variables:
   BUILD_DIR: ./
   _PROJECT_ROOT: $CI_PROJECT_DIR/$BUILD_DIR
   _WEB_ROOT: web
+  IMAGE_NAME: "$CI_REGISTRY_IMAGE/adesso-cms"
+  TAG: "$CI_COMMIT_SHORT_SHA"
 
 .deploy-rules: &deploy-rules
   # Deploy when we push to a release branch (not in a fork).
@@ -160,7 +162,31 @@ audit dependencies:
     - composer audit --working-dir=$BUILD_DIR
   allow_failure: true
 
-deploy-pages:
+build docker image:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker build -t "$IMAGE_NAME:$TAG" .
+  only:
+    - main
+
+push docker image:
+  stage: push
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  script:
+    - docker push "$IMAGE_NAME:$TAG"
+  only:
+    - main
+
+deploy pages:
   stage: deploy
   image: node:latest
   cache:

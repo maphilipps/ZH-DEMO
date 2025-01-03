@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d672dee45624e52676a2b1da9feb85c",
+    "content-hash": "199feff83b12e003a3d7d14b475a72b6",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",
@@ -83,10 +83,11 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_starter",
-                "reference": "df6205912c65cd577737e441d75a4eda9303a356"
+                "reference": "44270cf100e0458da4265b513e8a7a57e7b1a013"
             },
             "require": {
                 "adesso/adesso_cms_paragraphs": "*",
+                "drupal/all_entity_preview": "^1.0@alpha",
                 "drupal/automatic_updates": "^3.1.6",
                 "drupal/core": ">=10.3",
                 "drupal/dashboard": "^2-beta1",
@@ -21717,7 +21718,6 @@
         "adesso/adesso_cms_blog": 20,
         "adesso/adesso_cms_starter": 20,
         "adesso/adesso_standard": 20,
-        "drupal/all_entity_preview": 15,
         "drupal/drupal_cms_search": 5,
         "drupal/drupal_cms_seo_tools": 5
     },

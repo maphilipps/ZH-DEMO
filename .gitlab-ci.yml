@@ -162,7 +162,7 @@ audit dependencies:
     - composer audit --working-dir=$BUILD_DIR
   allow_failure: true
 
-build docker image:
+build and push docker image:
   stage: build
   image: docker:24
   services:
@@ -171,19 +171,6 @@ build docker image:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
     - docker build -t "$IMAGE_NAME:$TAG" .
-  only:
-    - main
-
-push docker image:
-  stage: build
-  image: docker:24
-  needs:
-    - 'build docker image'
-  services:
-    - docker:24-dind
-  before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
-  script:
     - docker push "$IMAGE_NAME:$TAG"
   only:
     - main

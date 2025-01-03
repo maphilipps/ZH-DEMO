@@ -35,10 +35,10 @@
         }
     },
     "require": {
-        "adesso/adesso_cms_ai": "*",
-        "adesso/adesso_cms_blog": "*",
-        "adesso/adesso_cms_starter": "*",
-        "adesso/adesso_standard": "*",
+        "adesso/adesso_cms_ai": "dev-main",
+        "adesso/adesso_cms_blog": "dev-main",
+        "adesso/adesso_cms_starter": "dev-main",
+        "adesso/adesso_standard": "dev-main",
         "composer/installers": "^2.3",
         "cweagans/composer-patches": "^1.7",
         "drupal/all_entity_preview": "^1.0@alpha",

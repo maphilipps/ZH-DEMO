@@ -11,6 +11,12 @@ If you want to run Drupal CMS locally use [DDEV](https://ddev.com), and follow t
 3. Run the command `./launch-adesso-cms.sh`
 4. Run the command `ddev watch` to start the vite development server
 
+DDEV plugins are used to provide additional functionality:
+
+* https://github.com/ddev/ddev-drupal-contrib
+* https://github.com/ddev/ddev-selenium-standalone-chrome
+
+
 
 ### Build theme
 

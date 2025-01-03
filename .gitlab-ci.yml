@@ -175,8 +175,10 @@ build docker image:
     - main
 
 push docker image:
-  stage: push
+  stage: build
   image: docker:24
+  needs:
+    - 'build docker image'
   services:
     - docker:24-dind
   before_script:

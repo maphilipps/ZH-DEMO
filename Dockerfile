@@ -5,6 +5,7 @@ FROM composer as vendor
 
 COPY composer.json composer.json
 COPY composer.lock composer.lock
+COPY recipes/ recipes/
 COPY scripts/ scripts/
 COPY web/ web/
 

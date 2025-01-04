@@ -203,4 +203,5 @@ kubectl:
   script:
     - kubectl cluster-info
     - kubectl config set-context --current --namespace=$KUBENAMESPACE
+    - kubectl apply -f kubernetes/kustomization.yaml
   

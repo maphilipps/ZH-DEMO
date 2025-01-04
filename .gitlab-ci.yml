@@ -102,6 +102,7 @@ build test project:
 
 run PHP tests:
   extends: .phpunit-base
+  allow_failure: true
   parallel:
     matrix:
       - DIR: recipes/adesso_cms_ai

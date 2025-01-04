@@ -209,7 +209,7 @@ subtree split:
     - mkdir ~/.ssh
     - cp $SSH_KNOWN_HOSTS ~/.ssh/known_hosts
     # Test that we can connect successfully.
-    - ssh -T git@git.drupal.org
+    - ssh -T gitlab.adesso-group.com
   script:
     # We'll need the full commit history to do the subtree splits.
     - git fetch --unshallow origin $CI_COMMIT_REF_NAME

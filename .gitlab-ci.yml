@@ -202,7 +202,7 @@ subtree split:
   before_script:
     # We need to identify ourselves to Git in order to push.
     - git config --global user.name "adesso CMS Bot"
-    - git config --global user.email "adesso-cms-bot@gitlab.adesso-group.com"
+    - git config --global user.email "group_8167_bot_966dbc25b01ba5fbae1e256876ccfe67@gitlab.adesso-group.com"
     # Ensure we can push to the remotes.
     - eval "$(ssh-agent -s)"
     - ssh-add - < "${SSH_PRIVATE_KEY}"

@@ -1,5 +1,0 @@
-resources:
-- drupal-persistentvolumeclaim.yaml
-- drupal-mysql.yaml
-- drupal.yaml
-- drupal-ingress.yaml

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "199feff83b12e003a3d7d14b475a72b6",
+    "content-hash": "7c3b6d674b65dd480e0a036eba479edc",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",

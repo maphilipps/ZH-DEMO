@@ -113,6 +113,9 @@
         "patches": {
             "drupal/default_content": {
                 "Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch"
+            },
+            "drupal/all_entity_preview": {
+                "Too few arguments to function Drupal\\Core\\Form\\ConfigFormBase::__construct()": "https://git.drupalcode.org/project/all_entity_preview/-/merge_requests/8.diff"
             }
         },
         "drupal-core-project-message": {

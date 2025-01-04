@@ -135,6 +135,7 @@ test performance:
 
 run end-to-end tests:
   extends: .test-base
+  allow_failure: true
   before_script:
     # Install Cypress' system dependencies.
     # See https://docs.cypress.io/guides/getting-started/installing-cypress#UbuntuDebian

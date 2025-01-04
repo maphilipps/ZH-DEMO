@@ -24,6 +24,18 @@ variables:
   # Don't deploy in any other circumstance.
   - when: never
 
+.components: &components
+  - DIR: recipes/adesso_cms_ai
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_ai.git
+  - DIR: recipes/adesso_cms_blog
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_blog.git
+  - DIR: recipes/adesso_cms_paragraphs
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_paragraphs.git
+  - DIR: recipes/adesso_cms_starter
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_starter.git
+  - DIR: web/themes/custom/adesso_standard
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_standard.git
+
 # Define when this pipeline runs.
 workflow:
   rules:
@@ -58,6 +70,7 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Dependency-Scanning.gitlab-ci.yml
+
 
 # Creates a Drupal CMS code base with dev dependencies installed.
 build test project:
@@ -105,12 +118,7 @@ run PHP tests:
   allow_failure: true
   parallel:
     matrix:
-      - DIR: recipes/adesso_cms_ai
-      - DIR: recipes/adesso_cms_blog
-      - DIR: recipes/adesso_cms_paragraphs
-      - DIR: recipes/adesso_cms_starter
-      - DIR: web/profiles/adesso_cms_installer
-      - DIR: web/themes/custom/adesso_standard
+      *components
   variables:
     # Skip performance tests by default.
     PHPUNIT_OPTIONS: '--exclude-group=OpenTelemetry $CI_PROJECT_DIR/$DIR'
@@ -176,6 +184,43 @@ build and push docker image:
     - docker push "$IMAGE_NAME:$TAG"
   only:
     - main
+
+subtree split:
+  stage: deploy
+  image: phenaproxima/splitsh-ci
+  # We don't need any artifacts from previous stages.
+  # @see https://docs.gitlab.com/ee/ci/jobs/job_artifacts.html#prevent-a-job-from-fetching-artifacts
+  dependencies: []
+  cache:
+    key: splitsh-$CI_COMMIT_REF_NAME
+    paths:
+      # @see https://github.com/splitsh/lite/blob/master/splitter/cache.go#L26
+      - .git/splitsh.db
+  parallel:
+    matrix:
+      *components
+  before_script:
+    # We need to identify ourselves to Git in order to push.
+    - git config --global user.name "adesso CMS Bot"
+    - git config --global user.email "adesso-cms-bot@gitlab.adesso-group.com"
+    # Ensure we can push to the remotes.
+    - eval "$(ssh-agent -s)"
+    - ssh-add - < "${SSH_PRIVATE_KEY}"
+    - mkdir ~/.ssh
+    - cp $SSH_KNOWN_HOSTS ~/.ssh/known_hosts
+    # Test that we can connect successfully.
+    - ssh -T git@git.drupal.org
+  script:
+    # We'll need the full commit history to do the subtree splits.
+    - git fetch --unshallow origin $CI_COMMIT_REF_NAME
+    - COMMIT=`/splitsh-lite --prefix=$DIR/`
+    - git checkout -b split $COMMIT
+    - git remote set-url origin $URL
+    - git remote -v
+    - if [[ -n "$CI_COMMIT_BRANCH" ]]; then git push origin HEAD:$CI_COMMIT_BRANCH; elif [[ -n "$CI_COMMIT_TAG" ]]; then git tag $CI_COMMIT_TAG && git push origin $CI_COMMIT_TAG; fi
+  rules:
+    - *deploy-rules
+
 
 deploy pages:
   stage: deploy

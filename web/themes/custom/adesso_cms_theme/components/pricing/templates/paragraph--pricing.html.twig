@@ -5,8 +5,8 @@
 <div{{attributes.addClass(classes)}}>
 	{{ title_prefix }}
 	{{ title_suffix }}
-	{% block content %}
-    {{ content.frontend_editing }}
+  {{ content.frontend_editing }}
+  {% block content %}
 		{% embed '@adesso_cms_theme/pricing/pricing.twig' with {
 			content: content,
 			eyebrow: content.field_eyebrow|render,
@@ -15,7 +15,7 @@
 			grid_columns: content.field_pricing_cards['#items']|length,
     } only %}
 			{% block pricing_cards %}
-				{{ content.field_pricing_cards }}
+        {{ content.field_pricing_cards }}
 			{% endblock pricing_cards %}
 		{% endembed %}
 	{% endblock %}

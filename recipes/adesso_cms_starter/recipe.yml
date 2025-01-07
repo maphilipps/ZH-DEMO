@@ -37,7 +37,7 @@ install:
   - svg_image
   - svg_image_responsive
   - default_content
-  - all_entity_preview
+  - preview
   - frontend_editing
   - adesso_cms_theme
 config:

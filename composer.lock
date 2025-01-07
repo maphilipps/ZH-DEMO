@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c3b6d674b65dd480e0a036eba479edc",
+    "content-hash": "4163093ce34663c5469dc3f2257ad1ff",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",
@@ -3105,6 +3105,59 @@
                 "source": "https://git.drupalcode.org/project/coffee",
                 "issues": "https://drupal.org/project/issues/coffee",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/components",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/components.git",
+                "reference": "3.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/components-3.1.0.zip",
+                "reference": "3.1.0",
+                "shasum": "a9d9f7517f54038d0d6fa68185d80e26d2ad1d8d"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.1.0",
+                    "datestamp": "1725921122",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "JohnAlbin",
+                    "homepage": "https://www.drupal.org/user/1036766",
+                    "email": "virtually.johnalbin@gmail.com"
+                },
+                {
+                    "name": "johnalbin",
+                    "homepage": "https://www.drupal.org/user/32095"
+                },
+                {
+                    "name": "robloach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                }
+            ],
+            "description": "Registers folders of components defined by your theme or module as Twig namespaces",
+            "homepage": "https://drupal.org/project/components",
+            "support": {
+                "source": "https://git.drupalcode.org/project/components"
             }
         },
         {
@@ -6694,6 +6747,100 @@
             }
         },
         {
+            "name": "drupal/paragraphs_ee",
+            "version": "10.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraphs_ee.git",
+                "reference": "10.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_ee-10.0.5.zip",
+                "reference": "10.0.5",
+                "shasum": "a638c2a75804eb89e0934f159210a599267ee4a8"
+            },
+            "require": {
+                "drupal/core": ">=10.0",
+                "drupal/paragraphs_features": "^2.0"
+            },
+            "require-dev": {
+                "drupal/paragraphs_sets": "*",
+                "phpunit/phpunit": "^9.5",
+                "weitzman/drupal-test-traits": "^1.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "10.0.5",
+                    "datestamp": "1729580104",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Borchert",
+                    "homepage": "https://www.drupal.org/user/36942",
+                    "email": "stefan.borchert@undpaul.de"
+                }
+            ],
+            "description": "Paragraphs Editor Enhancements for better usability.",
+            "homepage": "https://www.drupal.org/project/paragraphs_ee",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs_ee"
+            }
+        },
+        {
+            "name": "drupal/paragraphs_features",
+            "version": "dev-project-update-bot-only",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/issue/paragraphs_features-3433828",
+                "reference": "140b1339653220c9eeaf699a770b454ef24476f3"
+            },
+            "require": {
+                "drupal/paragraphs": "^1.13"
+            },
+            "require-dev": {
+                "drupal/gin": "^3.0"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mladen Todorovic",
+                    "email": "mladen.todorovic@burda.com"
+                },
+                {
+                    "name": "Daniel Bosen",
+                    "email": "daniel.bosen@burda.com"
+                },
+                {
+                    "name": "Christian Fritsch",
+                    "email": "christian.fritsch@burda.com"
+                },
+                {
+                    "name": "Volker Killesreiter",
+                    "email": "volker.killesreiter@burda.com"
+                },
+                {
+                    "name": "Alex Pott",
+                    "email": "alex.a.pott@gmail.com"
+                }
+            ],
+            "description": "Paragraphs features for extending paragraphs widget functionality.",
+            "time": "2024-12-13T13:05:31+00:00"
+        },
+        {
             "name": "drupal/pathauto",
             "version": "1.13.0",
             "source": {
@@ -8111,6 +8258,70 @@
             }
         },
         {
+            "name": "drupal/twig_field_value",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/twig_field_value.git",
+                "reference": "2.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/twig_field_value-2.0.5.zip",
+                "reference": "2.0.5",
+                "shasum": "9a13925fc1f9788db65044b179871139da8a7cfd"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.5",
+                    "datestamp": "1728385526",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "bizar1984",
+                    "homepage": "https://www.drupal.org/user/3719064"
+                },
+                {
+                    "name": "Gerben Spil",
+                    "homepage": "https://www.drupal.org/user/728030"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "sutharsan",
+                    "homepage": "https://www.drupal.org/user/73854"
+                },
+                {
+                    "name": "thomas.frobieter",
+                    "homepage": "https://www.drupal.org/user/409335"
+                }
+            ],
+            "description": "Twig filters for value(s) and label.",
+            "homepage": "https://www.drupal.org/project/twig_field_value",
+            "support": {
+                "source": "https://git.drupalcode.org/project/twig_field_value"
+            }
+        },
+        {
             "name": "drupal/ui_patterns",
             "version": "2.0.0-rc1",
             "source": {
@@ -8188,6 +8399,63 @@
             "homepage": "https://www.drupal.org/project/ui_patterns",
             "support": {
                 "source": "https://git.drupalcode.org/project/ui_patterns"
+            }
+        },
+        {
+            "name": "drupal/viewfield",
+            "version": "3.0.0-beta11",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/viewfield.git",
+                "reference": "8.x-3.0-beta11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta11.zip",
+                "reference": "8.x-3.0-beta11",
+                "shasum": "8125567dda9122af6868bfbdf6ca0a933469cdde"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.0-beta11",
+                    "datestamp": "1732648835",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "danflanagan8",
+                    "homepage": "https://www.drupal.org/user/3615359"
+                },
+                {
+                    "name": "jerdavis",
+                    "homepage": "https://www.drupal.org/user/228997"
+                },
+                {
+                    "name": "keithm",
+                    "homepage": "https://www.drupal.org/user/691250"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                }
+            ],
+            "description": "Defines an entity reference field type to display a view.",
+            "homepage": "http://drupal.org/project/viewfield",
+            "support": {
+                "source": "https://git.drupalcode.org/project/viewfield",
+                "issues": "https://www.drupal.org/project/issues/viewfield"
             }
         },
         {
@@ -8347,6 +8615,103 @@
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
             }
+        },
+        {
+            "name": "drupalninja/drupalx-paragraphs",
+            "version": "1.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupalninja/drupalx-paragraphs.git",
+                "reference": "efeca4688b8cd0370dc6606736dc4db374db9aa9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupalninja/drupalx-paragraphs/zipball/efeca4688b8cd0370dc6606736dc4db374db9aa9",
+                "reference": "efeca4688b8cd0370dc6606736dc4db374db9aa9",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/paragraphs": "^1.17",
+                "drupal/paragraphs_ee": "^10.0",
+                "drupal/paragraphs_features": "^2.0",
+                "drupal/viewfield": "^3.0@beta"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Callicott",
+                    "role": "Project Lead"
+                }
+            ],
+            "description": "Paragraph types used in the DrupalX distribution recipe.",
+            "keywords": [
+                "drupal recipe",
+                "recipe"
+            ],
+            "support": {
+                "issues": "https://github.com/drupalninja/drupalx-paragraphs/issues",
+                "source": "https://github.com/drupalninja/drupalx-paragraphs/tree/1.18.1"
+            },
+            "time": "2024-12-05T14:37:12+00:00"
+        },
+        {
+            "name": "drupalninja/drupalx_ai",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupalninja/drupalx_ai.git",
+                "reference": "b4bd901cc1c53a42542c930103074bc5d737b842"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupalninja/drupalx_ai/zipball/b4bd901cc1c53a42542c930103074bc5d737b842",
+                "reference": "b4bd901cc1c53a42542c930103074bc5d737b842",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Provides AI-powered DrupalX and Drush extensions using Claude 3 AI model.",
+            "support": {
+                "issues": "https://github.com/drupalninja/drupalx_ai/issues",
+                "source": "https://github.com/drupalninja/drupalx_ai/tree/1.x"
+            },
+            "time": "2024-12-25T23:54:08+00:00"
+        },
+        {
+            "name": "drupalninja/drupalx_theme",
+            "version": "1.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupalninja/drupalx_theme.git",
+                "reference": "1e6964a78b8a7b7fb56f5882e3be2d5e2841950b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupalninja/drupalx_theme/zipball/1e6964a78b8a7b7fb56f5882e3be2d5e2841950b",
+                "reference": "1e6964a78b8a7b7fb56f5882e3be2d5e2841950b",
+                "shasum": ""
+            },
+            "type": "drupal-theme",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Callicott"
+                }
+            ],
+            "description": "DrupalX Bootstrap, Storybook starter theme.",
+            "support": {
+                "issues": "https://github.com/drupalninja/drupalx_theme/issues",
+                "source": "https://github.com/drupalninja/drupalx_theme/tree/1.19"
+            },
+            "time": "2024-12-07T02:03:43+00:00"
         },
         {
             "name": "drush/drush",
@@ -21710,7 +22075,14 @@
             "time": "2024-06-28T13:45:36+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "drupal/paragraphs_features",
+            "version": "dev-project-update-bot-only",
+            "alias": "2.0",
+            "alias_normalized": "2.0.0.0"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "adesso/adesso_cms_ai": 20,
@@ -21718,7 +22090,9 @@
         "adesso/adesso_cms_starter": 20,
         "adesso/adesso_standard": 20,
         "drupal/drupal_cms_search": 5,
-        "drupal/drupal_cms_seo_tools": 5
+        "drupal/drupal_cms_seo_tools": 5,
+        "drupal/paragraphs_features": 20,
+        "drupalninja/drupalx_ai": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

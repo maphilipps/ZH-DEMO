@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override to display a social menu with icons.
+ */
+#}
+
+{%
+  include 'adesso_cms_theme:main-menu' with
+    {
+      modifier: '',
+      link_modifier: '',
+      menu_items: items,
+      attributes: attributes,
+    }
+%}

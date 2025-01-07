@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Accordion
+description: Editorial/Accordion component
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title for the accordion group
+    modifier:
+      type: string
+      title: modifier
+      description: Modifier class for the accordion group
+    accordion_items:
+      type: object
+      title: accordion_items
+      description: Define the list of items containing the title and content of each accordion
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+libraryOverrides:
+  js:
+    accordion.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

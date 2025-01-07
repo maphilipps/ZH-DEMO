@@ -2,18 +2,25 @@ name: adesso CMS
 description: Applies all the basic adesso CMS recipes.
 type: Site
 recipes:
+  - core/recipes/tags_taxonomy
   - core/recipes/core_recommended_maintenance
   - core/recipes/core_recommended_performance
   - core/recipes/document_media_type
+  - core/recipes/basic_html_format_editor
+  - core/recipes/full_html_format_editor
+  - core/recipes/restricted_html_format
   - drupal_cms_admin_ui
   - drupal_cms_anti_spam
-  - drupal_cms_authentication
-  - drupal_cms_privacy_basic
-  - drupal_cms_remote_video
   - drupal_cms_seo_basic
   - easy_email_express
-  - adesso_cms_paragraphs
+  - ../recipes/drupalx-paragraphs
 install:
+  - node
+  - datetime_range
+  - components
+  - metatag
+  - field_ui
+  - responsive_image
   - automatic_updates
   - automatic_updates_extensions
   - dashboard
@@ -26,13 +33,20 @@ install:
   - menu_ui
   - shortcut
   - views_ui
+  - twig_field_value
+  - svg_image
+  - svg_image_responsive
   - default_content
-  - adesso_standard
+  - all_entity_preview
+  - frontend_editing
+  - adesso_cms_theme
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.
   strict: false
   import:
+    adesso_cms_theme: '*'
+    node: '*'
     navigation:
       - navigation.settings
     linkit:
@@ -40,8 +54,6 @@ config:
     image:
       - image.style.large
       - image.style.thumbnail
-    node:
-      - views.view.content
     shortcut:
       - shortcut.set.default
     user:
@@ -50,6 +62,19 @@ config:
       - core.entity_view_mode.user.compact
       - views.view.user_admin_people
   actions:
+    frontend_editing.settings:
+      simpleConfigUpdate:
+        entity_types:
+          node:
+            - page
+          paragraph:
+            - card
+            - grid
+            - hero
+            - image_text
+            - text
+        hover_highlight: true
+        primary_color: '#0081c9'
     package_manager.settings:
       simpleConfigUpdate:
         additional_trusted_composer_plugins:
@@ -78,7 +103,7 @@ config:
         page.front: '/home'
     system.theme:
       simpleConfigUpdate:
-        default: adesso_standard
+        default: adesso_cms_theme
     gin.settings:
       simpleConfigUpdate:
         preset_accent_color: custom

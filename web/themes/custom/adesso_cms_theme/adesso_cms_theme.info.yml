@@ -1,0 +1,21 @@
+name: adesso UI
+type: theme
+description: ''
+package: Other
+core_version_requirement: ^11
+'base theme': stable9
+version: 1.1.0
+starterkit: true
+libraries:
+  - adesso_cms_theme/global
+components:
+  namespaces:
+    adesso_cms_theme:
+      - components
+      - templates
+regions:
+  primary_menu: 'Primary Menu'
+  highlighted: Highlighted
+  content: Content
+  footer: Footer
+generator: 'drupalx_theme:1.0'

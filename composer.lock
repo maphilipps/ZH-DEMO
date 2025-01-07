@@ -87,10 +87,11 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_starter",
-                "reference": "e09d5b91bf3eca37e38a4ba7608c7dcbb275d1cb"
+                "reference": "4341e5bfa184e5da339a31c39badf002efecf00a"
             },
             "require": {
                 "drupal/all_entity_preview": "^1.0@alpha",
+                "drupal/allowed_formats": "^3.0",
                 "drupal/automatic_updates": "^3.1.6",
                 "drupal/core": ">=10.3",
                 "drupal/dashboard": "^2-beta1",
@@ -103,8 +104,11 @@
                 "drupal/drupal_cms_seo_basic": "~1.0.0-rc1",
                 "drupal/easy_email_express": "^1.0.2",
                 "drupal/frontend_editing": "^1.8",
+                "drupal/node_revision_delete": "^2.0@RC",
                 "drupal/pathauto": "^1.13",
-                "drupal/project_browser": "^2-alpha6"
+                "drupal/project_browser": "^2-alpha6",
+                "drupal/svg_image_responsive": "^3.0",
+                "drupal/webp": "^1.0@RC"
             },
             "suggest": {
                 "adesso/adesso_cms_blog": "Sets up a basic blog, with tagging.",
@@ -2492,6 +2496,70 @@
             "homepage": "https://www.drupal.org/project/all_entity_preview",
             "support": {
                 "source": "https://git.drupalcode.org/project/all_entity_preview"
+            }
+        },
+        {
+            "name": "drupal/allowed_formats",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/allowed_formats.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/allowed_formats-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "9dfaed3ab8425ee94146914fdb492cefc6c6bb4d"
+            },
+            "require": {
+                "drupal/core": "^10.1 || ^11"
+            },
+            "conflict": {
+                "drupal/core": "<10.1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1723158950",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Northern Commerce (formerly Digital Echidna)",
+                    "homepage": "https://www.drupal.org/northern-commerce-formerly-digital-echidna",
+                    "role": "Supporting organization"
+                },
+                {
+                    "name": "Jordan Thompson (nord102)",
+                    "homepage": "https://www.drupal.org/u/nord102",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Wunder",
+                    "homepage": "https://www.drupal.org/wunder",
+                    "role": "Supporting organization"
+                },
+                {
+                    "name": "Florian Loretan (floretan)",
+                    "homepage": "https://www.drupal.org/u/floretan",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Hides info about the selected text format. The 'allowed formats' functionality has been moved to core since Drupal 10.1.0.",
+            "homepage": "https://www.drupal.org/project/allowed_formats",
+            "support": {
+                "source": "http://cgit.drupalcode.org/allowed_formats",
+                "issues": "https://www.drupal.org/project/issues/allowed_formats"
             }
         },
         {
@@ -6611,6 +6679,82 @@
             }
         },
         {
+            "name": "drupal/node_revision_delete",
+            "version": "dev-2.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/node_revision_delete.git",
+                "reference": "037d3a4b74e5a74c245338c8a96c3fded2e05c79"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0.x": "2.0.x-dev"
+                },
+                "drupal": {
+                    "version": "2.0.0-rc1+4-dev",
+                    "datestamp": "1713534938",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^10 || ^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Adrian Cid Almaguer (adriancid)",
+                    "homepage": "https://www.drupal.org/u/adriancid",
+                    "email": "adriancid@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Diosbel Mezquía (diosbelmezquia)",
+                    "homepage": "https://www.drupal.org/u/diosbelmezquia",
+                    "email": "dmezquiam@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Robert Ngo (Robert Ngo)",
+                    "homepage": "https://www.drupal.org/u/robert-ngo",
+                    "email": "robertngo.18@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Sean Blommaert (seanB)",
+                    "homepage": "https://www.drupal.org/u/seanB",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Pravin Gaikwad (Rajeshreeputra)",
+                    "homepage": "https://www.drupal.org/u/rajeshreeputra",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Track and prune node revisions.",
+            "homepage": "https://www.drupal.org/project/node_revision_delete",
+            "keywords": [
+                "Drupal",
+                "Nodes",
+                "Revisions"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/node_revision_delete",
+                "issues": "https://www.drupal.org/project/issues/node_revision_delete"
+            }
+        },
+        {
             "name": "drupal/nouislider_js",
             "version": "15.8.1",
             "source": {
@@ -7998,6 +8142,56 @@
             }
         },
         {
+            "name": "drupal/svg_image_responsive",
+            "version": "3.2.0",
+            "require": {
+                "drupal/core": "^10.3 || ^11",
+                "drupal/svg_image": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "3.2.0",
+                    "datestamp": "1733298643",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "imyaro",
+                    "homepage": "https://www.drupal.org/user/2870933"
+                },
+                {
+                    "name": "mably",
+                    "homepage": "https://www.drupal.org/user/3375160"
+                },
+                {
+                    "name": "thomas.frobieter",
+                    "homepage": "https://www.drupal.org/user/409335"
+                }
+            ],
+            "description": "Overrides the responsive image formatter to support SVG files.",
+            "homepage": "https://www.drupal.org/project/svg_image",
+            "support": {
+                "source": "https://git.drupalcode.org/project/svg_image"
+            }
+        },
+        {
             "name": "drupal/symfony_mailer_lite",
             "version": "2.0.2",
             "source": {
@@ -8515,6 +8709,65 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+            }
+        },
+        {
+            "name": "drupal/webp",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webp.git",
+                "reference": "8.x-1.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webp-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "16a1d2c29af57ac04603bcba275e732340491554"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "ext-gd": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1713170119",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Bart Vanhoutte",
+                    "homepage": "https://www.drupal.org/user/145609",
+                    "email": "bart@croquemonsieur.be",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Bart Vanhoutte",
+                    "homepage": "https://www.drupal.org/user/1133754"
+                },
+                {
+                    "name": "mandclu",
+                    "homepage": "https://www.drupal.org/user/52136"
+                }
+            ],
+            "description": "Generates WebP copies of image style derivatives.",
+            "homepage": "https://www.drupal.org/project/webp",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/webp",
+                "issues": "https://www.drupal.org/project/issues/webp"
             }
         },
         {

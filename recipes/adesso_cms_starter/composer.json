@@ -6,6 +6,7 @@
     "require": {
         "drupal/automatic_updates": "^3.1.6",
         "drupal/all_entity_preview": "^1.0@alpha",
+        "drupal/allowed_formats": "^3.0",
         "drupal/core": ">=10.3",
         "drupal/dashboard": "^2-beta1",
         "drupal/default_content": "^2.0@alpha",
@@ -17,8 +18,11 @@
         "drupal/drupal_cms_seo_basic": "~1.0.0-rc1",
         "drupal/easy_email_express": "^1.0.2",
         "drupal/frontend_editing": "^1.8",
+        "drupal/node_revision_delete": "^2.0@RC",
         "drupal/pathauto": "^1.13",
-        "drupal/project_browser": "^2-alpha6"
+        "drupal/project_browser": "^2-alpha6",
+        "drupal/svg_image_responsive": "^3.0",
+        "drupal/webp": "^1.0@RC"
     },
     "suggest": {
         "adesso/adesso_cms_blog": "Sets up a basic blog, with tagging.",

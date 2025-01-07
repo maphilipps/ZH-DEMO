@@ -40,6 +40,46 @@ install:
   - preview
   - frontend_editing
   - adesso_cms_theme
+  - allowed_formats
+  - ckeditor5
+  - config
+  - content_moderation
+  - help
+  - contextual
+  - datetime
+  - datetime_range
+  - editor
+  - field_ui
+  - file
+  - history
+  - image
+  - language
+  - link
+  - media
+  - media_library
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - path
+  - shortcut
+  - taxonomy
+  - views
+  - views_ui
+  - field_group
+  - linkit
+  - metatag
+  - node_revision_delete
+  - pathauto
+  - paragraphs
+  - paragraphs_ee
+  - paragraphs_features
+  - redirect
+  - responsive_image
+  - svg_image
+  - svg_image_responsive
+  - viewfield
+  - webp
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.
@@ -49,11 +89,6 @@ config:
     node: '*'
     navigation:
       - navigation.settings
-    linkit:
-      - image.style.linkit_result_thumbnail
-    image:
-      - image.style.large
-      - image.style.thumbnail
     shortcut:
       - shortcut.set.default
     user:
@@ -61,6 +96,46 @@ config:
       # in certain situations.
       - core.entity_view_mode.user.compact
       - views.view.user_admin_people
+    content_moderation: '*'
+    editor: '*'
+    file: '*'
+    field_ui: '*'
+    media_library:
+      - core.entity_view_mode.media.media_library
+      - core.entity_form_mode.media.media_library
+      - image.style.media_library
+      - views.view.media_library
+    media:
+      - core.entity_view_mode.media.full
+      - system.action.media_delete_action
+      - system.action.media_publish_action
+      - system.action.media_save_action
+      - system.action.media_unpublish_action
+      - views.view.media
+    image:
+      - image.style.medium
+      - image.style.large
+      - image.style.thumbnail
+    menu_ui: '*'
+    datetime: '*'
+    datetime_range: '*'
+    views: '*'
+    views_ui: '*'
+    #contrib
+    field_group: '*'
+    linkit: '*'
+    metatag: '*'
+    node_revision_delete: '*'
+    pathauto: '*'
+    paragraphs: '*'
+    paragraphs_ee: '*'
+    paragraphs_features: '*'
+    redirect: '*'
+    responsive_image: '*'
+    svg_image: '*'
+    svg_image_responsive: '*'
+    viewfield: '*'
+    webp: '*'
   actions:
     frontend_editing.settings:
       simpleConfigUpdate:
@@ -137,6 +212,8 @@ config:
         - 'revert all revisions'
         - 'view all revisions'
         - 'view the administration theme'
+        - 'use text format basic_html'
+        - 'use text format full_html'
     node.settings:
       simpleConfigUpdate:
         use_admin_theme: true
@@ -165,3 +242,13 @@ config:
     automatic_updates.settings:
       simpleConfigUpdate:
         allow_core_minor_updates: true
+    # Set metatag defaults.
+    metatag.metatag_defaults.global:
+      simple_config_update:
+        tags.canonical_url: '[current-page:url]'
+        tags.title: '[current-page:title] | [site:name]'
+    metatag.metatag_defaults.node:
+      simple_config_update:
+        tags.abstract: '[node:summary]'
+        tags.canonical_url: '[node:url]'
+        tags.description: '[node:summary]'

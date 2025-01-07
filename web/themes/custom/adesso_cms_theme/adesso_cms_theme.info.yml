@@ -18,4 +18,8 @@ regions:
   highlighted: Highlighted
   content: Content
   footer: Footer
-generator: 'drupalx_theme:1.0'
+dependencies:
+  - vite:vite
+vite:
+  enableInAllLibraries: true
+  enableInAllComponents: true

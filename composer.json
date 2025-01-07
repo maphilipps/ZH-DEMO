@@ -10,7 +10,7 @@
     },
     "repositories": {
         "paragraphs_features": {
-            "type": "vcs", 
+            "type": "vcs",
             "url": "https://git.drupalcode.org/issue/paragraphs_features-3433828"
         },
         "drupal": {
@@ -20,10 +20,6 @@
         "starter": {
             "type": "path",
             "url": "recipes/adesso_cms_starter"
-        },
-        "paragraphs": {
-            "type": "path",
-            "url": "recipes/adesso_cms_paragraphs"
         },
         "blog": {
             "type": "path",
@@ -63,7 +59,6 @@
         "drupal/twig_field_value": "^2.0",
         "drupalninja/drupalx-paragraphs": "^1.18",
         "drupalninja/drupalx_ai": "1.x-dev",
-        "drupalninja/drupalx_theme": "^1.19",
         "drush/drush": "^13",
         "vlucas/phpdotenv": "^5.6"
     },
@@ -123,9 +118,6 @@
         "patches": {
             "drupal/default_content": {
                 "Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch"
-            },
-            "drupal/all_entity_preview": {
-                "Too few arguments to function Drupal\\Core\\Form\\ConfigFormBase::__construct()": "https://git.drupalcode.org/project/all_entity_preview/-/merge_requests/8.diff"
             }
         },
         "drupal-core-project-message": {

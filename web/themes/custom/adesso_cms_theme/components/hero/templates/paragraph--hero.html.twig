@@ -6,6 +6,7 @@
 	{{ title_prefix }}
 	{{ title_suffix }}
 	{% block content %}
+        {{ content.frontend_editing }}
 		{% include 'adesso_cms_theme:hero' with {
       hero_layout: content.field_hero_layout['#items'].getString(),
       media: content.field_media|render,

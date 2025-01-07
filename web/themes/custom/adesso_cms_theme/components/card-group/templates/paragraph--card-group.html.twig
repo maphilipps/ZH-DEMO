@@ -9,6 +9,7 @@
   {{ title_prefix }}
   {{ title_suffix }}
   {% block content %}
+    {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:card-group' with {
       section_title: content.field_title|render,
       content: content,

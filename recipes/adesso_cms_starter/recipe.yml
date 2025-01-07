@@ -140,16 +140,30 @@ config:
     frontend_editing.settings:
       simpleConfigUpdate:
         entity_types:
-          node:
-            - page
           paragraph:
+            - accordion
+            - accordion_item
+            - bullet
             - card
-            - grid
+            - card_group
+            - carousel
+            - carousel_item
+            - embed
+            - gallery
             - hero
-            - image_text
+            - logo_collection
+            - media
+            - newsletter
+            - pricing
+            - pricing_card
+            - quote
+            - sidebyside
+            - stats_item
             - text
+            - views
         hover_highlight: true
         primary_color: '#0081c9'
+        automatic_preview: true
     package_manager.settings:
       simpleConfigUpdate:
         additional_trusted_composer_plugins:

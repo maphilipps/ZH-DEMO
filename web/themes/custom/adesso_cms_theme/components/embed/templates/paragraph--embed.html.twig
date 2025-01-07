@@ -9,6 +9,7 @@
   {{ title_suffix }}
 
   {% block content %}
+    {{ content.frontend_editing }}
     {%
       include 'adesso_cms_theme:embed' with {
         title: content.field_title|render,

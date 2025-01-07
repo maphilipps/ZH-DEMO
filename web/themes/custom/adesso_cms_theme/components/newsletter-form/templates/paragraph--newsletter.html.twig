@@ -14,6 +14,7 @@
   {{ title_suffix }}
 
   {% block content %}
+    {{ content.frontend_editing }}
     {% include 'adesso_cms_theme:newsletter-form' with {
       title: content.field_title|render,
       summary: content.field_summary|render,

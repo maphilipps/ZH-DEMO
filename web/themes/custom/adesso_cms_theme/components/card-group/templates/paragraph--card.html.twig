@@ -16,6 +16,7 @@
 
 {% block paragraph %}
   {% block content %}
+    {{ content.frontend_editing }}
     {% include '@adesso_cms_theme/card-group/card.twig' with {
         modifier: '',
         media: content.field_media,

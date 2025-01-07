@@ -18,6 +18,7 @@
   {{ title_suffix }}
 
   {% block content %}
+    {{ content.frontend_editing }}
     {%
       include 'adesso_cms_theme:text' with {
         text_layout: content.field_text_layout['#items'].getString() ?? 'left',

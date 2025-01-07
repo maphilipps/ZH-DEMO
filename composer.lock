@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d013ad8f10192f5bc6adcab2de739f0",
+    "content-hash": "1759f2f9749320169d8e520183d0be11",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",
@@ -50,6 +50,33 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Sets up a adesso CMS site with useful features and sample content.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "adesso/adesso_cms_paragraphs",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "recipes/adesso_cms_paragraphs",
+                "reference": "e04c7ca1418eb1dcae212e18f75068d04a131b53"
+            },
+            "require": {
+                "drupal/paragraphs": "^1.17",
+                "drupal/paragraphs_ee": "^10.0",
+                "drupal/paragraphs_features": "^2.0",
+                "drupal/viewfield": "^3.0@beta"
+            },
+            "type": "drupal-recipe",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Paragraph types used in the adesso CMS pragraphs recipe.",
+            "keywords": [
+                "drupal recipe",
+                "recipe"
+            ],
             "transport-options": {
                 "relative": true
             }
@@ -8489,48 +8516,6 @@
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
             }
-        },
-        {
-            "name": "drupalninja/drupalx-paragraphs",
-            "version": "1.18.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drupalninja/drupalx-paragraphs.git",
-                "reference": "efeca4688b8cd0370dc6606736dc4db374db9aa9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drupalninja/drupalx-paragraphs/zipball/efeca4688b8cd0370dc6606736dc4db374db9aa9",
-                "reference": "efeca4688b8cd0370dc6606736dc4db374db9aa9",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/paragraphs": "^1.17",
-                "drupal/paragraphs_ee": "^10.0",
-                "drupal/paragraphs_features": "^2.0",
-                "drupal/viewfield": "^3.0@beta"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Jay Callicott",
-                    "role": "Project Lead"
-                }
-            ],
-            "description": "Paragraph types used in the DrupalX distribution recipe.",
-            "keywords": [
-                "drupal recipe",
-                "recipe"
-            ],
-            "support": {
-                "issues": "https://github.com/drupalninja/drupalx-paragraphs/issues",
-                "source": "https://github.com/drupalninja/drupalx-paragraphs/tree/1.18.1"
-            },
-            "time": "2024-12-05T14:37:12+00:00"
         },
         {
             "name": "drupalninja/drupalx_ai",
@@ -21874,6 +21859,7 @@
     "stability-flags": {
         "adesso/adesso_cms_ai": 20,
         "adesso/adesso_cms_blog": 20,
+        "adesso/adesso_cms_paragraphs": 20,
         "adesso/adesso_cms_starter": 20,
         "adesso/adesso_cms_theme": 20,
         "drupal/drupal_cms_search": 5,

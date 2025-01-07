@@ -1,0 +1,16 @@
+{
+  "name": "adesso/adesso_cms_paragraphs",
+  "description": "Paragraph types used in the adesso CMS pragraphs recipe.",
+  "keywords": [
+    "recipe",
+    "drupal recipe"
+  ],
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/paragraphs": "^1.17",
+    "drupal/paragraphs_ee": "^10.0",
+    "drupal/paragraphs_features": "^2.0",
+    "drupal/viewfield": "^3.0@beta"
+  }
+}

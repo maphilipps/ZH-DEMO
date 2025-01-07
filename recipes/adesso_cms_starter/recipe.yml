@@ -175,7 +175,7 @@ config:
     system.site:
       simpleConfigUpdate:
         name: 'adesso CMS'
-        page.front: '/home'
+        page.front: '/welcome'
     system.theme:
       simpleConfigUpdate:
         default: adesso_cms_theme

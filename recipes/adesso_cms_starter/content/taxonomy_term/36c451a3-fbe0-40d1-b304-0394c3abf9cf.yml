@@ -30,7 +30,7 @@ default:
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/taxonomy/term/2'
+        href: 'https://adesso-test.ddev.site/taxonomy/term/2'
   path:
     -
       alias: ''

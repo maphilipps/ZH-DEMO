@@ -46,4 +46,4 @@ default:
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/'
+        href: 'https://adesso-test.ddev.site/welcome'

@@ -7,7 +7,8 @@ _meta:
   depends:
     4b432a0a-e5df-409a-8b30-134fed6e2291: node
     a9f34d11-cbfb-4f78-916d-8fd8c006f728: node
-    9a33874e-ce03-4f0f-9c6e-164a416d574c: media
+    eeb16a9e-6843-4685-9d50-6751d2c4a530: media
+    62208c36-fdfb-424d-b0d8-dd25f9495542: media
     84e378f2-dd00-459d-9018-4c89353b9eee: media
     14bbf672-441a-408e-bf08-7706894962d3: media
     7b34a142-7b7f-4ac4-952f-e31d8b83d82f: media
@@ -15,6 +16,8 @@ _meta:
     346f015d-a9d3-49bd-bb34-267ee5259720: media
     26b36c99-0a3c-457a-98e3-ab4ccfa88ee7: media
     7028d67c-8d2e-4db6-bd43-6e7726384291: media
+    2ddaebfd-18f5-4e33-894e-62689f7efdbf: media
+    3bb3c1f5-35aa-49f0-9fdd-13ff3656bb8e: media
 default:
   revision_uid:
     -
@@ -27,7 +30,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'DrupalX - AI-Powered Lightning Fast Development'
+      value: 'adesso CMS - Blitzschnelle Entwicklung'
   created:
     -
       value: 1724541785
@@ -37,20 +40,17 @@ default:
   sticky:
     -
       value: false
-  revision_translation_affected:
-    -
-      value: true
   metatag:
     -
       tag: meta
       attributes:
         name: title
-        content: 'DrupalX - AI-Powered Lightning Fast Development | adesso CMS'
+        content: 'adesso CMS - Blitzschnelle Entwicklung | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/welcome'
+        href: 'https://adesso-test.ddev.site/welcome'
   path:
     -
       alias: /welcome
@@ -75,12 +75,9 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_heading:
             -
-              value: '<strong>Empower</strong> Your Web Development with <strong>DrupalX</strong>'
+              value: '<strong>Stärken Sie</strong> Ihre Webentwicklung mit <strong>adesso CMS</strong>'
               format: restricted_html
           field_hero_layout:
             -
@@ -93,14 +90,14 @@ default:
           field_link2:
             -
               target_uuid: a9f34d11-cbfb-4f78-916d-8fd8c006f728
-              title: Explore
+              title: Entdecken
               options: {  }
           field_media:
             -
-              entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c
+              entity: eeb16a9e-6843-4685-9d50-6751d2c4a530
           field_summary:
             -
-              value: "<p>Experience the next-gen platform that seamlessly integrates Drupal's powerful CMS with innovative front-end technologies. Elevate your projects with unmatched flexibility and performance.</p>"
+              value: '<p>Erleben Sie die nächste Generation einer Plattform, die das leistungsstarke Drupal-CMS nahtlos mit innovativen Frontend-Technologien kombiniert. Heben Sie Ihre Projekte auf ein neues Level mit unvergleichlicher Flexibilität und Performance.</p>'
               format: basic_html
     -
       entity:
@@ -120,9 +117,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_features:
             -
               entity:
@@ -142,19 +136,16 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_icon:
                     -
                       value: network
                   field_summary:
                     -
-                      value: 'Harness the power of headless CMS to separate the front and back-end for optimal flexibility.'
+                      value: 'Nutzen Sie die Vorteile eines Headless-CMS, um Frontend und Backend zu trennen und maximale Flexibilität zu erreichen.'
                       format: ''
                   field_title:
                     -
-                      value: 'Decoupled Architecture'
+                      value: 'Entkoppelte Architektur'
             -
               entity:
                 _meta:
@@ -173,32 +164,29 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_icon:
                     -
                       value: bot
                   field_summary:
                     -
-                      value: 'Leverage cutting-edge AI assistants and smart code generators to accelerate your development.'
+                      value: 'Nutzen Sie moderne KI-Assistenten und intelligente Code-Generatoren, um Ihre Entwicklung zu beschleunigen.'
                       format: ''
                   field_title:
                     -
-                      value: 'AI Development Tools'
+                      value: KI-Entwicklungstools
           field_media:
             -
-              entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c
+              entity: 62208c36-fdfb-424d-b0d8-dd25f9495542
           field_sidebyside_layout:
             -
               value: right
           field_summary:
             -
-              value: "<p>Elevate Your Web Development with DrupalX's Cutting-Edge Features</p>"
+              value: '<p>Steigern Sie Ihre Webentwicklung mit den wegweisenden Funktionen von adesso CMS</p>'
               format: basic_html
           field_title:
             -
-              value: 'Unmatched Advantages of DrupalX'
+              value: 'Unvergleichliche Vorteile von adesso CMS'
     -
       entity:
         _meta:
@@ -217,9 +205,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_card:
             -
               entity:
@@ -239,19 +224,16 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_icon:
                     -
                       value: code
                   field_summary:
                     -
-                      value: 'Experience seamless integration and flexibility with our Decoupled Architecture.'
+                      value: 'Erleben Sie nahtlose Integration und Flexibilität mit unserer entkoppelten Architektur.'
                       format: ''
                   field_title:
                     -
-                      value: 'Unlock the Power of Modern Web Solutions Tailored for You'
+                      value: 'Entfesseln Sie die Kraft moderner Weblösungen, die speziell für Sie maßgeschneidert sind.'
             -
               entity:
                 _meta:
@@ -270,19 +252,16 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_icon:
                     -
                       value: git-branch
                   field_summary:
                     -
-                      value: "Leverage the power of React and Node.js to dramatically improve your website's efficiency and speed."
+                      value: 'Nutzen Sie die Power von React und Node.js, um die Effizienz und Geschwindigkeit Ihrer Website drastisch zu verbessern.'
                       format: ''
                   field_title:
                     -
-                      value: 'Experience seamless integration and flexibility with our Decoupled Architecture.'
+                      value: 'Erleben Sie nahtlose Integration und Flexibilität mit unserer entkoppelten Architektur.'
             -
               entity:
                 _meta:
@@ -301,22 +280,19 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_icon:
                     -
                       value: zap
                   field_summary:
                     -
-                      value: 'Deliver lightning-quick load times and smooth interactions that keep your audience coming back.'
+                      value: 'Bieten Sie blitzschnelle Ladezeiten und reibungslose Interaktionen, die Ihr Publikum immer wieder zurückkehren lassen.'
                       format: ''
                   field_title:
                     -
-                      value: 'Achieve Blazing Fast Performance That Keeps Your Users Engaged and Satisfied'
+                      value: 'Erzielen Sie blitzschnelle Leistung, die Ihre Nutzer begeistert und zufriedenstellt.'
           field_title:
             -
-              value: "Discover the Future of Web Development with DrupalX's Innovative Features"
+              value: 'Entdecken Sie die Zukunft der Webentwicklung mit den innovativen Funktionen von adesso CMS'
     -
       entity:
         _meta:
@@ -335,9 +311,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_media_item:
             -
               entity: 84e378f2-dd00-459d-9018-4c89353b9eee
@@ -355,7 +328,7 @@ default:
               entity: 7028d67c-8d2e-4db6-bd43-6e7726384291
           field_title:
             -
-              value: 'Trusted Open Source Technology'
+              value: 'Vertrauenswürdige Open-Source-Technologie'
     -
       entity:
         _meta:
@@ -374,22 +347,19 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_media:
             -
-              entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c
+              entity: 2ddaebfd-18f5-4e33-894e-62689f7efdbf
           field_sidebyside_layout:
             -
               value: left
           field_summary:
             -
-              value: "<p>Join the DrupalX ecosystem to unlock new possibilities in web development. Our platform combines the best of Drupal's robust backend with cutting-edge frontend technologies, enabling you to create powerful, scalable, and innovative web solutions.</p>"
+              value: '<p>Treten Sie dem adess CMS-Ökosystem bei, um neue Möglichkeiten in der Webentwicklung zu erschließen. Unsere Plattform kombiniert das Beste aus Drupals robustem Backend mit modernen Frontend-Technologien und ermöglicht es Ihnen, leistungsstarke, skalierbare und innovative Weblösungen zu erstellen.</p>'
               format: basic_html
           field_title:
             -
-              value: 'Elevate Your Web Development Skills with DrupalX'
+              value: 'Steigern Sie Ihre Webentwicklungskompetenzen mit adesso CMS.'
     -
       entity:
         _meta:
@@ -408,30 +378,27 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_body:
             -
-              value: "<p>Start building faster, more efficient websites today. Explore DrupalX's capabilities and see how it can transform your development process.</p>"
+              value: '<p>Beginnen Sie noch heute damit, schnellere und effizientere Websites zu erstellen. Entdecken Sie die Möglichkeiten von DrupalX und erfahren Sie, wie es Ihren Entwicklungsprozess transformieren kann.</p>'
               format: basic_html
               summary: ''
           field_link:
             -
               target_uuid: 4b432a0a-e5df-409a-8b30-134fed6e2291
-              title: 'Get Started'
+              title: Loslegen
               options: {  }
           field_link2:
             -
               target_uuid: a9f34d11-cbfb-4f78-916d-8fd8c006f728
-              title: 'Learn More'
+              title: 'Erfahren Sie mehr'
               options: {  }
           field_text_layout:
             -
               value: buttons-right
           field_title:
             -
-              value: 'Accelerate Your Web Development Journey'
+              value: 'Beschleunigen Sie Ihre Webentwicklungsreise.'
     -
       entity:
         _meta:
@@ -450,16 +417,13 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_summary:
             -
-              value: '<p>Get the latest product updates, feature releases, and optimization tips delivered straight to your inbox.</p>'
+              value: '<p>Erhalten Sie die neuesten Produktupdates, Feature-Veröffentlichungen und Optimierungstipps direkt in Ihrem Posteingang.</p>'
               format: basic_html
           field_title:
             -
-              value: 'Stay Informed with DrupalX'
+              value: 'Bleiben Sie informiert mit adesso CMS.'
     -
       entity:
         _meta:
@@ -478,9 +442,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_features:
             -
               entity:
@@ -500,16 +461,13 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_summary:
                     -
-                      value: 'Explore our innovative tools designed to enhance your web development journey, from AI-assisted coding to seamless React integration.'
+                      value: 'Entdecken Sie unsere innovativen Tools, die Ihre Webentwicklungsreise verbessern – von KI-unterstütztem Coding bis hin zu nahtloser React-Integration.'
                       format: ''
                   field_title:
                     -
-                      value: 'Key Features'
+                      value: Hauptfunktionen
             -
               entity:
                 _meta:
@@ -528,29 +486,26 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_summary:
                     -
-                      value: "Leverage DrupalX's powerful features to reduce development time and deliver high-performance websites faster than ever."
+                      value: 'Nutzen Sie die leistungsstarken Funktionen von adesso CMS, um die Entwicklungszeit zu verkürzen und hochperformante Websites schneller als je zuvor zu liefern.'
                       format: ''
                   field_title:
                     -
-                      value: 'Accelerate Your Projects'
+                      value: 'Beschleunigen Sie Ihre Projekte.'
           field_media:
             -
-              entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c
+              entity: 3bb3c1f5-35aa-49f0-9fdd-13ff3656bb8e
           field_sidebyside_layout:
             -
               value: right
           field_summary:
             -
-              value: '<p>DrupalX offers a powerful blend of flexibility and performance, enabling seamless integration and unparalleled user experience.</p>'
+              value: '<p>adesso CMS bietet eine leistungsstarke Kombination aus Flexibilität und Performance, die nahtlose Integration und ein unvergleichliches Benutzererlebnis ermöglicht.</p>'
               format: basic_html
           field_title:
             -
-              value: 'Discover the Essential Features That Make DrupalX Stand Out in Web Development'
+              value: 'Entdecken Sie die wesentlichen Funktionen, die adesso CMS im Bereich der Webentwicklung hervorheben.'
   field_hide_page_title:
     -
       value: true

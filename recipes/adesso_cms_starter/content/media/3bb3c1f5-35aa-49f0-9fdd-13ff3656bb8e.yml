@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: 7028d67c-8d2e-4db6-bd43-6e7726384291
+  uuid: 3bb3c1f5-35aa-49f0-9fdd-13ff3656bb8e
   bundle: image
   default_langcode: de
   depends:
-    8ccd432b-c789-44e7-9fa8-c48ec5e75ed6: file
+    d3b4bd48-fb12-4e5c-a322-12602e0e8715: file
 default:
   status:
     -
@@ -15,10 +15,10 @@ default:
       target_id: 1
   name:
     -
-      value: react.png
+      value: mood_personen2_2560x1440px.webp
   created:
     -
-      value: 1727532742
+      value: 1736351242
   revision_translation_affected:
     -
       value: true
@@ -40,8 +40,8 @@ default:
       pathauto: 0
   field_image:
     -
-      entity: 8ccd432b-c789-44e7-9fa8-c48ec5e75ed6
-      alt: 'React logo'
+      entity: d3b4bd48-fb12-4e5c-a322-12602e0e8715
+      alt: Personen
       title: ''
-      width: 1060
-      height: 336
+      width: 2560
+      height: 1440

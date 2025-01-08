@@ -28,6 +28,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   metatag:
     -
       tag: meta
@@ -38,7 +41,7 @@ default:
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/features'
+        href: 'https://adesso-test.ddev.site/features'
   path:
     -
       alias: /features
@@ -63,6 +66,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_heading:
             -
               value: 'Empower Your Web Development with DrupalX'
@@ -105,6 +111,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_eyebrow:
             -
               value: 'Customizable Components'
@@ -127,6 +136,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -152,6 +164,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -177,6 +192,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -215,6 +233,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_eyebrow:
             -
               value: Dependable
@@ -254,6 +275,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_card:
             -
               entity:
@@ -273,6 +297,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -301,6 +328,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -329,6 +359,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_icon:
                     -
                       value: box
@@ -360,6 +393,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_eyebrow:
             -
               value: Innovate
@@ -382,6 +418,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_summary:
                     -
                       value: 'Easily connect with various tools and services to enhance your web projects.'
@@ -407,6 +446,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_summary:
                     -
                       value: 'Protect your website with advanced security features and regular updates.'
@@ -450,6 +492,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>Unlock your web development potential today with our innovative and user-friendly platform.</p>'
@@ -489,6 +534,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_accordion_item:
             -
               entity:
@@ -508,6 +556,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>DrupalX is a powerful web development platform designed for modern websites. It combines flexibility with user-friendly features, making it suitable for developers of all skill levels. With its robust tools, you can create stunning, responsive websites efficiently.</p>'
@@ -534,6 +585,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Absolutely! DrupalX is built with user experience in mind. Its intuitive interface and comprehensive documentation make it accessible for both beginners and experienced developers.</p>'
@@ -560,6 +614,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>DrupalX offers a wide range of features, including customizable templates, SEO tools, and integration capabilities. It also supports various plugins to enhance functionality. This ensures that you can tailor your website to meet specific needs.</p>'
@@ -586,6 +643,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Yes, DrupalX provides dedicated support to all users. You can access a knowledge base, community forums, and direct assistance from our support team. We are committed to helping you succeed with your projects.</p>'
@@ -612,6 +672,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Yes, we offer a free trial of DrupalX. This allows you to explore its features and capabilities without any commitment. Sign up today to start your journey with us!</p>'

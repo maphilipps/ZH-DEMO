@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: 7028d67c-8d2e-4db6-bd43-6e7726384291
+  uuid: 2ddaebfd-18f5-4e33-894e-62689f7efdbf
   bundle: image
   default_langcode: de
   depends:
-    8ccd432b-c789-44e7-9fa8-c48ec5e75ed6: file
+    7fe6296b-d651-4164-9e84-d6703f92b9ba: file
 default:
   status:
     -
@@ -15,10 +15,10 @@ default:
       target_id: 1
   name:
     -
-      value: react.png
+      value: HR-Dortmund-Francesco-Teaser-DX-STEF4561_3000_2000.webp
   created:
     -
-      value: 1727532742
+      value: 1736351334
   revision_translation_affected:
     -
       value: true
@@ -40,8 +40,8 @@ default:
       pathauto: 0
   field_image:
     -
-      entity: 8ccd432b-c789-44e7-9fa8-c48ec5e75ed6
-      alt: 'React logo'
+      entity: 7fe6296b-d651-4164-9e84-d6703f92b9ba
+      alt: Dortmund
       title: ''
-      width: 1060
-      height: 336
+      width: 3000
+      height: 2000

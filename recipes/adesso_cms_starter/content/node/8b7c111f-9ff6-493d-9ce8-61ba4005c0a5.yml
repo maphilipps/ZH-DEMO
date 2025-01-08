@@ -49,7 +49,7 @@ default:
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/page-not-found'
+        href: 'https://adesso-test.ddev.site/page-not-found'
   path:
     -
       alias: /page-not-found

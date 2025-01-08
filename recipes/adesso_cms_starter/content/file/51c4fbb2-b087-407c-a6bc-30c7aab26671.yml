@@ -9,10 +9,10 @@ default:
       target_id: 0
   filename:
     -
-      value: sidebyside-default-icon_39.png
+      value: sidebyside-default-icon_0.png
   uri:
     -
-      value: 'public://paragraphs_type_icon/sidebyside-default-icon_39.png'
+      value: 'public://paragraphs_type_icon/sidebyside-default-icon_0.png'
   filemime:
     -
       value: image/png
@@ -24,4 +24,4 @@ default:
       value: true
   created:
     -
-      value: 1736269190
+      value: 1736350208

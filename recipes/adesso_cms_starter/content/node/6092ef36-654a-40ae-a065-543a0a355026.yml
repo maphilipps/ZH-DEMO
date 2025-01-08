@@ -51,7 +51,7 @@ default:
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-cms.ddev.site/terms-of-use'
+        href: 'https://adesso-test.ddev.site/terms-of-use'
   path:
     -
       alias: /terms-of-use

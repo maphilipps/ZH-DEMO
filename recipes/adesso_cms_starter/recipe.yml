@@ -142,12 +142,10 @@ config:
         entity_types:
           paragraph:
             - accordion
-            - accordion_item
             - bullet
             - card
             - card_group
             - carousel
-            - carousel_item
             - embed
             - gallery
             - hero
@@ -155,10 +153,8 @@ config:
             - media
             - newsletter
             - pricing
-            - pricing_card
             - quote
             - sidebyside
-            - stats_item
             - text
             - views
         hover_highlight: true

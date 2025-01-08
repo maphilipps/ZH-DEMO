@@ -1,3 +1,12 @@
+<p align="center">
+  <a href="https://adesso-cms-6a5b25.pages.adesso-projects.com/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/263385/199832481-bbbf5961-6a26-481d-8224-51258cce9b33.png">
+      <img src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" alt="Storybook" width="400" />
+    </picture>
+  </a>
+</p>
+
 # adesso CMS
 
 adesso CMS is a fast-moving open source product that enables site builders to easily create new Drupal sites and extend them with smart defaults, all using their browser.
@@ -30,7 +39,7 @@ ddev theme build
 
 ```bash
 ddev yarn
-ddev yarn storybook 
+ddev yarn storybook
 ```
 
 Open: https://adesso-cms.ddev.site:6006/

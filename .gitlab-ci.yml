@@ -224,7 +224,7 @@ subtree split:
 
 deploy pages:
   stage: deploy
-  image: node:latest
+  image: node:18
   cache:
     paths:
       - node_modules/

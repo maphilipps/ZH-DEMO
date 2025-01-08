@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: 6d1b06ed-1791-4ba6-a411-094f99970583
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
     4b432a0a-e5df-409a-8b30-134fed6e2291: node
@@ -38,16 +38,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'DrupalX Pricing | Drush Site-Install'
+        content: 'DrupalX Pricing | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/pricing'
+        href: 'https://adesso-cms.ddev.site/pricing'
   path:
     -
       alias: /pricing
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -57,7 +57,7 @@ default:
           entity_type: paragraph
           uuid: cdd33e76-d72a-4c29-8b04-910da35521d8
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -68,6 +68,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_heading:
             -
               value: 'Empower Your Content with DrupalX Today'
@@ -99,7 +102,7 @@ default:
           entity_type: paragraph
           uuid: 71caee4f-16c2-4b63-bfca-50e461325466
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -110,6 +113,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_eyebrow:
             -
               value: Empower
@@ -121,7 +127,7 @@ default:
                   entity_type: paragraph
                   uuid: 35e0768f-8d06-426b-946a-66136b5d94d7
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -132,6 +138,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_summary:
                     -
                       value: 'Seamless integration, customizable solutions, and robust performance for all your content needs.'
@@ -146,7 +155,7 @@ default:
                   entity_type: paragraph
                   uuid: 413e92e5-a832-4af7-8466-4b7f110bee35
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -157,6 +166,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_summary:
                     -
                       value: 'Experience unmatched flexibility and control over your content delivery and management.'
@@ -189,7 +201,7 @@ default:
           entity_type: paragraph
           uuid: 08ed30e6-1a28-42ad-aa72-29effb9167b2
           bundle: pricing
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -214,7 +226,7 @@ default:
                   entity_type: paragraph
                   uuid: 75f6742d-5de6-4f7d-b103-eddb203d36df
                   bundle: pricing_card
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -249,7 +261,7 @@ default:
                   entity_type: paragraph
                   uuid: a1433a04-9124-4446-b50e-a5587a70f53d
                   bundle: pricing_card
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -291,7 +303,7 @@ default:
           entity_type: paragraph
           uuid: e62816ef-5279-4682-b250-3b9d39eb6ea5
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -302,6 +314,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_link:
             -
               uri: 'internal:/'

@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: 4a611910-5a31-4492-a046-9582bf78bab9
   bundle: article
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
     36c451a3-fbe0-40d1-b304-0394c3abf9cf: taxonomy_term
@@ -38,21 +38,26 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Article title 6 | DrupalX'
+        content: 'Article title 6 | adesso CMS'
     -
       tag: meta
       attributes:
         name: description
-        content: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \_"
+        content: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    -
+      tag: meta
+      attributes:
+        name: abstract
+        content: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/article/article-title-6'
+        href: 'https://adesso-cms.ddev.site/article/article-title-6'
   path:
     -
       alias: /article/article-title-6
-      langcode: en
+      langcode: de
       pathauto: 1
   body:
     -

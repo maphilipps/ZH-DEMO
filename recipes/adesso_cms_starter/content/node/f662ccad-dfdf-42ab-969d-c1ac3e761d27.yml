@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: f662ccad-dfdf-42ab-969d-c1ac3e761d27
   bundle: page
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
 default:
@@ -36,21 +36,26 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Privacy Policy | DrupalX'
+        content: 'Privacy Policy | adesso CMS'
     -
       tag: meta
       attributes:
         name: description
-        content: "This Privacy Policy describes how we collect, use, and disclose information about you when you use our website and any related services (collectively, the \"Services\"). \_ Information We Collect We may collect information about you when you use our Services, including:"
+        content: 'This Privacy Policy describes how we collect, use, and disclose information about you when you use our website and any related services (collectively, the "Services"). Information We Collect We may collect information about you when you use our Services, including:'
+    -
+      tag: meta
+      attributes:
+        name: abstract
+        content: 'This Privacy Policy describes how we collect, use, and disclose information about you when you use our website and any related services (collectively, the "Services"). Information We Collect We may collect information about you when you use our Services, including:'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/privacy'
+        href: 'https://adesso-cms.ddev.site/privacy'
   path:
     -
       alias: /privacy
-      langcode: en
+      langcode: de
       pathauto: 0
   body:
     -

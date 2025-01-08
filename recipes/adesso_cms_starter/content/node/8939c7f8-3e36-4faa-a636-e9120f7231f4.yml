@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: 8939c7f8-3e36-4faa-a636-e9120f7231f4
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
     4be51289-637f-4ea0-9909-09f719d36683: media
@@ -37,16 +37,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'DrupalX Components List | Drush Site-Install'
+        content: 'DrupalX Components List | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/components'
+        href: 'https://adesso-cms.ddev.site/components'
   path:
     -
       alias: /components
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -56,7 +56,7 @@ default:
           entity_type: paragraph
           uuid: 2a67cb45-ebc8-43cc-851e-3204ec0d87ac
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -91,7 +91,7 @@ default:
           entity_type: paragraph
           uuid: 17abe610-24a9-4a12-ba6c-38b44f5a2ef1
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -116,7 +116,7 @@ default:
                   entity_type: paragraph
                   uuid: bcb7a1f7-c196-42f9-884f-f5fe5cf334bf
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -147,7 +147,7 @@ default:
                   entity_type: paragraph
                   uuid: c7f81aea-7f20-4f00-b987-2cab1599fe89
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -196,7 +196,7 @@ default:
           entity_type: paragraph
           uuid: 4e31b53a-fa02-48d4-bf21-50416499f085
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -238,7 +238,7 @@ default:
           entity_type: paragraph
           uuid: 2e88b6b1-5591-4512-86b9-582f5307e80b
           bundle: text
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -283,7 +283,7 @@ default:
           entity_type: paragraph
           uuid: dcfe639c-bf23-4f08-8437-d02337cd3cf7
           bundle: text
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -328,7 +328,7 @@ default:
           entity_type: paragraph
           uuid: e63fa4e2-3b5c-4357-b64d-0d2d63aea2ea
           bundle: media
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -355,7 +355,7 @@ default:
           entity_type: paragraph
           uuid: 45653689-2cfa-4e14-89f6-c9390be76c57
           bundle: gallery
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -373,7 +373,7 @@ default:
             -
               value: 'View images of the DrupalX template and its components.'
               format: ''
-              summary: 'basic_html'
+              summary: basic_html
           field_media_item:
             -
               entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c
@@ -401,7 +401,7 @@ default:
           entity_type: paragraph
           uuid: a3545a9e-536a-4181-80ab-12f061a16379
           bundle: carousel
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -423,7 +423,7 @@ default:
                   entity_type: paragraph
                   uuid: 34482f1f-8840-4b55-aa15-40303b5e9232
                   bundle: carousel_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -454,7 +454,7 @@ default:
                   entity_type: paragraph
                   uuid: 08d10e45-6d4d-4be3-b8bf-44ffb2021e9c
                   bundle: carousel_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -485,7 +485,7 @@ default:
                   entity_type: paragraph
                   uuid: 879e5e64-9dd4-455b-85a2-c3b9d745f939
                   bundle: carousel_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -516,7 +516,7 @@ default:
           entity_type: paragraph
           uuid: c4666fd4-5675-4761-a001-f4fd6ec97cf2
           bundle: accordion
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -538,7 +538,7 @@ default:
                   entity_type: paragraph
                   uuid: 66c418ef-2e3b-4ccb-8bbb-eb0333282952
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -567,7 +567,7 @@ default:
                   entity_type: paragraph
                   uuid: e63d2a40-de98-46f8-ad11-d0d5b738ea94
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -596,7 +596,7 @@ default:
                   entity_type: paragraph
                   uuid: 985a5178-73d7-4238-a4e7-c113ff93fac8
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -625,7 +625,7 @@ default:
                   entity_type: paragraph
                   uuid: 845faa33-0f5b-4deb-89da-eefff1991b05
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -662,7 +662,7 @@ default:
           entity_type: paragraph
           uuid: 60e62e71-1248-4bf5-950c-b277f6be5aa4
           bundle: quote
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -695,7 +695,7 @@ default:
           entity_type: paragraph
           uuid: 11cf657b-d24c-4580-87bd-193509a8491d
           bundle: embed
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -723,7 +723,7 @@ default:
           entity_type: paragraph
           uuid: 54d52c13-278a-4855-8de0-ecec00d7f73d
           bundle: newsletter
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -751,7 +751,7 @@ default:
           entity_type: paragraph
           uuid: 3e60ef8e-bd6d-4801-9dee-0e4476dad546
           bundle: views
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -781,7 +781,7 @@ default:
           entity_type: paragraph
           uuid: 1b56e9e0-02cd-41b1-ba98-bf176dc215b2
           bundle: card_group
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -803,7 +803,7 @@ default:
                   entity_type: paragraph
                   uuid: e07e3dc6-f7e9-4c95-a7a5-cb1a30755676
                   bundle: card
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -839,7 +839,7 @@ default:
                   entity_type: paragraph
                   uuid: 5399618b-880a-4c1b-b50a-7c87c21ef0a9
                   bundle: card
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -875,7 +875,7 @@ default:
                   entity_type: paragraph
                   uuid: 186ab2d7-63f5-4981-9bb5-ad2f3dfb99b1
                   bundle: card
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -914,7 +914,7 @@ default:
           entity_type: paragraph
           uuid: 809c8174-66f0-4265-a93c-ec93fa547df9
           bundle: card_group
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -936,7 +936,7 @@ default:
                   entity_type: paragraph
                   uuid: 59951ca5-abec-4ef8-8c89-323385b7175e
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -967,7 +967,7 @@ default:
                   entity_type: paragraph
                   uuid: e035018c-dec4-4b00-9860-9466fe2d03c8
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -998,7 +998,7 @@ default:
                   entity_type: paragraph
                   uuid: 4f715fc5-5ac3-40a1-a1bd-e01d3969881f
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -1032,7 +1032,7 @@ default:
           entity_type: paragraph
           uuid: 534eb817-456b-4ebc-8e78-58006e833c7a
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -1054,7 +1054,7 @@ default:
                   entity_type: paragraph
                   uuid: 14667da4-4f35-4526-aa4e-2ca699197571
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -1082,7 +1082,7 @@ default:
                   entity_type: paragraph
                   uuid: 5bd36a8c-bfd3-4cf0-a042-269b60ec2e91
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -1110,7 +1110,7 @@ default:
                   entity_type: paragraph
                   uuid: 599658f9-9a95-46ec-8772-a5f5089d64ab
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -

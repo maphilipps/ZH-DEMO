@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: ffb8ba93-130e-4c96-8e77-876d3bb614e8
   bundle: page
-  default_langcode: en
+  default_langcode: de
 default:
   revision_uid:
     -
@@ -34,21 +34,26 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Access denied | DrupalX'
+        content: 'Access denied | adesso CMS'
     -
       tag: meta
       attributes:
         name: description
         content: "We're sorry, but you do not have permission to access this page. Please contact the site administrator if you believe this is an error, or click the button below to return to the homepage. Return to homepage"
     -
+      tag: meta
+      attributes:
+        name: abstract
+        content: "We're sorry, but you do not have permission to access this page. Please contact the site administrator if you believe this is an error, or click the button below to return to the homepage. Return to homepage"
+    -
       tag: link
       attributes:
         rel: canonical
-        href: '/access-denied'
+        href: 'https://adesso-cms.ddev.site/access-denied'
   path:
     -
       alias: /access-denied
-      langcode: en
+      langcode: de
       pathauto: 0
   body:
     -

@@ -3,7 +3,7 @@ _meta:
   entity_type: taxonomy_term
   uuid: 36c451a3-fbe0-40d1-b304-0394c3abf9cf
   bundle: tags
-  default_langcode: en
+  default_langcode: de
 default:
   status:
     -
@@ -25,14 +25,14 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Announcement | DrupalX'
+        content: 'Announcement | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/taxonomy/term/2'
+        href: 'https://adesso-cms.ddev.site/taxonomy/term/2'
   path:
     -
       alias: ''
-      langcode: en
+      langcode: de
       pathauto: 1

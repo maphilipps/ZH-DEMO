@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: ff3a2a74-3212-4684-ae7c-1c48c212f9e9
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
 default:
@@ -36,16 +36,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Contact Us | DrupalX'
+        content: 'Contact Us | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/contact'
+        href: 'https://adesso-cms.ddev.site/contact'
   path:
     -
       alias: /contact
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -55,7 +55,7 @@ default:
           entity_type: paragraph
           uuid: 181db973-1cf2-42eb-a5f9-66300d160c37
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -90,7 +90,7 @@ default:
           entity_type: paragraph
           uuid: 175b783d-c98a-4c40-81e6-c1104c59bab8
           bundle: embed
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -

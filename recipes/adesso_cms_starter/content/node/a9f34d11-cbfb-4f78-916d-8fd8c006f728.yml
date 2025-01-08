@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: a9f34d11-cbfb-4f78-916d-8fd8c006f728
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
 default:
@@ -28,24 +28,21 @@ default:
   sticky:
     -
       value: false
-  revision_translation_affected:
-    -
-      value: true
   metatag:
     -
       tag: meta
       attributes:
         name: title
-        content: 'DrupalX Features | Drush Site-Install'
+        content: 'DrupalX Features | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/features'
+        href: 'https://adesso-cms.ddev.site/features'
   path:
     -
       alias: /features
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -55,7 +52,7 @@ default:
           entity_type: paragraph
           uuid: f3d44b05-d809-4ef9-812d-bbe334d4c71d
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -97,7 +94,7 @@ default:
           entity_type: paragraph
           uuid: f8b269e8-122f-41bb-a12c-29c6f6540ba6
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -119,7 +116,7 @@ default:
                   entity_type: paragraph
                   uuid: 458440ea-1700-4fb0-ac43-8f97d53cdcff
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -144,7 +141,7 @@ default:
                   entity_type: paragraph
                   uuid: 6ffc3e09-e817-46e2-a7c4-36cae850f6a6
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -169,7 +166,7 @@ default:
                   entity_type: paragraph
                   uuid: e277c23a-dbb0-4e69-87f7-65db0b5b9c75
                   bundle: bullet
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -207,7 +204,7 @@ default:
           entity_type: paragraph
           uuid: a3057a7e-d71c-483c-8d3f-8b16dc5f4c60
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -246,7 +243,7 @@ default:
           entity_type: paragraph
           uuid: 83b95c4b-8d2c-4144-a890-33754447d9a0
           bundle: card_group
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -263,9 +260,37 @@ default:
                 _meta:
                   version: '1.0'
                   entity_type: paragraph
+                  uuid: 714b3fcb-fc55-4cd1-9fd0-36e0b8a603e0
+                  bundle: stats_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1728260972
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_icon:
+                    -
+                      value: box
+                  field_summary:
+                    -
+                      value: 'Get assistance anytime with our dedicated support team.'
+                      format: ''
+                  field_title:
+                    -
+                      value: 'Comprehensive Support'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
                   uuid: 0133e79b-e9c3-40b3-a881-e2bf8c3e9dca
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -293,7 +318,7 @@ default:
                   entity_type: paragraph
                   uuid: e52007df-2ce0-45bf-9045-3c1c9f4ab9f1
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -314,34 +339,6 @@ default:
                   field_title:
                     -
                       value: 'Customizable Modules'
-            -
-              entity:
-                _meta:
-                  version: '1.0'
-                  entity_type: paragraph
-                  uuid: 714b3fcb-fc55-4cd1-9fd0-36e0b8a603e0
-                  bundle: stats_item
-                  default_langcode: en
-                default:
-                  status:
-                    -
-                      value: true
-                  created:
-                    -
-                      value: 1728260972
-                  behavior_settings:
-                    -
-                      value: {  }
-                  field_icon:
-                    -
-                      value: box
-                  field_summary:
-                    -
-                      value: 'Get assistance anytime with our dedicated support team.'
-                      format: ''
-                  field_title:
-                    -
-                      value: 'Comprehensive Support'
           field_title:
             -
               value: 'Discover Our Cutting-Edge Features'
@@ -352,7 +349,7 @@ default:
           entity_type: paragraph
           uuid: 4406477e-bd04-4518-a250-fd4a057ce35f
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -374,7 +371,7 @@ default:
                   entity_type: paragraph
                   uuid: 958866b3-ffc8-44c8-916d-94a6898d4839
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -399,7 +396,7 @@ default:
                   entity_type: paragraph
                   uuid: 54591c8f-5ba3-436e-a2a4-06936c5ec461
                   bundle: stats_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -442,7 +439,7 @@ default:
           entity_type: paragraph
           uuid: 215926f9-0efb-45d6-907b-34efd90903d9
           bundle: text
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -481,7 +478,7 @@ default:
           entity_type: paragraph
           uuid: e1433876-4cd5-4bce-a44e-1586a2d5e381
           bundle: accordion
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -492,9 +489,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_accordion_item:
             -
               entity:
@@ -503,7 +497,7 @@ default:
                   entity_type: paragraph
                   uuid: fae9ed20-bd3e-4d05-bade-e3f78125f224
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -514,9 +508,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_body:
                     -
                       value: '<p>DrupalX is a powerful web development platform designed for modern websites. It combines flexibility with user-friendly features, making it suitable for developers of all skill levels. With its robust tools, you can create stunning, responsive websites efficiently.</p>'
@@ -532,7 +523,7 @@ default:
                   entity_type: paragraph
                   uuid: c2a7de0b-ddf5-4dc3-8cc0-87c90dd9016b
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -543,9 +534,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_body:
                     -
                       value: '<p>Absolutely! DrupalX is built with user experience in mind. Its intuitive interface and comprehensive documentation make it accessible for both beginners and experienced developers.</p>'
@@ -561,7 +549,7 @@ default:
                   entity_type: paragraph
                   uuid: 3bdc0f46-d35f-4f1c-a63a-7184cc61cde3
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -572,9 +560,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_body:
                     -
                       value: '<p>DrupalX offers a wide range of features, including customizable templates, SEO tools, and integration capabilities. It also supports various plugins to enhance functionality. This ensures that you can tailor your website to meet specific needs.</p>'
@@ -590,7 +575,7 @@ default:
                   entity_type: paragraph
                   uuid: 356ee371-fa86-4bde-9864-b1fefd918bf2
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -601,9 +586,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_body:
                     -
                       value: '<p>Yes, DrupalX provides dedicated support to all users. You can access a knowledge base, community forums, and direct assistance from our support team. We are committed to helping you succeed with your projects.</p>'
@@ -619,7 +601,7 @@ default:
                   entity_type: paragraph
                   uuid: 72f502ee-4b1e-44dd-aa10-581cd04614c9
                   bundle: accordion_item
-                  default_langcode: en
+                  default_langcode: de
                 default:
                   status:
                     -
@@ -630,9 +612,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_body:
                     -
                       value: '<p>Yes, we offer a free trial of DrupalX. This allows you to explore its features and capabilities without any commitment. Sign up today to start your journey with us!</p>'

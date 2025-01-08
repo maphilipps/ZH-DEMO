@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: 4b432a0a-e5df-409a-8b30-134fed6e2291
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
 default:
@@ -36,16 +36,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Get Started | DrupalX'
+        content: 'Get Started | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/get-started'
+        href: 'https://adesso-cms.ddev.site/get-started'
   path:
     -
       alias: /get-started
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -55,7 +55,7 @@ default:
           entity_type: paragraph
           uuid: c8176009-9da1-4dee-bfec-b62de0677704
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -90,7 +90,7 @@ default:
           entity_type: paragraph
           uuid: bb5372ae-c92c-4c33-931c-b482e0da2561
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -121,7 +121,7 @@ default:
           field_summary:
             -
               value: 'Leverage a variety of Figma community templates built on Bootstrap 5 to jumpstart your design process.'
-              format: 'basic_html'
+              format: basic_html
           field_title:
             -
               value: 'DrupalX for Designers'
@@ -132,7 +132,7 @@ default:
           entity_type: paragraph
           uuid: 395c7d84-b5a9-4cc4-8a45-ea73935d0e56
           bundle: sidebyside
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -163,7 +163,7 @@ default:
           field_summary:
             -
               value: 'Visit our GitHub repository to download the DrupalX project template and start building your site today.'
-              format: 'basic_html'
+              format: basic_html
           field_title:
             -
               value: 'DrupalX for Developers'

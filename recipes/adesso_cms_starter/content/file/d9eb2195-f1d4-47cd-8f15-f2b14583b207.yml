@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d9eb2195-f1d4-47cd-8f15-f2b14583b207
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: gallery-default-icon_39.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/gallery-default-icon_39.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 56579
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1736269190

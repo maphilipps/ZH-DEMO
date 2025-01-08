@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c62aa197-d620-40d6-8b19-1ce31cf48834
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: quote-default-icon_39.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/quote-default-icon_39.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 15553
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1736269190

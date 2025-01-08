@@ -3,7 +3,7 @@ _meta:
   entity_type: node
   uuid: 47e698b2-0b56-4672-a023-cd9ede13ebc2
   bundle: landing
-  default_langcode: en
+  default_langcode: de
   depends:
     9a33874e-ce03-4f0f-9c6e-164a416d574c: media
 default:
@@ -36,16 +36,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: 'Resources | DrupalX'
+        content: 'Resources | adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/resources'
+        href: 'https://adesso-cms.ddev.site/resources'
   path:
     -
       alias: /resources
-      langcode: en
+      langcode: de
       pathauto: 0
   field_content:
     -
@@ -55,7 +55,7 @@ default:
           entity_type: paragraph
           uuid: eef86b06-5fb4-488a-84a7-0d19383784cd
           bundle: hero
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -
@@ -86,7 +86,7 @@ default:
           entity_type: paragraph
           uuid: 70be1e95-d42c-4a7b-ae17-96aa733ad23c
           bundle: views
-          default_langcode: en
+          default_langcode: de
         default:
           status:
             -

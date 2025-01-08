@@ -3,7 +3,7 @@ _meta:
   entity_type: media
   uuid: 4d2a68bc-07e1-4420-9a48-b612ea5e1325
   bundle: image
-  default_langcode: en
+  default_langcode: de
   depends:
     1c256726-b775-4c13-8614-1d6780ce58d5: file
 default:
@@ -27,16 +27,16 @@ default:
       tag: meta
       attributes:
         name: title
-        content: '| Drush Site-Install'
+        content: '| adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/user'
+        href: 'https://adesso-cms.ddev.site/'
   path:
     -
       alias: ''
-      langcode: en
+      langcode: de
       pathauto: 0
   field_image:
     -

@@ -3,7 +3,7 @@ _meta:
   entity_type: menu_link_content
   uuid: 95276fbd-20b9-4750-b3f7-cb57e544ed80
   bundle: menu_link_content
-  default_langcode: en
+  default_langcode: de
 default:
   enabled:
     -
@@ -39,9 +39,9 @@ default:
       tag: meta
       attributes:
         name: title
-        content: '| Drush Site-Install'
+        content: '| adesso CMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: '/user'
+        href: 'https://adesso-cms.ddev.site/'

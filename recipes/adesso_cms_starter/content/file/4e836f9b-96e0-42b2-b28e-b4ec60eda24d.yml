@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: file
   uuid: 4e836f9b-96e0-42b2-b28e-b4ec60eda24d
-  default_langcode: en
+  default_langcode: de
 default:
   uid:
     -
@@ -18,7 +18,7 @@ default:
       value: image/png
   filesize:
     -
-      value: 9242
+      value: 519034
   status:
     -
       value: true

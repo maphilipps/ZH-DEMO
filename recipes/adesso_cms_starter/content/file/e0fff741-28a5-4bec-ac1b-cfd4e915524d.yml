@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: file
   uuid: e0fff741-28a5-4bec-ac1b-cfd4e915524d
-  default_langcode: en
+  default_langcode: de
 default:
   uid:
     -

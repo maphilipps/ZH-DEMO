@@ -35,7 +35,7 @@ The theme is built with [Vite](https://vite.dev/). To build the theme, run the f
 ddev theme build
 ```
 
-### Run Storybook
+### Run Storybook (depricated)
 
 ```bash
 ddev yarn
@@ -44,7 +44,7 @@ ddev yarn storybook
 
 Open: https://adesso-cms.ddev.site:6006/
 
-#### Generate stories
+#### Generate stories (depricated)
 
 ```bash
 ddev drush storybook:generate-all-stories --uri=https://adesso-cms.ddev.site

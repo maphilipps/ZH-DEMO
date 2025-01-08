@@ -230,12 +230,12 @@ deploy pages:
   script:
     - cd web/themes/custom/adesso_cms_theme
     - npm install
-    - npm run build-storybook -- -o public
+    - npm run build-storybook -- -o ../../../../public
   pages:  # specifies that this is a Pages job
     expire_in: 1 week
   artifacts:
     paths:
-    - web/themes/custom/adesso_cms_theme/public
+    - public/
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
 kubectl:

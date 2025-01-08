@@ -157,7 +157,7 @@ config:
             - sidebyside
             - text
             - views
-        hover_highlight: true
+        hover_highlight: false
         primary_color: '#0081c9'
         automatic_preview: true
     package_manager.settings:

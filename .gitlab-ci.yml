@@ -229,26 +229,24 @@ deploy pages:
     paths:
       - node_modules/
   script:
-    - corepack enable
-    - yarn set version berry
-    - yarn install
-    - yarn run build-storybook -o public
+    - cd web/themes/custom/adesso_cms_theme
+    - npm install
+    - npm run build-storybook -o public
   pages:  # specifies that this is a Pages job
     expire_in: 1 week
   artifacts:
     paths:
-    - public
+    - web/themes/custom/adesso_cms_theme/public
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
 kubectl:
   stage: deploy
   tags:
     - small
-  image: 
+  image:
     name: bitnami/kubectl:latest
     entrypoint: [""]
   script:
     - kubectl cluster-info
     - kubectl config set-context --current --namespace=$KUBENAMESPACE
     - kubectl apply -f kubernetes/
-  

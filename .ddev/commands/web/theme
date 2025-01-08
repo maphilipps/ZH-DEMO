@@ -4,5 +4,6 @@
 ## Usage: theme [command]
 ## Example: "ddev theme build -- Read the HOW-TO.md for more commands"
 
-yarn --cwd=web/themes/custom/adesso_standard install
-yarn --cwd=web/themes/custom/adesso_standard $@
+cd web/themes/custom/adesso_cms_theme
+npm install
+npm run $@

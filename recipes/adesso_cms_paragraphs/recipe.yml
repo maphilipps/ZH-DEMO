@@ -1,5 +1,5 @@
-name: 'DrupalX Paragraphs'
-description: 'DrupalX paragraph types.'
+name: 'adesso CMS Paragraphs'
+description: 'adesso CMS paragraph types.'
 type: 'Site'
 
 install:

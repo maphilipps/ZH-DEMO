@@ -221,7 +221,6 @@ subtree split:
   rules:
     - *deploy-rules
 
-
 deploy pages:
   stage: deploy
   image: node:18
@@ -231,7 +230,7 @@ deploy pages:
   script:
     - cd web/themes/custom/adesso_cms_theme
     - npm install
-    - npm run build-storybook -o public
+    - npm run build-storybook -- -o public
   pages:  # specifies that this is a Pages job
     expire_in: 1 week
   artifacts:

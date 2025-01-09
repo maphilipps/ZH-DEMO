@@ -33,8 +33,8 @@ variables:
     URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_paragraphs.git
   - DIR: recipes/adesso_cms_starter
     URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_starter.git
-  - DIR: web/themes/custom/adesso_standard
-    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_standard.git
+  - DIR: web/themes/custom/adesso_cms_theme
+    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_theme.git
 
 # Define when this pipeline runs.
 workflow:

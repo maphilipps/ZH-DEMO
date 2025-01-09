@@ -122,6 +122,9 @@
         "patches": {
             "drupal/default_content": {
                 "Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch"
+            },
+            "drupal/paragraphs_features": {
+                "Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
             }
         },
         "drupal-core-project-message": {

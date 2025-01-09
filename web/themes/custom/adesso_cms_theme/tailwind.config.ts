@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+    important: true,
 	darkMode: ["class"],
 	content: [
 		'./templates/**/*.html.twig',

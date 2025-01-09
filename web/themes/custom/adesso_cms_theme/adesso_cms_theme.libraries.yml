@@ -7,7 +7,11 @@ fonts:
 global:
   css:
     base:
-      dist/css/globals.css: {  }
+      src/css/adesso.css: {
+        weight: -10
+      }
+  js:
+    src/js/adesso.js: {}
   dependencies:
     - "adesso_cms_theme/icons"
     - "adesso_cms_theme/fonts"
@@ -16,6 +20,7 @@ icons:
   version: 1.x
   js:
     //unpkg.com/lucide@latest/dist/umd/lucide.min.js: { type: external, minified: true }
-    dist/js/lucide-init.behaviors.js: {}
+    src/js/lucide-init.behaviors.js: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings

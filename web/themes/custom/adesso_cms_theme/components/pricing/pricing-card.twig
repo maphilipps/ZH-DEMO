@@ -1,5 +1,5 @@
 {# pricing-card.twig #}
-<div class="rounded-xl bg-card text-card-foreground shadow flex h-full flex-col justify-between p-4 sm:p-6 md:p-8 border border-border-primary">
+<div class=" bg-card text-card-foreground shadow flex h-full flex-col justify-between p-4 sm:p-6 md:p-8 border border-border-primary">
   <div>
     <h2 class="mb-2 text-md font-bold leading-[1.4] md:text-xl">{{ eyebrow }}</h2>
     <h3 class="my-2 text-2xl font-bold sm:text-3xl lg:text-4xl">{{ title }}</h3>
@@ -18,7 +18,7 @@
   </div>
   {% if cta_link %}
     <div>
-      <a href="{{ cta_link.url }}" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">
+      <a href="{{ cta_link.url }}" class="inline-flex items-center justify-center whitespace-nowrap  text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">
         {{ cta_link.title }}
       </a>
     </div>

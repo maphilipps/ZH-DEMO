@@ -18,8 +18,8 @@ regions:
   highlighted: Highlighted
   content: Content
   footer: Footer
-#dependencies:
-#  - vite:vite
-#vite:
-#  enableInAllLibraries: true
-#  enableInAllComponents: true
+dependencies:
+  - vite:vite
+vite:
+  enableInAllLibraries: true
+  enableInAllComponents: true

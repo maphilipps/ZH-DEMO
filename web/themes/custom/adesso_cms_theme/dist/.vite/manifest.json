@@ -1,0 +1,13 @@
+{
+  "src/css/adesso.css": {
+    "file": "assets/adesso.css",
+    "src": "src/css/adesso.css",
+    "isEntry": true
+  },
+  "src/js/adesso.js": {
+    "file": "assets/adesso-CHqcl-8z.js",
+    "name": "adesso",
+    "src": "src/js/adesso.js",
+    "isEntry": true
+  }
+}

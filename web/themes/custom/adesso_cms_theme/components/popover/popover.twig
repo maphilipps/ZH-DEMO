@@ -26,7 +26,7 @@
 <div class="relative inline-block" data-popover>
   <button
     type="button"
-    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 {{ buttonClass }}"
+    class="inline-flex items-center justify-center  text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 {{ buttonClass }}"
     data-popover-trigger
     data-placement="{{ props.placement }}"
     data-trigger="{{ props.trigger }}"
@@ -37,7 +37,7 @@
     {{ props.buttonText }}
   </button>
   <div
-    class="hidden absolute z-50 bg-popover text-popover-foreground rounded-md border shadow-md {{ props.className }}"
+    class="drupal-safe-hidden absolute z-50 bg-popover text-popover-foreground  border shadow-md {{ props.className }}"
     data-popover-content
     data-placement="{{ props.placement }}"
   >

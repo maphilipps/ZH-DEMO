@@ -48,10 +48,10 @@
       </button>
 
       {# Desktop menu #}
-      <div class="hidden lg:flex lg:items-center lg:space-x-6">
+      <div class="drupal-safe-hidden lg:flex lg:items-center lg:space-x-6">
         <div class="flex space-x-8">
           {% for item in nav_items %}
-            <a href="{{ item.url }}" class="text-lg text-foreground hover:text-primary {{ link_modifier }} {% if item.in_active_trail %}font-bold{% endif %}">
+            <a href="{{ item.url }}" class="text-md tracking-wide text-foreground hover:text-primary uppercase {{ link_modifier }} {% if item.in_active_trail %}font-bold{% endif %}">
               {{ item.title }}
             </a>
           {% endfor %}
@@ -61,7 +61,7 @@
         <div class="flex items-center space-x-6">
           {% for item in cta_items %}
             {% set is_last = loop.last %}
-            {% set common_classes = "inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 text-lg" %}
+            {% set common_classes = "inline-flex items-center justify-center whitespace-nowrap  font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 text-lg" %}
             {% if not is_last %}
               {% set variant_classes = "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground" %}
             {% else %}
@@ -76,12 +76,12 @@
     </div>
 
     {# Mobile menu panel #}
-    <div id="mobile-menu" class="hidden lg:hidden">
+    <div id="mobile-menu" class="drupal-safe-hidden lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         {% for item in nav_items %}
           <a
             href="{{ item.url }}"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 {% if item.in_active_trail %}bg-gray-50 text-gray-900{% endif %}"
+            class="block px-3 py-2  text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 {% if item.in_active_trail %}bg-gray-50 text-gray-900{% endif %}"
           >
             {{ item.title }}
           </a>
@@ -90,9 +90,9 @@
         {% for item in cta_items %}
           {% set is_last = loop.last %}
           {% if not is_last %}
-            {% set mobile_variant = "block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" %}
+            {% set mobile_variant = "block w-full text-left px-3 py-2  text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" %}
           {% else %}
-            {% set mobile_variant = "block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90" %}
+            {% set mobile_variant = "block w-full text-left px-3 py-2  text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90" %}
           {% endif %}
           <a href="{{ item.url }}" class="{{ mobile_variant }}">
             {{ item.title }}
@@ -106,6 +106,6 @@
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
+    menu.classList.toggle('drupal-safe-hidden');
   }
 </script>

@@ -14,7 +14,7 @@
     "compile": "node compile.cjs",
     "build:stories": "node build-stories.cjs",
     "build": "npm run build:stories && vite build && npm run compile",
-    "watch:tailwind": "npx tailwindcss -i ./src/css/globals.css -o ./dist/css/globals.css --watch",
+    "watch:tailwind": "npx tailwindcss -i ./src/css/adesso.css -o ./dist/css/adesso.css --watch",
     "watch:components": "chokidar 'components/**/*.scss' -c 'node compile.js {path}'",
     "watch:stories": "chokidar 'components/**/*.stories.js' -c 'node story-watcher.js {path}'",
     "watch": "npm-run-all --parallel watch:tailwind watch:components watch:stories",

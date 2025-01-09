@@ -1,4 +1,4 @@
-import '../src/css/globals.css';
+import '../src/css/adesso.css';
 
 // import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 // ^ uncomment to include Storybook viewports

@@ -121,10 +121,11 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/default_content": {
-                "Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch"
+                "#2786479: Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch",
+                "#3160146: Add a Normalizer and Denormalizer to support Layout Builder": "https://git.drupalcode.org/project/default_content/-/merge_requests/15.diff"
             },
             "drupal/paragraphs_features": {
-                "Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
+                "#3488022: Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
             }
         },
         "drupal-core-project-message": {

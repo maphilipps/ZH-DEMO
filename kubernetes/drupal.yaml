@@ -29,15 +29,15 @@ spec:
       labels: 
         app: drupal
     spec: 
-      initContainers:
-        -
-          name: init-sites-volume
-          image: drupal:8.6
-          command: ['/bin/bash', '-c']
-          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
-          volumeMounts:
-          - mountPath: /data
-            name: vol-drupal
+#      initContainers:
+#        -
+#          name: init-sites-volume
+#          image: drupal:8.6
+#          command: ['/bin/bash', '-c']
+#          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
+#          volumeMounts:
+#          - mountPath: /data
+#            name: vol-drupal
       containers: 
         - 
           image: gitlab-registry.adesso-group.com/1e2bb2e3/adesso-cms/adesso-cms:latest

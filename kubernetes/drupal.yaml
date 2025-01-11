@@ -58,6 +58,8 @@ spec:
           - mountPath: /var/www/html/themes
             name: vol-drupal
             subPath: themes
+      imagePullSecrets:
+        - name: gitlab-registry.adesso-group.com
       volumes:
         - 
           name: vol-drupal

@@ -29,15 +29,6 @@ spec:
       labels: 
         app: drupal
     spec: 
-      initContainers:
-        -
-          name: init-sites-volume
-          image: igorbesel/adesso-cms
-          command: ['/bin/bash', '-c']
-          args: ['cp -r /var/www/html/web/sites/ /data/; chown www-data:www-data /data/ -R']
-          volumeMounts:
-          - mountPath: /data
-            name: vol-drupal
       containers: 
         - 
           image: igorbesel/adesso-cms
@@ -46,18 +37,8 @@ spec:
             - 
               containerPort: 80
           volumeMounts:
-          - mountPath: /var/www/html/web/modules
-            name: vol-drupal
-            subPath: modules
-          - mountPath: /var/www/html/web/profiles
-            name: vol-drupal
-            subPath: profiles
-          - mountPath: /var/www/html/web/sites
-            name: vol-drupal
-            subPath: sites
-          - mountPath: /var/www/html/web/themes
-            name: vol-drupal
-            subPath: themes
+            - name: drupal-data
+              mountPath: /var/www/html/web/sites/default/files
       imagePullSecrets:
         - name: hub.docker.io
       volumes:

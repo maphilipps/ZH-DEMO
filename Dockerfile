@@ -33,9 +33,6 @@ RUN a2enmod rewrite
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 COPY vhosts.conf /etc/apache2/sites-enabled/vhosts.conf
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s usr/local/bin/docker-entrypoint.sh / # For backwards compatibility.
-
 # PHP Dependency install via Composer.
 # FROM composer as vendor
 
@@ -69,11 +66,6 @@ RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.6.0
  && chmod +x drush.phar \
  && mv drush.phar /usr/local/bin/drush
 
-# Adjust the Apache docroot.
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/web
-
 EXPOSE 80
-ENTRYPOINT ["docker-entrypoint.sh"]
-
 WORKDIR "/var/www/html"
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

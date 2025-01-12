@@ -1,3 +1,19 @@
+# PHP Dependency install via Composer.
+FROM composer as vendor
+
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+COPY assets/ assets/
+COPY recipes/ recipes/
+COPY scripts/ scripts/
+COPY web/ web/
+
+RUN composer install \
+    --ignore-platform-reqs \
+    --no-interaction \
+    --no-dev \
+    --prefer-dist
+
 FROM debian:bookworm-slim
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -33,26 +49,11 @@ RUN a2enmod rewrite
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 COPY vhosts.conf /etc/apache2/sites-enabled/vhosts.conf
 
-# PHP Dependency install via Composer.
-# FROM composer as vendor
-
-COPY composer.json composer.json
-COPY composer.lock composer.lock
-COPY assets/ assets/
-COPY recipes/ recipes/
-COPY scripts/ scripts/
-COPY web/ web/
-
-RUN composer install \
-    --ignore-platform-reqs \
-    --no-interaction \
-    --no-dev \
-    --prefer-dist
 
 ENV DRUPAL_MD5 aedc6598b71c5393d30242b8e14385e5
 
 # Copy precompiled codebase into the container.
-# COPY --from=vendor /app/ /var/www/html/
+COPY --from=vendor /app/ /var/www/html/
 
 # Copy other required configuration into the container.
 COPY load.environment.php /var/www/html/load.environment.php

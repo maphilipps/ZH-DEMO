@@ -1,4 +1,5 @@
 ARG DRUPAL_BASE_IMAGE=geerlingguy/drupal:latest
+ENV php_version="8.3"
 
 # PHP Dependency install via Composer.
 FROM composer as vendor

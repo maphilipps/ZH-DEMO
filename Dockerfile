@@ -37,7 +37,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # For backwards compatibility.
 
 # PHP Dependency install via Composer.
-F# ROM composer as vendor
+# FROM composer as vendor
 
 COPY composer.json composer.json
 COPY composer.lock composer.lock

@@ -32,9 +32,9 @@ spec:
       initContainers:
         -
           name: init-sites-volume
-          image: drupal:11.1
+          image: igorbesel/adesso-cms
           command: ['/bin/bash', '-c']
-          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
+          args: ['cp -r /var/www/html/web/sites/ /data/; chown www-data:www-data /data/ -R']
           volumeMounts:
           - mountPath: /data
             name: vol-drupal
@@ -46,16 +46,16 @@ spec:
             - 
               containerPort: 80
           volumeMounts:
-          - mountPath: /var/www/html/modules
+          - mountPath: /var/www/html/web/modules
             name: vol-drupal
             subPath: modules
-          - mountPath: /var/www/html/profiles
+          - mountPath: /var/www/html/web/profiles
             name: vol-drupal
             subPath: profiles
-          - mountPath: /var/www/html/sites
+          - mountPath: /var/www/html/web/sites
             name: vol-drupal
             subPath: sites
-          - mountPath: /var/www/html/themes
+          - mountPath: /var/www/html/web/themes
             name: vol-drupal
             subPath: themes
       imagePullSecrets:

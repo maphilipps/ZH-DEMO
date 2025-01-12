@@ -25,7 +25,6 @@ ENV DRUPAL_MD5 aedc6598b71c5393d30242b8e14385e5
 COPY --from=vendor /app/ /var/www/html/
 
 # Copy other required configuration into the container.
-COPY config/ /var/www/html/config/
 COPY load.environment.php /var/www/html/load.environment.php
 COPY assets/settings.php /var/www/html/web/sites/default/settings.php
 

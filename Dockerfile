@@ -37,7 +37,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # For backwards compatibility.
 
 # PHP Dependency install via Composer.
-FROM composer as vendor
+F# ROM composer as vendor
 
 COPY composer.json composer.json
 COPY composer.lock composer.lock
@@ -52,13 +52,10 @@ RUN composer install \
     --no-dev \
     --prefer-dist
 
-# Build the Docker image for Drupal.
-FROM $DRUPAL_BASE_IMAGE
-
 ENV DRUPAL_MD5 aedc6598b71c5393d30242b8e14385e5
 
 # Copy precompiled codebase into the container.
-COPY --from=vendor /app/ /var/www/html/
+# COPY --from=vendor /app/ /var/www/html/
 
 # Copy other required configuration into the container.
 COPY load.environment.php /var/www/html/load.environment.php

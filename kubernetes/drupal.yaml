@@ -41,7 +41,7 @@ spec:
             - name: DRUPAL_DATABASE_HOST
               value: mysql
             - name: DRUPAL_DATABASE_PORT
-              value: 3036
+              value: "3036"
             - name: DRUPAL_DATABASE_USERNAME
               value: root
             - name: DRUPAL_DATABASE_PASSWORD

@@ -36,6 +36,18 @@ spec:
           ports: 
             - 
               containerPort: 80
+          # durch config map ersetzen
+          env:
+            - name: DRUPAL_DATABASE_HOST
+              value: mysql
+            - name: DRUPAL_DATABASE_PORT
+              value: 3036
+            - name: DRUPAL_DATABASE_USERNAME
+              value: root
+            - name: DRUPAL_DATABASE_PASSWORD
+              value: root_password
+            - name: DRUPAL_DATABASE_NAME
+              value: drupal-database
           volumeMounts:
             - name: drupal-data
               mountPath: /var/www/html/web/sites/default/files

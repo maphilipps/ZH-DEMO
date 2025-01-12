@@ -27,7 +27,6 @@ COPY --from=vendor /app/ /var/www/html/
 # Copy other required configuration into the container.
 COPY load.environment.php /var/www/html/load.environment.php
 COPY assets/settings.php /var/www/html/web/sites/default/settings.php
-COPY .env.example /var/www/html/.env
 
 # Make sure file ownership is correct on the document root.
 RUN chown -R www-data:www-data /var/www/html/web

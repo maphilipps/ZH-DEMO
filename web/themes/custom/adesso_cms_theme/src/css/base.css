@@ -1,9 +1,5 @@
 @config '../js/tailwind.adesso.js';
 
-@plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/typography";
-@plugin "flowbite/plugin";
-
 @theme {
 
 
@@ -90,7 +86,6 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
-
 
     /* Better UX. */
     button {

@@ -5,7 +5,6 @@
 @import "./typography.css";
 
 @source "../../components";
-@source "../../node_modules/flowbite";
 
 @theme {
     --color-primary: oklch(53.62% 0.1613 252.2);
@@ -47,5 +46,9 @@
         font-size: '20px';
         /* font-family: var(--font-serif); */
         /* font-family: var(--font-mono); */
+    }
+
+    ul.list-none, ol.list-none {
+      list-style-type: none;
     }
 }

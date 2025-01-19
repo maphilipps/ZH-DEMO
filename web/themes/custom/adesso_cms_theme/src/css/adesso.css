@@ -47,8 +47,4 @@
         /* font-family: var(--font-serif); */
         /* font-family: var(--font-mono); */
     }
-
-    ul.list-none, ol.list-none {
-      list-style-type: none;
-    }
 }

@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.accordion.field_accordion_item
+    - field.field.paragraph.accordion.field_pre_headline
+    - field.field.paragraph.accordion.field_sub_headline
     - field.field.paragraph.accordion.field_title
     - paragraphs.paragraphs_type.accordion
   module:
@@ -21,6 +23,22 @@ content:
     settings:
       view_mode: default
       link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_pre_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sub_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
     weight: 2
     region: content

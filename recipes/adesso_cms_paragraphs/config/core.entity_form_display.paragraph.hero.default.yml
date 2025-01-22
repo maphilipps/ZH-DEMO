@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.hero.field_heading
     - field.field.paragraph.hero.field_hero_layout
     - field.field.paragraph.hero.field_link
-    - field.field.paragraph.hero.field_link2
     - field.field.paragraph.hero.field_media
     - field.field.paragraph.hero.field_summary
     - paragraphs.paragraphs_type.hero
@@ -38,14 +37,6 @@ content:
   field_link:
     type: link_default
     weight: 4
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-  field_link2:
-    type: link_default
-    weight: 5
     region: content
     settings:
       placeholder_url: ''

@@ -1,4 +1,3 @@
-uuid: 3fe15c67-3c7b-4dc8-b950-bc5c2bdeb11a
 langcode: en
 status: true
 dependencies:
@@ -15,13 +14,11 @@ third_party_settings:
     scripts: '0'
     full_html: '0'
     plain_text: '0'
-_core:
-  default_config_hash: ICMB69TTeWpAerdf7YQgbafNUij9Z5NZRIMHDxQ1u9k
 id: paragraph.hero.field_summary
 field_name: field_summary
 entity_type: paragraph
 bundle: hero
-label: Summary
+label: Text
 description: 'Provide the teaser summary for the hero.'
 required: false
 translatable: true

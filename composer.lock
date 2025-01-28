@@ -36,11 +36,10 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_paragraphs",
-                "reference": "e04c7ca1418eb1dcae212e18f75068d04a131b53"
+                "reference": "1035ef64b0e977b72ad58bf8833103df3ff22d0c"
             },
             "require": {
                 "drupal/paragraphs": "^1.17",
-                "drupal/paragraphs_ee": "^10.0",
                 "drupal/paragraphs_features": "^2.0",
                 "drupal/viewfield": "^3.0@beta"
             },
@@ -63,7 +62,7 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_starter",
-                "reference": "f33e3173f54f367cd162f902bfb7d94f70ecae00"
+                "reference": "9a6183e0e64d595006a751183a7cd5da0ad30091"
             },
             "require": {
                 "drupal/all_entity_preview": "^1.0@alpha",
@@ -87,7 +86,6 @@
                 "drupal/webp": "^1.0@RC"
             },
             "suggest": {
-                "drupal/drupal_cms_case_study": "Adds a case study content type that provides detailed information about a subject to the intended audience.",
                 "drupal/drupal_cms_events": "A content type and view to help you manage events.",
                 "drupal/drupal_cms_news": "Adds a news content type with an overview page and related news items.",
                 "drupal/drupal_cms_person": "Adds a person profile content type that provides information about a person.",
@@ -6863,57 +6861,6 @@
             }
         },
         {
-            "name": "drupal/paragraphs_ee",
-            "version": "10.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/paragraphs_ee.git",
-                "reference": "10.0.5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs_ee-10.0.5.zip",
-                "reference": "10.0.5",
-                "shasum": "a638c2a75804eb89e0934f159210a599267ee4a8"
-            },
-            "require": {
-                "drupal/core": ">=10.0",
-                "drupal/paragraphs_features": "^2.0"
-            },
-            "require-dev": {
-                "drupal/paragraphs_sets": "*",
-                "phpunit/phpunit": "^9.5",
-                "weitzman/drupal-test-traits": "^1.5"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "10.0.5",
-                    "datestamp": "1729580104",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Stefan Borchert",
-                    "homepage": "https://www.drupal.org/user/36942",
-                    "email": "stefan.borchert@undpaul.de"
-                }
-            ],
-            "description": "Paragraphs Editor Enhancements for better usability.",
-            "homepage": "https://www.drupal.org/project/paragraphs_ee",
-            "support": {
-                "source": "https://git.drupalcode.org/project/paragraphs_ee"
-            }
-        },
-        {
             "name": "drupal/paragraphs_features",
             "version": "dev-project-update-bot-only",
             "source": {
@@ -10295,7 +10242,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v11.40.0",
+            "version": "v11.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -10351,7 +10298,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v11.40.0",
+            "version": "v11.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -10397,7 +10344,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v11.40.0",
+            "version": "v11.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -10445,7 +10392,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v11.40.0",
+            "version": "v11.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -10491,16 +10438,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v11.40.0",
+            "version": "v11.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "f63af42cfacf8ac3fcf3df49b06de66ff3b22ee0"
+                "reference": "d0234a6a1572112543af3e2e09dfab5190ed467f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/f63af42cfacf8ac3fcf3df49b06de66ff3b22ee0",
-                "reference": "f63af42cfacf8ac3fcf3df49b06de66ff3b22ee0",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d0234a6a1572112543af3e2e09dfab5190ed467f",
+                "reference": "d0234a6a1572112543af3e2e09dfab5190ed467f",
                 "shasum": ""
             },
             "require": {
@@ -10564,7 +10511,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-01-22T21:19:28+00:00"
+            "time": "2025-01-27T00:59:08+00:00"
         },
         {
             "name": "itamair/geophp",

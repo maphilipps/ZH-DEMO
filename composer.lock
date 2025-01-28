@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f24244aa06f46650876066f56bd2996",
+    "content-hash": "d0e2474edf60b565353c14546d168054",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",
@@ -4054,36 +4054,6 @@
                 "source": "https://git.drupalcode.org/project/drupal_cms_authentication/-/tree/1.0.0"
             },
             "time": "2025-01-09T19:55:56+00:00"
-        },
-        {
-            "name": "drupal/drupal_cms_case_study",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_case_study.git",
-                "reference": "e916400ed8b2d87455a328cf628b03956c89c2db"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_case_study/repository/archive.zip?sha=e916400ed8b2d87455a328cf628b03956c89c2db",
-                "reference": "e916400ed8b2d87455a328cf628b03956c89c2db",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/add_content_by_bundle": "^1.2.2",
-                "drupal/core": ">=10.4",
-                "drupal/drupal_cms_page": "~1.0.0"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Adds a case study content type and listing page.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_case_study/-/tree/1.0.0"
-            },
-            "time": "2025-01-14T14:21:19+00:00"
         },
         {
             "name": "drupal/drupal_cms_content_type_base",

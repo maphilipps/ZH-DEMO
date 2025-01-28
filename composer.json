@@ -47,7 +47,6 @@
         "drupal/core-recommended": "^11.1",
         "drupal/drupal_cms_accessibility_tools": "*",
         "drupal/drupal_cms_analytics": "*",
-        "drupal/drupal_cms_case_study": "*",
         "drupal/drupal_cms_events": "*",
         "drupal/drupal_cms_forms": "*",
         "drupal/drupal_cms_news": "*",

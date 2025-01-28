@@ -7,19 +7,6 @@
 
 {% import _self as menus %}
 
-{# Split items into navigation and CTA #}
-{% set cta_link_count = cta_link_count|default(2) %}
-{% set total_items = items|length %}
-{% set nav_items = [] %}
-{% set cta_items = [] %}
-{% for item in items %}
-  {% if loop.index0 < total_items - cta_link_count %}
-    {% set nav_items = nav_items|merge([item]) %}
-  {% else %}
-    {% set cta_items = cta_items|merge([item]) %}
-  {% endif %}
-{% endfor %}
-
 <nav class="{{ modifier }}">
   <div class="mx-auto container">
     <div class="flex items-center justify-between h-16">

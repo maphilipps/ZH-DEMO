@@ -130,8 +130,6 @@ class InteractiveInstallTest extends InstallerTestBase {
     $this->assertContribInstalled($this->container->get(ModuleExtensionList::class));
     $this->assertContribInstalled($this->container->get(ThemeExtensionList::class));
 
-    // Antibot prevents non-JS functional tests from logging in, so disable it.
-    $this->config('antibot.settings')->set('form_ids', [])->save();
     // Log out so we can test that user 1's credentials were properly saved.
     $this->drupalLogout();
 

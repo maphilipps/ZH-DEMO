@@ -25,10 +25,6 @@
             "type": "path",
             "url": "recipes/adesso_cms_paragraphs"
         },
-        "blog": {
-            "type": "path",
-            "url": "recipes/adesso_cms_blog"
-        },
         "ai": {
             "type": "path",
             "url": "recipes/adesso_cms_ai"
@@ -40,7 +36,6 @@
     },
     "require": {
         "adesso/adesso_cms_ai": "dev-main",
-        "adesso/adesso_cms_blog": "dev-main",
         "adesso/adesso_cms_paragraphs": "dev-main",
         "adesso/adesso_cms_starter": "dev-main",
         "adesso/adesso_cms_theme": "dev-main",

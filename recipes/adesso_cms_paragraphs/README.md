@@ -26,7 +26,6 @@ The following modules are automatically installed to support the paragraph funct
 
 - `paragraphs`: Core paragraphs functionality
 - `paragraphs_features`: Enhances paragraph editing experience
-- `paragraphs_ee`: Extends paragraphs with additional features
 - `viewfield`: Allows embedding of views within paragraphs
 
 ## Usage

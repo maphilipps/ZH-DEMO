@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\adesso_cms_installer\Functional;
 
+use Drupal\adesso_cms_installer\RecipeAppliedSubscriber;
 use Drupal\Core\Test\TestSetupTrait;
 use Drush\TestTraits\DrushTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -58,6 +59,10 @@ class CommandLineInstallTest extends TestCase {
   private function assertPostInstallState(): void {
     // Confirm that there's no install profile.
     $this->drush('core:status', options: ['field' => 'install-profile'], cd: $this->root);
+    $this->assertEmpty($this->getOutput());
+
+    // The installer's list of applied recipes should be gone.
+    $this->drush('state:get', [RecipeAppliedSubscriber::STATE_KEY]);
     $this->assertEmpty($this->getOutput());
 
     // Confirm that non-core extensions are installed.

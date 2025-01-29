@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:c62aa197-d620-40d6-8b19-1ce31cf48834'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      content: content
 _core:
   default_config_hash: KffDh7DSZV0QyqQvADke4HQQoUtLSpJKYgi-j3tY0eE
 id: quote

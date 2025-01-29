@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:d9eb2195-f1d4-47cd-8f15-f2b14583b207'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      media: media
 _core:
   default_config_hash: t9jtXZA5_8e8Adaj6UHqI4YgiLVltke1kBwFcwOlnWE
 id: gallery

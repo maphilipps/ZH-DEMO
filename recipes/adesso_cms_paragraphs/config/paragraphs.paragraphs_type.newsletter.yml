@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:6b98b90f-5b48-4771-89de-a33fbdba2d5a'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      other: other
 _core:
   default_config_hash: '-lPDbpxsYn5y8mHuIo0jzDVqehVKxxOyzbs0Sdltcww'
 id: newsletter

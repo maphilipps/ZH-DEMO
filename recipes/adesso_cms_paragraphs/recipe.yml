@@ -12,5 +12,4 @@ install:
   # Contrib
   - paragraphs
   - paragraphs_features
-  - paragraphs_ee
   - viewfield

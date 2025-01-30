@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:9225ae05-132f-4553-b6d8-9de81976a27c'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      media: media
 _core:
   default_config_hash: LMnJXeIMYk2PgGWinOb_jEwxNYbTPPOu5qO9qCg7FCA
 id: logo_collection

@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:752792a3-3a62-4529-aebd-e3a394226355'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      media: media
 _core:
   default_config_hash: mHwtmcaQ1rkv_6bVP7F8FAjTGqg3NBnLRBZj5rTQkaE
 id: carousel

@@ -1,6 +1,6 @@
 name: AI
 type: adesso CMS
-description: Sets up tools to track the traffic to your website using Google Analytics and Google Tag Manager.
+description: Adds integration with AI services, such as alt text generation and a chat bot to assist with site building. Requires an API key from Open AI or Anthropic.
 
 recipes:
   - drupal_cms_ai

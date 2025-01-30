@@ -1,6 +1,6 @@
 import { addons } from '@storybook/manager-api';
-import DrupalX from './DrupalX';
+import adessoCms from './adessoCms';
 
 addons.setConfig({
-  theme: DrupalX,
+  theme: adessoCms,
 });

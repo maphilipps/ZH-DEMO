@@ -1,18 +1,17 @@
 # adesso_cms_theme Starter Kit
 
 [![Cypress](https://github.com/drupalninja/adesso_cms_theme/actions/workflows/cypress-tests.yml/badge.svg)](https://github.com/drupalninja/adesso_cms_theme/actions/workflows/cypress-tests.yml)
-[![Percy](https://github.com/drupalninja/adesso_cms_theme/actions/workflows/percy.yml/badge.svg)](https://github.com/drupalninja/adesso_cms_theme/actions/workflows/percy.yml)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/62f323f4/DrupalX-Theme)
 
 The DrupalX theme starter kit is intended to be used with the [DrupalX distribution](https://github.com/drupalninja/drupalx-project).
 
 This starter kit includes [Tailwind CSS](https://tailwindcss.com/), [Storybook](https://storybook.js.org/) and full template integration with the DrupalX install profile.
 
-Public Storybook: https://drupalx.netlify.app/
+Public Storybook: https://adesso-cms-6a5b25.pages.adesso-projects.com/?path=/docs/introduction--docs
 
 ## Generating the theme
 
-The following commands will generate the new custom theme using the DrupalX starter as the template:
+The following commands will generate the new custom theme using the adesso CMS starter as the template:
 
 ```bash
 chmod +x core/scripts/drupal &&
@@ -77,11 +76,6 @@ The theme includes several npm scripts for development and building:
 
 ### Testing
 - `npm run cypress`: Run Cypress tests
-- `npm run percy-storybook`: Run Percy visual regression tests on Storybook components
-
-### Git Hooks
-- `npm run postinstall`: Install Husky git hooks
-- `npm run prepare`: Install Husky git hooks (alternative command)
 
 ### Managing the 'dist' Folder
 

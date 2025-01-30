@@ -4,11 +4,9 @@
 			                flex items-center justify-between flex-1
 			                text-lg font-semibold py-4 px-6
 			                transition-all
-			                hover:underline
 			                hover:bg-blue-50
 			                bg-white
-			                rounded-t-lg
-			                focus:outline-none focus:ring-2 focus:ring-blue-500
+			                focus:outline-none
 			            " aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}" aria-controls="accordion-content-{{ item.accordion_instance }}" id="accordion-trigger-{{ item.accordion_instance }}" data-accordion-trigger>
 			{{ item.heading }}
 			<svg width="15" height="15" viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="

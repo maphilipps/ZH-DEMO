@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:b277df39-23e9-4715-b180-8bf19999b987'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      content: content
 _core:
   default_config_hash: xUZP-nmjI36802RTh6_gCvR_mqR57XB6IhOXcMJu8tQ
 id: pricing

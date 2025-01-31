@@ -265,11 +265,6 @@ default:
               uri: 'internal:/documentation'
               title: 'Link 1'
               options: {  }
-          field_link2:
-            -
-              uri: 'internal:/'
-              title: 'Link 2'
-              options: {  }
           field_text_layout:
             -
               value: centered
@@ -309,11 +304,6 @@ default:
             -
               uri: 'internal:/documentation'
               title: 'Read documentation'
-              options: {  }
-          field_link2:
-            -
-              uri: 'internal:/'
-              title: 'Link 2'
               options: {  }
           field_text_layout:
             -

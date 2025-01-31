@@ -48,18 +48,6 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_link2:
-    type: link_separate
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_text_layout:
     type: list_key
     label: hidden

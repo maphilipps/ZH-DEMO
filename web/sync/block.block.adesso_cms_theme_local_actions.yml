@@ -1,0 +1,20 @@
+uuid: 102942c0-aaab-4761-a63e-c2b580b67f34
+langcode: en
+status: true
+dependencies:
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: xorNYvu0qwfCTTCFUrGF-299yVTjcPM4_kT1qKU1mUA
+id: adesso_cms_theme_local_actions
+theme: adesso_cms_theme
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

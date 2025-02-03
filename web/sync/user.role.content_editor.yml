@@ -1,0 +1,58 @@
+uuid: 4282f57a-67e1-458f-857c-1a53ea560e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.full_html
+    - media.type.document
+    - media.type.image
+    - media.type.svg_image
+    - media.type.video
+  module:
+    - contextual
+    - file
+    - filter
+    - media
+    - navigation
+    - node
+    - path
+    - redirect
+    - system
+    - toolbar
+_core:
+  default_config_hash: g-zSnaBXJnH7VoimReFb6KcLjIgHCU-hisiShtZ9hjQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access media overview'
+  - 'access navigation'
+  - 'access toolbar'
+  - 'administer redirects'
+  - 'administer url aliases'
+  - 'create document media'
+  - 'create image media'
+  - 'create svg_image media'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete any document media'
+  - 'delete any image media'
+  - 'delete any svg_image media'
+  - 'delete any video media'
+  - 'delete own files'
+  - 'edit any document media'
+  - 'edit any image media'
+  - 'edit any svg_image media'
+  - 'edit any video media'
+  - 'revert all revisions'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'

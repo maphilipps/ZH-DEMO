@@ -1,0 +1,35 @@
+uuid: 41f0aa5f-6eee-45aa-ade4-8bd741341e83
+langcode: de
+status: true
+dependencies:
+  config:
+    - dashboard.dashboard.welcome
+    - filter.format.basic_html
+  module:
+    - captcha
+    - coffee
+    - dashboard
+    - file
+    - filter
+    - honeypot
+    - media
+    - node
+    - shortcut
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Angemeldeter Benutzer'
+weight: 1
+is_admin: false
+permissions:
+  - 'access coffee'
+  - 'access content'
+  - 'access shortcuts'
+  - 'bypass honeypot protection'
+  - 'delete own files'
+  - 'skip CAPTCHA'
+  - 'use text format basic_html'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view welcome dashboard'

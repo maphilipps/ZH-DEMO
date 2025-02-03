@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: de
+uuid: e70678cd-7931-4843-9243-9d02beb1ec90
+name: 'adesso CMS'
+mail: admin@admin.de
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /welcome
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: de
+mail_notification: null

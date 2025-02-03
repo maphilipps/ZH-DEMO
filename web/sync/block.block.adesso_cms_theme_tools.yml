@@ -1,0 +1,27 @@
+uuid: 41056500-ba99-42b6-ae7a-c7a90acaf53f
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: t2xFwxnT8_Xej1EGuPBh9vhgeATSB0x4Tfxbz4cOMfo
+id: adesso_cms_theme_tools
+theme: adesso_cms_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

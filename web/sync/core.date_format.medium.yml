@@ -1,0 +1,10 @@
+uuid: 39005ce8-c98d-4288-b983-b982654cc2ed
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: q7pDV2d9qFh1IVqvymOxUUYGSziZDeg961wURC0cSLs
+id: medium
+label: 'Standard-Datum mittellang'
+locked: false
+pattern: 'D j M Y - H:i'

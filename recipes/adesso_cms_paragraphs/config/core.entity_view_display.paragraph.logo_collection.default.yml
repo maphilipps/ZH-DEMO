@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.logo_collection.field_media_item
+    - field.field.paragraph.logo_collection.field_pre_headline
+    - field.field.paragraph.logo_collection.field_sub_headline
     - field.field.paragraph.logo_collection.field_title
     - image.style.medium
     - paragraphs.paragraphs_type.logo_collection
@@ -24,6 +26,22 @@ content:
       image_style: medium
       image_loading:
         attribute: lazy
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_pre_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sub_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
     weight: 2
     region: content

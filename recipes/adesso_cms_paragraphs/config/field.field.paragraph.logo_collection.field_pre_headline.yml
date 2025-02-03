@@ -9,7 +9,7 @@ id: paragraph.logo_collection.field_pre_headline
 field_name: field_pre_headline
 entity_type: paragraph
 bundle: logo_collection
-label: 'Pre Headline'
+label: Pre-Headline
 description: ''
 required: false
 translatable: false

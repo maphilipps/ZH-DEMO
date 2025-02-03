@@ -4,10 +4,18 @@ description: Editorial/Accordion component
 props:
   type: object
   properties:
-    title:
+    pre_headline:
+      type: string
+      title: pre_headline
+      description: ''
+    headline:
       type: string
       title: title
       description: Title for the accordion group
+    sub_headline:
+      type: string
+      title: pre_headline
+      description: ''
     modifier:
       type: string
       title: modifier

@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:51c4fbb2-b087-407c-a6bc-30c7aab26671'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      content: content
 _core:
   default_config_hash: B8cbywFLhd02Kq_Xv9yoSpZE0EKSIKmO17PzRTdr2HE
 id: sidebyside

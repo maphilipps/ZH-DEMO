@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:e5159f16-484c-4bb8-8e07-9828e31ff395'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      media: media
 _core:
   default_config_hash: _RM0Llr_0_ujWmWeySblF4qMO5aHZTzCb7-mLv7nm4I
 id: hero

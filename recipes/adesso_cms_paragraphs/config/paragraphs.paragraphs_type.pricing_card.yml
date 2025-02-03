@@ -1,12 +1,6 @@
 uuid: f6cf1a4c-0134-4626-89c0-d22db5b5f677
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
 _core:
   default_config_hash: HUh53sxL6HjSMuTWkUJen8KXd0qpsff9d2IHiECFHZ8
 id: pricing_card

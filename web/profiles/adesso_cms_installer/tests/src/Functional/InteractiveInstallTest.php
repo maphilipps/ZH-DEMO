@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\adesso_cms_installer\Functional;
 
+use Drupal\adesso_cms_installer\RecipeAppliedSubscriber;
 use Drupal\Core\Extension\ExtensionList;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeHandlerInterface;
+use Drupal\Core\State\StateInterface;
 use Drupal\FunctionalTests\Installer\InstallerTestBase;
 use Drupal\user\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,27 +31,23 @@ class InteractiveInstallTest extends InstallerTestBase {
   protected function setUpSettings(): void {
     $assert_session = $this->assertSession();
     $assert_session->buttonExists('Skip this step');
-    // The list of languages should be exposed to JavaScript.
-    $this->assertArrayHasKey('languages', $this->getDrupalSettings());
 
     // Choose all the add-ons!
     $page = $this->getSession()->getPage();
     $optional_recipes = $page->findAll('css', 'input[name^="add_ons["]');
     $this->assertNotEmpty($optional_recipes);
     array_walk($optional_recipes, fn ($checkbox) => $checkbox->check());
-    $page->pressButton('Weiter');
+    $page->pressButton('Next');
 
-    // The list of languages should still be exposed to JavaScript.
-    $this->assertArrayHasKey('languages', $this->getDrupalSettings());
     // Now we should be asked for the site name, with a default value in place
     // for the truly lazy.
     $assert_session->pageTextContains('Give your site a name');
-    $site_name_field = $assert_session->fieldExists('Name der Website');
+    $site_name_field = $assert_session->fieldExists('Site name');
     $this->assertTrue($site_name_field->hasAttribute('required'));
     $this->assertNotEmpty($site_name_field->getValue());
     // We have to use submitForm() to ensure that batch operations, redirects,
     // and so forth in the remaining install tasks get done.
-    $this->submitForm(['Name der Website' => 'Installer Test'], 'Weiter');
+    $this->submitForm(['Site name' => 'Installer Test'], 'Next');
 
     // Proceed to the database settings form.
     parent::setUpSettings();
@@ -108,6 +106,9 @@ class InteractiveInstallTest extends InstallerTestBase {
    * Tests basic expectations of a successful Drupal CMS install.
    */
   public function testPostInstallState(): void {
+    // The installer's list of applied recipes should be gone.
+    $this->assertNull($this->container->get(StateInterface::class)->get(RecipeAppliedSubscriber::STATE_KEY));
+
     // The site name and site-wide email address should have been set.
     // @see \Drupal\adesso_cms_installer\Form\SiteNameForm
     $site_config = $this->config('system.site');

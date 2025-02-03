@@ -2,7 +2,7 @@
 {% set alignment_class = layout == 'left' ? 'text-left' : 'text-center' %}
 {% set icon_class = layout == 'left' ? 'mr-auto' : 'mx-auto' %}
 {% set border = border is defined ? border : true %}
-{% set border_class = not border ? 'border-0 shadow-none px-3 py-2 sm:px-4 sm:py-8 h-full' : 'border shadow' %}
+{% set border_class = not border ? 'border-0 shadow-none h-full' : 'border shadow' %}
 {% set content_class = not border ? 'p-0' : 'p-6' %}
 
 <div class=" bg-card text-card-foreground stat {{ alignment_class }} {{ border_class }} {{ modifier }}">

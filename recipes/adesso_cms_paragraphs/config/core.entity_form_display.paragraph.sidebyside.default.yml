@@ -15,7 +15,6 @@ dependencies:
     - link
     - media_library
     - paragraphs
-    - paragraphs_ee
     - paragraphs_features
     - text
 _core:
@@ -59,11 +58,6 @@ content:
         delete_confirmation: false
         show_drag_and_drop: true
         show_collapse_all: false
-      paragraphs_ee:
-        paragraphs_ee:
-          dialog_off_canvas: false
-          dialog_style: tiles
-          drag_drop: false
   field_link:
     type: link_default
     weight: 6

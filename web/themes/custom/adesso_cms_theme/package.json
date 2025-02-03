@@ -18,7 +18,6 @@
     "watch:components": "chokidar 'components/**/*.scss' -c 'node compile.js {path}'",
     "watch:stories": "chokidar 'components/**/*.stories.js' -c 'node story-watcher.js {path}'",
     "watch": "npm-run-all --parallel watch:tailwind watch:components watch:stories",
-    "cypress": "npx cypress run",
     "dev": "vite",
     "vite-build": "vite build"
   },

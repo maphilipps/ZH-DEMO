@@ -1,0 +1,47 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 2ddaebfd-18f5-4e33-894e-62689f7efdbf
+  bundle: image
+  default_langcode: de
+  depends:
+    7fe6296b-d651-4164-9e84-d6703f92b9ba: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: HR-Dortmund-Francesco-Teaser-DX-STEF4561_3000_2000.webp
+  created:
+    -
+      value: 1736351334
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adesso CMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-test.ddev.site/welcome'
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_image:
+    -
+      entity: 7fe6296b-d651-4164-9e84-d6703f92b9ba
+      alt: Dortmund
+      title: ''
+      width: 3000
+      height: 2000

@@ -4,12 +4,6 @@ status: true
 dependencies:
   content:
     - 'file:file:c42ef4fd-11ef-4c1b-990e-4ec8fbe540c6'
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories:
-      other: other
 _core:
   default_config_hash: lxcClJzifnvojPbt7OqJ3jrYw9dv1RIS3vJOSjz_bz8
 id: embed

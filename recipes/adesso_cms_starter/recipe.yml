@@ -72,7 +72,6 @@ install:
   - node_revision_delete
   - pathauto
   - paragraphs
-  - paragraphs_ee
   - paragraphs_features
   - redirect
   - responsive_image
@@ -128,7 +127,6 @@ config:
     node_revision_delete: '*'
     pathauto: '*'
     paragraphs: '*'
-    paragraphs_ee: '*'
     paragraphs_features: '*'
     redirect: '*'
     responsive_image: '*'
@@ -169,15 +167,17 @@ config:
       simpleConfigUpdate:
         allowed_projects:
           recipes:
-            - drupal_cms_events
-            - adesso_cms_blog
+            - drupal_cms_accessibility_tools
+            - adesso_cms_ai
+            - drupal_cms_blog
             - drupal_cms_case_study
+            - drupal_cms_events
             - drupal_cms_forms
             - drupal_cms_news
             - drupal_cms_person
             - drupal_cms_project
+            - drupal_cms_search
             - drupal_cms_seo_tools
-            - drupal_cms_accessibility_tools
         enabled_sources:
           - drupalorg_jsonapi
           - recipes

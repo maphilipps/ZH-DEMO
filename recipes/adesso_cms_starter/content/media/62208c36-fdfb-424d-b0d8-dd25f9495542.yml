@@ -1,0 +1,47 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 62208c36-fdfb-424d-b0d8-dd25f9495542
+  bundle: image
+  default_langcode: de
+  depends:
+    4744c664-294e-467e-943e-bebcd2092b8e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: header-marketing-automation.jpg
+  created:
+    -
+      value: 1736351460
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adesso CMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-test.ddev.site/welcome'
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_image:
+    -
+      entity: 4744c664-294e-467e-943e-bebcd2092b8e
+      alt: 'Marketing und Automatisierung'
+      title: ''
+      width: 2560
+      height: 1440

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 9225ae05-132f-4553-b6d8-9de81976a27c
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: logo_collection-default-icon_0.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/logo_collection-default-icon_0.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 13544
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1736350208

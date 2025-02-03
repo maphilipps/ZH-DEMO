@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\adesso_cms_installer\Form;
 
+use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines a form to set the site name.
  */
-final class SiteNameForm extends InstallerFormBase {
+final class SiteNameForm extends FormBase {
 
   /**
    * {@inheritdoc}
@@ -38,7 +39,7 @@ final class SiteNameForm extends InstallerFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Site name'),
       '#required' => TRUE,
-      '#default_value' => $install_state['forms']['install_configure_form']['site_name'] ?? $this->t('My Drupal CMS site'),
+      '#default_value' => $install_state['forms']['install_configure_form']['site_name'] ?? $this->t('My adesso CMS site'),
     ];
     $form['actions'] = [
       '#type' => 'actions',
@@ -52,7 +53,7 @@ final class SiteNameForm extends InstallerFormBase {
       ],
     ];
 
-    return parent::buildForm($form, $form_state);
+    return $form;
   }
 
   /**

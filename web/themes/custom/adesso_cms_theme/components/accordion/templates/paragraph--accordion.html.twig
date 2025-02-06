@@ -10,6 +10,7 @@
     {% embed 'adesso_cms_theme:accordion' with {
       content: content,
       title: content.field_title|render,
+      pre_headline: content.field_pre_headline|render,
     } only %}
       {% block accordion_items %}
         {{ content.field_accordion_item }}

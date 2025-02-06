@@ -26,11 +26,10 @@
 				{{ item.body }}
 			{% endblock %}
 			{% if item.link %}
-				{% include '@adesso_cms_theme/button/button.twig' with {
-					url: item.link.url,
-					text: item.link.title ?? 'Learn more',
-					modifier: 'btn-default mt-4'
-        } only %}
+      <a href="{{ url }}" class=" whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none
+        focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none link">
+        {{ item.link.title }}
+      </a>
 			{% endif %}
 		</div>
 	</div>

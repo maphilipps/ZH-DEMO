@@ -35,20 +35,13 @@ The theme is built with [Vite](https://vite.dev/). To build the theme, run the f
 ddev theme build
 ```
 
-### Run Storybook (deprecated)
+### Run Storybook
 
 ```bash
-ddev yarn
-ddev yarn storybook
+ddev theme storybook
 ```
 
 Open: https://adesso-cms.ddev.site:6006/
-
-#### Generate stories (deprecated)
-
-```bash
-ddev drush storybook:generate-all-stories --uri=https://adesso-cms.ddev.site
-```
 
 ### Recreate
 
@@ -67,25 +60,6 @@ ddev export-contents
 ```
 
 It will update the `recipes/adesso_cms_starter/content` directory with the exported content.
-
-### Export blog content
-
-We used the [Default Content](https://git.drupalcode.org/project/default_content) module to export the content. You can export the content with the following command:
-
-```bash
-ddev export-contents-blog
-```
-
-It will update the `recipes/adesso_cms_blog/content` directory with the exported content.
-
-### Export config
-
-@see https://www.drupal.org/project/config_split/issues/2967961#comment-14038206
-
-```bash
-ddev export-config
-./scripts/remove-uuid.sh
-```
 
 ### Use recipes
 

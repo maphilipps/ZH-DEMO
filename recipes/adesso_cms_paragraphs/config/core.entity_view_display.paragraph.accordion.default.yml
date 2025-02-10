@@ -24,7 +24,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_pre_headline:
     type: string
@@ -33,14 +33,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_sub_headline:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_title:
     type: string
@@ -51,4 +43,5 @@ content:
     weight: 1
     region: content
 hidden:
+  field_sub_headline: true
   search_api_excerpt: true

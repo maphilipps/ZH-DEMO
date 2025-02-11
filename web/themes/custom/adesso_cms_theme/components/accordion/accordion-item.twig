@@ -1,36 +1,36 @@
-<div class="border-b">
-	<h3 class="flex">
-		<button type="button" class="
-			                flex items-center justify-between flex-1
-			                text-lg font-semibold py-4 px-6
-			                transition-all
-			                hover:bg-blue-50
-			                bg-white
-			                focus:outline-none
-			            " aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}" aria-controls="accordion-content-{{ item.accordion_instance }}" id="accordion-trigger-{{ item.accordion_instance }}" data-accordion-trigger>
-			{{ item.heading }}
-			<svg width="15" height="15" viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="
-					                    h-4 w-4 shrink-0 text-muted-foreground
-					                    transition-transform duration-200
-					                ">
-				<path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-			</svg>
-		</button>
-	</h3>
-	<div id="accordion-content-{{ item.accordion_instance }}" role="region" aria-labelledby="accordion-trigger-{{ item.accordion_instance }}" class="
-		            max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out
-		            {{ item.is_expanded ? 'max-h-screen' : '' }}
-		        " data-accordion-content>
-		<div class="accordion-content px-6 py-4">
-			{% block accordion_content %}
-				{{ item.body }}
-			{% endblock %}
-			{% if item.link %}
+
+<h2 id="accordion-flush-heading-{{ item.accordion_instance }}">
+  <button type="button" class="flex justify-between items-center py-5 w-full font-medium text-left text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+          data-accordion-target="#accordion-flush-body-{{ item.accordion_instance }}"
+          aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}"
+          aria-controls="accordion-content-{{ item.accordion_instance }}"
+          id="accordion-trigger-{{ item.accordion_instance }}"
+  >
+    <span>{{ item.heading }}</span>
+    <svg data-accordion-icon=""
+         class="w-6 h-6 rotate-180 shrink-0"
+         fill="currentColor"
+         viewBox="0 0 20 20"
+         xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd">
+      </path>
+    </svg>
+  </button>
+</h2>
+<div id="accordion-flush-body-{{ item.accordion_instance }}"
+     class="{{ item.is_expanded ? '' : 'hidden' }}" aria-labelledby="accordion-flush-heading-{{ item.accordion_instance }}"
+     data-accordion-content>
+  <div class="py-5 border-b border-gray-200 dark:border-gray-700 prose-p:mb-2 prose-p:text-gray-500 prose-p:dark:text-gray-400">
+    {% block accordion_content %}
+      {{ item.body }}
+    {% endblock %}
+    {% if item.link %}
       <a href="{{ url }}" class=" whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none
         focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none text-primary">
         {{ item.link.title }}
       </a>
-			{% endif %}
-		</div>
-	</div>
+    {% endif %}
+  </div>
 </div>

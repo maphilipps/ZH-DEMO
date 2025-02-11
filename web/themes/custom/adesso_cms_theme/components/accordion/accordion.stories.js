@@ -1,6 +1,4 @@
 import AccordionTemplate from './accordion.twig';
-import './accordion.behavior.js';
-
 export default {
   title: 'Editorial/Accordion',
   argTypes: {

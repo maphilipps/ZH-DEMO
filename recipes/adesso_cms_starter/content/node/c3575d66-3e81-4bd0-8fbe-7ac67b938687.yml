@@ -87,6 +87,11 @@ default:
               target_uuid: 4b432a0a-e5df-409a-8b30-134fed6e2291
               title: Start
               options: {  }
+          field_link2:
+            -
+              target_uuid: a9f34d11-cbfb-4f78-916d-8fd8c006f728
+              title: Entdecken
+              options: {  }
           field_media:
             -
               entity: eeb16a9e-6843-4685-9d50-6751d2c4a530
@@ -382,6 +387,11 @@ default:
             -
               target_uuid: 4b432a0a-e5df-409a-8b30-134fed6e2291
               title: Loslegen
+              options: {  }
+          field_link2:
+            -
+              target_uuid: a9f34d11-cbfb-4f78-916d-8fd8c006f728
+              title: 'Erfahren Sie mehr'
               options: {  }
           field_text_layout:
             -

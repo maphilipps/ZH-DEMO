@@ -83,6 +83,11 @@ default:
               uri: 'internal:/'
               title: 'Get Started'
               options: {  }
+          field_link2:
+            -
+              uri: 'internal:/'
+              title: 'Learn More'
+              options: {  }
           field_media:
             -
               entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c

@@ -12,10 +12,6 @@ props:
       type: string
       title: media
       description: ''
-    pre_heading:
-      type: string
-      title: heading
-      description: ''
     heading:
       type: string
       title: heading

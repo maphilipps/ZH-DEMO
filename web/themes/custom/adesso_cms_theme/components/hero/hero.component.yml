@@ -16,9 +16,9 @@ props:
       type: string
       title: heading
       description: ''
-    summary:
+    text:
       type: string
-      title: summary
+      title: text
       description: ''
     hero_layout:
       type: string

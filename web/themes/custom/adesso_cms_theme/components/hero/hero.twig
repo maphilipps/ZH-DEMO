@@ -1,5 +1,5 @@
 {% import _self as hero_macros %}
-<div class="hero bg-white dark:bg-gray-900 {{ modifier }}">
+<div class="bg-white dark:bg-gray-900 {{ modifier }}">
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
 
     {% if hero_layout == 'image_top' and media %}
@@ -31,7 +31,7 @@
     {% if link.url %}
       <a href="{{ link.url }}"
          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium
-              text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800
+              text-center text-white rounded-lg bg-primary-700 hover:bg-blue-800
               focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
         {{ link.title }}
         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"

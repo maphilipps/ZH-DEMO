@@ -8,6 +8,8 @@ dependencies:
     - field.field.paragraph.hero.field_link
     - field.field.paragraph.hero.field_link2
     - field.field.paragraph.hero.field_media
+    - field.field.paragraph.hero.field_pre_headline
+    - field.field.paragraph.hero.field_sub_headline
     - field.field.paragraph.hero.field_summary
     - paragraphs.paragraphs_type.hero
   module:
@@ -15,7 +17,7 @@ dependencies:
     - options
     - text
 _core:
-  default_config_hash: dQ7Kgo760bDqa1yzsb5vzWTPgNs32OF3SBAua6AdF54
+  default_config_hash: vEK-QGnEGwnqAwJhM-UbbSIdw2IfjcFpC76MHTHqY5U
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
@@ -26,14 +28,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_hero_layout:
     type: list_key
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_link:
     type: link
@@ -68,6 +70,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_pre_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_summary:
     type: text_default
     label: hidden
@@ -76,4 +86,5 @@ content:
     weight: 3
     region: content
 hidden:
+  field_sub_headline: true
   search_api_excerpt: true

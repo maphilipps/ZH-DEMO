@@ -8,6 +8,17 @@
 
 @theme {
     --color-primary: oklch(53.62% 0.1613 252.2);
+    --color-primary-50: oklch(94.97% 0.026 242.74);
+    --color-primary-100: oklch(90.1% 0.052 243.98);
+    --color-primary-200: oklch(80.87% 0.104 244.34);
+    --color-primary-300: oklch(71.66% 0.156 247.11);
+    --color-primary-400: oklch(64.74% 0.194 252.25);
+    --color-primary-500: oklch(53.62% 0.161 252.2);
+    --color-primary-600: oklch(45.4% 0.135 251.79);
+    --color-primary-700: oklch(37.04% 0.106 250.43);
+    --color-primary-800: oklch(29.18% 0.081 249.39);
+    --color-primary-900: oklch(19.37% 0.049 245.37);
+    --color-primary-950: oklch(14.13% 0.03 235.42);
     --color-secondary: oklch(76.75% 0.16089370062474417 102.29484006182389);
     --color-secondary-foreground: #ffffff;
     --color-primary-foreground: #ffffff;
@@ -26,9 +37,9 @@
     --color-neutral-950: var(--color-slate-950);
 
     --font-display: "Inter", serif;
-     --font-weight-hairline: 100;
+    --font-weight-hairline: 100;
     /* --font-weight-thin: 200; */
-     --font-weight-light: 300;
+    --font-weight-light: 300;
     --font-weight-normal: 400;
     /* --font-weight-medium: 500; */
     /* --font-weight-semibold: 600; */

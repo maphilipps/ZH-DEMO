@@ -12,17 +12,13 @@ props:
       type: string
       title: media
       description: ''
-    pre_headline:
-      type: string
-      title: heading
-      description: ''
     heading:
       type: string
       title: heading
       description: ''
-    text:
+    summary:
       type: string
-      title: text
+      title: summary
       description: ''
     hero_layout:
       type: string

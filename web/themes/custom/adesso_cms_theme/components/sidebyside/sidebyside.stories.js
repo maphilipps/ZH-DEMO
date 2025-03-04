@@ -4,10 +4,6 @@ export default {
   title: 'Editorial/Side-by-Side',
   tags: ['autodocs'],
   argTypes: {
-    eyebrow: {
-      description: 'Eyebrow displays above main title',
-      control: 'text'
-    },
     title: {
       description: 'Side-by-Side title',
       control: 'text'
@@ -16,7 +12,7 @@ export default {
       description: 'Side-by-Side image or video markup',
       control: 'text'
     },
-    summary: {
+    text: {
       description: 'Side-by-Side body text',
       control: 'text'
     },
@@ -39,7 +35,6 @@ export default {
 const mockMedia = '<img src="./images/card.webp" alt="Example image" width="1280" height="720" />';
 
 const mockSideBySide = {
-  eyebrow: 'Featured',
   title: 'Side by Side Component',
   summary: '<p>This is a sample summary for the side-by-side component.</p>',
   link: {
@@ -81,7 +76,7 @@ const mockStat2 = {
 export const WithStatCards = {
   render: () => sideBySideTemplate({
     title: 'Discover the Unmatched Advantages of Choosing DrupalX for Your Development Needs',
-    summary: '<p>DrupalX combines the power of decoupled architecture with AI-driven optimization to enhance your web projects. Experience lightning-fast performance and intuitive design tools that simplify your workflow.</p>',
+    text: '<p>DrupalX combines the power of decoupled architecture with AI-driven optimization to enhance your web projects. Experience lightning-fast performance and intuitive design tools that simplify your workflow.</p>',
     layout: 'right',
     media: mockMedia,
     features: [mockStat1, mockStat2],

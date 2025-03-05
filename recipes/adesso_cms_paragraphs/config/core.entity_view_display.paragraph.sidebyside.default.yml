@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.sidebyside.field_eyebrow
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
@@ -23,14 +22,6 @@ targetEntityType: paragraph
 bundle: sidebyside
 mode: default
 content:
-  field_eyebrow:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_features:
     type: entity_reference_revisions_entity_view
     label: above

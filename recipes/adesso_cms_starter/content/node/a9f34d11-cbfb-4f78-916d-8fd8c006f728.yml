@@ -114,9 +114,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: 'Customizable Components'
           field_features:
             -
               entity:
@@ -236,9 +233,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: Dependable
           field_link:
             -
               uri: 'internal:/'
@@ -396,9 +390,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: Innovate
           field_features:
             -
               entity:

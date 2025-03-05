@@ -116,9 +116,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: Empower
           field_features:
             -
               entity:

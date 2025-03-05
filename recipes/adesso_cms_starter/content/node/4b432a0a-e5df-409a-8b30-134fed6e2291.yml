@@ -104,9 +104,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: 'Bootstrap UI Kits'
           field_link:
             -
               uri: 'https://www.figma.com/community/search?resource_type=mixed&sort_by=relevancy&query=bootstrap+5&editor_type=all&price=all&creators=all'
@@ -146,9 +143,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_eyebrow:
-            -
-              value: 'Project Template'
           field_link:
             -
               uri: 'https://github.com/drupalninja/drupalx-graphql'

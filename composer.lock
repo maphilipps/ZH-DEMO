@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a547cd1422e968a9f08ce46b06ede4b5",
+    "content-hash": "6e35bd6044ba72f66396e2198456e7a0",
     "packages": [
         {
             "name": "adesso/adesso_cms_ai",
@@ -36,11 +36,12 @@
             "dist": {
                 "type": "path",
                 "url": "recipes/adesso_cms_paragraphs",
-                "reference": "1035ef64b0e977b72ad58bf8833103df3ff22d0c"
+                "reference": "d989cac082104fa4390725c040fc3a52ae88ef27"
             },
             "require": {
                 "drupal/paragraphs": "^1.17",
-                "drupal/paragraphs_features": "^2.0",
+                "drupal/paragraphs_ee": "^10.0",
+                "drupal/paragraphs_features": "^2.1",
                 "drupal/viewfield": "^3.0@beta"
             },
             "type": "drupal-recipe",
@@ -6867,17 +6868,17 @@
         },
         {
             "name": "drupal/paragraphs_ee",
-            "version": "10.0.5",
+            "version": "10.0.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs_ee.git",
-                "reference": "10.0.5"
+                "reference": "10.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs_ee-10.0.5.zip",
-                "reference": "10.0.5",
-                "shasum": "a638c2a75804eb89e0934f159210a599267ee4a8"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_ee-10.0.6.zip",
+                "reference": "10.0.6",
+                "shasum": "4b04602b6cda074b86c77a8e6d64f82350818dba"
             },
             "require": {
                 "drupal/core": ">=10.0",
@@ -6891,8 +6892,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "10.0.5",
-                    "datestamp": "1729580104",
+                    "version": "10.0.6",
+                    "datestamp": "1741108032",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6918,37 +6919,59 @@
         },
         {
             "name": "drupal/paragraphs_features",
-            "version": "dev-project-update-bot-only",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/issue/paragraphs_features-3433828",
-                "reference": "140b1339653220c9eeaf699a770b454ef24476f3"
+                "url": "https://git.drupalcode.org/project/paragraphs_features.git",
+                "reference": "2.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_features-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "1e82c20d5fdcbff8615af7d6797f272e85610496"
             },
             "require": {
+                "drupal/core": "^9.2 || ^10 || ^11",
                 "drupal/paragraphs": "^1.13"
             },
             "require-dev": {
                 "drupal/gin": "^3.0"
             },
             "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.0",
+                    "datestamp": "1736258966",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
             "authors": [
                 {
                     "name": "Mladen Todorovic",
+                    "homepage": "https://www.drupal.org/user/2103716",
                     "email": "mladen.todorovic@burda.com"
                 },
                 {
                     "name": "Daniel Bosen",
+                    "homepage": "https://www.drupal.org/user/404865",
                     "email": "daniel.bosen@burda.com"
                 },
                 {
                     "name": "Christian Fritsch",
+                    "homepage": "https://www.drupal.org/user/3511180",
                     "email": "christian.fritsch@burda.com"
                 },
                 {
                     "name": "Volker Killesreiter",
+                    "homepage": "https://www.drupal.org/user/57527",
                     "email": "volker.killesreiter@burda.com"
                 },
                 {
@@ -6957,7 +6980,10 @@
                 }
             ],
             "description": "Paragraphs features for extending paragraphs widget functionality.",
-            "time": "2024-12-13T13:05:31+00:00"
+            "homepage": "https://www.drupal.org/project/paragraphs_features",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs_features"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -22122,14 +22148,7 @@
             "time": "2024-06-28T13:45:36+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "drupal/paragraphs_features",
-            "version": "dev-project-update-bot-only",
-            "alias": "2.0",
-            "alias_normalized": "2.0.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "adesso/adesso_cms_ai": 20,
@@ -22138,7 +22157,6 @@
         "adesso/adesso_cms_theme": 20,
         "drupal/drupal_cms_search": 5,
         "drupal/drupal_cms_seo_tools": 5,
-        "drupal/paragraphs_features": 20,
         "drupalninja/drupalx_ai": 20
     },
     "prefer-stable": true,

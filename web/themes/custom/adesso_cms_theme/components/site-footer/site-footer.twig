@@ -1,35 +1,20 @@
 {#
 /**
- * @param {Object} props - Component properties
- * @param {Array} props.links - Array of link objects with title and url properties
- * @param {string} props.site_logo - URL of the site logo
- * @param {number} props.site_logo_width - Width of the site logo in pixels
- * @param {number} props.site_logo_height - Height of the site logo in pixels
- * @param {string} props.site_name - Name of the site
- * @param {boolean} props.show_logo - Whether to show the logo or not
- * @param {number} props.current_year - Current year, defaults to current year
+ * @param {Array} links - Array of link objects with title and url properties
+ * @param {string} site_logo - URL of the site logo
+ * @param {string} site_name - Name of the site
+ * @param {number} current_year - Current year, defaults to current year
  */
 #}
-
-{% set props = {
-  links: links|default([]),
-  site_logo: site_logo|default(''),
-  site_logo_width: site_logo_width|default(200),
-  site_logo_height: site_logo_height|default(null),
-  site_name: site_name|default(''),
-  show_logo: show_logo|default(true),
-  current_year: current_year|default("now"|date("Y"))
-} %}
-
 <footer class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
   <div class="mx-auto max-w-screen-xl">
     <div class="flex justify-between">
       <a href="#" class="flex items-center mb-4 text-2xl font-semibold text-gray-900 lg:mb-0 dark:text-white">
-        <img src="{{ site_logo }}" alt="adesso SE Logo" title="adesso SE Logo" class="h-8"/>
+        <img src="{{ site_logo }}" alt="{{ site_name }} Logo" title="{{ site_name }} Logo" class="h-8"/>
       </a>
       {% block content %}
       <ul class="flex flex-right items-center mb-4 text-sm text-gray-500 lg:mb-0 dark:text-gray-400">
-        {% for link in props.links %}
+        {% for link in links|default([]) %}
           {% if link.url %}
             <li>
               <a href="{{ link.url }}" class="text-sm text-gray-500 mr-4 hover:underline md:mr-6">
@@ -44,7 +29,7 @@
     </div>
     <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
     <div class="sm:items-center sm:justify-between sm:flex">
-      <span class="block text-sm text-gray-500 dark:text-gray-400">© {{ props.current_year }} <a href="https://www.adesso.de" class="hover:underline">adesso SE</a>. All Rights Reserved.</span>
+      <span class="block text-sm text-gray-500 dark:text-gray-400">© {{ current_year|default("now"|date("Y")) }} <a href="https://www.adesso.de" class="hover:underline">{{ site_name }}</a>. All Rights Reserved.</span>
       <div class="flex justify-center mt-4 space-x-6 sm:mt-0">
         <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>

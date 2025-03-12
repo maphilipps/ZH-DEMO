@@ -147,18 +147,18 @@ audit dependencies:
     - composer audit --working-dir=$BUILD_DIR
   allow_failure: true
 
-build and push docker image:
-  stage: build
-  image: docker:24
-  services:
-    - docker:24-dind
-  before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - main
+#build and push docker image:
+#  stage: build
+#  image: docker:24
+#  services:
+#    - docker:24-dind
+#  before_script:
+#    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+#  script:
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+#    - docker push "$CI_REGISTRY_IMAGE"
+#  only:
+#    - main
 
 subtree split:
   stage: deploy
@@ -213,14 +213,14 @@ deploy pages:
     - public/
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
-kubectl:
-  stage: deploy
-  tags:
-    - small
-  image:
-    name: bitnami/kubectl:latest
-    entrypoint: [""]
-  script:
-    - kubectl cluster-info
-    - kubectl config set-context --current --namespace=$KUBENAMESPACE
-    - kubectl apply -f kubernetes/
+#kubectl:
+#  stage: deploy
+#  tags:
+#    - small
+#  image:
+#    name: bitnami/kubectl:latest
+#    entrypoint: [""]
+#  script:
+#    - kubectl cluster-info
+#    - kubectl config set-context --current --namespace=$KUBENAMESPACE
+#    - kubectl apply -f kubernetes/

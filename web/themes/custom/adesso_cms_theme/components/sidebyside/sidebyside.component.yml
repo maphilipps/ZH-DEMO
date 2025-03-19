@@ -4,10 +4,6 @@ description: Editorial/Side-by-Side component
 props:
   type: object
   properties:
-    eyebrow:
-      type: string
-      title: eyebrow
-      description: Eyebrow displays above main title
     title:
       type: string
       title: title
@@ -16,9 +12,9 @@ props:
       type: string
       title: media
       description: Side-by-Side image or video markup
-    summary:
+    text:
       type: string
-      title: summary
+      title: text
       description: Side-by-Side body text
     link:
       type: object

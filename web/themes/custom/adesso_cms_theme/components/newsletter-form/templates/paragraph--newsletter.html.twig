@@ -6,13 +6,10 @@
  * @see template_preprocess_block()
  */
 #}
-{%
-  set classes = []
-%}
+{% set classes = [] %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
-
   {% block content %}
     {{ content.frontend_editing }}
     {% include 'adesso_cms_theme:newsletter-form' with {

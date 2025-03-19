@@ -319,11 +319,16 @@ function adesso_cms_installer_uninstall_myself(): void {
  * Implements hook_theme_registry_alter().
  */
 function adesso_cms_installer_theme_registry_alter(array &$hooks): void {
-  global $install_state;
-  $installer_path = $install_state['profiles']['adesso_cms_installer']->getPath();
+  $profile_path = \Drupal::service('extension.list.profile')->getPath('adesso_cms_installer');
 
-  $hooks['install_page']['path'] = $installer_path . '/templates';
+  if ($profile_path) {
+    $hooks['install_page']['path'] = $profile_path . '/templates';
+  }
+  else {
+    \Drupal::logger('adesso_cms_installer')->error('Could not find the profile path for adesso_cms_installer.');
+  }
 }
+
 
 /**
  * Preprocess function for all pages in the installer.

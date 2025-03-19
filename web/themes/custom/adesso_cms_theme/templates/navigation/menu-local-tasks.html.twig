@@ -18,12 +18,13 @@
     'flex',
     'space-x-4',
     'mt-4',
-    'mb-8',
+    'mb-4',
     'list-none',
   ]
 %}
 
 <div class="container">
+  <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-4">
 	{% if primary %}
 		<h2 class="sr-only">{{ 'Primary tabs'|t }}</h2>
 		<ul{{attributes.addClass(classes)}}>
@@ -36,4 +37,5 @@
 			{{ secondary }}
 		</ul>
 	{% endif %}
+  </div>
 </div>

@@ -27,8 +27,6 @@ variables:
 .components: &components
   - DIR: recipes/adesso_cms_ai
     URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_ai.git
-  - DIR: recipes/adesso_cms_blog
-    URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_blog.git
   - DIR: recipes/adesso_cms_paragraphs
     URL: git@gitlab.adesso-group.com:1e2bb2e3/project/adesso_cms_paragraphs.git
   - DIR: recipes/adesso_cms_starter
@@ -68,8 +66,8 @@ default:
 sast:
   stage: test
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
 
 
 # Creates a Drupal CMS code base with dev dependencies installed.
@@ -141,29 +139,6 @@ test performance:
     PHPUNIT_OPTIONS: '--group=OpenTelemetry ./recipes/adesso_cms_starter'
   allow_failure: true
 
-run end-to-end tests:
-  extends: .test-base
-  allow_failure: true
-  before_script:
-    # Install Cypress' system dependencies.
-    # See https://docs.cypress.io/guides/getting-started/installing-cypress#UbuntuDebian
-    - apt-get update
-    - apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
-    - !reference ['.test-base', 'before_script']
-  variables:
-    # @see cypress.config.js
-    DDEV_DOCROOT: $_PROJECT_ROOT/$_WEB_ROOT
-  script:
-    - corepack enable
-    - yarn set version berry
-    - yarn install
-    - yarn test
-  artifacts:
-    paths:
-      - cypress
-    when: on_failure
-    expire_in: 3 days
-
 audit dependencies:
   stage: test
   needs:
@@ -172,18 +147,18 @@ audit dependencies:
     - composer audit --working-dir=$BUILD_DIR
   allow_failure: true
 
-build and push docker image:
-  stage: build
-  image: docker:24
-  services:
-    - docker:24-dind
-  before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - main
+#build and push docker image:
+#  stage: build
+#  image: docker:24
+#  services:
+#    - docker:24-dind
+#  before_script:
+#    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+#  script:
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+#    - docker push "$CI_REGISTRY_IMAGE"
+#  only:
+#    - main
 
 subtree split:
   stage: deploy
@@ -238,14 +213,14 @@ deploy pages:
     - public/
 
 # @see https://o365adessogroup.sharepoint.com/sites/adesso_Applications/SitePages/de/Continuous%20Integration.aspx#anbindung-von-rancher.adesso-group.com
-kubectl:
-  stage: deploy
-  tags:
-    - small
-  image:
-    name: bitnami/kubectl:latest
-    entrypoint: [""]
-  script:
-    - kubectl cluster-info
-    - kubectl config set-context --current --namespace=$KUBENAMESPACE
-    - kubectl apply -f kubernetes/
+#kubectl:
+#  stage: deploy
+#  tags:
+#    - small
+#  image:
+#    name: bitnami/kubectl:latest
+#    entrypoint: [""]
+#  script:
+#    - kubectl cluster-info
+#    - kubectl config set-context --current --namespace=$KUBENAMESPACE
+#    - kubectl apply -f kubernetes/

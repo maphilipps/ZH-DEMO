@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.accordion.field_accordion_item
+    - field.field.paragraph.accordion.field_pre_headline
+    - field.field.paragraph.accordion.field_sub_headline
     - field.field.paragraph.accordion.field_title
     - paragraphs.paragraphs_type.accordion
   module:
@@ -18,7 +20,7 @@ mode: default
 content:
   field_accordion_item:
     type: paragraphs
-    weight: 1
+    weight: 2
     region: content
     settings:
       title: Item
@@ -40,7 +42,7 @@ content:
         delete_confirmation: false
         show_drag_and_drop: true
         split_text: false
-  field_title:
+  field_pre_headline:
     type: string_textfield
     weight: 0
     region: content
@@ -48,7 +50,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
   created: true
+  field_sub_headline: true
   info: true
   status: true

@@ -10,8 +10,9 @@
 		{% include 'adesso_cms_theme:hero' with {
       hero_layout: content.field_hero_layout['#items'].getString(),
       media: content.field_media|render,
+      pre_headline: content.field_pre_headline|render,
       heading: content.field_heading|render,
-      summary: content.field_summary|render,
+      text: content.field_summary|render,
       link: content.field_link[0]['#url'] ? {
         url: content.field_link[0]['#url']|render,
         title: content.field_link[0]['#title']|render,

@@ -18,8 +18,7 @@
 		{%
       include 'adesso_cms_theme:sidebyside' with {
         title: content.field_title|render,
-        eyebrow: content.field_eyebrow|render,
-        summary: content.field_summary|render,
+        text: content.field_summary|render,
         link: link,
         media: content.field_media,
         layout: content.field_sidebyside_layout['#items'].getString() ?? 'left',

@@ -21,7 +21,7 @@ id: paragraph.sidebyside.field_summary
 field_name: field_summary
 entity_type: paragraph
 bundle: sidebyside
-label: Summary
+label: Text
 description: 'Provide a brief description of the content being featured.'
 required: true
 translatable: false

@@ -8,6 +8,8 @@ dependencies:
     - field.field.paragraph.hero.field_link
     - field.field.paragraph.hero.field_link2
     - field.field.paragraph.hero.field_media
+    - field.field.paragraph.hero.field_pre_headline
+    - field.field.paragraph.hero.field_sub_headline
     - field.field.paragraph.hero.field_summary
     - paragraphs.paragraphs_type.hero
   module:
@@ -15,7 +17,7 @@ dependencies:
     - media_library
     - text
 _core:
-  default_config_hash: IIkoW-N4bWr59D9EEczW99cjNJue_cMIOt4LlXJEyiA
+  default_config_hash: mblKwRTlBHMcmqIaCeyKMzmiKgQ-1PzMDzK5fFvRBw8
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
@@ -23,7 +25,7 @@ mode: default
 content:
   field_heading:
     type: text_textfield
-    weight: 1
+    weight: 2
     region: content
     settings:
       size: 60
@@ -37,7 +39,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 4
+    weight: 6
     region: content
     settings:
       placeholder_url: ''
@@ -53,14 +55,22 @@ content:
     third_party_settings: {  }
   field_media:
     type: media_library_widget
-    weight: 2
+    weight: 3
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_summary:
     type: text_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 5
@@ -76,4 +86,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_sub_headline: true
   status: true

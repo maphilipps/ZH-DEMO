@@ -1,5 +1,4 @@
 {% set is_expanded = false %}
-
 {% embed '@adesso_cms_theme/accordion/accordion-item.twig' with {
   "item": {
     "heading": content.field_title|render,
@@ -7,8 +6,8 @@
     "is_expanded": is_expanded,
     "body": content.field_body|render,
     "link": content.field_link ? {
-      "url": content.field_link.0.url,
-      "title": content.field_link.0.title
+      "url": content.field_link.0["#url"],
+      "title": content.field_link.0["#title"]
     } : null
   }
 } only %}{% endembed %}

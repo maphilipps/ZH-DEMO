@@ -25,6 +25,22 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
+    weight: 3
+    region: content
+  field_pre_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sub_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 2
     region: content
   field_title:

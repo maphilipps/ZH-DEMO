@@ -78,6 +78,8 @@ install:
   - svg_image
   - svg_image_responsive
   - viewfield
+  - block_content
+  - twig_tweak
   - webp
 config:
   # If the config we're importing already exists, we don't really care

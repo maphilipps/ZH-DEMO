@@ -51,6 +51,7 @@
         "drupal/drupal_cms_search": "^1.0@RC",
         "drupal/drupal_cms_seo_tools": "^1.0@RC",
         "drupal/twig_field_value": "^2.0",
+        "drupal/twig_tweak": "^3.4",
         "drupalninja/drupalx_ai": "1.x-dev",
         "drush/drush": "^13",
         "vlucas/phpdotenv": "^5.6"

@@ -6,9 +6,9 @@ export default {
       control: 'text',
       description: 'Title for the accordion group',
     },
-    modifier: {
+    pre_headline: {
       control: 'text',
-      description: 'Modifier class for the accordion group'
+      description: 'Pre headline for the accordion group'
     },
     accordion_items: {
       description:

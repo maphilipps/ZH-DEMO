@@ -24,6 +24,3 @@ icons:
   dependencies:
     - core/drupal
     - core/drupalSettings
-main-menu:
-  js:
-    components/main-menu/main-menu.js: {}

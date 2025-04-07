@@ -35,10 +35,6 @@ const meta = {
       description: 'Show the site name',
       control: 'boolean',
     },
-    cta_link_count: {
-      description: 'Number of links to display as Call To Action (CTA) links',
-      control: { type: 'number' },
-    },
     items: {
       description: 'Define the array of main menu items',
       control: 'object',

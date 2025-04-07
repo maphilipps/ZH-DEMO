@@ -36,10 +36,6 @@ props:
       type: boolean
       title: show_site_name
       description: Show the site name
-    cta_link_count:
-      type: string
-      title: cta_link_count
-      description: Number of links to display as Call To Action (CTA) links
     items:
       type: object
       title: items

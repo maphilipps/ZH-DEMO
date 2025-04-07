@@ -1,7 +1,6 @@
 // Hero.stories.js
 
 import heroTemplate from './hero.twig';
-import './hero.css';
 
 export default {
   title: 'Editorial/Hero',

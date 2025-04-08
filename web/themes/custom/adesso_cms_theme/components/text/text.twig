@@ -1,8 +1,10 @@
 {% import _self as macros %}
 
-{% macro render_content(eyebrow, title, body) %}
-  {% if eyebrow %}
-    <h6 class="text-eyebrow text-sm font-semibold uppercase tracking-wide text-gray-500">{{ eyebrow }}</h6>
+{% macro render_content(pre_headline, title, body) %}
+  {% if pre_headline %}
+    <h3 class="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+      {{ pre_headline }}
+    </h3>
   {% endif %}
 
   {% if title %}
@@ -50,11 +52,11 @@
   {% endif %}
 {% endmacro %}
 
-<div class="text-container {{ className }}">
+<div class="bg-white dark:bg-gray-900 {{ className }}">
   {% if text_layout == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
       <div class="max-w-4xl lg:flex-grow">
-        {{ macros.render_content(eyebrow, title, body) }}
+        {{ macros.render_content(pre_headline, title, body) }}
       </div>
 
       {% if link.url or link2.url %}
@@ -65,7 +67,7 @@
     </div>
   {% else %}
     <div class="max-w-4xl {{ text_layout == 'centered' ? 'mx-auto text-center' : '' }}">
-      {{ macros.render_content(eyebrow, heading ?: title, body) }}
+      {{ macros.render_content(pre_headline, heading ?: title, body) }}
 
       {% if heading and text_layout != 'buttons-right' %}
         {% include '@adesso_cms_theme/heading/heading.twig' with {

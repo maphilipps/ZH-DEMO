@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text.field_body
-    - field.field.paragraph.text.field_eyebrow
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
     - field.field.paragraph.text.field_text_layout
@@ -27,14 +26,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_eyebrow:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
     region: content
   field_link:
     type: link_separate

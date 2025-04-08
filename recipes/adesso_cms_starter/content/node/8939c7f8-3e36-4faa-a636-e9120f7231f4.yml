@@ -251,9 +251,6 @@ default:
               value: 'The DrupalX documentation provides detailed information on how to use the DrupalX template and its components.'
               format: full_html
               summary: ''
-          field_eyebrow:
-            -
-              value: 'Test eyebrow'
           field_link:
             -
               uri: 'internal:/documentation'
@@ -296,9 +293,6 @@ default:
               value: 'The DrupalX documentation provides detailed information on how to use the DrupalX template and its components.'
               format: full_html
               summary: ''
-          field_eyebrow:
-            -
-              value: 'Test eyebrow'
           field_link:
             -
               uri: 'internal:/documentation'

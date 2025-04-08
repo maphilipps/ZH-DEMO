@@ -24,7 +24,7 @@
       include 'adesso_cms_theme:text' with {
         text_layout: content.field_text_layout['#items'].getString() ?? 'left',
         title: content.field_title|render,
-        eyebrow: content.field_eyebrow|render,
+        pre_headline: content.field_pre_headline|render,
         body: content.field_body|render,
         link: content.field_link[0]['#url'] ? {
           url: content.field_link[0]['#url']|render,

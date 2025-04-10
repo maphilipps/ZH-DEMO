@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.text.field_body
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
+    - field.field.paragraph.text.field_pre_headline
     - field.field.paragraph.text.field_text_layout
     - field.field.paragraph.text.field_title
     - paragraphs.paragraphs_type.text
@@ -38,6 +39,14 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_pre_headline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_text_layout:
     type: list_key

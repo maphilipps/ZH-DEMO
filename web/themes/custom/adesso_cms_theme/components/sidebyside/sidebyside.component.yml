@@ -16,6 +16,10 @@ props:
       type: string
       title: text
       description: Side-by-Side body text
+    pre_headline:
+      type: string
+      title: Pre-Headline
+      description: ''
     link:
       type: object
       title: link

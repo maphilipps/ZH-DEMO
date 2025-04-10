@@ -9,11 +9,11 @@
 
 <div class="mx-auto max-w-screen-xl">
   <div class="flex justify-between">
-    <a href="#" class="flex items-center mb-4 text-2xl font-semibold text-gray-900 lg:mb-0 dark:text-white">
+    <a href="#" class="flex items-center mb-4 text-2xl font-semibold text-gray-900 lg:mb-0">
       <img src="{{ site_logo }}" alt="{{ site_name }} Logo" title="{{ site_name }} Logo" class="h-8"/>
     </a>
     {% block content %}
-    <ul class="flex flex-right items-center mb-4 text-sm text-gray-500 lg:mb-0 dark:text-gray-400">
+    <ul class="flex flex-right items-center mb-4 text-sm text-gray-500 lg:mb-0">
       {% for link in links|default([]) %}
         {% if link.url %}
           <li>
@@ -27,9 +27,9 @@
     {% endblock %}
 
   </div>
-  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+  <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8">
   <div class="sm:items-center sm:justify-between sm:flex">
-    <span class="block text-sm text-gray-500 dark:text-gray-400">© {{ current_year|default("now"|date("Y")) }} <a href="https://www.adesso.de" class="hover:underline">{{ site_name }}</a>. All Rights Reserved.</span>
+    <span class="block text-sm text-gray-500">© {{ current_year|default("now"|date("Y")) }} <a href="https://www.adesso.de" class="hover:underline">{{ site_name }}</a>. All Rights Reserved.</span>
     <div class="flex justify-center mt-4 space-x-6 sm:mt-0">
       {{ drupal_entity('block_content', '1') }}
     </div>

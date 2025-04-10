@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
+    - field.field.paragraph.sidebyside.field_pre_headline
     - field.field.paragraph.sidebyside.field_sidebyside_layout
     - field.field.paragraph.sidebyside.field_summary
     - field.field.paragraph.sidebyside.field_title
@@ -51,6 +52,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_pre_headline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_sidebyside_layout:
     type: list_key

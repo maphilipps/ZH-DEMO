@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.text.field_body
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
+    - field.field.paragraph.text.field_pre_headline
     - field.field.paragraph.text.field_text_layout
     - field.field.paragraph.text.field_title
     - paragraphs.paragraphs_type.text
@@ -36,6 +37,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_text_layout:
     type: options_select

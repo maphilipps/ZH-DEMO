@@ -2,7 +2,7 @@
 
 {% macro render_content(pre_headline, title, body) %}
   {% if pre_headline %}
-    <h3 class="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+    <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
       {{ pre_headline }}
     </h3>
   {% endif %}
@@ -52,7 +52,7 @@
   {% endif %}
 {% endmacro %}
 
-<div class="bg-white dark:bg-gray-900 {{ className }}">
+<div class="text-container {{ className }}">
   {% if text_layout == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
       <div class="max-w-4xl lg:flex-grow">

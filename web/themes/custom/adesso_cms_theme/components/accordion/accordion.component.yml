@@ -10,8 +10,8 @@ props:
       description: Title for the accordion group
     pre_headline:
       type: string
-      title: Pre-Headline
-      description: Pre-Headline for the accordion group
+      title: pre_headline
+      description: Pre headline for the accordion group
     accordion_items:
       type: object
       title: accordion_items

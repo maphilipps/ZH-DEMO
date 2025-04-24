@@ -11,7 +11,8 @@
   {% block content %}
     {% embed 'adesso_cms_theme:gallery' with {
         section_title: content.field_title|render,
-        intro_text: content.field_body,
+        pre_headline: content.field_pre_headline|render,
+        sub_headline: content.field_sub_headline|render,
         content: content
       } only %}
       {% block gallery_items %}

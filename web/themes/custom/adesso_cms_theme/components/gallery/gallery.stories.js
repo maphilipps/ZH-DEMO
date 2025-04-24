@@ -9,16 +9,20 @@ export default {
   title: 'Editorial/Gallery',
   component: galleryLightboxTemplate,
   argTypes: {
+    pre_headline: {
+      description: 'The pre-headline of the gallery lightbox component',
+      control: 'text',
+      defaultValue: 'Optional Pre-headline',
+    },
     section_title: {
       description: 'The title of the gallery lightbox component',
       control: 'text',
       defaultValue: 'Optional Title',
     },
-    intro_text: {
-      description: 'Optional intro text for the gallery lightbox component',
+    sub_headline: {
+      description: 'The sub-headline of the gallery lightbox component',
       control: 'text',
-      defaultValue:
-        '<p>Optional summary text, turpis at luctus finibus, erat lectus convallis velit, at sodales purus lacus quis magna. Curabitur imperdiet sapien libero, fringilla ullamcorper nibh ullamcorper vitae. Proin sed luctus augue.</p>',
+      defaultValue: 'Optional Sub-headline',
     },
     gallery_items: {
       description: 'Define the array of gallery lightbox items',

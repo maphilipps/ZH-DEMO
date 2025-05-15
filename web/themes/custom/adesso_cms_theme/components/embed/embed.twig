@@ -1,8 +1,19 @@
 <div class=" border bg-card text-card-foreground border-none shadow-none {{ modifier ?? 'my-6 lg:my-25' }}">
+
+  {% if pre_headline %}
+    <h3 class="mb-4  font-bold tracking-tight leading-none text-gray-900 text-left">
+      {{ pre_headline }}
+    </h3>
+  {% endif %}
   {% if title %}
-    <div class="flex flex-col space-y-1.5 p-6 text-3xl">
+    <div class="flex flex-col p-6 text-3xl">
       <h3 class="font-semibold leading-none tracking-tight">{{ title }}</h3>
     </div>
+  {% endif %}
+  {% if sub_headline %}
+    <h3 class="mb-4 font-bold tracking-tight leading-none text-gray-900 text-left">
+      {{ sub_headline }}
+    </h3>
   {% endif %}
 
   <div class="p-6 pt-0">

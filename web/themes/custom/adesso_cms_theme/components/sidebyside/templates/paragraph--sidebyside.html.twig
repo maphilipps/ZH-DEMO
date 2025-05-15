@@ -14,11 +14,13 @@
 	{{ title_suffix }}
 
 	{% block content %}
+
     {{ content.frontend_editing }}
 		{%
       include 'adesso_cms_theme:sidebyside' with {
         title: content.field_title|render,
         text: content.field_summary|render,
+        pre_headline: content.field_pre_headline|render,
         link: link,
         media: content.field_media,
         layout: content.field_sidebyside_layout['#items'].getString() ?? 'left',

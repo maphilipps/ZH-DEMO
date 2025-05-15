@@ -1,15 +1,18 @@
-{% if section_title %}
-	<div class="mb-4 text-center">
-		<h2 class="text-3xl font-bold">{{ section_title }}</h2>
-	</div>
-{% endif %}
 
-{% if intro_text %}
-	<div class="flex justify-center mb-4">
-		<div class="text-center pb-3 md:w-2/3">
-			{{ intro_text | raw }}
-		</div>
-	</div>
+{% if pre_headline %}
+  <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
+    {{ pre_headline }}
+  </h3>
+{% endif %}
+{% if section_title %}
+
+		<h2 class="text-3xl font-bold mb-4 text-center">{{ section_title }}</h2>
+
+{% endif %}
+{% if sub_headline %}
+  <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
+    {{ sub_headline }}
+  </h3>
 {% endif %}
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -357,11 +357,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_body:
-            -
-              value: 'View images of the DrupalX template and its components.'
-              format: ''
-              summary: basic_html
           field_media_item:
             -
               entity: 9a33874e-ce03-4f0f-9c6e-164a416d574c

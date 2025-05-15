@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
+    - field.field.paragraph.sidebyside.field_pre_headline
     - field.field.paragraph.sidebyside.field_sidebyside_layout
     - field.field.paragraph.sidebyside.field_summary
     - field.field.paragraph.sidebyside.field_title
@@ -63,6 +64,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_sidebyside_layout:
     type: options_select

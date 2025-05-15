@@ -19,10 +19,22 @@ props:
       type: string
       title: site_logo
       description: URL path to the site logo
+    site_logo_width:
+      type: number
+      title: site_logo_width
+      description: Width of the site logo in pixels
+    site_logo_height:
+      type: number
+      title: site_logo_height
+      description: Height of the site logo in pixels
     site_name:
       type: string
       title: site_name
       description: Name of the site
+    show_logo:
+      type: boolean
+      title: show_logo
+      description: Whether to display the site logo
     current_year:
       type: number
       title: current_year

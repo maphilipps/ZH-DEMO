@@ -1,7 +1,6 @@
 // Hero.stories.js
 
 import heroTemplate from './hero.twig';
-import './hero.css';
 
 export default {
   title: 'Editorial/Hero',
@@ -10,7 +9,8 @@ export default {
     modifier: { control: 'text' },
     media: { control: 'text' },
     heading: { control: 'text' },
-    summary: { control: 'text' },
+    text: { control: 'text' },
+    pre_headline: { control: 'text' },
     hero_layout: {
       control: 'select',
       options: ['image_top', 'image_bottom', 'image_bottom_split'],

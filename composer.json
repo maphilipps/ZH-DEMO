@@ -9,10 +9,6 @@
         "chat": "https://drupal.org/node/314178"
     },
     "repositories": {
-        "paragraphs_features": {
-            "type": "vcs",
-            "url": "https://git.drupalcode.org/issue/paragraphs_features-3433828"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -54,9 +50,8 @@
         "drupal/drupal_cms_project": "*",
         "drupal/drupal_cms_search": "^1.0@RC",
         "drupal/drupal_cms_seo_tools": "^1.0@RC",
-        "drupal/paragraphs_ee": "^10.0",
-        "drupal/paragraphs_features": "dev-project-update-bot-only as 2.0",
         "drupal/twig_field_value": "^2.0",
+        "drupal/twig_tweak": "^3.4",
         "drupalninja/drupalx_ai": "1.x-dev",
         "drush/drush": "^13",
         "vlucas/phpdotenv": "^5.6"

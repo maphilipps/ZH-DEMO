@@ -4,12 +4,12 @@
  * Theme override to display a menu.
  */
 #}
-<div class="{{ modifier }}">
-	<ul class="flex flex-wrap justify-center space-x-4 md:justify-end">
+<div class="flex items-center {{ modifier }}">
+	<ul class="flex flex-right items-center mb-4 text-sm text-gray-500 lg:mb-0 dark:text-gray-400 justify-center space-x-4 md:justify-end">
 		{% for link in items %}
 			{% if link.url %}
 				<li>
-					<a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground {{ item_modifier }}">
+					<a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground justify-center {{ item_modifier }}">
 						{{ link.title }}
 					</a>
 				</li>

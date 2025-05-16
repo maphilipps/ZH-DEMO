@@ -4,6 +4,9 @@ export default {
   title: 'Editorial/Logo Collection',
   component: LogoCollectionTemplate,
   argTypes: {
+    pre_headline: {
+      description: 'Pre-headline text for the logo collection section',
+    },
     title: {
       description: 'Title for the logo collection section',
       control: 'text',

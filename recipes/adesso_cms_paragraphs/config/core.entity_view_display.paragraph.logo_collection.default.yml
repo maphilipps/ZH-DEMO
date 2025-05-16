@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.logo_collection.field_media_item
+    - field.field.paragraph.logo_collection.field_pre_headline
     - field.field.paragraph.logo_collection.field_title
     - image.style.medium
     - paragraphs.paragraphs_type.logo_collection

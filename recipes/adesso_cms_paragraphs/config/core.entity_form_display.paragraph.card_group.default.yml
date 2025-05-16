@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.card_group.field_card
+    - field.field.paragraph.card_group.field_pre_headline
     - field.field.paragraph.card_group.field_title
     - paragraphs.paragraphs_type.card_group
   module:
@@ -18,39 +19,31 @@ mode: default
 content:
   field_card:
     type: paragraphs
-    weight: 2
-    region: content
+    label: hidden
     settings:
-      title: Card
-      title_plural: Cards
-      edit_mode: closed
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: button
-      form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: '0'
-        convert: '0'
-        duplicate: '0'
-    third_party_settings:
-      paragraphs_features:
-        add_in_between: false
-        add_in_between_link_count: 3
-        delete_confirmation: false
-        show_drag_and_drop: true
-        show_collapse_all: false
-  field_title:
-    type: string_textfield
+      view_mode: card_group
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_pre_headline:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 0
     region: content
+  field_title:
+    type: string
+    label: hidden
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   created: true
   info: true
   status: true
+  search_api_excerpt: true

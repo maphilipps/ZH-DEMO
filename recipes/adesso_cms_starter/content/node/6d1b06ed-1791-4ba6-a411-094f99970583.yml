@@ -77,7 +77,7 @@ default:
               format: restricted_html
           field_hero_layout:
             -
-              value: image_bottom_split
+              value: image_bottom
           field_link:
             -
               uri: 'internal:/'

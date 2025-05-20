@@ -4,14 +4,14 @@ description: Editorial/Logo Collection component
 props:
   type: object
   properties:
-    pre_headline:
-      type: string
-      title: pre_headline
-      description: Pre-headline text for the logo collection section
     title:
       type: string
       title: title
       description: Title for the logo collection section
+    pre_headline:
+      type: string
+      title: Pre-Headline
+      description: ''
     logos:
       type: object
       title: logos

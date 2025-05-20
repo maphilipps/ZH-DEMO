@@ -27,7 +27,7 @@ content:
     weight: 4
     region: content
   field_pre_headline:
-    type: string
+    type: text_textfield
     label: above
     settings:
       link_to_entity: false
@@ -35,7 +35,7 @@ content:
     weight: 0
     region: content
   field_title:
-    type: string
+    type: text_textfield
     label: hidden
     settings:
       link_to_entity: false

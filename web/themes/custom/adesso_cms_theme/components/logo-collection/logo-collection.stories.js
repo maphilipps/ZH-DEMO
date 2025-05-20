@@ -6,6 +6,7 @@ export default {
   argTypes: {
     pre_headline: {
       description: 'Pre-headline text for the logo collection section',
+      control: 'text',
     },
     title: {
       description: 'Title for the logo collection section',

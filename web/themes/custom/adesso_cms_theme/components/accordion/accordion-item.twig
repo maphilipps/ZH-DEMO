@@ -1,6 +1,6 @@
 
 <h2 id="accordion-flush-heading-{{ item.accordion_instance }}">
-  <button type="button" class="flex justify-between items-center py-5 w-full font-medium text-left text-gray-900 bg-white border-b border-gray-200"
+  <button type="button" class="flex justify-between items-center py-5 w-full font-medium text-left text-gray-900 bg-white border-b border-primary-200"
           data-accordion-target="#accordion-flush-body-{{ item.accordion_instance }}"
           aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}"
           aria-controls="accordion-content-{{ item.accordion_instance }}"
@@ -22,7 +22,7 @@
 <div id="accordion-flush-body-{{ item.accordion_instance }}"
      class="{{ item.is_expanded ? '' : 'hidden' }}" aria-labelledby="accordion-flush-heading-{{ item.accordion_instance }}"
      data-accordion-content>
-  <div class="py-5 border-b border-gray-200 prose-p:mb-2 prose-p:text-gray-500">
+  <div class="py-5 border-b border-primary-200 prose-p:mb-2 prose-p:text-gray-500">
     {% block accordion_content %}
       {{ item.body }}
     {% endblock %}

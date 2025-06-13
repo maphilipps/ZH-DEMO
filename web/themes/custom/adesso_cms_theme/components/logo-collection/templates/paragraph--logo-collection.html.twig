@@ -1,13 +1,19 @@
 {%
   set classes = []
 %}
+{% set is_dark = paragraph.field_content_element_theme.value %}
 
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
   {% block content %}
     {{ content.frontend_editing }}
-    {% embed 'adesso_cms_theme:logo-collection' with { title: content.field_title|render, content: content, pre_headline: content.field_pre_headline } only %}
+    {% embed 'adesso_cms_theme:logo-collection' with {
+      title: content.field_title|render,
+      content: content,
+      pre_headline: content.field_pre_headline,
+      is_dark: is_dark,}
+      only %}
       {% block logo_items %}
         {% for i in content.field_media_item['#items'] %}
           <span class="flex justify-center items-center">

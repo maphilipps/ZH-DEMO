@@ -1,0 +1,36 @@
+uuid: 332e7929-8adf-49c0-a477-655d32be7be5
+langcode: de
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - node_revision_delete
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  node_revision_delete:
+    amount:
+      status: false
+      settings:
+        amount: 0
+    created:
+      status: false
+      settings:
+        age: 1
+    drafts:
+      status: false
+      settings:
+        age: 1
+    only_drafts:
+      status: false
+      settings:
+        age: 0
+name: Event
+type: event
+description: 'The Event content type provides a structured way to create and display events. Categories and tags help organize and filter events, while start and end dates and paragraphs provide a detailed description.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

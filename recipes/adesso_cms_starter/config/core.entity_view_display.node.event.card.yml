@@ -1,0 +1,36 @@
+uuid: fa487fb5-31f3-452d-950d-f8d1475b5997
+langcode: de
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.event.field_category
+    - field.field.node.event.field_content
+    - field.field.node.event.field_datum
+    - field.field.node.event.field_tags
+    - node.type.event
+  module:
+    - user
+id: node.event.card
+targetEntityType: node
+bundle: event
+mode: card
+content:
+  field_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_category: true
+  field_content: true
+  field_datum: true
+  langcode: true

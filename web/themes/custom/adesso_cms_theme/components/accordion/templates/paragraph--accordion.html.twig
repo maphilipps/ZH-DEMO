@@ -1,6 +1,5 @@
-{%
-  set classes = []
-%}
+{% set is_dark = paragraph.field_content_element_theme.value %}
+{% set classes = [] %}
 
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
@@ -11,6 +10,7 @@
       content: content,
       title: content.field_title|render,
       pre_headline: content.field_pre_headline|render,
+      is_dark: is_dark,
     } only %}
       {% block accordion_items %}
         {{ content.field_accordion_item }}

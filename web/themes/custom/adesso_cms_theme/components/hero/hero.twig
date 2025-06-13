@@ -1,4 +1,4 @@
-<div class="bg-white {{ modifier }}">
+<div class="{{ is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' }} {{ modifier }}">
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
 
     {% if hero_layout == 'image_top' and media %}
@@ -8,20 +8,20 @@
     {% endif %}
 
     {% if pre_headline %}
-      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl">
+      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none  md:text-3xl lg:text-4xl">
         {{ pre_headline }}
       </h3>
     {% endif %}
 
     {% if heading %}
-      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900
+      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none
               md:text-5xl lg:text-6xl">
         {{ heading }}
       </h1>
     {% endif %}
 
     {% if text %}
-      <div class="prose-p:mb-8 prose-p:text-lg prose-p:font-normal prose-p:text-gray-500
+      <div class="prose-p:mb-8 prose-p:text-lg prose-p:font-normal
                 prose-p:lg:text-xl prose-p:sm:px-168 prose-p:lg:px-48">
         {{ text }}
       </div>
@@ -30,7 +30,7 @@
     {% if link.url %}
       <a href="{{ link.url }}"
          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium
-              text-center text-white rounded-lg bg-primary hover:bg-primary/90
+              text-center rounded-lg bg-primary hover:bg-primary/90
               focus:ring-4 focus:ring-primary-300">
         {{ link.title }}
         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
@@ -43,8 +43,8 @@
 
     {% if link2.url %}
       <a href="{{ link2.url }}"
-         class="inline-flex py-3 px-5 sm:ms-4 text-base font-medium text-gray-900 focus:outline-none
-              bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700
+         class="inline-flex py-3 px-5 sm:ms-4 text-base font-medium  focus:outline-none
+              rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700
               focus:z-10 focus:ring-4 focus:ring-gray-100">
         {{ link2.title }}
       </a>

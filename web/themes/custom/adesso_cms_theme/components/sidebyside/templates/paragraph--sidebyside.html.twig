@@ -1,7 +1,7 @@
 {%
   set classes = []
 %}
-
+{% set is_dark = paragraph.field_content_element_theme.value %}
 {%
   set link = content.field_link[0] ? {
     url: content.field_link[0]['#url']|render,
@@ -20,6 +20,7 @@
       include 'adesso_cms_theme:sidebyside' with {
         title: content.field_title|render,
         text: content.field_summary|render,
+        is_dark: is_dark,
         pre_headline: content.field_pre_headline|render,
         link: link,
         media: content.field_media,

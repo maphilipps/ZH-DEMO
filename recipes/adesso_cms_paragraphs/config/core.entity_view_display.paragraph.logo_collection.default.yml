@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.logo_collection.field_content_element_theme
     - field.field.paragraph.logo_collection.field_media_item
     - field.field.paragraph.logo_collection.field_pre_headline
     - field.field.paragraph.logo_collection.field_title
@@ -17,6 +18,16 @@ targetEntityType: paragraph
 bundle: logo_collection
 mode: default
 content:
+  field_content_element_theme:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_media_item:
     type: media_thumbnail
     label: hidden

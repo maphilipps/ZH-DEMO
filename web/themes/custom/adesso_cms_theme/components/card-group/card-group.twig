@@ -1,7 +1,7 @@
 {% set grid_cols = columns == 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3' %}
-<div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16">
+<div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16 {{ is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' }}">
   {% if pre_headline %}
-    <h3 class="mb-4 font-bold text-2xl tracking-tight text-center leading-none text-gray-900">
+    <h3 class="mb-4 font-bold text-2xl tracking-tight text-center leading-none">
       {{ pre_headline }}
     </h3>
   {% endif %}

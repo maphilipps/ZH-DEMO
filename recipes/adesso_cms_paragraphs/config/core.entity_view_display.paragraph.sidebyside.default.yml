@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.sidebyside.field_content_element_theme
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
@@ -23,6 +24,16 @@ targetEntityType: paragraph
 bundle: sidebyside
 mode: default
 content:
+  field_content_element_theme:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_features:
     type: entity_reference_revisions_entity_view
     label: above

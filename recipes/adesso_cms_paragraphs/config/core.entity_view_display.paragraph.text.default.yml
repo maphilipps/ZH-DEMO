@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text.field_body
+    - field.field.paragraph.text.field_content_element_theme
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
     - field.field.paragraph.text.field_pre_headline
@@ -15,7 +16,7 @@ dependencies:
     - options
     - text
 _core:
-  default_config_hash: xiN3wxfas89OnjoKg7ROfy3qgfrlstbeLSgT99Ag_eg
+  default_config_hash: HFTJ0aQJwBv-xn1DkTh2HStUg8mcluJz-dB8RfBYwPw
 id: paragraph.text.default
 targetEntityType: paragraph
 bundle: text
@@ -27,6 +28,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_content_element_theme:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_link:
     type: link_separate
@@ -64,4 +75,5 @@ content:
     weight: 2
     region: content
 hidden:
+  field_link2: true
   search_api_excerpt: true

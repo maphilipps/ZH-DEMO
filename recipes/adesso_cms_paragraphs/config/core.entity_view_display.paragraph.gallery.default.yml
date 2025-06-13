@@ -3,13 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.gallery.field_content_element_theme
     - field.field.paragraph.gallery.field_media_item
     - field.field.paragraph.gallery.field_pre_headline
     - field.field.paragraph.gallery.field_sub_headline
     - field.field.paragraph.gallery.field_title
     - paragraphs.paragraphs_type.gallery
-  module:
-    - text
 _core:
   default_config_hash: sL8RAn685wT7NK9DSpjBa7f5h0VpsFjZCFRR2DT8ARU
 id: paragraph.gallery.default
@@ -17,6 +16,16 @@ targetEntityType: paragraph
 bundle: gallery
 mode: default
 content:
+  field_content_element_theme:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_media_item:
     type: entity_reference_entity_view
     label: hidden

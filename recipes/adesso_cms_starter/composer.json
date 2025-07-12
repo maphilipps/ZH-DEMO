@@ -4,7 +4,7 @@
     "type": "drupal-recipe",
     "license": ["GPL-2.0-or-later"],
     "require": {
-        "drupal/automatic_updates": "^3.1.6",
+        "drupal/automatic_updates": "^4.0",
         "drupal/all_entity_preview": "^1.0@alpha",
         "drupal/allowed_formats": "^3.0",
         "drupal/core": ">=10.3",
@@ -20,7 +20,7 @@
         "drupal/frontend_editing": "^1.8",
         "drupal/node_revision_delete": "^2.0@RC",
         "drupal/pathauto": "^1.13",
-        "drupal/project_browser": "^2-alpha6",
+        "drupal/project_browser": "^2.1",
         "drupal/svg_image_responsive": "^3.0",
         "drupal/webp": "^1.0@RC"
     },

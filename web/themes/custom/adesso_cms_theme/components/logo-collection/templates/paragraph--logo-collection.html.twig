@@ -4,8 +4,7 @@
 {% set is_dark = paragraph.field_content_element_theme.value %}
 
 <div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
+
   {% block content %}
     {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:logo-collection' with {

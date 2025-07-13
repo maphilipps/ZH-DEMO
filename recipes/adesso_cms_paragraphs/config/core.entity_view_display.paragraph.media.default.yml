@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.media.field_content_element_theme
     - field.field.paragraph.media.field_media
     - field.field.paragraph.media.field_title
     - paragraphs.paragraphs_type.media
@@ -31,4 +32,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_content_element_theme: true
   search_api_excerpt: true

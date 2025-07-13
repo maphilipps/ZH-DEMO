@@ -18,7 +18,9 @@
     'lg:py-16',
   ]
 %}
+{% set is_dark = paragraph.field_content_element_theme.value %}
 
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -42,4 +44,5 @@
       } only
     %}
   {% endblock %}
+</div>
 </div>

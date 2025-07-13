@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.accordion.field_accordion_item
+    - field.field.paragraph.accordion.field_content_element_theme
     - field.field.paragraph.accordion.field_pre_headline
     - field.field.paragraph.accordion.field_sub_headline
     - field.field.paragraph.accordion.field_title
@@ -42,6 +43,13 @@ content:
         delete_confirmation: false
         show_drag_and_drop: true
         split_text: false
+  field_content_element_theme:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_pre_headline:
     type: string_textfield
     weight: 0

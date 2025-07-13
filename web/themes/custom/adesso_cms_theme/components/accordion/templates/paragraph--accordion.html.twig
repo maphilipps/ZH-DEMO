@@ -1,6 +1,7 @@
 {% set is_dark = paragraph.field_content_element_theme.value %}
 {% set classes = [] %}
 
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -17,4 +18,5 @@
       {% endblock accordion_items %}
     {% endembed %}
   {% endblock %}
+</div>
 </div>

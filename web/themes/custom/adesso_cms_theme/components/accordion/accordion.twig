@@ -1,13 +1,13 @@
-<div class="{{ is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' }}">
+<div class="{{ is_dark ? 'text-gray-900' : 'text-gray-900' }}">
   <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 ">
     {% if pre_headline %}
-      <p class="mb-2 text-lg font-medium text-center">
+      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900">
         {{ pre_headline }}
-      </p>
+      </h3>
     {% endif %}
-    <h2 class="mb-6 lg:mb-8 text-3xl lg:text-4xl tracking-tight font-extrabold text-center {{ is_dark ? 'text-white' : 'text-gray-900' }}">{{ title }}</h2>
+    <h2 class="text-3xl font-bold text-center text-gray-900">{{ title }}</h2>
     <div class="mx-auto">
-      <div id="accordion-flush" data-accordion="collapse" data-active-classes="{{ is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' }}" data-inactive-classes="{{ is_dark ? 'text-white' : 'text-gray-900' }}">
+      <div id="accordion-flush" data-accordion="collapse" data-active-classes="{{ is_dark ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-900' }}" data-inactive-classes="text-gray-900">
         {% block accordion_items %}
           {% for item in accordion_items %}
             {% include '@adesso_cms_theme/accordion/accordion-item.twig' with {

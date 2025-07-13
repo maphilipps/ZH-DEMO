@@ -10,13 +10,9 @@
  */
 #}
 {% set is_dark = paragraph.field_content_element_theme.value %}
-{%
-  set classes = [
-  is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' ,
-]
-%}
 
-<div{{ attributes.addClass(classes) }}>
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
+<div{{ attributes }}>
   {{ title_prefix }}
   {{ title_suffix }}
 
@@ -42,5 +38,6 @@
     %}
   </div>
   {% endblock %}
+</div>
 </div>
 

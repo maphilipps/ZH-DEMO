@@ -9,7 +9,7 @@ id: paragraph.card_group.field_content_element_theme
 field_name: field_content_element_theme
 entity_type: paragraph
 bundle: card_group
-label: 'Content Element Theme'
+label: 'Dark Theme'
 description: ''
 required: false
 translatable: false

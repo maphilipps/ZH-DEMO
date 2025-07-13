@@ -1,5 +1,7 @@
 
 {% set is_dark = paragraph.field_content_element_theme.value %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -20,4 +22,5 @@
       {% endblock %}
     {% endembed %}
   {% endblock %}
+</div>
 </div>

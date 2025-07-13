@@ -1,9 +1,10 @@
 {%
-  set classes = [
-    'container mx-auto px-4',
-  ]
+  set classes = []
 %}
 
+{% set is_dark = paragraph.field_content_element_theme.value %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -19,4 +20,5 @@
       } only
     %}
   {% endblock %}
+</div>
 </div>

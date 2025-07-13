@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.embed.field_content_element_theme
     - field.field.paragraph.embed.field_pre_headline
     - field.field.paragraph.embed.field_script
     - field.field.paragraph.embed.field_sub_headline
@@ -49,4 +50,5 @@ content:
     weight: 1
     region: content
 hidden:
+  field_content_element_theme: true
   search_api_excerpt: true

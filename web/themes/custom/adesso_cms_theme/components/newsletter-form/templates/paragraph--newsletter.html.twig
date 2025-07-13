@@ -7,6 +7,9 @@
  */
 #}
 {% set classes = [] %}
+{% set is_dark = paragraph.field_content_element_theme.value %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -15,6 +18,8 @@
     {% include 'adesso_cms_theme:newsletter-form' with {
       title: content.field_title|render,
       summary: content.field_summary|render,
+      is_dark: is_dark,
     } only %}
   {% endblock %}
+</div>
 </div>

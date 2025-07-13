@@ -10,7 +10,7 @@
     {% embed 'adesso_cms_theme:card-group' with {
       section_title: content.field_title|render,
       is_dark: is_dark,
-      pre_headline: content.field_pre_headline,
+      pre_headline: paragraph.field_pre_headline.value,
       content: content,
       columns: content.field_card['#items']|length ~ '' } only %}
       {% block card_items %}

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.newsletter.field_content_element_theme
+    - field.field.paragraph.newsletter.field_pre_headline
     - field.field.paragraph.newsletter.field_summary
     - field.field.paragraph.newsletter.field_title
     - paragraphs.paragraphs_type.newsletter
@@ -14,6 +15,14 @@ targetEntityType: paragraph
 bundle: newsletter
 mode: default
 content:
+  field_pre_headline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_summary:
     type: basic_string
     label: hidden

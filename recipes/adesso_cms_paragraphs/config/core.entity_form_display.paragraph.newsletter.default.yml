@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.newsletter.field_content_element_theme
+    - field.field.paragraph.newsletter.field_pre_headline
     - field.field.paragraph.newsletter.field_summary
     - field.field.paragraph.newsletter.field_title
     - paragraphs.paragraphs_type.newsletter
@@ -21,6 +22,14 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_summary:
     type: string_textarea
     weight: 5
@@ -31,7 +40,7 @@ content:
     third_party_settings: {  }
   field_title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60

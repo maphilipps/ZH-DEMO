@@ -1,20 +1,12 @@
 {% set is_dark = paragraph.field_content_element_theme.value %}
-{%
-  set classes = [
-    'container',
-    'my-6 my-lg-15',
-    'py-8',
-    'lg:py-16',
-    'mx-auto',
-    'max-w-screen-xl',
-    'px-4',
-     is_dark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900' ,
-  ]
-%}
+{% set classes = [] %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
   {% block content %}
+    {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:gallery' with {
         section_title: content.field_title|render,
         pre_headline: content.field_pre_headline|render,
@@ -29,4 +21,5 @@
       {% endblock %}
     {% endembed %}
   {% endblock %}
+</div>
 </div>

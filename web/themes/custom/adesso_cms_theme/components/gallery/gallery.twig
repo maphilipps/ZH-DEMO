@@ -1,28 +1,23 @@
 
-{% if pre_headline %}
-  <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-center">
-    {{ pre_headline }}
-  </h3>
-{% endif %}
-{% if section_title %}
+<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+  {% if pre_headline %}
+    <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900">
+      {{ pre_headline }}
+    </h3>
+  {% endif %}
+  {% if section_title %}
+    <h2 class="text-3xl font-bold mb-8 text-center">{{ section_title }}</h2>
+  {% endif %}
 
-		<h2 class="text-3xl font-bold mb-4 text-center">{{ section_title }}</h2>
-
-{% endif %}
-{% if sub_headline %}
-  <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-center">
-    {{ sub_headline }}
-  </h3>
-{% endif %}
-
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-	{% block gallery_items %}
-		{% for item in gallery_items %}
-			{%
-        include '@adesso_cms_theme/gallery/gallery-item.twig' with {
-          "item": item
-        } only
-      %}
-		{% endfor %}
-	{% endblock %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {% block gallery_items %}
+      {% for item in gallery_items %}
+        {%
+          include '@adesso_cms_theme/gallery/gallery-item.twig' with {
+            "item": item
+          } only
+        %}
+      {% endfor %}
+    {% endblock %}
+  </div>
 </div>

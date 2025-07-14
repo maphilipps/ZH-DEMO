@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.media.field_content_element_theme
     - field.field.paragraph.media.field_media
+    - field.field.paragraph.media.field_pre_headline
     - field.field.paragraph.media.field_title
     - paragraphs.paragraphs_type.media
 _core:
@@ -21,7 +22,15 @@ content:
       view_mode: hero
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
+    region: content
+  field_pre_headline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_title:
     type: string
@@ -29,7 +38,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
   field_content_element_theme: true

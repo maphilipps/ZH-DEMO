@@ -22,16 +22,14 @@
     {{ content.frontend_editing }}
     
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-      {% if (content.field_title) %}
-        {%
-          include 'adesso_cms_theme:heading' with {
-            "heading": {
-              "title": content.field_title|render,
-              "heading_level": "2",
-              "modifier": "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-8 lg:mb-8",
-            },
-          } only
-        %}
+      {% if content.field_pre_headline %}
+        <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
+          {{ content.field_pre_headline|render }}
+        </h3>
+      {% endif %}
+      
+      {% if content.field_title %}
+        <h2 class="text-3xl font-bold mb-8 text-center">{{ content.field_title|render }}</h2>
       {% endif %}
 
       {%

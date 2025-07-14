@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.pricing.field_content_element_theme
     - field.field.paragraph.pricing.field_eyebrow
     - field.field.paragraph.pricing.field_pricing_cards
     - field.field.paragraph.pricing.field_summary
@@ -20,6 +21,13 @@ targetEntityType: paragraph
 bundle: pricing
 mode: default
 content:
+  field_content_element_theme:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_eyebrow:
     type: string_textfield
     weight: 0

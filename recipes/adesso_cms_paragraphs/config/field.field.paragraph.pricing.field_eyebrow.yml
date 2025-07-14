@@ -11,8 +11,8 @@ id: paragraph.pricing.field_eyebrow
 field_name: field_eyebrow
 entity_type: paragraph
 bundle: pricing
-label: Eyebrow
-description: 'Provide a short label for this content.'
+label: Pre-Headline
+description: ''
 required: false
 translatable: false
 default_value: {  }

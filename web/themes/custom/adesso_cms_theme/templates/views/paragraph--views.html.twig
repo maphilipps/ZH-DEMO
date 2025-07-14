@@ -1,36 +1,36 @@
-{%
-  set classes = [
-    wrapper_class,
-    'my-6 lg:my-25 border-none shadow-none',
-  ]
-%}
+{% set is_dark = paragraph.field_content_element_theme.value %}
+{% set classes = [] %}
 
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
-
-  <div class="">
-    {% block content %}
+  {% block content %}
+    {{ content.frontend_editing }}
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+      {% if content.field_pre_headline %}
+        <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
+          {{ content.field_pre_headline|render }}
+        </h3>
+      {% endif %}
+      
       {% if content.field_title %}
-        {%
-          include 'adesso_cms_theme:heading' with {
-            "heading": {
-              "title": content.field_title|render,
-              "heading_level": "2",
-              "modifier": " mb-4 lg:mb-6 text-center",
-            },
-          } only
-        %}
+        <h2 class="text-3xl font-bold mb-8 text-center">{{ content.field_title|render }}</h2>
       {% endif %}
-      {{ content|without('field_title', 'field_link') }}
+      
+      {{ content|without('field_title', 'field_link', 'field_pre_headline', 'field_content_element_theme', 'frontend_editing') }}
+      
       {% if content.field_link[0]['#url'] %}
-        {% include 'adesso_cms_theme:button' with {
-          "button": {
-            "url": content.field_link[0]['#url'],
-            "text": content.field_link[0]['#title'],
-          }
-        } only %}
+        <div class="text-center mt-6">
+          {% include 'adesso_cms_theme:button' with {
+            "button": {
+              "url": content.field_link[0]['#url'],
+              "text": content.field_link[0]['#title'],
+            }
+          } only %}
+        </div>
       {% endif %}
-    {% endblock %}
-  </div>
+    </div>
+  {% endblock %}
+</div>
 </div>

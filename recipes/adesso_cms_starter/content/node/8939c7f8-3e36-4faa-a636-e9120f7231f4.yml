@@ -643,39 +643,6 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
-          uuid: 60e62e71-1248-4bf5-950c-b277f6be5aa4
-          bundle: quote
-          default_langcode: de
-        default:
-          status:
-            -
-              value: true
-          created:
-            -
-              value: 1724541785
-          behavior_settings:
-            -
-              value: {  }
-          revision_translation_affected:
-            -
-              value: true
-          field_author:
-            -
-              value: 'John Doe'
-          field_job_title:
-            -
-              value: 'Web Developer'
-          field_logo:
-            -
-              entity: 4be51289-637f-4ea0-9909-09f719d36683
-          field_quote:
-            -
-              value: 'This is a quote from a satisfied DrupalX user.'
-    -
-      entity:
-        _meta:
-          version: '1.0'
-          entity_type: paragraph
           uuid: 11cf657b-d24c-4580-87bd-193509a8491d
           bundle: embed
           default_langcode: de

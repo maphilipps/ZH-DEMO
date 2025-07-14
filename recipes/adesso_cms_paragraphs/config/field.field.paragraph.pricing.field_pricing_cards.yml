@@ -78,9 +78,6 @@ settings:
       pricing_card:
         weight: 39
         enabled: true
-      quote:
-        weight: 40
-        enabled: false
       sidebyside:
         weight: 41
         enabled: false

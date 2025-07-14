@@ -42,9 +42,6 @@ settings:
       media:
         weight: 14
         enabled: false
-      quote:
-        weight: 15
-        enabled: false
       text:
         weight: 17
         enabled: false

@@ -68,9 +68,6 @@ settings:
       newsletter:
         weight: 27
         enabled: false
-      quote:
-        weight: 28
-        enabled: false
       sidebyside:
         weight: 29
         enabled: false

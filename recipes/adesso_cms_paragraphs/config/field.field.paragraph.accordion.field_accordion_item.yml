@@ -63,9 +63,6 @@ settings:
       media:
         weight: 29
         enabled: false
-      quote:
-        weight: 30
-        enabled: false
       text:
         weight: 31
         enabled: false

@@ -1,0 +1,21 @@
+uuid: e6d93e46-311c-4e8a-862c-0e8d0b562641
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.slider
+_core:
+  default_config_hash: 6d4U-j79AsQ1M-FtK3V65W5luxPP60n1wBFZeSqIEW0
+id: paragraph.slider.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: slider
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

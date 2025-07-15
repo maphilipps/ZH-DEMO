@@ -1,0 +1,12 @@
+uuid: 5cada2e4-6a08-42dc-af2a-7440a05a1035
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mHwtmcaQ1rkv_6bVP7F8FAjTGqg3NBnLRBZj5rTQkaF
+id: slider
+label: Slider
+icon_uuid: null
+icon_default: null
+description: 'A slider component based on Flowbite.'
+behavior_plugins: {  }

@@ -1,9 +1,11 @@
-<div class="{{ modifier }}">
+<div class="hero-wrapper {{ modifier }}">
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
 
     {% if hero_layout == 'image_top' and media %}
       <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
-        {{ media }}
+        <div class="relative aspect-[16/9] overflow-hidden rounded-lg [&>img]:absolute [&>img]:inset-0 [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
+          {{ media }}
+        </div>
       </div>
     {% endif %}
 
@@ -52,13 +54,17 @@
 
     {% if hero_layout == 'image_bottom' and media %}
       <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
-        {{ media }}
+        <div class="relative aspect-[16/9] overflow-hidden rounded-lg [&>img]:absolute [&>img]:inset-0 [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
+          {{ media }}
+        </div>
       </div>
     {% endif %}
 
     {% if hero_layout == 'image_bottom_split' and media %}
-      <div class="mt-6 lg:mt-12 flex justify-center items-center">
-        {{ media }}
+      <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
+        <div class="relative aspect-[16/9] overflow-hidden rounded-lg [&>img]:absolute [&>img]:inset-0 [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
+          {{ media }}
+        </div>
       </div>
     {% endif %}
   </div>

@@ -4,10 +4,6 @@ description: Editorial/Card Group component
 props:
   type: object
   properties:
-    pre_headline:
-      type: string
-      title: pre_headline
-      description: The title of the card list component
     section_title:
       type: string
       title: section_title

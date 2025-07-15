@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a slider paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode of this paragraph.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% set is_dark = paragraph.field_content_element_theme.value %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {{ content.frontend_editing }}
+    
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+      {% if content.field_pre_headline %}
+        <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none {{ is_dark ? 'text-gray-900' : 'text-gray-900' }} text-center md:text-3xl lg:text-4xl">
+          {{ content.field_pre_headline|render }}
+        </h3>
+      {% endif %}
+      
+      {% if content.field_title %}
+        <h2 class="text-4xl font-extrabold tracking-tight leading-none mb-8 text-center {{ is_dark ? 'text-gray-900' : 'text-gray-900' }} md:text-5xl lg:text-6xl">{{ content.field_title|render }}</h2>
+      {% endif %}
+
+      {% set items = [] %}
+      {% if content.field_slider_item['#items'] %}
+        {% for item in content.field_slider_item['#items'] %}
+          {% set items = items|merge([content.field_slider_item[loop.index0]]) %}
+        {% endfor %}
+      {% endif %}
+      
+      <div class="max-w-[1536px] mx-auto">
+        {% include "@adesso_cms_theme/slider/slider.twig" with {
+          items: items,
+        } %}
+      </div>
+    </div>
+  {% endblock %}
+</div>
+</div>

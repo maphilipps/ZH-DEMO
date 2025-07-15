@@ -154,6 +154,7 @@ config:
             - newsletter
             - pricing
             - sidebyside
+            - slider
             - text
             - views
         hover_highlight: false

@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a slider item paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode of this paragraph.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include "@adesso_cms_theme/slider/slider-item.twig" with {
+  media: content.field_media,
+  title: content.field_title,
+  summary: content.field_summary,
+} %}

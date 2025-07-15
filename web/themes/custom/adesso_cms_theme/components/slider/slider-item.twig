@@ -1,0 +1,20 @@
+{# @component Slider Item #}
+<div class="absolute inset-0 flex items-center justify-center">
+  {% if media %}
+    <div class="w-full h-full [&_img]:w-full [&_img]:h-full [&_img]:object-cover">
+      {{ media }}
+    </div>
+  {% endif %}
+</div>
+
+{% if title or summary %}
+  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white z-10">
+    {% if title %}
+      <h3 class="text-2xl font-bold mb-2">{{ title }}</h3>
+    {% endif %}
+    
+    {% if summary %}
+      <p class="text-sm">{{ summary }}</p>
+    {% endif %}
+  </div>
+{% endif %}

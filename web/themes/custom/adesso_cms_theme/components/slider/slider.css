@@ -1,0 +1,29 @@
+/**
+ * Slider component styles
+ */
+
+/* Ensure the carousel maintains its aspect ratio */
+[data-carousel] .aspect-\[16\/9\] {
+  aspect-ratio: 16 / 9;
+}
+
+/* Ensure the carousel items fill the container */
+[data-carousel] [data-carousel-item] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+
+/* Prevent layout shift during animations */
+[data-carousel] [data-carousel-item] > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure images fill the container while maintaining aspect ratio */
+[data-carousel] img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

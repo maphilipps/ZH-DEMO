@@ -10,7 +10,7 @@
  */
 #}
 {% set is_dark = theme == 'dark' %}
-{% set border_class = is_dark ? 'divide-gray-700' : 'divide-gray-200' %}
+{% set border_class = is_dark ? 'divide-gray-300' : 'divide-gray-200' %}
 
 <div>
   <div>
@@ -25,7 +25,7 @@
     {% endif %}
 
     <div class="mt-8">
-      <ul class="divide-y {{ border_class }}">
+      <ul class="[&>li:last-child]:border-b-0">
         {% block download_items %}
           {% for item in items %}
             {{ item }}

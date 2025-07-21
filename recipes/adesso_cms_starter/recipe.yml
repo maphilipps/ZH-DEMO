@@ -148,7 +148,6 @@ config:
             - card_group
             - carousel
             - download
-            - download_item
             - embed
             - gallery
             - hero

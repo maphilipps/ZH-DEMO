@@ -20,21 +20,22 @@
 {% set file_name = paragraph.field_file_name.value|default('')|trim %}
 {% set file_description = paragraph.field_file_description.value is iterable ? paragraph.field_file_description.value.value|default('')|trim : paragraph.field_file_description.value|default('')|trim %}
 {% set display_name = file_name ? file_name : file_filename %}
+{% set parent = paragraph.getParentEntity() %}
+{% set is_dark = parent and parent.field_content_element_theme ? parent.field_content_element_theme.value : false %}
 
 <div{{ attributes }}>
   {{ title_prefix }}
   {{ title_suffix }}
   {% block paragraph %}
     {% block content %}
-      {{ content.frontend_editing }}
-      
       {% include 'adesso_cms_theme:download-item' with {
         file_url: file_url,
         file_name: display_name,
         file_description: file_description,
         file_size: file_size,
         file_extension: file_extension,
-        has_description: file_description ? true : false
+        has_description: file_description ? true : false,
+        is_dark: is_dark
       } %}
     {% endblock %}
   {% endblock paragraph %}

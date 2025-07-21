@@ -8,11 +8,14 @@
  * @param {string} file_description - Optional description of the file
  * @param {number} file_size - File size in bytes
  * @param {string} file_extension - File extension (pdf, doc, etc.)
+ * @param {boolean} is_dark - Whether parent has dark theme
+ * @param {boolean} is_last - Whether this is the last item
  */
 #}
 {% set file_size_kb = (file_size / 1024)|round(0, 'ceil') %}
+{% set border_color = is_dark ? 'border-gray-300' : 'border-gray-200' %}
 
-<li class="py-4">
+<li class="py-4 border-b {{ border_color }}">
   <div class="flex items-center space-x-4 rtl:space-x-reverse">
     <div class="flex-shrink-0">
       <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">

@@ -2,21 +2,35 @@
 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
   <div class="mx-auto max-w-lg text-center mb-8">
     {% if pre_headline %}
-      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
-        {{ pre_headline }}
-      </h3>
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: pre_headline,
+          as: 'h3',
+          custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
+        }
+      } %}
     {% endif %}
     {% if title %}
-      <h2 class="text-3xl font-bold mb-4">{{ title }}</h2>
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: title,
+          as: 'h2',
+          custom_classes: 'text-3xl font-bold mb-4'
+        }
+      } %}
     {% endif %}
     {% if summary %}
-      <div class="text-gray-600">{{ summary|raw }}</div>
+      <div class="text-gray-600">{{ summary|render }}</div>
     {% endif %}
   </div>
-  <div class="grid grid-cols-1 gap-6 sm:gap-8 {{ grid_columns == 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3' }}">
+  {% set cols = grid_columns|default('3') %}
+  {% if cols not in ['0', '2', '3'] or cols is null %}
+    {% set cols = '3' %}
+  {% endif %}
+  <div class="grid grid-cols-1 gap-6 sm:gap-8 {{ cols == '2' ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3' }}">
     {% block pricing_cards %}
       {% for card in cards %}
-        {% include '@adesso_cms_theme/pricing/pricing-card.twig' with {
+        {% include 'adesso_cms_theme:pricing-card' with {
           pre_headline: card.eyebrow,
           title: card.title,
           monthly_label: card.monthly_label,

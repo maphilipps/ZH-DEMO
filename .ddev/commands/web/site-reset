@@ -1,0 +1,37 @@
+#!/bin/bash
+
+## Description: Reset site to clean installation state with default content
+## Usage: site-reset
+## Example: "ddev site-reset"
+
+set -eu -o pipefail
+
+echo "🔄 Resetting site to clean installation state..."
+
+# Clear all caches
+echo "🧹 Clearing caches..."
+drush cache:rebuild
+
+# Import configuration
+echo "⚙️  Importing configuration..."
+drush config:import --yes
+
+# Import default content if available
+if [ -d "$DDEV_DOCROOT/../content/default" ]; then
+    echo "📦 Importing default content..."
+    drush default-content:import --folder=$DDEV_DOCROOT/../content/default
+else
+    echo "⚠️  No default content found, skipping content import."
+fi
+
+# Run database updates
+echo "🔄 Running database updates..."
+drush updatedb --yes
+
+# Clear final cache
+echo "🧹 Final cache clear..."
+drush cache:rebuild
+
+echo "✅ Site reset completed!"
+echo "🎉 Your site is now in clean installation state with default content."
+echo "💡 Use 'ddev launch' to view your reset site."

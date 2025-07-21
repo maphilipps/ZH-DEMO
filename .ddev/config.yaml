@@ -16,14 +16,15 @@ corepack_enable: true
 hooks:
     post-start:
         - exec: echo '================================================================================='
-        - exec: echo '                                  NOTICE'
+        - exec: echo '                            ADESSO CMS READY'
         - exec: echo '================================================================================='
-        - exec: echo 'The node.js container is ready. You can start storybook by typing:'
-        - exec: echo 'ddev yarn storybook'
+        - exec: echo 'Theme development commands:'
+        - exec: echo '  ddev theme dev     # Start Vite dev server'
+        - exec: echo '  ddev theme watch   # Watch for changes'
+        - exec: echo '  ddev theme build   # Build production assets'
         - exec: echo
-        - exec: echo 'By default it will be available at https://adesso-cms.ddev.site:6006'
-        - exec: echo "Use ddev describe to confirm if this doesn't work."
-        - exec: echo 'Check the status of startup by running "ddev logs --follow --time"'
+        - exec: echo 'Storybook (manual start):'
+        - exec: echo '  ddev theme storybook  # Start Storybook at https://adesso-cms.ddev.site:6006'
         - exec: echo '================================================================================='
 webimage_extra_packages: [xdg-utils, pkg-config, libpixman-1-dev, libcairo2-dev, libpango1.0-dev, make]
 nodejs_version: "18"

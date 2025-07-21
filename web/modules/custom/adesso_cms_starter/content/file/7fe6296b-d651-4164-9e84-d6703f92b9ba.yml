@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7fe6296b-d651-4164-9e84-d6703f92b9ba
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: HR-Dortmund-Francesco-Teaser-DX-STEF4561_3000_2000.webp
+  uri:
+    -
+      value: 'public://2025/01/08/HR-Dortmund-Francesco-Teaser-DX-STEF4561_3000_2000.webp'
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 518592
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1736351334

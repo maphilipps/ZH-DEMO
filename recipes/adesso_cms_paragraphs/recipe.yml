@@ -13,3 +13,9 @@ install:
   - paragraphs
   - paragraphs_features
   - viewfield
+
+config:
+  import:
+    # Import field_paragraphs configuration for basic page content type
+    paragraphs:
+      - field.field.node.page.field_paragraphs

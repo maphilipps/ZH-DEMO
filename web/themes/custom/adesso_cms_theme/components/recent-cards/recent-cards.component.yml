@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Recent Cards
+status: stable
+description: 'A container component for displaying a grid of recent content cards.'
+props:
+  type: object
+  properties:
+    content:
+      type: object
+      title: 'Content'
+      description: 'Drupal content object with rendered fields'
+      properties:
+        field_thumbnail:
+          title: 'Thumbnail Field'
+          description: 'Rendered thumbnail field'
+        field_summary:
+          title: 'Summary Field'
+          description: 'Rendered summary field'
+    label:
+      type: string
+      title: 'Label'
+      description: 'Content label/title'
+      default: ''
+    url:
+      type: string
+      title: 'URL'
+      description: 'Content URL'
+      default: ''

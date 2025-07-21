@@ -1,12 +1,12 @@
 <div class=" bg-card text-card-foreground card h-full flex flex-col">
 	{% block card_media %}
-		{% if media %}
+		{% if media|default('') %}
 			<div class="relative">
 				{% if media_link %}
 					<a href="{{ media_link }}" class="block">
 					{% endif %}
 					<div class="aspect-w-16 aspect-h-9">
-						{{ media }}
+						{{ media|default('') }}
 					</div>
 					{% if media_link %}
 					</a>
@@ -15,12 +15,12 @@
 		{% endif %}
 	{% endblock %}
 
-	<div class="flex-grow p-6 {% if body_modifier %}{{ body_modifier }}{% endif %}">
-		{% if tags %}
+	<div class="flex-grow p-6 {% if body_modifier|default('') %}{{ body_modifier|default('') }}{% endif %}">
+		{% if tags|default([]) %}
 			<ul class="flex flex-wrap gap-2 mb-4">
 				{% for tag in tags %}
 					<li class="inline-flex">
-						{% include '@adesso_cms_theme/badge/badge.twig' with {
+						{% include 'adesso_cms_theme:badge' with {
               "tag": tag,
               "modifier": 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
             } only %}
@@ -31,7 +31,7 @@
 
 		<div class="space-y-1.5">
 			{%
-        include '@adesso_cms_theme/heading/heading.twig' with {
+        include 'adesso_cms_theme:heading' with {
           "heading": {
             "title": heading.title,
             "url": heading.url,
@@ -49,7 +49,7 @@
 		{% if link.url or link2.url %}
 			<div class="flex flex-wrap gap-2 mt-6">
 				{% if link.url %}
-					{% include '@adesso_cms_theme/button/button.twig' with {
+					{% include 'adesso_cms_theme:button' with {
 						"url": link.url,
 						"text": link.text,
 						"icon": 'arrow-right',
@@ -57,7 +57,7 @@
           } only %}
 				{% endif %}
 				{% if link2.url %}
-					{% include '@adesso_cms_theme/button/button.twig' with {
+					{% include 'adesso_cms_theme:button' with {
 						"url": link2.url,
 						"text": link2.text,
 						"icon": 'arrow-right',

@@ -9,13 +9,13 @@
     {{ content.frontend_editing }}
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
       {% if content.field_pre_headline %}
-        <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
-          {{ content.field_pre_headline|render }}
-        </h3>
+        <span class="block mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
+          {{ content.field_pre_headline|render|striptags }}
+        </span>
       {% endif %}
       
       {% if content.field_title %}
-        <h2 class="text-3xl font-bold mb-8 text-center">{{ content.field_title|render }}</h2>
+        <h2 class="text-3xl font-bold mb-8 text-center">{{ content.field_title|render|striptags }}</h2>
       {% endif %}
       
       {{ content|without('field_title', 'field_link', 'field_pre_headline', 'field_content_element_theme', 'frontend_editing') }}

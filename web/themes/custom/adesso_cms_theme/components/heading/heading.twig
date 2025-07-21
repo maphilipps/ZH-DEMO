@@ -1,30 +1,65 @@
-{# Defaults to h2 (heading level 2) if no heading level is supplied. #}
-{% if heading.title %}
+{# 
+  Enhanced heading component with direct tag control.
+  - as: HTML tag to use (h1, h2, h3, h4, h5, h6, span)
+  - visual_level: Visual styling level (1-6, can be different from as tag)
+  - Defaults to h2 if no tag is supplied
+#}
+{% set title_text = heading.title|default('') %}
+{% if title_text is iterable and title_text is not same as('') %}
+  {% set title_text = title_text|render|striptags %}
+{% endif %}
+{% if title_text %}
 	{%
-    set heading_level = heading.heading_level|default('2')
+    set as_value = heading.as|default('h2')
+  %}
+  {%
+    set valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span']
+  %}
+  {%
+    set tag = as_value in valid_tags ? as_value : 'h2'
+  %}
+  {%
+    set visual_level = heading.visual_level|default(tag == 'span' ? '3' : tag|replace({'h': ''}))
   %}
 	{%
-    set heading_classes = [
-      'scroll-m-20',
-      heading.modifier ? heading.modifier,
-      heading_level == '1' ? 'text-4xl font-semibold tracking-tight lg:text-5xl' : '',
-      heading_level == '2' ? 'text-3xl font-semibold tracking-tight' : '',
-      heading_level == '3' ? 'text-2xl font-semibold tracking-tight' : '',
-      heading_level == '4' ? 'text-xl font-semibold tracking-tight' : '',
-      heading_level == '5' ? 'text-lg font-semibold tracking-tight' : '',
-      heading_level == '6' ? 'text-base font-semibold tracking-tight' : '',
+    set base_classes = [
+      tag == 'span' ? 'block' : 'scroll-m-20',
+      'tracking-tight',
+      heading.modifier|default('') ? heading.modifier,
     ]
   %}
-	<h{{heading_level}} class="{{ heading_classes|join(' ') }}">
-		{% if heading.icon %}
-			{{ heading.icon }}
-		{% endif %}
-		{% if heading.url %}
-			<a href="{{ heading.url }}" class="hover:underline">
-				{{ heading.title }}
-			</a>
-		{% else %}
-			{{ heading.title }}
-		{% endif %}
-	</h{{heading_level}}>
+  {%
+    set visual_classes = [
+      visual_level == '1' ? 'text-4xl font-extrabold lg:text-5xl xl:text-6xl' : '',
+      visual_level == '2' ? 'text-3xl font-bold' : '',
+      visual_level == '3' ? 'text-2xl font-bold' : '',
+      visual_level == '4' ? 'text-xl font-semibold' : '',
+      visual_level == '5' ? 'text-lg font-semibold' : '',
+      visual_level == '6' ? 'text-base font-semibold' : '',
+    ]
+  %}
+  {%
+    set heading_classes = base_classes|merge(visual_classes)|join(' ')
+  %}
+  
+  {# Additional custom styles can override visual_level classes #}
+  {% if heading.custom_classes|default('') %}
+    {% set heading_classes = heading.custom_classes %}
+  {% endif %}
+
+  <{{ tag }} 
+     class="{{ heading_classes }}"
+     {% if heading.id|default('') %}id="{{ heading.id }}"{% endif %}
+     {% if heading.aria_label|default('') %}aria-label="{{ heading.aria_label }}"{% endif %}>
+    {% if heading.icon|default('') %}
+      {{ heading.icon|default('') }}
+    {% endif %}
+    {% if heading.url|default('') %}
+      <a href="{{ heading.url|default('') }}" class="hover:underline">
+        {{ title_text }}
+      </a>
+    {% else %}
+      {{ title_text }}
+    {% endif %}
+  </{{ tag }}>
 {% endif %}

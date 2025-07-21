@@ -1,0 +1,13 @@
+uuid: c6bc2f0a-e7b2-48f9-b4c0-6d4dad9a396d
+langcode: de
+status: false
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: P5f-AxTqzJ9gJ6ukkfShHPaWec5j6upShDsHppx35W0
+id: node.search_index
+label: Suchindex
+description: ''
+targetEntityType: node
+cache: true

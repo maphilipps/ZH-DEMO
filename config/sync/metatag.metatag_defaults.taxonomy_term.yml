@@ -1,0 +1,12 @@
+uuid: e73d82fc-6d7a-41a2-89a5-b13a30e67e70
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SegMYK-7wW9dQMcB7oCzNJW1blmI6Cxl9CzZB4hCkiY
+id: taxonomy_term
+label: Taxonomie-Begriff
+tags:
+  canonical_url: '[term:url]'
+  description: '[term:description]'
+  title: '[term:name] | [site:name]'

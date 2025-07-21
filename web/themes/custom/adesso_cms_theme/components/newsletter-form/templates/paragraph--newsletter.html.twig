@@ -16,10 +16,10 @@
   {% block content %}
     {{ content.frontend_editing }}
     {% include 'adesso_cms_theme:newsletter-form' with {
-      pre_headline: content.field_pre_headline|render,
-      title: content.field_title|render,
-      summary: content.field_summary|render,
-      is_dark: is_dark,
+      pre_headline: paragraph.field_pre_headline.value,
+      title: paragraph.field_title.value,
+      summary: content.field_summary,
+      is_dark: is_dark ? true : false,
     } only %}
   {% endblock %}
 </div>

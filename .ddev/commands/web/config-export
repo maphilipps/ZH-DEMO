@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## Description: Export only changed Drupal configuration (diffs only)
+## Usage: config-export
+## Example: "ddev config-export"
+
+set -eu -o pipefail
+
+echo "📤 Exporting changed Drupal configuration (diffs only)..."
+
+# Check if there are configuration changes
+CHANGES=$(drush config:status --format=json | jq -r 'length')
+
+if [ "$CHANGES" -eq 0 ]; then
+    echo "✅ No configuration changes detected."
+    echo "💡 All configuration is already in sync."
+    exit 0
+fi
+
+echo "🔍 Found $CHANGES configuration changes:"
+drush config:status
+
+# Export only the changed configurations
+echo "📤 Exporting changed configurations..."
+drush config:export --diff --yes
+
+# Show what was changed
+echo "✅ Configuration changes exported to config/sync/"
+echo "📊 Changed configurations:"
+drush config:status --format=table
+
+echo "💡 Only changed configurations were exported!"
+echo "💡 Remember to commit configuration changes to git!"

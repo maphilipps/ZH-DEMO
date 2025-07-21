@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## Description: Export current content as default content for fresh installations
+## Usage: export-default-content
+## Example: "ddev export-default-content"
+
+set -eu -o pipefail
+
+echo "📦 Exporting current content as default content..."
+
+# Create default content directory if it doesn't exist
+mkdir -p $DDEV_DOCROOT/../content/default
+
+# Export nodes
+echo "📄 Exporting nodes..."
+drush default-content:export-references node --folder=$DDEV_DOCROOT/../content/default
+
+# Export taxonomy terms
+echo "🏷️  Exporting taxonomy terms..."
+drush default-content:export-references taxonomy_term --folder=$DDEV_DOCROOT/../content/default
+
+# Export media
+echo "🖼️  Exporting media..."
+drush default-content:export-references media --folder=$DDEV_DOCROOT/../content/default
+
+# Export menu links
+echo "🔗 Exporting menu links..."
+drush default-content:export-references menu_link_content --folder=$DDEV_DOCROOT/../content/default
+
+echo "✅ Default content export completed!"
+echo "📁 Content exported to content/default/"
+echo "💡 This content will be imported on fresh installations."
+echo "💡 Remember to commit content files to git!"

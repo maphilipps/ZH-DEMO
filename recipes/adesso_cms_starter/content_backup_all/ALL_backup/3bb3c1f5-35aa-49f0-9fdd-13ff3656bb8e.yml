@@ -1,0 +1,47 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 3bb3c1f5-35aa-49f0-9fdd-13ff3656bb8e
+  bundle: image
+  default_langcode: de
+  depends:
+    d3b4bd48-fb12-4e5c-a322-12602e0e8715: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: mood_personen2_2560x1440px.webp
+  created:
+    -
+      value: 1736351242
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adesso CMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-test.ddev.site/welcome'
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_media_image:
+    -
+      entity: d3b4bd48-fb12-4e5c-a322-12602e0e8715
+      alt: Personen
+      title: ''
+      width: 2560
+      height: 1440

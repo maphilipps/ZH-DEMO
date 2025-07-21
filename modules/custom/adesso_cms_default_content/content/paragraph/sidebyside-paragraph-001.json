@@ -1,0 +1,19 @@
+{
+  "uuid": "sidebyside-paragraph-001",
+  "langcode": "en",
+  "type": "sidebyside",
+  "status": true,
+  "created": "2025-01-01T00:00:00+00:00",
+  "changed": "2025-01-01T00:00:00+00:00",
+  "default_langcode": true,
+  "revision_timestamp": "2025-01-01T00:00:00+00:00",
+  "revision_default": true,
+  "revision_translation_affected": true,
+  "field_title": "Modern Development Approach",
+  "field_summary": {
+    "value": "<p>We leverage the latest technologies to deliver exceptional web experiences. Our development workflow includes component-driven development, automated testing, and continuous integration.</p><p>This approach ensures high-quality, maintainable code that scales with your business needs.</p>",
+    "format": "full_html"
+  },
+  "field_sidebyside_layout": "left",
+  "field_content_element_theme": "light"
+}

@@ -23,13 +23,24 @@
     
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
       {% if content.field_pre_headline %}
-        <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center">
-          {{ content.field_pre_headline|render }}
-        </h3>
+        {% include 'adesso_cms_theme:heading' with {
+          heading: {
+            title: content.field_pre_headline|render|striptags,
+            as: 'span',
+            visual_level: '3',
+            custom_classes: 'block mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900 text-center'
+          }
+        } %}
       {% endif %}
       
       {% if content.field_title %}
-        <h2 class="text-3xl font-bold mb-8 text-center">{{ content.field_title|render }}</h2>
+        {% include 'adesso_cms_theme:heading' with {
+          heading: {
+            title: content.field_title|render|striptags,
+            as: 'h2',
+            custom_classes: 'text-3xl font-bold mb-8 text-center'
+          }
+        } %}
       {% endif %}
 
       {%

@@ -1,0 +1,22 @@
+uuid: aae290c1-6b4d-48ce-97d2-7af4046fe5c3
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: 190J8aX6RulWi17EuhsqmqZnS1RiEVqSfvL0MC_IrMw
+id: adesso_cms_theme_breadcrumbs
+theme: adesso_cms_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

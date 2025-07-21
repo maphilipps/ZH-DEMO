@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Video Header Template
+ * New header with video background and integrated navigation
+ * 
+ * Replaces the simple blue header with a modern video header
+ */
+#}
+
+<header role="banner" class="video-header relative w-full min-h-screen overflow-hidden">
+  {# Video Background #}
+  <div class="absolute inset-0 z-0">
+    <div class="relative w-full h-full">
+      {# Animated gradient background as video placeholder #}
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600 animate-pulse"></div>
+      
+      {# Animated overlay pattern #}
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_70%)] animate-pulse"></div>
+      </div>
+      
+      {# Video Overlay for better text readability #}
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+  </div>
+
+  {# Navigation Bar #}
+  <nav class="relative z-20 w-full">
+    <div class="absolute top-0 left-0 right-0 bg-black/20 backdrop-blur-sm">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          {# Logo #}
+          <div class="flex items-center">
+            <a href="/" class="block h-auto" aria-label="{{ 'Go to homepage'|t }}">
+              <span class="text-2xl font-bold text-white">{{ 'adesso CMS'|t }}</span>
+            </a>
+          </div>
+          
+          {# Desktop Navigation #}
+          <div class="hidden lg:flex">
+            {% include '@adesso_cms_theme/main_desktop.html.twig' %}
+          </div>
+          
+          {# Mobile Navigation #}
+          {% include '@adesso_cms_theme/main_mobile.html.twig' %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {# Hero Content Area #}
+  <div class="relative z-10 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto px-4 text-center text-white">
+      <div class="max-w-4xl mx-auto">
+        {# Pre-headline #}
+        <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">
+          Willkommen bei
+        </p>
+        
+        {# Main headline #}
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+          adesso CMS
+        </h1>
+        
+        {# Subtitle #}
+        <p class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">
+          Moderne Content-Management-Lösung mit Drupal CMS, 
+          Tailwind CSS und fortschrittlicher Komponenten-Architektur.
+        </p>
+        
+        {# Action Buttons #}
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="#features" 
+            class="btn bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+          >
+            Mehr erfahren
+          </a>
+          <a 
+            href="/contact" 
+            class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+          >
+            Kontakt aufnehmen
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Scroll Down Indicator #}
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+    <a href="#content" class="text-white hover:text-gray-300 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+  </div>
+</header>

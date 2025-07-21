@@ -1,0 +1,17 @@
+uuid: 694c9bd1-6537-45cc-b6c0-9c89b1b5b2df
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SvfC1cUHfonqNmI8aEa6ot5y8NQi34bdMKqPUMFyE4k
+id: date_only
+label: 'Nur Datum'
+date_format: 'd. F Y'
+time_format: ''
+time_hour_format: ''
+allday_label: ''
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

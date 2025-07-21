@@ -1,0 +1,17 @@
+uuid: 1380412d-8b7b-44d7-9d82-ab3874b85f57
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ovGkBZLkMyAaB-QDvum_97BT_gy7sF2F2jbbOoqPTy0
+id: compact
+label: Kompakt
+date_format: 'M j Y'
+time_format: 'g:ia'
+time_hour_format: 'H:i'
+allday_label: ''
+separator: ' - '
+join: ' | '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

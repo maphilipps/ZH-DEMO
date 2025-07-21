@@ -3,8 +3,8 @@
   {% block content %}
     {% include 'adesso_cms_theme:stat-card' with {
         media: content.field_custom_icon|field_value ? content.field_custom_icon : '',
-        heading: content.field_title|render,
-        body: content.field_summary|render,
+        heading: paragraph.field_title.value,
+        body: content.field_summary,
         icon: content.field_icon|field_value,
         layout: 'center',
         border: false,

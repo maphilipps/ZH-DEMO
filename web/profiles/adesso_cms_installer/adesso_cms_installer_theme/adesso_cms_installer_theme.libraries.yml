@@ -1,0 +1,20 @@
+maintenance-page:
+  css:
+    theme:
+      css/installer-styles.css: {}
+      css/gin-variables.css: {}
+      css/fonts.css: {}
+      css/add-ons.css: {}
+  js:
+    js/progress.js: {}
+    js/language-dropdown.js: {}
+
+drupal.progress:
+  css:
+    theme:
+      css/installer-styles.css: {}
+      css/gin-variables.css: {}
+      css/fonts.css: {}
+      css/add-ons.css: {}
+  js:
+    js/progress.js: {}

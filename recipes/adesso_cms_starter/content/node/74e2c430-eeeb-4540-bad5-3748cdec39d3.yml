@@ -1,0 +1,144 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 74e2c430-eeeb-4540-bad5-3748cdec39d3
+  bundle: page
+  default_langcode: en
+  depends:
+    da8e1d35-d11a-4092-a33e-347534dd371a: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Welcome to adesso CMS'
+  created:
+    -
+      value: 1752843392
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Welcome to adesso CMS | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+  path:
+    -
+      alias: /welcome-adesso-cms
+      langcode: en
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_description:
+    -
+      value: 'Das ist meine Beschreibung.'
+  field_paragraphs:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bcad3491-44bb-48a4-acf6-65e5817418b1
+          bundle: hero
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752843490
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: false
+          field_heading:
+            -
+              value: 'Willkommen zum adessoCMS'
+              format: restricted_html
+          field_hero_layout:
+            -
+              value: image_top
+          field_media:
+            -
+              entity: da8e1d35-d11a-4092-a33e-347534dd371a
+          field_pre_headline:
+            -
+              value: 'Lorem Ipsum'
+          field_summary:
+            -
+              value: '<p>Das ist mein Text.</p>'
+              format: basic_html
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a8392887-d43d-4f78-914d-e204226c6e5c
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752849213
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_body:
+            -
+              value: '<p>Jighaaaaa</p>'
+              format: basic_html
+              summary: ''
+          field_content_element_theme:
+            -
+              value: false
+          field_pre_headline:
+            -
+              value: 'Lopen Ipsum'
+          field_text_layout:
+            -
+              value: centered
+          field_title:
+            -
+              value: 'Das ist ein TItel'
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

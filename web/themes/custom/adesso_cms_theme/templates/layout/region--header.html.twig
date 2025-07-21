@@ -1,0 +1,20 @@
+{#
+ * @file
+ * Drupal region template for header region
+ * Integrates the site-header SDC component
+ #}
+
+{%
+  set attributes = attributes.addClass([
+    'region',
+    'region-' ~ region|clean_class,
+  ])
+%}
+
+{# Get site configuration for header component #}
+
+{# Build menu items from main navigation #}
+{% set main_menu = drupal_menu('main') %}
+
+{# Use Drupal blocks instead of site-header component #}
+{{ content }}

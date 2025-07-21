@@ -1,0 +1,88 @@
+#!/bin/bash
+
+## Description: Initialize adesso CMS after installation (composer install, theme build, config import)
+## Usage: init [--import-default-content]
+## Example: "ddev init --import-default-content"
+
+set -eu -o pipefail
+
+# Check if --import-default-content flag is passed
+IMPORT_DEFAULT_CONTENT=false
+if [[ "$1" == "--import-default-content" ]]; then
+    IMPORT_DEFAULT_CONTENT=true
+fi
+
+echo "🚀 Initializing adesso CMS after installation..."
+
+# Install Composer dependencies
+echo "📦 Installing Composer dependencies..."
+composer install --no-dev --optimize-autoloader
+
+# Build theme
+echo "🎨 Building theme..."
+cd $DDEV_DOCROOT/../web/themes/custom/adesso_cms_theme
+npm install
+npm run build
+cd $DDEV_DOCROOT/..
+
+# Import configuration
+echo "⚙️  Importing configuration..."
+drush config:import --yes
+
+# Clear caches
+echo "🧹 Clearing caches..."
+drush cache:rebuild
+
+# Enable the default content module if flag is set
+if [[ "$IMPORT_DEFAULT_CONTENT" == true ]]; then
+    echo "Enabling default content module..."
+    drush en default_content -y
+    
+    echo "Creating sample content..."
+    # Create sample pages using PHP eval
+    drush php:eval "
+    \$page = \Drupal\node\Entity\Node::create([
+      'type' => 'page',
+      'title' => 'Welcome to adesso CMS',
+      'status' => 1,
+      'uid' => 1,
+    ]);
+    \$page->save();
+    echo 'Created Welcome page (ID: ' . \$page->id() . ')' . PHP_EOL;
+    
+    \$about = \Drupal\node\Entity\Node::create([
+      'type' => 'page', 
+      'title' => 'About Us',
+      'status' => 1,
+      'uid' => 1,
+    ]);
+    \$about->save();
+    echo 'Created About page (ID: ' . \$about->id() . ')' . PHP_EOL;
+    "
+    
+    echo "Rebuilding cache after content import..."
+    drush cr
+    
+    echo "✓ Default content has been imported successfully!"
+else
+    echo "Skipping default content import. Use --import-default-content flag to import sample content."
+fi
+
+# Run cron
+echo "Running cron..."
+drush cron
+
+# Clear caches one more time
+echo "Final cache clear..."
+drush cr
+
+echo "✓ adesso CMS initialization complete!"
+
+if [[ "$IMPORT_DEFAULT_CONTENT" == true ]]; then
+    echo ""
+    echo "Sample content has been created:"
+    echo "- Welcome to adesso CMS (/welcome)"
+    echo "- About Us (/about)"
+    echo ""
+    echo "You can now start creating your own content!"
+fi

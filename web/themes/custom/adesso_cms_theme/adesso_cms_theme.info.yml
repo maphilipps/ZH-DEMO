@@ -3,7 +3,7 @@ type: theme
 description: ''
 package: Other
 core_version_requirement: ^11
-'base theme': stable9
+'base theme': false
 version: 1.1.0
 starterkit: true
 libraries:
@@ -14,7 +14,8 @@ components:
       - components
       - templates
 regions:
-  primary_menu: 'Primary Menu'
+  header_left: 'Header Left (Logo)'
+  header_right: 'Header Right (Menu & Search)'
   highlighted: Highlighted
   content: Content
   footer: Footer

@@ -1,0 +1,11 @@
+uuid: 83306bdd-f1cf-492b-a36a-e148149c6300
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: _xMLTBdl3HtLacpIMtbQNK0I4a1CAXmgyXv8FFo8H34
+name: Category
+vid: category
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,26 @@
+uuid: 5339b698-b144-4a8c-b145-094a98bac3a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_image
+    - media.type.image
+    - node.type.person
+_core:
+  default_config_hash: F3EnjmNTFNUVbvRjA71D2LrAB1p1UacqzuF9B3japLs
+id: node.person.field_seo_image
+field_name: field_seo_image
+entity_type: node
+bundle: person
+label: 'SEO image'
+description: 'Upload an image to be used when the page is shared on social media sites.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+field_type: entity_reference

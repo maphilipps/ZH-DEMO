@@ -1,0 +1,22 @@
+uuid: 2202c0b6-254f-4407-aece-d29a569557a1
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: CF_DKGpQ1bNoZBsRucDvyaJEQFaXQ-bjiDVuJf03CrE
+id: adesso_cms_theme_help
+theme: adesso_cms_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(ddev drush cex:*)"
+    ],
+    "deny": []
+  }
+}

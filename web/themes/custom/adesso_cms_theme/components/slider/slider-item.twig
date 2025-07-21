@@ -10,7 +10,14 @@
 {% if title or summary %}
   <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white z-10">
     {% if title %}
-      <h3 class="text-2xl font-bold mb-2">{{ title }}</h3>
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: title,
+          as: 'span',
+          visual_level: '2',
+          custom_classes: 'block text-2xl font-bold mb-2'
+        }
+      } %}
     {% endif %}
     
     {% if summary %}

@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for the adesso_cms_starter module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_install().
+ */
+function adesso_cms_starter_install() {
+  try {
+    \Drupal::service('default_content.importer')->importContent('adesso_cms_starter');
+    \Drupal::logger('adesso_cms_starter')->notice('Default content imported successfully.');
+  } catch (\Exception $e) {
+    \Drupal::logger('adesso_cms_starter')->error('Default Content Import failed: @error', ['@error' => $e->getMessage()]);
+  }
+}
+
+function adesso_cms_starter_update_11001() {
+  try {
+    \Drupal::service('default_content.importer')->importContent('adesso_cms_starter');
+    \Drupal::logger('adesso_cms_starter')->notice('Default content imported in update.');
+  } catch (\Exception $e) {
+    \Drupal::logger('adesso_cms_starter')->error('Default Content Import failed in update: @error', ['@error' => $e->getMessage()]);
+  }
+}

@@ -1,38 +1,46 @@
 {% set grid_cols = columns == 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3' %}
 <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16">
   {% if pre_headline %}
-    <h3 class="mb-4 font-bold text-2xl tracking-tight text-center leading-none text-gray-900">
-      {{ pre_headline }}
-    </h3>
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: pre_headline,
+        as: 'span',
+        visual_level: '3',
+        custom_classes: 'block mb-4 font-bold text-2xl tracking-tight text-center leading-none text-gray-900'
+      }
+    } %}
   {% endif %}
 	{% if section_title %}
-		<h2 class="text-3xl font-bold text-center mb-6 md:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto">{{ section_title }}</h2>
+		{% include 'adesso_cms_theme:heading' with {
+		  heading: {
+		    title: section_title,
+		    as: 'h2',
+		    custom_classes: 'text-3xl font-bold text-center mb-6 md:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto'
+		  }
+		} %}
 	{% endif %}
 	<div class="grid grid-cols-1 {{ grid_cols }} lg:gap-6">
 		{% block card_items %}
 			{% for item in card_items %}
 				<div class="mb-4">
 					{% if item.type == 'custom' %}
-						{%
-							include '@adesso_cms_theme/card-group/card.twig' with {
-								media: item.media,
-								heading: item.heading,
-								summary_text: item.summary_text,
-								link: item.link,
-								tags: item.tags,
-								border: false,
-							} only
-						%}
+						{% include 'adesso_cms_theme:card' with {
+							media: item.media,
+							heading: item.heading,
+							summary_text: item.summary_text,
+							link: item.link,
+							tags: item.tags,
+							border: false,
+						} only %}
 					{% else %}
-						{% include '@adesso_cms_theme/stat-card/stat-card.twig' with {
+						{% include 'adesso_cms_theme:stat-card' with {
 							media: item.media,
 							heading: item.heading,
 							body: item.body,
 							link: item.link,
 							icon: item.icon,
 							border: false,
-						} only
-						%}
+						} only %}
 					{% endif %}
 				</div>
 			{% endfor %}

@@ -8,11 +8,11 @@
   {% block content %}
     {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:gallery' with {
-        section_title: content.field_title|render,
-        pre_headline: content.field_pre_headline|render,
-        sub_headline: content.field_sub_headline|render,
+        section_title: content.field_title['#items'].getString(),
+        pre_headline: content.field_pre_headline['#items'].getString(),
+        sub_headline: content.field_sub_headline['#items'].getString(),
         content: content,
-        is_dark: is_dark,
+        is_dark: is_dark ? true : false,
       } only %}
       {% block gallery_items %}
         {% for i in content.field_media_item['#items'] %}

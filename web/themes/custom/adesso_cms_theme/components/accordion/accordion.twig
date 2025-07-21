@@ -1,20 +1,31 @@
-<div class="{{ is_dark ? 'text-gray-900' : 'text-gray-900' }}">
+<div class="{{ (is_dark|default(false)) ? 'text-gray-900' : 'text-gray-900' }}">
   <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 ">
-    {% if pre_headline %}
-      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900">
-        {{ pre_headline }}
-      </h3>
+    {% if pre_headline|default('') %}
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: pre_headline,
+          as: 'span',
+          visual_level: '3',
+          custom_classes: 'block mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900'
+        }
+      } %}
     {% endif %}
-    <h2 class="text-3xl font-bold text-center text-gray-900">{{ title }}</h2>
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: title,
+        as: 'h2',
+        custom_classes: 'text-3xl font-bold text-center text-gray-900'
+      }
+    } %}
     <div class="mx-auto">
-      <div id="accordion-flush" data-accordion="collapse" data-active-classes="{{ is_dark ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-900' }}" data-inactive-classes="text-gray-900">
+      <div id="accordion-flush" data-accordion="collapse" data-active-classes="{{ (is_dark|default(false)) ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-900' }}" data-inactive-classes="text-gray-900">
         {% block accordion_items %}
-          {% for item in accordion_items %}
-            {% include '@adesso_cms_theme/accordion/accordion-item.twig' with {
+          {% for item in accordion_items|default([]) %}
+            {% include 'adesso_cms_theme:accordion-item' with {
               item: item,
               is_expanded: loop.first,
               accordion_instance: loop.index,
-              is_dark: is_dark,
+              is_dark: is_dark|default(false),
             } only %}
           {% endfor %}
         {% endblock %}

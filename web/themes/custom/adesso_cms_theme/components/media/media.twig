@@ -1,3 +1,3 @@
-<div class="{{ modifier ?? 'w-full' }}">
-  {{ media }}
+<div class="{{ modifier|default('w-full') }}">
+  {{ media|default('') }}
 </div>

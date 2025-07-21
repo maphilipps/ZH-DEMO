@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Carousel Item
+status: stable
+description: 'A single carousel item component.'
+props:
+  type: object
+  properties:
+    item:
+      type: object
+      title: 'Carousel Item Data'
+      description: 'Data for the carousel item'
+      properties:
+        media:
+          type: [string, "null"]
+          title: 'Media'
+          description: 'Media content for the carousel item'
+        title:
+          type: [string, "null"]
+          title: 'Title'
+          description: 'Carousel item title'
+        summary:
+          type: [string, "null"]
+          title: 'Summary'
+          description: 'Carousel item summary text'
+        url:
+          type: [string, "null"]
+          title: 'URL'
+          description: 'Link URL for the carousel item'
+        link:
+          type: [object, "null"]
+          title: 'Link Object'
+          description: 'Optional link object with url and title'
+          properties:
+            url:
+              type: [string, "null"]
+              title: 'URL'
+            title:
+              type: [string, "null"]
+              title: 'Title'
+    is_active:
+      type: boolean
+      title: 'Is Active'
+      description: 'Whether this carousel item is the active/first slide'
+      default: false
+    item_class:
+      type: [string, "null"]
+      title: 'CSS Classes'
+      description: 'Additional CSS classes for the carousel item'

@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Gallery Item
+status: stable
+description: 'A single gallery item component with modal functionality.'
+props:
+  type: object
+  properties:
+    item:
+      type: object
+      title: 'Gallery Item Data'
+      description: 'Data for the gallery item'
+      properties:
+        id:
+          type: [string, number]
+          title: 'ID'
+          description: 'Unique identifier for the gallery item'
+        media:
+          type: string
+          title: 'Media'
+          description: 'Full media content for modal display'
+        media_thumb:
+          type: string
+          title: 'Media Thumbnail'
+          description: 'Thumbnail media content for gallery grid'
+        media_description:
+          type: string
+          title: 'Media Description'
+          description: 'Description/title for the media item'

@@ -1,13 +1,13 @@
 {%
   set link = content.field_link[0] ? {
-    url: content.field_link[0]['#url']|render,
-    title: content.field_link[0]['#title']|render,
+    url: content.field_link[0]['#url']|render|striptags,
+    title: content.field_link[0]['#title']|render|striptags,
   } : {}
 %}
 
 {% embed '@adesso_cms_theme/pricing/pricing-card.twig' with {
-  "title": content.field_title|render,
-  "pre_headline": content.field_eyebrow|render,
-  "features": content.field_features_text|render|striptags|trim|split('\n'),
+  "title": content.field_title|render|striptags,
+  "pre_headline": content.field_eyebrow|render|striptags,
+  "features": content.field_features_text|render|striptags|striptags|trim|split('\n'),
   "cta_link": link,
 } only %}{% endembed %}

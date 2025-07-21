@@ -13,12 +13,24 @@ recipes:
   - drupal_cms_anti_spam
   - drupal_cms_seo_basic
   - easy_email_express
+  - drupal_cms_authentication
+  - drupal_cms_privacy_basic
+  - drupal_cms_remote_video
+  - drupal_cms_seo_tools
+  - drupal_cms_accessibility_tools
+  - drupal_cms_forms
   - adesso_cms_paragraphs
 install:
   - node
   - datetime_range
   - components
+  - address
+  - geofield
   - metatag
+  - viewfield
+  - yoast_seo
+  - smart_date
+  - leaflet
   - field_ui
   - responsive_image
   - automatic_updates
@@ -41,6 +53,13 @@ install:
   - frontend_editing
   - adesso_cms_theme
   - allowed_formats
+  # Search API modules
+  - search_api
+  - search_api_autocomplete
+  - search_api_db
+  - search_api_exclude
+  - block
+  - layout_builder
   - ckeditor5
   - config
   - content_moderation
@@ -81,13 +100,97 @@ install:
   - block_content
   - twig_tweak
   - webp
+  - webform
+  - webform_ui
+  # Additional modules from core.extension.yml
+  - add_content_by_bundle
+  - announcements_feed
+  - automated_cron
+  - autosave_form
+  - better_exposed_filters
+  - big_pipe
+  - bpmn_io
+  - breakpoint
+  - captcha
+  - checklistapi
+  - coffee
+  - crop
+  - dblog
+  - dynamic_page_cache
+  - easy_breadcrumb
+  - easy_email
+  - easy_email_override
+  - eca
+  - eca_base
+  - eca_config
+  - eca_content
+  - eca_misc
+  - eca_modeller_bpmn
+  - eca_render
+  - eca_ui
+  - eca_user
+  - editoria11y
+  - entity_reference_revisions
+  - field
+  - filter
+  - focal_point
+  - friendlycaptcha
+  - gin_toolbar
+  - honeypot
+  - jquery_ui
+  - jquery_ui_resizable
+  - key
+  - klaro
+  - mailsystem
+  - menu_link_attributes
+  - metatag_open_graph
+  - metatag_twitter_cards
+  - mysql
+  - navigation
+  - page_cache
+  - paragraphs_ai
+  - paragraphs_edit
+  - paragraphs_ee
+  - path_alias
+  - redirect_404
+  - robotstxt
+  - sam
+  - scheduler
+  - scheduler_content_moderation_integration
+  - search
+  - seo_checklist
+  - simple_search_form
+  - simple_sitemap
+  - sitemap
+  - symfony_mailer_lite
+  - system
+  - telephone
+  - text
+  - token
+  - token_or
+  - trash
+  - update
+  - user
+  - vite
+  - workflows
+  - yoast_seo
+  - selective_better_exposed_filters
+  - content_translation
+
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.
   strict: false
   import:
     adesso_cms_theme: '*'
-    node: '*'
+    block:
+      - block.block.adesso_cms_theme_branding
+      - block.block.adesso_cms_theme_mainnavigation
+      - block.block.adesso_cms_theme_pagetitle
+      - block.block.adesso_cms_theme_content
+      - block.block.adesso_cms_theme_messages
+      - block.block.adesso_cms_theme_help
+      - block.block.footer
     navigation:
       - navigation.settings
     shortcut:
@@ -170,7 +273,6 @@ config:
         allowed_projects:
           recipes:
             - drupal_cms_accessibility_tools
-            - adesso_cms_ai
             - drupal_cms_blog
             - drupal_cms_case_study
             - drupal_cms_events
@@ -186,8 +288,8 @@ config:
         allow_ui_install: true
     system.site:
       simpleConfigUpdate:
-        name: 'adesso CMS'
-        page.front: '/welcome'
+        name: 'adessoCMS'
+        page.front: '/welcome-adesso-cms'
     system.theme:
       simpleConfigUpdate:
         default: adesso_cms_theme
@@ -210,13 +312,15 @@ config:
         - 'delete any %bundle media'
         - 'edit any %bundle media'
       grantPermissions:
+        - 'create page content'
+        - 'delete page revisions'
+        - 'delete any page content'
+        - 'edit any page content'
         - 'access administration pages'
         - 'access content overview'
         - 'access contextual links'
         - 'access media overview'
         - 'access navigation'
-        # We need this permission because Toolbar is enabled by Gin Toolbar.
-        - 'access toolbar'
         - 'administer url aliases'
         - 'create url aliases'
         - 'view own unpublished media'
@@ -254,6 +358,11 @@ config:
     automatic_updates.settings:
       simpleConfigUpdate:
         allow_core_minor_updates: true
+    # Enable development mode - disable CSS/JS aggregation
+    system.performance:
+      simpleConfigUpdate:
+        css.preprocess: false
+        js.preprocess: false
     # Set metatag defaults.
     metatag.metatag_defaults.global:
       simple_config_update:
@@ -264,3 +373,46 @@ config:
         tags.abstract: '[node:summary]'
         tags.canonical_url: '[node:url]'
         tags.description: '[node:summary]'
+    field.field.node.page.field_paragraphs:
+      simpleConfigUpdate:
+        label: Inhaltselemente
+        description: 'Fügen Sie Inhaltselemente wie Text, Bilder, Galerien und andere Komponenten hinzu, um Ihre Seite zu gestalten.'
+    core.entity_view_display.node.page.default:
+      simpleConfigUpdate:
+        content.field_paragraphs:
+          type: entity_reference_revisions_entity_view
+          label: hidden
+          settings:
+            view_mode: default
+            link: ''
+          third_party_settings: {}
+          weight: 1
+          region: content
+        hidden.field_paragraphs: null
+        third_party_settings.layout_builder.enabled: false
+    core.entity_form_display.node.page.default:
+      simpleConfigUpdate:
+        content.field_paragraphs:
+          type: paragraphs
+          weight: 8
+          region: content
+          settings:
+            title: Inhaltselement
+            title_plural: Inhaltselemente
+            edit_mode: open
+            closed_mode: summary
+            autocollapse: none
+            autocollapse_default: all
+            closed_mode_threshold: 0
+            add_mode: dropdown
+            form_display_mode: default
+            default_paragraph_type: ''
+            features:
+              duplicate: duplicate
+              collapse_edit_all: collapse_edit_all
+              add_above: '0'
+          third_party_settings: {}
+        hidden.field_paragraphs: null
+        hidden.layout_builder__layout: true
+    workflows.workflow.basic_editorial:
+      addNodeTypes: ['page']

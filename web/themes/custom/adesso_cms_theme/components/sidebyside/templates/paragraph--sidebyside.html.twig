@@ -2,12 +2,45 @@
   set classes = []
 %}
 {% set is_dark = paragraph.field_content_element_theme.value %}
+
+{# Process link field #}
 {%
   set link = content.field_link[0] ? {
-    url: content.field_link[0]['#url']|render,
-    title: content.field_link[0]['#title']|render,
+    url: content.field_link[0]['#url']|render|striptags,
+    title: content.field_link[0]['#title']|render|striptags,
   } : {}
 %}
+
+{# Process features field #}
+{% set features = [] %}
+{% if content.field_features %}
+  {% for feature_item in content.field_features['#items'] %}
+    {% set feature_entity = feature_item.entity %}
+    {% if feature_entity %}
+      {% set feature_type = feature_entity.bundle() %}
+      {% set feature_data = {
+        'type': feature_type
+      } %}
+      
+      {# Process different feature types #}
+      {% if feature_type == 'bullet' %}
+        {% set feature_data = feature_data|merge({
+          'icon': feature_entity.field_icon.value,
+          'summary': feature_entity.field_summary.value
+        }) %}
+      {% elseif feature_type == 'stats_item' %}
+        {% set feature_data = feature_data|merge({
+          'heading': feature_entity.field_heading.value,
+          'body': feature_entity.field_body.value,
+          'icon': feature_entity.field_icon.value,
+          'media': feature_entity.field_media.value
+        }) %}
+      {% endif %}
+      
+      {% set features = features|merge([feature_data]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
 <div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
 <div{{attributes.addClass(classes)}}>
@@ -15,17 +48,16 @@
 	{{ title_suffix }}
 
 	{% block content %}
-
     {{ content.frontend_editing }}
 		{%
       include 'adesso_cms_theme:sidebyside' with {
-        title: content.field_title|render,
-        text: content.field_summary|render,
-        is_dark: is_dark,
-        pre_headline: content.field_pre_headline|render,
+        title: paragraph.field_title.value,
+        text: content.field_summary,
+        is_dark: is_dark ? true : false,
+        pre_headline: paragraph.field_pre_headline.value,
         link: link,
         media: content.field_media,
-        layout: content.field_sidebyside_layout['#items'].getString() ?? 'left',
+        layout: paragraph.field_sidebyside_layout.value ?? 'left',
         features: features
       } only
     %}

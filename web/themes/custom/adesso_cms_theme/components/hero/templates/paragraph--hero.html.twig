@@ -10,20 +10,19 @@
 	{% block content %}
         {{ content.frontend_editing }}
 		{% include 'adesso_cms_theme:hero' with {
-      hero_layout: content.field_hero_layout['#items'].getString(),
-      media: content.field_media|render,
-      is_dark: content.field_content_element_theme,
-      pre_headline: content.field_pre_headline|render,
-      heading: content.field_heading|render,
-      text: content.field_summary|render,
-      is_dark: is_dark,
+      hero_layout: paragraph.field_hero_layout.value,
+      media: content.field_media,
+      is_dark: is_dark ? true : false,
+      pre_headline: paragraph.field_pre_headline.value,
+      heading: paragraph.field_heading.value|render|striptags,
+      text: content.field_summary,
       link: content.field_link[0]['#url'] ? {
-        url: content.field_link[0]['#url']|render,
-        title: content.field_link[0]['#title']|render,
+        url: content.field_link[0]['#url']|render|striptags,
+        title: content.field_link[0]['#title']|render|striptags,
       } : {},
       link2: content.field_link2[0]['#url'] ? {
-        url: content.field_link2[0]['#url']|render,
-        title: content.field_link2[0]['#title']|render,
+        url: content.field_link2[0]['#url']|render|striptags,
+        title: content.field_link2[0]['#title']|render|striptags,
       } : {},
     } only %}
 	{% endblock %}

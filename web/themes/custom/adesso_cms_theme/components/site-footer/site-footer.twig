@@ -1,39 +1,237 @@
 {#
-/**
- * @param {Array} links - Array of link objects with title and url properties
- * @param {string} site_logo - URL of the site logo
- * @param {string} site_name - Name of the site
- * @param {number} current_year - Current year, defaults to current year
- */
-#}
+ * @file
+ * Site Footer component with Flowbite layout patterns
+ * Comprehensive footer with multiple layout variants and responsive design
+ #}
 
-<div class="mx-auto max-w-screen-xl">
-  <div class="flex justify-between">
-    <a href="#" class="flex items-center mb-4 text-2xl font-semibold text-gray-900 lg:mb-0">
-      <img src="{{ site_logo }}" alt="{{ site_name }} Logo" title="{{ site_name }} Logo" class="h-8"/>
-    </a>
-    {% block content %}
-    <ul class="flex flex-right items-center mb-4 text-sm text-gray-500 lg:mb-0">
-      {% for link in links|default([]) %}
-        {% if link.url %}
-          <li>
-            <a href="{{ link.url }}" class="text-sm text-gray-500 mr-4 hover:underline md:mr-6">
-              {{ link.title }}
+{%
+  set background_classes = {
+    'default': 'bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700',
+    'dark': 'bg-gray-900 border-gray-700',
+    'primary': 'bg-primary-700 border-primary-800 dark:bg-primary-800 dark:border-primary-900'
+  }
+%}
+
+{%
+  set text_classes = {
+    'default': 'text-gray-900 dark:text-white',
+    'dark': 'text-white',
+    'primary': 'text-white'
+  }
+%}
+
+{%
+  set link_classes = {
+    'default': 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white',
+    'dark': 'text-gray-400 hover:text-white',
+    'primary': 'text-primary-200 hover:text-white'
+  }
+%}
+
+<footer class="{{ background_classes[background_color] }} border-t">
+  <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
+    
+    {% if layout_variant == 'large' %}
+      {# Large Layout with Newsletter #}
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        
+        {# Brand Column #}
+        <div class="lg:col-span-2">
+          {% if show_logo and site_name %}
+            <a href="/" class="mb-6 flex items-center">
+              {% include 'adesso_cms_theme:logo' with {
+                site_logo: site_logo,
+                site_name: site_name,
+                modifier: 'h-8'
+              } %}
+              <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
             </a>
-          </li>
+          {% endif %}
+          
+          {% if tagline %}
+            <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
+          {% endif %}
+          
+          {% if newsletter_signup.enabled %}
+            <form class="flex gap-2">
+              <input type="email" 
+                     class="flex-1 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
+                     placeholder="{{ newsletter_signup.placeholder ?? 'Enter your email' }}" 
+                     required>
+              <button type="submit" 
+                      class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                {{ newsletter_signup.button_text ?? 'Subscribe' }}
+              </button>
+            </form>
+          {% endif %}
+        </div>
+        
+        {# Footer Links Columns #}
+        {% for link_group in footer_links %}
+          <div>
+            <h3 class="mb-6 text-sm font-semibold uppercase {{ text_classes[background_color] }}">{{ link_group.group_title }}</h3>
+            <ul class="space-y-4">
+              {% for link in link_group.links %}
+                <li>
+                  <a href="{{ link.url }}" class="transition-colors {{ link_classes[background_color] }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+      
+    {% elseif layout_variant == 'minimal' %}
+      {# Minimal Layout #}
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        {% if show_logo and site_name %}
+          <a href="/" class="flex items-center">
+            {% include 'adesso_cms_theme:logo' with {
+              site_logo: site_logo,
+              site_name: site_name,
+              modifier: 'h-6'
+            } %}
+            <span class="ml-2 text-lg font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+          </a>
         {% endif %}
-      {% endfor %}
-    </ul>
-    {% endblock %}
-
-  </div>
-  <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8">
-  <div class="sm:items-center sm:justify-between sm:flex">
-    <span class="block text-sm text-gray-500">© {{ current_year|default("now"|date("Y")) }} <a href="https://www.adesso.de" class="hover:underline">{{ site_name }}</a>. All Rights Reserved.</span>
-    <div class="flex justify-center mt-4 space-x-6 sm:mt-0">
-      {{ drupal_entity('block_content', '1') }}
+        
+        {% if footer_links[0].links %}
+          <ul class="flex flex-wrap gap-6">
+            {% for link in footer_links[0].links %}
+              <li>
+                <a href="{{ link.url }}" class="text-sm transition-colors {{ link_classes[background_color] }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      
+    {% elseif layout_variant == 'corporate' %}
+      {# Corporate Layout #}
+      <div class="grid gap-8 lg:grid-cols-5">
+        
+        {# Brand and Contact Info #}
+        <div class="lg:col-span-2">
+          {% if show_logo and site_name %}
+            <a href="/" class="mb-6 flex items-center">
+              {% include 'adesso_cms_theme:logo' with {
+                site_logo: site_logo,
+                site_name: site_name,
+                modifier: 'h-8'
+              } %}
+              <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+            </a>
+          {% endif %}
+          
+          {% if tagline %}
+            <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
+          {% endif %}
+          
+          {% if contact_info %}
+            <div class="space-y-3">
+              {% if contact_info.address %}
+                <p class="text-sm {{ link_classes[background_color] }}">{{ contact_info.address }}</p>
+              {% endif %}
+              {% if contact_info.phone %}
+                <p class="text-sm {{ link_classes[background_color] }}">{{ contact_info.phone }}</p>
+              {% endif %}
+              {% if contact_info.email %}
+                <p class="text-sm {{ link_classes[background_color] }}">{{ contact_info.email }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+        
+        {# Link Groups #}
+        {% for link_group in footer_links %}
+          <div>
+            <h3 class="mb-6 text-sm font-semibold uppercase {{ text_classes[background_color] }}">{{ link_group.group_title }}</h3>
+            <ul class="space-y-4">
+              {% for link in link_group.links %}
+                <li>
+                  <a href="{{ link.url }}" class="text-sm transition-colors {{ link_classes[background_color] }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+      
+    {% else %}
+      {# Default Layout #}
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        
+        {# Brand Column #}
+        <div>
+          {% if show_logo and site_name %}
+            <a href="/" class="mb-6 flex items-center">
+              {% include 'adesso_cms_theme:logo' with {
+                site_logo: site_logo,
+                site_name: site_name,
+                modifier: 'h-8'
+              } %}
+              <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+            </a>
+          {% endif %}
+          
+          {% if tagline %}
+            <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
+          {% endif %}
+        </div>
+        
+        {# Footer Links Columns #}
+        {% for link_group in footer_links %}
+          <div>
+            <h3 class="mb-6 text-sm font-semibold uppercase {{ text_classes[background_color] }}">{{ link_group.group_title }}</h3>
+            <ul class="space-y-4">
+              {% for link in link_group.links %}
+                <li>
+                  <a href="{{ link.url }}" class="text-sm transition-colors {{ link_classes[background_color] }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+    {# Separator #}
+    <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 dark:border-gray-700">
+    
+    {# Bottom Section #}
+    <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+      <span class="text-sm {{ link_classes[background_color] }}">
+        © {{ current_year|default("now"|date("Y")) }} 
+        {% if copyright_text %}
+          {{ copyright_text }}
+        {% else %}
+          <a href="/" class="hover:underline">{{ site_name }}</a>. {{ 'All Rights Reserved.'|t }}
+        {% endif %}
+      </span>
+      
+      {# Social Media Links #}
+      {% if social_links %}
+        <div class="flex gap-4">
+          {% for social in social_links %}
+            <a href="{{ social.url }}" 
+               class="transition-colors {{ link_classes[background_color] }}"
+               title="{{ social.title }}"
+               target="_blank"
+               rel="noopener noreferrer">
+              {% if social.icon %}
+                <i class="{{ social.icon }} text-lg"></i>
+              {% else %}
+                <span class="sr-only">{{ social.title }}</span>
+                <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
-</div>
+</footer>
 
 

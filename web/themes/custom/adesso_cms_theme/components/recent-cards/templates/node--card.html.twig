@@ -1,8 +1,8 @@
 {%
-  include '@adesso_cms_theme/recent-cards/recent-card-item.twig' with {
-    "media": content.field_thumbnail|render,
+  include 'adesso_cms_theme:recent-card-item' with {
+    "media": content.field_thumbnail|render|striptags,
     "title": label,
-    "summary": content.field_summary|render,
+    "summary": content.field_summary|render|striptags,
     "url": url,
   } only
 %}

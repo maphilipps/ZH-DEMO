@@ -1,0 +1,29 @@
+#!/bin/bash
+
+## Description: Import default content into fresh installation
+## Usage: import-default-content
+## Example: "ddev import-default-content"
+
+set -eu -o pipefail
+
+echo "📥 Importing default content..."
+
+# Check if default content exists
+if [ ! -d "$DDEV_DOCROOT/../content/default" ]; then
+    echo "❌ No default content found in content/default/"
+    echo "💡 Run 'ddev export-default-content' first to create default content."
+    exit 1
+fi
+
+# Clear cache first
+drush cache:rebuild
+
+# Import default content
+echo "📦 Importing content from content/default/..."
+drush default-content:import --folder=$DDEV_DOCROOT/../content/default
+
+# Clear cache after import
+drush cache:rebuild
+
+echo "✅ Default content import completed!"
+echo "💡 Your site now has the predefined content structure."

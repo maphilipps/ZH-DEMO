@@ -1,0 +1,5 @@
+name: 'adesso CMS Starter'
+type: module
+core_version_requirement: ^11
+package: 'adesso CMS'
+description: 'Dummy-Modul für Default Content Import aus dem adesso_cms_starter Recipe.'

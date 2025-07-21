@@ -1,17 +1,57 @@
 {#
 /**
  * @file
- * Theme override to display a social menu with icons.
+ * Drupal menu template for main navigation
+ * Maps Drupal menu data to main-menu SDC component using CivicTheme structure
  */
 #}
 
-{%
-  include 'adesso_cms_theme:main-menu' with
-    {
-      modifier: '',
-      link_modifier: '',
-      menu_items: items,
-      attributes: attributes,
+{# Map Drupal menu data to CivicTheme component structure #}
+{% set menu_items = [] %}
+{% if items %}
+  {% for item in items %}
+    {% set sub_items = [] %}
+    {% if item.below %}
+      {% for sub_item in item.below %}
+        {% set sub_item_data = {
+          'title': sub_item.title ? sub_item.title : '',
+          'url': sub_item.url ? sub_item.url.toString() : '#',
+          'in_active_trail': sub_item.in_active_trail is defined ? sub_item.in_active_trail : false,
+          'is_expanded': sub_item.is_expanded is defined ? sub_item.is_expanded : false,
+          'is_external': sub_item.is_external is defined ? sub_item.is_external : false,
+          'is_new_window': sub_item.is_new_window is defined ? sub_item.is_new_window : false,
+          'attributes': sub_item.attributes is defined ? sub_item.attributes : '',
+          'link_attributes': sub_item.link_attributes is defined ? sub_item.link_attributes : '',
+          'modifier_class': sub_item.modifier_class is defined ? sub_item.modifier_class : '',
+          'below': [],
+        } %}
+        {% set sub_items = sub_items|merge([sub_item_data]) %}
+      {% endfor %}
+    {% endif %}
+    
+    {% set item_data = {
+      'title': item.title ? item.title : '',
+      'url': item.url ? item.url.toString() : '#',
+      'in_active_trail': item.in_active_trail is defined ? item.in_active_trail : false,
+      'is_expanded': item.is_expanded is defined ? item.is_expanded : false,
+      'is_external': item.is_external is defined ? item.is_external : false,
+      'is_new_window': item.is_new_window is defined ? item.is_new_window : false,
+      'attributes': item.attributes is defined ? item.attributes : '',
+      'link_attributes': item.link_attributes is defined ? item.link_attributes : '',
+      'modifier_class': item.modifier_class is defined ? item.modifier_class : '',
+      'below': sub_items,
+    } %}
+    {% set menu_items = menu_items|merge([item_data]) %}
+  {% endfor %}
+{% endif %}
 
-    }
-%}
+{# Render SDC component with CivicTheme data structure #}
+{% if menu_items %}
+  {% include 'adesso_cms_theme:main-menu' with {
+    'theme': 'light',
+    'items': menu_items,
+    'is_collapsible': false,
+    'modifier_class': 'main-menu--primary',
+    'enable_mega_menu': true,
+  } only %}
+{% endif %}

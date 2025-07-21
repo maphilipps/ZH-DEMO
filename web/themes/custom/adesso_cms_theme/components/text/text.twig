@@ -1,49 +1,59 @@
 {% import _self as macros %}
 
 {% macro render_content(pre_headline, title, body) %}
-  {% if pre_headline %}
-    <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
-      {{ pre_headline }}
-    </h3>
+  {% if pre_headline|default('') %}
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: pre_headline,
+        as: 'h3',
+        custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
+      }
+    } %}
   {% endif %}
 
-  {% if title %}
-    <h2 class="text-3xl font-bold">{{ title }}</h2>
+  {% if title|default('') %}
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: title,
+        as: 'h2',
+        custom_classes: 'text-3xl font-bold'
+      }
+    } %}
   {% endif %}
 
-  {% if body %}
+  {% if body|default('') %}
     <div class="text-body mt-4">
-      {{ body|raw }}
+      {{ body|default('')|render }}
     </div>
   {% endif %}
 {% endmacro %}
 
 {% macro render_buttons(link1, link2, text_layout) %}
-  {% if link1.url or link2.url %}
+  {% if (link1|default({}) and link1.url|default('')) or (link2|default({}) and link2.url|default('')) %}
     {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
 
-    {% if text_layout == 'centered' %}
+    {% if (text_layout|default('')) == 'centered' %}
       {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
-    {% elseif text_layout == 'buttons-right' %}
+    {% elseif (text_layout|default('')) == 'buttons-right' %}
       {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start lg:justify-end' %}
     {% else %}
       {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
     {% endif %}
 
     <div class="{{ buttonContainerClasses }}">
-      {% if link1.url %}
-        {% include '@adesso_cms_theme/button/button.twig' with {
-					"url": link1.url,
-					"text": link1.text ? link1.text : 'Read more'|t,
+      {% if link1|default({}) and link1.url|default('') %}
+        {% include 'adesso_cms_theme:button' with {
+					"url": link1.url|default(''),
+					"text": (link1.text|default('')) ? (link1.text|default('')) : 'Read more'|t,
 					"modifier": "text-primary-link mr-4",
 					"variant": "default"
         } only %}
       {% endif %}
 
-      {% if link2.url %}
-        {% include '@adesso_cms_theme/button/button.twig' with {
-					"url": link2.url,
-					"text": link2.text ? link2.text : 'Read more'|t,
+      {% if link2|default({}) and link2.url|default('') %}
+        {% include 'adesso_cms_theme:button' with {
+					"url": link2.url|default(''),
+					"text": (link2.text|default('')) ? (link2.text|default('')) : 'Read more'|t,
 					"modifier": "text-secondary-link",
 					"variant": "secondary"
         } only %}
@@ -52,30 +62,30 @@
   {% endif %}
 {% endmacro %}
 
-<div class="text-container {{ className }}">
-  {% if text_layout == 'buttons-right' %}
+<div class="text-container {{ className|default('') }}">
+  {% if (text_layout|default('')) == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
       <div class="max-w-4xl lg:flex-grow">
-        {{ macros.render_content(pre_headline, title, body) }}
+        {{ macros.render_content(pre_headline|default(''), title|default(''), body|default('')) }}
       </div>
 
-      {% if link.url or link2.url %}
+      {% if link.url|default('') or link2.url|default('') %}
         <div class="lg:ml-8 lg:flex-shrink-0 lg:self-start">
-          {{ macros.render_buttons(link, link2, text_layout) }}
+          {{ macros.render_buttons(link|default({}), link2|default({}), text_layout|default('')) }}
         </div>
       {% endif %}
     </div>
   {% else %}
-    <div class="max-w-4xl {{ text_layout == 'centered' ? 'mx-auto text-center' : '' }}">
-      {{ macros.render_content(pre_headline, heading ?: title, body) }}
+    <div class="max-w-4xl {{ (text_layout|default('')) == 'centered' ? 'mx-auto text-center' : '' }}">
+      {{ macros.render_content(pre_headline|default(''), (heading|default('')) ?: (title|default('')), body|default('')) }}
 
-      {% if heading and text_layout != 'buttons-right' %}
-        {% include '@adesso_cms_theme/heading/heading.twig' with {
-          "heading": heading
+      {% if heading|default('') and (text_layout|default('')) != 'buttons-right' %}
+        {% include 'adesso_cms_theme:heading' with {
+          "heading": heading|default('')
         } only %}
       {% endif %}
 
-      {{ macros.render_buttons(link, link2, text_layout) }}
+      {{ macros.render_buttons(link|default({}), link2|default({}), text_layout|default('')) }}
     </div>
   {% endif %}
 </div>

@@ -1,29 +1,63 @@
-// .storybook/main.js
-const path = require('path');
-const webpack = require('webpack');
+/**
+ * @file
+ * Storybook configuration - Austauschbar für Frontend-Entwickler
+ * Diese Konfiguration ist unabhängig von Drupal-Integration
+ * Drupal-Integration befindet sich in components/drupal-integration/
+ */
+
+const { dirname, join } = require('path');
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
 
 module.exports = {
-  stories: ['../components/**/*.mdx', '../components/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-webpack5-compiler-babel',
-    '@chromatic-com/storybook',
-    '@storybook/addon-themes',
-    '@storybook/addon-mdx-gfm',
+  stories: [
+    '../components/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
+  
+  addons: [
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-actions'),
+    getAbsolutePath('@storybook/addon-themes'),
+    getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
+    // Optional addons - können von Frontend-Entwicklern angepasst werden
+    // '@storybook/addon-interactions',
+    // '@storybook/addon-mdx-gfm',
+    // '@chromatic-com/storybook',
+    // '@storybook/addon-a11y',
+  ],
+  
   framework: {
-    name: '@storybook/html-webpack5',
-    options: {},
+    name: getAbsolutePath('@storybook/html-webpack5'),
+    options: {}
   },
-  staticDirs: ['../static'],
+  
+  docs: {
+    autodocs: 'tag',
+    defaultName: 'Documentation',
+  },
+  
+  staticDirs: ['../dist', '../assets'],
+  
+  features: {
+    buildStoriesJson: true,
+    // interactionsDebugger: true, // Optional für Frontend-Entwickler
+  },
+  
+  typescript: {
+    check: false,
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
+  
   webpackFinal: async (config) => {
-    // Remove any existing CSS rules
-    config.module.rules = config.module.rules.filter(
-      (rule) => !rule.test || !rule.test.toString().includes('css')
-    );
-
-    // Add our custom CSS rule
+    // Add support for CSS
     config.module.rules.push({
       test: /\.css$/,
       use: [
@@ -31,38 +65,18 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
+            modules: false,
           },
         },
-        {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              config: path.resolve(__dirname, '../postcss.config.js'),
-            },
-          },
-        },
+        'postcss-loader',
       ],
-      include: path.resolve(__dirname, '../'),
     });
-
-    // Rest of your webpack config...
-    config.module.rules.push({
-      test: /\.twig$/,
-      use: {
-        loader: 'twing-loader',
-        options: {
-          environmentModulePath: path.resolve(`${__dirname}/environment.js`),
-        },
-      },
-    });
-
-    config.plugins.push(
-      new webpack.ProvidePlugin({
-        Buffer: ['buffer', 'Buffer'],
-      })
-    );
-
+    
     return config;
   },
+  
+  env: (config) => ({
+    ...config,
+    STORYBOOK_THEME_PATH: '/themes/custom/adesso_cms_theme',
+  }),
 };

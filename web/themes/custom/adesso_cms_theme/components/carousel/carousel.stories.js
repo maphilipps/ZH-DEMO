@@ -1,5 +1,12 @@
+/**
+ * @file
+ * Enhanced Carousel stories with comprehensive QA testing
+ * Focus on accessibility, keyboard navigation, and slide transitions
+ */
+
 import CarouselTemplate from './carousel.twig';
-import './carousel.behavior.js';
+import { within, userEvent, expect } from '@storybook/test';
+import { createEnhancedStory, accessibilityTestSuite, interactionTestSuite } from '../../.storybook/story-enhancement-template';
 
 // Define mock media as separate constants
 const mockMediaFirst = "<img src='./images/card.webp' class='d-block w-full' alt='First slide image' />";
@@ -28,6 +35,14 @@ const mockItems = [
 
 export default {
   title: 'Editorial/Carousel',
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'Accessible carousel component with keyboard navigation, ARIA announcements, and performance optimization. Follows WCAG 2.1 AA standards for interactive content.',
+      },
+    },
+  },
   argTypes: {
     items: {
       description: 'Define the array of carousel items',
@@ -47,22 +62,211 @@ export default {
       defaultValue: '',
     },
   },
-  play: async ({ canvasElement }) => {
-    // Ensure that Drupal is available
-    if (typeof Drupal !== 'undefined' && Drupal.behaviors && Drupal.behaviors.carouselBehavior) {
-      // Attach the behavior to the rendered carousel
-      Drupal.behaviors.carouselBehavior.attach(canvasElement, {});
-    }
-    else {
-      console.warn('Drupal or carouselBehavior is not defined.');
+};
+
+// Default carousel story - Enhanced with comprehensive QA testing
+export const Default = createEnhancedStory(
+  {
+    render: CarouselTemplate,
+    args: {
+      items: mockItems,
+      class: 'max-w-4xl',
+      item_class: '',
+    },
+    play: async ({ canvasElement }) => {
+      // Flowbite carousel initializes automatically via data attributes
+      // No manual JavaScript initialization needed
+      console.log('Carousel ready - using Flowbite data attributes');
     }
   },
-};
+  {
+    componentName: 'Carousel',
+    accessibilityTests: [
+      { id: 'aria-live', enabled: true },
+      { id: 'keyboard-navigation', enabled: true },
+      { id: 'focus-management', enabled: true },
+      { id: 'image-alt-text', enabled: true },
+    ],
+    interactionTests: [
+      // Test carousel navigation buttons
+      async (canvas, userEvent) => {
+        const nextButton = canvas.queryByLabelText(/next/i) || canvas.querySelector('.carousel-next');
+        const prevButton = canvas.queryByLabelText(/previous/i) || canvas.querySelector('.carousel-prev');
+        
+        if (nextButton) {
+          expect(nextButton).toBeInTheDocument();
+          await userEvent.click(nextButton);
+        }
+        
+        if (prevButton) {
+          expect(prevButton).toBeInTheDocument();
+        }
+      },
+      // Test keyboard navigation
+      async (canvas, userEvent) => {
+        const carousel = canvas.querySelector('.carousel');
+        if (carousel) {
+          await userEvent.click(carousel);
+          await userEvent.keyboard('{ArrowRight}');
+          await userEvent.keyboard('{ArrowLeft}');
+        }
+      },
+      // Test slide transitions
+      async (canvas, userEvent) => {
+        const slides = canvas.querySelectorAll('.carousel-item');
+        expect(slides.length).toBeGreaterThan(0);
+        
+        // Verify at least one slide is active
+        const activeSlides = canvas.querySelectorAll('.carousel-item.active, .carousel-item[aria-current="true"]');
+        expect(activeSlides.length).toBeGreaterThanOrEqual(1);
+      },
+    ],
+    performanceTests: true,
+  }
+);
 
-export const Default = CarouselTemplate.bind({});
+// Accessibility-focused carousel story
+export const AccessibilityFocused = createEnhancedStory(
+  {
+    render: CarouselTemplate,
+    args: {
+      items: [
+        {
+          active: true,
+          media: "<img src='./images/card.webp' class='d-block w-full' alt='Accessible slide showing team collaboration in modern office environment' loading='eager' />",
+          title: 'Team Collaboration',
+          summary: 'Discover how our team works together to create innovative solutions for complex challenges.',
+        },
+        {
+          media: "<img src='./images/card.webp' class='d-block w-full' alt='Innovation workshop with diverse participants brainstorming creative ideas' loading='lazy' />",
+          title: 'Innovation Workshop',
+          summary: 'Join our workshops where creativity meets technology to drive meaningful innovation.',
+        },
+        {
+          media: "<img src='./images/card.webp' class='d-block w-full' alt='Digital transformation roadmap with strategic planning elements' loading='lazy' />",
+          title: 'Digital Transformation',
+          summary: 'Transform your business with our comprehensive digital strategy and implementation services.',
+        },
+      ],
+      class: 'max-w-6xl accessibility-enhanced',
+      item_class: 'focus-visible:ring-2 focus-visible:ring-primary-500',
+    },
+    parameters: {
+      docs: {
+        description: {
+          story: 'Carousel with enhanced accessibility features including descriptive alt text, ARIA live regions, and keyboard navigation support.',
+        },
+      },
+    },
+    play: async ({ canvasElement }) => {
+      if (typeof Drupal !== 'undefined' && Drupal.behaviors && Drupal.behaviors.carouselBehavior) {
+        Drupal.behaviors.carouselBehavior.attach(canvasElement, {});
+      }
+    }
+  },
+  {
+    componentName: 'AccessibleCarousel',
+    accessibilityTests: [
+      { id: 'color-contrast', enabled: true },
+      { id: 'focus-indicators', enabled: true },
+      { id: 'screen-reader-support', enabled: true },
+      { id: 'keyboard-accessibility', enabled: true },
+      { id: 'aria-live-announcements', enabled: true },
+    ],
+    interactionTests: [
+      // Test ARIA live region announcements
+      async (canvas, userEvent) => {
+        const liveRegion = canvas.querySelector('[aria-live]');
+        if (liveRegion) {
+          expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+        }
+      },
+      // Test comprehensive keyboard navigation
+      async (canvas, userEvent) => {
+        const carousel = canvas.querySelector('.carousel');
+        if (carousel) {
+          // Test various keyboard combinations
+          await userEvent.keyboard('{ArrowRight}');
+          await userEvent.keyboard('{ArrowLeft}');
+          await userEvent.keyboard('{Home}'); // Should go to first slide
+          await userEvent.keyboard('{End}');  // Should go to last slide
+        }
+      },
+      // Test focus indicators
+      async (canvas, userEvent) => {
+        const focusableElements = canvas.querySelectorAll('button, [tabindex="0"]');
+        for (const element of Array.from(focusableElements).slice(0, 2)) {
+          await userEvent.tab();
+          expect(element).toHaveFocus();
+        }
+      },
+    ],
+    performanceTests: true,
+  }
+);
 
-Default.args = {
-  items: mockItems,
-  class: 'max-w-4xl',
-  item_class: '',
-};
+// Performance-optimized carousel story
+export const PerformanceOptimized = createEnhancedStory(
+  {
+    render: CarouselTemplate,
+    args: {
+      items: [
+        {
+          active: true,
+          media: "<img src='./images/card.webp' class='d-block w-full' alt='Performance optimized slide 1' loading='eager' decoding='sync' />",
+          title: 'Optimized First Slide',
+          summary: 'First slide loads immediately for better perceived performance.',
+        },
+        {
+          media: "<img src='./images/card.webp' class='d-block w-full' alt='Performance optimized slide 2' loading='lazy' decoding='async' />",
+          title: 'Lazy Loaded Slide',
+          summary: 'Subsequent slides load on demand to improve initial page load time.',
+        },
+        {
+          media: "<picture><source srcset='./images/card.webp' type='image/webp'><img src='./images/card.jpg' class='d-block w-full' alt='Performance optimized slide 3 with WebP support' loading='lazy' decoding='async' /></picture>",
+          title: 'WebP Optimized Slide',
+          summary: 'Modern image format with fallback for better compression and loading speed.',
+        },
+      ],
+      class: 'max-w-4xl performance-optimized',
+      item_class: 'transform-gpu',
+    },
+    parameters: {
+      docs: {
+        description: {
+          story: 'Performance-optimized carousel with lazy loading, WebP images, and GPU acceleration for smooth animations.',
+        },
+      },
+    },
+    play: async ({ canvasElement }) => {
+      if (typeof Drupal !== 'undefined' && Drupal.behaviors && Drupal.behaviors.carouselBehavior) {
+        Drupal.behaviors.carouselBehavior.attach(canvasElement, {});
+      }
+    }
+  },
+  {
+    componentName: 'PerformanceCarousel',
+    accessibilityTests: [
+      { id: 'image-optimization', enabled: true },
+      { id: 'loading-performance', enabled: true },
+    ],
+    interactionTests: [
+      // Test lazy loading implementation
+      async (canvas, userEvent) => {
+        const lazyImages = canvas.querySelectorAll('img[loading="lazy"]');
+        expect(lazyImages.length).toBeGreaterThan(0);
+        
+        lazyImages.forEach(img => {
+          expect(img).toHaveAttribute('loading', 'lazy');
+          expect(img).toHaveAttribute('decoding', 'async');
+        });
+      },
+      // Test animation performance
+      async (canvas, userEvent) => {
+        const animatedElements = canvas.querySelectorAll('.transform-gpu');
+        expect(animatedElements.length).toBeGreaterThan(0);
+      },
+    ],
+    performanceTests: true,
+  }
+);

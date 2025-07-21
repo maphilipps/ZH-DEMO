@@ -1,0 +1,23 @@
+enabled:
+  paragraph:
+    accordion: default
+    accordion_item: default
+    bullet: default
+    card: default
+    card_group: default
+    carousel: default
+    carousel_item: default
+    embed: default
+    gallery: default
+    hero: default
+    logo_collection: default
+    media: default
+    newsletter: default
+    pricing: default
+    pricing_card: default
+    sidebyside: default
+    slider: default
+    slider_item: default
+    stats_item: default
+    text: default
+    views: default

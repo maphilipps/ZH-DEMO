@@ -1,0 +1,60 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Accordion Item
+status: stable
+description: 'A single accordion item component with collapsible content.'
+props:
+  type: object
+  properties:
+    item:
+      type: object
+      title: 'Accordion Item Data'
+      description: 'Data for the accordion item'
+      properties:
+        heading:
+          type: string
+          title: 'Heading'
+          description: 'The accordion item heading/title'
+        title:
+          type: string
+          title: 'Title'
+          description: 'Alternative title field'
+        body:
+          type: string
+          title: 'Body Content'
+          description: 'The collapsible content of the accordion item'
+        accordion_instance:
+          type: [string, number]
+          title: 'Accordion Instance ID'
+          description: 'Unique identifier for this accordion instance'
+        is_expanded:
+          type: boolean
+          title: 'Is Expanded'
+          description: 'Whether this accordion item should be expanded by default'
+          default: false
+        link:
+          type: [object, "null"]
+          title: 'Link'
+          description: 'Optional link for the accordion item'
+          properties:
+            url:
+              type: [string, "null"]
+              title: 'URL'
+              description: 'Link URL'
+            title:
+              type: [string, "null"]
+              title: 'Link Title'
+              description: 'Link text'
+    is_expanded:
+      type: boolean
+      title: 'Is Expanded Override'
+      description: 'Override for expansion state'
+      default: false
+    accordion_instance:
+      type: [string, number]
+      title: 'Accordion Instance Override'
+      description: 'Override for accordion instance ID'
+    is_dark:
+      type: boolean
+      title: 'Dark Mode'
+      description: 'Whether to use dark mode styling'
+      default: false

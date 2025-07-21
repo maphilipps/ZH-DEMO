@@ -1,10 +1,20 @@
 #!/bin/bash
 
-## Description: Export contents
+## Description: Export contents and configuration
 ## Usage: export-contents
 
+echo "Exporting content entities..."
 rm -rf recipes/adesso_cms_starter/content
 drush dcer file --folder=../recipes/adesso_cms_starter/content
 drush dcer media --folder=../recipes/adesso_cms_starter/content
 drush dcer node --folder=../recipes/adesso_cms_starter/content
 drush dcer menu_link_content --folder=../recipes/adesso_cms_starter/content
+
+echo "Exporting views configuration..."
+# Views are configuration entities, not content entities
+# Export specific views to the recipe config directory
+mkdir -p ../recipes/adesso_cms_starter/config/install
+drush config:get views.view.ai_logs | tail -n +2 > ../recipes/adesso_cms_starter/config/install/views.view.ai_logs.yml
+drush config:get views.view.recent_cards | tail -n +2 > ../recipes/adesso_cms_starter/config/install/views.view.recent_cards.yml
+
+echo "Content and configuration export completed!"

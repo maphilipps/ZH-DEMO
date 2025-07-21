@@ -1,8 +1,8 @@
 {% set
   heading_content = {
-    title: content.field_title|render,
+    title: content.field_title|render|striptags,
     icon: content.field_icon,
-    heading_level: '3',
+    as: 'h3',
     modifier: 'mb-3'
   }
 %}

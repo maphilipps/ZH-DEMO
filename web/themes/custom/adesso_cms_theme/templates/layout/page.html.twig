@@ -11,21 +11,98 @@
  */
 #}
 
-<div>
-  <header role="banner" class="top-0 z-50 w-full">
-    {{ page.primary_menu }}
-  </header>
+<div class="min-h-dvh flex flex-col">
+  {# Check if first paragraph is a video background hero #}
+  {% set has_video_hero = false %}
+  {% if page.content %}
+    {% for element in page.content %}
+      {% if element['#paragraph'] and element['#paragraph'].bundle == 'hero' %}
+        {% set hero_layout = element['#paragraph'].field_hero_layout.value %}
+        {% if hero_layout == 'video_background' %}
+          {% set has_video_hero = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
-  {{ page.highlighted }}
+  {# Header with separate left and right regions #}
+  {% if not has_video_hero and (page.header_left or page.header_right) %}
+    <header class="site-header bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700" role="banner">
+      <div class="mx-auto max-w-screen-xl px-4 lg:px-6 py-2.5">
+        <div class="flex items-center justify-between">
+          
+          {# Left side: Logo Block #}
+          <div class="flex items-center">
+            {% if page.header_left %}
+              {{ page.header_left }}
+            {% endif %}
+          </div>
 
-  <main role="main" id="main-content" tabindex="-1">
-    <div class="layout-content">
+          {# Right side: Navigation, Search, etc. #}
+          <div class="flex items-center gap-4">
+            {% if page.header_right %}
+              {{ page.header_right }}
+            {% endif %}
+          </div>
+          
+        </div>
+        
+        {# Mobile Menu (Hidden by default) - Connected to toggle button in header-right #}
+        <div id="navbar-default" class="hidden w-full lg:hidden">
+          {% if page.header_right %}
+            {# Get the main menu from the header-right region #}
+            {% set main_menu = drupal_menu('main') %}
+            {% if main_menu %}
+              <ul class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 space-y-2 dark:bg-gray-800 dark:border-gray-700">
+                {% for item in main_menu %}
+                  <li>
+                    <a href="{{ item.url|default('#') }}" 
+                       class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                       {% if item.in_active_trail|default(false) %}aria-current="page"{% endif %}>
+                      {{ item.title|default('') }}
+                    </a>
+                    {% if item.below %}
+                      <ul class="ml-4 mt-2 space-y-1 border-l border-gray-200 pl-4 dark:border-gray-600">
+                        {% for subitem in item.below %}
+                          <li>
+                            <a href="{{ subitem.url|default('#') }}" 
+                               class="block py-1 text-sm text-gray-700 hover:text-primary-700 dark:text-gray-300 dark:hover:text-primary-400">
+                              {{ subitem.title|default('') }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </header>
+  {% endif %}
+
+  {# Live region for navigation state announcements #}
+  <div id="nav-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  {# Highlighted Region #}
+  {% if page.highlighted %}
+    <div class="highlighted-region">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+  {# Main Content #}
+  <main role="main" id="main-content" class="flex-1" tabindex="-1">
+    <div id="content" class="layout-content">
       {{ page.content }}
     </div>
   </main>
 
-  <footer role="contentinfo" class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+  {# Footer Region - uses site-footer component #}
+  {% if page.footer %}
     {{ page.footer }}
-  </footer>
+  {% endif %}
 
 </div>{# /.layout-container #}

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+## Description: Initialize fresh Drupal configuration after installation
+## Usage: config-init
+## Example: "ddev config-init"
+
+set -eu -o pipefail
+
+echo "🚀 Initializing fresh Drupal configuration..."
+
+# Clear all caches first
+drush cache:rebuild
+
+# Export current clean configuration
+echo "📤 Exporting clean configuration..."
+drush config:export --yes
+
+# Set proper permissions
+chmod -R 755 $DDEV_DOCROOT/../config/sync/
+
+echo "✅ Configuration initialization completed!"
+echo "📁 Fresh configuration exported to config/sync/"
+echo "💡 This represents your clean installation state."
+echo "💡 Commit these files as your baseline configuration."

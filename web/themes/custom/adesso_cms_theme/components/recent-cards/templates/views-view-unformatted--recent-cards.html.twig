@@ -1,4 +1,4 @@
-{% embed '@adesso_cms_theme/recent-cards/recent-cards.twig' with { rows: rows } only %}
+{% embed 'adesso_cms_theme:recent-cards' with { rows: rows } only %}
 	{% block recent_card_items %}
     {% for row in rows %}
       {{- row.content -}}

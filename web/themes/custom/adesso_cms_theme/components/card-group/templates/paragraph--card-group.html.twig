@@ -8,8 +8,8 @@
   {% block content %}
     {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:card-group' with {
-      section_title: content.field_title|render,
-      is_dark: is_dark,
+      section_title: content.field_title['#items'].getString(),
+      is_dark: is_dark ? true : false,
       pre_headline: paragraph.field_pre_headline.value,
       content: content,
       columns: content.field_card['#items']|length ~ '' } only %}

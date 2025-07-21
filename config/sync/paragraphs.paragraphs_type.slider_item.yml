@@ -1,0 +1,12 @@
+uuid: f5d70927-f007-4b5d-8557-d4bc37c5cbbe
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: LA7-jqycAKrBJRxuYPgcjii_mRfvFvDAadCRotRxETY
+id: slider_item
+label: 'Slider item'
+icon_uuid: null
+icon_default: null
+description: 'Slider item for the Slider component.'
+behavior_plugins: {  }

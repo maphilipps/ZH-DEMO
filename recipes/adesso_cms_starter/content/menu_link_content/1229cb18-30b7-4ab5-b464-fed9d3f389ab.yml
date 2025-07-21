@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 1229cb18-30b7-4ab5-b464-fed9d3f389ab
+  bundle: menu_link_content
+  default_langcode: de
+  depends:
+    38dcc72f-9d0a-4a4f-90b7-d7cb8772705b: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Paragraphs
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      target_uuid: 38dcc72f-9d0a-4a4f-90b7-d7cb8772705b
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'

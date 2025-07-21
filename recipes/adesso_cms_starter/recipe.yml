@@ -379,6 +379,27 @@ config:
       simpleConfigUpdate:
         label: Inhaltselemente
         description: 'Fügen Sie Inhaltselemente wie Text, Bilder, Galerien und andere Komponenten hinzu, um Ihre Seite zu gestalten.'
+        settings.handler_settings.target_bundles:
+          accordion: accordion
+          block_reference: block_reference
+          card_group: card_group
+          carousel: carousel
+          download: download
+          embed: embed
+          gallery: gallery
+          hero: hero
+          logo_collection: logo_collection
+          media: media
+          newsletter: newsletter
+          pricing: pricing
+          sidebyside: sidebyside
+          slider: slider
+          text: text
+          views: views
+        settings.handler_settings.target_bundles_drag_drop.logo_collection.enabled: true
+        settings.handler_settings.target_bundles_drag_drop.embed.enabled: true
+        settings.handler_settings.target_bundles_drag_drop.download.enabled: true
+        settings.handler_settings.target_bundles_drag_drop.block_reference.enabled: true
     core.entity_view_display.node.page.default:
       simpleConfigUpdate:
         content.field_paragraphs:

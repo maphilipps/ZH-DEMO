@@ -5,10 +5,10 @@ props:
   type: object
   properties:
     src:
-      type: [string, "null"]
-      title: 'Image Source'
-      description: 'URL path to the image file'
+      type: string
+      title: src
+      description: ''
     alt:
-      type: [string, "null"]
-      title: 'Alternative Text'
-      description: 'Alternative text for accessibility and screen readers'
+      type: string
+      title: alt
+      description: ''

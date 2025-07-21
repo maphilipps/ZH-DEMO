@@ -20,11 +20,13 @@ props:
       description: Summary text below the title
       default: Select the best option for your needs
     grid_columns:
-      type: [string, "null"]
+      type: string
       title: grid_columns
-      description: Number of columns in the grid (2 or 3, 0 defaults to 3)
-      enum: ['0', '2', '3']
-      default: '3'
+      description: Number of columns in the grid (2 or 3)
+      enum:
+        - '2'
+        - '3'
+      default: 3
     cards:
       type: object
       title: cards

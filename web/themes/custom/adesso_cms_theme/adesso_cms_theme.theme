@@ -450,6 +450,11 @@ function adesso_cms_theme_page_attachments(array &$attachments) {
     'Referrer-Policy',
     'strict-origin-when-cross-origin',
   ];
+
+  // Attach fix for block reference preview when frontend editing is active
+  if (\Drupal::currentUser()->hasPermission('access frontend editing')) {
+    $attachments['#attached']['library'][] = 'adesso_cms_theme/fix-block-reference-preview';
+  }
 }
 
 /**
@@ -665,12 +670,3 @@ function _adesso_cms_theme_is_production() {
   return TRUE;
 }
 
-/**
- * Implements hook_page_attachments().
- */
-function adesso_cms_theme_page_attachments(array &$attachments) {
-  // Attach fix for block reference preview when frontend editing is active
-  if (\Drupal::currentUser()->hasPermission('access frontend editing')) {
-    $attachments['#attached']['library'][] = 'adesso_cms_theme/fix-block-reference-preview';
-  }
-}

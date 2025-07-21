@@ -5,14 +5,10 @@ props:
   type: object
   properties:
     site_logo:
-      type: [string, "null"]
-      title: 'Site Logo'
-      description: 'Path to the site logo image file'
-    site_name:
-      type: [string, "null"]
-      title: 'Site Name'
-      description: 'Name of the site for alt text generation'
+      type: string
+      title: site_logo
+      description: Path to the site logo image file
     modifier:
-      type: [string, "null"]
-      title: 'CSS Modifier Classes'
-      description: 'Additional Tailwind CSS classes for sizing and styling'
+      type: string
+      title: modifier
+      description: Additional Tailwind CSS classes for sizing and styling

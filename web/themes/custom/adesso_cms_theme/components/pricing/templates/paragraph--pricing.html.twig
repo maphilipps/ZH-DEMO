@@ -12,7 +12,7 @@
       pre_headline: paragraph.field_eyebrow.value,
       title: paragraph.field_title.value,
       summary: content.field_summary,
-      grid_columns: content.field_pricing_cards['#items']|length|default(3) ~ '',
+      grid_columns: content.field_pricing_cards['#items']|length > 0 ? (content.field_pricing_cards['#items']|length > 3 ? '3' : content.field_pricing_cards['#items']|length ~ '') : '3',
       is_dark: is_dark ? true : false,
     } only %}
       {% block pricing_cards %}

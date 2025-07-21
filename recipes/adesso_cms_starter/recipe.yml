@@ -139,7 +139,6 @@ install:
   - honeypot
   - jquery_ui
   - jquery_ui_resizable
-  - key
   - klaro
   - mailsystem
   - menu_link_attributes
@@ -148,7 +147,6 @@ install:
   - mysql
   - navigation
   - page_cache
-  - paragraphs_ai
   - paragraphs_edit
   - paragraphs_ee
   - path_alias

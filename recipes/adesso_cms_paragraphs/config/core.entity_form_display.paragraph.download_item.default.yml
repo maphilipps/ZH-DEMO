@@ -1,0 +1,45 @@
+uuid: null
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.download_item.field_file
+    - field.field.paragraph.download_item.field_file_description
+    - field.field.paragraph.download_item.field_file_name
+    - paragraphs.paragraphs_type.download_item
+  module:
+    - file
+    - text
+_core:
+  default_config_hash: null
+id: paragraph.download_item.default
+targetEntityType: paragraph
+bundle: download_item
+mode: default
+content:
+  field_file:
+    type: file_generic
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_file_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_file_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

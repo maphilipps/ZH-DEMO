@@ -4,6 +4,7 @@ type: 'Site'
 
 install:
   # Core
+  - block_content
   - link
   - media
   - media_library

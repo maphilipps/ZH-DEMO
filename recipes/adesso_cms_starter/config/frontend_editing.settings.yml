@@ -1,0 +1,28 @@
+uuid: null
+langcode: en
+status: true
+entity_types:
+  block_content:
+    - basic
+  paragraph:
+    - accordion
+    - block_reference
+    - bullet
+    - card
+    - card_group
+    - carousel
+    - download
+    - embed
+    - gallery
+    - hero
+    - logo_collection
+    - media
+    - newsletter
+    - pricing
+    - sidebyside
+    - slider
+    - text
+    - views
+hover_highlight: false
+primary_color: '#0081c9'
+automatic_preview: true

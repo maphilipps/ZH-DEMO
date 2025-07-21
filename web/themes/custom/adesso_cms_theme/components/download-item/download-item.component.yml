@@ -1,0 +1,26 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Download Item
+description: Content/Download Item component
+props:
+  type: object
+  properties:
+    file_url:
+      type: string
+      title: file_url
+      description: ''
+    file_name:
+      type: string
+      title: file_name
+      description: ''
+    file_description:
+      type: string
+      title: file_description
+      description: ''
+    file_size:
+      type: number
+      title: file_size
+      description: ''
+    file_extension:
+      type: string
+      title: file_extension
+      description: ''

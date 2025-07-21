@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Block Reference component.
+ *
+ * @param {string} pre_headline - Pre-headline text
+ * @param {string} title - Main headline
+ * @param {string} block_content - Rendered block content
+ * @param {boolean} is_dark - Whether to use dark theme
+ */
+#}
+<div class="block-reference-container max-w-4xl">
+  {% if pre_headline %}
+    <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
+      {{ pre_headline }}
+    </h3>
+  {% endif %}
+
+  {% if title %}
+    <h2 class="text-3xl font-bold">{{ title }}</h2>
+  {% endif %}
+
+  {% if block_content %}
+    <div class="block-reference-content mt-4">
+      {{ block_content|raw }}
+    </div>
+  {% endif %}
+</div>

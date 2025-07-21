@@ -142,10 +142,13 @@ config:
         entity_types:
           paragraph:
             - accordion
+            - block_reference
             - bullet
             - card
             - card_group
             - carousel
+            - download
+            - download_item
             - embed
             - gallery
             - hero

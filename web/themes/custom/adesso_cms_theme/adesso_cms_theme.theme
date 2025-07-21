@@ -286,3 +286,13 @@ function adesso_cms_theme_preprocess_menu(&$variables) {
   $variables['site_name'] = $config->get('name');
   $variables['site_logo'] = theme_get_setting('logo.url');
 }
+
+/**
+ * Implements hook_page_attachments().
+ */
+function adesso_cms_theme_page_attachments(array &$attachments) {
+  // Attach fix for block reference preview when frontend editing is active
+  if (\Drupal::currentUser()->hasPermission('access frontend editing')) {
+    $attachments['#attached']['library'][] = 'adesso_cms_theme/fix-block-reference-preview';
+  }
+}

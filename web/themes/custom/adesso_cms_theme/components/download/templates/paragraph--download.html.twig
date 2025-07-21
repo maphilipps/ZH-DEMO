@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme implementation for a download paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity.
+ * - content: All paragraph fields.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set is_dark = paragraph.field_content_element_theme.value %}
+{% set theme = is_dark ? 'dark' : 'light' %}
+
+<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% block content %}
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+    {{ content.frontend_editing }}
+    {% embed 'adesso_cms_theme:download' with {
+      pre_headline: content.field_pre_headline|render|striptags|trim,
+      headline: content.field_title|render|striptags|trim,
+      theme: theme,
+    } %}
+      {% block download_items %}
+        {{ content.field_download_item }}
+      {% endblock download_items %}
+    {% endembed %}
+  </div>
+  {% endblock %}
+</div>
+</div>

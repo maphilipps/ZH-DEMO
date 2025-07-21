@@ -1,0 +1,99 @@
+uuid: af9fc139-5e31-43f5-ba9f-97733273b4a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.content_format
+    - filter.format.full_html
+    - media.type.document
+    - media.type.image
+    - media.type.image_with_link
+    - media.type.svg_image
+    - media.type.video
+    - node.type.news
+    - node.type.page
+    - node.type.person
+    - node.type.project
+    - workflows.workflow.basic_editorial
+  module:
+    - ai_image_alt_text
+    - content_moderation
+    - contextual
+    - editoria11y
+    - file
+    - filter
+    - media
+    - navigation
+    - node
+    - path
+    - redirect
+    - scheduler
+    - system
+    - trash
+_core:
+  default_config_hash: g-zSnaBXJnH7VoimReFb6KcLjIgHCU-hisiShtZ9hjQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access media overview'
+  - 'access navigation'
+  - 'access trash'
+  - 'administer menu'
+  - 'administer redirects'
+  - 'administer url aliases'
+  - 'create document media'
+  - 'create image media'
+  - 'create image_with_link media'
+  - 'create news content'
+  - 'create page content'
+  - 'create person content'
+  - 'create project content'
+  - 'create svg_image media'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete any document media'
+  - 'delete any image media'
+  - 'delete any image_with_link media'
+  - 'delete any news content'
+  - 'delete any page content'
+  - 'delete any person content'
+  - 'delete any project content'
+  - 'delete any svg_image media'
+  - 'delete any video media'
+  - 'delete news revisions'
+  - 'delete own files'
+  - 'delete page revisions'
+  - 'delete person revisions'
+  - 'delete project revisions'
+  - 'edit any document media'
+  - 'edit any image media'
+  - 'edit any image_with_link media'
+  - 'edit any news content'
+  - 'edit any page content'
+  - 'edit any person content'
+  - 'edit any project content'
+  - 'edit any svg_image media'
+  - 'edit any video media'
+  - 'generate ai alt tags'
+  - 'mark as hidden in editoria11y'
+  - 'revert all revisions'
+  - 'schedule publishing of nodes'
+  - 'use basic_editorial transition create_new_draft'
+  - 'use basic_editorial transition publish'
+  - 'use basic_editorial transition unpublish'
+  - 'use text format basic_html'
+  - 'use text format content_format'
+  - 'use text format full_html'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view editoria11y checker'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view scheduled content'
+  - 'view the administration theme'

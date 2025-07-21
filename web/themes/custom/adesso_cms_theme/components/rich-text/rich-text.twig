@@ -4,7 +4,7 @@
       {% if body_text.value %}
         {{ body_text }}
       {% else %}
-        {{ body_text|raw }}
+        {{ body_text|render }}
       {% endif %}
     </div>
   </div>

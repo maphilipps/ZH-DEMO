@@ -1,0 +1,8 @@
+# Production services configuration
+# Disables Twig debug output for clean HTML
+parameters:
+  twig.config:
+    debug: false
+    auto_reload: false
+    cache: true
+services:

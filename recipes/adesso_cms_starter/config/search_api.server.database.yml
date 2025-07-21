@@ -1,0 +1,17 @@
+uuid: a10e2c0e-bd8f-400b-b734-84db869a1cc0
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_db
+_core:
+  default_config_hash: c9MuCHjXPRxboP7KCWPNzuKo8iJ0LOJXdSaGx109sCM
+id: database
+name: Database
+description: 'Uses database tables for indexing content.'
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 3
+  matching: partial
+  phrase: bigram

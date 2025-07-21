@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+id: main-web-development
+title: Web Development
+description: 'Custom web applications and responsive websites'
+menu_name: main
+link:
+  uri: 'internal:/services/web-development'
+  title: ''
+  options: {  }
+external: false
+rediscover: false
+weight: -48
+expanded: false
+enabled: true
+parent: 'menu_link_content:main-services'
+changed: 1640995200

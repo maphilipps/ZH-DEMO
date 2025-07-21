@@ -5,11 +5,21 @@
       {# Header Section #}
       <div class="flex flex-col justify-center">
         {% if pre_headline %}
-          <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
-            {{ pre_headline }}
-          </h3>
+          {% include 'adesso_cms_theme:heading' with {
+            heading: {
+              title: pre_headline,
+              as: 'h3',
+              custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
+            }
+          } %}
         {% endif %}
-        <h2 class="text-3xl font-bold mb-4">{{ title }}</h2>
+        {% include 'adesso_cms_theme:heading' with {
+          heading: {
+            title: title,
+            as: 'h2',
+            custom_classes: 'text-3xl font-bold mb-4'
+          }
+        } %}
         <div class="newsletter-summary">
           {{ summary }}
         </div>

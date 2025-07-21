@@ -1,26 +1,58 @@
-<div class="carousel w-full overflow-hidden relative {{ class|default('') }}">
-	<div class="carousel-content flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
-		{% block carousel_items %}
-			{% for item in items %}
-				<div class="carousel-item snap-start flex-none w-full">
-					{% include '@adesso_cms_theme/carousel/carousel-item.twig' with {
-            'item': item,
-            'item_class': item_class|default('')
-          } %}
-				</div>
-			{% endfor %}
-		{% endblock %}
-	</div>
+<div id="carousel-{{ random() }}" 
+     class="relative w-full {{ class|default('') }}" 
+     data-carousel="slide"
+     role="region"
+     aria-label="Image carousel with {{ items|default([])|length }} slides"
+     aria-live="polite">
+  {# Carousel wrapper #}
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    {% block carousel_items %}
+      {% for item in items|default([]) %}
+        {% include 'adesso_cms_theme:carousel-item' with {
+          item: item,
+          is_active: loop.first,
+          item_class: item_class|default('')
+        } %}
+      {% endfor %}
+    {% endblock %}
+  </div>
 
-	<button class="carousel-prev absolute top-1/2 left-2 md:left-4 -translate-y-1/2 z-20" aria-label="Previous slide">
-		<div class="bg-white  w-8 h-8 flex items-center justify-center shadow-lg hover:bg-gray-100">
-			<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"><path d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-		</div>
-	</button>
+  {# Slider indicators #}
+  {% if items|default([])|length > 1 %}
+    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" role="group" aria-label="Slide indicators">
+      {% for item in items|default([]) %}
+        <button type="button" 
+                class="w-3 h-3 rounded-full" 
+                aria-current="{{ loop.first ? 'true' : 'false' }}" 
+                aria-label="Go to slide {{ loop.index }} of {{ loop.length }}" 
+                data-carousel-slide-to="{{ loop.index0 }}"></button>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-	<button class="carousel-next absolute top-1/2 right-2 md:right-4 -translate-y-1/2 z-20" aria-label="Next slide">
-		<div class="bg-white  w-8 h-8 flex items-center justify-center shadow-lg hover:bg-gray-100">
-			<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-		</div>
-	</button>
+  {# Slider controls #}
+  {% if items|default([])|length > 1 %}
+    <button type="button" 
+            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" 
+            data-carousel-prev
+            aria-label="Previous slide">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+        </svg>
+        <span class="sr-only">Previous</span>
+      </span>
+    </button>
+    <button type="button" 
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" 
+            data-carousel-next
+            aria-label="Next slide">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+        </svg>
+        <span class="sr-only">Next</span>
+      </span>
+    </button>
+  {% endif %}
 </div>

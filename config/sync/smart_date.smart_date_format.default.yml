@@ -1,0 +1,17 @@
+uuid: 4a7aa457-88b9-4104-a572-d61447cdb28e
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1I_bKE5iWza0GjwcWrOu4Ie_aWuHVvGOoC1F6q_j958
+id: default
+label: default
+date_format: 'd. F Y'
+time_format: 'g:ia'
+time_hour_format: 'H:i'
+allday_label: Ganztägig
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

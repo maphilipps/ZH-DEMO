@@ -1,5 +1,100 @@
-<div class="hero-wrapper {{ modifier }}">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+<div class="hero-wrapper {{ modifier|default('') }} {{ (hero_layout|default('')) == 'video_background' ? 'video-header relative min-h-screen overflow-hidden' : '' }}">
+  {% if (hero_layout|default('')) == 'video_background' %}
+    {# Video Background Hero #}
+    <div class="absolute inset-0 z-0">
+      <div class="relative w-full h-full">
+        {% if media|default('') %}
+          <div class="absolute inset-0">
+            {{ media }}
+          </div>
+        {% else %}
+          {# Fallback gradient background #}
+          <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600"></div>
+        {% endif %}
+        {# Video overlay for better text readability #}
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+    </div>
+    
+    {# Navigation Bar for video background #}
+    <nav class="relative z-20 w-full">
+      <div class="absolute top-0 left-0 right-0 bg-black/20 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4">
+          <div class="flex items-center justify-between">
+            {# Logo #}
+            <div class="flex items-center">
+              <a href="/" class="block h-auto" aria-label="{{ 'Go to homepage'|t }}">
+                <span class="text-2xl font-bold text-white">{{ 'adesso CMS'|t }}</span>
+              </a>
+            </div>
+            
+            {# Desktop Navigation #}
+            <div class="hidden lg:flex">
+              {# Note: Consider converting main_desktop to SDC component #}
+            </div>
+            
+            {# Mobile Navigation #}
+            {# Note: Consider converting main_mobile to SDC component #}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {# Hero Content for video background #}
+    <div class="relative z-10 flex items-center justify-center min-h-screen">
+      <div class="container mx-auto px-4 text-center text-white">
+        <div class="max-w-4xl mx-auto">
+          {% if pre_headline|default('') %}
+            <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">
+              {{ pre_headline|default('') }}
+            </p>
+          {% endif %}
+          
+          {% if heading|default('') %}
+            {% include 'adesso_cms_theme:heading' with {
+              heading: {
+                title: heading,
+                as: 'h1',
+                custom_classes: 'text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white'
+              }
+            } %}
+          {% endif %}
+          
+          {% if text|default('') %}
+            <div class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">
+              {{ text|default('') }}
+            </div>
+          {% endif %}
+          
+          {# Action Buttons #}
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            {% if link|default({}) and link.url|default('') %}
+              <a href="{{ link.url|default('') }}" class="btn bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+                {{ link.title|default('') }}
+              </a>
+            {% endif %}
+            
+            {% if link2|default({}) and link2.url|default('') %}
+              <a href="{{ link2.url|default('') }}" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+                {{ link2.title|default('') }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Scroll Down Indicator #}
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+      <a href="#content" class="text-white hover:text-gray-300 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
+    </div>
+  {% else %}
+    {# Regular Hero Layout #}
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
 
     {% if hero_layout == 'image_top' and media %}
       <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
@@ -10,16 +105,23 @@
     {% endif %}
 
     {% if pre_headline %}
-      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none  md:text-3xl lg:text-4xl">
-        {{ pre_headline }}
-      </h3>
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: pre_headline,
+          as: 'h3',
+          custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl lg:text-4xl'
+        }
+      } %}
     {% endif %}
 
     {% if heading %}
-      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none
-              md:text-5xl lg:text-6xl">
-        {{ heading }}
-      </h1>
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: heading,
+          as: 'h1',
+          custom_classes: 'mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl'
+        }
+      } %}
     {% endif %}
 
     {% if text %}
@@ -67,5 +169,6 @@
         </div>
       </div>
     {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </div>

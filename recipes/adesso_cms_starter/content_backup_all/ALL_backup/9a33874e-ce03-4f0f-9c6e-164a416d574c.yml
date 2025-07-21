@@ -1,0 +1,47 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9a33874e-ce03-4f0f-9c6e-164a416d574c
+  bundle: image
+  default_langcode: de
+  depends:
+    50978953-24aa-4922-bde3-f8b6d5eb131a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: card
+  created:
+    -
+      value: 1724541785
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adesso CMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-test.ddev.site/welcome'
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 50978953-24aa-4922-bde3-f8b6d5eb131a
+      alt: adesso
+      title: ''
+      width: 512
+      height: 512

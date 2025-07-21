@@ -9,9 +9,9 @@
     {{ content.frontend_editing }}
     {% embed 'adesso_cms_theme:accordion' with {
       content: content,
-      title: content.field_title|render,
-      pre_headline: content.field_pre_headline|render,
-      is_dark: is_dark,
+      title: content.field_title['#items'].getString(),
+      pre_headline: content.field_pre_headline['#items'].getString(),
+      is_dark: is_dark ? true : false,
     } only %}
       {% block accordion_items %}
         {{ content.field_accordion_item }}

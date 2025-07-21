@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+id: main-about
+title: About
+description: ''
+menu_name: main
+link:
+  uri: 'internal:/about'
+  title: ''
+  options: {  }
+external: false
+rediscover: false
+weight: -46
+expanded: false
+enabled: true
+parent: ''
+changed: 1640995200

@@ -1,0 +1,28 @@
+langcode: en
+features:
+  logo: true
+  name: true
+  mega_menu: true
+  search: true
+header:
+  background_color: white
+  sticky: true
+  enable_animations: true
+navigation:
+  enable_mega_menu: true
+  mobile_breakpoint: 'lg'
+  dropdown_animation: 'slide'
+search:
+  enable_dropdown: true
+  placeholder: 'Search...'
+  action_url: '/search'
+  enable_autocomplete: false
+logo:
+  url: '/themes/custom/adesso_cms_theme/logo.svg'
+  alt: 'Adesso CMS Logo'
+  width: 40
+  height: 40
+theme_settings:
+  css_optimization: true
+  js_optimization: true
+  enable_flowbite: true

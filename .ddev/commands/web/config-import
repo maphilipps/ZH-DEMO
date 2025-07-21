@@ -1,0 +1,24 @@
+#!/bin/bash
+
+## Description: Import Drupal configuration from config/sync
+## Usage: config-import
+## Example: "ddev config-import"
+
+set -eu -o pipefail
+
+echo "🔄 Importing Drupal configuration..."
+
+# Clear cache first
+drush cache:rebuild
+
+# Import configuration
+drush config:import --yes
+
+# Clear cache again after import
+drush cache:rebuild
+
+# Update database if needed
+drush updatedb --yes
+
+echo "✅ Configuration import completed successfully!"
+echo "💡 Site should now reflect imported configuration changes."

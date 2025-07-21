@@ -1,8 +1,21 @@
 {# pricing-card.twig #}
 <div class=" bg-card text-card-foreground flex h-full flex-col justify-between p-4 sm:p-6 md:p-8">
   <div>
-    <h2 class="mb-2 text-md font-bold leading-[1.4] md:text-xl">{{ pre_headline }}</h2>
-    <h3 class="my-2 text-2xl font-bold sm:text-3xl lg:text-4xl">{{ title }}</h3>
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: pre_headline,
+        as: 'h2',
+        custom_classes: 'mb-2 text-md font-bold leading-[1.4] md:text-xl'
+      }
+    } %}
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: title,
+        as: 'span',
+        visual_level: '1',
+        custom_classes: 'block my-2 text-2xl font-bold sm:text-3xl lg:text-4xl'
+      }
+    } %}
     <div class="my-4 sm:my-8 h-px w-full bg-border"></div>
     <p class="text-sm sm:text-base">{{ includes_label|default('Includes') }}:</p>
     <div class="mb-6 sm:mb-8 mt-3 sm:mt-4 grid grid-cols-1 gap-y-3 sm:gap-y-4 py-2">

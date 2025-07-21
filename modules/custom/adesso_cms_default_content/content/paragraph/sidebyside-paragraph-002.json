@@ -1,0 +1,19 @@
+{
+  "uuid": "sidebyside-paragraph-002",
+  "langcode": "en",
+  "type": "sidebyside",
+  "status": true,
+  "created": "2025-01-01T00:00:00+00:00",
+  "changed": "2025-01-01T00:00:00+00:00",
+  "default_langcode": true,
+  "revision_timestamp": "2025-01-01T00:00:00+00:00",
+  "revision_default": true,
+  "revision_translation_affected": true,
+  "field_title": "Why Choose adesso CMS?",
+  "field_summary": {
+    "value": "<p>Our content management system stands out through its modern architecture and developer-friendly approach. We've built adesso CMS with the latest technologies to ensure your website remains fast, secure, and scalable.</p><p>With integrated Storybook development, Tailwind CSS styling, and a robust paragraph system, content creators and developers can work together seamlessly.</p>",
+    "format": "full_html"
+  },
+  "field_sidebyside_layout": "right",
+  "field_content_element_theme": "light"
+}

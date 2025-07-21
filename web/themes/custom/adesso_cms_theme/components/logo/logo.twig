@@ -1,4 +1,5 @@
 
-<div class="{{ modifier }}">
-  <img src="{{ site_logo }}" width="312" height="96" class="logo w-100" alt="{{ 'Site logo'|t }}" />
-</div>
+<img src="{{ site_logo|default('') }}" 
+     class="block max-h-full w-auto {{ modifier|default('') }}" 
+     alt="{{ site_name|default('') ? (site_name ~ ' logo') : 'Site logo' }}" 
+     loading="lazy" />

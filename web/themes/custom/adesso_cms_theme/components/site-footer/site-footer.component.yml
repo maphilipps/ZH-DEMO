@@ -4,10 +4,34 @@ description: General/Site Footer component
 props:
   type: object
   properties:
-    links:
+    layout_variant:
+      type: string
+      title: layout_variant
+      description: ''
+    background_color:
+      type: string
+      title: background_color
+      description: ''
+    site_name:
+      type: string
+      title: site_name
+      description: Name of the site
+    site_logo:
+      type: string
+      title: site_logo
+      description: URL path to the site logo
+    show_logo:
+      type: boolean
+      title: show_logo
+      description: Whether to display the site logo
+    tagline:
+      type: string
+      title: tagline
+      description: Short description or tagline for the site
+    footer_links:
       type: object
-      title: links
-      description: Define the footer navigation links
+      title: footer_links
+      description: Array of footer navigation link groups
       properties:
         url:
           type: string
@@ -15,27 +39,36 @@ props:
           type: string
         icon:
           type: string
-    site_logo:
-      type: string
-      title: site_logo
-      description: URL path to the site logo
-    site_logo_width:
-      type: number
-      title: site_logo_width
-      description: Width of the site logo in pixels
-    site_logo_height:
-      type: number
-      title: site_logo_height
-      description: Height of the site logo in pixels
-    site_name:
-      type: string
-      title: site_name
-      description: Name of the site
-    show_logo:
-      type: boolean
-      title: show_logo
-      description: Whether to display the site logo
-    current_year:
-      type: number
-      title: current_year
-      description: Current year to display in copyright
+    social_links:
+      type: object
+      title: social_links
+      description: Array of social media links
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    newsletter_signup:
+      type: object
+      title: newsletter_signup
+      description: Newsletter signup form configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    contact_info:
+      type: object
+      title: contact_info
+      description: Contact information to display
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string

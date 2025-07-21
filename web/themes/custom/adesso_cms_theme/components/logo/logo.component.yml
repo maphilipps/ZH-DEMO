@@ -4,11 +4,15 @@ description: General/Logo component
 props:
   type: object
   properties:
-    modifier:
-      type: string
-      title: modifier
-      description: Define the modifier
     site_logo:
-      type: string
-      title: site_logo
-      description: Define the site logo
+      type: [string, "null"]
+      title: 'Site Logo'
+      description: 'Path to the site logo image file'
+    site_name:
+      type: [string, "null"]
+      title: 'Site Name'
+      description: 'Name of the site for alt text generation'
+    modifier:
+      type: [string, "null"]
+      title: 'CSS Modifier Classes'
+      description: 'Additional Tailwind CSS classes for sizing and styling'

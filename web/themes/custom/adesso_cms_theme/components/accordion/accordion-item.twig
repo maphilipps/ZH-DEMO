@@ -1,12 +1,12 @@
 
-<h2 id="accordion-flush-heading-{{ item.accordion_instance }}">
+<h2 id="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}">
   <button type="button" class="flex justify-between items-center py-5 w-full font-medium text-left border-b border-primary-200"
-          data-accordion-target="#accordion-flush-body-{{ item.accordion_instance }}"
-          aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}"
-          aria-controls="accordion-content-{{ item.accordion_instance }}"
-          id="accordion-trigger-{{ item.accordion_instance }}"
+          data-accordion-target="#accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+          aria-expanded="{{ (item.is_expanded|default(false)) ? 'true' : 'false' }}"
+          aria-controls="accordion-content-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+          id="accordion-trigger-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
   >
-    <span>{{ item.heading }}</span>
+    <span>{{ (item.heading|default(item.title))|default('') }}</span>
     <svg data-accordion-icon=""
          class="w-6 h-6 rotate-180 shrink-0"
          fill="currentColor"
@@ -19,17 +19,17 @@
     </svg>
   </button>
 </h2>
-<div id="accordion-flush-body-{{ item.accordion_instance }}"
-     class="{{ item.is_expanded ? '' : 'hidden' }}" aria-labelledby="accordion-flush-heading-{{ item.accordion_instance }}"
+<div id="accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+     class="{{ (item.is_expanded|default(false)) ? '' : 'hidden' }}" aria-labelledby="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
      data-accordion-content>
   <div class="py-5 border-b border-primary-200 prose-p:mb-2 prose-p:text-gray-900">
     {% block accordion_content %}
-      {{ item.body }}
+      {{ item.body|default('') }}
     {% endblock %}
-    {% if item.link %}
-      <a href="{{ url }}" class=" whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none
+    {% if item.link.url|default('') %}
+      <a href="{{ item.link.url|default('') }}" class=" whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none
         focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none text-primary">
-        {{ item.link.title }}
+        {{ item.link.title|default('Read more'|t) }}
       </a>
     {% endif %}
   </div>

@@ -62,7 +62,7 @@ function adesso_cms_installer_install_tasks_alter(array &$tasks, array $install_
     'adesso_cms_installer_choose_recipes' => [
       'display_name' => t('Choose add-ons'),
       'type' => 'form',
-      'run' => array_key_exists('recipes', $install_state['parameters']) ? INSTALL_TASK_SKIP : INSTALL_TASK_RUN_IF_REACHED,
+      'run' => INSTALL_TASK_SKIP, // Always skip for command line install
       'function' => RecipesForm::class,
     ],
     'adesso_cms_installer_site_name_form' => [
@@ -230,10 +230,14 @@ function _adesso_cms_installer_password_value(&$element, $input, FormStateInterf
  *   The batch job definition.
  */
 function adesso_cms_installer_apply_recipes(array &$install_state): array {
+  // Default to adesso_cms_starter recipe if no recipes specified
+  $default_recipes = ['adesso_cms_starter'];
+  $recipes_parameter = $install_state['parameters']['recipes'] ?? $default_recipes;
+  
   // If the installer ran before but failed mid-stream, don't reapply any
   // recipes that were successfully applied.
   $recipes_to_apply = array_diff(
-    $install_state['parameters']['recipes'],
+    $recipes_parameter,
     \Drupal::state()->get(RecipeAppliedSubscriber::STATE_KEY, []),
   );
 
@@ -250,8 +254,16 @@ function adesso_cms_installer_apply_recipes(array &$install_state): array {
   $recipe_operations = [];
 
   foreach ($recipes_to_apply as $name) {
-    $recipe = InstalledVersions::getInstallPath('adesso/' . $name);
-    $recipe = Recipe::createFromDirectory($recipe);
+    // Try to find recipe in local recipes directory first
+    $local_recipe_path = DRUPAL_ROOT . '/../recipes/' . $name;
+    if (is_dir($local_recipe_path)) {
+      $recipe_path = $local_recipe_path;
+    } else {
+      // Fallback to composer package approach
+      $recipe_path = InstalledVersions::getInstallPath('adesso/' . $name);
+    }
+    
+    $recipe = Recipe::createFromDirectory($recipe_path);
     $recipe_operations = array_merge($recipe_operations, RecipeRunner::toBatchOperations($recipe));
   }
 
@@ -276,7 +288,11 @@ function adesso_cms_installer_library_info_alter(array &$libraries, string $exte
   // If a library file's path starts with `/`, the library collection system
   // treats it as relative to the base path.
   // @see \Drupal\Core\Asset\LibraryDiscoveryParser::buildByExtension()
-  $base_path = '/' . $install_state['profiles']['adesso_cms_installer']->getPath();
+  if (!empty($install_state['profiles']['adesso_cms_installer'])) {
+    $base_path = '/' . $install_state['profiles']['adesso_cms_installer']->getPath();
+  } else {
+    $base_path = '/profiles/adesso_cms_installer';
+  }
 
   if ($extension === 'claro') {
     $libraries['maintenance-page']['css']['theme']["$base_path/css/gin-variables.css"] = [];

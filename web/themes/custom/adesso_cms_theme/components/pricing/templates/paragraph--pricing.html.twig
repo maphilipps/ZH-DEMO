@@ -7,13 +7,13 @@
   {{ title_suffix }}
   {% block content %}
     {{ content.frontend_editing }}
-    {% embed '@adesso_cms_theme/pricing/pricing.twig' with {
+    {% embed 'adesso_cms_theme:pricing' with {
       content: content,
-      pre_headline: content.field_eyebrow|render,
-      title: content.field_title|render,
-      summary: content.field_summary|render,
-      grid_columns: content.field_pricing_cards['#items']|length,
-      is_dark: is_dark,
+      pre_headline: paragraph.field_eyebrow.value,
+      title: paragraph.field_title.value,
+      summary: content.field_summary,
+      grid_columns: content.field_pricing_cards['#items']|length|default(3) ~ '',
+      is_dark: is_dark ? true : false,
     } only %}
       {% block pricing_cards %}
         {{ content.field_pricing_cards }}

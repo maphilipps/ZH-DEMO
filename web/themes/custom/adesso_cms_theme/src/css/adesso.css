@@ -1,61 +1,202 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-@import "tailwindcss";
-@import "./base.css";
-@import "./typography.css";
+@import 'tailwindcss';
+@import 'flowbite';
+@import './base.css';
+@import './navigation.css';
+@import './typography.css';
 
-@source "../../components";
-
+@source '../../components';
 @theme {
-    --color-primary: oklch(53.62% 0.1613 252.2);
-    --color-primary-50: oklch(94.97% 0.026 242.74);
-    --color-primary-100: oklch(90.1% 0.052 243.98);
-    --color-primary-200: oklch(80.87% 0.104 244.34);
-    --color-primary-300: oklch(71.66% 0.156 247.11);
-    --color-primary-400: oklch(64.74% 0.194 252.25);
-    --color-primary-500: oklch(53.62% 0.161 252.2);
-    --color-primary-600: oklch(45.4% 0.135 251.79);
-    --color-primary-700: oklch(37.04% 0.106 250.43);
-    --color-primary-800: oklch(29.18% 0.081 249.39);
-    --color-primary-900: oklch(19.37% 0.049 245.37);
-    --color-primary-950: oklch(14.13% 0.03 235.42);
-    --color-secondary: oklch(76.75% 0.16089370062474417 102.29484006182389);
-    --color-secondary-foreground: #ffffff;
-    --color-primary-foreground: #ffffff;
-
-    --color-neutral: var(--color-slate-800);
-    --color-neutral-50: var(--color-slate-50);
-    --color-neutral-100: var(--color-slate-100);
-    --color-neutral-200: var(--color-slate-200);
-    --color-neutral-300: var(--color-slate-300);
-    --color-neutral-400: var(--color-slate-400);
-    --color-neutral-500: var(--color-slate-500);
-    --color-neutral-600: var(--color-slate-600);
-    --color-neutral-700: var(--color-slate-700);
-    --color-neutral-800: var(--color-slate-800);
-    --color-neutral-900: var(--color-slate-900);
-    --color-neutral-950: var(--color-slate-950);
-
-    --font-display: "Inter", serif;
-    --font-weight-hairline: 100;
-    /* --font-weight-thin: 200; */
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    /* --font-weight-medium: 500; */
-    /* --font-weight-semibold: 600; */
-    --font-weight-bold: 700;
-    /* --font-weight-extrabold: 800; */
-    /* --font-weight-black: 900; */
-
+  --color-primary: oklch(53.62% 0.1613 252.2);
+  --color-primary-50: oklch(94.97% 0.026 242.74);
+  --color-primary-100: oklch(90.1% 0.052 243.98);
+  --color-primary-200: oklch(80.87% 0.104 244.34);
+  --color-primary-300: oklch(71.66% 0.156 247.11);
+  --color-primary-400: oklch(64.74% 0.194 252.25);
+  --color-primary-500: oklch(53.62% 0.161 252.2);
+  --color-primary-600: oklch(45.4% 0.135 251.79);
+  --color-primary-700: oklch(37.04% 0.106 250.43);
+  --color-primary-800: oklch(29.18% 0.081 249.39);
+  --color-primary-900: oklch(19.37% 0.049 245.37);
+  --color-primary-950: oklch(14.13% 0.03 235.42);
+  --color-secondary: oklch(76.75% 0.16089370062474417 102.29484006182389);
+  --color-secondary-foreground: #ffffff;
+  --color-primary-foreground: #ffffff;
+  --color-neutral: var(--color-slate-800);
+  --color-neutral-50: var(--color-slate-50);
+  --color-neutral-100: var(--color-slate-100);
+  --color-neutral-200: var(--color-slate-200);
+  --color-neutral-300: var(--color-slate-300);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+  --color-neutral-950: var(--color-slate-950);
+  --font-display: 'Inter', serif;
+  --font-weight-hairline: 100;
+  /* --font-weight-thin: 200; */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  /* --font-weight-medium: 500; */
+  /* --font-weight-semibold: 600; */
+  --font-weight-bold: 700;
+  /* --font-weight-extrabold: 800; */
+  /* --font-weight-black: 900; */
 }
 
 @layer base {
-    html {
-        color: var(--color-neutral);
-        /* Set sans, serif or mono stack with optional custom font as default. */
-        font-family: var(--font-sans);
-        font-size: '20px';
-        /* font-family: var(--font-serif); */
-        /* font-family: var(--font-mono); */
-    }
+
+  html {
+    color: var(--color-neutral);
+    /* Set sans, serif or mono stack with optional custom font as default. */
+    font-family: var(--font-sans);
+    font-size: '20px';
+    /* font-family: var(--font-serif); */
+    /* font-family: var(--font-mono); */
+  }
 }
+
+
+/* Custom styles for modern header */
+
+@layer components {
+
+  .header-nav {
+    @apply bg-white border-gray-200 bg-gray-900;
+  }
+
+  .header-nav-link {
+    @apply block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 bg-gray-50 bg-transparent border-0 text-primary-700 p-0 text-gray-400 text-white bg-gray-700 text-white bg-transparent border-gray-700 text-white;
+  }
+
+  .header-button {
+    @apply text-gray-800 text-white bg-gray-50 ring-4 ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 px-5 py-2.5 mr-2 bg-gray-700 outline-none ring-gray-800;
+  }
+
+  .header-button-primary {
+    @apply text-white bg-primary-700 bg-primary-800 ring-4 ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 px-5 py-2.5 bg-primary-600 bg-primary-700 outline-none ring-primary-800;
+  }
+
+  .mega-menu-dropdown {
+    @apply grid hidden w-full grid-cols-2 text-sm bg-gray-50 border border-gray-100 rounded-lg shadow-sm border-gray-700 grid-cols-3 bg-gray-800;
+    animation: slide-down 0.3s ease-out;
+  }
+
+  .mega-menu-section {
+    @apply p-4 pb-3 text-gray-900 rounded-lg text-white;
+  }
+
+  .mobile-menu-button {
+    @apply inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg hidden bg-gray-100 outline-none ring-2 ring-gray-200 text-gray-400 bg-gray-700 ring-gray-600;
+  }
+
+  .mobile-menu {
+    @apply hidden justify-between items-center w-full flex w-auto order-1;
+  }
+
+  .mobile-menu.open {
+    @apply block;
+    animation: fade-in 0.3s ease-in-out;
+  }
+}
+
+
+/* Flowbite specific overrides */
+
+@layer utilities {
+
+  .flowbite-dropdown {
+    @apply z-50;
+  }
+
+  .flowbite-collapse {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Drupal-safe utilities to prevent conflicts with Drupal's CSS classes */
+  .drupal-safe-hidden {
+    display: none !important;
+  }
+
+  .drupal-safe-block {
+    display: block !important;
+  }
+
+  .drupal-safe-flex {
+    display: flex !important;
+  }
+
+  .drupal-safe-inline-flex {
+    display: inline-flex !important;
+  }
+
+  .drupal-safe-grid {
+    display: grid !important;
+  }
+
+  /* Responsive variants for drupal-safe utilities */
+  @media (min-width: 640px) {
+
+    .sm\:drupal-safe-hidden {
+      display: none !important;
+    }
+
+    .sm\:drupal-safe-block {
+      display: block !important;
+    }
+
+    .sm\:drupal-safe-flex {
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+
+    .md\:drupal-safe-hidden {
+      display: none !important;
+    }
+
+    .md\:drupal-safe-block {
+      display: block !important;
+    }
+
+    .md\:drupal-safe-flex {
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+
+    .lg\:drupal-safe-hidden {
+      display: none !important;
+    }
+
+    .lg\:drupal-safe-block {
+      display: block !important;
+    }
+
+    .lg\:drupal-safe-flex {
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 1280px) {
+
+    .xl\:drupal-safe-hidden {
+      display: none !important;
+    }
+
+    .xl\:drupal-safe-block {
+      display: block !important;
+    }
+
+    .xl\:drupal-safe-flex {
+      display: flex !important;
+    }
+  }
+}
+
+

@@ -16,7 +16,11 @@
   "globals": {
     // Let ESLint know about defined global variables.
     "Drupal": true,
-    "drupalSettings": true
+    "drupalSettings": true,
+    "once": true,
+    "drupalTranslations": true,
+    "jQuery": true,
+    "$": true
   },
 
   "parserOptions": {

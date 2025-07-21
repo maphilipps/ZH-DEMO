@@ -3,7 +3,7 @@ _meta:
   entity_type: media
   uuid: 9a33874e-ce03-4f0f-9c6e-164a416d574c
   bundle: image
-  default_langcode: de
+  default_langcode: en
   depends:
     50978953-24aa-4922-bde3-f8b6d5eb131a: file
 default:
@@ -27,18 +27,18 @@ default:
       tag: meta
       attributes:
         name: title
-        content: '| adesso CMS'
+        content: '| adessoCMS'
     -
       tag: link
       attributes:
         rel: canonical
-        href: 'https://adesso-test.ddev.site/welcome'
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
   path:
     -
       alias: ''
-      langcode: de
+      langcode: en
       pathauto: 0
-  field_image:
+  field_media_image:
     -
       entity: 50978953-24aa-4922-bde3-f8b6d5eb131a
       alt: adesso

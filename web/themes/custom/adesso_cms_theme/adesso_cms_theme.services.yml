@@ -1,0 +1,11 @@
+# Local development services configuration for adesso CMS theme
+# 
+# This file enables TWIG development mode and other development settings
+# for easier theme development.
+
+parameters:
+  # Enable TWIG development mode
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false

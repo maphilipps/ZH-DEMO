@@ -13,10 +13,10 @@
     {{ content.frontend_editing }}
     {%
       include 'adesso_cms_theme:embed' with {
-        pre_headline: content.field_pre_headline|render,
-        title: content.field_title|render,
-        sub_headline: content.field_sub_headline|render,
-        embed: content.field_script|render,
+        pre_headline: content.field_pre_headline|render|striptags,
+        title: content.field_title|render|striptags,
+        sub_headline: content.field_sub_headline|render|striptags,
+        embed: content.field_script|render|striptags,
       } only
     %}
   {% endblock %}

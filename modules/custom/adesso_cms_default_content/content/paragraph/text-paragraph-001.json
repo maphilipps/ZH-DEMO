@@ -1,0 +1,18 @@
+{
+  "uuid": "text-paragraph-001",
+  "langcode": "en",
+  "type": "text",
+  "status": true,
+  "created": "2025-01-01T00:00:00+00:00",
+  "changed": "2025-01-01T00:00:00+00:00",
+  "default_langcode": true,
+  "revision_timestamp": "2025-01-01T00:00:00+00:00",
+  "revision_default": true,
+  "revision_translation_affected": true,
+  "field_title": "About Our Platform",
+  "field_body": {
+    "value": "<p>adesso CMS provides a comprehensive solution for managing your website content. Built on modern technologies like Drupal, Tailwind CSS, and Storybook, it offers both flexibility and reliability.</p><p>Our component-based architecture ensures consistent design while providing the flexibility to customize every aspect of your website.</p><p>Key features include:</p><ul><li>Modern component-based design system</li><li>Integrated Storybook for component development</li><li>Tailwind CSS v4 for efficient styling</li><li>Flexible paragraph system for content creation</li></ul>",
+    "format": "full_html"
+  },
+  "field_content_element_theme": "light"
+}

@@ -1,10 +1,10 @@
 {% set is_expanded = false %}
-{% embed '@adesso_cms_theme/accordion/accordion-item.twig' with {
+{% embed 'adesso_cms_theme:accordion-item' with {
   "item": {
-    "heading": content.field_title|render,
+    "heading": content.field_title|render|striptags,
     "accordion_instance": paragraph.id(),
     "is_expanded": is_expanded,
-    "body": content.field_body|render,
+    "body": content.field_body|render|striptags,
     "link": content.field_link ? {
       "url": content.field_link.0["#url"],
       "title": content.field_link.0["#title"]

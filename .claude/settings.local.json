@@ -1,11 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:flowbite.com)",
       "Bash(mkdir:*)",
-      "Bash(ddev theme:*)",
-      "Bash(ddev drush:*)",
-      "Bash(cp:*)"
+      "Bash(ddev drush cex:*)"
     ],
     "deny": []
   }

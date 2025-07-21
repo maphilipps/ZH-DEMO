@@ -16,11 +16,18 @@
 
     {% if media %}
       <div class="stat-icon {{ icon_class }} mb-4 max-w-[120px] sm:max-w-[200px]">
-        {{ media|raw }}
+        {{ media|render }}
       </div>
     {% endif %}
 
-    <h3 class="card-title font-semibold tracking-tight mb-2 text-xl">{{ heading }}</h3>
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: heading,
+        as: 'span',
+        visual_level: '3',
+        custom_classes: 'block card-title font-semibold tracking-tight mb-2 text-xl'
+      }
+    } %}
 
     {% if body %}
       <p class="mb-0">{{ body }}</p>

@@ -1,0 +1,66 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Card
+status: stable
+description: 'A single card component.'
+props:
+  type: object
+  properties:
+    media:
+      type: string
+      title: 'Media'
+      description: 'Media content for the card'
+    media_link:
+      type: string
+      title: 'Media Link'
+      description: 'URL for the media content'
+    body_modifier:
+      type: string
+      title: 'Body Modifier'
+      description: 'CSS classes for the card body'
+    tags:
+      type: array
+      title: 'Tags'
+      description: 'Array of tags for the card'
+      items:
+        type: string
+        title: 'Tag'
+        description: 'A single tag'
+    heading:
+      type: object
+      title: 'Heading'
+      description: 'Card heading object'
+      properties:
+        title:
+          type: string
+          title: 'Title'
+          description: 'Card title'
+        url:
+          type: string
+          title: 'URL'
+          description: 'Link URL for the title'
+    summary_text:
+      type: string
+      title: 'Summary Text'
+      description: 'Card summary/description text'
+    link:
+      type: object
+      title: 'Primary Link'
+      description: 'Primary action link'
+      properties:
+        url:
+          type: string
+          title: 'URL'
+        text:
+          type: string
+          title: 'Text'
+    link2:
+      type: object
+      title: 'Secondary Link'
+      description: 'Secondary action link'
+      properties:
+        url:
+          type: string
+          title: 'URL'
+        text:
+          type: string
+          title: 'Text'

@@ -1,0 +1,39 @@
+{
+  "uuid": "12345678-1234-1234-1234-123456789001",
+  "langcode": "en",
+  "type": "page",
+  "title": "Welcome to adesso CMS",
+  "uid": 1,
+  "status": true,
+  "created": "2025-01-01T00:00:00+00:00",
+  "changed": "2025-01-01T00:00:00+00:00",
+  "promote": false,
+  "sticky": false,
+  "default_langcode": true,
+  "revision_timestamp": "2025-01-01T00:00:00+00:00",
+  "revision_uid": 1,
+  "revision_log": "Initial version",
+  "revision_default": true,
+  "revision_translation_affected": true,
+  "path": {
+    "alias": "/welcome",
+    "langcode": "en",
+    "pathauto": 1
+  },
+  "field_content": [
+    {
+      "target_type": "paragraph",
+      "target_uuid": "hero-paragraph-001"
+    },
+    {
+      "target_type": "paragraph", 
+      "target_uuid": "text-paragraph-001"
+    },
+    {
+      "target_type": "paragraph",
+      "target_uuid": "sidebyside-paragraph-001"
+    }
+  ],
+  "field_seo_title": "Welcome to adesso CMS - Modern Content Management",
+  "field_seo_description": "Discover adesso CMS, a powerful and flexible content management system built with modern technologies for enterprise-level websites."
+}

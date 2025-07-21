@@ -1,22 +1,20 @@
+uuid: 2ad6e76b-6813-4a20-8e87-7be59b71b4f0
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.page
-    - paragraphs.paragraphs_type.card
-    - paragraphs.paragraphs_type.grid
-    - paragraphs.paragraphs_type.hero
-    - paragraphs.paragraphs_type.image_text
-    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: npctt7LB90ZHnN1nsqVur65i2H8mID01TFVbIyRaYAs
 id: node.page.field_paragraphs
 field_name: field_paragraphs
 entity_type: node
 bundle: page
-label: Components
-description: ''
+label: Inhaltselemente
+description: 'Fügen Sie Inhaltselemente wie Text, Bilder, Galerien und andere Komponenten hinzu, um Ihre Seite zu gestalten.'
 required: false
 translatable: false
 default_value: {  }
@@ -28,73 +26,78 @@ settings:
       accordion: accordion
       card_group: card_group
       carousel: carousel
-      embed: embed
       gallery: gallery
       hero: hero
-      logo_collection: logo_collection
       media: media
       newsletter: newsletter
       pricing: pricing
       sidebyside: sidebyside
+      slider: slider
       text: text
       views: views
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: 19
-        enabled: true
-      accordion_item:
-        weight: 20
-        enabled: false
-      bullet:
-        weight: 23
-        enabled: false
-      card:
-        weight: 21
-        enabled: false
-      card_group:
         weight: 22
         enabled: true
-      carousel:
+      accordion_item:
         weight: 23
-        enabled: true
-      carousel_item:
+        enabled: false
+      bullet:
         weight: 24
         enabled: false
-      embed:
+      card:
         weight: 25
+        enabled: false
+      card_group:
+        weight: 26
         enabled: true
-      gallery:
+      carousel:
         weight: 27
         enabled: true
-      hero:
+      carousel_item:
         weight: 28
-        enabled: true
-      logo_collection:
-        weight: 31
-        enabled: true
-      media:
+        enabled: false
+      embed:
+        weight: 29
+        enabled: false
+      gallery:
         weight: 30
         enabled: true
-      newsletter:
+      hero:
         weight: 31
         enabled: true
-      pricing:
-        weight: 34
-        enabled: true
-      pricing_card:
-        weight: 35
+      logo_collection:
+        weight: 32
         enabled: false
-      sidebyside:
+      media:
         weight: 33
         enabled: true
-      stats_item:
+      newsletter:
         weight: 34
-        enabled: false
-      text:
+        enabled: true
+      pricing:
         weight: 35
         enabled: true
-      views:
+      pricing_card:
         weight: 36
+        enabled: false
+      sidebyside:
+        weight: 37
+        enabled: true
+      slider:
+        weight: 38
+        enabled: true
+      slider_item:
+        weight: 39
+        enabled: false
+      stats_item:
+        weight: 40
+        enabled: false
+      text:
+        weight: 41
+        enabled: true
+      views:
+        weight: 42
         enabled: true
 field_type: entity_reference_revisions

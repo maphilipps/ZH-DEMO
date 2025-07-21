@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ce303a54-233d-4a16-8263-350717cbb6be
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: free-youtube-104-432560.webp
+  uri:
+    -
+      value: 'public://2025-03/free-youtube-104-432560.webp'
+  filemime:
+    -
+      value: image/webp
+  filesize:
+    -
+      value: 2114
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1742983691

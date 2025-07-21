@@ -3,9 +3,9 @@
   {%
     include '@adesso_cms_theme/gallery/gallery-item.twig' with {
       "item": {
-        "media": content.field_image|render,
-        "media_thumb": content.field_image|render,
-        "media_description": "",
+        "media": content.field_image,
+        "media_thumb": content.field_image,
+        "media_description": media.name.value,
         "id": 'media-' ~ media.id ~ random(),
       },
     } only

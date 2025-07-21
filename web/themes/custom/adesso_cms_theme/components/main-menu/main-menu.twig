@@ -1,47 +1,222 @@
 {#
 /**
  * @file
- * Simplified mobile menu implementation using Tailwind CSS.
+ * Main Menu component adapted from CivicTheme.
+ *
+ * Props:
+ * - theme: [string] Theme variation (light or dark).
+ * - items: [array] Menu links array:
+ *   Each item contains:
+ *   - title: [string] Title of the menu item.
+ *   - url: [string] URL of the menu item.
+ *   - in_active_trail: [boolean] Whether the item is in the active trail.
+ *   - is_expanded: [boolean] Whether the item is expanded.
+ *   - attributes: [string] Additional HTML attributes for the item.
+ *   - link_attributes: [string] Additional HTML attributes for the link.
+ *   - modifier_class: [string] Additional CSS classes for the item.
+ *   - is_new_window: [boolean] Whether to open the link in a new window.
+ *   - is_external: [boolean] Whether the link is external.
+ *   - below: [array] Submenu items.
+ *     Each item contains:
+ *     - items [object]
+ * - is_collapsible: [boolean] Whether to collapse the menu.
+ * - modifier_class: [string] Additional CSS classes.
  */
 #}
 
-<nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4">
-    <a href="https://flowbite.com" class="flex items-center">
-      <img src="{{ site_logo }}" alt="{{ site_name }}" width="{{ site_logo_width|default(120) }}" height="{{ site_logo_height|default(100) }}" />
-    </a>
-    <div class="flex items-center lg:order-2">
-      <a href="#"
-         class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log
-        in</a>
-      <a href="#"
-         class="text-white bg-primary hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Get
-        started</a>
-      <button data-collapse-toggle="mobile-menu-2" type="button"
-              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="mobile-menu-2" aria-expanded="true">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"></path>
-        </svg>
-        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-      <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-        {% for item in items %}
-          <li>
-            <a href="{{ item.url }}"
-                 class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 {{ link_modifier }} {% if item.in_active_trail %}font-bold{% endif %}">{{ item.title }}</a>
-          </li>
+{% set theme_class = 'main-menu-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% import _self as menus %}
+
+{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul class="flex items-center space-x-6" data-component-name="main-menu" {{- attributes|default('') -}}>
+    {% else %}
+      {% if is_collapsible %}
+        {% set collapsible_panel = 'data-collapsible-panel' %}
+        {% set aria_hidden = item.in_active_trail ? 'aria-hidden="false"' : 'aria-hidden="true"' %}
+      {% endif %}
+      <div class="absolute left-0 top-full z-50 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-gray-900/5" {{ collapsible_panel }} {{ aria_hidden|raw -}}>
+        <ul class="py-1">
+    {% endif %}
+
+    {% for key, item in items %}
+      {% set item_classes = [
+        'relative',
+        item.below ? 'group' : '',
+        item.modifier_class|default(''),
+      ] %}
+
+      {% set item_attributes = item.attributes|default('') %}
+      {% set aria_expanded = '' %}
+      {% if item.below and is_collapsible %}
+        {% set aria_expanded = item.in_active_trail and item.is_expanded ? 'aria-expanded="true"' : 'aria-expanded="false"' %}
+        {% set collapsible_collapsed = item.in_active_trail and item.is_expanded ? '' : 'data-collapsible-collapsed' %}
+        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration="0"', collapsible_collapsed, aria_expanded]|join(' ') %}
+      {% endif %}
+
+      {# Check if this is the deepest active item #}
+      {% set has_active_children = false %}
+      {% if item.below %}
+        {% for child in item.below %}
+          {% if child.in_active_trail %}
+            {% set has_active_children = true %}
+          {% endif %}
         {% endfor %}
+      {% endif %}
+
+      {% if item.in_active_trail and not has_active_children %}
+        {% set aria_current = 'aria-current="page"' %}
+      {% else %}
+        {% set aria_current = '' %}
+      {% endif %}
+
+      <li class="{{- item_classes|join(' ') -}}" {{- item_attributes|raw -}}>
+
+        {% if (item.below and menu_level == 0 and enable_mega_menu|default(true)) or (item.title == 'adessoCMS Features' and menu_level == 0) %}
+          <button type="button" 
+                  class="flex items-center px-3 py-2 text-sm font-medium text-gray-900 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200 group-hover:text-primary-600"
+                  data-dropdown-toggle="mega-menu-dropdown-{{ key }}"
+                  aria-controls="mega-menu-dropdown-{{ key }}"
+                  aria-expanded="false"
+                  aria-haspopup="true">
+            {{ item.title|default('') }}
+            <svg class="ml-1 h-3 w-3 text-gray-400 group-hover:text-primary-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        {% elseif item.below and menu_level == 0 %}
+          <a href="{{ item.url|default('#') }}" 
+             class="flex items-center px-3 py-2 text-sm font-medium text-gray-900 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200 group-hover:text-primary-600"
+             title="{{ item.title|default('') }}"
+             {{ item.link_attributes|default('') ~ ' ' ~ aria_current|raw }}
+             {% if item.is_new_window is defined and item.is_new_window %}target="_blank" rel="noopener"{% endif %}
+             {% if item.is_external is defined and item.is_external %}rel="external"{% endif %}>
+            {{ item.title|default('') }}
+            <svg class="ml-1 h-3 w-3 text-gray-400 group-hover:text-primary-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+        {% else %}
+          <a href="{{ item.url|default('#') }}" 
+             class="{% if menu_level == 0 %}flex items-center px-3 py-2 text-sm font-medium text-gray-900 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200{% else %}block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200{% endif %}"
+             title="{{ item.title|default('') }}"
+             {{ item.link_attributes|default('') ~ ' ' ~ aria_current|raw }}
+             {% if item.is_new_window is defined and item.is_new_window %}target="_blank" rel="noopener"{% endif %}
+             {% if item.is_external is defined and item.is_external %}rel="external"{% endif %}>
+            {{ item.title|default('') }}
+          </a>
+        {% endif %}
+
+        {% if is_collapsible and item.below %}
+          <a href="#" class="main-menu__item__link-trigger" data-collapsible-trigger {{ aria_expanded|raw }} title="Expand {{ item.title }} menu"></a>
+        {% endif %}
+
+        {% if (item.below and menu_level == 0 and enable_mega_menu|default(true)) or (item.title == 'adessoCMS Features' and menu_level == 0) %}
+          {# Flowbite Mega Menu Dropdown - Official Pattern #}
+          <div id="mega-menu-dropdown-{{ key }}" 
+               class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-700"
+               style="left: 0; top: 100%; margin-top: 4px;">
+            {% if item.below %}
+              {% set half_items = (item.below|length / 2)|round(0, 'ceil') %}
+              <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                <ul class="space-y-4" aria-labelledby="mega-menu-dropdown-{{ key }}">
+                  {% for subitem in item.below %}
+                    {% if loop.index <= half_items %}
+                      <li>
+                        <a href="{{ subitem.url|default('#') }}" 
+                           class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                          {{ subitem.title|default('') }}
+                        </a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                <ul class="space-y-4">
+                  {% for subitem in item.below %}
+                    {% if loop.index > half_items %}
+                      <li>
+                        <a href="{{ subitem.url|default('#') }}" 
+                           class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                          {{ subitem.title|default('') }}
+                        </a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
+              {# Test dropdown for adessoCMS Features #}
+              <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                <ul class="space-y-4" aria-labelledby="mega-menu-dropdown-{{ key }}">
+                  <li>
+                    <a href="/admin/structure/types" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Content Types
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/structure/views" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Views
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/structure/paragraphs_type" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Paragraph Types
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                <ul class="space-y-4">
+                  <li>
+                    <a href="/admin/structure/media" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Media Types
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/structure/taxonomy" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Taxonomies
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/structure/block" class="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
+                      Block Layout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        {% elseif item.below %}
+          {{- menus.menu_links_below(item.below, menu_level + 1, '', theme, is_collapsible, key) -}}
+        {% endif %}
+
+      </li>
+    {% endfor %}
+
+    {% if menu_level == 0 %}
       </ul>
-    </div>
-  </div>
-</nav>
+    {% else %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{#
+Separate macro to allow "cleaner" overrides of parts of the menu.
+
+Twig does not support overridable blocks in macro, so the only option is to
+clone this whole file and override it as required.
+The main macro is split into multiple macros to allow to override only the
+required parts while preserving (cloned) main generation macro.
+#}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+  {{ menus.menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) }}
+{% endmacro %}
+
+{{ menus.menu_links(items, 0, modifier_class, theme, is_collapsible) }}

@@ -8,6 +8,9 @@
     data-bs-toggle="modal"
     data-bs-target="#{{ modal_id }}"
     data-cy="modal-button"
+    aria-haspopup="dialog"
+    aria-controls="{{ modal_id }}"
+    aria-label="{{ 'Open %title dialog'|t({'%title': title}) }}"
   >
     {{ button_text }}
   </button>
@@ -16,9 +19,12 @@
 <div
   class="modal fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-8 md:p-0 opacity-0 hidden"
   id="{{ modal_id }}"
-  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
   aria-labelledby="{{ modal_id }}Label"
+  {% if body %}aria-describedby="{{ modal_id }}Body"{% endif %}
   aria-hidden="true"
+  tabindex="-1"
   data-cy="modal"
 >
   <div class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm: md:w-full">
@@ -34,9 +40,10 @@
       {% if body %}
         <div
           class="text-sm text-muted-foreground"
+          id="{{ modal_id }}Body"
           data-cy="modal-body"
         >
-          {{ body|raw }}
+          {{ body|render }}
         </div>
       {% endif %}
     </div>
@@ -48,6 +55,7 @@
           class="inline-flex items-center justify-center  text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
           data-bs-dismiss="modal"
           data-cy="modal-close-btn"
+          aria-label="{{ 'Close %title dialog'|t({'%title': title}) }}"
         >
           {{ close_button }}
         </button>
@@ -60,6 +68,8 @@
           href="{{ save_button.url|default('#') }}"
           {{ save_button.url is empty ? 'data-bs-dismiss="modal"' : '' }}
           data-cy="modal-save-btn"
+          aria-label="{{ save_button.text }} - {{ title }}"
+          role="button"
         >
           {{ save_button.text }}
         </a>

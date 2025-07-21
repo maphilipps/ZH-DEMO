@@ -1,0 +1,19 @@
+uuid: 982a2a92-9b57-4300-b892-eb5bc20acb0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_title
+    - node.type.news
+id: node.news.field_seo_title
+field_name: field_seo_title
+entity_type: node
+bundle: news
+label: 'SEO title'
+description: 'Use this field to overwrite the default HTML page title for SEO.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

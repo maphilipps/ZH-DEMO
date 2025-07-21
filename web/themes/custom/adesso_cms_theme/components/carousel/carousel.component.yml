@@ -23,11 +23,3 @@ props:
       type: string
       title: item_class
       description: Additional CSS classes for each carousel item
-libraryOverrides:
-  js:
-    carousel.behavior.js:
-      attributes:
-        async: false
-        defer: true
-  dependencies:
-    - core/drupal

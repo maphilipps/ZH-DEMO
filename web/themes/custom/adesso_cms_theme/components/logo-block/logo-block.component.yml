@@ -1,0 +1,26 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Logo Block
+description: Logo block for header left region
+props:
+  type: object
+  properties:
+    site_name:
+      type: string
+      title: Site Name
+      description: Site name to display
+      default: "Adesso CMS"
+    site_logo:
+      type: string
+      title: Site Logo
+      description: Path to site logo image
+      default: "/themes/custom/adesso_cms_theme/logo.svg"
+    show_logo:
+      type: boolean
+      title: Show Logo
+      description: Whether to display the site logo
+      default: true
+    show_site_name:
+      type: boolean
+      title: Show Site Name
+      description: Whether to display the site name next to logo
+      default: false

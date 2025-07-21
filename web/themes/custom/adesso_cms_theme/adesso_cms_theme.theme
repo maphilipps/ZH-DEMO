@@ -5,6 +5,7 @@
  * Functions to support theming in the adesso_cms_theme theme.
  */
 
+use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Component\Utility\Html;
 
 /**
@@ -12,6 +13,11 @@ use Drupal\Component\Utility\Html;
  */
 function adesso_cms_theme_preprocess_page_title(&$variables) {
   $node = \Drupal::request()->attributes->get('node');
+
+  // Ensure node is a valid entity.
+  if (!$node || !is_object($node) || !method_exists($node, 'bundle')) {
+    return;
+  }
 
   // Override page title for landing content type.
   if ($node && $node->bundle() == 'landing') {
@@ -127,7 +133,125 @@ function adesso_cms_theme_preprocess_html(array &$variables) {
  * Implements hook_page_attachments_alter().
  */
 function adesso_cms_theme_page_attachments_alter(array &$page) {
+  // Add preload hints for critical resources.
+  $critical_assets = [
+    // Preload critical fonts.
+    [
+      'href' => 'https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.woff2',
+      'as' => 'font',
+      'type' => 'font/woff2',
+      'crossorigin' => 'anonymous',
+    ],
+    // Preload critical CSS
+    // Critical JavaScript handled by libraries.yml
+    // Preload hero images (if on homepage)
+    [
+      'href' => '/themes/custom/adesso_cms_theme/logo.svg',
+      'as' => 'image',
+      'condition' => _adesso_cms_theme_is_homepage(),
+    ],
+  ];
 
+  // Add preload links.
+  foreach ($critical_assets as $asset) {
+    // Skip if condition is set and not met.
+    if (isset($asset['condition']) && !$asset['condition']) {
+      continue;
+    }
+
+    $preload_attributes = [
+      'href' => $asset['href'],
+      'rel' => 'preload',
+      'as' => $asset['as'],
+    ];
+
+    // Add optional attributes.
+    if (isset($asset['type'])) {
+      $preload_attributes['type'] = $asset['type'];
+    }
+    if (isset($asset['crossorigin'])) {
+      $preload_attributes['crossorigin'] = $asset['crossorigin'];
+    }
+
+    $page['#attached']['html_head_link'][] = [$preload_attributes, TRUE];
+  }
+
+  // Add resource hints for external domains.
+  $dns_prefetch_domains = [
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com',
+    'https://unpkg.com',
+  ];
+
+  foreach ($dns_prefetch_domains as $domain) {
+    $page['#attached']['html_head_link'][] = [
+      [
+        'href' => $domain,
+        'rel' => 'dns-prefetch',
+      ],
+      TRUE,
+    ];
+
+    // Also add preconnect for font domains.
+    if (strpos($domain, 'fonts.') !== FALSE) {
+      $page['#attached']['html_head_link'][] = [
+        [
+          'href' => $domain,
+          'rel' => 'preconnect',
+          'crossorigin' => 'anonymous',
+        ],
+        TRUE,
+      ];
+    }
+  }
+
+  // Add performance optimization meta tags.
+  $performance_meta = [
+    // Optimize CSS delivery.
+    [
+      'name' => 'x-css-loadcss',
+      'content' => 'true',
+    ],
+    // Enable compression hints.
+    [
+      'name' => 'compression',
+      'content' => 'gzip, br',
+    ],
+  ];
+
+  foreach ($performance_meta as $meta) {
+    $page['#attached']['html_head'][] = [
+      [
+        '#tag' => 'meta',
+        '#attributes' => $meta,
+      ],
+      'performance_' . $meta['name'],
+    ];
+  }
+
+  // Add service worker registration (if in production)
+  if (_adesso_cms_theme_is_production()) {
+    $page['#attached']['html_head'][] = [
+      [
+        '#tag' => 'script',
+        '#value' => "
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/themes/custom/adesso_cms_theme/sw.js')
+                .then(function(registration) {
+                  console.log('SW registered: ', registration);
+                })
+                .catch(function(registrationError) {
+                  console.log('SW registration failed: ', registrationError);
+                });
+            });
+          }
+        ",
+        '#attributes' => ['defer' => 'defer'],
+      ],
+      'service_worker_registration',
+    ];
+  }
 }
 
 /**
@@ -140,6 +264,19 @@ function adesso_cms_theme_preprocess_page(array &$variables) {
 
   // Get theme logo.
   $variables['logo'] = theme_get_setting('logo');
+
+  // Add menu data for header navigation.
+  $variables['menu_items'] = _adesso_cms_theme_get_menu_data();
+
+  // Add site information.
+  $variables['sites'] = _adesso_cms_theme_get_sites_data();
+  $variables['current_locale'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  // Adjust as needed.
+  $variables['current_site_handle'] = 'default';
+
+  // Add contact URL.
+  $variables['contact_url'] = '/contact';
+  $variables['customer_portal_url'] = 'https://voffice.venneker-gruppe.de';
 }
 
 /**
@@ -165,7 +302,9 @@ function adesso_cms_theme_preprocess_block(array &$variables) {
   if (isset($variables['elements']['#id']) && $variables['elements']['#id'] == 'footer') {
     $config = \Drupal::config('system.site');
     $theme_path = \Drupal::service('extension.list.theme')->getPath('adesso_cms_theme');
-    $variables['site_logo'] = '/' . $theme_path . '/static/images/logo.svg';
+    if ($theme_path && is_string($theme_path)) {
+      $variables['site_logo'] = '/' . Html::escape($theme_path) . '/static/images/logo.svg';
+    }
     $variables['site_name'] = $config->get('name');
   }
 }
@@ -179,7 +318,11 @@ function adesso_cms_theme_preprocess_block_content(array &$variables) {
   if ($block_content->bundle() === 'views') {
     // Add wrapper to the paragraph views.
     $views_ref = $block_content->field_views_ref->getValue();
-    $variables['wrapper_class'] = str_replace('-', '_', $views_ref[0]['target_id'] . '-' . $views_ref[0]['display_id'] . '__wrapper');
+    if (!empty($views_ref[0]['target_id']) && !empty($views_ref[0]['display_id'])) {
+      $target_id = Html::cleanCssIdentifier($views_ref[0]['target_id']);
+      $display_id = Html::cleanCssIdentifier($views_ref[0]['display_id']);
+      $variables['wrapper_class'] = str_replace('-', '_', $target_id . '-' . $display_id . '__wrapper');
+    }
   }
 
   $block_preprocess_function = 'adesso_cms_theme_preprocess_block_content__' . $block_content->bundle();
@@ -196,6 +339,41 @@ function adesso_cms_theme_preprocess_image(&$variables) {
     $variables['attributes']['class'] = [$variables['attributes']['class']];
   }
   $variables['attributes']['class'][] = 'w-full h-auto';
+
+  // Add lazy loading for non-critical images.
+  if (!_adesso_cms_theme_is_critical_image($variables)) {
+    $variables['attributes']['loading'] = 'lazy';
+    $variables['attributes']['decoding'] = 'async';
+  }
+
+  // Add responsive image hints.
+  if (!isset($variables['attributes']['sizes'])) {
+    $variables['attributes']['sizes'] = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
+  }
+}
+
+/**
+ * Check if image is critical and should not be lazy loaded.
+ */
+function _adesso_cms_theme_is_critical_image($variables) {
+  // Don't lazy load logos.
+  if (isset($variables['style_name']) && strpos($variables['style_name'], 'logo') !== FALSE) {
+    return TRUE;
+  }
+
+  // Don't lazy load hero images on homepage.
+  if (_adesso_cms_theme_is_homepage() && isset($variables['style_name']) && strpos($variables['style_name'], 'hero') !== FALSE) {
+    return TRUE;
+  }
+
+  // Don't lazy load images above the fold (first 3 images on page)
+  static $image_count = 0;
+  $image_count++;
+  if ($image_count <= 3) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
@@ -223,6 +401,55 @@ function adesso_cms_theme_preprocess_node(array &$variables) {
       $function($variables);
     }
   }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function adesso_cms_theme_page_attachments(array &$attachments) {
+  // Add Content Security Policy header for external CDN resources.
+  $csp_directives = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data: https:",
+    "connect-src 'self'",
+    "frame-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+    "manifest-src 'self'",
+  ];
+
+  $csp_header = implode('; ', $csp_directives);
+
+  $attachments['#attached']['http_header'][] = [
+    'Content-Security-Policy',
+    $csp_header,
+  ];
+
+  // Add additional security headers.
+  $attachments['#attached']['http_header'][] = [
+    'X-Content-Type-Options',
+    'nosniff',
+  ];
+
+  $attachments['#attached']['http_header'][] = [
+    'X-Frame-Options',
+    'SAMEORIGIN',
+  ];
+
+  $attachments['#attached']['http_header'][] = [
+    'X-XSS-Protection',
+    '1; mode=block',
+  ];
+
+  $attachments['#attached']['http_header'][] = [
+    'Referrer-Policy',
+    'strict-origin-when-cross-origin',
+  ];
 }
 
 /**
@@ -285,6 +512,157 @@ function adesso_cms_theme_preprocess_menu(&$variables) {
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
   $variables['site_logo'] = theme_get_setting('logo.url');
+}
+
+/**
+ * Get menu data for navigation templates.
+ */
+function _adesso_cms_theme_get_menu_data() {
+  $menu_tree = \Drupal::menuTree();
+  $menu_name = 'main';
+
+  // Build menu tree parameters.
+  $parameters = new MenuTreeParameters();
+  $parameters->setMaxDepth(3);
+  $parameters->onlyEnabledLinks();
+
+  // Load the menu tree.
+  $tree = $menu_tree->load($menu_name, $parameters);
+
+  // Transform the tree.
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree->transform($tree, $manipulators);
+
+  // Build menu items array.
+  $menu_items = [];
+  foreach ($tree as $element) {
+    $menu_items[] = _adesso_cms_theme_build_menu_item($element);
+  }
+
+  return $menu_items;
+}
+
+/**
+ * Build menu item data structure.
+ */
+function _adesso_cms_theme_build_menu_item($element) {
+  $link = $element->link;
+  $options = $link->getOptions();
+
+  $item = [
+    'title' => $link->getTitle(),
+    'url' => $link->getUrlObject()->toString(),
+    'is_current' => $link->getUrlObject()->isRouted() && $link->getUrlObject()->getRouteName() == \Drupal::routeMatch()->getRouteName(),
+    'in_active_trail' => $element->inActiveTrail,
+    'children' => [],
+    'variant' => $options['variant'] ?? 'default',
+    'background_color' => $options['background_color'] ?? 'white',
+    'featured_collection' => $options['featured_collection'] ?? NULL,
+    'featured_position' => $options['featured_position'] ?? 'after',
+    'break_column_after' => $options['break_column_after'] ?? FALSE,
+    'divider' => $options['divider'] ?? FALSE,
+    'icon' => $options['icon'] ?? NULL,
+    'image' => $options['image'] ?? NULL,
+  ];
+
+  // Build children recursively.
+  if ($element->hasChildren) {
+    foreach ($element->subtree as $child) {
+      $item['children'][] = _adesso_cms_theme_build_menu_item($child);
+    }
+  }
+
+  return $item;
+}
+
+/**
+ * Get sites data for multi-site navigation.
+ */
+function _adesso_cms_theme_get_sites_data() {
+  // For now, return basic site data
+  // This should be adapted based on your multi-site setup.
+  return [
+    [
+      'handle' => 'default',
+      'name' => 'adesso CMS',
+      'locale' => 'de',
+      'overwrite_name' => NULL,
+    ],
+  ];
+}
+
+/**
+ * Check if current page is homepage.
+ */
+function _adesso_cms_theme_is_homepage() {
+  try {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $front_page = \Drupal::config('system.site')->get('page.front');
+    $path_alias_manager = \Drupal::service('path_alias.manager');
+
+    // Check if current path is front page.
+    if ($current_path === $front_page) {
+      return TRUE;
+    }
+
+    // Check if we're on the root path.
+    if ($current_path === '/') {
+      return TRUE;
+    }
+
+    // Check alias.
+    $alias = $path_alias_manager->getAliasByPath($current_path);
+    if ($alias === $front_page) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+  catch (Exception $e) {
+    // Fail gracefully.
+    return FALSE;
+  }
+}
+
+/**
+ * Check if site is in production environment.
+ */
+function _adesso_cms_theme_is_production() {
+  // Check environment variable.
+  $environment = getenv('DRUPAL_ENV') ?: 'development';
+
+  // Check if we're not in a development environment.
+  if (in_array($environment, ['production', 'prod', 'live'])) {
+    return TRUE;
+  }
+
+  // Check if debug mode is disabled (another indicator of production)
+  $config = \Drupal::config('system.logging');
+  if (!$config->get('error_level')) {
+    return TRUE;
+  }
+
+  // Check if we're not on localhost or development domains.
+  $host = \Drupal::request()->getHost();
+  $dev_patterns = [
+    'localhost',
+    '127.0.0.1',
+    '.local',
+    '.dev',
+    '.ddev.site',
+    '.test',
+  ];
+
+  foreach ($dev_patterns as $pattern) {
+    if (strpos($host, $pattern) !== FALSE) {
+      return FALSE;
+    }
+  }
+
+  return TRUE;
 }
 
 /**

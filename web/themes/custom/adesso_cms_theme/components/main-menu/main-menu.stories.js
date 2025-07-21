@@ -1,113 +1,217 @@
-import MainMenuTemplate from './main-menu.twig';
+/**
+ * @file
+ * Main Menu stories adapted from CivicTheme structure
+ * Navigation component with robust data handling and accessibility
+ */
+
+import Component from './main-menu.twig';
 
 const meta = {
-  title: 'Navigation/Main Navigation',
+  title: 'Navigation/Main Menu',
+  component: Component,
   argTypes: {
-    modifier: {
-      description: 'Define the modifier class for the main menu',
-      control: 'text',
-    },
-    link_modifier: {
-      description: 'Define the modifier class for the main menu links',
-      control: 'text',
-    },
-    show_logo: {
-      description: 'Show the site logo',
-      control: 'boolean',
-    },
-    site_logo: {
-      description: 'Define the path to the site logo',
-      control: 'text',
-    },
-    site_logo_width: {
-      description: 'Define the width of the site logo',
-      control: { type: 'number' },
-    },
-    site_logo_height: {
-      description: 'Define the height of the site logo',
-      control: { type: 'number' },
-    },
-    site_name: {
-      description: 'Define the site name to display',
-      control: 'text',
-    },
-    show_site_name: {
-      description: 'Show the site name',
-      control: 'boolean',
+    theme: {
+      control: { type: 'radio' },
+      options: ['light', 'dark'],
     },
     items: {
-      description: 'Define the array of main menu items',
-      control: 'object',
+      control: { type: 'object' },
+      description: 'Array of menu items with title, url, and below properties',
     },
-  }
+    is_collapsible: {
+      control: { type: 'boolean' },
+    },
+    modifier_class: {
+      control: { type: 'text' },
+    },
+  },
 };
 
 export default meta;
 
-export const MainNavigation = {
-  render: (args) => MainMenuTemplate(args),
+export const MainMenu = {
+  parameters: {
+    layout: 'centered',
+  },
   args: {
-    modifier: '',
-    link_modifier: 'text-dark',
-    show_logo: true,
-    site_logo: './images/logo.svg',
-    site_logo_width: 200,
-    site_logo_height: 100,
-    site_name: 'Site Name',
-    show_site_name: false,
-    cta_link_count: 2,
+    theme: 'light',
     items: [
       {
         title: 'Home',
         url: '#',
-        in_active_trail: true
+        below: [],
+        is_expanded: false,
+        in_active_trail: true,
       },
       {
-        title: 'Menu Item 1',
+        title: 'Services',
         url: '#',
-        is_expanded: true,
         below: [
           {
-            title: 'Vestibulum ac diam',
-            url: '#'
+            title: 'Web Development',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
           },
           {
-            title: 'Mauris blandit aliquet',
-            url: '#'
+            title: 'Mobile Apps',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
           },
           {
-            title: 'Pellentesque in',
-            url: '#'
-          }
-        ]
+            title: 'Cloud Solutions',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
       },
       {
-        title: 'Menu Item 2',
+        title: 'Products',
         url: '#',
-        is_expanded: true,
         below: [
           {
-            title: 'Vestibulum ac diam',
-            url: '#'
+            title: 'CMS Platform',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
           },
           {
-            title: 'Mauris blandit aliquet',
-            url: '#'
-          }
-        ]
+            title: 'E-commerce',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
       },
       {
-        title: 'Menu Item 3',
-        url: '#'
+        title: 'About',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
       },
       {
-        title: 'CTA 1',
-        url: '#'
+        title: 'Contact',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
       },
-      {
-        title: 'CTA 2',
-        url: '#'
-      }
-    ]
-  }
+    ],
+    is_collapsible: false,
+    modifier_class: '',
+  },
 };
+
+export const CollapsibleMenu = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    theme: 'light',
+    items: [
+      {
+        title: 'Home',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: true,
+      },
+      {
+        title: 'Services',
+        url: '#',
+        below: [
+          {
+            title: 'Web Development',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+          {
+            title: 'Mobile Apps',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: true,
+        in_active_trail: true,
+      },
+      {
+        title: 'About',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+    ],
+    is_collapsible: true,
+    modifier_class: '',
+  },
+};
+
+export const DarkTheme = {
+  parameters: {
+    layout: 'centered',
+    backgrounds: {
+      default: 'dark',
+    },
+  },
+  args: {
+    theme: 'dark',
+    items: [
+      {
+        title: 'Home',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: true,
+      },
+      {
+        title: 'Services',
+        url: '#',
+        below: [
+          {
+            title: 'Web Development',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+          {
+            title: 'Mobile Apps',
+            url: '#',
+            below: [],
+            is_expanded: false,
+            in_active_trail: false,
+          },
+        ],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+      {
+        title: 'About',
+        url: '#',
+        below: [],
+        is_expanded: false,
+        in_active_trail: false,
+      },
+    ],
+    is_collapsible: false,
+    modifier_class: '',
+  },
+};
+

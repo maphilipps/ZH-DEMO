@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the adesso CMS installer profile.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function drupal_cms_installer_install() {
+  // Install tasks are handled by the .profile file
+  // This function exists to make the profile a proper installation profile
+}

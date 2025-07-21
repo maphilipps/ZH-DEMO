@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: faef6028-9b8d-45ac-acc3-d11b7b941c93
+  bundle: image
+  default_langcode: de
+  depends:
+    bf65da65-f7d5-4497-8609-a1ba7d49e399: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Tepecik, Didem_Roos, Roland_Musebrink, Johannes_05.png'
+  created:
+    -
+      value: 1753117284
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/5'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_media_image:
+    -
+      entity: bf65da65-f7d5-4497-8609-a1ba7d49e399
+      alt: 'People at adesso'
+      title: ''
+      width: 1800
+      height: 1200

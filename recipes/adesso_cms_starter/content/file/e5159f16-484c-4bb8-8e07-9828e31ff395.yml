@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e5159f16-484c-4bb8-8e07-9828e31ff395
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: hero-default-icon.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/hero-default-icon.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 87674
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753113831

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 9fa96b02-a649-41fa-9f73-34f9bc29668a
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Lena Nabokova, Geert Grund, Nehir Safak-Turhan, André Lodama.png'
+  uri:
+    -
+      value: 'public://2025-07/Lena Nabokova, Geert Grund, Nehir Safak-Turhan, André Lodama.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 2275321
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753117201

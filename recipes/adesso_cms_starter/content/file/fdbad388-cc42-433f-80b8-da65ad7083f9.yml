@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: fdbad388-cc42-433f-80b8-da65ad7083f9
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: '2025-01-20297805-005174-FK KÖLN.pdf'
+  uri:
+    -
+      value: 'public://downloads/2025-07/2025-01-20297805-005174-FK KÖLN.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 214173
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753113989

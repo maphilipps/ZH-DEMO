@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ffe6b772-5a22-40e7-84ab-a9c435c78611
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Schättler, David_Kosiol, Judith_Hong Wang, Sheng_09.png'
+  uri:
+    -
+      value: 'public://2025-07/Schättler, David_Kosiol, Judith_Hong Wang, Sheng_09.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 2067177
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753119745

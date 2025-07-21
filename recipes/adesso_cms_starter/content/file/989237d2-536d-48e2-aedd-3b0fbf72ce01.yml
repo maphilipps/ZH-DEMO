@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 989237d2-536d-48e2-aedd-3b0fbf72ce01
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: SEOhzPuhdV9eEY0fwbEEfR8Mw7BNoIMso0zU7eMMJ2k.jpg
+  uri:
+    -
+      value: 'public://oembed_thumbnails/2025-07/SEOhzPuhdV9eEY0fwbEEfR8Mw7BNoIMso0zU7eMMJ2k.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 33502
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753115998

@@ -30,11 +30,11 @@
 
 <footer class="{{ background_classes[background_color] }} border-t">
   <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
-    
+
     {% if layout_variant == 'large' %}
       {# Large Layout with Newsletter #}
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-        
+
         {# Brand Column #}
         <div class="lg:col-span-2">
           {% if show_logo and site_name %}
@@ -47,25 +47,25 @@
               <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
             </a>
           {% endif %}
-          
+
           {% if tagline %}
             <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
           {% endif %}
-          
+
           {% if newsletter_signup.enabled %}
             <form class="flex gap-2">
-              <input type="email" 
-                     class="flex-1 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
-                     placeholder="{{ newsletter_signup.placeholder ?? 'Enter your email' }}" 
+              <input type="email"
+                     class="flex-1 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                     placeholder="{{ newsletter_signup.placeholder ?? 'Enter your email' }}"
                      required>
-              <button type="submit" 
+              <button type="submit"
                       class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                 {{ newsletter_signup.button_text ?? 'Subscribe' }}
               </button>
             </form>
           {% endif %}
         </div>
-        
+
         {# Footer Links Columns #}
         {% for link_group in footer_links %}
           <div>
@@ -80,7 +80,7 @@
           </div>
         {% endfor %}
       </div>
-      
+
     {% elseif layout_variant == 'minimal' %}
       {# Minimal Layout #}
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -91,25 +91,16 @@
               site_name: site_name,
               modifier: 'h-6'
             } %}
-            <span class="ml-2 text-lg font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
           </a>
         {% endif %}
-        
-        {% if footer_links[0].links %}
-          <ul class="flex flex-wrap gap-6">
-            {% for link in footer_links[0].links %}
-              <li>
-                <a href="{{ link.url }}" class="text-sm transition-colors {{ link_classes[background_color] }}">{{ link.title }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+        {# Render footer menu block directly #}
+        {{ drupal_block('system_menu_block:footer', wrapper=false) }}
       </div>
-      
+
     {% elseif layout_variant == 'corporate' %}
       {# Corporate Layout #}
       <div class="grid gap-8 lg:grid-cols-5">
-        
+
         {# Brand and Contact Info #}
         <div class="lg:col-span-2">
           {% if show_logo and site_name %}
@@ -122,11 +113,11 @@
               <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
             </a>
           {% endif %}
-          
+
           {% if tagline %}
             <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
           {% endif %}
-          
+
           {% if contact_info %}
             <div class="space-y-3">
               {% if contact_info.address %}
@@ -141,7 +132,7 @@
             </div>
           {% endif %}
         </div>
-        
+
         {# Link Groups #}
         {% for link_group in footer_links %}
           <div>
@@ -156,11 +147,11 @@
           </div>
         {% endfor %}
       </div>
-      
+
     {% else %}
       {# Default Layout #}
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-        
+
         {# Brand Column #}
         <div>
           {% if show_logo and site_name %}
@@ -173,12 +164,12 @@
               <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
             </a>
           {% endif %}
-          
+
           {% if tagline %}
             <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
           {% endif %}
         </div>
-        
+
         {# Footer Links Columns #}
         {% for link_group in footer_links %}
           <div>
@@ -194,26 +185,26 @@
         {% endfor %}
       </div>
     {% endif %}
-    
+
     {# Separator #}
     <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 dark:border-gray-700">
-    
+
     {# Bottom Section #}
     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
       <span class="text-sm {{ link_classes[background_color] }}">
-        © {{ current_year|default("now"|date("Y")) }} 
+        © {{ current_year|default("now"|date("Y")) }}
         {% if copyright_text %}
           {{ copyright_text }}
         {% else %}
           <a href="/" class="hover:underline">{{ site_name }}</a>. {{ 'All Rights Reserved.'|t }}
         {% endif %}
       </span>
-      
+
       {# Social Media Links #}
       {% if social_links %}
         <div class="flex gap-4">
           {% for social in social_links %}
-            <a href="{{ social.url }}" 
+            <a href="{{ social.url }}"
                class="transition-colors {{ link_classes[background_color] }}"
                title="{{ social.title }}"
                target="_blank"

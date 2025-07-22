@@ -29,27 +29,37 @@ props:
       title: tagline
       description: Short description or tagline for the site
     footer_links:
-      type: object
+      type: array
       title: footer_links
       description: Array of footer navigation link groups
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+      items:
+        type: object
+        properties:
+          group_title:
+            type: string
+            title: Group title
+          links:
+            type: array
+            items:
+              type: object
+              properties:
+                url:
+                  type: string
+                title:
+                  type: string
     social_links:
-      type: object
+      type: array
       title: social_links
       description: Array of social media links
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+      items:
+        type: object
+        properties:
+          url:
+            type: string
+          title:
+            type: string
+          icon:
+            type: string
     newsletter_signup:
       type: object
       title: newsletter_signup

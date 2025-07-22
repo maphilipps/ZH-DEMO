@@ -65,20 +65,40 @@ props:
       title: newsletter_signup
       description: Newsletter signup form configuration
       properties:
-        url:
+        enabled:
+          type: boolean
+          title: Enable newsletter signup
+          default: false
+        placeholder:
           type: string
-        title:
+          title: Input placeholder text
+          default: 'Enter your email'
+        button_text:
           type: string
-        icon:
+          title: Submit button text
+          default: 'Subscribe'
+        action_url:
           type: string
+          title: Form action URL
     contact_info:
       type: object
       title: contact_info
       description: Contact information to display
       properties:
-        url:
+        address:
           type: string
-        title:
+          title: Physical address
+        phone:
           type: string
-        icon:
+          title: Phone number
+        email:
           type: string
+          title: Email address
+    current_year:
+      type: string
+      title: current_year
+      description: Current year for copyright
+    copyright_text:
+      type: string
+      title: copyright_text
+      description: Custom copyright text

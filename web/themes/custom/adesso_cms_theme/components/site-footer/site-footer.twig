@@ -52,15 +52,25 @@
             <p class="mb-6 {{ link_classes[background_color] }}">{{ tagline }}</p>
           {% endif %}
 
-          {% if newsletter_signup.enabled %}
-            <form class="flex gap-2">
+          {% if newsletter_signup and newsletter_signup.enabled %}
+            <form class="flex gap-2" aria-labelledby="newsletter-heading">
+              <div class="sr-only">
+                <h3 id="newsletter-heading">{{ 'Newsletter Signup'|t }}</h3>
+              </div>
+              <label for="newsletter-email" class="sr-only">{{ 'Email address for newsletter subscription'|t }}</label>
               <input type="email"
+                     id="newsletter-email"
+                     name="newsletter_email"
+                     aria-describedby="newsletter-description"
                      class="flex-1 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                     placeholder="{{ newsletter_signup.placeholder ?? 'Enter your email' }}"
+                     placeholder="{{ newsletter_signup.placeholder ?? 'Enter your email'|t }}"
+                     aria-required="true"
                      required>
+              <div id="newsletter-description" class="sr-only">{{ 'Subscribe to receive updates and newsletters'|t }}</div>
               <button type="submit"
-                      class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                {{ newsletter_signup.button_text ?? 'Subscribe' }}
+                      class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      aria-label="{{ 'Subscribe to newsletter'|t }}">
+                {{ newsletter_signup.button_text ?? 'Subscribe'|t }}
               </button>
             </form>
           {% endif %}
@@ -85,16 +95,35 @@
       {# Minimal Layout #}
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         {% if show_logo and site_name %}
-          <a href="/" class="flex items-center">
+          <a href="/" class="flex items-center" aria-label="{{ 'Go to homepage'|t }}">
             {% include 'adesso_cms_theme:logo' with {
               site_logo: site_logo,
               site_name: site_name,
               modifier: 'h-6'
             } %}
+            <span class="ml-2 text-lg font-semibold {{ text_classes[background_color|default('default')] }}">{{ site_name|escape }}</span>
           </a>
         {% endif %}
-        {# Render footer menu block directly #}
-        {{ drupal_block('system_menu_block:footer', wrapper=false) }}
+        {# Render footer menu block with defensive programming #}
+        {% set footer_menu = drupal_block('system_menu_block:footer', wrapper=false) %}
+        {% if footer_menu %}
+          {{ footer_menu }}
+        {% else %}
+          {# Fallback if footer menu is not available #}
+          {% if footer_links and footer_links[0] and footer_links[0].links %}
+            <nav aria-label="{{ 'Footer navigation'|t }}">
+              <ul class="flex flex-wrap gap-6 text-sm">
+                {% for link in footer_links[0].links %}
+                  {% if link and link.url and link.title %}
+                    <li>
+                      <a href="{{ link.url|escape('html_attr') }}" class="transition-colors text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">{{ link.title|escape }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </nav>
+          {% endif %}
+        {% endif %}
       </div>
 
     {% elseif layout_variant == 'corporate' %}
@@ -196,7 +225,7 @@
         {% if copyright_text %}
           {{ copyright_text }}
         {% else %}
-          <a href="/" class="hover:underline">{{ site_name }}</a>. {{ 'All Rights Reserved.'|t }}
+          <a href="/" class="hover:underline" aria-label="{{ 'Go to homepage'|t }}">{{ site_name|default('Site')|escape }}</a>. {{ 'All Rights Reserved.'|t }}
         {% endif %}
       </span>
 
@@ -204,20 +233,24 @@
       {% if social_links %}
         <div class="flex gap-4">
           {% for social in social_links %}
-            <a href="{{ social.url }}"
-               class="transition-colors {{ link_classes[background_color] }}"
-               title="{{ social.title }}"
-               target="_blank"
-               rel="noopener noreferrer">
-              {% if social.icon %}
-                <i class="{{ social.icon }} text-lg"></i>
-              {% else %}
-                <span class="sr-only">{{ social.title }}</span>
-                <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-              {% endif %}
-            </a>
+            {% if social and social.url and social.title %}
+              <a href="{{ social.url|escape('html_attr') }}"
+                 class="transition-colors {{ link_classes[background_color|default('default')] }}"
+                 title="{{ social.title|escape('html_attr') }}"
+                 aria-label="{{ 'Follow us on'|t }} {{ social.title|escape }}"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                {% if social.icon %}
+                  <i class="{{ social.icon|escape('html_attr') }} text-lg" aria-hidden="true"></i>
+                  <span class="sr-only">{{ social.title|escape }}</span>
+                {% else %}
+                  <span class="sr-only">{{ social.title|escape }}</span>
+                  <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                  </svg>
+                {% endif %}
+              </a>
+            {% endif %}
           {% endfor %}
         </div>
       {% endif %}

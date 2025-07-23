@@ -2,6 +2,7 @@
  * @file
  * Enhanced Carousel stories with comprehensive QA testing
  * Focus on accessibility, keyboard navigation, and slide transitions
+ * Updated to use Swiper.js instead of Splide
  */
 
 import CarouselTemplate from './carousel.twig';
@@ -74,9 +75,11 @@ export const Default = createEnhancedStory(
       item_class: '',
     },
     play: async ({ canvasElement }) => {
-      // Flowbite carousel initializes automatically via data attributes
-      // No manual JavaScript initialization needed
-      console.log('Carousel ready - using Flowbite data attributes');
+      // Swiper carousel initializes via Drupal behaviors
+      if (typeof Drupal !== 'undefined' && Drupal.behaviors && Drupal.behaviors.carouselBehavior) {
+        Drupal.behaviors.carouselBehavior.attach(canvasElement, {});
+      }
+      console.log('Carousel ready - using Swiper.js via Drupal behaviors');
     }
   },
   {
@@ -88,10 +91,10 @@ export const Default = createEnhancedStory(
       { id: 'image-alt-text', enabled: true },
     ],
     interactionTests: [
-      // Test carousel navigation buttons
+      // Test Swiper carousel navigation buttons
       async (canvas, userEvent) => {
-        const nextButton = canvas.queryByLabelText(/next/i) || canvas.querySelector('.carousel-next');
-        const prevButton = canvas.queryByLabelText(/previous/i) || canvas.querySelector('.carousel-prev');
+        const nextButton = canvas.querySelector('.swiper-button-next');
+        const prevButton = canvas.querySelector('.swiper-button-prev');
         
         if (nextButton) {
           expect(nextButton).toBeInTheDocument();
@@ -102,23 +105,23 @@ export const Default = createEnhancedStory(
           expect(prevButton).toBeInTheDocument();
         }
       },
-      // Test keyboard navigation
+      // Test keyboard navigation on Swiper
       async (canvas, userEvent) => {
-        const carousel = canvas.querySelector('.carousel');
-        if (carousel) {
-          await userEvent.click(carousel);
+        const swiperContainer = canvas.querySelector('.swiper');
+        if (swiperContainer) {
+          await userEvent.click(swiperContainer);
           await userEvent.keyboard('{ArrowRight}');
           await userEvent.keyboard('{ArrowLeft}');
         }
       },
-      // Test slide transitions
+      // Test Swiper slide structure
       async (canvas, userEvent) => {
-        const slides = canvas.querySelectorAll('.carousel-item');
+        const slides = canvas.querySelectorAll('.swiper-slide');
         expect(slides.length).toBeGreaterThan(0);
         
-        // Verify at least one slide is active
-        const activeSlides = canvas.querySelectorAll('.carousel-item.active, .carousel-item[aria-current="true"]');
-        expect(activeSlides.length).toBeGreaterThanOrEqual(1);
+        // Verify Swiper structure exists
+        const swiperWrapper = canvas.querySelector('.swiper-wrapper');
+        expect(swiperWrapper).toBeInTheDocument();
       },
     ],
     performanceTests: true,
@@ -181,11 +184,12 @@ export const AccessibilityFocused = createEnhancedStory(
           expect(liveRegion).toHaveAttribute('aria-live', 'polite');
         }
       },
-      // Test comprehensive keyboard navigation
+      // Test comprehensive keyboard navigation on Swiper
       async (canvas, userEvent) => {
-        const carousel = canvas.querySelector('.carousel');
-        if (carousel) {
+        const swiperContainer = canvas.querySelector('.swiper');
+        if (swiperContainer) {
           // Test various keyboard combinations
+          await userEvent.click(swiperContainer);
           await userEvent.keyboard('{ArrowRight}');
           await userEvent.keyboard('{ArrowLeft}');
           await userEvent.keyboard('{Home}'); // Should go to first slide

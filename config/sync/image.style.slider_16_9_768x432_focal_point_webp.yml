@@ -1,0 +1,25 @@
+uuid: 550e8400-e29b-41d4-a716-446655440007
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: YxglfBQE4Ys9thqAqyYmgsS-ODdhnFqhgT9CoWlL9qg
+name: slider_16_9_768x432_focal_point_webp
+label: 'Slider | 16:9 | 768x432 | Focal Point | WebP'
+effects:
+  bc0680ff-3bbf-4df2-ba2b-2da08ff937d2:
+    uuid: bc0680ff-3bbf-4df2-ba2b-2da08ff937d2
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 768
+      height: 432
+      crop_type: focal_point
+  79042a88-0e34-4461-84c8-5053854ed324:
+    uuid: 79042a88-0e34-4461-84c8-5053854ed324
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

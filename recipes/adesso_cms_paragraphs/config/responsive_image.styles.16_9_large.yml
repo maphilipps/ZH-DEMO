@@ -16,7 +16,7 @@ image_style_mappings:
   -
     image_mapping_type: sizes
     image_mapping:
-      sizes: '(min-width: 1200px) 1800px, (min-width: 768px) 704px, 512px'
+      sizes: '(min-width: 600px) 1800px, (min-width: 384px) 704px, 512px'
       sizes_image_styles:
         - 16_9_512x288_focal_point_webp
         - 16_9_704x396_focal_point_webp

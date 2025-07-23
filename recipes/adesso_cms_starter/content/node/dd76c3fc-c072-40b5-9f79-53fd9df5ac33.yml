@@ -87,7 +87,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T18:03:49+02:00'
+        content: '2025-07-23T14:39:52+02:00'
     -
       tag: meta
       attributes:
@@ -96,13 +96,13 @@ default:
     -
       tag: meta
       attributes:
-        name: 'twitter:title'
-        content: Contact
+        name: 'twitter:description'
+        content: 'Contact page with a simple form for submitting a message.'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Contact page with a simple form for submitting a message.'
+        name: 'twitter:title'
+        content: Contact
   path:
     -
       alias: /contact

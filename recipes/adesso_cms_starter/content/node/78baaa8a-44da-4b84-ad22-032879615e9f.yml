@@ -28,6 +28,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   moderation_state:
     -
       value: published
@@ -86,7 +89,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T20:30:28+02:00'
+        content: '2025-07-23T14:43:03+02:00'
     -
       tag: meta
       attributes:
@@ -95,13 +98,13 @@ default:
     -
       tag: meta
       attributes:
-        name: 'twitter:title'
-        content: 'Our product Vision'
+        name: 'twitter:description'
+        content: 'Our vision of the adesso Drupal CMS'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Our vision of the adesso Drupal CMS'
+        name: 'twitter:title'
+        content: 'Our product Vision'
   path:
     -
       alias: /our-product-vision
@@ -129,6 +132,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: false
@@ -160,6 +166,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>The vision for <strong>adesso CMS</strong> is to deliver a future-proof, enterprise-grade digital experience platform that resolves <strong>90% of our clients’ common content management and digital operations needs</strong>—right out of the box. Built on the trusted and extensible <strong>Drupal 11 core</strong>, adesso CMS is more than just a CMS distribution; it’s a powerful, opinionated framework designed to meet the evolving demands of large organizations in the areas of <strong>editing, workflows, search, compliance, SEO, tracking, media handling, and AI enablement</strong>.</p>'
@@ -192,6 +201,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_accordion_item:
             -
               entity:
@@ -211,6 +223,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>At its core, adesso CMS is committed to empowering content teams. It provides a rich, modular editing experience based on <strong>Paragraphs</strong>, enabling non-technical users to build sophisticated pages with reusable, design-safe components. Editors benefit from a tailored backend with real-time previews, structured page types, and guided authoring, drastically reducing time-to-publish while maintaining brand consistency. Coupled with robust <strong>workflow management</strong>, teams can manage roles, approvals, and multilingual publishing in a way that mirrors their real-world processes—securely and efficiently.</p>'
@@ -237,6 +252,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>The platform integrates <strong>enterprise-grade search</strong> with faceting, permissions-aware indexing, and personalization capabilities. Whether powered by Solr, Elasticsearch, or native tools, adesso CMS ensures that users can find content quickly and accurately. At the same time, the CMS is built with <strong>compliance and governance</strong> in mind, featuring audit logs, revision histories, access controls, and GDPR-ready configurations.</p>'
@@ -263,6 +281,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>In today’s competitive digital landscape, <strong>SEO and tracking</strong> are essential. adesso CMS ships with SEO best practices baked in: metadata management, XML sitemaps, structured data, canonical URL handling, and page speed optimization—all configurable through an intuitive interface. It also supports seamless integration with tracking and analytics platforms like Matomo, Google Analytics, and Tag Manager, giving marketing teams full visibility into content performance without custom development.</p>'
@@ -289,6 +310,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Media handling is another cornerstone of adesso CMS. Editors can easily manage a central media library with support for images, videos, documents, and remote media. Media is automatically optimized for performance and accessibility, with focal point cropping, lazy loading, and responsive breakpoints. Asset reuse and DAM integration further extend the value for organizations with high content production volume.</p>'
@@ -315,6 +339,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>Looking forward, adesso CMS embraces the intelligent future of content management by embedding <strong>AI capabilities</strong>. From AI-assisted content generation to image captioning, translation suggestions, and content recommendations, the CMS is designed to reduce editorial friction and amplify productivity. These features are offered responsibly, with clear boundaries, auditability, and optional controls for regulated industries.</p>'
@@ -350,6 +377,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>Ultimately, our vision is to make adesso CMS the <strong>default enterprise standard for rapid, compliant, and scalable digital experience delivery</strong>. By solving the majority of our clients’ recurring challenges out-of-the-box, we reduce implementation risk, accelerate go-live timelines, and allow organizations to focus on what truly differentiates them—while trusting that their foundational CMS needs are already taken care of. This balance between flexibility and structure, innovation and stability, defines the core of adesso CMS and its promise to enterprise clients.</p>'

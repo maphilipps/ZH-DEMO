@@ -1,5 +1,10 @@
-<div class="hidden duration-700 ease-in-out {{ item_class|default('') }}" data-carousel-item{% if is_active|default(false) %}="active"{% endif %}>
-  <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+<div class="relative w-full h-full {{ item_class|default('') }}" 
+     id="slide-{{ loop.index0|default(0) }}"
+     role="tabpanel"
+     aria-roledescription="slide"
+     {% if item.title|default('') %}aria-label="{{ item.title }}"{% endif %}>
+  
+  <div class="absolute block w-full h-full top-0 left-0">
     {% if item.media|default('') %}
       {{ item.media|default('') }}
     {% else %}
@@ -27,7 +32,8 @@
           <p class="text-sm md:text-lg opacity-90">{{ item.summary|default('') }}</p>
         {% endif %}
         {% if item.link.url|default('') %}
-          <a href="{{ item.link.url|default('') }}" class="inline-block mt-3 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors">
+          <a href="{{ item.link.url|default('') }}" 
+             class="inline-block mt-3 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors focus:ring-2 focus:ring-white/50 focus:outline-none">
             {{ item.link.title|default('Learn More') }}
           </a>
         {% endif %}

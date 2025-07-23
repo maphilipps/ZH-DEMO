@@ -1,28 +1,27 @@
-uuid: 9218aeb2-9234-4a50-8947-9663ae1971a8
+uuid: 550e8400-e29b-41d4-a716-446655440008
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.16_9_large
     - field.field.media.image.field_image
     - field.field.media.image.field_media_image
-    - image.style.16_9_1800x1080_focal_point_webp
+    - image.style.slider_16_9_1920x1080_focal_point_webp
     - media.type.image
   module:
-    - svg_image_responsive
+    - svg_image
 _core:
-  default_config_hash: FuV1WGhCbzoXiz7smvBVXC-0xYzl4ziBxfVUMw7QCKc
-id: media.image.16_9_large
+  default_config_hash: t2YAVeSqMs3Gpnfp_plCnQ2TsoC0u57VCUWl8e2jMMM
+id: media.image.slider
 targetEntityType: media
 bundle: image
-mode: 16_9_large
+mode: slider
 content:
   field_media_image:
     type: image
     label: visually_hidden
     settings:
-      image_style: 16_9_1800x1080_focal_point_webp
       image_link: ''
+      image_style: slider_16_9_1920x1080_focal_point_webp
       image_loading:
         attribute: lazy
     third_party_settings: {  }

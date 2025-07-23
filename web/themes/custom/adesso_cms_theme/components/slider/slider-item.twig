@@ -1,27 +1,250 @@
-{# @component Slider Item #}
-<div class="absolute inset-0 flex items-center justify-center">
-  {% if media %}
-    <div class="w-full h-full [&_img]:w-full [&_img]:h-full [&_img]:object-cover">
-      {{ media }}
-    </div>
-  {% endif %}
-</div>
+{#
+/**
+ * @file
+ * Enhanced slider item component template with responsive media processing.
+ *
+ * Available variables:
+ * - media: The media/image content to display (rendered HTML or media object)
+ * - media_url: Direct URL to media file for optimization
+ * - media_alt: Alternative text for the media/image for screen readers
+ * - media_caption: Optional caption describing the media content
+ * - media_credit: Photo credit or attribution
+ * - media_variants: Different sized versions of the media for responsive loading
+ * - title: Optional title for the slide
+ * - subtitle: Optional subtitle for the slide
+ * - summary: Optional summary text for the slide
+ * - body: Optional detailed body content
+ * - link_url: Optional URL to link the entire slide
+ * - link_title: Accessible title for the link
+ * - link_target: Link target attribute
+ * - cta_text: Call-to-action button text
+ * - cta_url: Call-to-action button URL
+ * - cta_style: Visual style for CTA button
+ * - theme: Theme variation (light|dark)
+ * - overlay_opacity: Opacity of text overlay background
+ * - text_position: Position of text content over image
+ * - lazy_load: Enable lazy loading for this slide
+ * - preload_priority: Loading priority for optimization
+ * - slide_id: Unique identifier for this slide
+ * - slide_index: Position index in slider
+ * - attributes: Additional HTML attributes
+ * - modifier_class: Additional CSS classes
+ */
+#}
 
-{% if title or summary %}
-  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white z-10">
-    {% if title %}
-      {% include 'adesso_cms_theme:heading' with {
-        heading: {
-          title: title,
-          as: 'span',
-          visual_level: '2',
-          custom_classes: 'block text-2xl font-bold mb-2'
-        }
-      } %}
+{# Set up defensive variables with defaults #}
+{% set safe_media = media|default(null) %}
+{% set safe_media_url = media_url|default(null) %}
+{% set safe_media_alt = media_alt|default('') %}
+{% set safe_media_caption = media_caption|default(null) %}
+{% set safe_media_credit = media_credit|default(null) %}
+{% set safe_media_variants = media_variants|default({}) %}
+{% set safe_title = title|default(null) %}
+{% set safe_subtitle = subtitle|default(null) %}
+{% set safe_summary = summary|default(null) %}
+{% set safe_body = body|default(null) %}
+{% set safe_link_url = link_url|default(null) %}
+{% set safe_link_title = link_title|default(null) %}
+{% set safe_link_target = link_target|default('_self') %}
+{% set safe_cta_text = cta_text|default(null) %}
+{% set safe_cta_url = cta_url|default(null) %}
+{% set safe_cta_style = cta_style|default('primary') %}
+{% set safe_theme = theme|default('light') %}
+{% set safe_overlay_opacity = overlay_opacity|default('medium') %}
+{% set safe_text_position = text_position|default('bottom-left') %}
+{% set safe_lazy_load = lazy_load|default(true) %}
+{% set safe_preload_priority = preload_priority|default('normal') %}
+{% set safe_slide_id = slide_id|default('slide-' ~ random()) %}
+{% set safe_slide_index = slide_index|default(0) %}
+
+{# Dynamic classes based on configuration #}
+{% set overlay_classes = {
+  'none': 'bg-transparent',
+  'light': 'bg-gradient-to-t from-black/30 to-transparent',
+  'medium': 'bg-gradient-to-t from-black/60 to-transparent',
+  'dark': 'bg-gradient-to-t from-black/80 to-transparent'
+} %}
+
+{% set text_position_classes = {
+  'center': 'absolute inset-0 flex items-center justify-center text-center',
+  'bottom-left': 'absolute bottom-0 left-0 p-6 text-left',
+  'bottom-center': 'absolute bottom-0 left-1/2 -translate-x-1/2 p-6 text-center',
+  'bottom-right': 'absolute bottom-0 right-0 p-6 text-right',
+  'top-left': 'absolute top-0 left-0 p-6 text-left',
+  'top-center': 'absolute top-0 left-1/2 -translate-x-1/2 p-6 text-center',
+  'top-right': 'absolute top-0 right-0 p-6 text-right'
+} %}
+
+{% set cta_style_classes = {
+  'primary': 'bg-primary-600 hover:bg-primary-700 text-white',
+  'secondary': 'bg-secondary-600 hover:bg-secondary-700 text-white',
+  'outline': 'border-2 border-white text-white hover:bg-white hover:text-gray-900',
+  'ghost': 'text-white hover:bg-white/20'
+} %}
+
+{% set item_classes = [
+  'slider-item',
+  'relative',
+  'w-full',
+  'h-full',
+  'overflow-hidden',
+  'group/item',
+  'ct-theme-%s'|format(safe_theme),
+  safe_lazy_load ? 'lazy-slide' : '',
+  'priority-' ~ safe_preload_priority,
+  modifier_class|default(''),
+] %}
+
+{# Generate unique IDs for ARIA support #}
+{% set description_id = safe_slide_id ~ '-description' %}
+{% set title_id = safe_slide_id ~ '-title' %}
+{% set content_id = safe_slide_id ~ '-content' %}
+
+{# Main slide container with optional link wrapper #}
+{% set slide_content %}
+  <div id="{{ safe_slide_id }}" 
+       class="{{ item_classes|join(' ')|trim }}" 
+       data-slide-index="{{ safe_slide_index }}"
+       {{ attributes|default('')|raw }}>
+    
+    {# Enhanced media container with responsive image support #}
+    {% if safe_media or safe_media_url %}
+      <div class="media-wrapper relative w-full h-full overflow-hidden">
+        {# Responsive image with multiple variants #}
+        {% if safe_media_variants and safe_media_variants|length > 0 %}
+          <picture class="w-full h-full">
+            {# AVIF format for modern browsers #}
+            {% if safe_media_variants.avif %}
+              <source srcset="{{ safe_media_variants.avif }}" type="image/avif">
+            {% endif %}
+            
+            {# WebP format for supported browsers #}
+            {% if safe_media_variants.webp %}
+              <source srcset="{{ safe_media_variants.webp }}" type="image/webp">
+            {% endif %}
+            
+            {# Fallback image #}
+            <img src="{{ safe_media_variants.large ?? safe_media_variants.medium ?? safe_media_url ?? '' }}"
+                 alt="{{ safe_media_alt }}"
+                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/item:scale-105"
+                 {% if safe_lazy_load %}loading="lazy"{% endif %}
+                 {% if safe_preload_priority == 'high' %}fetchpriority="high"{% endif %}
+                 {% if safe_media_caption or safe_title %}aria-describedby="{{ description_id }}"{% endif %}>
+          </picture>
+        {% elseif safe_media_url %}
+          <img src="{{ safe_media_url }}"
+               alt="{{ safe_media_alt }}"
+               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/item:scale-105"
+               {% if safe_lazy_load %}loading="lazy"{% endif %}
+               {% if safe_preload_priority == 'high' %}fetchpriority="high"{% endif %}
+               {% if safe_media_caption or safe_title %}aria-describedby="{{ description_id }}"{% endif %}>
+        {% else %}
+          {# Rendered media content #}
+          <div class="media-container relative w-full h-full [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-out [&_img]:group-hover/item:scale-105" 
+               {% if safe_media_alt %}data-media-alt="{{ safe_media_alt }}"{% endif %}
+               {% if safe_media_caption %}data-media-caption="{{ safe_media_caption }}"{% endif %}
+               data-description-id="{{ description_id }}">
+            {{ safe_media }}
+          </div>
+        {% endif %}
+        
+        {# Image overlay for better text readability #}
+        {% if safe_title or safe_summary or safe_body or safe_cta_text %}
+          <div class="image-overlay absolute inset-0 {{ overlay_classes[safe_overlay_opacity] ?? overlay_classes.medium }}"></div>
+        {% endif %}
+      </div>
+    {% else %}
+      {# Accessible fallback for missing media #}
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900" 
+           role="img" 
+           aria-label="No media available for this slide"
+           {% if safe_title %}aria-describedby="{{ title_id }}"{% endif %}>
+        <div class="text-center text-gray-500 dark:text-gray-400">
+          <svg class="w-20 h-20 mx-auto mb-4 opacity-50" 
+               fill="none" 
+               stroke="currentColor" 
+               viewBox="0 0 24 24"
+               aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-base font-medium" aria-hidden="true">No media available</p>
+          <p class="text-sm opacity-75" aria-hidden="true">Please add an image to this slide</p>
+        </div>
+      </div>
     {% endif %}
     
-    {% if summary %}
-      <p class="text-sm">{{ summary }}</p>
+    {# Content overlay with enhanced positioning #}
+    {% if safe_title or safe_subtitle or safe_summary or safe_body or safe_cta_text %}
+      <div class="content-overlay {{ text_position_classes[safe_text_position] ?? text_position_classes['bottom-left'] }} text-white z-10">
+        <div class="content-container max-w-lg space-y-3" id="{{ content_id }}">
+          
+          {# Title #}
+          {% if safe_title %}
+            <h3 id="{{ title_id }}" class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+              {{ safe_title }}
+            </h3>
+          {% endif %}
+          
+          {# Subtitle #}
+          {% if safe_subtitle %}
+            <p class="text-lg md:text-xl font-medium opacity-90">{{ safe_subtitle }}</p>
+          {% endif %}
+          
+          {# Summary #}
+          {% if safe_summary %}
+            <p class="text-base md:text-lg opacity-85 leading-relaxed">{{ safe_summary }}</p>
+          {% endif %}
+          
+          {# Body content #}
+          {% if safe_body %}
+            <div class="text-sm md:text-base opacity-80 leading-relaxed prose prose-invert max-w-none">
+              {{ safe_body|raw }}
+            </div>
+          {% endif %}
+          
+          {# Call-to-action button #}
+          {% if safe_cta_text and safe_cta_url %}
+            <div class="pt-2">
+              <a href="{{ safe_cta_url }}"
+                 class="inline-flex items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 ease-out {{ cta_style_classes[safe_cta_style] ?? cta_style_classes.primary }} hover:shadow-lg hover:scale-105 focus:ring-4 focus:ring-primary-500/50 focus:outline-none"
+                 {% if safe_link_target != '_self' %}target="{{ safe_link_target }}"{% endif %}
+                 {% if safe_link_target == '_blank' %}rel="noopener noreferrer"{% endif %}>
+                {{ safe_cta_text }}
+                <svg class="w-4 h-4 ml-2 transition-transform duration-300 ease-out group-hover:translate-x-1" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    
+    {# Screen reader accessible description #}
+    {% if safe_media_alt or safe_media_caption or safe_media_credit %}
+      <div id="{{ description_id }}" class="sr-only">
+        {% if safe_media_alt %}{{ safe_media_alt }}.{% endif %}
+        {% if safe_media_caption %} {{ safe_media_caption }}.{% endif %}
+        {% if safe_media_credit %} Photo credit: {{ safe_media_credit }}.{% endif %}
+      </div>
     {% endif %}
   </div>
+{% endset %}
+
+{# Wrap in link if URL provided #}
+{% if safe_link_url and not safe_cta_url %}
+  <a href="{{ safe_link_url }}"
+     {% if safe_link_title %}title="{{ safe_link_title }}"{% endif %}
+     {% if safe_link_target != '_self' %}target="{{ safe_link_target }}"{% endif %}
+     {% if safe_link_target == '_blank' %}rel="noopener noreferrer"{% endif %}
+     class="block w-full h-full focus:outline-none focus:ring-4 focus:ring-primary-500/50 rounded-lg transition-shadow duration-300">
+    {{ slide_content }}
+  </a>
+{% else %}
+  {{ slide_content }}
 {% endif %}
+

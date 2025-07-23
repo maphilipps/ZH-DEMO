@@ -1,18 +1,166 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Slider Item
-description: 'Individual item within a slider component.'
+status: stable
+description: 'Individual item within a slider component with enhanced media processing and responsive image support'
 props:
   type: object
   properties:
+    # Media Content
     media:
-      type: string
+      type: [string, object, "null"]
       title: Media
-      description: The media/image to display
+      description: The media/image content to display (rendered HTML or media object)
+      default: null
+    media_url:
+      type: [string, "null"]
+      title: Media URL
+      description: Direct URL to media file for optimization
+      default: null
+    media_alt:
+      type: [string, "null"]
+      title: Media Alt Text
+      description: Alternative text for the media/image for screen readers
+      default: null
+    media_caption:
+      type: [string, "null"]
+      title: Media Caption
+      description: Optional caption describing the media content
+      default: null
+    media_credit:
+      type: [string, "null"]
+      title: Media Credit
+      description: Photo credit or attribution
+      default: null
+    # Responsive Image Variants
+    media_variants:
+      type: object
+      title: Media Variants
+      description: Different sized versions of the media for responsive loading
+      properties:
+        thumbnail:
+          type: [string, "null"]
+          description: Small thumbnail version (150x150)
+        medium:
+          type: [string, "null"]
+          description: Medium sized version (800x450)
+        large:
+          type: [string, "null"]
+          description: Large version (1920x1080)
+        webp:
+          type: [string, "null"]
+          description: WebP optimized version
+        avif:
+          type: [string, "null"]
+          description: AVIF optimized version
+    # Content
     title:
-      type: string
+      type: [string, "null"]
       title: Title
       description: Optional title for the slide
+      default: null
+    subtitle:
+      type: [string, "null"]
+      title: Subtitle
+      description: Optional subtitle for the slide
+      default: null
     summary:
-      type: string
+      type: [string, "null"]
       title: Summary
       description: Optional summary text for the slide
+      default: null
+    body:
+      type: [string, "null"]
+      title: Body Content
+      description: Optional detailed body content
+      default: null
+    # Link Configuration
+    link_url:
+      type: [string, "null"]
+      title: Link URL
+      description: Optional URL to link the entire slide
+      default: null
+    link_title:
+      type: [string, "null"]
+      title: Link Title
+      description: Accessible title for the link
+      default: null
+    link_target:
+      type: string
+      title: Link Target
+      description: Link target attribute
+      enum: [_self, _blank, _parent, _top]
+      default: _self
+    # CTA Button
+    cta_text:
+      type: [string, "null"]
+      title: CTA Button Text
+      description: Call-to-action button text
+      default: null
+    cta_url:
+      type: [string, "null"]
+      title: CTA Button URL
+      description: Call-to-action button URL
+      default: null
+    cta_style:
+      type: string
+      title: CTA Button Style
+      description: Visual style for CTA button
+      enum: [primary, secondary, outline, ghost]
+      default: primary
+    # Visual Configuration
+    theme:
+      type: string
+      title: Theme
+      description: Theme variation (light or dark)
+      enum: [light, dark]
+      default: light
+    overlay_opacity:
+      type: string
+      title: Overlay Opacity
+      description: Opacity of text overlay background
+      enum: [none, light, medium, dark]
+      default: medium
+    text_position:
+      type: string
+      title: Text Position
+      description: Position of text content over image
+      enum: [center, bottom-left, bottom-center, bottom-right, top-left, top-center, top-right]
+      default: bottom-left
+    # Performance Options
+    lazy_load:
+      type: boolean
+      title: Lazy Load
+      description: Enable lazy loading for this slide
+      default: true
+    preload_priority:
+      type: string
+      title: Preload Priority
+      description: Loading priority for optimization
+      enum: [high, normal, low]
+      default: normal
+    # Metadata
+    slide_id:
+      type: [string, "null"]
+      title: Slide ID
+      description: Unique identifier for this slide
+      default: null
+    slide_index:
+      type: [integer, "null"]
+      title: Slide Index
+      description: Position index in slider
+      default: null
+    # CSS and Attributes
+    attributes:
+      type: string
+      title: Attributes
+      description: Additional HTML attributes
+      default: ""
+    modifier_class:
+      type: string
+      title: Modifier classes
+      description: Additional CSS classes
+      default: ""
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - adesso_cms_theme/responsive-images

@@ -58,7 +58,7 @@
           },
           
           // Loop configuration
-          loop: true,
+          loop: false,
           slidesPerView: cardsPerView,
           spaceBetween: 20,
           

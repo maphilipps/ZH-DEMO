@@ -1,0 +1,37 @@
+uuid: 550e8400-e29b-41d4-a716-446655440008
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_image
+    - field.field.media.image.field_media_image
+    - image.style.slider_16_9_1920x1080_focal_point_webp
+    - media.type.image
+  module:
+    - svg_image
+_core:
+  default_config_hash: t2YAVeSqMs3Gpnfp_plCnQ2TsoC0u57VCUWl8e2jMMM
+id: media.image.slider
+targetEntityType: media
+bundle: image
+mode: slider
+content:
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: slider_16_9_1920x1080_focal_point_webp
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  field_image: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

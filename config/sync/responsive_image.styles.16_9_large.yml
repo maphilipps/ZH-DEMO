@@ -5,7 +5,7 @@ dependencies:
   config:
     - image.style.16_9_512x288_focal_point_webp
     - image.style.16_9_704x396_focal_point_webp
-    - image.style.16_9_960x540_focal_point_webp
+    - image.style.16_9_1800x1080_focal_point_webp
   theme:
     - olivero
 _core:
@@ -16,11 +16,11 @@ image_style_mappings:
   -
     image_mapping_type: sizes
     image_mapping:
-      sizes: 100vw
+      sizes: '(min-width: 1200px) 1800px, (min-width: 768px) 704px, 512px'
       sizes_image_styles:
         - 16_9_512x288_focal_point_webp
         - 16_9_704x396_focal_point_webp
-        - 16_9_960x540_focal_point_webp
+        - 16_9_1800x1080_focal_point_webp
     breakpoint_id: olivero.sm
     multiplier: 1x
 breakpoint_group: olivero

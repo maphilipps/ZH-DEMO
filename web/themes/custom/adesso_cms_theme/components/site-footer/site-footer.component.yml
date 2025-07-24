@@ -29,76 +29,46 @@ props:
       title: tagline
       description: Short description or tagline for the site
     footer_links:
-      type: array
+      type: object
       title: footer_links
       description: Array of footer navigation link groups
-      items:
-        type: object
-        properties:
-          group_title:
-            type: string
-            title: Group title
-          links:
-            type: array
-            items:
-              type: object
-              properties:
-                url:
-                  type: string
-                title:
-                  type: string
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
     social_links:
-      type: array
+      type: object
       title: social_links
       description: Array of social media links
-      items:
-        type: object
-        properties:
-          url:
-            type: string
-          title:
-            type: string
-          icon:
-            type: string
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
     newsletter_signup:
       type: object
       title: newsletter_signup
       description: Newsletter signup form configuration
       properties:
-        enabled:
-          type: boolean
-          title: Enable newsletter signup
-          default: false
-        placeholder:
+        url:
           type: string
-          title: Input placeholder text
-          default: 'Enter your email'
-        button_text:
+        title:
           type: string
-          title: Submit button text
-          default: 'Subscribe'
-        action_url:
+        icon:
           type: string
-          title: Form action URL
     contact_info:
       type: object
       title: contact_info
       description: Contact information to display
       properties:
-        address:
+        url:
           type: string
-          title: Physical address
-        phone:
+        title:
           type: string
-          title: Phone number
-        email:
+        icon:
           type: string
-          title: Email address
-    current_year:
-      type: string
-      title: current_year
-      description: Current year for copyright
-    copyright_text:
-      type: string
-      title: copyright_text
-      description: Custom copyright text

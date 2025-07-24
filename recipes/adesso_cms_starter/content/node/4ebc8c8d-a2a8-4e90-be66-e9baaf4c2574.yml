@@ -5,6 +5,7 @@ _meta:
   bundle: news
   default_langcode: de
   depends:
+    c97ac49d-7fc7-4b0b-a54d-c5d463a0e186: media
     d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
 default:
   revision_uid:
@@ -48,6 +49,11 @@ default:
         rel: shortlink
         href: 'https://adesso-cms.ddev.site/'
     -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=JOg-O33b'
+    -
       tag: meta
       attributes:
         name: referrer
@@ -85,8 +91,28 @@ default:
     -
       tag: meta
       attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=JOg-O33b'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'People at adesso'
+    -
+      tag: meta
+      attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T18:04:14+02:00'
+        content: '2025-07-23T14:43:03+02:00'
     -
       tag: meta
       attributes:
@@ -95,13 +121,23 @@ default:
     -
       tag: meta
       attributes:
+        name: 'twitter:description'
+        content: 'Drupal is simplifying website building by enhancing its user interface, streamlining site setup, and adding low-code/no-code tools. These improvements make the platform more accessible to both developers and non-technical users, enabling faster, easier site creation while maintaining Drupal’s robust features, performance, and security.'
+    -
+      tag: meta
+      attributes:
         name: 'twitter:title'
         content: 'Drupal CMS: A strategic initiative for the future'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Drupal is simplifying website building by enhancing its user interface, streamlining site setup, and adding low-code/no-code tools. These improvements make the platform more accessible to both developers and non-technical users, enabling faster, easier site creation while maintaining Drupal’s robust features, performance, and security.'
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=3B5LxI22'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'People at adesso'
   path:
     -
       alias: /news/2025-01/drupal-cms-strategic-initiative-future
@@ -116,7 +152,7 @@ default:
       value: 'Drupal is simplifying website building by enhancing its user interface, streamlining site setup, and adding low-code/no-code tools. These improvements make the platform more accessible to both developers and non-technical users, enabling faster, easier site creation while maintaining Drupal’s robust features, performance, and security.'
   field_featured_image:
     -
-      target_id: 1
+      entity: c97ac49d-7fc7-4b0b-a54d-c5d463a0e186
   field_tags:
     -
       entity: d48adeba-e388-4e82-820b-98bbd2f35a46

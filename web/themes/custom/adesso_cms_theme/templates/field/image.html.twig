@@ -10,6 +10,8 @@
  * @see template_preprocess_image()
  */
 #}
+{# Remove conflicting sizes attribute to let responsive images work properly #}
+{% set clean_attributes = attributes.removeAttribute('sizes') %}
 <div class="rounded-lg overflow-hidden">
-<img{{ attributes }} class="rounded-lg" />
+<img{{ clean_attributes }} class="w-full h-auto rounded-lg" />
 </div>

@@ -29,7 +29,7 @@ default:
       value: false
   weight:
     -
-      value: -47
+      value: 0
   expanded:
     -
       value: false
@@ -51,7 +51,7 @@ default:
       tag: link
       attributes:
         rel: shortlink
-        href: 'https://adesso-cms.ddev.site/node/5'
+        href: 'https://adesso-cms.ddev.site/node/7'
     -
       tag: meta
       attributes:

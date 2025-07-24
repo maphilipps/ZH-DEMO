@@ -5,12 +5,15 @@ type: 'Site'
 install:
   # Core
   - block_content
+  - image
   - link
   - media
   - media_library
   - options
+  - responsive_image
   - text
   # Contrib
+  - focal_point
   - paragraphs
   - paragraphs_features
   - viewfield

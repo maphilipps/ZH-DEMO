@@ -346,10 +346,8 @@ function adesso_cms_theme_preprocess_image(&$variables) {
     $variables['attributes']['decoding'] = 'async';
   }
 
-  // Add responsive image hints.
-  if (!isset($variables['attributes']['sizes'])) {
-    $variables['attributes']['sizes'] = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
-  }
+  // Don't add sizes attribute - let responsive image system handle it
+  // Responsive images provide their own proper sizes calculation
 }
 
 /**

@@ -87,7 +87,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T18:04:14+02:00'
+        content: '2025-07-23T14:43:03+02:00'
     -
       tag: meta
       attributes:
@@ -96,13 +96,13 @@ default:
     -
       tag: meta
       attributes:
-        name: 'twitter:title'
-        content: Events
+        name: 'twitter:description'
+        content: 'Lists all upcoming events.'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Lists all upcoming events.'
+        name: 'twitter:title'
+        content: Events
   path:
     -
       alias: /events

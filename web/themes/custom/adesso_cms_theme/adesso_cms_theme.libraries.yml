@@ -25,7 +25,6 @@ global:
     - "adesso_cms_theme/fonts"
     - "adesso_cms_theme/navigation"
     - "adesso_cms_theme/flowbite"
-    - "adesso_cms_theme/main-menu"
     - "adesso_cms_theme/mobile-menu"
 
 icons:
@@ -44,15 +43,6 @@ icons:
   dependencies:
     - core/drupal
     - core/drupalSettings
-
-fix-block-reference-preview:
-  version: 1.x
-  js:
-    src/js/fix-block-reference-preview.js: {}
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/drupal.autocomplete
 
 navigation:
   version: 1.x
@@ -88,6 +78,22 @@ mobile-menu:
   version: 1.x
   js:
     components/mobile-menu/mobile-menu.behavior.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+swiper:
+  version: 1.x
+  css:
+    component:
+      node_modules/swiper/swiper-bundle.min.css: {
+        minified: true
+      }
+  js:
+    node_modules/swiper/swiper-bundle.min.js: {
+      minified: true
+    }
+    components/slider/slider.behavior.js: {}
   dependencies:
     - core/drupal
     - core/once

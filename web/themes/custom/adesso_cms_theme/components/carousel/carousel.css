@@ -1,0 +1,509 @@
+/**
+ * Carousel Component CSS - skagenhotel.com inspired design
+ * Complete styles for card-based carousel layout using Swiper.js
+ */
+
+/* ==============================
+   CSS Custom Properties & Variables
+   ============================== */
+:root {
+  --carousel-gap: 20px;
+  --carousel-border-radius: 4px;
+  --carousel-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --carousel-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --carousel-transition: all 0.25s ease-in-out;
+  --carousel-nav-size: 2rem;
+  --carousel-nav-size-md: 3rem;
+  --carousel-nav-bg: rgb(31, 41, 55);
+  --carousel-nav-bg-hover: rgb(55, 65, 81);
+  --carousel-text-primary: rgb(17, 24, 39);
+  --carousel-text-secondary: rgb(75, 85, 99);
+  --carousel-link-color: rgb(37, 99, 235);
+  --carousel-link-hover: rgb(29, 78, 216);
+}
+
+/* ==============================
+   Container & Section Styles
+   ============================== */
+.carousel-container {
+  /* No background - handled by paragraph template for full-width */
+  color: var(--carousel-text-primary);
+  /* No padding - handled by standard container pattern */
+  width: 100%;
+}
+
+/* Header section with title and navigation */
+.carousel-header {
+  max-width: 80rem;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 475px) {
+  .carousel-header {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width: 1536px) {
+  .carousel-header {
+    padding: 0;
+  }
+}
+
+/* ==============================
+   Carousel Wrapper & Container
+   ============================== */
+.carousel-bleed-container {
+  position: relative;
+}
+
+.carousel-wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .carousel-wrapper {
+    padding-left: 1rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .carousel-wrapper {
+    padding-left: 0;
+  }
+}
+
+/* ==============================
+   Swiper Container & Wrapper
+   ============================== */
+.swiper.carousel-swiper {
+  overflow: visible !important;
+  width: 100%;
+}
+
+.swiper.carousel-swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ==============================
+   Card/Slide Styles
+   ============================== */
+.swiper-slide.carousel-slide {
+  flex-shrink: 0;
+  background-color: white;
+  border-radius: var(--carousel-border-radius);
+  overflow: hidden;
+  height: 100%;
+  width: 15.625rem; /* 250px */
+  box-shadow: var(--carousel-shadow);
+  transition: var(--carousel-transition);
+  margin-right: var(--carousel-gap);
+}
+
+@media (min-width: 768px) {
+  .swiper-slide.carousel-slide {
+    width: 33rem; /* 528px */
+  }
+}
+
+.swiper-slide.carousel-slide:hover {
+  box-shadow: var(--carousel-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Card structure */
+.carousel-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  height: 100%;
+}
+
+/* ==============================
+   Image Aspect Ratio Styles
+   ============================== */
+.carousel-image-container {
+  aspect-ratio: 250/200;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .carousel-image-container {
+    aspect-ratio: 528/310;
+    max-height: 19.375rem; /* 310px */
+  }
+}
+
+.carousel-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--carousel-transition);
+}
+
+.carousel-image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* ==============================
+   Content & Typography Styles
+   ============================== */
+.carousel-content {
+  background-color: white;
+  padding: 1rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 16.625rem; /* 266px */
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-content {
+    padding: 2rem;
+  }
+}
+
+.carousel-content h4 {
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--carousel-text-primary);
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .carousel-content h4 {
+    font-size: 1.25rem;
+  }
+}
+
+.carousel-content h4 a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--carousel-transition);
+}
+
+.carousel-content h4 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.carousel-summary {
+  color: var(--carousel-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .carousel-summary {
+    font-size: 1rem;
+  }
+}
+
+/* ==============================
+   Links & Actions
+   ============================== */
+.carousel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.carousel-link {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--carousel-link-color);
+  text-decoration: none;
+  transition: var(--carousel-transition);
+}
+
+@media (min-width: 768px) {
+  .carousel-link {
+    font-size: 1.125rem;
+  }
+}
+
+.carousel-link:hover {
+  color: var(--carousel-link-hover);
+}
+
+.carousel-link svg {
+  width: 1rem;
+  height: 1rem;
+  transition: var(--carousel-transition);
+}
+
+@media (min-width: 768px) {
+  .carousel-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.carousel-link:hover svg {
+  transform: translateX(0.25rem);
+}
+
+/* ==============================
+   Navigation Button Styles
+   ============================== */
+.carousel-nav-button {
+  position: absolute;
+  bottom: -3rem;
+  background-color: var(--carousel-nav-bg);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: var(--carousel-nav-size);
+  height: var(--carousel-nav-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--carousel-transition);
+  z-index: 20;
+  box-shadow: var(--carousel-shadow);
+}
+
+@media (min-width: 768px) {
+  .carousel-nav-button {
+    width: var(--carousel-nav-size-md);
+    height: var(--carousel-nav-size-md);
+    bottom: -3.5rem;
+  }
+}
+
+.carousel-nav-button:hover {
+  background-color: var(--carousel-nav-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--carousel-shadow-hover);
+}
+
+.carousel-nav-button:focus {
+  outline: 2px solid var(--carousel-link-color);
+  outline-offset: 2px;
+}
+
+.carousel-nav-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 1.2;
+}
+
+@media (min-width: 768px) {
+  .carousel-nav-button svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Navigation button positioning in header */
+.carousel-header .carousel-nav-button {
+  position: static; /* Reset absolute positioning */
+  bottom: auto;
+  right: auto;
+}
+
+/* Disabled state */
+.carousel-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--carousel-nav-bg);
+}
+
+.carousel-nav-button:disabled:hover {
+  transform: none;
+  box-shadow: var(--carousel-shadow);
+}
+
+/* ==============================
+   Swiper-specific Overrides
+   ============================== */
+.swiper.carousel-swiper {
+  --swiper-navigation-size: 0; /* Hide default navigation */
+  --swiper-pagination-bullet-size: 0; /* Hide pagination if any */
+}
+
+/* Force override Swiper's default overflow hidden */
+.swiper.carousel-swiper,
+.adesso-carousel.swiper,
+.carousel-swiper.swiper {
+  overflow: visible !important;
+}
+
+.swiper.carousel-swiper .swiper-wrapper,
+.adesso-carousel.swiper .swiper-wrapper,
+.carousel-swiper.swiper .swiper-wrapper {
+  overflow: visible !important;
+}
+
+/* Remove default Swiper button styles */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+/* Swiper wrapper padding for better spacing */
+.swiper.carousel-swiper .swiper-wrapper {
+  padding-right: var(--carousel-gap);
+}
+
+/* ==============================
+   Responsive Adjustments
+   ============================== */
+@media (max-width: 640px) {
+  .carousel-container {
+    padding: 2rem 0 5rem;
+  }
+  
+  .carousel-nav-button {
+    bottom: -2.5rem;
+  }
+  
+  .carousel-nav-prev {
+    right: 2.75rem;
+  }
+  
+  .carousel-nav-next {
+    right: 0.75rem;
+  }
+}
+
+/* ==============================
+   Smooth Transitions & Animations
+   ============================== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.swiper-slide.carousel-slide {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Smooth scroll behavior */
+.swiper.carousel-swiper {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+.carousel-slide:focus-within {
+  outline: 2px solid var(--carousel-link-color);
+  outline-offset: 2px;
+}
+
+.carousel-content a:focus {
+  outline: 2px solid var(--carousel-link-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ==============================
+   Loading & Error States
+   ============================== */
+.carousel-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20rem;
+  color: var(--carousel-text-secondary);
+}
+
+.carousel-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20rem;
+  color: #dc2626;
+  text-align: center;
+}
+
+/* ==============================
+   Print Styles
+   ============================== */
+@media print {
+  .carousel-nav-button,
+  .carousel-bleed-container {
+    display: none;
+  }
+  
+  .swiper-slide.carousel-slide {
+    display: block;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ==============================
+   Reduced Motion Support
+   ============================== */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-slide,
+  .carousel-nav-button,
+  .carousel-image-container img,
+  .carousel-link svg {
+    transition: none;
+  }
+  
+  .carousel-slide:hover {
+    transform: none;
+  }
+  
+  .carousel-image-container:hover img {
+    transform: none;
+  }
+  
+  .carousel-nav-button:hover {
+    transform: none;
+  }
+  
+  .carousel-link:hover svg {
+    transform: none;
+  }
+}
+
+/* ==============================
+   High Contrast Mode Support
+   ============================== */
+@media (prefers-contrast: high) {
+  .carousel-slide.carousel-slide {
+    border: 2px solid;
+  }
+  
+  .carousel-nav-button {
+    border: 2px solid;
+  }
+}

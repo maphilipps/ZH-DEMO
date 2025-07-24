@@ -9,7 +9,7 @@
   Drupal.behaviors.carouselBehavior = {
     attach: function (context, settings) {
       // Initialize all carousel instances using once for proper initialization
-      once('carousel-swiper', '[data-carousel="slide"]', context).forEach(function (carousel) {
+      once('carousel-swiper', '[data-swiper-carousel="true"]', context).forEach(function (carousel) {
         // Skip if Swiper is not available
         if (typeof Swiper === 'undefined') {
           console.warn('Swiper.js library not loaded. Carousel initialization skipped.');
@@ -17,16 +17,36 @@
         }
 
         // Get carousel configuration from data attributes
-        const autoplay = carousel.getAttribute('data-carousel-autoplay') !== 'false';
-        const interval = parseInt(carousel.getAttribute('data-carousel-interval')) || 5000;
-        const pauseOnHover = carousel.getAttribute('data-carousel-pause-on-hover') !== 'false';
+        const carouselId = carousel.getAttribute('data-swiper-id');
+        const autoplay = carousel.getAttribute('data-swiper-autoplay') === 'true';
+        const interval = parseInt(carousel.getAttribute('data-swiper-interval')) || 5000;
+        const pauseOnHover = carousel.getAttribute('data-swiper-pause-on-hover') !== 'false';
+        const cardsPerView = parseInt(carousel.getAttribute('data-swiper-cards-per-view')) || 3;
+        
+        // Validate carousel structure
+        const slidesWrapper = carousel.querySelector('.swiper-wrapper');
+        const slides = carousel.querySelectorAll('.swiper-slide');
+        
+        if (!slidesWrapper) {
+          console.error('[carousel] Missing .swiper-wrapper element');
+          return;
+        }
+        
+        if (slides.length === 0) {
+          console.warn('[carousel] No slides found in carousel');
+          return;
+        }
+        
+        // Dynamic navigation selectors based on carousel ID
+        const nextButton = document.querySelector(`.swiper-next-${carouselId}`);
+        const prevButton = document.querySelector(`.swiper-prev-${carouselId}`);
         
         // Initialize Swiper with carousel-appropriate configuration
-        const swiper = new Swiper(carousel, {
-          // Basic navigation
+        const swiperConfig = {
+          // Basic navigation with dynamic selectors
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: nextButton,
+            prevEl: prevButton,
           },
           
           // Pagination with clickable dots
@@ -39,8 +59,24 @@
           
           // Loop configuration
           loop: true,
-          slidesPerView: 1,
-          spaceBetween: 0,
+          slidesPerView: cardsPerView,
+          spaceBetween: 20,
+          
+          // Responsive breakpoints for cards layout
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 16,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: cardsPerView,
+              spaceBetween: 24,
+            },
+          },
           
           // Autoplay configuration
           autoplay: autoplay ? {
@@ -100,7 +136,7 @@
               liveRegion.textContent = `Slide 1 of ${totalSlides}`;
               
               // Add initialization marker for testing/debugging
-              carousel.setAttribute('data-carousel-initialized', 'swiper');
+              carousel.setAttribute('data-swiper-initialized', 'swiper');
             },
             
             slideChange: function () {
@@ -142,17 +178,32 @@
               }
             },
           },
-        });
+        };
+
+        // Initialize Swiper instance
+        console.log('[carousel] Initializing Swiper with config:', swiperConfig);
+        const swiper = new Swiper(carousel, swiperConfig);
+        
+        if (!swiper) {
+          console.error('[carousel] Failed to initialize Swiper');
+          return;
+        }
 
         // Enhanced keyboard navigation
         carousel.addEventListener('keydown', function (e) {
           switch (e.key) {
             case 'Home':
               e.preventDefault();
+              if (!swiper || !swiper.slides) {
+                return;
+              }
               swiper.slideTo(0);
               break;
             case 'End':
               e.preventDefault();
+              if (!swiper || !swiper.slides) {
+                return;
+              }
               swiper.slideTo(swiper.slides.length - 1);
               break;
           }
@@ -182,6 +233,7 @@
           
         } catch (error) {
           console.error('Failed to initialize carousel:', error);
+          carousel.setAttribute('data-swiper-error', 'true');
         }
       });
     },
@@ -189,12 +241,12 @@
     detach: function (context, settings, trigger) {
       if (trigger === 'unload') {
         // Clean up Swiper instances
-        const carousels = context.querySelectorAll('[data-carousel-initialized="swiper"]');
+        const carousels = context.querySelectorAll('[data-swiper-initialized="swiper"]');
         carousels.forEach(function (carousel) {
           if (carousel.swiperInstance) {
             carousel.swiperInstance.destroy(true, true);
             delete carousel.swiperInstance;
-            carousel.removeAttribute('data-carousel-initialized');
+            carousel.removeAttribute('data-swiper-initialized');
           }
         });
       }

@@ -31,6 +31,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   moderation_state:
     -
       value: published
@@ -89,7 +92,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T20:15:41+02:00'
+        content: '2025-07-23T14:43:03+02:00'
     -
       tag: meta
       attributes:
@@ -98,13 +101,13 @@ default:
     -
       tag: meta
       attributes:
-        name: 'twitter:title'
-        content: 'Welcome to adesso CMS'
+        name: 'twitter:description'
+        content: 'Das ist meine Beschreibung.'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Das ist meine Beschreibung.'
+        name: 'twitter:title'
+        content: 'Welcome to adesso CMS'
   path:
     -
       alias: /welcome-adesso-cms
@@ -135,6 +138,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -179,6 +185,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: false

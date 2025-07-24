@@ -5,7 +5,7 @@
     {% include 'adesso_cms_theme:heading' with {
       heading: {
         title: pre_headline,
-        as: 'h3',
+        as: 'span',
         custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
       }
     } %}
@@ -22,7 +22,7 @@
   {% endif %}
 
   {% if body|default('') %}
-    <div class="text-body mt-4">
+    <div class="format lg:format-lg mt-4">
       {{ body|default('')|render }}
     </div>
   {% endif %}

@@ -10,10 +10,10 @@ _meta:
     faef6028-9b8d-45ac-acc3-d11b7b941c93: media
     a9712a73-2201-43c8-942b-4718bde4bffd: media
     c0363a58-806b-40e1-b3ac-a3095c1a90d6: media
-    4ad0f668-d5d4-4c76-a1bc-79f48614a4b7: media
     178d07ec-8f6b-4b18-a73a-4988ba9d8ba6: media
     8335742b-424d-4e16-97a9-e8fcad29c9f1: media
-    c97ac49d-7fc7-4b0b-a54d-c5d463a0e186: media
+    9d08b4db-5980-4dbb-b80d-52f9bf3127d3: media
+    33f98d5a-5aaf-4f55-a04f-0df551ee730f: media
     930856d3-0fff-455c-819d-2c74e01cff3d: media
     ce7496dd-f778-4451-9d2f-76fa362b6a17: media
     b300f291-9fb4-49a8-bcd5-fa9fdae1e692: media
@@ -97,7 +97,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-21T20:11:02+02:00'
+        content: '2025-07-23T17:50:50+02:00'
     -
       tag: meta
       attributes:
@@ -106,13 +106,13 @@ default:
     -
       tag: meta
       attributes:
-        name: 'twitter:title'
-        content: 'Complete Paragraph Showcase'
+        name: 'twitter:description'
+        content: 'Comprehensive showcase of all available paragraph components'
     -
       tag: meta
       attributes:
-        name: 'twitter:description'
-        content: 'Comprehensive showcase of all available paragraph components'
+        name: 'twitter:title'
+        content: 'Complete Paragraph Showcase'
   path:
     -
       alias: /complete-paragraph-showcase
@@ -183,7 +183,7 @@ default:
               value: {  }
           field_body:
             -
-              value: '<p>This text component uses <strong>left alignment</strong> - the standard layout for most content blocks.</p>'
+              value: '<p>This text component uses <strong>left alignment</strong> - the standard layout for most content blocks.</p><p><strong>Bold</strong></p><p><em>Italic</em></p><p><s>Durchgestrichen</s></p><p><sup>Hoch</sup>gestellt</p><p><sub>Tief</sub>gestellt</p><p><a href="https://adesso.de">Link</a></p><ul><li>Liste</li><li>Liste</li><li>Liste</li></ul><ol><li>Liste</li><li>Liste</li><li>Liste</li></ol><blockquote><p>Quote</p></blockquote>'
               format: full_html
               summary: ''
           field_content_element_theme:
@@ -401,15 +401,19 @@ default:
               value: false
           field_media_item:
             -
-              entity: 4ad0f668-d5d4-4c76-a1bc-79f48614a4b7
-            -
-              target_id: 9
-            -
               entity: 178d07ec-8f6b-4b18-a73a-4988ba9d8ba6
             -
               entity: 8335742b-424d-4e16-97a9-e8fcad29c9f1
             -
-              entity: c97ac49d-7fc7-4b0b-a54d-c5d463a0e186
+              entity: 9d08b4db-5980-4dbb-b80d-52f9bf3127d3
+            -
+              entity: aef7833e-2758-4ced-b7c8-5e804cd98267
+            -
+              entity: a9712a73-2201-43c8-942b-4718bde4bffd
+            -
+              entity: 744c4ce0-0066-4784-a0dc-194911c555cf
+            -
+              entity: faef6028-9b8d-45ac-acc3-d11b7b941c93
           field_pre_headline:
             -
               value: 'Visual Portfolio'
@@ -492,7 +496,7 @@ default:
                       value: false
                   field_media:
                     -
-                      entity: c97ac49d-7fc7-4b0b-a54d-c5d463a0e186
+                      entity: 33f98d5a-5aaf-4f55-a04f-0df551ee730f
                   field_summary:
                     -
                       value: 'Professional web development services with modern technologies.'
@@ -685,6 +689,118 @@ default:
           field_pre_headline:
             -
               value: 'Build on industry standards'
+          field_title:
+            -
+              value: 'Our technology partnerships'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1a393285-f84f-4f80-9a0e-43251abd2d82
+          bundle: slider
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1753277469
+          behavior_settings:
+            -
+              value: {  }
+          field_content_element_theme:
+            -
+              value: true
+          field_pre_headline:
+            -
+              value: 'Build on industry standards'
+          field_slider_item:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a0888d95-87d9-4628-a7d0-45bb2f557d05
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277488
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_media:
+                    -
+                      entity: 9d08b4db-5980-4dbb-b80d-52f9bf3127d3
+                  field_summary:
+                    -
+                      value: 'Custom solutions tailored to your business needs.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Solutions
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d311384e-7551-4ecd-895e-1fe464757053
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277516
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_media:
+                    -
+                      entity: aef7833e-2758-4ced-b7c8-5e804cd98267
+                  field_summary:
+                    -
+                      value: 'Comprehensive support for your digital projects.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Support
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c6dea75e-7d05-4463-b2a0-39875990d7f2
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277535
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_media:
+                    -
+                      entity: 744c4ce0-0066-4784-a0dc-194911c555cf
+                  field_summary:
+                    -
+                      value: 'Professional web development services with modern technologies.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Services
           field_title:
             -
               value: 'Our technology partnerships'

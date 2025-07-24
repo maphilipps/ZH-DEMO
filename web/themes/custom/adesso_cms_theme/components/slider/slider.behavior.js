@@ -1,158 +1,155 @@
 /**
  * @file
- * Slider/Carousel behavior using Flowbite carousel functionality.
+ * Simple PagedOne Swiper.js initialization
  */
 
-(function (Drupal) {
+(function (Drupal, once) {
   'use strict';
 
+  /**
+   * Wait for Swiper to be available
+   */
+  function waitForSwiper(callback, maxAttempts = 50) {
+    let attempts = 0;
+    
+    function checkSwiper() {
+      attempts++;
+      
+      if (typeof window.Swiper !== 'undefined') {
+        callback(window.Swiper);
+        return;
+      }
+      
+      if (attempts >= maxAttempts) {
+        console.error('[adesso-slider] Swiper.js failed to load');
+        return;
+      }
+      
+      setTimeout(checkSwiper, 100);
+    }
+    
+    checkSwiper();
+  }
+
+  /**
+   * Initialize simple Swiper slider
+   */
+  function initializeSlider(sliderElement) {
+    const slides = sliderElement.querySelectorAll('.swiper-slide');
+    
+    if (slides.length === 0) {
+      console.warn('[adesso-slider] No slides found');
+      return null;
+    }
+
+    // Get configuration from data attributes
+    const autoSlide = sliderElement.getAttribute('data-slider') === 'slide';
+    const interval = parseInt(sliderElement.getAttribute('data-interval'), 10) || 5000;
+    const speed = parseInt(sliderElement.getAttribute('data-speed'), 10) || 800;
+    
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const shouldAutoplay = autoSlide && !prefersReducedMotion;
+
+    // Basic Swiper configuration - PagedOne pattern
+    const config = {
+      // Core settings
+      loop: slides.length > 1,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      speed: prefersReducedMotion ? 0 : speed,
+      
+      // Autoplay
+      autoplay: shouldAutoplay ? {
+        delay: interval,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      } : false,
+      
+      // Navigation
+      navigation: slides.length > 1 ? {
+        nextEl: sliderElement.querySelector('.swiper-button-next'),
+        prevEl: sliderElement.querySelector('.swiper-button-prev')
+      } : false,
+      
+      // Pagination
+      pagination: slides.length > 1 ? {
+        el: sliderElement.querySelector('.swiper-pagination'),
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '" aria-label="Go to slide ' + (index + 1) + '"></span>';
+        }
+      } : false,
+      
+      // Keyboard navigation
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true
+      },
+      
+      // Basic accessibility
+      a11y: {
+        enabled: true,
+        prevSlideMessage: 'Previous slide',
+        nextSlideMessage: 'Next slide',
+        firstSlideMessage: 'This is the first slide',
+        lastSlideMessage: 'This is the last slide',
+        paginationBulletMessage: 'Go to slide {{index}}'
+      }
+    };
+
+    try {
+      const swiperInstance = new window.Swiper(sliderElement, config);
+      
+      // Store instance for cleanup
+      sliderElement.swiperInstance = swiperInstance;
+      
+      console.log('[adesso-slider] Slider initialized successfully');
+      return swiperInstance;
+      
+    } catch (error) {
+      console.error('[adesso-slider] Failed to initialize:', error);
+      return null;
+    }
+  }
+
+  // Main Drupal behavior
   Drupal.behaviors.adessoSlider = {
     attach: function (context, settings) {
-      // Don't use Flowbite's carousel, use our custom implementation
-      // if (typeof window.initCarousels === 'function') {
-      //   window.initCarousels();
-      // } else {
-      // Custom implementation with our timing
-      const carousels = context.querySelectorAll('[data-carousel]');
-
-      carousels.forEach(carousel => {
-        // Force re-initialization with our timing
-        carousel.removeAttribute('data-carousel-initialized');
-
-        if (carousel.hasAttribute('data-adesso-slider-initialized')) {
-          return;
-        }
-
-        const items = carousel.querySelectorAll('[data-carousel-item]');
-        const prevButton = carousel.querySelector('[data-carousel-prev]');
-        const nextButton = carousel.querySelector('[data-carousel-next]');
-        const indicators = carousel.querySelectorAll('[data-carousel-slide-to]');
-
-        let activeIndex = 0;
-
-        // Find initially active item
-        items.forEach((item, index) => {
-          if (item.hasAttribute('data-carousel-active')) {
-            activeIndex = index;
-          }
+      // Find slider elements
+      const sliderElements = once('adesso-slider', '.adesso-slider.swiper', context);
+      
+      if (sliderElements.length === 0) {
+        return;
+      }
+      
+      console.log('[adesso-slider] Found', sliderElements.length, 'slider(s)');
+      
+      // Wait for Swiper to load, then initialize
+      waitForSwiper(function(SwiperClass) {
+        sliderElements.forEach(function(sliderElement) {
+          initializeSlider(sliderElement);
         });
-
-        // Function to show specific slide
-        const showSlide = (index, direction = 'next') => {
-          const currentItem = items[activeIndex];
-          const nextItem = items[index];
-
-          if (!nextItem || currentItem === nextItem) {
-            return;
-          }
-
-          // Set initial positions
-          currentItem.style.zIndex = '10';
-          nextItem.style.zIndex = '20';
-
-          // Remove hidden and set initial transform
-          nextItem.classList.remove('hidden');
-
-          if (direction === 'next') {
-            // Next item starts from right (off-screen)
-            nextItem.style.transform = 'translateX(100%)';
-          }
-          else {
-            // Next item starts from left (off-screen)
-            nextItem.style.transform = 'translateX(-100%)';
-          }
-
-          // Force reflow
-          void nextItem.offsetWidth;
-
-          // Start animation
-          requestAnimationFrame(() => {
-            // Add transition class (2.5 seconds for slower animation)
-            currentItem.style.transition = 'transform 2500ms ease-in-out';
-            nextItem.style.transition = 'transform 2500ms ease-in-out';
-
-            if (direction === 'next') {
-              // Current slides left, next slides in from right
-              currentItem.style.transform = 'translateX(-100%)';
-              nextItem.style.transform = 'translateX(0)';
-            }
-            else {
-              // Current slides right, next slides in from left
-              currentItem.style.transform = 'translateX(100%)';
-              nextItem.style.transform = 'translateX(0)';
-            }
-          });
-
-          // Clean up after animation (match the 2500ms duration)
-          setTimeout(() => {
-            currentItem.classList.add('hidden');
-            currentItem.style.transform = '';
-            currentItem.style.transition = '';
-            currentItem.style.zIndex = '';
-            currentItem.removeAttribute('data-carousel-active');
-
-            nextItem.style.transition = '';
-            nextItem.style.zIndex = '';
-            nextItem.setAttribute('data-carousel-active', '');
-          }, 2500);
-
-          // Update indicators immediately
-          indicators.forEach((indicator, i) => {
-            if (i === index) {
-              indicator.setAttribute('aria-current', 'true');
-              indicator.classList.add('bg-white');
-              indicator.classList.remove('bg-white/30');
-            }
-            else {
-              indicator.setAttribute('aria-current', 'false');
-              indicator.classList.remove('bg-white');
-              indicator.classList.add('bg-white/30');
-            }
-          });
-
-          activeIndex = index;
-        };
-
-        // Previous button handler
-        if (prevButton) {
-          prevButton.addEventListener('click', () => {
-            const newIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-            showSlide(newIndex, 'prev');
-          });
-        }
-
-        // Next button handler
-        if (nextButton) {
-          nextButton.addEventListener('click', () => {
-            const newIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-            showSlide(newIndex, 'next');
-          });
-        }
-
-        // Indicator click handlers
-        indicators.forEach((indicator, index) => {
-          indicator.addEventListener('click', () => {
-            const direction = index > activeIndex ? 'next' : 'prev';
-            showSlide(index, direction);
-          });
-        });
-
-        // Auto-slide if configured
-        if (carousel.getAttribute('data-carousel') === 'slide') {
-          setInterval(() => {
-            const newIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-            showSlide(newIndex, 'next');
-          }, 12000); // Change slide every 12 seconds
-        }
-
-        // Mark as initialized with our custom attribute
-        carousel.setAttribute('data-adesso-slider-initialized', 'true');
-
-        // Initialize display
-        showSlide(activeIndex);
       });
-      // }
+    },
+
+    detach: function (context, settings, trigger) {
+      if (trigger === 'unload') {
+        // Cleanup Swiper instances
+        const sliders = context.querySelectorAll('.adesso-slider.swiper');
+        
+        sliders.forEach(function(slider) {
+          if (slider.swiperInstance) {
+            try {
+              slider.swiperInstance.destroy();
+              delete slider.swiperInstance;
+            } catch (error) {
+              console.error('[adesso-slider] Failed to destroy instance:', error);
+            }
+          }
+        });
+      }
     }
   };
 
-})(Drupal);
+})(Drupal, once);

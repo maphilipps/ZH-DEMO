@@ -9,10 +9,10 @@ default:
       target_id: 0
   filename:
     -
-      value: newsletter-default-icon.png
+      value: newsletter-default-icon_128.png
   uri:
     -
-      value: 'public://paragraphs_type_icon/newsletter-default-icon.png'
+      value: 'public://paragraphs_type_icon/newsletter-default-icon_128.png'
   filemime:
     -
       value: image/png
@@ -24,4 +24,4 @@ default:
       value: true
   created:
     -
-      value: 1753113831
+      value: 1753274411

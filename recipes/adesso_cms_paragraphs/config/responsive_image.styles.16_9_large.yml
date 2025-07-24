@@ -1,0 +1,27 @@
+uuid: a8a41744-b4ee-456a-a150-e5289913a16d
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.16_9_512x288_focal_point_webp
+    - image.style.16_9_704x396_focal_point_webp
+    - image.style.16_9_1800x1080_focal_point_webp
+  theme:
+    - olivero
+_core:
+  default_config_hash: S4-Tq7YR9BkjoihSNREBjphKN_h6rsrBFiSszggZzrM
+id: 16_9_large
+label: '16:9 Large'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 600px) 1800px, (min-width: 384px) 704px, 512px'
+      sizes_image_styles:
+        - 16_9_512x288_focal_point_webp
+        - 16_9_704x396_focal_point_webp
+        - 16_9_1800x1080_focal_point_webp
+    breakpoint_id: olivero.sm
+    multiplier: 1x
+breakpoint_group: olivero
+fallback_image_style: 16_9_512x288_focal_point_webp

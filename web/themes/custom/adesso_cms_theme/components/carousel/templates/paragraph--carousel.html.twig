@@ -1,18 +1,92 @@
+{% set is_dark = paragraph.field_content_element_theme.value %}
+
 {%
   set classes = [
-    'container mx-auto px-4 my-25',
+    'w-full',
+    is_dark ? 'bg-gray-100' : 'bg-white',
   ]
 %}
 
+{# Build items list from field items using proper Drupal Twig approach #}
+{% set carousel_items_list = [] %}
+{% if content.field_carousel_item %}
+  {% for carousel_item in content.field_carousel_item %}
+    {% if carousel_item['#paragraph'] %}
+      {% set carousel_entity = carousel_item['#paragraph'] %}
+      {% set item_data = {
+        'media': carousel_entity.field_media|view|render,
+        'title': carousel_entity.field_title.value|default(''),
+        'summary': carousel_entity.field_summary.value|default(''),
+        'link': {
+          'url': '',
+          'title': 'Read more'
+        }
+      } %}
+      {% set carousel_items_list = carousel_items_list|merge([item_data]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 <div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
 
   {% block content %}
-    {% embed 'adesso_cms_theme:carousel' with { content: content } only %}
-      {% block carousel_items %}
-        {{ content.field_carousel_item }}
-      {% endblock carousel_items %}
-    {% endembed %}
+    {{ content.frontend_editing }}
+    
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+      <!-- Title section -->
+      <div class="flex flex-col items-start justify-center">
+        {% if content.field_pre_headline %}
+          {% include 'adesso_cms_theme:heading' with {
+            heading: {
+              title: content.field_pre_headline,
+              as: 'span',
+              custom_classes: 'mb-4 text-2xl text-center font-bold tracking-tight leading-none text-gray-900'
+            }
+          } %}
+        {% endif %}
+
+        {% if content.field_title %}
+          {% include 'adesso_cms_theme:heading' with {
+            heading: {
+              title: content.field_title,
+              as: 'h2',
+              custom_classes: 'text-3xl font-bold text-center'
+            }
+          } %}
+        {% endif %}
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="max-w-[1536px] mx-auto">
+        {# Build carousel items array with proper data structure #}
+        {% set carousel_items = [] %}
+        {% if content.field_carousel_item %}
+          {% for carousel_item in content.field_carousel_item %}
+            {% if carousel_item['#paragraph'] %}
+              {% set carousel_entity = carousel_item['#paragraph'] %}
+              {% set item_data = {
+                'media': carousel_entity.field_media|view|render,
+                'title': carousel_entity.field_title.value|default(''),
+                'summary': carousel_entity.field_summary.value|default(''),
+                'link': {
+                  'url': '',
+                  'title': 'Read more'
+                }
+              } %}
+              {% set carousel_items = carousel_items|merge([item_data]) %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% include 'adesso_cms_theme:carousel' with { 
+          items: carousel_items,
+          cards_per_view: '3',
+          autoplay: false,
+          interval: '5000',
+          pause_on_hover: true,
+          class: 'max-w-7xl mx-auto'
+        } only %}
+      </div>
+    </div>
   {% endblock %}
 </div>

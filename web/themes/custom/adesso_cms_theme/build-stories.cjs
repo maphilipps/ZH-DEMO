@@ -11,7 +11,7 @@ async function buildAllStories() {
     console.log(`Found ${storyFiles.length} story files to process...`);
 
     // Components to skip (manually maintained schemas)
-    const skipComponents = ['main-menu', 'site-header'];
+    const skipComponents = ['main-menu', 'site-header', 'carousel'];
 
     // Process each story file
     for (const storyPath of storyFiles) {

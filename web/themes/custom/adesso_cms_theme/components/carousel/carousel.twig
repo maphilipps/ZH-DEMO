@@ -1,54 +1,93 @@
-<div id="carousel-{{ random() }}" 
-     class="swiper {{ class|default('') }}" 
-     data-carousel="slide"
-     data-carousel-autoplay="{{ autoplay|default(true) ? 'true' : 'false' }}"
-     data-carousel-interval="{{ interval|default(5000) }}"
-     data-carousel-pause-on-hover="{{ pause_on_hover|default(true) ? 'true' : 'false' }}"
-     role="region"
-     aria-label="Image carousel with {{ items|default([])|length }} slides">
-  
-  {# Swiper wrapper #}
-  <div class="swiper-wrapper">
-    {% block carousel_items %}
-      {% for item in items|default([]) %}
-        <div class="swiper-slide">
-          {% include 'adesso_cms_theme:carousel-item' with {
-            item: item,
-            is_active: loop.first,
-            item_class: item_class|default('')
-          } %}
+{#
+/**
+ * @file
+ * Carousel component - cards layout
+ *
+ * Available variables:
+ * - items: Array of carousel items to display
+ * - cards_per_view: Number of cards visible at once
+ * - autoplay: Enable autoplay functionality
+ * - interval: Time between slides in milliseconds
+ * - pause_on_hover: Pause autoplay on hover
+ * - class: Additional CSS classes for the container
+ */
+#}
+
+{# Set up defensive variables with defaults #}
+{% set safe_items = items|default([]) %}
+{% set safe_autoplay = autoplay|default(false) %}
+{% set safe_interval = interval|default(5000) %}
+{% set safe_pause_on_hover = pause_on_hover|default(true) %}
+{% set safe_cards_per_view = cards_per_view|default(3) %}
+{% set carousel_id = 'carousel-' ~ random() %}
+
+{% set carousel_classes = [
+  'adesso-carousel',
+  'swiper',
+  'relative',
+  'w-full',
+  class|default(''),
+] %}
+
+{% set carousel_attributes = [
+  'data-swiper-carousel="true"',
+  'data-swiper-id="%s"'|format(carousel_id),
+  'data-swiper-autoplay="%s"'|format(safe_autoplay ? 'true' : 'false'),
+  'data-swiper-interval="%d"'|format(safe_interval),
+  'data-swiper-pause-on-hover="%s"'|format(safe_pause_on_hover ? 'true' : 'false'),
+  'data-swiper-cards-per-view="%d"'|format(safe_cards_per_view),
+  'role="region"',
+  'aria-label="Interactive carousel"',
+  'aria-roledescription="carousel"',
+] %}
+
+{# Only render if we have items #}
+{% if safe_items and safe_items|length > 0 %}
+<!-- Carousel wrapper with navigation - Full bleed container -->
+<div class="relative w-full">
+    <!-- Header section with navigation -->
+    <div class="carousel-header max-w-7xl mx-auto px-4 2xl:px-0 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+        <div class="flex-1"></div> <!-- Spacer for navigation alignment -->
+        
+        <!-- Navigation buttons -->
+        <div class="flex gap-2">
+            <button class="swiper-prev-{{ carousel_id }} carousel-nav-button carousel-nav-prev" aria-label="Previous slide">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="rotate-180">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
+            <button class="swiper-next-{{ carousel_id }} carousel-nav-button carousel-nav-next" aria-label="Next slide">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
         </div>
-      {% endfor %}
-    {% endblock %}
-  </div>
-
-  {# Custom styled Swiper navigation arrows #}
-  {% if items|default([])|length > 1 %}
-    <div class="swiper-button-prev absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" 
-         aria-label="Previous slide">
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-        </svg>
-        <span class="sr-only">Previous</span>
-      </span>
     </div>
-    <div class="swiper-button-next absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" 
-         aria-label="Next slide">
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-        </svg>
-        <span class="sr-only">Next</span>
-      </span>
+    
+    <!-- Swiper container - Full width with left padding -->
+    <div class="{{ carousel_classes|join(' ')|trim }} pl-4 2xl:pl-0" {{ carousel_attributes|join(' ')|raw }}>
+        
+        <div class="swiper-wrapper">
+                {% block carousel_items %}
+                    {% for item in safe_items %}
+                        <div class="swiper-slide carousel-slide" 
+                             role="group" 
+                             aria-roledescription="slide"
+                             aria-label="Slide {{ loop.index }} of {{ safe_items|length }}"
+                             data-slide-index="{{ loop.index0 }}">
+                            {% include 'adesso_cms_theme:carousel-item' with {
+                              item: item,
+                              item_class: item_class|default('')
+                            } only %}
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+        </div>
     </div>
-  {% endif %}
-
-  {# Custom styled Swiper pagination #}
-  {% if items|default([])|length > 1 %}
-    <div class="swiper-pagination absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" 
-         role="tablist" 
-         aria-label="Slide indicators">
-    </div>
-  {% endif %}
 </div>
+{% else %}
+  {# Fallback for empty carousel #}
+  <div class="carousel-empty p-8 text-center text-gray-500 bg-gray-50 rounded-lg">
+    <p>No carousel items available</p>
+  </div>
+{% endif %}

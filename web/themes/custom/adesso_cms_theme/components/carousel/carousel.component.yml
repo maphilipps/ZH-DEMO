@@ -1,20 +1,52 @@
+# Manually maintained schema for carousel component
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: First Slide
-description: First Slide component
+name: Carousel
+description: Interactive carousel component with Swiper.js integration, supporting both fullscreen and cards layouts
 props:
   type: object
   properties:
     items:
-      type: object
+      type: array
       title: items
       description: Define the array of carousel items
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+      items:
+        type: object
+        properties:
+          media:
+            type: string
+            description: Media content (image, video, etc.)
+          title:
+            type: string
+            description: Item title
+          summary:
+            type: string
+            description: Item summary/description
+          link:
+            type: object
+            description: Item link
+            properties:
+              url:
+                type: string
+                description: Link URL
+              title:
+                type: string
+                description: Link text
+    cards_per_view:
+      type: string
+      title: cards_per_view
+      description: Number of cards visible at once (for cards layout)
+    autoplay:
+      type: boolean
+      title: autoplay
+      description: Enable autoplay
+    interval:
+      type: string
+      title: interval
+      description: Autoplay interval in milliseconds
+    pause_on_hover:
+      type: boolean
+      title: pause_on_hover
+      description: Pause autoplay on hover
     class:
       type: string
       title: class

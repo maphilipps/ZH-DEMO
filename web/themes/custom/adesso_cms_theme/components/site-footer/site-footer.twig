@@ -37,13 +37,16 @@
 
         {# Brand Column #}
         <div class="lg:col-span-2">
-          {% if show_logo and site_name %}
+          {% if show_logo %}
             <a href="/" class="mb-6 flex items-center">
               {% include 'adesso_cms_theme:logo' with {
                 site_logo: site_logo,
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
+              {% if site_name %}
+                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+              {% endif %}
             </a>
           {% endif %}
 
@@ -93,13 +96,16 @@
     {% elseif layout_variant == 'minimal' %}
       {# Minimal Layout #}
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        {% if show_logo and site_name %}
+        {% if show_logo %}
           <a href="/" class="flex items-center" aria-label="{{ 'Go to homepage'|t }}">
             {% include 'adesso_cms_theme:logo' with {
               site_logo: site_logo,
               site_name: site_name,
               modifier: 'h-6'
             } %}
+            {% if site_name %}
+              <span class="ml-2 text-lg font-semibold {{ text_classes[background_color|default('default')] }}">{{ site_name|escape }}</span>
+            {% endif %}
           </a>
         {% endif %}
         {# Render footer menu block with defensive programming #}
@@ -130,13 +136,16 @@
 
         {# Brand and Contact Info #}
         <div class="lg:col-span-2">
-          {% if show_logo and site_name %}
+          {% if show_logo %}
             <a href="/" class="mb-6 flex items-center">
               {% include 'adesso_cms_theme:logo' with {
                 site_logo: site_logo,
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
+              {% if site_name %}
+                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+              {% endif %}
             </a>
           {% endif %}
 
@@ -180,13 +189,16 @@
 
         {# Brand Column #}
         <div>
-          {% if show_logo and site_name %}
+          {% if show_logo %}
             <a href="/" class="mb-6 flex items-center">
               {% include 'adesso_cms_theme:logo' with {
                 site_logo: site_logo,
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
+              {% if site_name %}
+                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
+              {% endif %}
             </a>
           {% endif %}
 

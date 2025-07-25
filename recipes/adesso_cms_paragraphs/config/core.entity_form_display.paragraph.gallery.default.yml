@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.gallery.field_content_element_theme
     - field.field.paragraph.gallery.field_media_item
     - field.field.paragraph.gallery.field_pre_headline
-    - field.field.paragraph.gallery.field_sub_headline
     - field.field.paragraph.gallery.field_title
     - paragraphs.paragraphs_type.gallery
   module:
@@ -36,14 +35,6 @@ content:
   field_pre_headline:
     type: string_textfield
     weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_sub_headline:
-    type: string_textfield
-    weight: 2
     region: content
     settings:
       size: 60

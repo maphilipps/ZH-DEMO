@@ -1,32 +1,30 @@
 
-<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-  {% if pre_headline %}
-    {% include 'adesso_cms_theme:heading' with {
-      heading: {
-        title: pre_headline,
-        as: 'span',
-        visual_level: '3',
-        custom_classes: 'block mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900'
-      }
-    } %}
-  {% endif %}
-  {% if section_title %}
-    {% include 'adesso_cms_theme:heading' with {
-      heading: {
-        title: section_title,
-        as: 'h2',
-        custom_classes: 'text-3xl font-bold mb-8 text-center'
-      }
-    } %}
-  {% endif %}
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {% block gallery_items %}
-      {% for item in gallery_items %}
-        {% include 'adesso_cms_theme:gallery-item' with {
-          "item": item
-        } only %}
-      {% endfor %}
-    {% endblock %}
+<section class="{{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+    <div class="max-w-4xl mx-auto text-center">
+      {% if pre_headline %}
+        {% include 'adesso_cms_theme:heading' with {
+          heading: {
+            title: pre_headline,
+            as: 'h3',
+            custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
+          }
+        } %}
+      {% endif %}
+      {% if section_title %}
+        {% include 'adesso_cms_theme:heading' with {
+          heading: {
+            title: section_title,
+            as: 'h2',
+            custom_classes: 'text-3xl font-bold mb-8 text-gray-900'
+          }
+        } %}
+      {% endif %}
+    </div>
+    <div class="gap-4 mt-8 sm:grid sm:grid-cols-4 sm:mt-12">
+      {% block gallery_items %}
+        {# Gallery items will be rendered here by the paragraph template #}
+      {% endblock %}
+    </div>
   </div>
-</div>
+</section>

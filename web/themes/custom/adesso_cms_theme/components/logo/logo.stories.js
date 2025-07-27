@@ -4,6 +4,20 @@
  * Responsive site logo with Tailwind CSS sizing
  */
 
+// Create a proper logo template function
+const logoTemplate = (args) => {
+  const {
+    site_logo = '',
+    site_name = 'Site',
+    modifier = ''
+  } = args;
+
+  const altText = site_name ? `${site_name} logo` : 'Site logo';
+  const classes = `block max-h-full w-auto ${modifier}`.trim();
+
+  return `<img src="${site_logo}" class="${classes}" alt="${altText}" loading="lazy" />`;
+};
+
 export default {
   title: 'General/Logo',
   parameters: {
@@ -27,14 +41,17 @@ export default {
 
 // Default logo
 export const Default = {
+  render: logoTemplate,
   args: {
     site_logo: '/themes/custom/adesso_cms_theme/assets/logo.svg',
+    site_name: 'adesso CMS',
     modifier: 'h-8',
   },
 };
 
 // Small logo
 export const Small = {
+  render: logoTemplate,
   args: {
     ...Default.args,
     modifier: 'h-6',
@@ -43,6 +60,7 @@ export const Small = {
 
 // Large logo
 export const Large = {
+  render: logoTemplate,
   args: {
     ...Default.args,
     modifier: 'h-12',
@@ -51,6 +69,7 @@ export const Large = {
 
 // Extra large logo
 export const ExtraLarge = {
+  render: logoTemplate,
   args: {
     ...Default.args,
     modifier: 'h-16',
@@ -59,6 +78,7 @@ export const ExtraLarge = {
 
 // Responsive logo (different sizes at different breakpoints)
 export const Responsive = {
+  render: logoTemplate,
   args: {
     ...Default.args,
     modifier: 'h-6 sm:h-8 lg:h-10',
@@ -74,6 +94,7 @@ export const Responsive = {
 
 // With max width constraint
 export const WithMaxWidth = {
+  render: logoTemplate,
   args: {
     ...Default.args,
     modifier: 'h-8 max-w-48',

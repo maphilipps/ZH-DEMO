@@ -20,7 +20,8 @@
     "once": true,
     "drupalTranslations": true,
     "jQuery": true,
-    "$": true
+    "$": true,
+    "Swiper": true
   },
 
   "parserOptions": {

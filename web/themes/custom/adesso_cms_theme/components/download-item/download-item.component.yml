@@ -7,20 +7,28 @@ props:
     file_url:
       type: string
       title: file_url
-      description: ''
+      description: URL to the downloadable file
     file_name:
       type: string
       title: file_name
-      description: ''
+      description: Display name of the file
     file_description:
       type: string
       title: file_description
-      description: ''
+      description: Optional description of the file
     file_size:
       type: number
       title: file_size
-      description: ''
+      description: File size in bytes
     file_extension:
       type: string
       title: file_extension
-      description: ''
+      description: File extension (pdf, doc, etc.)
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether parent has dark theme
+    is_last:
+      type: boolean
+      title: is_last
+      description: Whether this is the last item

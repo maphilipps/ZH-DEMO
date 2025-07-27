@@ -7,7 +7,7 @@ props:
     media:
       type: string
       title: media
-      description: Define the media content, either an image or a video
+      description: Define the media content, either an image, video, or audio
     modifier:
       type: string
       title: modifier

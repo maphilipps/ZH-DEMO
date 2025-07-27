@@ -140,7 +140,7 @@
                {% if safe_media_caption or safe_title %}aria-describedby="{{ description_id }}"{% endif %}>
         {% else %}
           {# Rendered media content #}
-          <div class="media-container relative w-full h-full [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-out [&_img]:group-hover/item:scale-105" 
+          <div class="media-container relative w-full h-full [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-out [&_img]:group-hover/item:scale-105"
                {% if safe_media_alt %}data-media-alt="{{ safe_media_alt }}"{% endif %}
                {% if safe_media_caption %}data-media-caption="{{ safe_media_caption }}"{% endif %}
                data-description-id="{{ description_id }}">

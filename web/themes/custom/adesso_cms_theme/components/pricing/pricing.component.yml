@@ -4,9 +4,9 @@ description: Editorial/Pricing component
 props:
   type: object
   properties:
-    eyebrow:
+    pre_headline:
       type: string
-      title: eyebrow
+      title: pre_headline
       description: Text displayed above the main title
       default: Choose Your Plan
     title:

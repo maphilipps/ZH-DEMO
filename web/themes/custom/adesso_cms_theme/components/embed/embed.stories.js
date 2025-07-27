@@ -1,25 +1,39 @@
-// embed.stories.js
+import { renderHeading } from '../../.storybook/component-helpers.js';
 
-import EmbedTemplate from './embed.twig';
+// Create a proper embed template function that renders actual HTML
+const embedTemplate = (args) => {
+  const {
+    title = '',
+    pre_headline = '',
+    embed = '',
+    modifier = ''
+  } = args;
 
-export default {
-  title: 'Editorial/Embed',
-  argTypes: {
-    title: {
-      description: 'Title for the embed',
-      control: 'text',
-      defaultValue: '',
-    },
-    embed: {
-      description: 'Define the embedded item',
-      control: 'text',
-      type: { required: true },
-    },
-    modifier: {
-      control: 'text',
-      description: 'Modifier class for the embed component',
-    },
-  },
+  // Render headings using helper
+  const preHeadlineHtml = pre_headline ? renderHeading({
+    title: pre_headline,
+    as: 'span',
+    visual_level: '3',
+    custom_classes: 'block mb-4 font-bold text-2xl tracking-tight text-center leading-none'
+  }) : '';
+
+  const titleHtml = title ? renderHeading({
+    title: title,
+    as: 'h2',
+    custom_classes: 'text-3xl font-bold text-center mb-6 md:mb-8'
+  }) : '';
+
+  return `
+    <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16 border bg-card text-card-foreground border-none shadow-none">
+      ${preHeadlineHtml}
+      ${titleHtml}
+      <div>
+        <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">
+          ${embed}
+        </div>
+      </div>
+    </div>
+  `;
 };
 
 // Mock content for the embed (Google Maps iframe)
@@ -36,25 +50,87 @@ const mockContent = `
   </iframe>
 `;
 
-// Default Story
-export const Default = EmbedTemplate.bind({});
-Default.args = {
-  embed: mockContent,
-  modifier: '',
+const youtubeContent = `
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+`;
+
+export default {
+  title: 'Editorial/Embed',
+  argTypes: {
+    title: {
+      description: 'Title for the embed',
+      control: 'text',
+      defaultValue: '',
+    },
+    pre_headline: {
+      description: 'Pre-headline text above the main title',
+      control: 'text',
+    },
+    embed: {
+      description: 'Define the embedded item',
+      control: 'text',
+      type: { required: true },
+    },
+    modifier: {
+      control: 'text',
+      description: 'Modifier class for the embed component',
+    },
+  },
 };
 
-// With Title Story
-export const WithTitle = EmbedTemplate.bind({});
-WithTitle.args = {
-  title: "Google Maps Embed",
-  embed: mockContent,
-  modifier: '',
+const renderEmbed = (args) => {
+  return embedTemplate(args);
 };
 
-// With Custom ClassName Story
-export const WithCustomClassName = EmbedTemplate.bind({});
-WithCustomClassName.args = {
-  title: "Custom Styled Embed",
-  embed: mockContent,
-  modifier: 'bg-gray-100 p-4',
+export const Default = {
+  render: renderEmbed,
+  args: {
+    embed: mockContent,
+    modifier: '',
+  },
+};
+
+export const WithTitle = {
+  render: renderEmbed,
+  args: {
+    title: "Our Location",
+    embed: mockContent,
+    modifier: '',
+  },
+};
+
+export const WithPreHeadline = {
+  render: renderEmbed,
+  args: {
+    pre_headline: "Find Us",
+    title: "Visit Our Office",
+    embed: mockContent,
+    modifier: '',
+  },
+};
+
+export const YouTubeEmbed = {
+  render: renderEmbed,
+  args: {
+    title: "Featured Video",
+    embed: youtubeContent,
+    modifier: '',
+  },
+};
+
+export const WithCustomClassName = {
+  render: renderEmbed,
+  args: {
+    title: "Custom Styled Embed",
+    embed: mockContent,
+    modifier: 'bg-gray-100 p-4',
+  },
 };

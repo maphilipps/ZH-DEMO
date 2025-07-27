@@ -1,4 +1,66 @@
-import StatTemplate from './stat-card.twig';
+import { renderHeading } from '../../.storybook/component-helpers.js';
+
+// Create a proper stat card template function that renders actual HTML
+const statCardTemplate = (args) => {
+  const {
+    heading = '',
+    body = '',
+    icon = '',
+    media = '',
+    layout = 'center',
+    border = true,
+    modifier = ''
+  } = args;
+
+  // Determine layout classes
+  const alignment_class = layout === 'left' ? 'text-left' : 'text-center';
+  const icon_class = layout === 'left' ? 'mr-auto' : 'mx-auto';
+  
+  // Determine border classes
+  const border_class = !border ? 'border-0 shadow-none h-full' : 'border shadow';
+  const content_class = !border ? 'p-0' : 'p-6';
+
+  // Render heading using helper
+  const headingHtml = heading ? renderHeading({
+    title: heading,
+    as: 'span',
+    visual_level: '3',
+    custom_classes: 'block card-title font-semibold tracking-tight mb-2 text-xl'
+  }) : '';
+
+  // Icon section
+  let iconHtml = '';
+  if (icon) {
+    iconHtml = `
+      <div class="stat-icon ${icon_class} mb-4 max-w-[120px] sm:max-w-[200px]">
+        <i data-lucide="${icon}" width="56" height="56" class="mx-auto sm:hidden"></i>
+        <i data-lucide="${icon}" width="68" height="68" class="mx-auto drupal-safe-hidden sm:block"></i>
+      </div>
+    `;
+  }
+
+  // Media section (if media instead of icon)
+  if (media && !icon) {
+    iconHtml = `
+      <div class="stat-icon ${icon_class} mb-4 max-w-[120px] sm:max-w-[200px]">
+        ${media}
+      </div>
+    `;
+  }
+
+  // Body content
+  const bodyHtml = body ? `<p class="mb-0">${body}</p>` : '';
+
+  return `
+    <div class="bg-card text-card-foreground stat ${alignment_class} ${border_class} ${modifier}">
+      <div class="${content_class}">
+        ${iconHtml}
+        ${headingHtml}
+        ${bodyHtml}
+      </div>
+    </div>
+  `;
+};
 
 const mockStat = {
   type: 'stat',
@@ -26,6 +88,10 @@ export default {
       description: 'Material icon name',
       control: 'text'
     },
+    media: {
+      description: 'Custom media HTML (SVG, image, etc.)',
+      control: 'text'
+    },
     modifier: {
       description: 'CSS modifier classes',
       control: 'text'
@@ -42,38 +108,70 @@ export default {
   }
 };
 
-export const Default = StatTemplate.bind({});
-Default.args = {
-  ...mockStat,
-  icon: 'home',
-  modifier: 'md:w-1/4',
+const renderStatCard = (args) => {
+  return statCardTemplate(args);
 };
 
-export const WithoutMedia = StatTemplate.bind({});
-WithoutMedia.args = {
-  ...mockStat,
-  media: undefined,
-  modifier: 'md:w-1/4',
+export const Default = {
+  render: renderStatCard,
+  args: {
+    ...mockStat,
+    icon: 'home',
+    modifier: 'md:w-1/4',
+  },
 };
 
-export const CustomModifier = StatTemplate.bind({});
-CustomModifier.args = {
-  ...mockStat,
-  modifier: 'md:w-1/4 bg-secondary text-secondary-foreground',
+export const WithIcon = {
+  render: renderStatCard,
+  args: {
+    heading: 'Downloads',
+    body: '5,892',
+    icon: 'download',
+    modifier: 'md:w-1/4',
+  },
 };
 
-export const NoBorderLeftLayout = StatTemplate.bind({});
-NoBorderLeftLayout.args = {
-  ...mockStat,
-  border: false,
-  layout: 'left',
-  modifier: 'md:w-1/4',
+export const WithMedia = {
+  render: renderStatCard,
+  args: {
+    ...mockStat,
+    modifier: 'md:w-1/4',
+  },
 };
 
-export const LongContent = StatTemplate.bind({});
-LongContent.args = {
-  ...mockStat,
-  heading: 'Very Long Heading That Might Wrap',
-  body: 'This is a much longer body text that demonstrates how the card handles larger amounts of content. It might wrap to multiple lines depending on the card width.',
-  modifier: 'md:w-1/4',
+export const WithoutMedia = {
+  render: renderStatCard,
+  args: {
+    heading: 'Active Users',
+    body: '2,543',
+    modifier: 'md:w-1/4',
+  },
+};
+
+export const CustomModifier = {
+  render: renderStatCard,
+  args: {
+    ...mockStat,
+    modifier: 'md:w-1/4 bg-secondary text-secondary-foreground',
+  },
+};
+
+export const NoBorderLeftLayout = {
+  render: renderStatCard,
+  args: {
+    ...mockStat,
+    border: false,
+    layout: 'left',
+    modifier: 'md:w-1/4',
+  },
+};
+
+export const LongContent = {
+  render: renderStatCard,
+  args: {
+    heading: 'Very Long Heading That Might Wrap',
+    body: 'This is a much longer body text that demonstrates how the card handles larger amounts of content. It might wrap to multiple lines depending on the card width.',
+    icon: 'info',
+    modifier: 'md:w-1/4',
+  },
 };

@@ -20,6 +20,10 @@ props:
       type: string
       title: icon
       description: Material icon name
+    media:
+      type: string
+      title: media
+      description: Custom media HTML (SVG, image, etc.)
     modifier:
       type: string
       title: modifier

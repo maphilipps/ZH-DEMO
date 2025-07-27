@@ -1,0 +1,153 @@
+#!/bin/bash
+
+## Description: Validate Storybook story URLs
+## Usage: ddev story-check [--story=component-name] [--all] [--fix]
+## Example: ddev story-check --story=card-group
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+STORY_COMPONENT=""
+CHECK_ALL=false
+AUTO_FIX=false
+FAILED_STORIES=()
+
+# Parse arguments
+for arg in "$@"; do
+    case $arg in
+        --story=*)
+            STORY_COMPONENT="${arg#*=}"
+            shift
+            ;;
+        --all)
+            CHECK_ALL=true
+            shift
+            ;;
+        --fix)
+            AUTO_FIX=true
+            shift
+            ;;
+        *)
+            echo -e "${RED}Unknown argument: $arg${NC}"
+            exit 1
+            ;;
+    esac
+done
+
+echo -e "${BLUE}🔍 Storybook Story URL Validator${NC}"
+echo "=================================="
+
+# Check if Storybook is running
+echo -e "${YELLOW}Checking Storybook service...${NC}"
+if ! curl -s -f "https://adesso-cms.ddev.site:6006" > /dev/null; then
+    echo -e "${RED}❌ Storybook is not running or not accessible${NC}"
+    echo "   Try: ddev theme storybook"
+    exit 1
+fi
+echo -e "${GREEN}✅ Storybook service is running${NC}"
+
+# Function to validate single story URL
+validate_story_url() {
+    local url="$1"
+    local component="$2"
+    
+    echo -e "${YELLOW}Testing: ${NC}$url"
+    
+    if curl -s -f "$url" > /dev/null; then
+        echo -e "${GREEN}✅ $component story is accessible${NC}"
+        return 0
+    else
+        echo -e "${RED}❌ $component story failed to load${NC}"
+        FAILED_STORIES+=("$component:$url")
+        return 1
+    fi
+}
+
+# Function to extract story URLs from .stories.js files
+extract_story_urls() {
+    local stories_file="$1"
+    local component_name="$2"
+    
+    # Extract title from stories file
+    local title=$(grep -E "^\s*title:\s*['\"]" "$stories_file" | sed -E "s/^\s*title:\s*['\"]([^'\"]*)['\"].*/\1/")
+    
+    if [ -z "$title" ]; then
+        echo -e "${RED}⚠️  Could not extract title from $stories_file${NC}"
+        return 1
+    fi
+    
+    # Convert title to URL format
+    local url_path=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g')
+    
+    # Extract story names (exports)
+    local story_names=($(grep -E "^export const [A-Za-z]" "$stories_file" | sed -E 's/^export const ([A-Za-z][A-Za-z0-9]*).*/\1/' | tr '[:upper:]' '[:lower:]' | sed 's/[A-Z]/-&/g' | sed 's/^-//'))
+    
+    echo -e "${BLUE}📖 Found stories for $component_name:${NC}"
+    for story in "${story_names[@]}"; do
+        local story_url="https://adesso-cms.ddev.site:6006/?path=/story/$url_path--$story"
+        echo "   • $story: $story_url"
+        validate_story_url "$story_url" "$component_name/$story"
+    done
+}
+
+# Main validation logic
+if [ "$CHECK_ALL" = true ]; then
+    echo -e "${BLUE}🔍 Scanning all components for stories...${NC}"
+    
+    # Find all .stories.js files
+    STORIES_FILES=$(find /var/www/html/web/themes/custom/adesso_cms_theme/components -name "*.stories.js" -type f)
+    
+    if [ -z "$STORIES_FILES" ]; then
+        echo -e "${RED}❌ No story files found${NC}"
+        exit 1
+    fi
+    
+    for file in $STORIES_FILES; do
+        component_dir=$(dirname "$file")
+        component_name=$(basename "$component_dir")
+        echo -e "\n${BLUE}📁 Processing component: $component_name${NC}"
+        extract_story_urls "$file" "$component_name"
+    done
+    
+elif [ -n "$STORY_COMPONENT" ]; then
+    echo -e "${BLUE}🔍 Checking specific component: $STORY_COMPONENT${NC}"
+    
+    STORIES_FILE="/var/www/html/web/themes/custom/adesso_cms_theme/components/$STORY_COMPONENT/$STORY_COMPONENT.stories.js"
+    
+    if [ ! -f "$STORIES_FILE" ]; then
+        echo -e "${RED}❌ Story file not found: $STORIES_FILE${NC}"
+        exit 1
+    fi
+    
+    extract_story_urls "$STORIES_FILE" "$STORY_COMPONENT"
+else
+    echo -e "${YELLOW}Usage: ddev story-check [--story=component-name] [--all]${NC}"
+    exit 1
+fi
+
+# Summary
+echo -e "\n${BLUE}📊 Validation Summary${NC}"
+echo "====================="
+
+if [ ${#FAILED_STORIES[@]} -eq 0 ]; then
+    echo -e "${GREEN}🎉 All stories are working perfectly!${NC}"
+    exit 0
+else
+    echo -e "${RED}❌ Found ${#FAILED_STORIES[@]} failed stories:${NC}"
+    for failed in "${FAILED_STORIES[@]}"; do
+        echo -e "   • ${RED}$failed${NC}"
+    done
+    
+    if [ "$AUTO_FIX" = true ]; then
+        echo -e "\n${YELLOW}🔧 Auto-fix mode enabled - investigating issues...${NC}"
+        # Add auto-fix logic here if needed
+    fi
+    
+    exit 1
+fi

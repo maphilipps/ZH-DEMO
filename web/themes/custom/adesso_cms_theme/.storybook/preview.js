@@ -4,7 +4,9 @@
  */
 
 import { initFlowbite } from 'flowbite';
-import '../dist/assets/adesso.css';
+
+// Import compiled CSS through static files to avoid webpack processing issues
+// The CSS is served via staticDirs configuration in main.cjs
 
 // Global parameters for all stories
 export const parameters = {
@@ -241,24 +243,15 @@ export const decorators = [
     return Story();
   },
   
-  // Performance decorator
+  // Performance decorator (optimized to prevent infinite reload)
   (Story, context) => {
-    // Add performance monitoring
-    const startTime = performance.now();
+    // Optimized for stable HMR behavior
+    if (module.hot) {
+      // Accept hot updates but prevent unnecessary reloads
+      module.hot.accept();
+    }
     
-    const result = Story();
-    
-    // Log performance metrics
-    setTimeout(() => {
-      const endTime = performance.now();
-      const renderTime = endTime - startTime;
-      
-      if (renderTime > 1000) {
-        console.warn(`Story "${context.name}" took ${renderTime.toFixed(2)}ms to render`);
-      }
-    }, 0);
-    
-    return result;
+    return Story();
   },
 ];
 

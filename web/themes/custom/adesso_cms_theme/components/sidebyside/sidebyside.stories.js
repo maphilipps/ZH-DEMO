@@ -1,9 +1,124 @@
-import sideBySideTemplate from './sidebyside.twig';
+import { renderHeading, renderButton } from '../../.storybook/component-helpers.js';
+
+function renderStatCard(statCard) {
+  const { heading = '', body = '', icon = '', media = '', layout = 'left', border = false } = statCard;
+  
+  const borderClass = border ? 'border border-border' : '';
+  const alignmentClass = layout === 'center' ? 'text-center' : '';
+  
+  const mediaHtml = media ? `<div class="mb-4">${media}</div>` : '';
+  const iconHtml = icon ? `<i data-lucide="${icon}" class="w-6 h-6 mb-4"></i>` : '';
+  const headingHtml = heading ? `<h3 class="text-lg font-semibold mb-2">${heading}</h3>` : '';
+  const bodyHtml = body ? `<p class="text-sm text-muted-foreground">${body}</p>` : '';
+  
+  return `
+    <div class="p-4 ${borderClass} ${alignmentClass}">
+      ${mediaHtml}
+      ${iconHtml}
+      ${headingHtml}
+      ${bodyHtml}
+    </div>
+  `;
+}
+
+function renderSideBySide(args) {
+  const {
+    pre_headline = '',
+    title = '',
+    text = '',
+    media = '',
+    features = [],
+    link = null,
+    layout = 'left',
+    modifier = 'container'
+  } = args;
+
+  // Determine layout classes
+  const layoutClasses = layout === 'right' ? ' lg:flex-row-reverse' : '';
+  
+  // Render pre-headline
+  const preHeadlineHtml = pre_headline ? renderHeading({
+    title: pre_headline,
+    as: 'span',
+    visual_level: '3',
+    custom_classes: 'block mb-2 font-bold text-2xl tracking-tight leading-none'
+  }) : '';
+
+  // Render title
+  const titleHtml = title ? renderHeading({
+    title: title,
+    as: 'h2',
+    custom_classes: 'text-3xl font-bold'
+  }) : '';
+
+  // Render text content
+  const textHtml = text ? `<div class="mb-2 lg:mb-4">${text}</div>` : '';
+
+  // Render features
+  let featuresHtml = '';
+  if (features && features.length > 0) {
+    const isStatType = features[0].type === 'stats_item';
+    const containerClasses = isStatType ? 'flex flex-col sm:flex-row gap-4 mb-6' : 'mb-6 space-y-4';
+    
+    const featuresContent = features.map(feature => {
+      if (feature.type === 'stats_item') {
+        return renderStatCard({
+          heading: feature.heading || '',
+          body: feature.body || '',
+          icon: feature.icon || '',
+          media: feature.media || '',
+          layout: 'left',
+          border: false
+        });
+      } else {
+        return `
+          <div class="flex items-start gap-4">
+            <i data-lucide="${feature.icon || ''}" width="24" height="24" class="mt-[-2px]"></i>
+            <span class="flex-1">${feature.summary || ''}</span>
+          </div>
+        `;
+      }
+    }).join('');
+    
+    featuresHtml = `<div class="${containerClasses}">${featuresContent}</div>`;
+  }
+
+  // Render CTA button
+  const ctaHtml = link && link.url ? `
+    <div class="flex">
+      ${renderButton({
+        url: link.url,
+        text: link.title || 'Read more',
+        modifier: 'btn-default'
+      })}
+    </div>
+  ` : '';
+
+  return `
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-6 ${modifier}${layoutClasses}">
+      <div class="w-full lg:w-1/2">
+        ${media}
+      </div>
+      <div class="w-full lg:w-1/2 xl:w-5/12 flex flex-col gap-4">
+        ${preHeadlineHtml}
+        ${titleHtml}
+        ${textHtml}
+        ${featuresHtml}
+        ${ctaHtml}
+      </div>
+    </div>
+  `;
+}
 
 export default {
   title: 'Editorial/Side-by-Side',
+  render: renderSideBySide,
   tags: ['autodocs'],
   argTypes: {
+    pre_headline: {
+      description: 'Pre-headline text above the main title',
+      control: 'text'
+    },
     title: {
       description: 'Side-by-Side title',
       control: 'text'
@@ -15,6 +130,10 @@ export default {
     text: {
       description: 'Side-by-Side body text',
       control: 'text'
+    },
+    features: {
+      description: 'Array of features or stat cards',
+      control: 'object'
     },
     link: {
       description: 'Call to action',
@@ -47,16 +166,16 @@ const mockSideBySide = {
 };
 
 export const Default = {
-  render: () => sideBySideTemplate({
+  args: {
     ...mockSideBySide
-  })
+  }
 };
 
 export const RightLayout = {
-  render: () => sideBySideTemplate({
+  args: {
     ...mockSideBySide,
     layout: 'right'
-  })
+  }
 };
 
 const mockStat1 = {
@@ -74,12 +193,12 @@ const mockStat2 = {
 };
 
 export const WithStatCards = {
-  render: () => sideBySideTemplate({
+  args: {
     title: 'Discover the Unmatched Advantages of Choosing DrupalX for Your Development Needs',
     text: '<p>DrupalX combines the power of decoupled architecture with AI-driven optimization to enhance your web projects. Experience lightning-fast performance and intuitive design tools that simplify your workflow.</p>',
     layout: 'right',
     media: mockMedia,
     features: [mockStat1, mockStat2],
     modifier: ''
-  })
+  }
 };

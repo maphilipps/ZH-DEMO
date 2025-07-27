@@ -1,10 +1,68 @@
-import PricingTemplate from './pricing.twig';
+import { renderHeading, renderPricingCard } from '../../.storybook/component-helpers.js';
+
+function renderPricing(args) {
+  const {
+    pre_headline = '',
+    title = '',
+    summary = '',
+    grid_columns = '3',
+    cards = []
+  } = args;
+
+  // Render pre-headline
+  const preHeadlineHtml = pre_headline ? renderHeading({
+    title: pre_headline,
+    as: 'h3',
+    custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
+  }) : '';
+
+  // Render title
+  const titleHtml = title ? renderHeading({
+    title: title,
+    as: 'h2',
+    custom_classes: 'text-3xl font-bold mb-4'
+  }) : '';
+
+  // Render summary
+  const summaryHtml = summary ? `<div class="text-gray-600">${summary}</div>` : '';
+
+  // Validate grid columns
+  const cols = ['2', '3'].includes(grid_columns.toString()) ? grid_columns.toString() : '3';
+  
+  // Determine grid classes
+  const gridClasses = cols === '2' 
+    ? 'md:grid-cols-2 max-w-5xl mx-auto' 
+    : 'md:grid-cols-3';
+
+  // Render pricing cards
+  const cardsHtml = cards.map(card => renderPricingCard({
+    pre_headline: card.eyebrow,
+    title: card.title,
+    monthly_label: card.monthly_label,
+    features: card.features || [],
+    cta_link: card.cta_link,
+    includes_label: card.includes_label || 'Includes'
+  })).join('');
+
+  return `
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+      <div class="mx-auto max-w-lg text-center mb-8">
+        ${preHeadlineHtml}
+        ${titleHtml}
+        ${summaryHtml}
+      </div>
+      <div class="grid grid-cols-1 gap-6 sm:gap-8 ${gridClasses}">
+        ${cardsHtml}
+      </div>
+    </div>
+  `;
+}
 
 export default {
   title: 'Editorial/Pricing',
-  component: PricingTemplate,
+  render: renderPricing,
   argTypes: {
-    eyebrow: {
+    pre_headline: {
       description: 'Text displayed above the main title',
       control: 'text'
     },
@@ -31,7 +89,7 @@ export default {
 
 export const Default = {
   args: {
-    eyebrow: "Choose Your Plan",
+    pre_headline: "Choose Your Plan",
     title: "Compare Our Options",
     summary: "Select the best option for your needs",
     grid_columns: 3,
@@ -75,7 +133,7 @@ export const Default = {
 
 export const TwoCards = {
   args: {
-    eyebrow: "Simple Pricing",
+    pre_headline: "Simple Pricing",
     title: "Compare Plans",
     summary: "Choose the plan that fits your needs",
     grid_columns: 2,

@@ -7,23 +7,23 @@ props:
     modifier:
       type: string
       title: modifier
-      description: ''
+      description: Additional CSS classes for the hero wrapper
     media:
       type: string
       title: media
-      description: ''
+      description: Media content (image or video HTML)
     heading:
       type: string
       title: heading
-      description: ''
+      description: Main hero heading
     text:
       type: string
       title: text
-      description: ''
+      description: Hero description text
     pre_headline:
       type: string
       title: pre_headline
-      description: ''
+      description: Pre-headline text above the main heading
     hero_layout:
       type: string
       title: hero_layout
@@ -32,6 +32,7 @@ props:
         - image_top
         - image_bottom
         - image_bottom_split
+        - video_background
     link:
       type: object
       title: link

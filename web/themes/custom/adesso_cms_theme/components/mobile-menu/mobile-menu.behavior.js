@@ -12,7 +12,7 @@
    * This behavior is kept for any additional custom functionality
    */
   Drupal.behaviors.mobileMenuToggle = {
-    attach: function (context, settings) {
+    attach: function (context) {
       // Flowbite handles data-collapse-toggle automatically
       // This is just for any additional custom functionality
       const toggleButtons = once('mobile-menu-toggle', '[data-collapse-toggle]', context);
@@ -23,7 +23,7 @@
 
         if (targetMenu) {
           // Add custom analytics or other enhancements here
-          button.addEventListener('click', function (e) {
+          button.addEventListener('click', function () {
             // Announce to screen readers
             const announcement = document.getElementById('nav-announcements');
             if (announcement) {
@@ -44,7 +44,7 @@
    * Search Dropdown Toggle behavior
    */
   Drupal.behaviors.searchDropdownToggle = {
-    attach: function (context, settings) {
+    attach: function (context) {
       // Find all search dropdown toggle buttons
       const searchButtons = once('search-dropdown-toggle', '[data-dropdown-toggle="search-dropdown"]', context);
 

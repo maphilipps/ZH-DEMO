@@ -1,1 +1,0 @@
-../../comprehensive-paragraph-variants.md

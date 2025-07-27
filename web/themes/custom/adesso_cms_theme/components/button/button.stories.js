@@ -1,4 +1,49 @@
-import buttonTemplate from './button.twig';
+// Create a proper button template function that renders actual HTML
+const buttonTemplate = (args) => {
+  const {
+    url = '',
+    text = '',
+    icon = '',
+    variant = '',
+    size = '',
+    modifier = ''
+  } = args;
+
+  // Determine variant classes
+  let variantClasses = 'bg-primary text-primary-foreground hover:bg-primary/90';
+  if (variant === 'secondary') {
+    variantClasses = 'bg-secondary text-secondary-foreground hover:bg-secondary/80';
+  } else if (variant === 'outline') {
+    variantClasses = 'border border-input bg-background hover:bg-accent hover:text-accent-foreground';
+  } else if (variant === 'ghost') {
+    variantClasses = 'hover:bg-accent hover:text-accent-foreground';
+  } else if (variant === 'destructive') {
+    variantClasses = 'bg-destructive text-destructive-foreground hover:bg-destructive/90';
+  } else if (variant === 'link') {
+    variantClasses = 'text-primary underline-offset-4 hover:underline';
+  }
+
+  // Determine size classes
+  let sizeClasses = 'h-9 px-4 py-2';
+  if (size === 'sm') {
+    sizeClasses = 'h-8 px-3 py-1.5 text-xs';
+  } else if (size === 'lg') {
+    sizeClasses = 'h-12 px-6 py-3 text-lg';
+  } else if (size === 'icon') {
+    sizeClasses = 'h-9 w-9';
+  }
+
+  const baseClasses = 'inline-flex rounded-lg items-center justify-center whitespace-nowrap text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';
+  const allClasses = `${baseClasses} ${variantClasses} ${sizeClasses}${modifier ? ' ' + modifier : ''}`;
+
+  const iconHtml = icon ? `<i data-lucide="${icon}" width="18" height="18" class="ml-2 h-4 w-4"></i>` : '';
+
+  if (url) {
+    return `<a href="${url}" class="${allClasses}">${text}${iconHtml}</a>`;
+  } else {
+    return `<button class="${allClasses}">${text}${iconHtml}</button>`;
+  }
+};
 
 export default {
   title: 'General/Button',

@@ -38,6 +38,7 @@ This is adesso CMS, a Drupal 11-based content management system with a modern fr
 ```bash
 ./launch-adesso-cms.sh    # Bootstrap the entire project
 ddev start                # Start DDEV environment
+ddev composer install     # Install PHP dependencies
 ```
 
 ### Frontend Development
@@ -52,6 +53,9 @@ ddev theme storybook      # Start Storybook (port 6006)
 ```bash
 ddev export-contents      # Export content to recipes/adesso_cms_starter/content
 ddev drush sql:create -y  # Reset database (recreate)
+ddev drush cr             # Clear cache
+ddev drush cex            # Export configuration
+ddev drush cim            # Import configuration
 ```
 
 ### Testing & Quality
@@ -59,7 +63,14 @@ ddev drush sql:create -y  # Reset database (recreate)
 ddev theme lint:js        # ESLint JavaScript files
 ddev theme lint:sass      # Stylelint SCSS files  
 ddev theme scss-fix       # Auto-fix SCSS issues
+ddev theme test           # Run Vitest unit tests
+ddev theme test:coverage  # Run tests with coverage report
 ```
+
+### Development URLs
+- **Main site**: `https://adesso-cms.ddev.site`
+- **Storybook**: `https://adesso-cms.ddev.site:6006`
+- **Vite HMR**: `https://adesso-cms.ddev.site:5173`
 
 ## Architecture Overview
 
@@ -80,13 +91,21 @@ ddev theme scss-fix       # Auto-fix SCSS issues
 - **Tailwind CSS v4**: Utility-first CSS framework
 - **Storybook**: Component documentation at `https://adesso-cms.ddev.site:6006`
 - **PostCSS**: CSS processing with autoprefixer
+- **Vitest**: Unit testing framework for components
+- **ESLint + Stylelint**: Code quality and formatting
+- **Swiper**: Modern slider/carousel library
+- **Flowbite**: Additional UI components
 
 ### Key Directories
 - `web/themes/custom/adesso_cms_theme/components/`: SDC components
 - `web/themes/custom/adesso_cms_theme/src/`: Source files (CSS, JS)
 - `web/themes/custom/adesso_cms_theme/dist/`: Built assets
+- `web/themes/custom/adesso_cms_theme/templates/`: Drupal template overrides
 - `config/sync/`: Drupal configuration exports
 - `recipes/`: Drupal recipes for repeatable configurations
+  - `adesso_cms_starter/`: Base site configuration
+  - `adesso_cms_paragraphs/`: Paragraph types and fields
+  - `drupal_cms_*/`: Official Drupal CMS recipes
 
 ### Component Schema
 All components follow SDC schema with:
@@ -96,10 +115,62 @@ All components follow SDC schema with:
 - `props`: TypeScript-like property definitions
 
 ### DDEV Configuration
+- **Project Type**: Drupal 11
+- **PHP Version**: 8.3
+- **Database**: MariaDB 10.11
+- **Webserver**: nginx-fpm
+- **Node.js**: 18 (managed within container)
 - **Exposed Ports**: Storybook (6006), Vite (5173)
 - **Theme Commands**: Available via `ddev theme [command]`
-- **Node.js 18**: Managed within DDEV container
-- **Database**: MariaDB 10.11
+- **Additional packages**: Includes image processing libraries for sharp/canvas
+
+## Development Workflows
+
+### Creating New Components
+1. Create component directory in `web/themes/custom/adesso_cms_theme/components/`
+2. Add required files:
+   - `component.component.yml` (SDC schema)
+   - `component.twig` (template)
+   - `component.stories.js` (Storybook documentation)
+   - `component.behavior.js` (optional JavaScript)
+3. Run `ddev theme build:stories` to update component registry
+4. View in Storybook for testing and documentation
+
+### Recipe Management
+- **Purpose**: Recipes provide repeatable, exportable configuration packages
+- **Workflow**: Modify → Export → Test → Package as recipe
+- **Key recipes**: 
+  - `adesso_cms_starter`: Base site configuration
+  - `adesso_cms_paragraphs`: All paragraph types and fields
+  - `drupal_cms_*`: Official Drupal CMS feature recipes
+
+### Content Architecture
+- **Content Types**: Page, News, Event, Person, Project
+- **Paragraph Types**: 20+ rich content components (accordion, hero, carousel, etc.)
+- **Media Types**: Image, Document, Remote Video, SVG, Video
+- **Entity View Modes**: Multiple responsive breakpoints (16:9, 4:3, 1:1, etc.)
+
+## Technology Stack Deep Dive
+
+### Drupal Backend
+- **Version**: Drupal 11.2.2
+- **Key Modules**: Paragraphs, Media, Twig Tweak, Components (SDC)
+- **AI Integration**: DrupalX AI module with Anthropic/OpenAI providers
+- **Image Processing**: Focal point cropping, WebP conversion, responsive images
+- **Content Management**: Layout Builder integration, paragraph-based content
+
+### Frontend Architecture
+- **Build System**: Vite 6.2.0 with Tailwind CSS v4 
+- **Component System**: Drupal SDC with Storybook documentation
+- **JavaScript**: ES modules, behavior-based attachment, jQuery integration
+- **CSS Architecture**: Utility-first (Tailwind) + component-scoped styles
+- **Testing**: Vitest for unit tests, Playwright for E2E (via MCP)
+
+### Development Tools Integration
+- **DDEV Commands**: Custom theme commands in `.ddev/commands/web/theme`
+- **Build Pipeline**: Vite + PostCSS + Tailwind compilation
+- **Quality Tools**: ESLint, Stylelint, PHP CodeSniffer (via DDEV)
+- **Content Export**: Default Content module for recipe-based deployment
 
 ## 🔄 How to Use Profiles
 
@@ -433,7 +504,12 @@ This project integrates with Claude Code's MCP (Model Context Protocol) servers 
 - Unit/Integration testing → `mcp__sequential-thinking` for test strategy
 - Browser testing (ONLY when needed) → `mcp__playwright` + `mcp__browser-tools`
 - Accessibility audits → `mcp__browser-tools` (accessibility focus) ONLY for final validation
-- Testing best practices → Context7 for testing framework documentation
+- Testing best practices → Context7 for testing framework documentation (Vitest, Playwright)
+
+**For Performance Analysis:**
+- Bundle analysis → `mcp__browser-tools` for Core Web Vitals and performance metrics
+- Image optimization → Context7 for best practices with WebP, focal point cropping
+- Cache strategies → Context7 for Drupal caching documentation
 
 **For Complex Projects:**
 - Multi-agent coordination → `mcp__claude-flow` or `mcp__ruv-swarm`
@@ -448,6 +524,52 @@ MCPs integrate seamlessly with the 4-Phase Enhanced Workflow:
 - **Phase 1:** Use `mcp__sequential-thinking` for complex planning
 - **Phase 2:** Use appropriate MCPs based on implementation domain
 - **Phase 3:** Use `mcp__playwright` + `mcp__browser-tools` for comprehensive validation
+
+## Troubleshooting Common Issues
+
+### DDEV Issues
+```bash
+# Container problems
+ddev restart                    # Restart all containers
+ddev rebuild                    # Rebuild containers from scratch
+ddev debug test                 # Test DDEV functionality
+
+# Port conflicts
+ddev stop && ddev start         # Reset port assignments
+```
+
+### Theme Build Issues
+```bash
+# Clear all build artifacts
+ddev theme clean
+ddev theme build
+
+# Node modules issues  
+ddev exec "cd web/themes/custom/adesso_cms_theme && rm -rf node_modules package-lock.json"
+ddev theme build
+
+# Storybook build errors
+ddev theme build:stories        # Regenerate story registry
+```
+
+### Drupal Configuration Issues
+```bash
+# Configuration sync problems
+ddev drush config:status        # Check config differences
+ddev drush cim --partial        # Import only changed configs
+ddev drush cr                   # Clear all caches
+
+# Database reset (nuclear option)
+ddev drush sql:create -y        # Completely recreate database
+./launch-adesso-cms.sh          # Rebuild everything
+```
+
+### Common File Paths
+- **Custom theme**: `web/themes/custom/adesso_cms_theme/`
+- **Component templates**: `web/themes/custom/adesso_cms_theme/components/*/templates/`
+- **DDEV config**: `.ddev/config.yaml`
+- **Composer**: `composer.json` (root), `web/themes/custom/adesso_cms_theme/composer.json` (theme)
+- **Node config**: `web/themes/custom/adesso_cms_theme/package.json`
 
 ## 📚 More Information
 

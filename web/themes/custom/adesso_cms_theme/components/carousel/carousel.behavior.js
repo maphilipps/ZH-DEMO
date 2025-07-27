@@ -26,12 +26,10 @@
         // Validate carousel structure
         const slidesWrapper = carousel.querySelector('.swiper-wrapper');
         const slides = carousel.querySelectorAll('.swiper-slide');
-
         if (!slidesWrapper) {
           console.error('[carousel] Missing .swiper-wrapper element');
           return;
         }
-
         if (slides.length === 0) {
           console.warn('[carousel] No slides found in carousel');
           return;
@@ -40,7 +38,6 @@
         // Dynamic navigation selectors based on carousel ID
         const nextButton = document.querySelector(`.swiper-next-${carouselId}`);
         const prevButton = document.querySelector(`.swiper-prev-${carouselId}`);
-
         // Initialize Swiper with carousel-appropriate configuration
         const swiperConfig = {
           // Basic navigation with dynamic selectors
@@ -61,7 +58,6 @@
           loop: false,
           slidesPerView: cardsPerView,
           spaceBetween: 20,
-
           // Responsive breakpoints for cards layout
           breakpoints: {
             320: {
@@ -94,7 +90,6 @@
               },
             },
           },
-
           // Autoplay configuration
           autoplay: autoplay ? {
             delay: interval,
@@ -186,7 +181,6 @@
         // Initialize Swiper instance
         console.log('[carousel] Initializing Swiper with config:', swiperConfig);
         const swiper = new Swiper(carousel, swiperConfig);
-
         if (!swiper) {
           console.error('[carousel] Failed to initialize Swiper');
           return;

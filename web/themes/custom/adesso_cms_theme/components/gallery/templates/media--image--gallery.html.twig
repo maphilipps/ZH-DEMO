@@ -1,13 +1,3 @@
 
-{% if content %}
-  {%
-    include '@adesso_cms_theme/gallery/gallery-item.twig' with {
-      "item": {
-        "media": content.field_image,
-        "media_thumb": content.field_image,
-        "media_description": media.name.value,
-        "id": 'media-' ~ media.id ~ random(),
-      },
-    } only
-  %}
-{% endif %}
+{# Gallery view mode for image media #}
+{{ content }}

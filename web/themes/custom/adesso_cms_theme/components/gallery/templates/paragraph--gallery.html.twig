@@ -10,14 +10,26 @@
     {% embed 'adesso_cms_theme:gallery' with {
         section_title: content.field_title['#items'].getString(),
         pre_headline: content.field_pre_headline['#items'].getString(),
-        sub_headline: content.field_sub_headline['#items'].getString(),
         content: content,
         is_dark: is_dark ? true : false,
       } only %}
       {% block gallery_items %}
-        {% for i in content.field_media_item['#items'] %}
-          {{ content.field_media_item[loop.index0] }}
-        {% endfor %}
+        {% if content.field_media_item['#items'] %}
+          {% set total_items = content.field_media_item['#items']|length %}
+          {% for i in content.field_media_item['#items'] %}
+            {% set span_classes = '' %}
+            {% if loop.index0 == 0 %}
+              {% set span_classes = 'col-span-1 sm:col-span-2 mb-4 sm:mb-0' %}
+            {% elseif loop.index0 == 4 %}
+              {% set span_classes = 'col-span-1 sm:col-span-2' %}
+            {% else %}
+              {% set span_classes = 'col-span-1' %}
+            {% endif %}
+            <div class="{{ span_classes }}">
+              {{ content.field_media_item[loop.index0] }}
+            </div>
+          {% endfor %}
+        {% endif %}
       {% endblock %}
     {% endembed %}
   {% endblock %}

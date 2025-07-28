@@ -22,7 +22,7 @@
   {% endif %}
 
   {% if body|default('') %}
-    <div class="format lg:format-lg mt-4">
+    <div class="max-w-none format lg:format-md mt-4 ">
       {{ body|default('')|render }}
     </div>
   {% endif %}

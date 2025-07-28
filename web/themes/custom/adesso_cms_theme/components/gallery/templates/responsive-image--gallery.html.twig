@@ -1,9 +1,0 @@
-{# Responsive image template for gallery #}
-<picture>
-  {% if sources %}
-    {% for source_attributes in sources %}
-      <source{{ source_attributes }}/>
-    {% endfor %}
-  {% endif %}
-  <img{{ img_element.attributes.addClass('w-full h-full object-cover') }}/>
-</picture>

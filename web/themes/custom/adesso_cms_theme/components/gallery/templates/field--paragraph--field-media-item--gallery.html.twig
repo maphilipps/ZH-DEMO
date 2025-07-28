@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for the media field in gallery paragraphs.
+ *
+ * Wraps each media item in an aspect ratio container.
+ */
+#}
+{% if items %}
+  {% for item in items %}
+    <div class="relative overflow-hidden rounded-lg bg-gray-200">
+      <div class="relative aspect-[16/9]">
+        {{ item.content }}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}

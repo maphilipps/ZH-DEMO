@@ -7,7 +7,7 @@ dependencies:
     - field.field.media.image.field_image
     - field.field.media.image.field_media_image
     - media.type.image
-    - responsive_image.styles.uncropped_medium
+    - responsive_image.styles.16_9_images
   module:
     - svg_image_responsive
 _core:
@@ -17,11 +17,11 @@ targetEntityType: media
 bundle: image
 mode: gallery
 content:
-  field_image:
+  field_media_image:
     type: responsive_image
     label: hidden
     settings:
-      responsive_image_style: uncropped_medium
+      responsive_image_style: 16_9_images
       image_link: ''
       image_loading:
         attribute: eager
@@ -34,7 +34,7 @@ content:
     region: content
 hidden:
   created: true
-  field_media_image: true
+  field_image: true
   langcode: true
   name: true
   search_api_excerpt: true

@@ -1,37 +1,36 @@
+{#
+/**
+ * @file
+ * Theme override for gallery paragraph.
+ */
+#}
 {% set is_dark = paragraph.field_content_element_theme.value %}
-{% set classes = [] %}
 
-<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-<div{{ attributes.addClass(classes) }}>
+<div{{ attributes }}>
   {{ title_prefix }}
   {{ title_suffix }}
-  {% block content %}
-    {{ content.frontend_editing }}
-    {% embed 'adesso_cms_theme:gallery' with {
-        section_title: content.field_title['#items'].getString(),
-        pre_headline: content.field_pre_headline['#items'].getString(),
-        content: content,
-        is_dark: is_dark ? true : false,
-      } only %}
-      {% block gallery_items %}
-        {% if content.field_media_item['#items'] %}
-          {% set total_items = content.field_media_item['#items']|length %}
-          {% for i in content.field_media_item['#items'] %}
-            {% set span_classes = '' %}
-            {% if loop.index0 == 0 %}
-              {% set span_classes = 'col-span-1 sm:col-span-2 mb-4 sm:mb-0' %}
-            {% elseif loop.index0 == 4 %}
-              {% set span_classes = 'col-span-1 sm:col-span-2' %}
-            {% else %}
-              {% set span_classes = 'col-span-1' %}
-            {% endif %}
-            <div class="{{ span_classes }}">
-              {{ content.field_media_item[loop.index0] }}
-            </div>
-          {% endfor %}
+  {{ content.frontend_editing }}
+  
+  <section class="{{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+      {# Title section with proper formatting #}
+      <div class="max-w-4xl mx-auto text-center mb-8">
+        {% if content.field_pre_headline|render|striptags|trim %}
+          <span class="block mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
+            {{ content.field_pre_headline }}
+          </span>
         {% endif %}
-      {% endblock %}
-    {% endembed %}
-  {% endblock %}
-</div>
+        {% if content.field_title|render|striptags|trim %}
+          <h2 class="text-3xl font-bold mb-8 text-gray-900">
+            {{ content.field_title }}
+          </h2>
+        {% endif %}
+      </div>
+      
+      {# Gallery grid with 4 columns and proper spacing #}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {{ content.field_media_item }}
+      </div>
+    </div>
+  </section>
 </div>

@@ -90,6 +90,7 @@ function adesso_cms_theme_preprocess_paragraph__sidebyside(&$variables) {
   $variables['features'] = $features;
 }
 
+
 /**
  * Implements hook_form_FORM_ID_alter() for search_api_page_block_form_search_results().
  */

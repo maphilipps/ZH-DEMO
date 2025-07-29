@@ -5,9 +5,7 @@
 				{% if media_link %}
 					<a href="{{ media_link }}" class="block">
 					{% endif %}
-					<div class="aspect-w-16 aspect-h-9">
-						{{ media|default('') }}
-					</div>
+					{{ media|default('') }}
 					{% if media_link %}
 					</a>
 				{% endif %}

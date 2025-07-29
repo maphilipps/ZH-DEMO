@@ -31,11 +31,3 @@ props:
       type: string
       title: modifier
       description: The modifier class to apply to the gallery lightbox component
-libraryOverrides:
-  js:
-    gallery.behavior.js:
-      attributes:
-        async: false
-        defer: true
-  dependencies:
-    - core/drupal

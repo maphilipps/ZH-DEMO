@@ -1,576 +1,714 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## 🚨 CRITICAL DEVELOPMENT REQUIREMENTS 🚨
-
-**ALWAYS WORK IN DDEV - NO EXCEPTIONS!** 
-**ALWAYS FOLLOW SDC BEST PRACTICES!**
-**ALWAYS RUN TESTS AFTER CHANGES!**
-
-## Core Rules (Always Loaded)
-
-@.claude/ddev-rules.md
-@.claude/sdc-rules.md  
-@.claude/testing-rules.md
-@.claude/twig-error-prevention.md
-@.claude/adesso-accessibility-standards.md
-
-## 🎯 Default Profile (ALWAYS LOADED)
-
-@.claude/profiles/fullstack-profile.md
-
-## Alternative Profiles (Use when needed)
-
-- **Drupal backend only:** `@.claude/profiles/drupal-profile.md`
-- **Frontend/CSS/JS only:** `@.claude/profiles/frontend-profile.md`  
-- **Accessibility audits:** `@.claude/profiles/accessibility-profile.md`
-- **Security reviews:** `@.claude/profiles/security-profile.md`
-- **Advanced multi-agent:** `@.claude/profiles/advanced-profile.md`
+# Adesso CMS - Enterprise Drupal Project
 
 ## Project Overview
 
-This is adesso CMS, a Drupal 11-based content management system with a modern frontend theme built using Vite, Tailwind CSS, and Storybook. The project uses DDEV for local development and is structured as a component-based system with Drupal recipes for configuration management.
+### Technical Stack
+- **CMS**: Drupal 10/11
+- **Local Environment**: DDEV
+- **Frontend**:
+    - Template Engine: Twig
+    - CSS Framework: Tailwind CSS v4
+    - Interactive JS: Alpine.js
+    - UI Components: Flowbite
+    - Component Library: Storybook with SDC (Single Directory Components)
+- **Backend**:
+    - PHP 8.2+
+    - Composer for dependency management
+    - Drush for Drupal CLI operations
+- **DevOps**:
+    - Version Control: Git
+    - CI/CD: GitLab CI/CD
+    - Container: Docker (via DDEV)
+    - Testing: PHPUnit, Behat, BackstopJS
 
-## Essential Development Commands
+### Directory Structure
+```
+adesso-cms/
+├── .claude/               # AI agent configurations
+│   └── agents/           # Team agent definitions
+├── .ddev/                # DDEV configuration
+├── .gitlab-ci.yml        # GitLab CI/CD pipeline
+├── composer.json         # PHP dependencies
+├── config/               # Drupal configuration
+├── recipes/              # Drupal recipes
+├── vendor/               # Composer dependencies
+├── web/                  # Drupal web root
+│   ├── core/            # Drupal core
+│   ├── modules/         # Contributed and custom modules
+│   │   ├── contrib/     # Contributed modules
+│   │   └── custom/      # Custom modules
+│   ├── themes/          # Themes
+│   │   └── custom/      # Custom themes
+│   │       └── adesso_cms_theme/
+│   │           ├── components/    # SDC components
+│   │           ├── templates/     # Twig templates
+│   │           └── storybook/     # Storybook stories
+│   └── sites/           # Sites configuration
+└── tests/                # Test suites
+```
+
+## Environment Setup
 
 ### Initial Setup
 ```bash
-./launch-adesso-cms.sh    # Bootstrap the entire project
-ddev start                # Start DDEV environment
-ddev composer install     # Install PHP dependencies
+# Clone repository
+git clone [repository-url]
+cd adesso-cms
+
+# Start DDEV
+ddev start
+
+# Install dependencies
+ddev composer install
+
+# Import database
+ddev import-db --file=database.sql.gz
+
+# Import files
+ddev import-files --source=files.tar.gz
+
+# Run database updates
+ddev drush updb -y
+
+# Clear caches
+ddev drush cr
 ```
 
-### Frontend Development
+### Daily Development
 ```bash
-ddev theme dev            # Start Vite dev server (port 5173)
-ddev theme watch          # Watch for changes (Tailwind, components, stories)
-ddev theme build          # Build production assets
-ddev theme storybook      # Start Storybook (port 6006)
+# Start environment
+ddev start
+
+# Check status
+ddev describe
+
+# Access site
+ddev launch
+
+# SSH into container
+ddev ssh
 ```
 
-### Content Management
+## Team Agents & Instructions
+
+### 1. drupal-technical-pm
+**Role**: Technical Project Manager  
+**Auto-accept**: No (requires oversight for planning decisions)
+```
+Primary responsibilities:
+- Sprint planning and task breakdown
+- Technical specification creation
+- Team coordination and blocker resolution
+- Time estimation and project timeline management
+- GitLab issue and milestone management
+```
+
+### 2. drupal-solution-architect
+**Role**: Solution Architect  
+**Auto-accept**: No (architectural decisions need review)
+```
+Primary responsibilities:
+- High-level technical architecture decisions
+- Module selection and evaluation
+- Performance and security concept development
+- Integration architecture design
+- Technical documentation oversight
+```
+
+### 3. drupal-senior-backend-dev
+**Role**: Senior Backend Developer  
+**Auto-accept**: Yes (for implementation tasks)
+```
+Primary responsibilities:
+- Custom module development
+- API integrations
+- Database optimization
+- Complex business logic implementation
+- Code review and mentoring
+```
+
+### 4. business-transformation-consultant
+**Role**: Business Consultant  
+**Auto-accept**: No (strategic decisions)
+```
+Primary responsibilities:
+- Requirements engineering
+- Business process analysis
+- Stakeholder communication
+- User story creation
+- ROI analysis and reporting
+```
+
+### 5. drupal-frontend-theming-specialist
+**Role**: Frontend Developer (Drupal Theming)  
+**Auto-accept**: Yes (for theming tasks)
+```
+Primary responsibilities:
+- Twig template development
+- SDC component creation
+- Responsive design implementation
+- Theme preprocessing and hooks
+- Render array manipulation
+```
+
+### 6. alpine-js-frontend-developer
+**Role**: Frontend Developer (JavaScript/Alpine.js)  
+**Auto-accept**: Yes (for JS development)
+```
+Primary responsibilities:
+- Alpine.js component development
+- Interactive UI implementation
+- Client-side performance optimization
+- Flowbite component integration
+- JavaScript testing
+```
+
+### 7. storybook-sdc-maintainer
+**Role**: Storybook Maintainer  
+**Auto-accept**: Yes (for component library tasks)
+```
+Primary responsibilities:
+- Storybook story creation and maintenance
+- SDC component documentation
+- Design system governance
+- Component API documentation
+- Visual regression testing setup
+```
+
+### 8. drupal-devops-engineer
+**Role**: DevOps Engineer  
+**Auto-accept**: No (infrastructure changes need review)
+```
+Primary responsibilities:
+- GitLab CI/CD pipeline management
+- DDEV configuration optimization
+- Deployment automation
+- Security scanning implementation
+- Performance monitoring setup
+```
+
+### 9. drupal-ux-designer
+**Role**: UX/Visual Designer  
+**Auto-accept**: No (design decisions need approval)
+```
+Primary responsibilities:
+- User interface design
+- Design system creation
+- Accessibility compliance
+- User journey mapping
+- Component design specifications
+```
+
+### 10. drupal-content-strategist
+**Role**: Content Strategist  
+**Auto-accept**: No (content architecture impacts system)
+```
+Primary responsibilities:
+- Content type architecture
+- Taxonomy design
+- Editorial workflow creation
+- Content migration planning
+- Data dictionary maintenance
+```
+
+### 11. qa-testing-specialist
+**Role**: QA/Testing Specialist  
+**Auto-accept**: Yes (for test implementation)
+```
+Primary responsibilities:
+- Test strategy development
+- Automated test implementation (PHPUnit, Behat)
+- Visual regression testing (BackstopJS)
+- Security testing
+- Performance testing
+```
+
+### 12. drupal-technical-support-lead
+**Role**: Technical Support Lead  
+**Auto-accept**: No (production issues need oversight)
+```
+Primary responsibilities:
+- Production issue triage
+- Bug investigation and resolution
+- Security update management
+- Client communication
+- Knowledge base maintenance
+```
+
+### 13. drupal-enterprise-architect
+**Role**: Enterprise Architect  
+**Auto-accept**: No (enterprise decisions)
+```
+Primary responsibilities:
+- Multi-site architecture planning
+- Cross-project standardization
+- Enterprise integration patterns
+- Scalability planning
+- Technology roadmap development
+```
+
+## Common Commands
+
+### DDEV Commands
 ```bash
-ddev export-contents      # Export content to recipes/adesso_cms_starter/content
-ddev drush sql:create -y  # Reset database (recreate)
-ddev drush cr             # Clear cache
-ddev drush cex            # Export configuration
-ddev drush cim            # Import configuration
+# Environment management
+ddev start                    # Start project
+ddev stop                     # Stop project
+ddev restart                  # Restart services
+ddev describe                 # Show project info
+ddev launch                   # Open in browser
+
+# Development
+ddev ssh                      # SSH into web container
+ddev exec [command]           # Execute command in container
+ddev logs                     # View container logs
+ddev composer [command]       # Run composer
+ddev npm [command]           # Run npm in theme directory
+
+# Database
+ddev snapshot                 # Create database snapshot
+ddev snapshot restore         # Restore database
+ddev import-db                # Import database
+ddev export-db                # Export database
 ```
 
-### Testing & Quality
+### Drush Commands
 ```bash
-ddev theme lint:js        # ESLint JavaScript files
-ddev theme lint:sass      # Stylelint SCSS files  
-ddev theme scss-fix       # Auto-fix SCSS issues
-ddev theme test           # Run Vitest unit tests
-ddev theme test:coverage  # Run tests with coverage report
+# Cache management
+ddev drush cr                 # Clear all caches
+ddev drush cc css-js         # Clear CSS/JS caches
+ddev drush cc render         # Clear render cache
+
+# Database
+ddev drush sql-dump          # Database dump
+ddev drush sql-cli           # Database CLI
+ddev drush updb              # Run database updates
+ddev drush entup             # Entity updates
+
+# Configuration
+ddev drush cim               # Import configuration
+ddev drush cex               # Export configuration
+ddev drush cst               # Configuration status
+
+# Development
+ddev drush uli               # User login link
+ddev drush ws                # Show watchdog messages
+ddev drush generate          # Generate boilerplate code
 ```
 
-### Development URLs
-- **Main site**: `https://adesso-cms.ddev.site`
-- **Storybook**: `https://adesso-cms.ddev.site:6006`
-- **Vite HMR**: `https://adesso-cms.ddev.site:5173`
-
-## Architecture Overview
-
-### Component-Based Design System
-- **SDC (Single Directory Components)**: Located in `web/themes/custom/adesso_cms_theme/components/`
-- **Component Structure**: Each component includes `.component.yml`, `.twig`, `.stories.js`, and optional `.behavior.js`
-- **Storybook Integration**: All components are documented and testable in Storybook
-
-### Drupal Integration
-- **Recipes**: Configuration and content managed via Drupal recipes in `recipes/`
-  - `adesso_cms_starter/`: Base configuration and content
-  - `adesso_cms_paragraphs/`: Paragraph types and field configuration
-- **Paragraphs**: Rich content building blocks (accordion, hero, card groups, etc.)
-- **Entity View Modes**: Multiple display modes for responsive design (16:9, 4:3, square, etc.)
-
-### Frontend Toolchain
-- **Vite**: Modern build tool with HMR at `https://adesso-cms.ddev.site:5173`
-- **Tailwind CSS v4**: Utility-first CSS framework
-- **Storybook**: Component documentation at `https://adesso-cms.ddev.site:6006`
-- **PostCSS**: CSS processing with autoprefixer
-- **Vitest**: Unit testing framework for components
-- **ESLint + Stylelint**: Code quality and formatting
-- **Swiper**: Modern slider/carousel library
-- **Flowbite**: Additional UI components
-
-### Key Directories
-- `web/themes/custom/adesso_cms_theme/components/`: SDC components
-- `web/themes/custom/adesso_cms_theme/src/`: Source files (CSS, JS)
-- `web/themes/custom/adesso_cms_theme/dist/`: Built assets
-- `web/themes/custom/adesso_cms_theme/templates/`: Drupal template overrides
-- `config/sync/`: Drupal configuration exports
-- `recipes/`: Drupal recipes for repeatable configurations
-  - `adesso_cms_starter/`: Base site configuration
-  - `adesso_cms_paragraphs/`: Paragraph types and fields
-  - `drupal_cms_*/`: Official Drupal CMS recipes
-
-### Component Schema
-All components follow SDC schema with:
-- `$schema`: JSON schema validation
-- `name`: Human-readable component name
-- `description`: Component purpose
-- `props`: TypeScript-like property definitions
-
-### DDEV Configuration
-- **Project Type**: Drupal 11
-- **PHP Version**: 8.3
-- **Database**: MariaDB 10.11
-- **Webserver**: nginx-fpm
-- **Node.js**: 18 (managed within container)
-- **Exposed Ports**: Storybook (6006), Vite (5173)
-- **Theme Commands**: Available via `ddev theme [command]`
-- **Additional packages**: Includes image processing libraries for sharp/canvas
-
-## Development Workflows
-
-### Creating New Components
-1. Create component directory in `web/themes/custom/adesso_cms_theme/components/`
-2. Add required files:
-   - `component.component.yml` (SDC schema)
-   - `component.twig` (template)
-   - `component.stories.js` (Storybook documentation)
-   - `component.behavior.js` (optional JavaScript)
-3. Run `ddev theme build:stories` to update component registry
-4. View in Storybook for testing and documentation
-
-### Recipe Management
-- **Purpose**: Recipes provide repeatable, exportable configuration packages
-- **Workflow**: Modify → Export → Test → Package as recipe
-- **Key recipes**: 
-  - `adesso_cms_starter`: Base site configuration
-  - `adesso_cms_paragraphs`: All paragraph types and fields
-  - `drupal_cms_*`: Official Drupal CMS feature recipes
-
-### Content Architecture
-- **Content Types**: Page, News, Event, Person, Project
-- **Paragraph Types**: 20+ rich content components (accordion, hero, carousel, etc.)
-- **Media Types**: Image, Document, Remote Video, SVG, Video
-- **Entity View Modes**: Multiple responsive breakpoints (16:9, 4:3, 1:1, etc.)
-
-## Technology Stack Deep Dive
-
-### Drupal Backend
-- **Version**: Drupal 11.2.2
-- **Key Modules**: Paragraphs, Media, Twig Tweak, Components (SDC)
-- **AI Integration**: DrupalX AI module with Anthropic/OpenAI providers
-- **Image Processing**: Focal point cropping, WebP conversion, responsive images
-- **Content Management**: Layout Builder integration, paragraph-based content
-
-### Frontend Architecture
-- **Build System**: Vite 6.2.0 with Tailwind CSS v4 
-- **Component System**: Drupal SDC with Storybook documentation
-- **JavaScript**: ES modules, behavior-based attachment, jQuery integration
-- **CSS Architecture**: Utility-first (Tailwind) + component-scoped styles
-- **Testing**: Vitest for unit tests, Playwright for E2E (via MCP)
-
-### Development Tools Integration
-- **DDEV Commands**: Custom theme commands in `.ddev/commands/web/theme`
-- **Build Pipeline**: Vite + PostCSS + Tailwind compilation
-- **Quality Tools**: ESLint, Stylelint, PHP CodeSniffer (via DDEV)
-- **Content Export**: Default Content module for recipe-based deployment
-
-## 🔄 How to Use Profiles
-
+### GitLab CI/CD Commands
 ```bash
-# Fullstack Profile wird automatisch geladen!
-# Nur bei speziellen Aufgaben andere Profile laden:
+# Pipeline management
+git push -o ci.skip          # Skip CI pipeline
+git push -o ci.variable="VAR=value"  # Set pipeline variable
 
-# Drupal-spezifische Arbeit
-@.claude/profiles/drupal-profile.md
-
-# Nur Frontend/CSS/JS 
-@.claude/profiles/frontend-profile.md
-
-# Accessibility Audits
-@.claude/profiles/accessibility-profile.md
+# GitLab CLI
+glab mr create               # Create merge request
+glab mr list                 # List merge requests
+glab pipeline status         # Check pipeline status
+glab issue create            # Create issue
 ```
 
-## 🤖 Enhanced Multi-Agent System (v2.0)
-*Based on Anthropic Best Practices for Claude Code Teams*
+### Testing Commands
+```bash
+# PHPUnit
+ddev phpunit tests/          # Run all tests
+ddev phpunit --group=api     # Run specific group
 
-### **CRITICAL: All Work Must Start with System Validation**
+# Behat
+ddev behat                   # Run all scenarios
+ddev behat --tags=@api      # Run tagged scenarios
 
-Every development request follows the **4-Phase Enhanced Workflow** designed to prevent system failures and ensure reliable outcomes.
+# Code quality
+ddev phpcs                   # PHP CodeSniffer
+ddev phpcbf                  # PHP Code Beautifier
+ddev phpstan                 # Static analysis
+
+# Frontend testing
+cd web/themes/custom/adesso_cms_theme
+ddev npm test                # Run frontend tests
+ddev npm run lint            # Lint JavaScript
+ddev npm run build           # Build assets
+```
+
+### Custom Slash Commands
+```bash
+/sprint-plan                 # Initialize sprint planning
+/feature-start              # Start new feature branch
+/component-create           # Create new SDC component
+/test-all                   # Run all test suites
+/deploy-staging             # Deploy to staging
+/security-check             # Run security audit
+```
+
+## Workflow Templates
+
+### Sprint Planning Workflow
+```markdown
+1. **Technical PM** reviews backlog and creates sprint plan
+2. **Solution Architect** validates technical approach
+3. **Content Strategist** confirms content requirements
+4. **DevOps Engineer** prepares deployment plan
+5. **QA Specialist** creates test scenarios
+6. Team estimation session
+7. Sprint kickoff with clear agent assignments
+```
+
+### Feature Development Workflow
+```markdown
+1. Create feature branch: `git checkout -b feature/ISSUE-description`
+2. **Backend Developer** implements data layer
+3. **Frontend Developer** creates templates/components
+4. **Alpine.js Developer** adds interactivity
+5. **Storybook Maintainer** documents components
+6. **QA Specialist** writes/runs tests
+7. Code review by **Senior Backend Dev**
+8. Merge request with pipeline validation
+```
+
+### Bug Fixing Workflow
+```markdown
+1. **Support Lead** triages and documents issue
+2. Create bugfix branch: `git checkout -b bugfix/ISSUE-description`
+3. Reproduce issue in local environment
+4. Implement fix with tests
+5. Verify fix doesn't create regressions
+6. Deploy to staging for validation
+7. Fast-track merge after approval
+```
+
+### Code Review Process
+```markdown
+1. Self-review checklist:
+   - [ ] Coding standards compliance
+   - [ ] Tests passing
+   - [ ] Documentation updated
+   - [ ] No security vulnerabilities
+   - [ ] Performance impact assessed
+   
+2. Automated checks:
+   - GitLab CI pipeline passes
+   - Code coverage maintained
+   - No merge conflicts
+   
+3. Peer review focus:
+   - Business logic correctness
+   - Architecture alignment
+   - Reusability and maintainability
+```
+
+### Deployment Pipeline
+```yaml
+stages:
+  - validate
+  - test
+  - build
+  - deploy
+
+validate:
+  - Composer validation
+  - Config validation
+  - Code standards
+
+test:
+  - PHPUnit tests
+  - Behat tests
+  - Visual regression tests
+
+build:
+  - Compile theme assets
+  - Generate optimized autoloader
+  - Create deployment artifact
+
+deploy:
+  - Deploy to staging (automatic)
+  - Deploy to production (manual)
+```
+
+## Code Standards & Best Practices
+
+### Drupal Coding Standards
+```php
+// Follow Drupal coding standards
+// @see https://www.drupal.org/docs/develop/standards
+
+// File naming
+module_name.module
+ModuleName.php
+module_name.services.yml
+
+// Function naming
+function module_name_entity_view() {}
+
+// Class naming
+namespace Drupal\module_name\Controller;
+class ModuleNameController {}
+
+// Documentation
+/**
+ * Implements hook_entity_view().
+ */
+```
+
+### Git Commit Conventions
+```bash
+# Format: [TYPE] Brief description (max 50 chars)
+
+[ADD] New user registration feature
+[FIX] Resolve cache invalidation issue
+[UPDATE] Improve performance of node queries
+[REFACTOR] Simplify theme preprocessing logic
+[DOCS] Update README with deployment steps
+[TEST] Add coverage for custom block type
+[SECURITY] Patch XSS vulnerability in forms
+```
+
+### Testing Requirements
+```markdown
+1. Unit tests for all service classes
+2. Kernel tests for database operations
+3. Functional tests for user workflows
+4. JavaScript tests for Alpine.js components
+5. Visual regression tests for components
+6. Minimum 80% code coverage
+7. All tests must pass before merge
+```
+
+### Documentation Standards
+```markdown
+1. README.md in each custom module
+2. CHANGELOG.md for version history
+3. API documentation in code
+4. Storybook stories for all components
+5. Architectural Decision Records (ADRs)
+6. Runbooks for common operations
+```
+
+## Error Handling & Debugging
+
+### Common Errors and Solutions
+
+#### WSOD (White Screen of Death)
+```bash
+# Enable error reporting
+ddev drush config-set system.logging error_level verbose -y
+
+# Check logs
+ddev logs -f
+ddev drush ws --extended
+
+# Common fixes
+ddev drush cr
+ddev composer install
+ddev drush updb -y
+```
+
+#### Performance Issues
+```bash
+# Enable query logging
+ddev drush config-set devel.settings query_display 1 -y
+
+# Profiling
+ddev xhprof enable
+ddev drush webprofiler:enable
+
+# Cache analysis
+ddev redis-cli monitor
+ddev drush cache-hit-rate
+```
+
+#### Configuration Sync Issues
+```bash
+# Check status
+ddev drush cst
+
+# Force import
+ddev drush cim --partial -y
+
+# Reset specific config
+ddev drush config-delete [config.name]
+ddev drush cim -y
+```
+
+### Debugging Strategies
+
+#### Backend Debugging
+```php
+// Drupal-specific debugging
+\Drupal::logger('custom')->debug(print_r($variable, TRUE));
+dump($variable); // With dump() function
+kint($variable); // With Kint module
+
+// Xdebug setup
+ddev xdebug on
+ddev xdebug status
+```
+
+#### Frontend Debugging
+```javascript
+// Alpine.js debugging
+Alpine.store('debug', true);
+x-init="$watch('property', value => console.log(value))"
+
+// Twig debugging
+{{ dump(variable) }}
+{{ kint(variable) }}
+```
+
+### Performance Optimization
+
+#### Database Optimization
+```sql
+-- Analyze slow queries
+SHOW PROCESSLIST;
+EXPLAIN SELECT ...;
+
+-- Optimize tables
+OPTIMIZE TABLE cache_*;
+```
+
+#### Asset Optimization
+```bash
+# Build production assets
+cd web/themes/custom/adesso_cms_theme
+ddev npm run build:prod
+
+# Analyze bundle size
+ddev npm run analyze
+```
+
+## Security & Compliance
+
+### Security Review Checklist
+```markdown
+- [ ] All user input sanitized
+- [ ] CSRF tokens on all forms
+- [ ] SQL injection prevention (use database API)
+- [ ] XSS prevention (use render arrays)
+- [ ] Access control on all routes
+- [ ] Secure file uploads
+- [ ] HTTPS enforced
+- [ ] Security headers configured
+- [ ] Regular security updates applied
+- [ ] Secrets in environment variables
+```
+
+### GDPR Compliance
+```markdown
+1. Privacy policy implementation
+2. Cookie consent management
+3. Data retention policies
+4. Right to deletion workflows
+5. Data export capabilities
+6. Audit logging for data access
+7. Encryption at rest and in transit
+```
+
+### Drupal Security Best Practices
+```bash
+# Regular security checks
+ddev composer outdated --direct
+ddev drush sec
+
+# Security updates
+ddev composer update drupal/core --with-dependencies
+ddev drush updb -y
+ddev drush cr
+
+# File permissions
+find web/sites/default/files -type d -exec chmod 755 {} \;
+find web/sites/default/files -type f -exec chmod 644 {} \;
+chmod 444 web/sites/default/settings.php
+```
+
+## Checkpoint & Review Process
+
+### Development Checkpoints
+```markdown
+Every 2-3 hours or major milestone:
+1. Commit current work
+2. Run test suite
+3. Update documentation
+4. Create visual snapshot (if UI work)
+5. Update todo list
+6. Brief status in GitLab issue
+```
+
+### End of Session
+```markdown
+1. Commit all changes with descriptive message
+2. Push to feature branch
+3. Run full test suite
+4. Update claude.md with new learnings
+5. Document any blockers in GitLab
+6. Create handoff notes for next session
+```
+
+## Visual-First Development
+
+### UI Development Process
+```markdown
+1. Screenshot current state
+2. Annotate planned changes
+3. Implement in Storybook first
+4. Integrate into Drupal
+5. Screenshot completed state
+6. Run visual regression tests
+```
+
+### Screenshot Commands
+```bash
+# Full page screenshot
+ddev snapshot-page /path/to/page
+
+# Component screenshot  
+ddev snapshot-component .component-class
+
+# Before/after comparison
+ddev backstop reference
+ddev backstop test
+```
+
+## MCP Server Configuration
+
+### Database Access
+```yaml
+# Secure database access via MCP
+mcp_servers:
+  - name: drupal_db
+    type: mysql
+    connection:
+      host: db
+      port: 3306
+      database: db
+      credentials: env
+```
+
+### File System Access
+```yaml
+# Controlled file access
+mcp_servers:
+  - name: drupal_files
+    type: filesystem
+    paths:
+      - /var/www/html/web/sites/default/files
+    permissions: read_write
+```
+
+## Quick Reference
+
+### Emergency Contacts
+- **Technical Lead**: Check GitLab project members
+- **DevOps On-Call**: See .gitlab-ci.yml for contacts
+- **Security Team**: security@adesso.de
+
+### Useful Links
+- [Drupal.org Documentation](https://www.drupal.org/docs)
+- [Drupal Security Advisories](https://www.drupal.org/security)
+- [GitLab Project](#) - Update with actual URL
+- [Staging Environment](#) - Update with actual URL
+- [Production Environment](#) - Update with actual URL
 
 ---
-
-### **Phase 0: System Diagnosis (MANDATORY FIRST STEP)**
-**🚨 NEVER skip this phase - prevents 90% of system failures**
-
-- **`system-diagnostician`**: Complete system health check before any work begins
-- **`environment-validator`**: DDEV status, ports, services, basic functionality validation
-- **`dependency-checker`**: Verify all required files exist (index.php, composer.json, vendor/, etc.)
-
-**Automatic Failure Conditions:**
-- Missing core Drupal files (index.php, autoload.php)
-- DDEV containers not running or unhealthy
-- 403/502/500 errors on main site
-- Missing critical dependencies or services
-
----
-
-### **Phase 1: Secure Planning & Risk Assessment**
-- **`requirements-engineer`**: Analyzes user requests with **mandatory system context validation**
-- **`risk-assessor`** *(NEW)*: Evaluates potential risks, creates rollback plans
-- **`checkpoint-manager`** *(NEW)*: Secures git state, establishes recovery points
-
-**Enhanced Requirements Engineering:**
-- **🌍 MANDATORY: All prompts translated to English first**
-- System context validation before requirement creation
-- Risk assessment and mitigation strategies
-- Git checkpoint creation for safe experimentation
-
----
-
-### **Phase 2: Monitored Implementation**
-**Available Specialist Agents:**
-- **`drupal-backend-expert`**: Drupal 11 backend development, custom modules, API development
-- **`drupal-theming-expert`**: Drupal theming, TWIG templates, component integration, paragraph architecture
-- **`drupal-sdc-specialist`**: Single Directory Components (SDC) creation, schema validation, best practices
-- **`storybook-sdc-converter`**: Converts SDC components to comprehensive Storybook stories
-- **`tech-lead-orchestrator`**: Breaks down complex tasks, coordinates development workflows
-
-**Implementation Safeguards:**
-- **`progress-monitor`** *(NEW)*: Continuous system stability monitoring during implementation
-- **Auto-stop rules**: Immediate halt on system instability or critical errors
-- **Incremental validation**: System health check after each significant change
-- **Rollback triggers**: Automatic rollback on system failure
-
----
-
-### **Phase 3: Comprehensive Validation & Review**
-- **`end-to-end-validator`** *(NEW)*: Complete user journey testing, not just component testing
-- **`qa-playwright-expert`**: Quality assurance testing, coding standards validation, requirements verification
-- **`a11y-review-specialist`**: Comprehensive accessibility reviews for WCAG 2.1 AA+ compliance
-- **`rollback-coordinator`** *(NEW)*: Manages rollback procedures when validation fails
-- **`tech-lead-reviewer`**: Final technical review **only after proven system functionality**
-
-**Enhanced Validation Requirements:**
-- **End-to-end functionality**: Full user workflows must work
-- **System stability**: No degradation in basic site functions
-- **Performance validation**: No significant performance regressions
-- **Security verification**: No new vulnerabilities introduced
-
----
-
-## **🚦 Enhanced Workflow Implementation**
-
-### **MANDATORY 4-Phase Execution Pattern:**
-
-```yaml
-Phase 0: System Diagnosis
-  ├── system-diagnostician: Health check
-  ├── environment-validator: DDEV & services
-  └── dependency-checker: Required files
-  
-Phase 1: Secure Planning  
-  ├── requirements-engineer: Analysis + translation + system context
-  ├── risk-assessor: Risk evaluation + rollback planning
-  └── checkpoint-manager: Git state backup
-  
-Phase 2: Monitored Implementation
-  ├── [Specialist Agents]: Domain experts
-  ├── progress-monitor: Continuous validation
-  └── Auto-stop triggers: Failure prevention
-  
-Phase 3: Comprehensive Validation
-  ├── end-to-end-validator: Full system testing
-  ├── qa-playwright-expert: Quality validation
-  ├── a11y-review-specialist: Accessibility compliance
-  ├── rollback-coordinator: Failure recovery
-  └── tech-lead-reviewer: Final approval
-```
-
-### **Critical Success Factors:**
-
-#### **🔒 Fail-Safe Rules**
-```yaml
-AUTOMATIC STOPS:
-- Basic system non-functional (403/502/500 errors)
-- Core files missing (index.php, autoload.php)
-- DDEV container failures
-- Critical dependency failures
-- System performance degradation >50%
-
-ROLLBACK TRIGGERS:
-- User workflows broken
-- Site becomes inaccessible  
-- Critical functionality lost
-- Security vulnerabilities introduced
-```
-
-#### **🔄 Checkpoint Protocol**
-```yaml
-BEFORE ANY CHANGES:
-1. checkpoint-manager: Create git backup point
-2. system-diagnostician: Document current system state
-3. Define rollback criteria and procedures
-
-AFTER EACH MAJOR STEP:
-1. progress-monitor: Validate system stability
-2. Functional test critical user paths
-3. Performance regression check
-```
-
-#### **📊 Quality Gates**
-```yaml
-PHASE 0 → PHASE 1: System must be fully functional
-PHASE 1 → PHASE 2: Risk assessment complete, checkpoints created
-PHASE 2 → PHASE 3: Implementation complete, no critical errors
-PHASE 3 → COMPLETION: All validation passed, no regressions
-```
-
-### **🌍 Enhanced Requirements Engineering**
-
-**MANDATORY Translation & Context Process:**
-1. **Language Detection**: Identify input language
-2. **Professional Translation**: Convert to English with technical accuracy
-3. **System Context Integration**: Include current system state in requirements
-4. **Risk Assessment**: Identify potential failure points
-5. **Checkpoint Planning**: Define safe experimentation boundaries
-
-### **⚡ Smart Parallelization Strategy**
-
-**Phase-Based Parallelization:**
-- **Phase 0**: Parallel system diagnostics (independent validation checks)
-- **Phase 1**: Sequential planning (dependencies between analysis, risk, checkpoints)
-- **Phase 2**: Maximum parallelization for independent implementation tasks
-- **Phase 3**: Parallel validation streams (QA + accessibility + performance)
-
-**Coordination Rules:**
-```yaml
-PARALLEL EXECUTION:
-- Independent component development
-- Separate validation streams
-- Non-overlapping system areas
-
-SEQUENTIAL EXECUTION:  
-- System diagnosis → Planning
-- Planning → Implementation
-- Implementation → Validation
-- Cross-dependent modifications
-```
-
----
-
-## **📋 Enhanced Workflow Examples**
-
-### **Example 1: Contact Form Component (Simple Feature)**
-```yaml
-Phase 0: System Diagnosis
-├── system-diagnostician: ✅ Drupal functional, DDEV running
-├── environment-validator: ✅ All services healthy  
-└── dependency-checker: ✅ SDC framework available
-
-Phase 1: Planning
-├── requirements-engineer: German → English, form requirements analysis
-├── risk-assessor: Low risk, form component isolated
-└── checkpoint-manager: Git backup created
-
-Phase 2: Implementation (Parallel)
-├── drupal-sdc-specialist: Create form component structure
-├── a11y-review-specialist: Accessibility requirements (parallel)
-└── progress-monitor: Continuous system monitoring
-
-Phase 3: Validation
-├── end-to-end-validator: Test form submission workflow
-├── qa-playwright-expert: Component functionality testing
-└── tech-lead-reviewer: Final approval after validation
-```
-
-### **Example 2: User Dashboard (Complex Multi-Domain)**
-```yaml
-Phase 0: Critical System Check
-├── system-diagnostician: ✅ All systems operational
-├── environment-validator: ✅ Database, auth services ready
-└── dependency-checker: ✅ User management modules present
-
-Phase 1: Risk-Aware Planning
-├── requirements-engineer: Complex feature breakdown + translation
-├── risk-assessor: HIGH RISK - authentication changes identified
-├── checkpoint-manager: Multiple checkpoint strategy
-└── tech-lead-orchestrator: Coordination planning
-
-Phase 2: Monitored Parallel Implementation
-├── drupal-backend-expert: User auth + API endpoints
-├── drupal-theming-expert: Dashboard UI templates (parallel)
-├── drupal-sdc-specialist: Dashboard components (parallel)
-├── progress-monitor: Continuous auth system validation
-└── Auto-stop: Trigger on auth failures
-
-Phase 3: Comprehensive Validation
-├── end-to-end-validator: Full user journey testing
-├── qa-playwright-expert: Authentication flow testing (parallel)
-├── a11y-review-specialist: Dashboard accessibility (parallel)
-├── rollback-coordinator: Ready for auth system rollback
-└── tech-lead-reviewer: Approval only after full validation
-```
-
-### **Example 3: System Failure Recovery (Error Handling)**
-```yaml
-Scenario: "Fix JavaScript errors in Storybook"
-
-Phase 0: Comprehensive Diagnosis
-├── system-diagnostician: 🚨 CRITICAL - Site returns 403
-├── environment-validator: 🚨 DDEV containers unhealthy
-└── dependency-checker: 🚨 Missing index.php, autoload.php
-
-⚠️  AUTOMATIC STOP: Basic system non-functional
-⚠️  ROLLBACK NOT NEEDED: System never worked
-
-Recovery Protocol:
-├── system-diagnostician: Root cause analysis (missing Drupal)
-├── dependency-checker: Install Drupal core files
-├── environment-validator: Verify DDEV services
-├── end-to-end-validator: Test site accessibility
-└── ONLY THEN: Address original JavaScript request
-```
-
-### **🎯 Key Success Metrics**
-
-**Prevention Statistics:**
-- **90% failure prevention** through Phase 0 validation
-- **Zero system downtime** through checkpoint management  
-- **100% rollback success** through proper preparation
-- **Improved agent coordination** through clear phase boundaries
-
-**Quality Improvements:**
-- **Evidence-based decisions** instead of assumptions
-- **System-first approach** before feature development
-- **Proactive risk management** instead of reactive fixes
-- **Continuous validation** instead of end-stage testing
-
-## 🔗 MCP Server Integration
-
-This project integrates with Claude Code's MCP (Model Context Protocol) servers for enhanced development capabilities. **ALWAYS use Context7 MCP when it makes sense** for accessing official documentation, library patterns, and best practices. Use these MCPs based on the task type:
-
-### Available MCP Servers
-
-#### **Sequential Thinking (`mcp__sequential-thinking`)**
-**When to use:** Complex problem-solving, multi-step analysis, debugging, architectural decisions
-- **Best for:** Root cause analysis, system design, complex refactoring planning
-- **Triggers:** Problems requiring structured thinking, step-by-step analysis
-- **Example tasks:** "Analyze performance bottlenecks", "Debug complex issue", "Plan architecture refactoring"
-
-#### **Playwright (`mcp__playwright`)**
-**When to use:** Browser automation, E2E testing, UI validation, performance monitoring
-- **Best for:** Cross-browser testing, user workflow validation, visual regression testing
-- **Triggers:** Testing components, validating user flows, performance metrics
-- **Example tasks:** "Test contact form submission", "Validate responsive design", "Check cross-browser compatibility"
-
-#### **Browser Tools (`mcp__browser-tools`)**
-**When to use:** Accessibility auditing, performance analysis, SEO optimization
-- **Best for:** WCAG compliance checks, Core Web Vitals measurement, automated audits
-- **Triggers:** Accessibility reviews, performance optimization, quality audits
-- **Example tasks:** "Run accessibility audit", "Check performance metrics", "Validate SEO compliance"
-
-#### **RUV Swarm (`mcp__ruv-swarm`)**
-**When to use:** Complex multi-agent orchestration, large-scale analysis
-- **Best for:** Enterprise-level tasks, coordinated parallel processing
-- **Triggers:** Complex system-wide changes, large codebase analysis
-- **Example tasks:** "Comprehensive security audit", "Large-scale refactoring", "Multi-domain analysis"
-
-#### **Claude Flow (`mcp__claude-flow`)**
-**When to use:** Advanced AI coordination, workflow optimization, intelligent task management
-- **Best for:** Complex development workflows, adaptive task distribution
-- **Triggers:** Multi-phase projects, intelligent automation needs
-- **Example tasks:** "Optimize development workflow", "Coordinate complex feature development"
-
-#### **Image Fetch (`mcp__fetch`)**
-**When to use:** Image processing, visual content analysis, design system work
-- **Best for:** Processing screenshots, analyzing visual designs, image optimization
-- **Triggers:** Visual design work, image processing needs, screenshot analysis
-- **Example tasks:** "Analyze design mockup", "Process component screenshots", "Optimize image assets"
-
-### MCP Selection Guidelines
-
-**For Drupal Development:**
-- Complex backend logic → `mcp__sequential-thinking` + Context7 for Drupal patterns
-- Component testing → `mcp__playwright` + `mcp__browser-tools`
-- Accessibility compliance → `mcp__browser-tools` (accessibility audit)
-- Drupal best practices → Context7 for official Drupal documentation
-
-**For Frontend Development:**
-- UI component validation → `mcp__playwright` + `mcp__browser-tools`
-- Performance optimization → `mcp__browser-tools` (performance audit)
-- Visual design analysis → `mcp__fetch` (image processing)
-- Frontend framework patterns → Context7 for official documentation (React, Vue, Vite, etc.)
-
-**For Quality Assurance:**
-- Code review and validation → Static analysis tools and linting (NO browser automation)
-- Unit/Integration testing → `mcp__sequential-thinking` for test strategy
-- Browser testing (ONLY when needed) → `mcp__playwright` + `mcp__browser-tools`
-- Accessibility audits → `mcp__browser-tools` (accessibility focus) ONLY for final validation
-- Testing best practices → Context7 for testing framework documentation (Vitest, Playwright)
-
-**For Performance Analysis:**
-- Bundle analysis → `mcp__browser-tools` for Core Web Vitals and performance metrics
-- Image optimization → Context7 for best practices with WebP, focal point cropping
-- Cache strategies → Context7 for Drupal caching documentation
-
-**For Complex Projects:**
-- Multi-agent coordination → `mcp__claude-flow` or `mcp__ruv-swarm`
-- Strategic planning → `mcp__sequential-thinking` + Context7 for architectural patterns
-- End-to-end validation → Multiple MCPs coordinated
-- Architecture decisions → Context7 for official framework and library documentation
-
-### Integration with Multi-Agent System
-
-MCPs integrate seamlessly with the 4-Phase Enhanced Workflow:
-- **Phase 0:** Use `mcp__browser-tools` for system health checks
-- **Phase 1:** Use `mcp__sequential-thinking` for complex planning
-- **Phase 2:** Use appropriate MCPs based on implementation domain
-- **Phase 3:** Use `mcp__playwright` + `mcp__browser-tools` for comprehensive validation
-
-## Troubleshooting Common Issues
-
-### DDEV Issues
-```bash
-# Container problems
-ddev restart                    # Restart all containers
-ddev rebuild                    # Rebuild containers from scratch
-ddev debug test                 # Test DDEV functionality
-
-# Port conflicts
-ddev stop && ddev start         # Reset port assignments
-```
-
-### Theme Build Issues
-```bash
-# Clear all build artifacts
-ddev theme clean
-ddev theme build
-
-# Node modules issues  
-ddev exec "cd web/themes/custom/adesso_cms_theme && rm -rf node_modules package-lock.json"
-ddev theme build
-
-# Storybook build errors
-ddev theme build:stories        # Regenerate story registry
-```
-
-### Drupal Configuration Issues
-```bash
-# Configuration sync problems
-ddev drush config:status        # Check config differences
-ddev drush cim --partial        # Import only changed configs
-ddev drush cr                   # Clear all caches
-
-# Database reset (nuclear option)
-ddev drush sql:create -y        # Completely recreate database
-./launch-adesso-cms.sh          # Rebuild everything
-```
-
-### Common File Paths
-- **Custom theme**: `web/themes/custom/adesso_cms_theme/`
-- **Component templates**: `web/themes/custom/adesso_cms_theme/components/*/templates/`
-- **DDEV config**: `.ddev/config.yaml`
-- **Composer**: `composer.json` (root), `web/themes/custom/adesso_cms_theme/composer.json` (theme)
-- **Node config**: `web/themes/custom/adesso_cms_theme/package.json`
-
-## 📚 More Information
-
-See `.claude/SYSTEM-OVERVIEW.md` for complete details and archive access.
+*Last Updated: 2025-01-30*  
+*Version: 1.0.0*

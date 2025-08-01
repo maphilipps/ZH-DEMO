@@ -3,6 +3,7 @@ import { initDropdowns } from 'flowbite';
 
 // Initialize Flowbite components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+
   // Initialize dropdowns
   initDropdowns();
   

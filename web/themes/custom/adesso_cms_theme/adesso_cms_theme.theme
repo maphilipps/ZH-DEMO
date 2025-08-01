@@ -124,13 +124,6 @@ function adesso_cms_theme_theme_suggestions_input_alter(array &$suggestions, arr
 }
 
 /**
- * Implements hook_preprocess_HOOK() for html.html.twig.
- */
-function adesso_cms_theme_preprocess_html(array &$variables) {
-
-}
-
-/**
  * Implements hook_page_attachments_alter().
  */
 function adesso_cms_theme_page_attachments_alter(array &$page) {
@@ -255,30 +248,7 @@ function adesso_cms_theme_page_attachments_alter(array &$page) {
   }
 }
 
-/**
- * Implements hook_preprocess_page() for page.html.twig.
- */
-function adesso_cms_theme_preprocess_page(array &$variables) {
-  $config = \Drupal::config('system.site');
-  $variables['site_name'] = $config->get('name');
-  $variables['current_year'] = date('Y');
 
-  // Get theme logo.
-  $variables['logo'] = theme_get_setting('logo');
-
-  // Add menu data for header navigation.
-  $variables['menu_items'] = _adesso_cms_theme_get_menu_data();
-
-  // Add site information.
-  $variables['sites'] = _adesso_cms_theme_get_sites_data();
-  $variables['current_locale'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  // Adjust as needed.
-  $variables['current_site_handle'] = 'default';
-
-  // Add contact URL.
-  $variables['contact_url'] = '/contact';
-  $variables['customer_portal_url'] = 'https://voffice.venneker-gruppe.de';
-}
 
 /**
  * Implements hook_theme_suggestions_page_alter().
@@ -339,7 +309,7 @@ function adesso_cms_theme_preprocess_image(&$variables) {
   if (!empty($variables['attributes']['class']) && is_string($variables['attributes']['class'])) {
     $variables['attributes']['class'] = [$variables['attributes']['class']];
   }
-  $variables['attributes']['class'][] = 'w-full h-auto';
+  $variables['attributes']['class'][] = 'w-full h-auto rounded-lg';
 
   // Add lazy loading for non-critical images.
   if (!_adesso_cms_theme_is_critical_image($variables)) {
@@ -510,15 +480,6 @@ function adesso_cms_theme_theme_suggestions_views_view_unformatted_alter(array &
 }
 
 /**
- * Implements hook_preprocess_HOOK() for menu.html.twig.
- */
-function adesso_cms_theme_preprocess_menu(&$variables) {
-  $config = \Drupal::config('system.site');
-  $variables['site_name'] = $config->get('name');
-  $variables['site_logo'] = theme_get_setting('logo.url');
-}
-
-/**
  * Get menu data for navigation templates.
  */
 function _adesso_cms_theme_get_menu_data() {
@@ -668,4 +629,198 @@ function _adesso_cms_theme_is_production() {
 
   return TRUE;
 }
+
+
+function adesso_cms_theme_preprocess_image_widget(array &$variables): void
+{
+  $data = &$variables['data'];
+
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
+    unset($data['preview']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function adesso_cms_theme_preprocess_html(&$variables)
+{
+  if (!isset($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = [];
+  }
+
+  // Color settings
+  if (theme_get_setting('adesso_cms_theme_enable_color')) {
+    $pc = theme_get_setting('adesso_cms_theme_base_primary_color') ?? '#3B71CA';
+    $sc = theme_get_setting('adesso_cms_theme_base_secondary_color') ?? '#9FA6B2';
+    $tc = theme_get_setting('adesso_cms_theme_base_tertiary_color') ?? '#F9FAFB';
+    $bc = theme_get_setting('adesso_cms_theme_body_color') ?? '#1F2937';
+    $bgc = theme_get_setting('adesso_cms_theme_body_bg_color') ?? '#FFFFFF';
+    $h1c = theme_get_setting('adesso_cms_theme_h1_color') ?? '#1F2937';
+    $h2c = theme_get_setting('adesso_cms_theme_h2_color') ?? '#1F2937';
+    $h3c = theme_get_setting('adesso_cms_theme_h3_color') ?? '#1F2937';
+    $h4c = theme_get_setting('adesso_cms_theme_h4_color') ?? '#1F2937';
+    $suc = theme_get_setting('adesso_cms_theme_success_color') ?? '#14A44D';
+    $wc = theme_get_setting('adesso_cms_theme_warning_color') ?? '#E4A11B';
+    $ec = theme_get_setting('adesso_cms_theme_error_color') ?? '#DC4C64';
+
+    $styles = [
+        "--color-primary:$pc;",
+        "--color-secondary:$sc;",
+        "--color-tertiary:$tc;",
+        "--color-body: $bc;",
+        "--color-body_bg: $bgc;",
+        "--color-h1: $h1c;",
+        "--color-h2: $h2c;",
+        "--color-h3: $h3c;",
+        "--color-h4: $h4c;",
+        "--color-success: $suc;",
+        "--color-warning: $wc;",
+        "--color-error: $ec;",
+    ];
+    $variables['html_attributes']->setAttribute('style', implode('', $styles));
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function adesso_cms_theme_preprocess_menu__main(array &$variables): void
+{
+  $items = $variables["items"];
+
+  $variables['array_for_sdc'] = processNestedArray($items);
+}
+
+/**
+ * Process a nested array structure recursively
+ *
+ * @param array $items The input array to process
+ * @return array
+ */
+function processNestedArray($items): array
+{
+  $result = [];
+  $current_path = \Drupal::service('path.current')->getPath(); // Get the current path
+
+  // Get the front page path from configuration
+  $front_page = \Drupal::config('system.site')->get('page.front');
+
+  foreach ($items as $item) {
+    $newItem = [
+        'title' => $item['title'] ?? '',
+        'url' => $item['url']?->toString() ?? '#',
+      // 'target' => '__self',
+        'class' => '',
+    ];
+
+    // Add 'active' class if the menu item is in the active trail
+    if (!empty($item['in_active_trail'])) {
+      $newItem['class'] = 'active';
+    }
+
+    // Add active class if the menu item's URL matches the current path
+    if (!empty($item['url']) && $item['url']->toString() === $current_path) {
+      $newItem['class'] = 'active';
+    }
+
+    // Ensure Home is active only when on the front page
+    if (($current_path === '/' || $current_path === $front_page) && ($item['url']?->toString() === '/' || $item['url']?->toString() === $front_page)) {
+      $newItem['class'] = 'active';
+    }
+
+    // Process children recursively if they exist
+    if (!empty($item['below']) && is_array($item['below'])) {
+      $newItem['children'] = processNestedArray($item['below']);
+    }
+
+    $result[] = $newItem;
+  }
+
+  return $result;
+}
+
+function adesso_cms_theme_preprocess_page(array &$variables): void
+{
+  // Load selected header style from theme settings.
+  $header_style = theme_get_setting('header_class') ?: 'style1';
+  $variables['header_template'] = 'header--' . $header_style;
+
+  // Get the theme setting for fixed header.
+  $variables['fixed'] = theme_get_setting('header_fixed');
+
+  // Set the appropriate class based on the setting.
+  $variables['header_fixed_class'] = $variables['fixed'] ? 'fixed z-40 w-full' : '';
+
+  // Set the footer template.
+  $footer_style = theme_get_setting('footer_class') ?: 'style1';
+  $variables['footer_template'] = 'footer--' . $footer_style;
+
+  if (!isset($variables['logo'])) {
+    $variables['logo'] = theme_get_setting('logo.url');
+  }
+
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['current_year'] = date('Y');
+}
+
+function adesso_cms_theme_preprocess_menu(array &$variables)
+{
+
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_logo'] = theme_get_setting('logo.url');
+  // Get the account menu by its machine name.
+  $account_menu_name = 'account';
+
+  // Load the menu tree parameters (e.g., top-level only).
+  $parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+
+  // Load the tree.
+  $menu_tree = \Drupal::menuTree()->load($account_menu_name, $parameters);
+
+  // Build the tree into a renderable array.
+  $manipulated = \Drupal::menuTree()->build($menu_tree);
+
+  // Optionally, extract only the '#items' part if needed.
+  $variables['account_menu'] = $manipulated['#items'] ?? [];
+
+  // Get selected header style for menu twig
+  $header_style = theme_get_setting('header_class');
+  $variables['selected__header_template'] =  $header_style;
+
+  // Check if the user is logged in
+  $current_user = \Drupal::currentUser();
+
+  // If the user is logged out, remove the "My Account" link from the menu.
+  if (!$current_user->isAuthenticated()) {
+    foreach ($variables['account_menu'] as $key => $item) {
+      // Check for the My Account menu item and unset it if the user is logged out.
+      if (isset($item['url']) && $item['url']->getRouteName() === 'user.page') {
+        unset($variables['account_menu'][$key]);
+      }
+    }
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds 'type' to input.html.twig
+ */
+function adesso_cms_theme_preprocess_input(&$variables) {
+  // Get the input type.
+  $type = $variables['element']['#type'] ?? '';
+  $variables['type'] = $type;
+}
+
+
 

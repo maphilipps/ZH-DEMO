@@ -2,14 +2,38 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import { globSync } from 'glob';
+import { resolve } from 'path';
+import twig from 'vite-plugin-twig-drupal';
+import sdcPlugin from './.storybook/sdc-plugin.js';
+
+const componentDir = resolve(import.meta.dirname, './components');
 
 const port = 5173;
 const origin = `https://adesso-cms.ddev.site:${port}`;
 
 export default defineConfig({
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss(),
+    twig({
+      namespaces: {
+        "adesso_cms_theme": componentDir
+      }
+    }),
+    sdcPlugin({ path: componentDir }),
+    {
+      name: 'watch-dist',
+      configureServer: (server) => {
+        server.watcher.options = {
+          ...server.watcher.options,
+          ignored: ['**/.git/**', '**/node_modules/**', '**/.logs/**']
+        };
+      }
+    }
+  ],
   build: {
     manifest: true,
+    outDir: 'dist',
+    emptyOutDir: false, // Keep compiled SCSS files
     rollupOptions: {
       input: [
         ...globSync('./src/js/adesso.js'),
@@ -17,13 +41,15 @@ export default defineConfig({
       ],
       output: {
         assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: 'assets/[name].js'
+        chunkFileNames: 'assets/[name].js',
+        entryFileNames: 'assets/[name].js'
       }
     }
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './components')
     }
   },
   server: {
@@ -33,6 +59,19 @@ export default defineConfig({
     origin: origin,
     cors: {
       origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/
+    },
+    // Watch additional file types for better HMR
+    watch: {
+      ignored: ['**/node_modules/**', '**/vendor/**', '**/.git/**'],
+      include: ['src/**/*', 'components/**/*.{js,scss,twig}']
+    }
+  },
+  css: {
+    devSourcemap: true,
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/scss/_variables.scss";`
+      }
     }
   }
 });

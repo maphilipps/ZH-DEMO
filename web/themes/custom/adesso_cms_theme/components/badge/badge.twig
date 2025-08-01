@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Badge component template.
+ *
+ * @param {string} text - Badge text content (required)
+ * @param {string} variant - Color variant (default|primary|secondary|success|danger|warning|info|light|dark)
+ * @param {string} size - Size variant (sm|md|lg)
+ * @param {boolean} removable - Show remove button
+ * @param {string} icon - Optional icon HTML content
+ * @param {string} url - Optional URL to make badge clickable
+ * @param {string} modifier - Additional CSS classes
+ */
+#}
+{% set badge_text = text|default('') %}
+{% set badge_variant = variant|default('default') %}
+{% set badge_size = size|default('md') %}
+{% set is_removable = removable|default(false) %}
+{% set badge_icon = icon|default('') %}
+{% set badge_url = url|default('') %}
+{% set badge_modifier = modifier|default('') %}
+
+{# Variant-specific classes #}
+{% set variant_classes = {
+  'default': 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
+  'primary': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+  'secondary': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+  'success': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+  'danger': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+  'warning': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+  'info': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300',
+  'light': 'bg-gray-50 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
+  'dark': 'bg-gray-800 text-gray-100 dark:bg-gray-200 dark:text-gray-800'
+} %}
+
+{# Size-specific classes #}
+{% set size_classes = {
+  'sm': 'text-xs px-2 py-0.5',
+  'md': 'text-sm px-2.5 py-0.5',
+  'lg': 'text-base px-3 py-1'
+} %}
+
+{# Build complete class string #}
+{% set badge_classes = [
+  'inline-flex items-center font-medium rounded-sm',
+  variant_classes[badge_variant]|default(variant_classes.default),
+  size_classes[badge_size]|default(size_classes.md),
+  badge_url ? 'hover:opacity-80 transition-opacity' : '',
+  is_removable ? 'pr-1' : '',
+  badge_modifier
+]|join(' ')|trim %}
+
+{% if badge_text %}
+  {% if badge_url %}
+    <a href="{{ badge_url }}" class="{{ badge_classes }}">
+      {% if badge_icon %}
+        <span class="mr-1">{{ badge_icon|raw }}</span>
+      {% endif %}
+      {{ badge_text }}
+      {% if is_removable %}
+        <button type="button" class="inline-flex items-center p-1 ml-2 text-sm bg-transparent rounded-sm hover:bg-black/10 dark:hover:bg-white/10" aria-label="Remove {{ badge_text }}">
+          <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+          </svg>
+        </button>
+      {% endif %}
+    </a>
+  {% else %}
+    <span class="{{ badge_classes }}">
+      {% if badge_icon %}
+        <span class="mr-1">{{ badge_icon|raw }}</span>
+      {% endif %}
+      {{ badge_text }}
+      {% if is_removable %}
+        <button type="button" class="inline-flex items-center p-1 ml-2 text-sm bg-transparent rounded-sm hover:bg-black/10 dark:hover:bg-white/10" aria-label="Remove {{ badge_text }}">
+          <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+          </svg>
+        </button>
+      {% endif %}
+    </span>
+  {% endif %}
+{% endif %}

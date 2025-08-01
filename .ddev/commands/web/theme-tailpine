@@ -1,0 +1,89 @@
+#!/bin/bash
+
+## Description: Tailpine design system utilities for adesso CMS theme
+## Usage: theme-tailpine [command] [options]
+## Example: "ddev theme-tailpine migrate button"
+
+cd /var/www/html/web/themes/custom/adesso_cms_theme
+
+case "${1:-help}" in
+  migrate)
+    if [ -z "$2" ]; then
+      echo "❌ Please specify a component name"
+      echo "Usage: ddev theme-tailpine migrate <component-name>"
+      echo "Example: ddev theme-tailpine migrate button"
+      exit 1
+    fi
+    echo "🎨 Migrating $2 to Tailpine patterns..."
+    node .storybook/migrate-to-tailpine.js "$2"
+    ;;
+  migrate-all)
+    echo "🚀 Migrating all components to Tailpine patterns..."
+    node .storybook/migrate-to-tailpine.js --all
+    ;;
+  list)
+    echo "📁 Listing available components..."
+    node .storybook/migrate-to-tailpine.js --list
+    ;;
+  storybook)
+    echo "🎨 Starting Tailpine-enhanced Storybook..."
+    npm run storybook
+    ;;
+  analyze)
+    if [ -z "$2" ]; then
+      echo "❌ Please specify a component name"
+      echo "Usage: ddev theme-tailpine analyze <component-name>"
+      exit 1
+    fi
+    echo "🔍 Analyzing $2 for Tailpine migration..."
+    # This could be extended with more analysis features
+    node .storybook/migrate-to-tailpine.js "$2" --analyze
+    ;;
+  status)
+    echo "🎨 Tailpine Integration Status"
+    echo "=============================="
+    echo ""
+    echo "📊 Component Migration Status:"
+    node .storybook/migrate-to-tailpine.js --list
+    echo ""
+    echo "🔧 Available Commands:"
+    echo "  ddev theme-tailpine migrate <component>  - Migrate specific component"
+    echo "  ddev theme-tailpine migrate-all          - Migrate all components"
+    echo "  ddev theme-tailpine list                 - List all components"
+    echo "  ddev theme-tailpine storybook            - Start Tailpine Storybook"
+    echo "  ddev theme-tailpine status               - Show this status"
+    echo ""
+    echo "🌐 Access Points:"
+    echo "  Vite Storybook:   https://adesso-cms.ddev.site:6006"
+    echo "  Drupal Storybook: https://adesso-cms.ddev.site/storybook"
+    echo "  Theme Dev:        https://adesso-cms.ddev.site:5173"
+    ;;
+  help|*)
+    echo "🎨 Tailpine Design System for adesso CMS"
+    echo "=========================================="
+    echo ""
+    echo "A modern design system integration that works with:"
+    echo "  ✅ Vite build system"
+    echo "  ✅ Drupal Storybook module"
+    echo "  ✅ Automatic story generation"
+    echo "  ✅ Tailwind CSS v4"
+    echo ""
+    echo "Commands:"
+    echo "  migrate <component>   Migrate a component to Tailpine patterns"
+    echo "  migrate-all          Migrate all components at once"
+    echo "  list                 List all available components"
+    echo "  storybook           Start Tailpine-enhanced Storybook"
+    echo "  status              Show integration status"
+    echo "  help                Show this help"
+    echo ""
+    echo "Examples:"
+    echo "  ddev theme-tailpine migrate button"
+    echo "  ddev theme-tailpine migrate-all"
+    echo "  ddev theme-tailpine storybook"
+    echo ""
+    echo "Integration with existing workflow:"
+    echo "  1. Keep using: ddev drush storybook:generate-all-stories"
+    echo "  2. Add Tailpine: ddev theme-tailpine migrate <component>"
+    echo "  3. Preview: ddev theme-tailpine storybook"
+    ;;
+esac

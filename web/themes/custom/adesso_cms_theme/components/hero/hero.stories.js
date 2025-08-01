@@ -1,295 +1,308 @@
-import { renderHeading } from '../../.storybook/component-helpers.js';
+// phpcs:ignoreFile
 
-// Create a proper hero template function that renders actual HTML
-const heroTemplate = (args) => {
-  const {
-    modifier = '',
-    media = '',
-    heading = '',
-    text = '',
-    pre_headline = '',
-    hero_layout = '',
-    link = null,
-    link2 = null
-  } = args;
+import Component from './hero.twig';
 
-  // Video background layout
-  if (hero_layout === 'video_background') {
-    return `
-      <div class="hero-wrapper ${modifier} video-header relative min-h-screen overflow-hidden">
-        <!-- Video Background -->
-        <div class="absolute inset-0 z-0">
-          <div class="relative w-full h-full">
-            ${media ? `
-              <div class="absolute inset-0">
-                ${media}
-              </div>
-            ` : `
-              <!-- Fallback gradient background -->
-              <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600"></div>
-            `}
-            <!-- Video overlay for better text readability -->
-            <div class="absolute inset-0 bg-black/40"></div>
+const meta = {
+  title: 'Editorial/Hero',
+  component: Component,
+  argTypes: {
+    modifier: {
+      name: 'Modifier Classes',
+      description: 'Additional CSS classes for the hero wrapper',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    media: {
+      name: 'Media Content',
+      description: 'Media content (image or video HTML)',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    heading: {
+      name: 'Main Heading',
+      description: 'Main hero heading',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    text: {
+      name: 'Description Text',
+      description: 'Hero description text',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    pre_headline: {
+      name: 'Pre-headline',
+      description: 'Pre-headline text above the main heading',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    hero_layout: {
+      name: 'Hero Layout',
+      description: 'Layout variant for the Hero component',
+      control: { type: 'select' },
+      options: ['image_top', 'image_bottom', 'image_bottom_split', 'video_background'],
+      table: {
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'image_top' },
+      },
+    },
+    link: {
+      name: 'Primary Action Link',
+      description: 'Primary action link with url, title, and icon',
+      control: { type: 'object' },
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    link2: {
+      name: 'Secondary Action Link',
+      description: 'Secondary action link with url, title, and icon',
+      control: { type: 'object' },
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Hero component for creating impactful page headers with flexible layouts and media options.
+
+## TWIG Usage
+
+\`\`\`twig
+{# Basic hero with image #}
+{% include 'sdc:hero' with {
+  heading: 'Welcome to Our Platform',
+  text: '<p>Your digital transformation starts here.</p>',
+  pre_headline: 'Innovation',
+  media: '<img src="/images/hero.jpg" alt="Hero image" class="w-full h-full object-cover">',
+  hero_layout: 'image_top',
+  link: {
+    url: '/get-started',
+    title: 'Get Started',
+    icon: ''
+  }
+} %}
+
+{# Hero with dual call-to-action #}
+{% include 'sdc:hero' with {
+  heading: 'Transform Your Business',
+  text: '<p>Modern solutions for modern challenges.</p>',
+  hero_layout: 'image_bottom',
+  link: {
+    url: '/contact',
+    title: 'Contact Us',
+    icon: ''
+  },
+  link2: {
+    url: '/services',
+    title: 'View Services',
+    icon: ''
+  }
+} %}
+\`\`\`
+        `
+      }
+    }
+  },
+  tags: ['autodocs'],
+};
+export default meta;
+
+// Default hero
+export const Default = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    modifier: '',
+    media: '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
+    heading: 'Welcome to Our Platform',
+    text: '<p>Discover innovative solutions for your business needs.</p>',
+    pre_headline: 'Innovation',
+    hero_layout: 'image_top',
+    link: {
+      url: '/get-started',
+      title: 'Get Started',
+      icon: '',
+    },
+    link2: {
+      url: '/learn-more',
+      title: 'Learn More',
+      icon: '',
+    },
+  },
+};
+
+// Layout variants - showing enum options from YAML
+export const HeroLayouts = {
+  render: () => `
+    <div class="space-y-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">Hero Layout Options</h2>
+        <p class="text-gray-600">All available layout variants from the YAML schema</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border border-gray-200 rounded-lg p-4">
+          <h3 class="font-semibold mb-2">image_top</h3>
+          <div class="text-sm text-gray-600 mb-3">Image above content</div>
+          <div class="bg-gray-100 aspect-video rounded mb-2"></div>
+          <div class="text-center">
+            <h4 class="font-bold">Headline</h4>
+            <p class="text-sm">Description text</p>
           </div>
         </div>
         
-        <!-- Navigation Bar for video background -->
-        <nav class="relative z-20 w-full">
-          <div class="absolute top-0 left-0 right-0 bg-black/20 backdrop-blur-sm">
-            <div class="container mx-auto px-4 py-4">
-              <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <div class="flex items-center">
-                  <a href="/" class="block h-auto" aria-label="Go to homepage">
-                    <span class="text-2xl font-bold text-white">adesso CMS</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+        <div class="border border-gray-200 rounded-lg p-4">
+          <h3 class="font-semibold mb-2">image_bottom</h3>
+          <div class="text-sm text-gray-600 mb-3">Content above image</div>
+          <div class="text-center mb-2">
+            <h4 class="font-bold">Headline</h4>
+            <p class="text-sm">Description text</p>
           </div>
-        </nav>
-
-        <!-- Hero Content for video background -->
-        <div class="relative z-10 flex items-center justify-center min-h-screen">
-          <div class="container mx-auto px-4 text-center text-white">
-            <div class="max-w-4xl mx-auto">
-              ${pre_headline ? `
-                <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">
-                  ${pre_headline}
-                </p>
-              ` : ''}
-              
-              ${heading ? renderHeading({
-                title: heading,
-                as: 'h1',
-                custom_classes: 'text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white'
-              }) : ''}
-              
-              ${text ? `
-                <div class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">
-                  ${text}
-                </div>
-              ` : ''}
-              
-              <!-- Action Buttons -->
-              <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                ${link && link.url ? `
-                  <a href="${link.url}" class="btn bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                    ${link.title || 'Learn More'}
-                  </a>
-                ` : ''}
-                
-                ${link2 && link2.url ? `
-                  <a href="${link2.url}" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                    ${link2.title || 'Get Started'}
-                  </a>
-                ` : ''}
-              </div>
+          <div class="bg-gray-100 aspect-video rounded"></div>
+        </div>
+        
+        <div class="border border-gray-200 rounded-lg p-4">
+          <h3 class="font-semibold mb-2">image_bottom_split</h3>
+          <div class="text-sm text-gray-600 mb-3">Split layout variant</div>
+          <div class="text-center mb-2">
+            <h4 class="font-bold">Headline</h4>
+            <p class="text-sm">Description text</p>
+          </div>
+          <div class="bg-gray-100 aspect-video rounded"></div>
+        </div>
+        
+        <div class="border border-gray-200 rounded-lg p-4">
+          <h3 class="font-semibold mb-2">video_background</h3>
+          <div class="text-sm text-gray-600 mb-3">Video background with overlay</div>
+          <div class="bg-gradient-to-r from-blue-500 to-purple-600 aspect-video rounded flex items-center justify-center text-white">
+            <div class="text-center">
+              <h4 class="font-bold">Headline</h4>
+              <p class="text-sm">Description text</p>
             </div>
           </div>
         </div>
-
-        <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <a href="#content" class="text-white hover:text-gray-300 transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    `;
-  }
-
-  // Regular hero layout
-  return `
-    <div class="hero-wrapper ${modifier}">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-
-        ${hero_layout === 'image_top' && media ? `
-          <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
-            <div class="relative aspect-[16/9] overflow-hidden rounded-lg [&>img]:absolute [&>img]:inset-0 [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
-              ${media}
-            </div>
-          </div>
-        ` : ''}
-
-        ${pre_headline ? renderHeading({
-          title: pre_headline,
-          as: 'h3',
-          custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl lg:text-4xl'
-        }) : ''}
-
-        ${heading ? renderHeading({
-          title: heading,
-          as: 'h1',
-          custom_classes: 'mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl'
-        }) : ''}
-
-        ${text ? `
-          <div class="prose-p:mb-8 prose-p:text-lg prose-p:font-normal
-                    prose-p:lg:text-xl prose-p:sm:px-168 prose-p:lg:px-48">
-            ${text}
-          </div>
-        ` : ''}
-
-        ${link && link.url ? `
-          <a href="${link.url}"
-             class="inline-flex justify-center items-center py-3 px-5 text-base font-medium
-                  text-center text-primary-foreground rounded-lg bg-primary hover:bg-primary/90
-                  focus:ring-4 focus:ring-primary-300">
-            ${link.title || 'Learn More'}
-            <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-          </a>
-        ` : ''}
-
-        ${link2 && link2.url ? `
-          <a href="${link2.url}"
-             class="inline-flex py-3 px-5 sm:ms-4 text-base font-medium  focus:outline-none
-                  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700
-                  focus:z-10 focus:ring-4 focus:ring-gray-100">
-            ${link2.title || 'Get Started'}
-          </a>
-        ` : ''}
-
-        ${(hero_layout === 'image_bottom' || hero_layout === 'image_bottom_split') && media ? `
-          <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
-            <div class="relative aspect-[16/9] overflow-hidden rounded-lg [&>img]:absolute [&>img]:inset-0 [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
-              ${media}
-            </div>
-          </div>
-        ` : ''}
       </div>
     </div>
-  `;
-};
-
-const mockMedia = `
-  <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" alt="Example image" class="d-block w-full" width="1280" height="720" />
-`;
-
-const mockVideoMedia = `
-  <video autoplay muted loop class="w-full h-full object-cover">
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-`;
-
-export default {
-  title: 'Editorial/Hero',
-  argTypes: {
-    modifier: { 
-      control: 'text',
-      description: 'Additional CSS classes for the hero wrapper'
-    },
-    media: { 
-      control: 'text',
-      description: 'Media content (image or video HTML)'
-    },
-    heading: { 
-      control: 'text',
-      description: 'Main hero heading'
-    },
-    text: { 
-      control: 'text',
-      description: 'Hero description text'
-    },
-    pre_headline: { 
-      control: 'text',
-      description: 'Pre-headline text above the main heading'
-    },
-    hero_layout: {
-      control: 'select',
-      options: ['', 'image_top', 'image_bottom', 'image_bottom_split', 'video_background'],
-      name: 'layout',
-      description: 'Select the layout variant for the Hero component.',
-    },
-    link: {
-      control: 'object',
-      description: 'Primary action link',
-      defaultValue: { url: '#', title: 'Learn More' },
-    },
-    link2: {
-      control: 'object',
-      description: 'Secondary action link',
-      defaultValue: { url: '#', title: 'Get Started' },
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'All available hero_layout options from the YAML schema.',
+      },
     },
   },
 };
 
-const renderHero = (args) => {
-  return heroTemplate(args);
-};
-
-export const Default = {
-  render: renderHero,
-  args: {
-    modifier: 'max-w-4xl',
-    media: mockMedia,
-    heading: 'Welcome to <strong>Our Website</strong>',
-    text: 'This is a brief summary of our amazing content. It can include <em>formatted text</em> as well.',
-    hero_layout: 'image_top',
-    link: {
-      url: 'https://example.com',
-      title: 'Learn More',
-    },
-    link2: {
-      url: 'https://example.com',
-      title: 'Get Started',
-    },
-  },
-};
-
+// Image bottom layout
 export const ImageBottom = {
-  render: renderHero,
   args: {
     ...Default.args,
+    heading: 'Content First Approach',
+    text: '<p>Lead with your message, then support it with visuals.</p>',
     hero_layout: 'image_bottom',
   },
 };
 
-export const ImageBottomSplit = {
-  render: renderHero,
+// Video background hero
+export const VideoBackground = {
   args: {
     ...Default.args,
-    hero_layout: 'image_bottom_split',
-    heading: 'Empower Your Content with DrupalX Today',
-    text: 'Discover the power of a decoupled CMS that adapts to your needs. With DrupalX, you can create, manage, and scale your content effortlessly.',
+    media: '<div class="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600"></div>',
+    heading: 'Immersive Experience',
+    text: '<p>Create cinematic impact with video backgrounds.</p>',
+    hero_layout: 'video_background',
   },
 };
 
-export const VideoBackground = {
-  render: renderHero,
+// Hero without media
+export const TextOnly = {
+  args: {
+    ...Default.args,
+    media: '',
+    heading: 'Simple and Focused',
+    text: '<p>Sometimes the message is all you need.</p>',
+    pre_headline: 'Minimalist',
+  },
+};
+
+// Single call-to-action
+export const SingleCTA = {
+  args: {
+    ...Default.args,
+    heading: 'Ready to Begin?',
+    text: '<p>Take the first step toward your goals.</p>',
+    link: {
+      url: '/start',
+      title: 'Get Started',
+      icon: '',
+    },
+    link2: {
+      url: '',
+      title: '',
+      icon: '',
+    },
+  },
+};
+
+// With icons in buttons
+export const WithIcons = {
+  args: {
+    ...Default.args,
+    heading: 'Experience Our Platform',
+    text: '<p>See what makes our solution different.</p>',
+    link: {
+      url: '/demo',
+      title: 'Watch Demo',
+      icon: 'play-circle',
+    },
+    link2: {
+      url: '/download',
+      title: 'Download',
+      icon: 'download',
+    },
+  },
+};
+
+// Playground for testing all properties
+export const Playground = {
   args: {
     modifier: '',
-    media: mockVideoMedia,
-    heading: 'Revolutionary Content Management',
-    text: 'Experience the future of content creation with our advanced CMS platform.',
-    pre_headline: 'Innovation Starts Here',
-    hero_layout: 'video_background',
+    media: '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
+    heading: 'Your Hero Headline',
+    text: '<p>Your description text goes here.</p>',
+    pre_headline: 'Pre-headline',
+    hero_layout: 'image_top',
     link: {
       url: '#',
-      title: 'Get Started',
+      title: 'Primary Action',
+      icon: '',
     },
     link2: {
       url: '#',
-      title: 'Learn More',
-    },
-  },
-};
-
-export const MinimalHero = {
-  render: renderHero,
-  args: {
-    heading: 'Simple and Clean',
-    text: 'Sometimes less is more. This hero focuses on your message without distractions.',
-    link: {
-      url: '#',
-      title: 'Take Action',
+      title: 'Secondary Action',
+      icon: '',
     },
   },
 };

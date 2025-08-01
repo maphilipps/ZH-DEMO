@@ -1,177 +1,302 @@
-import { renderHeading } from '../../.storybook/component-helpers.js';
+// phpcs:ignoreFile
 
-// Create a proper stat card template function that renders actual HTML
-const statCardTemplate = (args) => {
-  const {
-    heading = '',
-    body = '',
-    icon = '',
-    media = '',
-    layout = 'center',
-    border = true,
-    modifier = ''
-  } = args;
+import Component from './stat-card.twig';
 
-  // Determine layout classes
-  const alignment_class = layout === 'left' ? 'text-left' : 'text-center';
-  const icon_class = layout === 'left' ? 'mr-auto' : 'mx-auto';
-  
-  // Determine border classes
-  const border_class = !border ? 'border-0 shadow-none h-full' : 'border shadow';
-  const content_class = !border ? 'p-0' : 'p-6';
-
-  // Render heading using helper
-  const headingHtml = heading ? renderHeading({
-    title: heading,
-    as: 'span',
-    visual_level: '3',
-    custom_classes: 'block card-title font-semibold tracking-tight mb-2 text-xl'
-  }) : '';
-
-  // Icon section
-  let iconHtml = '';
-  if (icon) {
-    iconHtml = `
-      <div class="stat-icon ${icon_class} mb-4 max-w-[120px] sm:max-w-[200px]">
-        <i data-lucide="${icon}" width="56" height="56" class="mx-auto sm:hidden"></i>
-        <i data-lucide="${icon}" width="68" height="68" class="mx-auto drupal-safe-hidden sm:block"></i>
-      </div>
-    `;
-  }
-
-  // Media section (if media instead of icon)
-  if (media && !icon) {
-    iconHtml = `
-      <div class="stat-icon ${icon_class} mb-4 max-w-[120px] sm:max-w-[200px]">
-        ${media}
-      </div>
-    `;
-  }
-
-  // Body content
-  const bodyHtml = body ? `<p class="mb-0">${body}</p>` : '';
-
-  return `
-    <div class="bg-card text-card-foreground stat ${alignment_class} ${border_class} ${modifier}">
-      <div class="${content_class}">
-        ${iconHtml}
-        ${headingHtml}
-        ${bodyHtml}
-      </div>
-    </div>
-  `;
-};
-
-const mockStat = {
-  type: 'stat',
-  heading: 'Total Users',
-  body: '10,000+',
-  media: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z" /><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z" /></svg>',
-};
-
-export default {
-  title: 'General/Stat',
+const meta = {
+  title: 'Cards/StatCard',
+  component: Component,
   argTypes: {
     type: {
-      description: 'Component type',
-      control: 'text'
+      name: 'Type',
+      description: 'Component type identifier',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     heading: {
-      description: 'Stat heading',
-      control: 'text'
+      name: 'Heading',
+      description: 'Statistical value or main heading',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     body: {
-      description: 'Stat text',
-      control: 'text'
+      name: 'Body',
+      description: 'Descriptive text explaining the statistic',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     icon: {
-      description: 'Material icon name',
-      control: 'text'
+      name: 'Icon',
+      description: 'Material icon name for the statistic',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     media: {
+      name: 'Media',
       description: 'Custom media HTML (SVG, image, etc.)',
-      control: 'text'
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     modifier: {
-      description: 'CSS modifier classes',
-      control: 'text'
+      name: 'Modifier',
+      description: 'Additional CSS modifier classes',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     border: {
-      description: 'Show border styling',
-      control: 'boolean'
+      name: 'Border',
+      description: 'Whether to show border styling',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     layout: {
-      description: 'Layout variation',
-      control: 'select',
-      options: ['center', 'left']
+      name: 'Layout',
+      description: 'Layout variation: center, left',
+      control: { type: 'select' },
+      options: ['center', 'left'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'center' },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Statistic card component for displaying key metrics, KPIs, and data points with icons and descriptions.
+
+## TWIG Usage
+
+\`\`\`twig
+{# Basic stat card with icon #}
+{% include 'sdc:stat-card' with {
+  heading: '2.5M+',
+  body: 'Active Users',
+  icon: 'people',
+  layout: 'center'
+} %}
+
+{# Stat card with custom SVG media #}
+{% include 'sdc:stat-card' with {
+  heading: '99.9%',
+  body: 'Uptime Guarantee',
+  media: '<svg class="w-8 h-8 text-green-500" fill="currentColor">...</svg>',
+  layout: 'center',
+  border: true
+} %}
+
+{# Left-aligned stat with modifier classes #}
+{% include 'sdc:stat-card' with {
+  heading: '$1.2M',
+  body: 'Revenue Growth',
+  icon: 'trending_up',
+  layout: 'left',
+  modifier: 'bg-green-50 text-green-800'
+} %}
+
+{# With dynamic content from field #}
+{% include 'sdc:stat-card' with {
+  heading: content.field_stat_value,
+  body: content.field_stat_description,
+  icon: content.field_icon_name,
+  layout: content.field_layout.value,
+  border: true
+} %}
+
+{# Performance metrics stat #}
+{% include 'sdc:stat-card' with {
+  type: 'performance',
+  heading: '45ms',
+  body: 'Average Response Time',
+  icon: 'speed',
+  modifier: 'performance-metric'
+} %}
+\`\`\`
+
+## Layout Options (from YAML schema)
+- **center**: Centered layout with icon/media above heading
+- **left**: Left-aligned layout with icon/media to the side
+        `
+      }
     }
-  }
+  },
+  tags: ['autodocs'],
 };
+export default meta;
 
-const renderStatCard = (args) => {
-  return statCardTemplate(args);
-};
-
+// Default centered stat card
 export const Default = {
-  render: renderStatCard,
   args: {
-    ...mockStat,
-    icon: 'home',
-    modifier: 'md:w-1/4',
-  },
-};
-
-export const WithIcon = {
-  render: renderStatCard,
-  args: {
-    heading: 'Downloads',
-    body: '5,892',
-    icon: 'download',
-    modifier: 'md:w-1/4',
-  },
-};
-
-export const WithMedia = {
-  render: renderStatCard,
-  args: {
-    ...mockStat,
-    modifier: 'md:w-1/4',
-  },
-};
-
-export const WithoutMedia = {
-  render: renderStatCard,
-  args: {
-    heading: 'Active Users',
-    body: '2,543',
-    modifier: 'md:w-1/4',
-  },
-};
-
-export const CustomModifier = {
-  render: renderStatCard,
-  args: {
-    ...mockStat,
-    modifier: 'md:w-1/4 bg-secondary text-secondary-foreground',
-  },
-};
-
-export const NoBorderLeftLayout = {
-  render: renderStatCard,
-  args: {
-    ...mockStat,
+    type: '',
+    heading: '2.5M+',
+    body: 'Active Users Worldwide',
+    icon: 'people',
+    media: '',
+    modifier: '',
     border: false,
-    layout: 'left',
-    modifier: 'md:w-1/4',
+    layout: 'center',
   },
 };
 
-export const LongContent = {
-  render: renderStatCard,
+// Revenue growth stat
+export const RevenueGrowth = {
   args: {
-    heading: 'Very Long Heading That Might Wrap',
-    body: 'This is a much longer body text that demonstrates how the card handles larger amounts of content. It might wrap to multiple lines depending on the card width.',
-    icon: 'info',
-    modifier: 'md:w-1/4',
+    heading: '$1.2M',
+    body: 'Revenue Growth This Quarter',
+    icon: 'trending_up',
+    layout: 'center',
+    border: true,
+    modifier: 'bg-green-50 text-green-800',
+  },
+};
+
+// Performance metric
+export const PerformanceMetric = {
+  args: {
+    type: 'performance',
+    heading: '45ms',
+    body: 'Average Response Time',
+    icon: 'speed',
+    layout: 'center',
+    border: true,
+    modifier: 'bg-blue-50 text-blue-800',
+  },
+};
+
+// Customer satisfaction
+export const CustomerSatisfaction = {
+  args: {
+    heading: '98%',
+    body: 'Customer Satisfaction Rate',
+    icon: 'star',
+    layout: 'center',
+    border: false,
+    modifier: 'bg-yellow-50 text-yellow-800',
+  },
+};
+
+// Left-aligned layout
+export const LeftAligned = {
+  args: {
+    heading: '150+',
+    body: 'Projects Completed Successfully',
+    icon: 'check_circle',
+    layout: 'left',
+    border: true,
+    modifier: 'bg-purple-50 text-purple-800',
+  },
+};
+
+// With custom SVG media
+export const CustomMedia = {
+  args: {
+    heading: '99.9%',
+    body: 'System Uptime Guarantee',
+    media: `
+      <svg class="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
+      </svg>
+    `,
+    layout: 'center',
+    border: true,
+  },
+};
+
+// Download count
+export const Downloads = {
+  args: {
+    heading: '500K+',
+    body: 'Total Downloads',
+    icon: 'download',
+    layout: 'center',
+    border: false,
+    modifier: 'bg-indigo-50 text-indigo-800',
+  },
+};
+
+// Support tickets resolved
+export const SupportTickets = {
+  args: {
+    heading: '24/7',
+    body: 'Customer Support Available',
+    icon: 'support_agent',
+    layout: 'left',
+    border: true,
+    modifier: 'bg-orange-50 text-orange-800',
+  },
+};
+
+// Layout comparison - showing both layout options
+export const LayoutComparison = {
+  render: () => `
+    <div class="space-y-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">Layout Options</h2>
+        <p class="text-gray-600">Demonstrating center vs left layout from YAML schema</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-center">Center Layout</h3>
+          <div class="p-6 border rounded-lg">
+            {% include 'sdc:stat-card' with {
+              heading: '2.5M+',
+              body: 'Active Users',
+              icon: 'people',
+              layout: 'center',
+              border: true
+            } %}
+          </div>
+        </div>
+        
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-center">Left Layout</h3>
+          <div class="p-6 border rounded-lg">
+            {% include 'sdc:stat-card' with {
+              heading: '2.5M+',
+              body: 'Active Users',
+              icon: 'people',
+              layout: 'left',
+              border: true
+            } %}
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+};
+
+// Playground for testing all properties
+export const Playground = {
+  args: {
+    type: 'test',
+    heading: '123',
+    body: 'Test statistic description',
+    icon: 'analytics',
+    media: '',
+    modifier: 'bg-gray-50',
+    border: true,
+    layout: 'center',
   },
 };

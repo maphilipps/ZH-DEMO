@@ -3,13 +3,12 @@
  * @file
  * Theme override for the media field in card paragraphs.
  *
- * Ensures all card images use 16:9 aspect ratio.
+ * Uses the configured view mode and image style from the backend.
  */
 #}
 {% if items %}
   {% for item in items %}
-    {# Access the media entity and render it using the 16:9 medium view mode #}
-    {% set media = item.content['#media'] %}
-    {{ media|view('16_9_medium') }}
+    {# Use the rendered media item as configured in the backend view mode #}
+    {{ item.content }}
   {% endfor %}
 {% endif %}

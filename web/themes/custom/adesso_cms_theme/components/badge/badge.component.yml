@@ -1,0 +1,50 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Badge
+description: General/Badge component
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Text
+      description: Badge text content
+    variant:
+      type: string
+      title: Variant
+      description: Badge color variant
+      enum:
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - light
+        - dark
+    size:
+      type: string
+      title: Size
+      description: Badge size variant
+      enum:
+        - sm
+        - md
+        - lg
+    removable:
+      type: boolean
+      title: Removable
+      description: Show remove button
+    icon:
+      type: string
+      title: Icon
+      description: Optional icon HTML content
+    url:
+      type: string
+      title: URL
+      description: Optional URL to make badge clickable
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes
+  required:
+    - text

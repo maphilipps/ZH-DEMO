@@ -4,19 +4,16 @@
  * Theme override for the media field in gallery paragraphs.
  *
  * Integrates media items with the gallery-item SDC component.
+ * Uses the configured view mode and image style from the backend.
  */
 #}
 {% if items %}
   {% for delta, item in items %}
-    {# Access the media entity and render it using the 16:9 medium view mode for consistent aspect ratio #}
-    {% set media = item.content['#media'] %}
-    {% set rendered_image = media|view('16_9_medium')|render %}
-    
-    {# Simply render the media item directly through the component #}
+    {# Use the rendered media item as configured in the backend view mode #}
     {% set gallery_item = {
       id: 'gallery-item-' ~ delta,
-      media_thumb: rendered_image,
-      media_description: media.name.value|default('Gallery image')
+      media_thumb: item.content|render,
+      media_description: item.content['#media'].name.value|default('Gallery image')
     } %}
     
     {# Render using the gallery-item component #}

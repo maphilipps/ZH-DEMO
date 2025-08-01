@@ -1,0 +1,83 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Bento Grid
+description: Layout/Bento Grid component
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: eyebrow
+      description: Small text above the main title
+    title:
+      type: string
+      title: title
+      description: Main heading for the bento grid section
+    description:
+      type: string
+      title: description
+      description: Subtitle or description text
+    background_color:
+      type: string
+      title: background_color
+      description: Background color class for the section
+      default: bg-gray-50
+    container_classes:
+      type: string
+      title: container_classes
+      description: Additional classes for the container
+    grid_items:
+      type: array
+      title: grid_items
+      description: Array of grid items to display
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            description: Title of the grid item
+          description:
+            type: string
+            description: Description text for the grid item
+          image:
+            type: string
+            description: Image URL for the grid item
+          image_alt:
+            type: string
+            description: Alt text for the image
+          content_type:
+            type: string
+            description: Type of content to display
+            enum:
+              - image
+              - code
+              - chart
+              - text
+            default: image
+          code_content:
+            type: string
+            description: Code content for code type items
+          code_language:
+            type: string
+            description: Programming language for syntax highlighting
+            default: jsx
+          grid_area:
+            type: string
+            description: CSS grid area assignment
+            enum:
+              - large-left
+              - top-right
+              - middle-right
+              - large-right
+              - full-width
+            default: full-width
+          custom_classes:
+            type: string
+            description: Additional CSS classes for the item
+libraryOverrides:
+  js:
+    bento-grid.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

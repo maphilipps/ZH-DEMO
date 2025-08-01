@@ -1,113 +1,289 @@
-// Create a proper heading template function that renders actual HTML
-const HeadingTemplate = (args) => {
-  const { heading = {} } = args;
-  const {
-    title = '',
-    as = 'h2',
-    visual_level,
-    modifier = '',
-    custom_classes = '',
-    id = '',
-    aria_label = '',
-    icon = '',
-    url = ''
-  } = heading;
+// phpcs:ignoreFile
 
-  // Handle title processing (Drupal might pass objects or strings)
-  let title_text = '';
-  if (typeof title === 'object' && title['#markup']) {
-    title_text = title['#markup'];
-  } else {
-    title_text = title.toString();
-  }
+import Component from './heading.twig';
 
-  if (!title_text) return '';
+const meta = {
+  title: 'General/Heading',
+  component: Component,
+  argTypes: {
+    'heading.title': {
+      name: 'Title Text',
+      description: 'The heading text content',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.as': {
+      name: 'HTML Tag',
+      description: 'HTML heading tag to use',
+      control: { type: 'select' },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'],
+      table: {
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'h2' },
+      },
+    },
+    'heading.visual_level': {
+      name: 'Visual Level',
+      description: 'Visual styling level (1-6)',
+      control: { type: 'select' },
+      options: ['1', '2', '3', '4', '5', '6'],
+      table: {
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    'heading.modifier': {
+      name: 'Modifier Classes',
+      description: 'Additional CSS classes',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.custom_classes': {
+      name: 'Custom Classes',
+      description: 'Override default styling with custom CSS classes',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.id': {
+      name: 'ID Attribute',
+      description: 'HTML ID for anchor navigation',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.aria_label': {
+      name: 'ARIA Label',
+      description: 'Additional accessibility context',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.url': {
+      name: 'Link URL',
+      description: 'Optional URL to make heading interactive',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    'heading.icon': {
+      name: 'Icon Content',
+      description: 'Optional icon HTML content',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Flexible heading component supporting all heading levels with customizable visual styling.
 
-  // Validate tag
-  const valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'];
-  const tag = valid_tags.includes(as) ? as : 'h2';
+## TWIG Usage
 
-  // Determine visual level
-  const level = visual_level || (tag === 'span' ? '3' : tag.replace('h', ''));
-
-  // Build classes
-  let heading_classes = '';
-  if (custom_classes) {
-    heading_classes = custom_classes;
-  } else {
-    const base_classes = [
-      tag === 'span' ? 'block' : 'scroll-m-20',
-      'tracking-tight',
-      modifier || ''
-    ].filter(Boolean);
-
-    const visual_classes = [];
-    switch (level) {
-      case '1':
-        visual_classes.push('text-4xl font-extrabold lg:text-5xl xl:text-6xl');
-        break;
-      case '2':
-        visual_classes.push('text-3xl font-bold');
-        break;
-      case '3':
-        visual_classes.push('text-2xl font-bold');
-        break;
-      case '4':
-        visual_classes.push('text-xl font-semibold');
-        break;
-      case '5':
-        visual_classes.push('text-lg font-semibold');
-        break;
-      case '6':
-        visual_classes.push('text-base font-semibold');
-        break;
-    }
-
-    heading_classes = [...base_classes, ...visual_classes].join(' ');
-  }
-
-  // Build attributes
-  const attributes = [];
-  if (id) attributes.push(`id="${id}"`);
-  if (aria_label) attributes.push(`aria-label="${aria_label}"`);
-  if (heading_classes) attributes.push(`class="${heading_classes}"`);
-
-  // Build content
-  const iconHtml = icon ? icon : '';
-  const textContent = url ? `<a href="${url}" class="hover:underline">${title_text}</a>` : title_text;
-  const content = iconHtml + textContent;
-
-  return `<${tag} ${attributes.join(' ')}>${content}</${tag}>`;
-};
-
-export default {
-  title: 'General/Heading'
-};
-
-export const Heading = HeadingTemplate.bind({});
-Heading.args = {
+\`\`\`twig
+{# Page title (h1) #}
+{% include 'sdc:heading' with {
   heading: {
-    title: 'Title Lorem Ipsum Dolor',
-    as: 'h2',
-    visual_level: '2',
-    modifier: 'display-3'
-  }
-};
-
-export const HeadingWithStringTitle = HeadingTemplate.bind({});
-HeadingWithStringTitle.args = {
-  heading: {
-    title: 'Simple String Title',
+    title: 'Welcome to Our Company',
     as: 'h1',
     visual_level: '1'
   }
+} %}
+
+{# Section heading (h2) #}
+{% include 'sdc:heading' with {
+  heading: {
+    title: 'Our Services',
+    as: 'h2',
+    visual_level: '2'
+  }
+} %}
+
+{# Heading with anchor link #}
+{% include 'sdc:heading' with {
+  heading: {
+    title: 'Contact Information',
+    as: 'h3',
+    visual_level: '3',
+    id: 'contact',
+    url: '#contact'
+  }
+} %}
+
+{# Heading with icon #}
+{% include 'sdc:heading' with {
+  heading: {
+    title: 'Security Features',
+    as: 'h3',
+    icon: '<svg class="w-5 h-5 mr-2 inline">...</svg>'
+  }
+} %}
+\`\`\`
+        `
+      }
+    }
+  },
+  tags: ['autodocs'],
+};
+export default meta;
+
+// Default heading
+export const Default = {
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    heading: {
+      title: 'Section Heading',
+      as: 'h2',
+      visual_level: '2',
+    },
+  },
 };
 
-export const HeadingWithObjectTitle = HeadingTemplate.bind({});
-HeadingWithObjectTitle.args = {
-  heading: {
-    title: { '#markup': '<em>Object</em> Title with HTML' },
-    as: 'h3',
-    visual_level: '3'
-  }
+// All heading levels - showing HTML tags (semantic structure)
+export const HTMLTags = {
+  render: () => `
+    <div class="space-y-4">
+      <h1 class="text-4xl font-extrabold tracking-tight">h1 - Page Title</h1>
+      <h2 class="text-3xl font-bold tracking-tight">h2 - Section Heading</h2>
+      <h3 class="text-2xl font-bold tracking-tight">h3 - Subsection Heading</h3>
+      <h4 class="text-xl font-semibold tracking-tight">h4 - Content Heading</h4>
+      <h5 class="text-lg font-semibold tracking-tight">h5 - Minor Heading</h5>
+      <h6 class="text-base font-semibold tracking-tight">h6 - Small Heading</h6>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'All available HTML heading tags from the YAML schema.',
+      },
+    },
+  },
+};
+
+// Visual levels - showing visual styling levels
+export const VisualLevels = {
+  render: () => `
+    <div class="space-y-4">
+      <span class="block text-4xl font-extrabold tracking-tight lg:text-5xl xl:text-6xl">Visual Level 1</span>
+      <span class="block text-3xl font-bold tracking-tight">Visual Level 2</span>
+      <span class="block text-2xl font-bold tracking-tight">Visual Level 3</span>
+      <span class="block text-xl font-semibold tracking-tight">Visual Level 4</span>
+      <span class="block text-lg font-semibold tracking-tight">Visual Level 5</span>
+      <span class="block text-base font-semibold tracking-tight">Visual Level 6</span>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'All available visual styling levels from the YAML schema.',
+      },
+    },
+  },
+};
+
+// Page title (h1) - most common use case
+export const PageTitle = {
+  args: {
+    heading: {
+      title: 'Welcome to Our Company',
+      as: 'h1',
+      visual_level: '1',
+    },
+  },
+};
+
+// Section heading with anchor link
+export const SectionWithAnchor = {
+  args: {
+    heading: {
+      title: 'Our Services',
+      as: 'h2',
+      visual_level: '2',
+      id: 'services',
+      url: '#services',
+    },
+  },
+};
+
+// Heading with icon
+export const WithIcon = {
+  args: {
+    heading: {
+      title: 'Security Features',
+      as: 'h3',
+      visual_level: '3',
+      icon: '<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>',
+    },
+  },
+};
+
+// Heading with custom modifier classes
+export const WithModifier = {
+  args: {
+    heading: {
+      title: 'Featured Article',
+      as: 'h2',
+      visual_level: '2',
+      modifier: 'text-blue-600 border-b-2 border-blue-600 pb-2',
+    },
+  },
+};
+
+// Semantic vs Visual (h6 tag with h1 styling)
+export const SemanticVsVisual = {
+  args: {
+    heading: {
+      title: 'Visually Large, Semantically Small',
+      as: 'h6',
+      visual_level: '1',
+    },
+  },
+};
+
+// Custom styling override
+export const CustomStyling = {
+  args: {
+    heading: {
+      title: 'Completely Custom Design',
+      as: 'h2',
+      custom_classes: 'text-3xl font-light text-gray-600 italic border-l-4 border-green-500 pl-4',
+    },
+  },
+};
+
+// Playground for testing all properties
+export const Playground = {
+  args: {
+    heading: {
+      title: 'Heading Text',
+      as: 'h2',
+      visual_level: '2',
+      modifier: '',
+      custom_classes: '',
+      id: '',
+      aria_label: '',
+      url: '',
+      icon: '',
+    },
+  },
 };

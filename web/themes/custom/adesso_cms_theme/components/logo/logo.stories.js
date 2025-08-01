@@ -1,109 +1,144 @@
-/**
- * @file
- * Storybook stories for Logo component
- * Responsive site logo with Tailwind CSS sizing
- */
+// phpcs:ignoreFile
 
-// Create a proper logo template function
-const logoTemplate = (args) => {
-  const {
-    site_logo = '',
-    site_name = 'Site',
-    modifier = ''
-  } = args;
+import Component from './logo.twig';
 
-  const altText = site_name ? `${site_name} logo` : 'Site logo';
-  const classes = `block max-h-full w-auto ${modifier}`.trim();
-
-  return `<img src="${site_logo}" class="${classes}" alt="${altText}" loading="lazy" />`;
-};
-
-export default {
+const meta = {
   title: 'General/Logo',
-  parameters: {
-    docs: {
-      description: {
-        component: 'Responsive site logo component with configurable sizing using Tailwind CSS classes.',
+  component: Component,
+  argTypes: {
+    site_logo: {
+      name: 'Site Logo',
+      description: 'Path to the site logo image file',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    modifier: {
+      name: 'Modifier',
+      description: 'Additional Tailwind CSS classes for sizing and styling',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
   },
-  argTypes: {
-    site_logo: {
-      control: 'text',
-      description: 'Path to the site logo image file',
-    },
-    modifier: {
-      control: 'text',
-      description: 'Additional Tailwind CSS classes for sizing and styling',
-    },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Site logo component with customizable sizing and styling options.
+
+## TWIG Usage
+
+\`\`\`twig
+{# Default logo #}
+{% include 'sdc:logo' with {
+  site_logo: '/themes/custom/theme/logo.svg'
+} %}
+
+{# Large logo for header #}
+{% include 'sdc:logo' with {
+  site_logo: '/themes/custom/theme/logo.svg',
+  modifier: 'h-12'
+} %}
+
+{# Small logo for footer #}
+{% include 'sdc:logo' with {
+  site_logo: '/themes/custom/theme/logo.svg',
+  modifier: 'h-6'
+} %}
+
+{# Logo with custom styling #}
+{% include 'sdc:logo' with {
+  site_logo: '/themes/custom/theme/logo.svg',
+  modifier: 'h-10 hover:opacity-80 transition-opacity'
+} %}
+\`\`\`
+        `
+      }
+    }
   },
+  tags: ['autodocs'],
 };
+export default meta;
 
 // Default logo
 export const Default = {
-  render: logoTemplate,
+  parameters: {
+    layout: 'centered',
+  },
   args: {
-    site_logo: '/themes/custom/adesso_cms_theme/assets/logo.svg',
-    site_name: 'adesso CMS',
+    site_logo: 'https://logo.clearbit.com/adesso.de',
     modifier: 'h-8',
   },
 };
 
-// Small logo
-export const Small = {
-  render: logoTemplate,
+// Common logo sizes
+export const Sizes = {
+  render: () => `
+    <div class="flex items-center gap-8">
+      <img src="https://logo.clearbit.com/adesso.de" alt="Small" class="h-6" />
+      <img src="https://logo.clearbit.com/adesso.de" alt="Default" class="h-8" />
+      <img src="https://logo.clearbit.com/adesso.de" alt="Large" class="h-12" />
+      <img src="https://logo.clearbit.com/adesso.de" alt="Extra Large" class="h-16" />
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common logo sizes for different contexts.',
+      },
+    },
+  },
+};
+
+// Header logo (most common use case)
+export const Header = {
   args: {
-    ...Default.args,
+    site_logo: 'https://logo.clearbit.com/adesso.de',
+    modifier: 'h-10',
+  },
+};
+
+// Footer logo
+export const Footer = {
+  args: {
+    site_logo: 'https://logo.clearbit.com/adesso.de',
     modifier: 'h-6',
   },
 };
 
-// Large logo
-export const Large = {
-  render: logoTemplate,
+// Hero section logo
+export const Hero = {
   args: {
-    ...Default.args,
-    modifier: 'h-12',
+    site_logo: 'https://logo.clearbit.com/adesso.de',
+    modifier: 'h-16 lg:h-20',
   },
 };
 
-// Extra large logo
-export const ExtraLarge = {
-  render: logoTemplate,
+// Logo with hover effect
+export const WithHover = {
   args: {
-    ...Default.args,
-    modifier: 'h-16',
+    site_logo: 'https://logo.clearbit.com/adesso.de',
+    modifier: 'h-8 hover:opacity-80 transition-opacity duration-300',
   },
 };
 
-// Responsive logo (different sizes at different breakpoints)
-export const Responsive = {
-  render: logoTemplate,
+// Logo with grayscale effect
+export const Grayscale = {
   args: {
-    ...Default.args,
-    modifier: 'h-6 sm:h-8 lg:h-10',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Logo that scales responsively: h-6 on mobile, h-8 on small screens, h-10 on large screens.',
-      },
-    },
+    site_logo: 'https://logo.clearbit.com/adesso.de',
+    modifier: 'h-8 grayscale hover:grayscale-0 transition-all duration-300',
   },
 };
 
-// With max width constraint
-export const WithMaxWidth = {
-  render: logoTemplate,
+// Playground for testing all properties
+export const Playground = {
   args: {
-    ...Default.args,
-    modifier: 'h-8 max-w-48',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Logo with maximum width constraint to prevent it from becoming too wide.',
-      },
-    },
+    site_logo: 'https://logo.clearbit.com/adesso.de',
+    modifier: 'h-8',
   },
 };

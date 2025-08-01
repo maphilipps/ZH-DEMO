@@ -1,9 +1,54 @@
 #!/bin/bash
 
-## Description: Run yarn commands
+## Description: Run theme development commands with modern Vite + Drupal Storybook workflow
 ## Usage: theme [command]
-## Example: "ddev theme build -- Read the HOW-TO.md for more commands"
+## Example: "ddev theme dev" - Start Vite dev server
+## Example: "ddev theme build" - Build production assets
+## Example: "ddev theme storybook" - Start Storybook server
+## Example: "ddev theme test" - Run Vitest tests
 
 cd web/themes/custom/adesso_cms_theme
-npm install
-npm run $@
+
+# Ensure npm dependencies are installed
+if [ ! -d "node_modules" ]; then
+  echo "Installing npm dependencies..."
+  npm install
+fi
+
+# Special handling for common commands
+case "$1" in
+  "help"|"--help"|"-h")
+    echo "Available theme commands:"
+    echo "  dev         - Start Vite dev server (HMR at :5173)"
+    echo "  build       - Build production assets"
+    echo "  watch       - Watch files with Vite and compile SCSS"
+    echo "  storybook   - Start Storybook server (:6006)"
+    echo "  test        - Run Vitest unit tests"
+    echo "  test:watch  - Run tests in watch mode"
+    echo "  clean       - Clean build artifacts"
+    echo "  lint:js     - Lint JavaScript files"
+    echo "  lint:sass   - Lint SCSS files"
+    echo "  qa:validate - Run all quality checks"
+    echo ""
+    echo "Drupal Storybook Integration:"
+    echo "  stories     - Generate JSON stories from Twig"
+    echo "  stories:watch - Watch and regenerate stories automatically"
+    echo "  Use: ddev drush storybook:generate-all-stories"
+    ;;
+  "stories")
+    echo "🔄 Generating JSON stories from Twig files..."
+    drush storybook:generate-all-stories --uri=https://adesso-cms.ddev.site
+    echo "✅ Stories generated! Start Storybook with: ddev theme storybook"
+    ;;
+  "stories:watch")
+    echo "👀 Watching Twig story files and regenerating JSON stories..."
+    echo "Press Ctrl+C to stop watching"
+    while true; do
+      drush storybook:generate-all-stories --uri=https://adesso-cms.ddev.site
+      sleep 5
+    done
+    ;;
+  *)
+    npm run $@
+    ;;
+esac

@@ -1,0 +1,153 @@
+#!/bin/bash
+
+## Description: Run Storybook module tests with comprehensive coverage
+## Usage: storybook-test [options]
+## Example: "ddev storybook-test" or "ddev storybook-test --unit-only"
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+STORYBOOK_PATH="/var/www/html/web/modules/custom/storybook"
+
+# Parse command line arguments
+UNIT_ONLY=false
+COVERAGE_ONLY=false
+QUICK=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --unit-only)
+            UNIT_ONLY=true
+            shift
+            ;;
+        --coverage-only)
+            COVERAGE_ONLY=true
+            shift
+            ;;
+        --quick)
+            QUICK=true
+            shift
+            ;;
+        --help|-h)
+            echo "Storybook Module Test Runner"
+            echo ""
+            echo "Usage: ddev storybook-test [options]"
+            echo ""
+            echo "Options:"
+            echo "  --unit-only     Run only unit tests (faster)"
+            echo "  --coverage-only Generate coverage report only"  
+            echo "  --quick         Skip performance and security tests"
+            echo "  --help, -h      Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  ddev storybook-test              # Run all tests"
+            echo "  ddev storybook-test --unit-only  # Unit tests only"
+            echo "  ddev storybook-test --quick      # Fast test run"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use --help for available options"
+            exit 1
+            ;;
+    esac
+done
+
+echo -e "${BLUE}🧪 Storybook Module Test Suite${NC}"
+echo "================================================"
+
+# Check if storybook module exists
+if [ ! -d "$STORYBOOK_PATH" ]; then
+    echo -e "${RED}❌ Storybook module not found at $STORYBOOK_PATH${NC}"
+    exit 1
+fi
+
+cd "$STORYBOOK_PATH"
+
+# Quick syntax check
+echo -e "${YELLOW}🔍 Checking PHP syntax...${NC}"
+find src tests -name "*.php" -exec php -l {} \; > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}✅ PHP syntax check passed${NC}"
+else
+    echo -e "${RED}❌ PHP syntax errors found${NC}"
+    exit 1
+fi
+
+if [ "$COVERAGE_ONLY" = true ]; then
+    echo -e "${YELLOW}📊 Generating coverage report only...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_unit --coverage-html build/coverage/html
+    echo -e "${GREEN}✅ Coverage report generated: build/coverage/html/index.html${NC}"
+    exit 0
+fi
+
+if [ "$UNIT_ONLY" = true ]; then
+    echo -e "${YELLOW}🧪 Running unit tests only...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_unit --coverage-text
+    exit $?
+fi
+
+if [ "$QUICK" = true ]; then
+    echo -e "${YELLOW}⚡ Quick test run (unit + integration)...${NC}"
+    
+    # Unit tests
+    echo -e "${BLUE}Running unit tests...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_unit
+    
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Unit tests failed${NC}"
+        exit 1
+    fi
+    
+    # Integration tests
+    echo -e "${BLUE}Running integration tests...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_kernel
+    
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Integration tests failed${NC}"
+        exit 1
+    fi
+    
+    echo -e "${GREEN}✅ Quick tests completed successfully${NC}"
+    exit 0
+fi
+
+# Full test suite
+echo -e "${YELLOW}🚀 Running comprehensive test suite...${NC}"
+
+if [ -f "./scripts/run-tests.sh" ]; then
+    ./scripts/run-tests.sh
+else
+    echo -e "${YELLOW}⚠️  Full test script not found, running basic test suite...${NC}"
+    
+    # Unit tests with coverage
+    echo -e "${BLUE}Running unit tests...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_unit --coverage-html build/coverage/html --coverage-clover build/coverage/clover.xml
+    
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Unit tests failed${NC}"
+        exit 1
+    fi
+    
+    # Integration tests
+    echo -e "${BLUE}Running integration tests...${NC}"
+    phpunit --configuration phpunit.xml --testsuite storybook_kernel
+    
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Integration tests failed${NC}"
+        exit 1
+    fi
+    
+    echo -e "${GREEN}✅ All tests completed successfully${NC}"
+    
+    # Show coverage if available
+    if [ -f "build/coverage/html/index.html" ]; then
+        echo -e "${BLUE}📊 Coverage report: build/coverage/html/index.html${NC}"
+    fi
+fi

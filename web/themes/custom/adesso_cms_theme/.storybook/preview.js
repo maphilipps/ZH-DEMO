@@ -4,6 +4,7 @@
  */
 
 import { initFlowbite } from 'flowbite';
+import '../src/css/adesso.css';
 
 // Import compiled CSS through static files to avoid webpack processing issues
 // The CSS is served via staticDirs configuration in main.cjs
@@ -11,7 +12,7 @@ import { initFlowbite } from 'flowbite';
 // Global parameters for all stories
 export const parameters = {
   // Action configuration
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  actions: {},
   
   // Controls configuration
   controls: {
@@ -206,53 +207,7 @@ export const decorators = [
   },
   
   // Accessibility decorator
-  (Story, context) => {
-    // Add focus indicators
-    const style = document.createElement('style');
-    style.textContent = `
-      *:focus {
-        outline: 2px solid #3b82f6 !important;
-        outline-offset: 2px !important;
-      }
-      
-      .sr-only {
-        position: absolute !important;
-        width: 1px !important;
-        height: 1px !important;
-        padding: 0 !important;
-        margin: -1px !important;
-        overflow: hidden !important;
-        clip: rect(0, 0, 0, 0) !important;
-        white-space: nowrap !important;
-        border: 0 !important;
-      }
-      
-      .sr-only:focus {
-        position: static !important;
-        width: auto !important;
-        height: auto !important;
-        padding: inherit !important;
-        margin: inherit !important;
-        overflow: visible !important;
-        clip: auto !important;
-        white-space: normal !important;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return Story();
-  },
-  
-  // Performance decorator (optimized to prevent infinite reload)
-  (Story, context) => {
-    // Optimized for stable HMR behavior
-    if (module.hot) {
-      // Accept hot updates but prevent unnecessary reloads
-      module.hot.accept();
-    }
-    
-    return Story();
-  },
+
 ];
 
 // Global types for controls

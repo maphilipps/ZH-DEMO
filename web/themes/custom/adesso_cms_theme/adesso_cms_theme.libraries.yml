@@ -25,7 +25,7 @@ global:
     - "adesso_cms_theme/fonts"
     - "adesso_cms_theme/navigation"
     - "adesso_cms_theme/flowbite"
-    - "adesso_cms_theme/mobile-menu"
+    - "adesso_cms_theme/elements"
 
 icons:
   version: 1.x
@@ -71,6 +71,20 @@ flowbite:
         referrerpolicy: no-referrer
       }
     }
+  dependencies:
+    - core/drupal
+
+elements:
+  js:
+    //cdn.jsdelivr.net/npm/@tailwindplus/elements@1: {
+      type: external,
+      minified: true,
+      attributes: {
+        defer: true,
+        crossorigin: anonymous,
+        referrerpolicy: no-referrer
+      }
+  }
   dependencies:
     - core/drupal
 

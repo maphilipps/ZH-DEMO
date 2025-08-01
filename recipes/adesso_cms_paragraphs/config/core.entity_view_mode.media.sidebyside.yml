@@ -1,0 +1,13 @@
+uuid: 43856b48-ef68-4c82-bf13-caa8f322adb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: tZ4etIjj-OFUiqrv8OvZJ5V5TJkeVglqJk_WL83UplI
+id: media.sidebyside
+label: 'Side by Side'
+description: null
+targetEntityType: media
+cache: true

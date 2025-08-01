@@ -1,24 +1,18 @@
 import { defineConfig } from 'vitest/config';
-import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
+import path from 'path';
 
 export default defineConfig({
-  plugins: [
-    storybookTest({
-      storybookScript: 'npm run storybook:test'
-    })
-  ],
   test: {
-    name: 'storybook',
-    browser: {
-      enabled: true,
-      instances: [
-        {
-          browser: 'chromium',
-          provider: 'playwright',
-        }
-      ],
-      headless: false, // Set to false temporarily to test setup
-    },
-    setupFiles: ['./.storybook/vitest.setup.js'],
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./tests/utils/test-utils.js'],
+    include: ['components/**/*.test.js', 'tests/**/*.test.js'],
+    exclude: ['node_modules', 'dist', 'storybook-static']
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './components')
+    }
+  }
 });

@@ -1,114 +1,36 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Main Menu
+description: Main Menu Component
 status: stable
-description: Navigation component for hierarchical menu with accessibility support
 props:
   type: object
   properties:
-    theme:
+    title:
       type: string
-      title: Theme
-      description: Theme variation (light or dark)
-      enum: [light, dark]
-      default: light
-    items:
+      title: Title
+    url:
+      type: string
+      title: URL
+    target:
+      type: string
+      title: Target
+    children:
       type: array
-      title: Menu Items
-      description: Navigation items
+      title: Sub-menu items
       items:
         type: object
         properties:
           title:
             type: string
-            description: Menu item title
+            title: Sub-menu Title
           url:
             type: string
-            description: Menu item URL
-          in_active_trail:
-            type: boolean
-            description: Whether item is in active trail
-            default: false
-          is_expanded:
-            type: boolean
-            description: Whether item is expanded
-            default: false
-          is_external:
-            type: boolean
-            description: Whether link is external
-            default: false
-          is_new_window:
-            type: boolean
-            description: Open in new window
-            default: false
-          attributes:
+            title: Sub-menu URL
+          target:
             type: string
-            description: Additional HTML attributes
-            default: ""
-          link_attributes:
-            type: string
-            description: Additional link attributes
-            default: ""
-          modifier_class:
-            type: string
-            description: Additional CSS classes for item
-            default: ""
-          below:
+            title: Sub-menu Target
+          children: # Add this to support nested sub-menus
             type: array
-            description: Submenu items
+            title: Sub-menu Items
             items:
-              type: object
-              properties:
-                title:
-                  type: string
-                  description: Submenu item title
-                url:
-                  type: string
-                  description: Submenu item URL
-                in_active_trail:
-                  type: boolean
-                  description: Whether item is in active trail
-                  default: false
-                is_expanded:
-                  type: boolean
-                  description: Whether item is expanded
-                  default: false
-                is_external:
-                  type: boolean
-                  description: Whether link is external
-                  default: false
-                is_new_window:
-                  type: boolean
-                  description: Open in new window
-                  default: false
-                attributes:
-                  type: string
-                  description: Additional HTML attributes
-                  default: ""
-                link_attributes:
-                  type: string
-                  description: Additional link attributes
-                  default: ""
-                modifier_class:
-                  type: string
-                  description: Additional CSS classes for item
-                  default: ""
-    is_collapsible:
-      type: boolean
-      title: Collapsible
-      description: Whether menu is collapsible
-      default: false
-    enable_mega_menu:
-      type: boolean
-      title: Enable Mega Menu
-      description: Whether to enable Flowbite mega menu functionality
-      default: true
-    attributes:
-      type: string
-      title: Attributes
-      description: Additional HTML attributes
-      default: ""
-    modifier_class:
-      type: string
-      title: Modifier classes
-      description: Additional CSS classes
-      default: ""
+              $ref: "#/props" # Recursively refer to the same schema

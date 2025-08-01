@@ -1,0 +1,69 @@
+/**
+ * Tailwind CSS overrides for Drupal Core CSS conflicts
+ * Weight: 999 (highest priority)
+ */
+
+/* Force visibility utilities to work over Drupal Core */
+.max-lg\:hidden {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .max-lg\:hidden {
+    display: revert !important;
+  }
+}
+
+/* Additional responsive display utilities with !important */
+.lg\:flex {
+  display: flex !important;
+}
+
+.lg\:hidden {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex {
+    display: flex !important;
+  }
+  
+  .lg\:hidden {
+    display: none !important;
+  }
+}
+
+/* Ensure Tailwind element selectors work */
+.hidden {
+  display: none !important;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.block {
+  display: block !important;
+}
+
+/* Navigation specific overrides */
+nav .max-lg\:hidden {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  nav .max-lg\:hidden {
+    display: flex !important;
+  }
+}
+
+/* Mobile menu button visibility */
+.lg\:hidden {
+  display: block !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:hidden {
+    display: none !important;
+  }
+}

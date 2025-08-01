@@ -19,13 +19,12 @@ global:
       }
   js:
     src/js/adesso.js: {}
-    components/site-header/site-header.behavior.js: {}
   dependencies:
-    - "adesso_cms_theme/icons"
     - "adesso_cms_theme/fonts"
     - "adesso_cms_theme/navigation"
-    - "adesso_cms_theme/flowbite"
     - "adesso_cms_theme/elements"
+    - "adesso_cms_theme/flowbite"
+    - "adesso_cms_theme/icons"
 
 icons:
   version: 1.x
@@ -75,6 +74,9 @@ flowbite:
     - core/drupal
 
 elements:
+  css:
+    theme:
+      src/css/tailwind-overrides.css: { weight: 999 }
   js:
     //cdn.jsdelivr.net/npm/@tailwindplus/elements@1: {
       type: external,
@@ -84,7 +86,7 @@ elements:
         crossorigin: anonymous,
         referrerpolicy: no-referrer
       }
-  }
+    }
   dependencies:
     - core/drupal
 

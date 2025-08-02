@@ -9,10 +9,10 @@ default:
       target_id: 0
   filename:
     -
-      value: logo_collection-default-icon_128.png
+      value: logo_collection-default-icon_9.png
   uri:
     -
-      value: 'public://paragraphs_type_icon/logo_collection-default-icon_128.png'
+      value: 'public://paragraphs_type_icon/logo_collection-default-icon_9.png'
   filemime:
     -
       value: image/png
@@ -24,4 +24,4 @@ default:
       value: true
   created:
     -
-      value: 1753274411
+      value: 1754141213

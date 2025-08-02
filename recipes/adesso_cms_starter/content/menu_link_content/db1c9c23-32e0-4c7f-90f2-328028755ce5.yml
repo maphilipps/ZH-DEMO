@@ -10,7 +10,7 @@ _meta:
 default:
   enabled:
     -
-      value: false
+      value: true
   title:
     -
       value: News

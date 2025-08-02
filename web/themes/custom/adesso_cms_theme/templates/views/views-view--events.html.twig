@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Theme override for a main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A css-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the view.
+ * - attachment_after: An optional attachment view to be displayed after the view.
+ * - dom_id: Unique id for every view being displayed on the page.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    {# Main content area #}
+    <div class="mx-auto mt-16 sm:mt-20">
+      {% if rows %}
+        {{ rows }}
+      {% elseif empty %}
+        {{ empty }}
+      {% endif %}
+    </div>
+
+    {# Pager #}
+    {% if pager %}
+      <div class="mt-16">
+        {{ pager }}
+      </div>
+    {% endif %}
+
+    {# Footer #}
+    {% if footer %}
+      <div class="mt-16">
+        {{ footer }}
+      </div>
+    {% endif %}
+
+  </div>

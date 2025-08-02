@@ -92,7 +92,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-23T14:43:03+02:00'
+        content: '2025-08-02T15:28:52+02:00'
     -
       tag: meta
       attributes:

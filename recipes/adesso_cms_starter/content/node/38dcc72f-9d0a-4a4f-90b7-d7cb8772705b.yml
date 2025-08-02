@@ -39,6 +39,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   moderation_state:
     -
       value: published
@@ -97,7 +100,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-23T17:50:50+02:00'
+        content: '2025-08-02T15:28:52+02:00'
     -
       tag: meta
       attributes:
@@ -140,6 +143,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -181,6 +187,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>This text component uses <strong>left alignment</strong> - the standard layout for most content blocks.</p><p><strong>Bold</strong></p><p><em>Italic</em></p><p><s>Durchgestrichen</s></p><p><sup>Hoch</sup>gestellt</p><p><sub>Tief</sub>gestellt</p><p><a href="https://adesso.de">Link</a></p><ul><li>Liste</li><li>Liste</li><li>Liste</li></ul><ol><li>Liste</li><li>Liste</li><li>Liste</li></ol><blockquote><p>Quote</p></blockquote>'
@@ -216,6 +225,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -257,6 +269,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_body:
             -
               value: '<p>This text component uses <strong>centered alignment</strong> with dark theme styling.</p>'
@@ -292,6 +307,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -329,6 +347,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: false
@@ -366,6 +387,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -396,6 +420,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: false
@@ -441,6 +468,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -472,6 +502,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_card:
             -
               entity:
@@ -491,6 +524,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_content_element_theme:
                     -
                       value: false
@@ -522,6 +558,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_content_element_theme:
                     -
                       value: false
@@ -553,6 +592,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_content_element_theme:
                     -
                       value: false
@@ -593,6 +635,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_accordion_item:
             -
               entity:
@@ -612,6 +657,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>The <strong>adesso CMS</strong> is a powerful, future-ready content management system built on the robust foundation of the <strong>2025 release of Drupal CMS</strong>. As a custom Drupal distribution, it combines the flexibility and reliability of Drupal 11 with a finely tuned suite of enhancements tailored for enterprise-grade digital experiences. adesso CMS is designed to accelerate project delivery by offering pre-configured content types, customizable page templates, and a rich library of reusable <strong>Paragraph-based content elements</strong>—all optimized for intuitive editorial control and responsive design. This distribution empowers organizations to manage complex content structures with ease, scale across multiple sites or languages, and maintain consistent branding. With its modular architecture, adesso CMS supports seamless integration into existing system landscapes, including marketing automation tools, CRM platforms, and DAM solutions. Out-of-the-box governance features, such as role-based access and workflow management, ensure secure and compliant content publishing. adesso CMS also prioritizes performance and accessibility, aligning with WCAG and modern SEO standards. Whether for corporate websites, portals, or campaign-driven microsites, adesso CMS delivers a streamlined, future-proof content platform that reduces technical overhead while maximizing digital impact. It’s the ideal choice for enterprises looking to combine innovation, editorial freedom, and long-term scalability—all within the proven Drupal ecosystem.</p>'
@@ -638,6 +686,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_body:
                     -
                       value: '<p>In the <strong>adesso Drupal CMS</strong>, page creation is streamlined through the use of predefined <strong>page types</strong> and a flexible system of <strong>content elements based on Paragraphs</strong>. Editors begin by selecting a page type—such as Landing Page, Article, or Product Page—each tailored with specific fields and layout presets to serve distinct business goals. These page types come with pre-configured metadata settings, layout regions, and content placeholders, reducing setup time and ensuring consistency across the site.</p><p>&nbsp;</p><p>Once a page type is selected, editors use the <strong>Paragraphs system</strong> to build content dynamically. Content elements—such as text blocks, image galleries, sliders, videos, teasers, accordions, CTAs, and forms—are available as reusable Paragraph types. These elements can be added, reordered, or nested directly in the page editor, giving non-technical users maximum flexibility within defined design constraints. Each content element is responsive by default and adheres to the corporate design system, ensuring visual consistency.</p><p>&nbsp;</p><p>The editor-friendly UI in the backend allows for real-time previewing and inline editing, helping content teams work faster and more confidently. With multilingual support, revision history, and role-based access control, adesso CMS ensures that content workflows remain efficient and secure while enabling creative freedom through structured flexibility.</p>'
@@ -676,6 +727,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: false
@@ -710,6 +764,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_content_element_theme:
             -
               value: true
@@ -735,6 +792,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_media:
                     -
                       entity: 9d08b4db-5980-4dbb-b80d-52f9bf3127d3
@@ -763,6 +823,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_media:
                     -
                       entity: aef7833e-2758-4ced-b7c8-5e804cd98267
@@ -791,6 +854,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_media:
                     -
                       entity: 744c4ce0-0066-4784-a0dc-194911c555cf

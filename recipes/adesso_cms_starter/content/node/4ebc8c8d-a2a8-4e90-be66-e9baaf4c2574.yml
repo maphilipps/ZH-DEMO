@@ -6,7 +6,6 @@ _meta:
   default_langcode: de
   depends:
     c97ac49d-7fc7-4b0b-a54d-c5d463a0e186: media
-    d48adeba-e388-4e82-820b-98bbd2f35a46: taxonomy_term
 default:
   revision_uid:
     -
@@ -52,7 +51,7 @@ default:
       tag: link
       attributes:
         rel: image_src
-        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=JOg-O33b'
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=i_oo0ch8'
     -
       tag: meta
       attributes:
@@ -92,7 +91,7 @@ default:
       tag: meta
       attributes:
         property: 'og:image'
-        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=JOg-O33b'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=i_oo0ch8'
     -
       tag: meta
       attributes:
@@ -112,7 +111,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-07-23T14:43:03+02:00'
+        content: '2025-08-02T15:28:52+02:00'
     -
       tag: meta
       attributes:
@@ -132,7 +131,7 @@ default:
       tag: meta
       attributes:
         name: 'twitter:image'
-        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=3B5LxI22'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-07/Scha%CC%88ttler%2C%20David_Kosiol%2C%20Judith_Hong%20Wang%2C%20Sheng_09.png.webp?itok=GYmbSEkc'
     -
       tag: meta
       attributes:
@@ -153,6 +152,3 @@ default:
   field_featured_image:
     -
       entity: c97ac49d-7fc7-4b0b-a54d-c5d463a0e186
-  field_tags:
-    -
-      entity: d48adeba-e388-4e82-820b-98bbd2f35a46

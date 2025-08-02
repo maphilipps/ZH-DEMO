@@ -1,12 +1,11 @@
 {#
 /**
  * @file
- * Theme override to display a node.
+ * Theme override to display an article node with page header.
  */
 #}
 {%
   set classes = [
-    'mb-6 lg:mb-12',
     'node',
     'node--type-' ~ node.bundle|clean_class,
     node.isPromoted() ? 'node--promoted',
@@ -15,40 +14,40 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
-<article{{attributes.addClass(classes)}}>
-	<div{{content_attributes.addClass('containermx-autopx-4')}}>
-		<div class="mb-7 rounded shadow">
-			{{ content.field_media }}
-		</div>
 
-		<div class="max-w-screen-lg mx-auto mb-2 lg:mb-10">
-			{% if content.field_subhead %}
-				<div class="uppercase mb-2 text-sm tracking-wide text-dark">
-					{{ content.field_subhead }}
-				</div>
-			{% endif %}
+{# Page Header Section with article-specific fields #}
+{% set page_description = '' %}
+{% if node.hasField('field_lead') and node.field_lead.value %}
+  {% set page_description = node.field_lead.value %}
+{% elseif node.hasField('field_subhead') and node.field_subhead.value %}
+  {% set page_description = node.field_subhead.value %}
+{% endif %}
 
-			{{ title_prefix }}
-			{%
-        include 'adesso_cms_theme:heading' with {
-          "heading": {
-            "title": label,
-            "heading_level": 1,
-            "modifier": "scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl mb-8"
-          }
-        } only
-      %}
-			{{ title_suffix }}
+{% set header_image = '' %}
+{% set header_alt = '' %}
+{% if node.hasField('field_media') and node.field_media.entity and node.field_media.entity.bundle == 'image' %}
+  {% set header_image = file_url(node.field_media.entity.field_media_image.entity.fileuri) %}
+  {% set header_alt = node.field_media.entity.field_media_image.alt|default('') %}
+{% endif %}
 
-			{% if content.field_lead %}
-				<div class="prose prose-lg lead mb-4 max-w-screen-lg mx-auto">
-					{{ content.field_lead }}
-				</div>
-			{% endif %}
-		</div>
+{% include 'adesso_cms_theme:page-header' with {
+  title: label,
+  description: page_description,
+  background_image: header_image,
+  alt_text: header_alt
+} %}
 
-		<div class="prose prose-lg max-w-screen-md mx-auto">
-			{{ content|without('field_subhead', 'field_lead', 'field_tags', 'field_authors', 'field_media') }}
-		</div>
-	</div>
+<article{{ attributes.addClass(classes) }}>
+  <div class="container mx-auto px-4">
+    
+    <div class="max-w-screen-lg mx-auto">
+      {{ title_prefix }}
+      {# Title is now handled by the page header component above #}
+      {{ title_suffix }}
+
+      <div class="prose prose-lg max-w-screen-md mx-auto mt-8">
+        {{ content|without('field_subhead', 'field_lead', 'field_tags', 'field_authors', 'field_media') }}
+      </div>
+    </div>
+  </div>
 </article>

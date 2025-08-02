@@ -1,136 +1,176 @@
 {
-    "name": "adesso/cms",
-    "description": "Drupal with a bunch of useful stuff.",
-    "type": "project",
-    "license": "GPL-2.0-or-later",
-    "homepage": "https://www.drupal.org/project/drupal",
-    "support": {
-        "docs": "https://drupal.org/docs/user_guide/en/index.html",
-        "chat": "https://drupal.org/node/314178"
+  "name": "adesso/cms",
+  "description": "Drupal with a bunch of useful stuff.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/drupal",
+  "support": {
+    "docs": "https://drupal.org/docs/user_guide/en/index.html",
+    "chat": "https://drupal.org/node/314178"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
     },
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
-        "starter": {
-            "type": "path",
-            "url": "recipes/adesso_cms_starter"
-        },
-        "paragraphs": {
-            "type": "path",
-            "url": "recipes/adesso_cms_paragraphs"
-        },
-        "theme": {
-            "type": "path",
-            "url": "web/themes/custom/adesso_cms_theme"
+    "starter": {
+      "type": "path",
+      "url": "recipes/adesso_cms_starter"
+    },
+    "paragraphs": {
+      "type": "path",
+      "url": "recipes/adesso_cms_paragraphs"
+    },
+    "theme": {
+      "type": "path",
+      "url": "web/themes/custom/adesso_cms_theme"
+    },
+    "dropzone": {
+      "type": "package",
+      "package": {
+        "name": "enyo/dropzone",
+        "version": "6.0.0-beta.2",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/dropzone/dropzone/releases/download/v6.0.0-beta.2/dist.zip",
+          "type": "zip"
         }
-    },
-    "require": {
-        "adesso/adesso_cms_paragraphs": "dev-main",
-        "adesso/adesso_cms_starter": "dev-main",
-        "adesso/adesso_cms_theme": "dev-main",
-        "composer/installers": "^2.3",
-        "cweagans/composer-patches": "^1.7",
-        "drupal/components": "^3.1",
-        "drupal/core-composer-scaffold": "^11.2",
-        "drupal/core-project-message": "^11.2",
-        "drupal/core-recommended": "11.2.2",
-        "drupal/drupal_cms_accessibility_tools": "*",
-        "drupal/drupal_cms_analytics": "*",
-        "drupal/drupal_cms_events": "*",
-        "drupal/drupal_cms_forms": "*",
-        "drupal/drupal_cms_news": "*",
-        "drupal/drupal_cms_person": "*",
-        "drupal/drupal_cms_project": "*",
-        "drupal/drupal_cms_search": "^1.0@RC",
-        "drupal/drupal_cms_seo_tools": "^1.0@RC",
-        "drupal/storybook": "^1.0",
-        "drupal/twig_field_value": "^2.0",
-        "drupal/twig_tweak": "^3.4",
-        "drupalninja/drupalx_ai": "1.x-dev",
-        "drush/drush": "^13",
-        "vlucas/phpdotenv": "^5.6"
-    },
-    "conflict": {
-        "drupal/drupal": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "allow-plugins": {
-            "composer/installers": true,
-            "cweagans/composer-patches": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true,
-            "php-http/discovery": true,
-            "phpstan/extension-installer": true,
-            "tbachert/spi": true
-        },
-        "sort-packages": true,
-        "optimize-autoloader": true
-    },
-    "autoload": {
-        "files": ["load.environment.php"]
-    },
-    "extra": {
-        "drupal-scaffold": {
-            "locations": {
-                "web-root": "web/"
-            },
-            "file-mapping": {
-                "[web-root]/sites/development.services.yml": {
-                    "mode": "replace",
-                    "path": "assets/development.services.yml"
-                },
-                "[web-root]/sites/default/settings.php": {
-                    "mode": "append",
-                    "path": "assets/settings-append-local.txt"
-                },
-                "[web-root]/sites/settings.local.php": "assets/settings.local.php"
-            }
-        },
-        "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
-            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
-            "recipes/{$name}": ["type:drupal-recipe"],
-            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
-        },
-        "enable-patching": true,
-        "composer-exit-on-patch-failure": true,
-        "patches": {
-            "drupal/default_content": {
-                "#2786479: Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch",
-                "#3160146: Add a Normalizer and Denormalizer to support Layout Builder": "https://git.drupalcode.org/project/default_content/-/merge_requests/15.diff"
-            },
-            "drupal/paragraphs_features": {
-                "#3488022: Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
-            }
-        },
-        "drupal-core-project-message": {
-            "include-keys": ["homepage", "support"],
-            "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                   </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed Drupal CMS!    </>",
-                "<bg=blue;fg=white>                                                   </>",
-                "",
-                "<bg=yellow;fg=black>Next steps</>:",
-                "  * Run <fg=yellow>./launch-drupal-cms.sh</> to initialize Drupal CMS and open it in a browser.",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://drupal.org/support",
-                "  * Get involved with the Drupal community: https://drupal.org/getting-involved"
-            ]
-        }
-    },
-    "require-dev": {
-        "drupal/core-dev": "^11.2",
-        "drupal/devel": "^5.3"
+      }
     }
+  },
+  "require": {
+    "adesso/adesso_cms_paragraphs": "dev-main",
+    "adesso/adesso_cms_starter": "dev-main",
+    "adesso/adesso_cms_theme": "dev-main",
+    "composer/installers": "^2.3",
+    "cweagans/composer-patches": "^1.7",
+    "drupal/components": "^3.1",
+    "drupal/core-composer-scaffold": "^11.2",
+    "drupal/core-project-message": "^11.2",
+    "drupal/core-recommended": "11.2.2",
+    "drupal/dropzonejs": "^2.11",
+    "drupal/drupal_cms_accessibility_tools": "*",
+    "drupal/drupal_cms_analytics": "*",
+    "drupal/drupal_cms_events": "*",
+    "drupal/drupal_cms_forms": "*",
+    "drupal/drupal_cms_news": "*",
+    "drupal/drupal_cms_person": "*",
+    "drupal/drupal_cms_project": "*",
+    "drupal/drupal_cms_search": "^1.0@RC",
+    "drupal/drupal_cms_seo_tools": "^1.0@RC",
+    "drupal/entity_browser": "^2.13",
+    "drupal/storybook": "^1.0",
+    "drupal/twig_field_value": "^2.0",
+    "drupal/twig_tweak": "^3.4",
+    "drupalninja/drupalx_ai": "1.x-dev",
+    "drush/drush": "^13",
+    "enyo/dropzone": "^6.0@beta",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "drupal/core-composer-scaffold": true,
+      "drupal/core-project-message": true,
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true,
+      "tbachert/spi": true
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "files": [
+      "load.environment.php"
+    ]
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "web/"
+      },
+      "file-mapping": {
+        "[web-root]/sites/development.services.yml": {
+          "mode": "replace",
+          "path": "assets/development.services.yml"
+        },
+        "[web-root]/sites/default/settings.php": {
+          "mode": "append",
+          "path": "assets/settings-append-local.txt"
+        },
+        "[web-root]/sites/settings.local.php": "assets/settings.local.php"
+      }
+    },
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/Commands/contrib/{$name}": [
+        "type:drupal-drush"
+      ],
+      "web/modules/custom/{$name}": [
+        "type:drupal-custom-module"
+      ],
+      "web/profiles/custom/{$name}": [
+        "type:drupal-custom-profile"
+      ],
+      "recipes/{$name}": [
+        "type:drupal-recipe"
+      ],
+      "web/themes/custom/{$name}": [
+        "type:drupal-custom-theme"
+      ]
+    },
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/default_content": {
+        "#2786479: Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch",
+        "#3160146: Add a Normalizer and Denormalizer to support Layout Builder": "https://git.drupalcode.org/project/default_content/-/merge_requests/15.diff"
+      },
+      "drupal/paragraphs_features": {
+        "#3488022: Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
+      }
+    },
+    "drupal-core-project-message": {
+      "include-keys": [
+        "homepage",
+        "support"
+      ],
+      "post-create-project-cmd-message": [
+        "<bg=blue;fg=white>                                                   </>",
+        "<bg=blue;fg=white>  Congratulations, you’ve installed Drupal CMS!    </>",
+        "<bg=blue;fg=white>                                                   </>",
+        "",
+        "<bg=yellow;fg=black>Next steps</>:",
+        "  * Run <fg=yellow>./launch-drupal-cms.sh</> to initialize Drupal CMS and open it in a browser.",
+        "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+        "  * Get support: https://drupal.org/support",
+        "  * Get involved with the Drupal community: https://drupal.org/getting-involved"
+      ]
+    }
+  },
+  "require-dev": {
+    "drupal/core-dev": "^11.2",
+    "drupal/devel": "^5.3"
+  }
 }

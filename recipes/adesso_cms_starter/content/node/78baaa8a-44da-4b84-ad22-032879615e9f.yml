@@ -5,6 +5,7 @@ _meta:
   bundle: page
   default_langcode: de
   depends:
+    16f91bec-eff2-40cb-8e78-4428ebbff3b9: media
     54b6d92f-dd17-41e8-a80f-69cc314d95a9: media
 default:
   revision_uid:
@@ -51,6 +52,11 @@ default:
         rel: shortlink
         href: 'https://adesso-cms.ddev.site/'
     -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=rRPqxm3t'
+    -
       tag: meta
       attributes:
         name: referrer
@@ -88,8 +94,33 @@ default:
     -
       tag: meta
       attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=rRPqxm3t'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'AI Page Header'
+    -
+      tag: meta
+      attributes:
         property: 'og:updated_time'
-        content: '2025-08-02T15:28:52+02:00'
+        content: '2025-08-02T18:45:40+02:00'
     -
       tag: meta
       attributes:
@@ -105,6 +136,16 @@ default:
       attributes:
         name: 'twitter:title'
         content: 'Our product Vision'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=fBL3cwC3'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'AI Page Header'
   path:
     -
       alias: /our-product-vision
@@ -113,6 +154,9 @@ default:
   field_description:
     -
       value: 'Our vision of the adesso Drupal CMS'
+  field_featured_image:
+    -
+      entity: 16f91bec-eff2-40cb-8e78-4428ebbff3b9
   field_paragraphs:
     -
       entity:

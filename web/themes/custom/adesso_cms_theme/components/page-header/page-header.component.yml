@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: "Page Header: Simple with background image on dark"
+description: "A page header component with dark background, background image, and gradient overlays. Shows page title and optional description."
+props:
+  type: object
+  properties:
+    modifier:
+      type: string
+      title: modifier
+      description: Additional CSS classes for the page header wrapper
+    background_image:
+      type: string
+      title: background_image
+      description: Background image URL for the header
+      default: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    title:
+      type: string
+      title: title
+      description: Page title
+    description:
+      type: string
+      title: description
+      description: Optional page description text
+    alt_text:
+      type: string
+      title: alt_text
+      description: Alt text for the background image
+      default: ""

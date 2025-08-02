@@ -102,6 +102,10 @@ install:
   - webp
   - webform
   - webform_ui
+  # File upload enhancements
+  - dropzonejs
+  - dropzonejs_eb_widget
+  - entity_browser
   # Additional modules from core.extension.yml
   - add_content_by_bundle
   - announcements_feed
@@ -410,6 +414,8 @@ config:
           weight: 1
           region: content
         hidden.field_paragraphs: null
+        hidden.field_featured_image: true
+        content.field_featured_image: null
         third_party_settings.layout_builder.enabled: false
     core.entity_form_display.node.page.default:
       simpleConfigUpdate:

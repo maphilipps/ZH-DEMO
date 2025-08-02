@@ -7,7 +7,7 @@
 #}
 
 {# Get background image URL from field_featured_image #}
-{% if node.field_featured_image.entity %}
+{% if node.field_featured_image.entity and node.field_featured_image.entity.field_media_image.entity and node.field_featured_image.entity.field_media_image.entity.fileuri %}
   {% set image_uri = node.field_featured_image.entity.field_media_image.entity.fileuri %}
   {% set bg_image_url = image_uri | image_style('16_9_1800x1080_focal_point_webp') %}
 {% else %}

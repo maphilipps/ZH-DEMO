@@ -14,6 +14,11 @@ install:
   - webp
   - vite
 
+  # File upload enhancements
+  - dropzonejs
+  - dropzonejs_eb_widget
+  - entity_browser
+
   # Paragraphs module
   # - paragraphs
   # - paragraphs_features
@@ -21,9 +26,6 @@ install:
 
   # Include our theme
   - adesso_cms_theme
-
-// recipes:
-//   - adesso_cms_paragraphs
 
 config:
   strict: false

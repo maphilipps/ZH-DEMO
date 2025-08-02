@@ -60,6 +60,57 @@
     </div>
   {% endif %}
 
+  {# Page Header - get title from current route/node #}
+  {% set page_title = '' %}
+  {% set page_description = '' %}
+  {% set header_background_image = '' %}
+  {% set header_background_alt = '' %}
+  
+  {# Check if we're on a node page #}
+  {% if node %}
+    {% set page_title = node.label %}
+    
+    {# Try to get description from various fields #}
+    {% if node.hasField('field_lead') and node.field_lead.value %}
+      {% set page_description = node.field_lead.value %}
+    {% elseif node.hasField('field_summary') and node.field_summary.value %}
+      {% set page_description = node.field_summary.value %}
+    {% elseif node.hasField('field_description') and node.field_description.value %}
+      {% set page_description = node.field_description.value %}
+    {% endif %}
+    
+    {# Try to get background image from various fields #}
+    {% if node.hasField('field_header_image') and node.field_header_image.entity and node.field_header_image.entity.fileuri %}
+      {% set header_background_image = file_url(node.field_header_image.entity.fileuri) %}
+      {% set header_background_alt = node.field_header_image.alt|default('') %}
+    {% elseif node.hasField('field_featured_image') and node.field_featured_image.entity %}
+      {# field_featured_image is a media reference #}
+      {% if node.field_featured_image.entity.field_media_image.entity and node.field_featured_image.entity.field_media_image.entity.fileuri %}
+        {% set header_background_image = file_url(node.field_featured_image.entity.field_media_image.entity.fileuri) %}
+        {% set header_background_alt = node.field_featured_image.entity.field_media_image.alt|default('') %}
+      {% endif %}
+    {% elseif node.hasField('field_media') and node.field_media.entity and node.field_media.entity.bundle == 'image' %}
+      {% if node.field_media.entity.field_media_image.entity and node.field_media.entity.field_media_image.entity.fileuri %}
+        {% set header_background_image = file_url(node.field_media.entity.field_media_image.entity.fileuri) %}
+        {% set header_background_alt = node.field_media.entity.field_media_image.alt|default('') %}
+      {% endif %}
+    {% endif %}
+    
+  {% else %}
+    {# For non-node pages, use the page title #}
+    {% set page_title = page['#title'] %}
+  {% endif %}
+
+  {# Page Header Component using SDC #}
+  {% if page_title and not has_video_hero %}
+    {% include 'adesso_cms_theme:page-header' with {
+      title: page_title,
+      description: page_description,
+      background_image: header_background_image,
+      alt_text: header_background_alt
+    } %}
+  {% endif %}
+
   {# Main Content #}
   <main role="main" id="main-content" class="flex-1" tabindex="-1">
     <div id="content" class="layout-content">

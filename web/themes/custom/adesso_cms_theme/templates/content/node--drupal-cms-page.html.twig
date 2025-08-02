@@ -2,6 +2,7 @@
 /**
  * @file
  * Theme override to display a drupal_cms_page node.
+ * Page header is now handled by page.html.twig
  */
 #}
 {% set classes = [
@@ -11,41 +12,31 @@
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  'mb-8',
 ] %}
 
-<article{{attributes.addClass(classes)}}>
-
+<article{{ attributes.addClass(classes) }}>
   <div class="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
-    {% if content.field_media %}
-      <div class="mb-7">
-        {{ content.field_media }}
-      </div>
-    {% endif %}
-
+    
     <div class="mx-auto max-w-2xl">
       {{ title_prefix }}
-      {% include 'adesso_cms_theme:heading' with {
-        "heading": {
-          "title": label,
-          "heading_level": 1,
-          "modifier": "mb-6 text-center"
-        }
-      } only %}
+      {# Title is now handled by the page header component above #}
       {{ title_suffix }}
 
       {% if content.body %}
-        <div class="prose prose-lg">
+        <div class="prose prose-lg mt-8">
           {{ content.body }}
         </div>
       {% endif %}
 
       {# Render paragraphs/components if present #}
       {% if content.field_paragraphs %}
-        <div class="components">
+        <div class="components mt-8">
           {{ content.field_paragraphs }}
         </div>
       {% endif %}
+
+      {# Render remaining content (excluding fields used in page header) #}
+      {{ content|without('field_featured_image', 'field_header_image', 'field_media', 'field_paragraphs', 'body', 'field_lead', 'field_summary', 'field_description', 'links') }}
     </div>
   </div>
 </article>

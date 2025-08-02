@@ -1,7 +1,10 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Main Menu
-description: Main Menu Component
+description: Main Menu Component with el-popover and el-dialog support
 status: stable
+libraryOverrides:
+  dependencies:
+    - adesso_cms_theme/elements
 props:
   type: object
   properties:
@@ -14,6 +17,32 @@ props:
     target:
       type: string
       title: Target
+    logo:
+      type: [string, "null"]
+      title: logo
+      description: Logo URL from Drupal theme settings
+      default: ''
+    site_name:
+      type: [string, "null"]
+      title: site_name
+      description: Site name from Drupal configuration
+      default: ''
+    front_page:
+      type: [string, "null"]
+      title: front_page
+      description: Front page URL
+      default: '/'
+    show_logo:
+      type: boolean
+      title: show_logo
+      description: Whether to show the logo
+      default: false
+    nested:
+      type: array
+      title: Nested menu items
+      description: Processed menu structure for template rendering
+      items:
+        type: object
     children:
       type: array
       title: Sub-menu items

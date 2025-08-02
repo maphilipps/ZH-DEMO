@@ -44,9 +44,6 @@
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
-              {% if site_name %}
-                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
-              {% endif %}
             </a>
           {% endif %}
 
@@ -103,9 +100,6 @@
               site_name: site_name,
               modifier: 'h-6'
             } %}
-            {% if site_name %}
-              <span class="ml-2 text-lg font-semibold {{ text_classes[background_color|default('default')] }}">{{ site_name|escape }}</span>
-            {% endif %}
           </a>
         {% endif %}
         {# Render footer menu block with defensive programming #}
@@ -143,9 +137,6 @@
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
-              {% if site_name %}
-                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
-              {% endif %}
             </a>
           {% endif %}
 
@@ -196,9 +187,6 @@
                 site_name: site_name,
                 modifier: 'h-8'
               } %}
-              {% if site_name %}
-                <span class="ml-3 text-xl font-semibold {{ text_classes[background_color] }}">{{ site_name }}</span>
-              {% endif %}
             </a>
           {% endif %}
 

@@ -3,11 +3,11 @@
 import Component from './main-menu.twig';
 
 const meta = {
-  title: 'Navigation/MainMenuSave',
+  title: 'Navigation/MainMenu',
   component: Component,
   decorators: [
     (Story) => {
-      // Add custom CSS for theme-specific classes first
+      // Add custom CSS for theme-specific classes and Tailwind overrides
       if (typeof document !== 'undefined') {
         const existingStyle = document.getElementById('main-menu-theme-styles');
         if (!existingStyle) {
@@ -24,30 +24,52 @@ const meta = {
             .hover\\:bg-primary:hover { background-color: #3b82f6; }
             .hover\\:text-body-bg:hover { color: #ffffff; }
             .border-body { border-color: #e5e7eb; }
-            [x-cloak] { display: none !important; }
+            
+            /* Tailwind overrides to ensure proper display */
+            .hidden { display: none !important; }
+            .lg\\:flex { display: flex !important; }
+            .lg\\:hidden { display: none !important; }
+            @media (min-width: 1024px) {
+              .lg\\:flex { display: flex !important; }
+              .lg\\:hidden { display: none !important; }
+            }
           `;
           document.head.appendChild(style);
         }
       }
       
-      // Load Alpine.js and initialize
+      // Load both Alpine.js and @tailwindplus/elements
       if (typeof window !== 'undefined') {
+        const promises = [];
+        
+        // Load Alpine.js
         if (!window.Alpine) {
-          return new Promise((resolve) => {
+          const alpinePromise = new Promise((resolve) => {
             const script = document.createElement('script');
             script.src = 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js';
             script.defer = true;
-            script.onload = () => {
-              // Wait a bit for Alpine to fully initialize
-              setTimeout(() => {
-                resolve(Story());
-              }, 100);
-            };
+            script.onload = resolve;
             document.head.appendChild(script);
           });
-        } else {
-          // Alpine is already loaded
-          return Story();
+          promises.push(alpinePromise);
+        }
+        
+        // Load @tailwindplus/elements
+        if (!document.querySelector('script[src*="@tailwindplus/elements"]')) {
+          const elementsPromise = new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1';
+            script.type = 'module';
+            script.onload = resolve;
+            document.head.appendChild(script);
+          });
+          promises.push(elementsPromise);
+        }
+        
+        if (promises.length > 0) {
+          return Promise.all(promises).then(() => {
+            setTimeout(() => Story(), 100);
+          });
         }
       }
       
@@ -87,7 +109,7 @@ const meta = {
     docs: {
       description: {
         component: `
-Advanced navigation menu component with Alpine.js interactivity, mobile-responsive design, and nested submenu support.
+Advanced navigation menu component with Alpine.js and @tailwindplus/elements interactivity (popover/dialog), mobile-responsive design, and nested submenu support.
 
 ## TWIG Usage
 
@@ -234,7 +256,7 @@ Advanced navigation menu component with Alpine.js interactivity, mobile-responsi
 \`\`\`
 
 ## Features
-- **Alpine.js Interactivity**: Smooth hover and click interactions
+- **Alpine.js + @tailwindplus/elements**: Smooth hover, click interactions, and modern popover/dialog functionality
 - **Mobile-First Design**: Responsive layout with hamburger menu
 - **Nested Submenus**: Unlimited nesting levels supported
 - **Accessibility**: ARIA attributes and keyboard navigation

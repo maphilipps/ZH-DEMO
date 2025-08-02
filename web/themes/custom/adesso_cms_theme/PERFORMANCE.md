@@ -20,7 +20,7 @@ This document outlines the comprehensive performance optimization strategies imp
 // In hook_page_attachments_alter()
 $critical_assets = [
   [
-    'href' => 'https://fonts.gstatic.com/s/opensans/v40/...',
+    'href' => 'https://fonts.gstatic.com/s/text-primary/v40/...',
     'as' => 'font',
     'type' => 'font/woff2',
     'crossorigin' => 'anonymous',

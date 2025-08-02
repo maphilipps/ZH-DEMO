@@ -1,0 +1,404 @@
+#!/bin/bash
+
+## Description: Create docker-compose deployment snapshot
+## Usage: snapshot-deploy [snapshot-name]
+## Example: "ddev snapshot-deploy" or "ddev snapshot-deploy production-v1.2"
+
+set -e
+
+# Configuration
+SNAPSHOT_NAME=${1:-"deployment-$(date +%Y%m%d_%H%M%S)"}
+SNAPSHOT_DIR="snapshots/$SNAPSHOT_NAME"
+
+echo "🚀 Creating complete deployment snapshot: $SNAPSHOT_NAME"
+
+# Check if DDEV is running
+if ! ddev describe > /dev/null 2>&1; then
+    echo "❌ DDEV is not running. Please start with 'ddev start'"
+    exit 1
+fi
+
+# Create snapshot directory
+mkdir -p "$SNAPSHOT_DIR"
+
+echo "📦 Exporting database..."
+ddev export-db --file="$SNAPSHOT_DIR/database.sql.gz"
+
+echo "📁 Exporting files..."
+ddev exec "tar -czf /tmp/drupal-files.tar.gz -C /var/www/html/web/sites/default files 2>/dev/null || echo 'No files found'" 
+ddev exec "cp /tmp/drupal-files.tar.gz /var/www/html/" 2>/dev/null || echo "⚠️  No files to export"
+if [ -f drupal-files.tar.gz ]; then
+    mv drupal-files.tar.gz "$SNAPSHOT_DIR/"
+fi
+
+echo "🏗️  Including Storybook..."
+# Check if theme has Storybook
+THEME_PATH="web/themes/custom/adesso_cms_theme"
+if [ -d "$THEME_PATH/storybook-static" ]; then
+    echo "📋 Copying existing Storybook build..."
+    cp -r "$THEME_PATH/storybook-static" "$SNAPSHOT_DIR/storybook-static"
+else
+    echo "⚠️  No built Storybook found, skipping"
+fi
+
+echo "📋 Copying application files..."
+# Copy essential files
+cp composer.json "$SNAPSHOT_DIR/"
+cp composer.lock "$SNAPSHOT_DIR/"
+cp -r config "$SNAPSHOT_DIR/"
+cp -r recipes "$SNAPSHOT_DIR/"
+
+# Copy web directory (resolve symlinks and exclude problematic files)
+echo "📋 Copying web directory (resolving symlinks)..."
+rsync -aL \
+    --exclude='*/node_modules' \
+    --exclude='*.log' \
+    --exclude='.git' \
+    --exclude='.gitignore' \
+    --exclude='*/.git' \
+    --exclude='*/.*' \
+    --exclude='*/.gitattributes' \
+    web/ "$SNAPSHOT_DIR/web/" || echo "⚠️  Some symlinks could not be resolved, continuing..."
+
+echo "🔧 Cleaning up problematic symlinks and git files..."
+# Remove any remaining broken symlinks
+find "$SNAPSHOT_DIR" -type l -exec test ! -e {} \; -delete 2>/dev/null || true
+
+# Remove git-related files that cause issues
+find "$SNAPSHOT_DIR" -name ".git*" -exec rm -rf {} + 2>/dev/null || true
+
+# Remove any circular symlinks in web/adesso_cms specifically
+if [ -d "$SNAPSHOT_DIR/web/adesso_cms" ]; then
+    find "$SNAPSHOT_DIR/web/adesso_cms" -type l -delete 2>/dev/null || true
+fi
+
+echo "🐳 Creating production-ready Dockerfile..."
+cat > "$SNAPSHOT_DIR/Dockerfile" << 'EOF'
+FROM php:8.3-apache
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libzip-dev \
+    mariadb-client \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip opcache \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable Apache modules
+RUN a2enmod rewrite headers
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# PHP Configuration for production
+RUN { \
+    echo 'opcache.memory_consumption=128'; \
+    echo 'opcache.interned_strings_buffer=8'; \
+    echo 'opcache.max_accelerated_files=4000'; \
+    echo 'opcache.revalidate_freq=2'; \
+    echo 'opcache.fast_shutdown=1'; \
+    echo 'opcache.enable_cli=1'; \
+    } > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files
+COPY . /var/www/html/
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Create directories and set permissions
+RUN mkdir -p web/sites/default/files \
+    && mkdir -p web/sites/default/files/translations \
+    && mkdir -p web/sites/default/files/css \
+    && mkdir -p web/sites/default/files/js \
+    && chown -R www-data:www-data web/sites/default/files \
+    && chmod -R 755 web/sites/default/files
+
+# Extract uploaded files if they exist
+RUN if [ -f drupal-files.tar.gz ]; then \
+        tar -xzf drupal-files.tar.gz -C web/sites/default/ && \
+        chown -R www-data:www-data web/sites/default/files && \
+        rm drupal-files.tar.gz; \
+    fi
+
+# Set file permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && find /var/www/html -type d -exec chmod 755 {} \; \
+    && find /var/www/html -type f -exec chmod 644 {} \; \
+    && chmod 444 web/sites/default/settings.php
+
+# Apache configuration
+RUN echo '<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/web\n\
+    ServerName localhost\n\
+    \n\
+    <Directory /var/www/html/web>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+        DirectoryIndex index.php\n\
+    </Directory>\n\
+    \n\
+    # Storybook static files (if available)\n\
+    Alias /storybook /var/www/html/storybook-static\n\
+    <Directory /var/www/html/storybook-static>\n\
+        AllowOverride None\n\
+        Require all granted\n\
+        DirectoryIndex index.html\n\
+    </Directory>\n\
+    \n\
+    # Security headers\n\
+    Header always set X-Content-Type-Options nosniff\n\
+    Header always set X-Frame-Options DENY\n\
+    Header always set X-XSS-Protection "1; mode=block"\n\
+    \n\
+    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost/core/install.php || curl -f http://localhost/ || exit 1
+
+EXPOSE 80
+
+# Copy and set entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
+EOF
+
+echo "🔧 Creating Docker entrypoint..."
+cat > "$SNAPSHOT_DIR/docker-entrypoint.sh" << 'EOF'
+#!/bin/bash
+set -e
+
+echo "🚀 Starting Adesso CMS container..."
+
+# Import database on first run
+if [ ! -f /var/www/html/.db-imported ] && [ -f /var/www/html/database.sql.gz ]; then
+    echo "📦 Database import detected..."
+    
+    # Wait for database to be ready (if using external DB)
+    if [ -n "$DB_HOST" ]; then
+        echo "⏳ Waiting for database connection..."
+        while ! mysqladmin ping -h"$DB_HOST" -P"${DB_PORT:-3306}" -u"$DB_USER" -p"$DB_PASSWORD" --silent 2>/dev/null; do
+            echo "Waiting for database at $DB_HOST:${DB_PORT:-3306}..."
+            sleep 2
+        done
+        
+        echo "📥 Importing database..."
+        gunzip -c /var/www/html/database.sql.gz | mysql -h"$DB_HOST" -P"${DB_PORT:-3306}" -u"$DB_USER" -p"$DB_PASSWORD" "$DB_NAME"
+        echo "✅ Database imported successfully"
+        
+        # Mark as imported and cleanup
+        touch /var/www/html/.db-imported
+        rm /var/www/html/database.sql.gz
+    else
+        echo "⚠️  No database connection configured. Database import skipped."
+    fi
+fi
+
+# Ensure file permissions are correct
+chown -R www-data:www-data /var/www/html/web/sites/default/files 2>/dev/null || true
+
+echo "✅ Container startup complete"
+
+# Execute the original command
+exec "$@"
+EOF
+
+echo "🐙 Creating docker-compose.yml for local testing..."
+cat > "$SNAPSHOT_DIR/docker-compose.yml" << 'EOF'
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=drupal
+      - DB_USER=drupal
+      - DB_PASSWORD=drupal
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - files_data:/var/www/html/web/sites/default/files
+
+  db:
+    image: mariadb:10.11
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db_data:
+  files_data:
+EOF
+
+echo "🏭 Creating production docker-compose..."
+cat > "$SNAPSHOT_DIR/docker-compose.prod.yml" << 'EOF'
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - files_data:/var/www/html/web/sites/default/files
+    restart: unless-stopped
+
+volumes:
+  files_data:
+EOF
+
+echo "🎯 Creating .dockerignore..."
+cat > "$SNAPSHOT_DIR/.dockerignore" << 'EOF'
+.git
+.ddev
+.idea
+README*
+.gitignore
+.gitattributes
+node_modules
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+.env.*.local
+vendor/*/tests
+vendor/*/test
+web/core/tests
+EOF
+
+echo "📝 Creating deployment README..."
+cat > "$SNAPSHOT_DIR/README.md" << EOF
+# Adesso CMS Docker Deployment
+
+**Generated:** $(date)  
+**Source:** $(pwd)
+
+## 🚀 Quick Start
+
+\`\`\`bash
+# Start everything
+docker-compose up -d
+
+# Visit your site
+open http://localhost:8080
+
+# View Storybook  
+open http://localhost:8080/storybook
+\`\`\`
+
+## 🔧 Production Deployment Options
+
+### Option 1: Docker Compose (Recommended)
+\`\`\`bash
+# For production with external database
+docker-compose -f docker-compose.prod.yml up -d
+\`\`\`
+
+### Option 2: Single Container
+\`\`\`bash
+docker build -t adesso-cms .
+docker run -p 80:80 \\
+  -e DB_HOST=your-db-host \\
+  -e DB_NAME=drupal \\
+  -e DB_USER=drupal \\
+  -e DB_PASSWORD=your-password \\
+  adesso-cms
+\`\`\`
+
+### Option 3: Git Deploy (if needed)
+\`\`\`bash
+# Clean git files and broken symlinks (already done during snapshot creation)
+# But run again if you see git warnings:
+find . -name ".git*" -exec rm -rf {} + 2>/dev/null || true
+find . -type l -exec test ! -e {} \; -delete 2>/dev/null || true
+
+git init
+git add .
+git commit -m "Deployment snapshot"
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
+\`\`\`
+
+## 📦 What's Included
+- ✅ Complete Drupal application (code + config)
+- ✅ Database snapshot (auto-imported on first run)
+- ✅ All uploaded files
+- ✅ Built Storybook (accessible at /storybook)
+- ✅ Production-ready Dockerfile with PHP 8.3
+- ✅ Docker Compose with MariaDB
+- ✅ Automatic database import
+- ✅ Optimized PHP configuration (OpCache)
+
+## 🛠️ Commands
+\`\`\`bash
+# Stop everything
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild
+docker-compose up --build -d
+
+# Shell access
+docker-compose exec web bash
+\`\`\`
+
+**Ready to deploy!** 🐳
+EOF
+
+chmod +x "$SNAPSHOT_DIR/docker-entrypoint.sh"
+
+echo ""
+echo "✅ Docker deployment snapshot created successfully!"
+echo "📁 Location: $SNAPSHOT_DIR"
+echo ""
+echo "🚀 Quick Start:"
+echo "  cd $SNAPSHOT_DIR"
+echo "  docker-compose up -d"
+echo "  open http://localhost:8080"
+echo ""
+echo "🌐 For production:"
+echo "  # With external database"
+echo "  docker-compose -f docker-compose.prod.yml up -d"
+echo ""
+echo "📚 Storybook available at: http://localhost:8080/storybook"

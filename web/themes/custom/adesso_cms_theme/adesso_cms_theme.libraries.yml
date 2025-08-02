@@ -74,9 +74,6 @@ flowbite:
     - core/drupal
 
 elements:
-  css:
-    theme:
-      src/css/tailwind-overrides.css: { weight: 999 }
   js:
     //cdn.jsdelivr.net/npm/@tailwindplus/elements@1: {
       type: external,

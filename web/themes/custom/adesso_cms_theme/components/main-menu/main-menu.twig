@@ -28,7 +28,7 @@
                     {% if child.url is empty or child.url.toString() == '<nolink>' %}
                       <span class="block p-2 text-gray-500">{{ child.title }}</span>
                     {% else %}
-                      <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %} class="block p-2 hover:text-indigo-600">{{ child.title }}</a>
+                      <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %} class="block p-2 hover:text-primary">{{ child.title }}</a>
                     {% endif %}
                     
                     {# Nested children (third level) - indented #}
@@ -37,7 +37,7 @@
                         {% if grandchild.url is empty or grandchild.url.toString() == '<nolink>' %}
                           <span class="block p-2 pl-6 text-xs text-gray-400">{{ grandchild.title }}</span>
                         {% else %}
-                          <a href="{{ grandchild.url }}"{% if grandchild.target %} target="{{ grandchild.target }}"{% endif %} class="block p-2 pl-6 text-xs hover:text-indigo-600">{{ grandchild.title }}</a>
+                          <a href="{{ grandchild.url }}"{% if grandchild.target %} target="{{ grandchild.target }}"{% endif %} class="block p-2 pl-6 text-xs hover:text-primary">{{ grandchild.title }}</a>
                         {% endif %}
                       {% endfor %}
                     {% endif %}
@@ -50,7 +50,7 @@
             {% if item.url is empty or item.url.toString() == '<nolink>' %}
               <span class="text-sm/6 font-semibold text-gray-900">{{ item.title }}</span>
             {% else %}
-              <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} class="text-sm/6 font-semibold text-gray-900 hover:text-indigo-600">{{ item.title }}</a>
+              <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} class="text-sm/6 font-semibold text-gray-900 hover:text-primary">{{ item.title }}</a>
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -72,9 +72,13 @@
       <div tabindex="0" class="fixed inset-0 focus:outline-none">
         <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 transition-all duration-200">
           <div class="flex items-center justify-between">
-            <a href="/" class="-m-1.5 p-1.5">
-              <span class="sr-only">{{ 'Your Company'|t }}</span>
-              <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto">
+            <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5">
+              {% if show_logo and logo %}
+                <span class="sr-only">{{ site_name|default('') }}</span>
+                <img src="{{ logo }}" alt="{{ site_name|default('') }}" class="h-8 w-auto">
+              {% else %}
+                <span class="text-lg font-bold text-gray-900">{{ site_name|default('adessoCMS') }}</span>
+              {% endif %}
             </a>
             <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700" aria-expanded="false">
               <span class="sr-only">{{ 'Close menu'|t }}</span>

@@ -1,0 +1,108 @@
+adesso_cms_theme.settings:
+  type: theme_settings
+  label: 'Adesso CMS Theme settings'
+  mapping:
+    # Base theme settings
+    langcode:
+      type: string
+      label: 'Language code'
+    
+    # Features settings
+    features:
+      type: mapping
+      label: 'Feature settings'
+      mapping:
+        logo:
+          type: boolean
+          label: 'Show logo'
+        name:
+          type: boolean
+          label: 'Show site name'
+        mega_menu:
+          type: boolean
+          label: 'Enable mega menu'
+        search:
+          type: boolean
+          label: 'Enable search'
+    
+    # Header settings
+    header:
+      type: mapping
+      label: 'Header settings'
+      mapping:
+        background_color:
+          type: string
+          label: 'Background color'
+        sticky:
+          type: boolean
+          label: 'Sticky header'
+        enable_animations:
+          type: boolean
+          label: 'Enable animations'
+    
+    # Navigation settings
+    navigation:
+      type: mapping
+      label: 'Navigation settings'
+      mapping:
+        enable_mega_menu:
+          type: boolean
+          label: 'Enable mega menu'
+        mobile_breakpoint:
+          type: string
+          label: 'Mobile breakpoint'
+        dropdown_animation:
+          type: string
+          label: 'Dropdown animation'
+    
+    # Search settings
+    search:
+      type: mapping
+      label: 'Search settings'
+      mapping:
+        enable_dropdown:
+          type: boolean
+          label: 'Enable dropdown'
+        placeholder:
+          type: string
+          label: 'Placeholder text'
+        action_url:
+          type: string
+          label: 'Action URL'
+        enable_autocomplete:
+          type: boolean
+          label: 'Enable autocomplete'
+    
+    # Logo settings (existing)
+    logo:
+      type: mapping
+      label: 'Logo settings'
+      mapping:
+        url:
+          type: string
+          label: 'Logo URL'
+        alt:
+          type: string
+          label: 'Logo alt text'
+        width:
+          type: integer
+          label: 'Logo width'
+        height:
+          type: integer
+          label: 'Logo height'
+    
+    # Theme settings
+    theme_settings:
+      type: mapping
+      label: 'Theme settings'
+      mapping:
+        css_optimization:
+          type: boolean
+          label: 'CSS optimization'
+        js_optimization:
+          type: boolean
+          label: 'JS optimization'
+        enable_flowbite:
+          type: boolean
+          label: 'Enable Flowbite'
+    

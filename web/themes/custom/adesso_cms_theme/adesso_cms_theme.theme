@@ -272,11 +272,11 @@ function adesso_cms_theme_preprocess_block(array &$variables) {
   // Add logo to footer.
   if (isset($variables['elements']['#id']) && $variables['elements']['#id'] == 'footer') {
     $config = \Drupal::config('system.site');
-    $theme_path = \Drupal::service('extension.list.theme')->getPath('adesso_cms_theme');
-    if ($theme_path && is_string($theme_path)) {
-      $variables['site_logo'] = '/' . Html::escape($theme_path) . '/static/images/logo.svg';
-    }
+    // Use the actual theme logo setting instead of hardcoded path
+    $logo_url = theme_get_setting('logo.url');
+    $variables['site_logo'] = $logo_url;
     $variables['site_name'] = $config->get('name');
+    $variables['show_logo'] = !empty($logo_url);
   }
 }
 
@@ -773,10 +773,20 @@ function adesso_cms_theme_preprocess_page(array &$variables): void
 
 function adesso_cms_theme_preprocess_menu(array &$variables)
 {
-
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
-  $variables['site_logo'] = theme_get_setting('logo.url');
+  
+  // Set logo variable (both site_logo and logo for backward compatibility)
+  $logo_url = theme_get_setting('logo.url');
+  $variables['site_logo'] = $logo_url;
+  $variables['logo'] = $logo_url;
+  
+  // Set front page URL
+  $variables['front_page'] = '/';
+  
+  // Set show_logo flag
+  $variables['show_logo'] = !empty($logo_url);
+  
   // Get the account menu by its machine name.
   $account_menu_name = 'account';
 

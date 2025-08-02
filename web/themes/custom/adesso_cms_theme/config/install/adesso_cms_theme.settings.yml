@@ -26,3 +26,13 @@ theme_settings:
   css_optimization: true
   js_optimization: true
   enable_flowbite: true
+
+# NEW: Branding Configuration
+primary_color: '#3b82f6'  # Default Indigo-600
+
+custom_logo:
+  fid: null
+  url: ''
+  alt: ''
+
+show_logo: true

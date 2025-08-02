@@ -1,271 +1,104 @@
 {#
  * @file
- * Site Header Component with Flowbite navbar integration
+ * Site Header Component - Rebuilt with derived menu structure
  * Implements Drupal SDC best practices and Tailwind v4 standards
  #}
 
-{%
-  set header_bg_classes = {
-    'white': 'bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700',
-    'gray': 'bg-gray-50 border-gray-300 dark:bg-gray-800 dark:border-gray-600',
-    'primary': 'bg-primary-700 border-primary-800 dark:bg-primary-800 dark:border-primary-900'
-  }
-%}
-
 {# Skip link for keyboard navigation #}
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 z-50 bg-primary-700 text-white px-4 py-2 rounded-br-lg">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 z-50 bg-indigo-600 text-white px-4 py-2 rounded-br-lg">
   {{ 'Skip to main content'|t }}
 </a>
 
-<header class="{{ header_bg_classes[background_color] ?? header_bg_classes.white }}" role="banner">
-  <nav class="relative mx-auto max-w-screen-xl px-4 lg:px-6 py-2.5" aria-label="{{ 'Main navigation'|t }}" role="navigation">
-    <div class="flex flex-wrap items-center justify-between">
-      
-      {# Logo and Site Name Section #}
-      <a href="/" class="flex items-center gap-3" aria-label="{{ 'Homepage'|t }}">
-        {% if show_logo|default(true) and site_logo|default('') %}
-          {% include 'adesso_cms_theme:logo' with {
-            site_logo: site_logo,
-            modifier: 'h-8 sm:h-10'
-          } %}
+<header class="absolute inset-x-0 top-0 z-50" role="banner">
+  <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8" x-data="{ mobileMenuOpen: false }">
+    
+    {# Logo Section #}
+    <div class="flex lg:flex-1">
+      <a href="{{ front_page }}" class="-m-1.5 p-1.5" aria-label="{{ site_name }}">
+        {% if show_logo and logo %}
+          <span class="sr-only">{{ site_name }}</span>
+          <img src="{{ logo }}" alt="{{ logo_alt|default(site_name) }}" class="h-8 w-auto theme-logo">
+        {% else %}
+          <span class="text-lg font-bold text-gray-900">{{ site_name }}</span>
         {% endif %}
       </a>
-
-      {# Right Side: Navigation, Search, Action Buttons and Mobile Toggle #}
-      <div class="flex items-center gap-2 lg:order-2">
-        
-        {# Desktop Navigation - now positioned on the right #}
-        <div class="lg:flex max-lg:hidden lg:items-center lg:gap-8" id="navbar-desktop">
-          {% if menu_items %}
-            <ul class="flex flex-row gap-8 font-medium" role="menubar">
-              {% for item in menu_items %}
-                <li role="none" class="relative">
-                  {% if item.below and enable_mega_menu %}
-                    {# Mega Menu Dropdown Trigger #}
-                    <button id="mega-menu-{{ loop.index }}" 
-                            data-dropdown-toggle="mega-dropdown-{{ loop.index }}"
-                            data-dropdown-placement="bottom-start"
-                            class="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-50 {% if background_color == 'primary' %}text-white hover:text-primary-200 hover:bg-primary-800{% else %}text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500 dark:hover:bg-gray-700{% endif %}"
-                            role="menuitem"
-                            aria-expanded="false"
-                            aria-haspopup="menu"
-                            aria-controls="mega-dropdown-{{ loop.index }}"
-                            aria-label="{{ 'Toggle %title submenu'|t({'%title': item.title}) }}">
-                      {{ item.title }}
-                      <svg class="ml-2 size-4 transition-transform" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                      </svg>
-                    </button>
-                  {% elseif item.below %}
-                    {# Regular Dropdown Menu #}
-                    <button id="dropdown-{{ loop.index }}"
-                            data-dropdown-toggle="dropdown-menu-{{ loop.index }}"
-                            data-dropdown-placement="bottom-start"
-                            class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out hover:bg-gray-50 {% if background_color == 'primary' %}text-white hover:text-primary-200 hover:bg-primary-800{% else %}text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500 dark:hover:bg-gray-700{% endif %}"
-                            role="menuitem"
-                            aria-expanded="false"
-                            aria-haspopup="true">
-                      {{ item.title }}
-                      <svg class="ml-2 size-4 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                      </svg>
-                    </button>
-                    
-                    {# Regular Dropdown Menu Content #}
-                    <div id="dropdown-menu-{{ loop.index }}" 
-                         class="absolute right-0 top-full z-20 mt-1 hidden w-max min-w-48 rounded-lg border border-gray-100 bg-white shadow-lg ring-1 ring-gray-900/5 dark:border-gray-700 dark:bg-gray-800 opacity-0 scale-95 transition-all duration-200 ease-in-out"
-                         role="menu"
-                         aria-labelledby="dropdown-{{ loop.index }}"
-                         aria-hidden="true">
-                      <ul class="py-2" role="menu">
-                        {% for subitem in item.below %}
-                          <li role="none">
-                            <a href="{{ subitem.url }}" 
-                               class="block px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-gray-100 hover:text-primary-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
-                               role="menuitem">
-                              {{ subitem.title }}
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  {% else %}
-                    {# Regular Menu Link #}
-                    <a href="{{ item.url }}" 
-                       class="block rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-50 {% if background_color == 'primary' %}text-white hover:text-primary-200 hover:bg-primary-800{% else %}text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500 dark:hover:bg-gray-700{% endif %} {% if item.url == current_path %}bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300{% endif %}"
-                       role="menuitem"
-                       {% if item.url == current_path %}aria-current="page"{% endif %}>
-                      {{ item.title }}
-                    </a>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
-        
-        {# Search Dropdown #}
-        {% if show_search %}
-          <div class="relative">
-            <button id="search-dropdown-toggle" 
-                    data-dropdown-toggle="search-dropdown" 
-                    class="inline-flex size-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 {% if background_color == 'primary' %}text-white hover:bg-primary-800 dark:hover:bg-primary-900{% else %}dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600{% endif %}"
-                    aria-label="{{ 'Toggle search menu'|t }}"
-                    aria-expanded="false"
-                    aria-haspopup="true">
-              <span class="sr-only">{{ 'Open search menu'|t }}</span>
-              <svg class="size-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-              </svg>
-            </button>
-            
-            {# Search Dropdown Menu #}
-            <div id="search-dropdown" 
-                 class="absolute right-0 top-full z-20 mt-1 hidden w-80 rounded-lg border border-gray-100 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
-                 role="menu"
-                 aria-labelledby="search-dropdown-toggle">
-              <div class="p-4">
-                <form method="get" action="{{ search_action_url }}" class="relative">
-                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="size-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                  </div>
-                  <input type="search" 
-                         id="search-input" 
-                         name="keys"
-                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" 
-                         placeholder="{{ search_placeholder }}" 
-                         aria-label="{{ 'Search'|t }}"
-                         autocomplete="off">
-                  <button type="submit" 
-                          class="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <span class="sr-only">{{ 'Submit search'|t }}</span>
-                    <svg class="size-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        {% endif %}
-
-        {% if show_login_button %}
-          <a href="{{ login_url }}" 
-             class="rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 lg:px-5 lg:py-2.5 {% if background_color == 'primary' %}text-white hover:bg-primary-800 dark:hover:bg-primary-900{% else %}text-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800{% endif %}">
-            {{ 'Login'|t }}
-          </a>
-        {% endif %}
-        
-        {% if show_register_button %}
-          <a href="{{ register_url }}" 
-             class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 lg:px-5 lg:py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-            {{ 'Register'|t }}
-          </a>
-        {% endif %}
-
-        {# Mobile Menu Toggle Button #}
-        <button data-collapse-toggle="navbar-main" 
-                type="button" 
-                class="inline-flex size-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="navbar-main" 
-                aria-expanded="false"
-                aria-label="{{ 'Toggle navigation menu'|t }}">
-          <span class="sr-only">{{ 'Open main menu'|t }}</span>
-          <svg class="size-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-        </button>
-      </div>
-
-      {# Mobile Navigation Menu - Only shown on mobile #}
-      <div class="hidden w-full lg:hidden" id="navbar-main">
-        {% if menu_items %}
-          <ul class="mt-4 flex flex-col gap-4 rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium {% if background_color == 'primary' %}dark:bg-primary-800{% else %}dark:bg-gray-800 dark:border-gray-700{% endif %}" role="menubar">
-            {% for item in menu_items %}
-              <li role="none">
-                {% if item.below and enable_mega_menu %}
-                  {# Mega Menu Dropdown Trigger - Mobile #}
-                  <button id="mobile-mega-menu-{{ loop.index }}" 
-                          data-dropdown-toggle="mobile-mega-dropdown-{{ loop.index }}"
-                          class="flex w-full items-center justify-between rounded-sm py-2 pl-3 pr-4 transition-colors hover:bg-gray-100 {% if background_color == 'primary' %}text-white{% else %}text-gray-900 dark:text-white{% endif %} dark:hover:bg-gray-700"
-                          role="menuitem"
-                          aria-expanded="false"
-                          aria-haspopup="menu"
-                          aria-controls="mobile-mega-dropdown-{{ loop.index }}"
-                          aria-label="{{ 'Toggle %title submenu'|t({'%title': item.title}) }}">
-                    {{ item.title }}
-                    <svg class="ml-2 size-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                    </svg>
-                  </button>
-                {% else %}
-                  {# Regular Menu Link - Mobile #}
-                  <a href="{{ item.url }}" 
-                     class="block rounded-sm py-2 pl-3 pr-4 transition-colors hover:bg-gray-100 {% if background_color == 'primary' %}text-white{% else %}text-gray-900 dark:text-white{% endif %} dark:hover:bg-gray-700"
-                     role="menuitem"
-                     {% if item.url == current_path %}aria-current="page"{% endif %}>
-                    {{ item.title }}
-                  </a>
-                {% endif %}
-
-                {# Mobile Submenu #}
-                {% if item.below and not enable_mega_menu %}
-                  <ul class="ml-4 mt-2 space-y-1 border-l border-gray-200 pl-4 dark:border-gray-600" role="menu">
-                    {% for subitem in item.below %}
-                      <li role="none">
-                        <a href="{{ subitem.url }}" 
-                           class="block py-1 text-sm transition-colors hover:text-primary-700 {% if background_color == 'primary' %}text-primary-100{% else %}text-gray-700 dark:text-gray-300{% endif %} dark:hover:text-primary-400"
-                           role="menuitem">
-                          {{ subitem.title }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
     </div>
-
-    {# Mega Menu Dropdowns (shown only on desktop) #}
-    {% if enable_mega_menu and menu_items %}
-      {% for item in menu_items %}
-        {% if item.below %}
-          <div id="mega-dropdown-{{ loop.index }}" 
-               class="absolute left-0 right-0 top-full z-20 mt-1 hidden w-full rounded-lg border border-gray-100 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
-               role="menu"
-               aria-labelledby="mega-menu-{{ loop.index }}"
-               aria-hidden="true">
-            <div class="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3">
-              {% for subitem in item.below %}
-                <div role="none">
-                  <a href="{{ subitem.url }}" 
-                     class="group block rounded-lg p-3 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
-                     role="menuitem"
-                     tabindex="-1">
-                    <div class="font-semibold text-gray-900 group-hover:text-primary-700 dark:text-white dark:group-hover:text-primary-400">
-                      {{ subitem.title }}
-                    </div>
-                    {% if subitem.description %}
-                      <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        {{ subitem.description }}
-                      </div>
-                    {% endif %}
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-
+    
+    {# Mobile Menu Toggle Button #}
+    <div class="flex lg:hidden">
+      <button type="button" 
+              @click="mobileMenuOpen = true"
+              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" 
+              aria-expanded="false">
+        <span class="sr-only">{{ 'Open main menu'|t }}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6" aria-hidden="true">
+          <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+    
+    {# Desktop Navigation Menu #}
+    <div class="hidden lg:flex lg:gap-x-12">
+      <a href="#" class="text-sm/6 font-semibold text-gray-900">Product</a>
+      <a href="#" class="text-sm/6 font-semibold text-gray-900">Features</a>
+      <a href="#" class="text-sm/6 font-semibold text-gray-900">Marketplace</a>
+      <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
+    </div>
+    
+    {# Login Button (Desktop) #}
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      <a href="#" class="text-sm/6 font-semibold text-gray-900">{{ 'Log in'|t }} <span aria-hidden="true">→</span></a>
+    </div>
+    
   </nav>
   
-  {# Live region for navigation state announcements #}
-  <div id="nav-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  {# Mobile Menu Dialog #}
+  <div x-show="mobileMenuOpen" 
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 scale-95"
+       x-transition:enter-end="opacity-100 scale-100"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 scale-100"
+       x-transition:leave-end="opacity-0 scale-95"
+       class="lg:hidden" 
+       x-cloak>
+    <div class="fixed inset-0 z-50">
+      <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div class="flex items-center justify-between">
+          <a href="{{ front_page }}" class="-m-1.5 p-1.5">
+            {% if show_logo and logo %}
+              <span class="sr-only">{{ site_name }}</span>
+              <img src="{{ logo }}" alt="{{ logo_alt|default(site_name) }}" class="h-8 w-auto theme-logo">
+            {% else %}
+              <span class="text-lg font-bold text-gray-900">{{ site_name }}</span>
+            {% endif %}
+          </a>
+          <button type="button" 
+                  @click="mobileMenuOpen = false"
+                  class="-m-2.5 rounded-md p-2.5 text-gray-700" 
+                  aria-expanded="false">
+            <span class="sr-only">{{ 'Close menu'|t }}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6" aria-hidden="true">
+              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a>
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Features</a>
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+            </div>
+            <div class="py-6">
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{{ 'Log in'|t }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </header>
+

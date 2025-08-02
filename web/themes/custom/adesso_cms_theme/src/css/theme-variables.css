@@ -1,0 +1,19 @@
+/**
+ * @file theme-variables.css
+ * Tailwind v4 Theme Configuration
+ * Logo variables and theme-specific overrides
+ */
+
+/* Logo Variables */
+:root {
+  --theme-logo-height: 40px;
+  --theme-logo-width: auto;
+}
+
+/* Logo styling */
+.theme-logo {
+  height: var(--theme-logo-height);
+  width: var(--theme-logo-width);
+  max-height: 3rem;
+  object-fit: contain;
+}

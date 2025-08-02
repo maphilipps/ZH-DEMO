@@ -20,6 +20,12 @@
  */
 #}
 
-{# Map Drupal menu data to CivicTheme component structure #}
-{% embed 'adesso_cms_theme:main-menu' with { nested: array_for_sdc } %}{% endembed %}
+{# Map Drupal menu data to component structure with logo data #}
+{% embed 'adesso_cms_theme:main-menu' with { 
+  nested: array_for_sdc,
+  logo: logo,
+  site_name: site_name,
+  front_page: front_page,
+  show_logo: show_logo
+} %}{% endembed %}
 

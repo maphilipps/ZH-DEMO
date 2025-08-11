@@ -1,0 +1,42 @@
+{
+  "name": "BackstopJS Visual Regression Testing",
+  "version": "1.0.0",
+  "description": "Automated visual regression testing after each task completion",
+  "hooks": {
+    "after-task": {
+      "enabled": true,
+      "script": ".claude/hooks/after-task-backstop.sh",
+      "description": "Runs BackstopJS tests after task completion",
+      "timeout": 120000,
+      "continueOnError": true,
+      "notifications": {
+        "onSuccess": "Visual regression tests passed",
+        "onFailure": "Visual differences detected - review required",
+        "onError": "BackstopJS testing failed to execute"
+      }
+    }
+  },
+  "config": {
+    "autoRun": true,
+    "skipOnDraft": false,
+    "scenarios": [
+      "Landing Page - Welcome adesso CMS",
+      "Basic Page - Our Product Vision", 
+      "Basic Page - Events",
+      "Basic Page - Complete Paragraph Showcase"
+    ],
+    "viewports": [
+      {
+        "label": "mobile",
+        "width": 375,
+        "height": 667
+      },
+      {
+        "label": "desktop",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  }
+}
+EOF < /dev/null

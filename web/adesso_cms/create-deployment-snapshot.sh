@@ -1,1 +1,0 @@
-../../create-deployment-snapshot.sh

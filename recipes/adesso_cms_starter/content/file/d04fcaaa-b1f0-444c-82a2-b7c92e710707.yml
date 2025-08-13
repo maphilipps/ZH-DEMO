@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: d04fcaaa-b1f0-444c-82a2-b7c92e710707
+  default_langcode: de
+default:
+  filename:
+    -
+      value: reachbird-influencer-marketing-map-2025.jpg
+  uri:
+    -
+      value: 'public://news-images/reachbird-influencer-marketing-map-2025.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 67795
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754291491

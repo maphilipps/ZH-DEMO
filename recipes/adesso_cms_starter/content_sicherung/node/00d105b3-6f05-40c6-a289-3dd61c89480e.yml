@@ -1,0 +1,117 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 00d105b3-6f05-40c6-a289-3dd61c89480e
+  bundle: page
+  default_langcode: de
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: false
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Privacy policy'
+  created:
+    -
+      value: 1729164335
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: draft
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Privacy policy | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/privacy-policy'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Privacy policy'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Nothing here yet.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-03T20:18:57+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Nothing here yet.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Privacy policy'
+  path:
+    -
+      alias: /privacy-policy
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<h2>This content needs to be edited before publishing</h2><p>Please note that your site requires a privacy statement.</p>'
+      format: content_format
+  field_description:
+    -
+      value: 'Nothing here yet.'

@@ -1,0 +1,62 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Paragraph Wrapper
+description: A reusable wrapper component for paragraph content with theme support and semantic HTML structure
+props:
+  type: object
+  properties:
+    theme:
+      type: string
+      title: theme
+      description: Theme variant for the wrapper (default, light, dark, or custom theme)
+      default: default
+      enum:
+        - default
+        - light
+        - dark
+        - primary
+        - secondary
+        - accent
+    className:
+      type: string
+      title: className
+      description: Additional CSS classes for the wrapper container
+    id:
+      type: string
+      title: id
+      description: Optional unique identifier for the wrapper element
+    tag:
+      type: string
+      title: tag
+      description: HTML tag to use for the wrapper element
+      default: div
+      enum:
+        - div
+        - section
+        - article
+        - aside
+        - main
+        - header
+        - footer
+    spacing:
+      type: string
+      title: spacing
+      description: Predefined spacing configuration for the wrapper
+      enum:
+        - none
+        - small
+        - medium
+        - large
+        - xlarge
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: attributes
+      description: HTML attributes object for the wrapper element
+slots:
+  content:
+    title: Content
+    required: true
+    description: The main paragraph content to be wrapped
+  prefix:
+    title: Prefix
+    required: false
+    description: Frontend editing tools and prefix content

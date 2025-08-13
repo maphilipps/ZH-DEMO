@@ -3,7 +3,7 @@ description: 'adesso CMS paragraph types.'
 type: 'Site'
 
 install:
-  # Core
+  # Core modules
   - block_content
   - image
   - link
@@ -12,15 +12,33 @@ install:
   - options
   - responsive_image
   - text
-  # Contrib
+  - file
+  # Contrib modules
   - focal_point
   - paragraphs
   - paragraphs_features
+  - paragraphs_ee
+  - paragraphs_edit
+  - entity_reference_revisions
   - viewfield
   - webp
+  - crop
+  - entity_browser
+  - dropzonejs
+  - dropzonejs_eb_widget
+  - webform
 
 config:
+  strict: false
   import:
-    # Import field_paragraphs configuration for basic page content type
-    paragraphs:
-      - field.field.node.page.field_paragraphs
+    # Import all paragraph types
+    paragraphs: '*'
+    # Import field configurations
+    field: '*'
+    # Import image styles and responsive image styles
+    image: '*'
+    responsive_image: '*'
+    # Import crop configurations
+    crop: '*'
+    # Import paragraph categories
+    paragraphs_ee: '*'

@@ -1,0 +1,55 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Landing Page Header
+description: Combined navigation and hero header for landing pages
+status: stable
+group: Layout
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Page Title
+      description: The main title for the landing page
+      default: ""
+    description:
+      type: string
+      title: Page Description
+      description: The description text below the title
+      default: ""
+    background_image:
+      type: string
+      title: Background Image
+      description: URL of the background image
+      default: ""
+    alt_text:
+      type: string
+      title: Alt Text
+      description: Alt text for the background image
+      default: ""
+    site_name:
+      type: string
+      title: Site Name
+      description: Name of the site for logo
+      default: "adessoCMS"
+    logo:
+      type: string
+      title: Logo
+      description: Site logo URL
+      default: ""
+    front_page:
+      type: string
+      title: Front Page URL
+      description: URL to the front page
+      default: "/"
+    main_menu:
+      type: array
+      title: Main Menu Items
+      description: Navigation menu items
+      default: []
+    has_admin_toolbar:
+      type: boolean
+      title: Has Admin Toolbar
+      description: Whether admin toolbar is present (adjusts positioning)
+      default: false
+libraryDependencies:
+  - adesso_cms_theme/global

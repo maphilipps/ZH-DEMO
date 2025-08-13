@@ -1,714 +1,417 @@
-# Adesso CMS - Enterprise Drupal Project
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-### Technical Stack
-- **CMS**: Drupal 10/11
-- **Local Environment**: DDEV
-- **Frontend**:
-    - Template Engine: Twig
-    - CSS Framework: Tailwind CSS v4
-    - Interactive JS: Alpine.js
-    - UI Components: Flowbite
-    - Component Library: Storybook with SDC (Single Directory Components)
-- **Backend**:
-    - PHP 8.2+
-    - Composer for dependency management
-    - Drush for Drupal CLI operations
-- **DevOps**:
-    - Version Control: Git
-    - CI/CD: GitLab CI/CD
-    - Container: Docker (via DDEV)
-    - Testing: PHPUnit, Behat, BackstopJS
+This is the **Adesso CMS** project - a modern Drupal 11 CMS implementation leveraging cutting-edge AI integration, component-driven development, and enterprise-grade content management capabilities. The project features a comprehensive agent ecosystem designed for efficient Drupal development workflows.
 
-### Directory Structure
+### **Technology Stack**
+- **Drupal Core**: 11.2.2 (Latest Drupal 11)
+- **PHP**: 8.3 with MariaDB 10.11
+- **Frontend**: Vite 6.2.0 + Tailwind CSS v4 + Alpine.js patterns
+- **Components**: Single Directory Components (SDC) + Storybook 8.6.7
+- **AI Integration**: Drupal CMS AI with OpenAI (GPT-4o), Anthropic (Claude), and Groq providers
+- **Development**: DDEV environment with comprehensive testing suite
+
+### **Key Features**
+- **25+ Custom SDC Components** with Storybook documentation
+- **AI-Powered Content Generation** with automated alt text and suggestions
+- **Modern Build Pipeline** with Vite HMR and PostCSS processing
+- **Comprehensive Testing** including Visual Regression (BackstopJS), E2E (Playwright), and Unit (Vitest)
+- **Enterprise Accessibility** with WCAG 2.1 AA compliance tools
+- **Advanced Performance Optimization** with Core Web Vitals monitoring
+
+### **Project Structure**
 ```
-adesso-cms/
-├── .claude/               # AI agent configurations
-│   └── agents/           # Team agent definitions
-├── .ddev/                # DDEV configuration
-├── .gitlab-ci.yml        # GitLab CI/CD pipeline
-├── composer.json         # PHP dependencies
-├── config/               # Drupal configuration
-├── recipes/              # Drupal recipes
-├── vendor/               # Composer dependencies
-├── web/                  # Drupal web root
-│   ├── core/            # Drupal core
-│   ├── modules/         # Contributed and custom modules
-│   │   ├── contrib/     # Contributed modules
-│   │   └── custom/      # Custom modules
-│   ├── themes/          # Themes
-│   │   └── custom/      # Custom themes
-│   │       └── adesso_cms_theme/
-│   │           ├── components/    # SDC components
-│   │           ├── templates/     # Twig templates
-│   │           └── storybook/     # Storybook stories
-│   └── sites/           # Sites configuration
-└── tests/                # Test suites
+/web/themes/custom/adesso_cms_theme/
+├── components/           # 25+ SDC components (hero, gallery, accordion, etc.)
+├── src/                 # Source assets (CSS, JS)
+├── .storybook/          # Component documentation
+└── tests/               # Component and visual tests
+
+/recipes/
+├── adesso_cms_starter/  # Site initialization recipe
+└── adesso_cms_paragraphs/ # Custom paragraph components
+
+/config-export/          # Drupal configuration management
 ```
 
-## Environment Setup
+The agents work together as a specialized development team, with each agent having domain expertise in specific aspects of Drupal development, from AI integration to component architecture.
 
-### Initial Setup
-```bash
-# Clone repository
-git clone [repository-url]
-cd adesso-cms
+## Working with Agents
 
-# Start DDEV
-ddev start
+When creating or modifying agents:
+1. Agents are Markdown files with YAML frontmatter
+2. Most agents should omit the `tools` field to inherit all available tools
+3. Use XML-style examples in descriptions for intelligent invocation
+4. Agents return structured findings for main agent coordination
 
-# Install dependencies
-ddev composer install
+## Orchestration Pattern for Claude Code
 
-# Import database
-ddev import-db --file=database.sql.gz
+Since sub-agents in Claude Code cannot directly invoke other sub-agents, orchestration follows this strict pattern:
 
-# Import files
-ddev import-files --source=files.tar.gz
+### CRITICAL: Agent Routing Protocol
 
-# Run database updates
-ddev drush updb -y
+**When handling complex tasks, you MUST:**
 
-# Clear caches
-ddev drush cr
+1. **ALWAYS start with tech-lead-orchestrator** for any multi-step task
+2. **FOLLOW the agent routing map** returned by tech-lead EXACTLY
+3. **USE ONLY the agents** explicitly recommended by tech-lead
+4. **NEVER select agents independently** - tech-lead knows which agents exist
+
+### Example: Building a Feature with Agent Routing
+
 ```
+User: "Build a user management system"
 
-### Daily Development
-```bash
-# Start environment
-ddev start
-
-# Check status
-ddev describe
-
-# Access site
-ddev launch
-
-# SSH into container
-ddev ssh
-```
-
-## Team Agents & Instructions
-
-### 1. drupal-technical-pm
-**Role**: Technical Project Manager  
-**Auto-accept**: No (requires oversight for planning decisions)
-```
-Primary responsibilities:
-- Sprint planning and task breakdown
-- Technical specification creation
-- Team coordination and blocker resolution
-- Time estimation and project timeline management
-- GitLab issue and milestone management
-```
-
-### 2. drupal-solution-architect
-**Role**: Solution Architect  
-**Auto-accept**: No (architectural decisions need review)
-```
-Primary responsibilities:
-- High-level technical architecture decisions
-- Module selection and evaluation
-- Performance and security concept development
-- Integration architecture design
-- Technical documentation oversight
-```
-
-### 3. drupal-senior-backend-dev
-**Role**: Senior Backend Developer  
-**Auto-accept**: Yes (for implementation tasks)
-```
-Primary responsibilities:
-- Custom module development
-- API integrations
-- Database optimization
-- Complex business logic implementation
-- Code review and mentoring
-```
-
-### 4. business-transformation-consultant
-**Role**: Business Consultant  
-**Auto-accept**: No (strategic decisions)
-```
-Primary responsibilities:
-- Requirements engineering
-- Business process analysis
-- Stakeholder communication
-- User story creation
-- ROI analysis and reporting
-```
-
-### 5. drupal-frontend-theming-specialist
-**Role**: Frontend Developer (Drupal Theming)  
-**Auto-accept**: Yes (for theming tasks)
-```
-Primary responsibilities:
-- Twig template development
-- SDC component creation
-- Responsive design implementation
-- Theme preprocessing and hooks
-- Render array manipulation
-```
-
-### 6. alpine-js-frontend-developer
-**Role**: Frontend Developer (JavaScript/Alpine.js)  
-**Auto-accept**: Yes (for JS development)
-```
-Primary responsibilities:
-- Alpine.js component development
-- Interactive UI implementation
-- Client-side performance optimization
-- Flowbite component integration
-- JavaScript testing
-```
-
-### 7. storybook-sdc-maintainer
-**Role**: Storybook Maintainer  
-**Auto-accept**: Yes (for component library tasks)
-```
-Primary responsibilities:
-- Storybook story creation and maintenance
-- SDC component documentation
-- Design system governance
-- Component API documentation
-- Visual regression testing setup
-```
-
-### 8. drupal-devops-engineer
-**Role**: DevOps Engineer  
-**Auto-accept**: No (infrastructure changes need review)
-```
-Primary responsibilities:
-- GitLab CI/CD pipeline management
-- DDEV configuration optimization
-- Deployment automation
-- Security scanning implementation
-- Performance monitoring setup
-```
-
-### 9. drupal-ux-designer
-**Role**: UX/Visual Designer  
-**Auto-accept**: No (design decisions need approval)
-```
-Primary responsibilities:
-- User interface design
-- Design system creation
-- Accessibility compliance
-- User journey mapping
-- Component design specifications
-```
-
-### 10. drupal-content-strategist
-**Role**: Content Strategist  
-**Auto-accept**: No (content architecture impacts system)
-```
-Primary responsibilities:
-- Content type architecture
-- Taxonomy design
-- Editorial workflow creation
-- Content migration planning
-- Data dictionary maintenance
-```
-
-### 11. qa-testing-specialist
-**Role**: QA/Testing Specialist  
-**Auto-accept**: Yes (for test implementation)
-```
-Primary responsibilities:
-- Test strategy development
-- Automated test implementation (PHPUnit, Behat)
-- Visual regression testing (BackstopJS)
-- Security testing
-- Performance testing
-```
-
-### 12. drupal-technical-support-lead
-**Role**: Technical Support Lead  
-**Auto-accept**: No (production issues need oversight)
-```
-Primary responsibilities:
-- Production issue triage
-- Bug investigation and resolution
-- Security update management
-- Client communication
-- Knowledge base maintenance
-```
-
-### 13. drupal-enterprise-architect
-**Role**: Enterprise Architect  
-**Auto-accept**: No (enterprise decisions)
-```
-Primary responsibilities:
-- Multi-site architecture planning
-- Cross-project standardization
-- Enterprise integration patterns
-- Scalability planning
-- Technology roadmap development
-```
-
-## Common Commands
-
-### DDEV Commands
-```bash
-# Environment management
-ddev start                    # Start project
-ddev stop                     # Stop project
-ddev restart                  # Restart services
-ddev describe                 # Show project info
-ddev launch                   # Open in browser
-
-# Development
-ddev ssh                      # SSH into web container
-ddev exec [command]           # Execute command in container
-ddev logs                     # View container logs
-ddev composer [command]       # Run composer
-ddev npm [command]           # Run npm in theme directory
-
-# Database
-ddev snapshot                 # Create database snapshot
-ddev snapshot restore         # Restore database
-ddev import-db                # Import database
-ddev export-db                # Export database
-```
-
-### Drush Commands
-```bash
-# Cache management
-ddev drush cr                 # Clear all caches
-ddev drush cc css-js         # Clear CSS/JS caches
-ddev drush cc render         # Clear render cache
-
-# Database
-ddev drush sql-dump          # Database dump
-ddev drush sql-cli           # Database CLI
-ddev drush updb              # Run database updates
-ddev drush entup             # Entity updates
-
-# Configuration
-ddev drush cim               # Import configuration
-ddev drush cex               # Export configuration
-ddev drush cst               # Configuration status
-
-# Development
-ddev drush uli               # User login link
-ddev drush ws                # Show watchdog messages
-ddev drush generate          # Generate boilerplate code
-```
-
-### GitLab CI/CD Commands
-```bash
-# Pipeline management
-git push -o ci.skip          # Skip CI pipeline
-git push -o ci.variable="VAR=value"  # Set pipeline variable
-
-# GitLab CLI
-glab mr create               # Create merge request
-glab mr list                 # List merge requests
-glab pipeline status         # Check pipeline status
-glab issue create            # Create issue
-```
-
-### Testing Commands
-```bash
-# PHPUnit
-ddev phpunit tests/          # Run all tests
-ddev phpunit --group=api     # Run specific group
-
-# Behat
-ddev behat                   # Run all scenarios
-ddev behat --tags=@api      # Run tagged scenarios
-
-# Code quality
-ddev phpcs                   # PHP CodeSniffer
-ddev phpcbf                  # PHP Code Beautifier
-ddev phpstan                 # Static analysis
-
-# Frontend testing
-cd web/themes/custom/adesso_cms_theme
-ddev npm test                # Run frontend tests
-ddev npm run lint            # Lint JavaScript
-ddev npm run build           # Build assets
-```
-
-### Custom Slash Commands
-```bash
-/sprint-plan                 # Initialize sprint planning
-/feature-start              # Start new feature branch
-/component-create           # Create new SDC component
-/test-all                   # Run all test suites
-/deploy-staging             # Deploy to staging
-/security-check             # Run security audit
-```
-
-## Workflow Templates
-
-### Sprint Planning Workflow
-```markdown
-1. **Technical PM** reviews backlog and creates sprint plan
-2. **Solution Architect** validates technical approach
-3. **Content Strategist** confirms content requirements
-4. **DevOps Engineer** prepares deployment plan
-5. **QA Specialist** creates test scenarios
-6. Team estimation session
-7. Sprint kickoff with clear agent assignments
-```
-
-### Feature Development Workflow
-```markdown
-1. Create feature branch: `git checkout -b feature/ISSUE-description`
-2. **Backend Developer** implements data layer
-3. **Frontend Developer** creates templates/components
-4. **Alpine.js Developer** adds interactivity
-5. **Storybook Maintainer** documents components
-6. **QA Specialist** writes/runs tests
-7. Code review by **Senior Backend Dev**
-8. Merge request with pipeline validation
-```
-
-### Bug Fixing Workflow
-```markdown
-1. **Support Lead** triages and documents issue
-2. Create bugfix branch: `git checkout -b bugfix/ISSUE-description`
-3. Reproduce issue in local environment
-4. Implement fix with tests
-5. Verify fix doesn't create regressions
-6. Deploy to staging for validation
-7. Fast-track merge after approval
-```
-
-### Code Review Process
-```markdown
-1. Self-review checklist:
-   - [ ] Coding standards compliance
-   - [ ] Tests passing
-   - [ ] Documentation updated
-   - [ ] No security vulnerabilities
-   - [ ] Performance impact assessed
+Main Claude Agent:
+1. First, I'll use the tech-lead-orchestrator to analyze and get routing
+   → Tech lead returns Agent Routing Map with SPECIFIC agents
    
-2. Automated checks:
-   - GitLab CI pipeline passes
-   - Code coverage maintained
-   - No merge conflicts
+2. I MUST use ONLY the agents listed in the routing map:
+   - If tech-lead says "use django-api-developer" → Use that EXACT agent
+   - If tech-lead says "use react-component-architect" → Use that EXACT agent
+   - DO NOT substitute with generic agents unless specified as fallback
    
-3. Peer review focus:
-   - Business logic correctness
-   - Architecture alignment
-   - Reusability and maintainability
+3. Execute tasks in the order specified by tech-lead using TodoWrite
 ```
 
-### Deployment Pipeline
+### Key Orchestration Rules
+
+1. **Tech-Lead is Routing Authority**: Tech-lead determines which agents can handle each task
+2. **Strict Agent Selection**: Use ONLY agents from tech-lead's "Available Agents" list
+3. **No Improvisation**: Do NOT select agents based on your own judgment
+4. **Deep Reasoning**: Apply careful thought when coordinating the recommended agents
+5. **Structured Handoffs**: Extract and pass information between agent invocations
+
+### Agent Selection Flow
+
+```
+CORRECT FLOW:
+User Request → Tech-Lead Analysis → Agent Routing Map → Execute with Listed Agents
+
+INCORRECT FLOW:
+User Request → Main Agent Guesses → Wrong Agent Selected → Task Fails
+```
+
+### Example Tech-Lead Response You Must Follow
+
+When tech-lead returns:
+```
+## Available Agents for This Project
+- django-backend-expert: Django tasks
+- django-api-developer: API tasks  
+- react-component-architect: React UI
+```
+
+You MUST use these specific agents, NOT generic alternatives like "backend-developer"
+
+## High-Level Architecture
+
+### Agent Organization
+The project follows a hierarchical structure:
+
+1. **Orchestrators** (`agents/orchestrators/`)
+    - `tech-lead-orchestrator`: Coordinates complex projects through three-phase workflow (Research → Planning → Execution)
+    - `project-analyst`: Detects technology stack and enables intelligent routing
+    - `team-configurator`: Creates agent routing rules in CLAUDE.md files
+
+2. **Core Agents** (`agents/core/`)
+    - Cross-cutting concerns like code archaeology, reviews, performance, and documentation
+    - These agents support all technology stacks
+
+3. **Universal Agents** (`agents/universal/`)
+    - Framework-agnostic specialists (API, backend, frontend, Tailwind)
+    - Fallback when no framework-specific agent exists
+
+4. **Specialized Agents** (`agents/specialized/`)
+    - Framework-specific experts organized by technology
+    - Subdirectories: laravel/, django/, rails/, react/, vue/
+
+### Three-Phase Orchestration Workflow (Main Agent Coordinated)
+
+The main Claude agent implements a human-in-the-loop workflow using the tech-lead-orchestrator:
+
+1. **Research Phase**: Tech-lead analyzes requirements and returns structured findings
+2. **Approval Gate**: Main agent presents findings and waits for human approval
+3. **Planning Phase**: Main agent creates tasks with TodoWrite based on tech-lead's recommendations
+4. **Execution Phase**: Main agent invokes specialists sequentially with filtered context
+
+### Agent Communication Protocol
+
+Since sub-agents cannot directly communicate or invoke each other:
+- **Structured Returns**: Each agent returns findings in a parseable format
+- **Context Passing**: Main agent extracts relevant information from returns
+- **Sequential Coordination**: Main agent manages the execution flow
+- **Handoff Information**: Agents include what the next specialist needs in their returns
+
+Example return format:
+```
+## Task Completed: API Design
+- Endpoints defined: GET/POST/PUT/DELETE /api/users
+- Authentication: Bearer token required
+- Next specialist needs: This API specification for implementation
+```
+
+### Intelligent Routing
+
+The system automatically routes tasks based on:
+1. Project context (detected by project-analyst)
+2. Framework-specific routing when applicable
+3. Universal fallback for unknown stacks
+4. Task requirements and agent expertise
+
+## Key Concepts
+
+### Agent Definition Format
 ```yaml
-stages:
-  - validate
-  - test
-  - build
-  - deploy
+---
+name: agent-name
+description: |
+  Expertise description with XML examples
+  Examples:
+  - <example>
+    Context: When to use
+    user: "Request"
+    assistant: "I'll use agent-name"
+    <commentary>Why selected</commentary>
+  </example>
+# tools: omit for all tools, specify for restrictions
+---
 
-validate:
-  - Composer validation
-  - Config validation
-  - Code standards
-
-test:
-  - PHPUnit tests
-  - Behat tests
-  - Visual regression tests
-
-build:
-  - Compile theme assets
-  - Generate optimized autoloader
-  - Create deployment artifact
-
-deploy:
-  - Deploy to staging (automatic)
-  - Deploy to production (manual)
+# Agent Name
+System prompt content...
 ```
 
-## Code Standards & Best Practices
+### Ambiguity Detection
+- Project-analyst flags uncertainties in analysis
+- Tech-lead presents research findings for approval before execution
+- Agents should identify assumptions needing clarification
 
-### Drupal Coding Standards
-```php
-// Follow Drupal coding standards
-// @see https://www.drupal.org/docs/develop/standards
+### Tool Inheritance
+- Omitting `tools` field = inherit all tools (recommended)
+- Specify tools only for security restrictions
+- Includes WebFetch, MCP tools when available
 
-// File naming
-module_name.module
-ModuleName.php
-module_name.services.yml
+## Development Guidelines
 
-// Function naming
-function module_name_entity_view() {}
+1. **Creating New Agents**:
+    - Use templates/agent-template.md as starting point
+    - Focus on single domain expertise
+    - Include 2-3 XML examples
+    - Define structured return format
 
-// Class naming
-namespace Drupal\module_name\Controller;
-class ModuleNameController {}
+2. **Agent Return Patterns**:
+    - Always return findings in structured format
+    - Include "Next Steps" or "Handoff Information"
+    - Specify what context next specialist needs
+    - Main agent will parse and coordinate
 
-// Documentation
-/**
- * Implements hook_entity_view().
- */
+3. **Testing Agents**:
+    - Test invocation patterns
+    - Verify delegation works correctly
+    - Ensure quality of output
+
+## Important Files and Patterns
+
+- `docs/orchestration-patterns.md`: Detailed three-phase workflow documentation
+- `docs/creating-agents.md`: Guide for creating new agents
+- `docs/best-practices.md`: Agent development best practices
+- `examples/`: Real-world usage examples
+- All agents support human-in-the-loop through the tech-lead's approval gate
+
+## Complete Orchestration Example
+
+Here's a full example showing proper agent routing:
+
+### User Request:
+"Help me build an authentication system for my web app"
+
+### Step 1: Tech-Lead Analysis
+```
+Main Agent: "I'll use the tech-lead-orchestrator to analyze this request and determine the best approach."
+
+[Invokes tech-lead-orchestrator]
 ```
 
-### Git Commit Conventions
-```bash
-# Format: [TYPE] Brief description (max 50 chars)
+### Step 2: Tech-Lead Returns Routing Map
+```
+## Agent Routing Map
 
-[ADD] New user registration feature
-[FIX] Resolve cache invalidation issue
-[UPDATE] Improve performance of node queries
-[REFACTOR] Simplify theme preprocessing logic
-[DOCS] Update README with deployment steps
-[TEST] Add coverage for custom block type
-[SECURITY] Patch XSS vulnerability in forms
+Task 1: Detect Project Technology
+- PRIMARY AGENT: project-analyst
+- REASON: Need to identify framework for proper routing
+
+Task 2: Design Authentication Schema  
+- PRIMARY AGENT: database-architect
+- REASON: Framework-agnostic database design
+
+Task 3: Implement Auth Backend
+- PRIMARY AGENT: django-backend-expert
+- FALLBACK AGENT: backend-developer
+- REASON: Django detected in project
+
+Task 4: Create Auth API Endpoints
+- PRIMARY AGENT: django-api-developer
+- FALLBACK AGENT: api-architect
+- REASON: Django REST Framework patterns
+
+## Available Agents for This Project
+- project-analyst
+- database-architect  
+- django-backend-expert
+- django-api-developer
+- code-reviewer
+
+## CRITICAL INSTRUCTION
+Use ONLY the agents listed above. Do NOT use laravel, rails, or other framework agents.
 ```
 
-### Testing Requirements
-```markdown
-1. Unit tests for all service classes
-2. Kernel tests for database operations
-3. Functional tests for user workflows
-4. JavaScript tests for Alpine.js components
-5. Visual regression tests for components
-6. Minimum 80% code coverage
-7. All tests must pass before merge
+### Step 3: Main Agent Executes Plan
+```
+Main Agent: "Based on the tech-lead's routing, I'll now coordinate the implementation:"
+
+1. ✓ Using project-analyst to analyze the codebase
+2. ✓ Using database-architect for auth schema design  
+3. ✓ Using django-backend-expert for implementation
+4. ✓ Using django-api-developer for API endpoints
+5. ✓ Using code-reviewer for security audit
+
+[Executes each step with the EXACT agents specified]
 ```
 
-### Documentation Standards
-```markdown
-1. README.md in each custom module
-2. CHANGELOG.md for version history
-3. API documentation in code
-4. Storybook stories for all components
-5. Architectural Decision Records (ADRs)
-6. Runbooks for common operations
+### What NOT to Do:
+```
+❌ "I'll use backend-developer" (when tech-lead specified django-backend-expert)
+❌ "I'll use rails-api-developer" (wrong framework)
+❌ "I'll skip the tech-lead and choose agents myself" (bypasses routing)
 ```
 
-## Error Handling & Debugging
+## Critical Reminders
 
-### Common Errors and Solutions
-
-#### WSOD (White Screen of Death)
-```bash
-# Enable error reporting
-ddev drush config-set system.logging error_level verbose -y
-
-# Check logs
-ddev logs -f
-ddev drush ws --extended
-
-# Common fixes
-ddev drush cr
-ddev composer install
-ddev drush updb -y
-```
-
-#### Performance Issues
-```bash
-# Enable query logging
-ddev drush config-set devel.settings query_display 1 -y
-
-# Profiling
-ddev xhprof enable
-ddev drush webprofiler:enable
-
-# Cache analysis
-ddev redis-cli monitor
-ddev drush cache-hit-rate
-```
-
-#### Configuration Sync Issues
-```bash
-# Check status
-ddev drush cst
-
-# Force import
-ddev drush cim --partial -y
-
-# Reset specific config
-ddev drush config-delete [config.name]
-ddev drush cim -y
-```
-
-### Debugging Strategies
-
-#### Backend Debugging
-```php
-// Drupal-specific debugging
-\Drupal::logger('custom')->debug(print_r($variable, TRUE));
-dump($variable); // With dump() function
-kint($variable); // With Kint module
-
-// Xdebug setup
-ddev xdebug on
-ddev xdebug status
-```
-
-#### Frontend Debugging
-```javascript
-// Alpine.js debugging
-Alpine.store('debug', true);
-x-init="$watch('property', value => console.log(value))"
-
-// Twig debugging
-{{ dump(variable) }}
-{{ kint(variable) }}
-```
-
-### Performance Optimization
-
-#### Database Optimization
-```sql
--- Analyze slow queries
-SHOW PROCESSLIST;
-EXPLAIN SELECT ...;
-
--- Optimize tables
-OPTIMIZE TABLE cache_*;
-```
-
-#### Asset Optimization
-```bash
-# Build production assets
-cd web/themes/custom/adesso_cms_theme
-ddev npm run build:prod
-
-# Analyze bundle size
-ddev npm run analyze
-```
-
-## Security & Compliance
-
-### Security Review Checklist
-```markdown
-- [ ] All user input sanitized
-- [ ] CSRF tokens on all forms
-- [ ] SQL injection prevention (use database API)
-- [ ] XSS prevention (use render arrays)
-- [ ] Access control on all routes
-- [ ] Secure file uploads
-- [ ] HTTPS enforced
-- [ ] Security headers configured
-- [ ] Regular security updates applied
-- [ ] Secrets in environment variables
-```
-
-### GDPR Compliance
-```markdown
-1. Privacy policy implementation
-2. Cookie consent management
-3. Data retention policies
-4. Right to deletion workflows
-5. Data export capabilities
-6. Audit logging for data access
-7. Encryption at rest and in transit
-```
-
-### Drupal Security Best Practices
-```bash
-# Regular security checks
-ddev composer outdated --direct
-ddev drush sec
-
-# Security updates
-ddev composer update drupal/core --with-dependencies
-ddev drush updb -y
-ddev drush cr
-
-# File permissions
-find web/sites/default/files -type d -exec chmod 755 {} \;
-find web/sites/default/files -type f -exec chmod 644 {} \;
-chmod 444 web/sites/default/settings.php
-```
-
-## Checkpoint & Review Process
-
-### Development Checkpoints
-```markdown
-Every 2-3 hours or major milestone:
-1. Commit current work
-2. Run test suite
-3. Update documentation
-4. Create visual snapshot (if UI work)
-5. Update todo list
-6. Brief status in GitLab issue
-```
-
-### End of Session
-```markdown
-1. Commit all changes with descriptive message
-2. Push to feature branch
-3. Run full test suite
-4. Update claude.md with new learnings
-5. Document any blockers in GitLab
-6. Create handoff notes for next session
-```
-
-## Visual-First Development
-
-### UI Development Process
-```markdown
-1. Screenshot current state
-2. Annotate planned changes
-3. Implement in Storybook first
-4. Integrate into Drupal
-5. Screenshot completed state
-6. Run visual regression tests
-```
-
-### Screenshot Commands
-```bash
-# Full page screenshot
-ddev snapshot-page /path/to/page
-
-# Component screenshot  
-ddev snapshot-component .component-class
-
-# Before/after comparison
-ddev backstop reference
-ddev backstop test
-```
-
-## MCP Server Configuration
-
-### Database Access
-```yaml
-# Secure database access via MCP
-mcp_servers:
-  - name: drupal_db
-    type: mysql
-    connection:
-      host: db
-      port: 3306
-      database: db
-      credentials: env
-```
-
-### File System Access
-```yaml
-# Controlled file access
-mcp_servers:
-  - name: drupal_files
-    type: filesystem
-    paths:
-      - /var/www/html/web/sites/default/files
-    permissions: read_write
-```
-
-## Quick Reference
-
-### Emergency Contacts
-- **Technical Lead**: Check GitLab project members
-- **DevOps On-Call**: See .gitlab-ci.yml for contacts
-- **Security Team**: security@adesso.de
-
-### Useful Links
-- [Drupal.org Documentation](https://www.drupal.org/docs)
-- [Drupal Security Advisories](https://www.drupal.org/security)
-- [GitLab Project](#) - Update with actual URL
-- [Staging Environment](#) - Update with actual URL
-- [Production Environment](#) - Update with actual URL
+- ALWAYS use tech-lead-orchestrator for multi-step tasks to get proper agent routing
+- FOLLOW the agent routing map exactly - do not improvise
+- USE deep reasoning when coordinating the recommended agents
+- TRUST the tech-lead's expertise in agent selection
 
 ---
-*Last Updated: 2025-01-30*  
-*Version: 1.0.0*
+
+## Drupal 11 CMS Project Configuration
+*Optimized by team-configurator on 2025-01-13*
+
+### Detected Technology Stack
+- **Backend**: Drupal 11.2.2 with extensive CMS suite integration
+- **Frontend**: Single Directory Components (SDC) + Alpine.js + Tailwind CSS v4
+- **AI Integration**: Drupal CMS AI with multiple providers (Anthropic, OpenAI, Groq)
+- **Component System**: Storybook + SDC for component development
+- **Testing**: Playwright + Drupal testing framework
+
+### Specialized Agent Routing for Drupal Development
+
+#### Core Development Workflows
+- **Module Development** → `drupal-11-lead-developer` → `code-reviewer`
+- **Configuration Management** → `drupal-configuration-expert` → `drupal-devops-engineer`
+- **Performance Optimization** → `drupal-performance-specialist` → `performance-optimizer`
+
+#### Content & Media Management
+- **Content Types** → `drupal-cms-content-types` → `drupal-11-lead-developer`
+- **Media Handling** → `drupal-media-expert` → `drupal-11-lead-developer`
+- **Content Strategy** → `drupal-content-strategist` → `drupal-cms-seo-analytics`
+
+#### Frontend & Component Development
+- **SDC Components** → `sdc-component-specialist` → `storybook-sdc-maintainer` → `alpine-js-frontend-developer`
+- **Theme Development** → `drupal-frontend-theming-specialist` → `tailwind-v4-expert`
+- **Responsive Design** → `tailwind-v4-expert` → `drupal-frontend-theming-specialist`
+
+#### AI-Enhanced Features
+- **AI Content Features** → `drupal-ai-integration-specialist` → `drupal-11-lead-developer`
+- **AI Configuration** → `drupal-ai-integration-specialist` → `drupal-cms-security-privacy`
+
+#### Operations & Deployment
+- **DevOps Pipeline** → `drupal-devops-engineer` → `drupal-configuration-expert`
+- **Security Review** → `drupal-cms-security-privacy` → `code-reviewer`
+- **Quality Assurance** → `qa-testing-specialist` → `performance-optimizer`
+
+### Common Task Examples
+- **"Create a new content type with AI suggestions"** → Use `drupal-cms-content-types` then `drupal-ai-integration-specialist`
+- **"Build a responsive component with Storybook"** → Use `sdc-component-specialist` then `storybook-sdc-maintainer`
+- **"Optimize site performance"** → Use `drupal-performance-specialist` then `performance-optimizer`
+- **"Configure multi-environment deployment"** → Use `drupal-configuration-expert` then `drupal-devops-engineer`
+
+### Missing Agents to Create
+To complete the optimization, create these critical agents:
+1. `drupal-ai-integration-specialist.md` - AI features integration
+2. `drupal-configuration-expert.md` - Configuration management
+3. `drupal-performance-specialist.md` - Drupal-specific performance
+4. `drupal-media-expert.md` - Complex media workflows
+5. `drupal-cms-suite-specialist.md` - CMS suite integration
+
+Your Drupal 11 CMS development team is now optimized for efficient AI-enhanced, component-based development!
+
+## Development Workflows
+
+### **Local Development Environment (DDEV)**
+```bash
+# Start development environment
+ddev start                    # Initialize DDEV environment
+ddev theme dev               # Start Vite dev server (localhost:5173)
+ddev theme storybook         # Start Storybook server (localhost:6006)
+
+# Asset building
+ddev theme watch             # Watch for changes with HMR
+ddev theme build             # Production build
+ddev npm run test            # Run Vitest component tests
+```
+
+### **Content Management Workflows**
+- **Content Creation**: Paragraph-based content with 15+ paragraph types
+- **AI Integration**: Automated alt text generation and content suggestions
+- **Multi-language**: Support for multiple content languages
+- **Media Management**: Enhanced with bulk upload and entity browser
+- **SEO Optimization**: Built-in SEO tools with automated meta generation
+
+### **Component Development Process**
+1. **Create SDC Component** in `/components/` directory
+2. **Add Storybook Story** for documentation and testing
+3. **Write Unit Tests** with Vitest for component logic
+4. **Visual Regression Tests** with BackstopJS scenarios
+5. **Integration Testing** with Drupal's testing framework
+
+### **Quality Assurance Pipeline**
+- **Performance Testing**: Core Web Vitals monitoring with Lighthouse
+- **Accessibility Validation**: WCAG 2.1 AA compliance checking
+- **Cross-browser Testing**: Playwright E2E test suite
+- **Code Quality**: ESLint + Stylelint + Drupal coding standards
+
+### **AI-Enhanced Development**
+- **Content Generation**: AI-powered content suggestions and generation
+- **Image Processing**: Automatic alt text generation for accessibility
+- **Translation Assistance**: AI-assisted content translation workflows
+- **Code Assistance**: Integration with Claude and GPT models for development
+
+## Project-Specific Conventions
+
+### **Coding Standards**
+- **PHP**: PSR-12 coding standards with Drupal-specific extensions
+- **JavaScript**: ESLint with Airbnb configuration
+- **CSS**: Stylelint with Tailwind CSS v4 best practices
+- **Templates**: Twig templating with accessibility-first approach
+
+### **Configuration Management**
+- **Config Export**: Comprehensive configuration in `/config-export/`
+- **Recipe System**: Drupal 11 recipes for reproducible installations
+- **Environment Parity**: Consistent configuration across dev/staging/production
+- **Version Control**: All configuration changes tracked in Git
+
+### **Performance Optimization**
+- **Asset Optimization**: Vite-based build pipeline with tree shaking
+- **Image Optimization**: Multiple responsive formats with WebP support
+- **Caching Strategy**: Drupal render caching with block-level granularity
+- **Core Web Vitals**: Automated performance monitoring and optimization
+
+### **Security & Compliance**
+- **Input Validation**: Comprehensive sanitization and validation
+- **Content Security**: AI moderation workflows for content safety
+- **Access Control**: Role-based permissions with content workflow
+- **GDPR Compliance**: Privacy-focused data handling and consent management

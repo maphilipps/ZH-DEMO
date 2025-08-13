@@ -50,22 +50,34 @@
     "drupal/core-recommended": "11.2.2",
     "drupal/dropzonejs": "^2.11",
     "drupal/drupal_cms_accessibility_tools": "*",
+    "drupal/drupal_cms_ai": "^1.2",
     "drupal/drupal_cms_analytics": "*",
+    "drupal/drupal_cms_content_type_base": "^1.2",
     "drupal/drupal_cms_events": "*",
-    "drupal/drupal_cms_forms": "*",
+    "drupal/drupal_cms_forms": "^1.2",
     "drupal/drupal_cms_news": "*",
     "drupal/drupal_cms_person": "*",
     "drupal/drupal_cms_project": "*",
+    "drupal/drupal_cms_privacy_basic": "*",
+
     "drupal/drupal_cms_search": "^1.0@RC",
-    "drupal/drupal_cms_seo_tools": "^1.0@RC",
+    "drupal/drupal_cms_seo_tools": "*",
     "drupal/entity_browser": "^2.13",
+    "drupal/media_bulk_upload": "^3.0",
+    "drupal/status_messages": "^4.6",
     "drupal/storybook": "^1.0",
     "drupal/twig_field_value": "^2.0",
     "drupal/twig_tweak": "^3.4",
     "drupalninja/drupalx_ai": "1.x-dev",
     "drush/drush": "^13",
     "enyo/dropzone": "^6.0@beta",
-    "vlucas/phpdotenv": "^5.6"
+    "vlucas/phpdotenv": "^5.6",
+
+    "drupal/drupal_cms_blog": "*",
+    "drupal/drupal_cms_case_study": "*",
+
+    "drupal/drupal_cms_page": "*"
+
   },
   "conflict": {
     "drupal/drupal": "*"

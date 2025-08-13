@@ -1,0 +1,419 @@
+{
+  "id": "theme_selector_frontend_rendering",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop",
+      "width": 1200,
+      "height": 800
+    }
+  ],
+  "onBeforeScript": "puppet/theme-selector-frontend-onBefore.js",
+  "onReadyScript": "puppet/theme-selector-frontend-onReady.js",
+  "scenarios": [
+    {
+      "label": "Text Paragraph - Light Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/1",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='light']",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='light']"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Text Paragraph - Highlighted Theme", 
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/2",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='highlighted']",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='highlighted']"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Text Paragraph - Dark Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/3",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='dark']",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='dark']"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Hero Paragraph - Light Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/4",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='light'] .hero",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='light'] .hero"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Hero Paragraph - Highlighted Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/5",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='highlighted'] .hero",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='highlighted'] .hero"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Hero Paragraph - Dark Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/6",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='dark'] .hero",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='dark'] .hero"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Card Group Paragraph - Light Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/7",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='light'] .card-group",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='light'] .card-group"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Card Group Paragraph - Highlighted Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/8",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='highlighted'] .card-group",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='highlighted'] .card-group"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Card Group Paragraph - Dark Theme",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/9",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper[data-theme='dark'] .card-group",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".paragraph-wrapper[data-theme='dark'] .card-group"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Mixed Themes - Full Page Layout",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/10",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".layout-content",
+      "delay": 1500,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".layout-content"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Contrast - CSS Variables Validation",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/theme-selector-test-page",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".theme-test-container",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".theme-test-container .paragraph-wrapper[data-theme='light']",
+        ".theme-test-container .paragraph-wrapper[data-theme='highlighted']",
+        ".theme-test-container .paragraph-wrapper[data-theme='dark']"
+      ],
+      "selectorExpansion": false,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Responsive - Mobile Theme Rendering",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/node/1",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".paragraph-wrapper",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".layout-content"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "onlyMobile": true
+    },
+    {
+      "label": "Theme Transitions - CSS Animation Test",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/theme-selector-test-page",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".theme-test-container",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".contextual",
+        ".gin-secondary-toolbar"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 1000,
+      "onReadyScript": "puppet/theme-transition-test.js",
+      "selectors": [
+        ".theme-test-container"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": true,
+      "onlyDesktop": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "playwright",
+  "engineOptions": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false,
+  "resembleOutputOptions": {
+    "errorColor": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "errorType": "movement",
+    "transparency": 0.3,
+    "ignoreAntialiasing": true
+  }
+}

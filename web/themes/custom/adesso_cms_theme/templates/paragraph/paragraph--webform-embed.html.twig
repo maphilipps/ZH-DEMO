@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Webform embed paragraph template using paragraph-wrapper component with embed pattern.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - paragraph.field_title: The form title.
+ * - paragraph.field_pre_headline: The pre-headline/subtitle.
+ */
+#}
+
+{# Webform embed paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('large') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}{% endblock %}
+  {% block content %}
+    <div class="py-8 px-4 mx-auto container lg:py-16">
+      
+      <div class="container mx-auto text-center">
+        {# Header section #}
+        {% if paragraph.field_pre_headline.value or content.field_form_title %}
+          {% include 'adesso_cms_theme:section-header' with {
+            title: content.field_form_title,
+            pre_headline: paragraph.field_pre_headline.value,
+            alignment: 'center',
+            title_tag: 'h2',
+            pre_headline_tag: 'p',
+            title_visual_level: '1',
+            pre_headline_visual_level: '4',
+            additional_classes: 'mb-4'
+          } %}
+        {% endif %}
+
+        {# Summary #}
+        {% if content.field_summary %}
+          <div class="mb-8 font-light text-gray-500 lg:mb-16 lg:text-xl">
+            {{ content.field_summary }}
+          </div>
+        {% endif %}
+      </div>
+
+      {# Webform Content #}
+      {% if content.field_select_webform %}
+        <div class="webform-container max-w-md mx-auto">
+          {{ content.field_select_webform }}
+        </div>
+      {% endif %}
+      
+    </div>
+  {% endblock %}
+{% endembed %}

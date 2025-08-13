@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7f514b44-0c8a-417c-b7a3-2817524e2cde
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: florian-schmetz-bb2s2zwovpm-unsplash_W2560xH1440_CUTOUT.jpg
+  uri:
+    -
+      value: 'public://2025-08/florian-schmetz-bb2s2zwovpm-unsplash_W2560xH1440_CUTOUT.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 909869
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

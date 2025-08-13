@@ -1,3 +1,24 @@
+{# Set variant-specific classes #}
+{% set variant = variant|default('default') %}
+{% set variant_classes = {
+  'default': {
+    'link_classes': 'text-sm/6 font-semibold text-gray-900 hover:text-primary',
+    'button_classes': 'inline-flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900',
+    'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700',
+    'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
+    'logo_variant': 'default'
+  },
+  'transparent': {
+    'link_classes': 'text-sm/6 font-semibold text-white hover:text-gray-200',
+    'button_classes': 'inline-flex items-center gap-x-1 text-sm/6 font-semibold text-white',
+    'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white',
+    'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
+    'logo_variant': 'inverted'
+  }
+} %}
+
+{% set current_variant = variant_classes[variant] %}
+
 {# Main Navigation Menu based on exact templates - no Alpine.js #}
 <nav class="relative isolate z-50">
       <div class="max-lg:hidden lg:flex lg:items-center lg:gap-x-12">
@@ -6,14 +27,14 @@
           {% if item.children is not empty %}
             <div class="relative">
               {% if item.url is empty or item.url.toString() == '<nolink>' %}
-                <button popovertarget="desktop-menu-{{ loop.index }}" class="inline-flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+                <button popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
                   {{ item.title }}
                   <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
                     <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                   </svg>
                 </button>
               {% else %}
-                <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} popovertarget="desktop-menu-{{ loop.index }}" class="inline-flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+                <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
                   {{ item.title }}
                   <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
                     <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -48,9 +69,9 @@
           {# Desktop menu items without children (simple links) #}
           {% else %}
             {% if item.url is empty or item.url.toString() == '<nolink>' %}
-              <span class="text-sm/6 font-semibold text-gray-900">{{ item.title }}</span>
+              <span class="{{ current_variant.link_classes }}">{{ item.title }}</span>
             {% else %}
-              <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} class="text-sm/6 font-semibold text-gray-900 hover:text-primary">{{ item.title }}</a>
+              <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} class="{{ current_variant.link_classes }}">{{ item.title }}</a>
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -58,7 +79,7 @@
 
   {# Mobile Menu Toggle Button #}
   <div class="flex lg:hidden">
-    <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-expanded="false">
+    <button type="button" command="show-modal" commandfor="mobile-menu" class="{{ current_variant.mobile_button_classes }}" aria-expanded="false">
       <span class="sr-only">{{ 'Open main menu'|t }}</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
         <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -73,12 +94,13 @@
         <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 transition-all duration-200">
           <div class="flex items-center justify-between">
             <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5">
-              {% if show_logo and logo %}
                 <span class="sr-only">{{ site_name|default('') }}</span>
-                <img src="{{ logo }}" alt="{{ site_name|default('') }}" class="h-8 w-auto">
-              {% else %}
-                <span class="text-lg font-bold text-gray-900">{{ site_name|default('adessoCMS') }}</span>
-              {% endif %}
+                {% include 'adesso_cms_theme:logo' with {
+                  site_logo: logo,
+                  site_name: site_name,
+                  variant: current_variant.logo_variant,
+                  modifier: 'h-8 w-auto'
+                } %}
             </a>
             <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700" aria-expanded="false">
               <span class="sr-only">{{ 'Close menu'|t }}</span>

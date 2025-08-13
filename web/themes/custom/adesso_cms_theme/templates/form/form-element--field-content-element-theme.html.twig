@@ -1,0 +1,193 @@
+{#
+/**
+ * @file
+ * Theme override for the Content Element Theme field form element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - errors: (optional) Any errors for this form element, may not be set.
+ * - prefix: (optional) The form element prefix, may not be set.
+ * - suffix: (optional) The form element suffix, may not be set.
+ * - required: The required marker, or empty if the associated form element is
+ *   not required.
+ * - type: The type of the element.
+ * - name: The name of the element.
+ * - label: A rendered label element.
+ * - label_display: Label display setting.
+ * - description: (optional) A list of description properties.
+ * - description_display: Description display setting.
+ * - disabled: True if the element is disabled.
+ * - title_display: Title display setting.
+ *
+ * @see template_preprocess_form_element()
+ */
+#}
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'js-form-type-' ~ type|clean_class,
+    'form-type-' ~ type|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    'form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'form-disabled',
+    errors ? 'form-item--error',
+    'mb-6',
+    'p-4',
+    'bg-blue-50',
+    'border',
+    'border-blue-200',
+    'rounded-lg',
+    'shadow-sm',
+  ]
+%}
+{%
+  set description_classes = [
+    'description',
+    description_display == 'invisible' ? 'visually-hidden',
+    'text-sm',
+    'text-blue-700',
+    'bg-blue-100',
+    'px-3',
+    'py-2',
+    'rounded',
+    'mt-3',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="flex items-start gap-3">
+    <div class="flex-shrink-0 mt-1">
+      <span class="text-2xl" role="img" aria-label="Theme">🎨</span>
+    </div>
+    <div class="flex-1 min-w-0">
+      {% if label_display in ['before', 'invisible'] %}
+        <div class="mb-3">
+          {{ label }}
+          {% if required %}
+            <span class="text-red-500 ml-1" aria-label="Required">*</span>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {% if description_display == 'before' and description.content %}
+        <div{{ description.attributes.addClass(description_classes) }}>
+          {{ description.content }}
+        </div>
+      {% endif %}
+      
+      <div class="relative">
+        {% if prefix is not empty %}
+          <span class="field-prefix absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">{{ prefix }}</span>
+        {% endif %}
+        
+        {{ children }}
+        
+        {% if suffix is not empty %}
+          <span class="field-suffix absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">{{ suffix }}</span>
+        {% endif %}
+      </div>
+      
+      {% if label_display == 'after' %}
+        <div class="mt-2">
+          {{ label }}
+          {% if required %}
+            <span class="text-red-500 ml-1" aria-label="Required">*</span>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {% if errors %}
+        <div class="form-item--error-message mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
+          <strong>{{ errors }}</strong>
+        </div>
+      {% endif %}
+      
+      {% if description_display in ['after', 'invisible'] and description.content %}
+        <div{{ description.attributes.addClass(description_classes) }}>
+          {{ description.content }}
+        </div>
+      {% else %}
+        {# Add helpful description if none exists #}
+        <div class="text-sm text-blue-700 bg-blue-100 px-3 py-2 rounded mt-3">
+          <strong>Theme Options:</strong>
+          <ul class="mt-1 ml-4 list-disc text-xs">
+            <li><strong>Light:</strong> Light gray background for emphasis and contrast</li>
+            <li><strong>Dark:</strong> Dark background with light text</li>
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+  {# Interactive theme preview cards #}
+  <div class="mt-4">
+    <h4 class="text-sm font-medium text-blue-900 mb-2">Theme Preview:</h4>
+    <div class="grid grid-cols-2 gap-3 text-xs">
+      <div class="theme-preview-card bg-gray-100 border border-gray-300 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md" 
+           data-theme="light" 
+           onclick="selectTheme('light')"
+           role="button" 
+           tabindex="0"
+           aria-label="Select Light Theme">
+        <div class="w-full h-6 bg-gray-100 border border-gray-400 rounded mb-2 flex items-center justify-center">
+          <span class="text-xs text-gray-700">Aa</span>
+        </div>
+        <span class="text-gray-700 font-medium">🌟 Light</span>
+        <div class="text-xs text-gray-600 mt-1">Emphasis</div>
+      </div>
+      <div class="theme-preview-card bg-gray-900 border border-gray-700 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md" 
+           data-theme="dark" 
+           onclick="selectTheme('dark')"
+           role="button" 
+           tabindex="0"
+           aria-label="Select Dark Theme">
+        <div class="w-full h-6 bg-gray-800 border border-gray-600 rounded mb-2 flex items-center justify-center">
+          <span class="text-xs text-gray-200">Aa</span>
+        </div>
+        <span class="text-gray-200 font-medium">🌙 Dark</span>
+        <div class="text-xs text-gray-400 mt-1">Night mode</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function selectTheme(themeValue) {
+    // Update the select element
+    const themeSelect = document.querySelector('select[name*="field_theme"]');
+    if (themeSelect) {
+      themeSelect.value = themeValue;
+      themeSelect.dispatchEvent(new Event('change'));
+    }
+    
+    // Update visual feedback
+    updateThemePreview(themeValue);
+  }
+  
+  function updateThemePreview(selectedTheme) {
+    const previewCards = document.querySelectorAll('.theme-preview-card');
+    previewCards.forEach(card => {
+      card.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-50');
+      if (card.dataset.theme === selectedTheme) {
+        card.classList.add('ring-2', 'ring-blue-500');
+      }
+    });
+  }
+  
+  // Add keyboard support for preview cards
+  document.addEventListener('keydown', function(e) {
+    if (e.target.classList.contains('theme-preview-card') && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      e.target.click();
+    }
+  });
+  
+  // Initialize preview on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeSelect = document.querySelector('select[name*="field_theme"]');
+    if (themeSelect && themeSelect.value) {
+      updateThemePreview(themeSelect.value);
+    }
+  });
+  </script>
+</div>

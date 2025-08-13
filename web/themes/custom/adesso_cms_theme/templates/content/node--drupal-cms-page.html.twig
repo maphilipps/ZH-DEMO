@@ -15,7 +15,7 @@
 ] %}
 
 <article{{ attributes.addClass(classes) }}>
-  <div class="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
+  <div class="mx-auto container p-4 sm:px-6 lg:px-8">
     
     <div class="mx-auto max-w-2xl">
       {{ title_prefix }}
@@ -23,7 +23,7 @@
       {{ title_suffix }}
 
       {% if content.body %}
-        <div class="prose prose-lg mt-8">
+        <div class="prose prose-xl mt-8">
           {{ content.body }}
         </div>
       {% endif %}

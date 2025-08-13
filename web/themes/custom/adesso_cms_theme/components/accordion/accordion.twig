@@ -1,35 +1,21 @@
-<div class="{{ (is_dark|default(false)) ? 'text-gray-900' : 'text-gray-900' }}">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 ">
-    {% if pre_headline|default('') %}
-      {% include 'adesso_cms_theme:heading' with {
-        heading: {
-          title: pre_headline,
-          as: 'span',
-          visual_level: '3',
-          custom_classes: 'block mb-4 text-2xl font-bold tracking-tight leading-none text-center text-gray-900'
-        }
-      } %}
-    {% endif %}
-    {% include 'adesso_cms_theme:heading' with {
-      heading: {
-        title: title,
-        as: 'h2',
-        custom_classes: 'text-3xl font-bold text-center text-gray-900'
-      }
-    } %}
-    <div class="mx-auto">
-      <div id="accordion-flush" data-accordion="collapse" data-active-classes="{{ (is_dark|default(false)) ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-900' }}" data-inactive-classes="text-gray-900">
-        {% block accordion_items %}
-          {% for item in accordion_items|default([]) %}
-            {% include 'adesso_cms_theme:accordion-item' with {
-              item: item,
-              is_expanded: loop.first,
-              accordion_instance: loop.index,
-              is_dark: is_dark|default(false),
-            } only %}
-          {% endfor %}
-        {% endblock %}
-      </div>
+{# Set theme based on parameter or default #}
+
+<div class="py-8 px-4 mx-auto container sm:py-16 lg:px-6 space-y-8">
+
+  <div class="mx-auto ">
+    <div data-accordion="collapse"
+         data-active-classes="[&>h2>button]:bg-[var(--theme-bg-active)]"
+         data-inactive-classes="[&>h2>button]:bg-[var(--theme-bg-secondary)]">
+      {% block accordion_items %}
+        {% for item in accordion_items|default([]) %}
+          {% include 'adesso_cms_theme:accordion-item' with {
+            item: item,
+            is_expanded: loop.first,
+            accordion_instance: loop.index,
+            is_dark: is_dark|default(false),
+          } only %}
+        {% endfor %}
+      {% endblock %}
     </div>
   </div>
 </div>

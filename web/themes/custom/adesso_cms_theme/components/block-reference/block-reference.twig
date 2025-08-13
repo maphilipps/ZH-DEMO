@@ -9,15 +9,17 @@
  * @param {boolean} is_dark - Whether to use dark theme
  */
 #}
-<div class="block-reference-container max-w-4xl">
-  {% if pre_headline %}
-    <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
-      {{ pre_headline }}
-    </h3>
-  {% endif %}
-
-  {% if title %}
-    <h2 class="text-3xl font-bold">{{ title }}</h2>
+<div class="block-reference-container container">
+  {% if pre_headline or title %}
+    {% include 'adesso_cms_theme:section-header' with {
+      title: title,
+      pre_headline: pre_headline,
+      alignment: 'left',
+      title_tag: 'h2',
+      pre_headline_tag: 'h3',
+      title_visual_level: '2',
+      pre_headline_visual_level: '3'
+    } %}
   {% endif %}
 
   {% if block_content %}

@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Theme override for the Content Element Theme select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the select tag.
+ * - options: The option element children.
+ *
+ * @see template_preprocess_select()
+ */
+#}
+{%
+  set classes = [
+    'form-select',
+    'block',
+    'w-full',
+    'rounded-md',
+    'py-2',
+    'px-3',
+    'text-base',
+    'font-medium',
+    'text-gray-900',
+    'shadow-sm',
+    'ring-1',
+    'ring-inset',
+    'ring-blue-300',
+    'focus:ring-2',
+    'focus:ring-inset',
+    'focus:ring-blue-500',
+    'focus:border-blue-500',
+    'cursor-pointer',
+    'bg-white',
+    'transition-colors',
+    'duration-200',
+  ]
+%}
+
+{% apply spaceless %}
+  <select{{ attributes.addClass(classes) }} onchange="updateThemePreview(this.value)">
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }} data-theme="{{ sub_option.value }}">
+              {% if sub_option.value == 'light' %}
+                🌟 {{ sub_option.label }} - Light gray background for emphasis
+              {% elseif sub_option.value == 'dark' %}
+                🌙 {{ sub_option.label }} - Dark background with light text
+              {% else %}
+                {{ sub_option.label }}
+              {% endif %}
+            </option>
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }} data-theme="{{ option.value }}">
+          {% if option.value == 'light' %}
+            🌟 {{ option.label }} - Light gray background for emphasis
+          {% elseif option.value == 'dark' %}
+            🌙 {{ option.label }} - Dark background with light text
+          {% else %}
+            {{ option.label }}
+          {% endif %}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+{% endapply %}
+
+{# Add JavaScript for theme preview functionality #}
+<script>
+function updateThemePreview(selectedTheme) {
+  // Update the visual preview in the form
+  const previewCards = document.querySelectorAll('.theme-preview-card');
+  previewCards.forEach(card => {
+    card.classList.remove('ring-2', 'ring-blue-500');
+    if (card.dataset.theme === selectedTheme) {
+      card.classList.add('ring-2', 'ring-blue-500');
+    }
+  });
+  
+  // Optional: Show a brief notification
+  console.log('Theme selected:', selectedTheme);
+}
+
+// Initialize preview on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const themeSelect = document.querySelector('select[name*="field_theme"]');
+  if (themeSelect && themeSelect.value) {
+    updateThemePreview(themeSelect.value);
+  }
+});
+</script>

@@ -55,7 +55,7 @@ default:
       tag: link
       attributes:
         rel: image_src
-        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=rRPqxm3t'
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
     -
       tag: meta
       attributes:
@@ -95,7 +95,7 @@ default:
       tag: meta
       attributes:
         property: 'og:image'
-        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=rRPqxm3t'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
     -
       tag: meta
       attributes:
@@ -120,7 +120,7 @@ default:
       tag: meta
       attributes:
         property: 'og:updated_time'
-        content: '2025-08-02T18:45:40+02:00'
+        content: '2025-08-04T09:06:40+02:00'
     -
       tag: meta
       attributes:
@@ -140,7 +140,7 @@ default:
       tag: meta
       attributes:
         name: 'twitter:image'
-        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=fBL3cwC3'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=8Cr_BI2o'
     -
       tag: meta
       attributes:

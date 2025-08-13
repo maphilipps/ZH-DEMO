@@ -1,6 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Logo
-description: General/Logo component
+description: General/Logo component with variant support
 props:
   type: object
   properties:
@@ -8,6 +8,17 @@ props:
       type: string
       title: site_logo
       description: Path to the site logo image file
+    site_name:
+      type: string
+      title: site_name
+      description: Site name for alt text
+      default: 'Site'
+    variant:
+      type: string
+      title: variant
+      description: Logo variant styling
+      enum: [default, inverted]
+      default: default
     modifier:
       type: string
       title: modifier

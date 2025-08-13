@@ -1,0 +1,25 @@
+uuid: d4f8e1a3-9b6c-4d2e-af8g-3b5d7f9e2c4a
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_display_options
+field_name: field_display_options
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    default: 'Default Form Display'
+    modal: 'Modal/Popup Form'
+    inline: 'Inline Embedded Form'
+    sidebar: 'Sidebar Form Layout'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

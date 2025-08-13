@@ -7,6 +7,16 @@
 
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_preprocess().
+ *
+ * Make block header setting available globally in all templates.
+ */
+function adesso_cms_theme_preprocess(&$variables) {
+  $variables['use_block_headers'] = theme_get_setting('use_block_headers') ?? TRUE;
+}
 
 /**
  * Implements hook_preprocess_page_title().
@@ -19,8 +29,11 @@ function adesso_cms_theme_preprocess_page_title(&$variables) {
     return;
   }
 
-  // Override page title for landing content type.
-  if ($node && $node->bundle() == 'landing') {
+  // Override page title for landing_page content type.
+  if ($node && $node->bundle() == 'landing_page') {
+
+    // Hide page title for landing pages since it's handled by the page header component.
+    $variables['hide'] = TRUE;
 
     // If the page title is hidden, set it to empty.
     if ($node->hasField('field_hide_page_title') && !empty($node->get('field_hide_page_title')->value)) {
@@ -89,7 +102,6 @@ function adesso_cms_theme_preprocess_paragraph__sidebyside(&$variables) {
 
   $variables['features'] = $features;
 }
-
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_api_page_block_form_search_results().
@@ -248,8 +260,6 @@ function adesso_cms_theme_page_attachments_alter(array &$page) {
   }
 }
 
-
-
 /**
  * Implements hook_theme_suggestions_page_alter().
  */
@@ -272,7 +282,7 @@ function adesso_cms_theme_preprocess_block(array &$variables) {
   // Add logo to footer.
   if (isset($variables['elements']['#id']) && $variables['elements']['#id'] == 'footer') {
     $config = \Drupal::config('system.site');
-    // Use the actual theme logo setting instead of hardcoded path
+    // Use the actual theme logo setting instead of hardcoded path.
     $logo_url = theme_get_setting('logo.url');
     $variables['site_logo'] = $logo_url;
     $variables['site_name'] = $config->get('name');
@@ -318,7 +328,7 @@ function adesso_cms_theme_preprocess_image(&$variables) {
   }
 
   // Don't add sizes attribute - let responsive image system handle it
-  // Responsive images provide their own proper sizes calculation
+  // Responsive images provide their own proper sizes calculation.
 }
 
 /**
@@ -373,6 +383,41 @@ function adesso_cms_theme_preprocess_node(array &$variables) {
 }
 
 /**
+ * Preprocess function for landing_page nodes.
+ *
+ * Implements architectural separation: landing page titles are handled
+ * by page.html.twig with page-header component using the 'landing' variant.
+ */
+function adesso_cms_theme_preprocess_node_landing_page(array &$variables) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+
+  // Add theme variables that are needed for the landing-page-header component.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['logo'] = theme_get_setting('logo.url');
+  $variables['front_page'] = '/';
+
+  // Get main menu for navigation using the same logic as _adesso_cms_theme_get_menu_data.
+  $variables['main_menu'] = _adesso_cms_theme_get_menu_data();
+
+  // Architectural pattern: Landing page headers are handled by page.html.twig
+  // This ensures clean separation and prevents double headers.
+  // Mark that this is a landing page for template logic.
+  $variables['is_landing_page_content'] = TRUE;
+
+  // Remove title from content area since it's handled by page header.
+  if (isset($variables['label'])) {
+    // Keep label available but mark it as handled by page template.
+    $variables['page_title_handled'] = TRUE;
+  }
+
+  // Add helper class for content styling.
+  $variables['attributes']['class'][] = 'landing-page-content';
+  $variables['attributes']['class'][] = 'has-page-header';
+}
+
+/**
  * Implements hook_page_attachments().
  */
 function adesso_cms_theme_page_attachments(array &$attachments) {
@@ -420,7 +465,7 @@ function adesso_cms_theme_page_attachments(array &$attachments) {
     'strict-origin-when-cross-origin',
   ];
 
-  // Attach fix for block reference preview when frontend editing is active
+  // Attach fix for block reference preview when frontend editing is active.
   if (\Drupal::currentUser()->hasPermission('access frontend editing')) {
     $attachments['#attached']['library'][] = 'adesso_cms_theme/fix-block-reference-preview';
   }
@@ -630,9 +675,10 @@ function _adesso_cms_theme_is_production() {
   return TRUE;
 }
 
-
-function adesso_cms_theme_preprocess_image_widget(array &$variables): void
-{
+/**
+ *
+ */
+function adesso_cms_theme_preprocess_image_widget(array &$variables): void {
   $data = &$variables['data'];
 
   // This prevents image widget templates from rendering preview container HTML
@@ -649,13 +695,12 @@ function adesso_cms_theme_preprocess_image_widget(array &$variables): void
  *
  * Adds body classes if certain regions have content.
  */
-function adesso_cms_theme_preprocess_html(&$variables)
-{
+function adesso_cms_theme_preprocess_html(&$variables) {
   if (!isset($variables['attributes']['class'])) {
     $variables['attributes']['class'] = [];
   }
 
-  // Color settings
+  // Color settings.
   if (theme_get_setting('adesso_cms_theme_enable_color')) {
     $pc = theme_get_setting('adesso_cms_theme_base_primary_color') ?? '#3B71CA';
     $sc = theme_get_setting('adesso_cms_theme_base_secondary_color') ?? '#9FA6B2';
@@ -671,18 +716,18 @@ function adesso_cms_theme_preprocess_html(&$variables)
     $ec = theme_get_setting('adesso_cms_theme_error_color') ?? '#DC4C64';
 
     $styles = [
-        "--color-primary:$pc;",
-        "--color-secondary:$sc;",
-        "--color-tertiary:$tc;",
-        "--color-body: $bc;",
-        "--color-body_bg: $bgc;",
-        "--color-h1: $h1c;",
-        "--color-h2: $h2c;",
-        "--color-h3: $h3c;",
-        "--color-h4: $h4c;",
-        "--color-success: $suc;",
-        "--color-warning: $wc;",
-        "--color-error: $ec;",
+      "--color-primary:$pc;",
+      "--color-secondary:$sc;",
+      "--color-tertiary:$tc;",
+      "--color-body: $bc;",
+      "--color-body_bg: $bgc;",
+      "--color-h1: $h1c;",
+      "--color-h2: $h2c;",
+      "--color-h3: $h3c;",
+      "--color-h4: $h4c;",
+      "--color-success: $suc;",
+      "--color-warning: $wc;",
+      "--color-error: $ec;",
     ];
     $variables['html_attributes']->setAttribute('style', implode('', $styles));
   }
@@ -691,51 +736,52 @@ function adesso_cms_theme_preprocess_html(&$variables)
 /**
  * Implements hook_preprocess_menu().
  */
-function adesso_cms_theme_preprocess_menu__main(array &$variables): void
-{
+function adesso_cms_theme_preprocess_menu__main(array &$variables): void {
   $items = $variables["items"];
 
   $variables['array_for_sdc'] = processNestedArray($items);
 }
 
 /**
- * Process a nested array structure recursively
+ * Process a nested array structure recursively.
  *
- * @param array $items The input array to process
+ * @param array $items
+ *   The input array to process.
+ *
  * @return array
  */
-function processNestedArray($items): array
-{
+function processNestedArray($items): array {
   $result = [];
-  $current_path = \Drupal::service('path.current')->getPath(); // Get the current path
+  // Get the current path.
+  $current_path = \Drupal::service('path.current')->getPath();
 
-  // Get the front page path from configuration
+  // Get the front page path from configuration.
   $front_page = \Drupal::config('system.site')->get('page.front');
 
   foreach ($items as $item) {
     $newItem = [
-        'title' => $item['title'] ?? '',
-        'url' => $item['url']?->toString() ?? '#',
+      'title' => $item['title'] ?? '',
+      'url' => $item['url']?->toString() ?? '#',
       // 'target' => '__self',
-        'class' => '',
+      'class' => '',
     ];
 
-    // Add 'active' class if the menu item is in the active trail
+    // Add 'active' class if the menu item is in the active trail.
     if (!empty($item['in_active_trail'])) {
       $newItem['class'] = 'active';
     }
 
-    // Add active class if the menu item's URL matches the current path
+    // Add active class if the menu item's URL matches the current path.
     if (!empty($item['url']) && $item['url']->toString() === $current_path) {
       $newItem['class'] = 'active';
     }
 
-    // Ensure Home is active only when on the front page
+    // Ensure Home is active only when on the front page.
     if (($current_path === '/' || $current_path === $front_page) && ($item['url']?->toString() === '/' || $item['url']?->toString() === $front_page)) {
       $newItem['class'] = 'active';
     }
 
-    // Process children recursively if they exist
+    // Process children recursively if they exist.
     if (!empty($item['below']) && is_array($item['below'])) {
       $newItem['children'] = processNestedArray($item['below']);
     }
@@ -746,8 +792,10 @@ function processNestedArray($items): array
   return $result;
 }
 
-function adesso_cms_theme_preprocess_page(array &$variables): void
-{
+/**
+ * Implements hook_preprocess_page().
+ */
+function adesso_cms_theme_preprocess_page(array &$variables): void {
   // Load selected header style from theme settings.
   $header_style = theme_get_setting('header_class') ?: 'style1';
   $variables['header_template'] = 'header--' . $header_style;
@@ -769,29 +817,38 @@ function adesso_cms_theme_preprocess_page(array &$variables): void
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
   $variables['current_year'] = date('Y');
+
+  // Block-based header system integration
+  $variables['use_block_headers'] = theme_get_setting('use_block_headers') ?? TRUE;
+  $variables['has_block_headers'] = $variables['use_block_headers'];
 }
 
-function adesso_cms_theme_preprocess_menu(array &$variables)
-{
+/**
+ *
+ */
+function adesso_cms_theme_preprocess_menu(array &$variables) {
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
-  
+
   // Set logo variable (both site_logo and logo for backward compatibility)
   $logo_url = theme_get_setting('logo.url');
   $variables['site_logo'] = $logo_url;
   $variables['logo'] = $logo_url;
-  
-  // Set front page URL
+
+  // Set front page URL.
   $variables['front_page'] = '/';
-  
-  // Set show_logo flag
+
+  // Set show_logo flag.
   $variables['show_logo'] = !empty($logo_url);
-  
+
+  // Pass current node for variant detection.
+  $variables['node'] = \Drupal::request()->attributes->get('node');
+
   // Get the account menu by its machine name.
   $account_menu_name = 'account';
 
   // Load the menu tree parameters (e.g., top-level only).
-  $parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+  $parameters = new MenuTreeParameters();
 
   // Load the tree.
   $menu_tree = \Drupal::menuTree()->load($account_menu_name, $parameters);
@@ -802,11 +859,11 @@ function adesso_cms_theme_preprocess_menu(array &$variables)
   // Optionally, extract only the '#items' part if needed.
   $variables['account_menu'] = $manipulated['#items'] ?? [];
 
-  // Get selected header style for menu twig
+  // Get selected header style for menu twig.
   $header_style = theme_get_setting('header_class');
-  $variables['selected__header_template'] =  $header_style;
+  $variables['selected__header_template'] = $header_style;
 
-  // Check if the user is logged in
+  // Check if the user is logged in.
   $current_user = \Drupal::currentUser();
 
   // If the user is logged out, remove the "My Account" link from the menu.
@@ -820,17 +877,59 @@ function adesso_cms_theme_preprocess_menu(array &$variables)
   }
 }
 
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function adesso_cms_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['header_settings'] = [
+    '#type' => 'details',
+    '#title' => t('Page Header Settings'),
+    '#open' => TRUE,
+    '#weight' => -10,
+  ];
+
+  $form['header_settings']['use_block_headers'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use block-based page headers'),
+    '#description' => t('Enable modern block-based page headers. When disabled, falls back to template-based headers. Block-based headers provide better flexibility and content management.'),
+    '#default_value' => theme_get_setting('use_block_headers') ?? TRUE,
+  ];
+
+  $form['header_settings']['block_header_info'] = [
+    '#type' => 'markup',
+    '#markup' => '<div class="description">' . t('With block-based headers enabled, page headers are managed through the Block Layout system. Configure header blocks in <a href="@url">Block Layout</a>.', [
+      '@url' => '/admin/structure/block',
+    ]) . '</div>',
+    '#states' => [
+      'visible' => [
+        ':input[name="use_block_headers"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
+  $form['header_settings']['template_header_warning'] = [
+    '#type' => 'markup',
+    '#markup' => '<div class="messages messages--warning">' . t('<strong>Template-based headers are deprecated.</strong> Consider migrating to block-based headers for better content management and flexibility.') . '</div>',
+    '#states' => [
+      'visible' => [
+        ':input[name="use_block_headers"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+}
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
  *
- * Adds 'type' to input.html.twig
+ * Adds 'type' to input.html.twig.
  */
 function adesso_cms_theme_preprocess_input(&$variables) {
   // Get the input type.
   $type = $variables['element']['#type'] ?? '';
   $variables['type'] = $type;
 }
-
-
-

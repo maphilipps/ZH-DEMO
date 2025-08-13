@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 31b0bbe2-babc-492e-8cd7-4d81fea21397
+  bundle: image
+  default_langcode: de
+  depends:
+    d04fcaaa-b1f0-444c-82a2-b7c92e710707: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 'Reachbird Influencer Marketing Map 2025'
+  created:
+    -
+      value: 1754291491
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 1
+  field_media_image:
+    -
+      entity: d04fcaaa-b1f0-444c-82a2-b7c92e710707
+      alt: 'Die Influencer Marketing Map 2025 von Reachbird gibt einen strukturierten Überblick über die wichtigsten Anbieter im DACH-Raum'
+      title: ''
+      width: 686
+      height: 343

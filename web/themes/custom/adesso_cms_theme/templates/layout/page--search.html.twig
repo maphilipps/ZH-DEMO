@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+
+<div class="min-h-dvh flex flex-col">
+  {# Check if first paragraph is a video background hero #}
+  {% set has_video_hero = false %}
+  {% if page.content %}
+    {% for element in page.content %}
+      {% if element['#paragraph'] and element['#paragraph'].bundle == 'hero' %}
+        {% set hero_layout = element['#paragraph'].field_hero_layout.value %}
+        {% if hero_layout == 'video_background' %}
+          {% set has_video_hero = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {# Header with separate left and right regions - exclude for landing pages and video heroes #}
+  {% if not has_video_hero and not (node and node.bundle == 'landing_page') and (page.header_left or page.header_right) %}
+    <header class="site-header bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700" role="banner">
+      <div class="mx-auto container px-4 lg:px-6 py-8">
+        <div class="flex items-center justify-between">
+          
+          {# Left side: Logo Block #}
+          <div class="flex items-center">
+            {% if page.header_left %}
+              {{ page.header_left }}
+            {% endif %}
+          </div>
+
+          {# Right side: Navigation, Search, etc. #}
+          <div class="flex items-center gap-4">
+            {% if page.header_right %}
+              {{ page.header_right }}
+            {% endif %}
+          </div>
+          
+        </div>
+      </div>
+    </header>
+  {% endif %}
+
+  {# Live region for navigation state announcements #}
+  <div id="nav-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  {# Highlighted Region #}
+  {% if page.highlighted %}
+    <div class="highlighted-region">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+  {# Page Header - get title from current route/node #}
+  {% set page_title = '' %}
+  {% set page_description = '' %}
+  {% set header_background_image = '' %}
+  {% set header_background_alt = '' %}
+  
+  {# Check if we're on a node page #}
+  {% if node %}
+    {% set page_title = node.label %}
+    
+    {# Try to get description from various fields #}
+    {% if node.hasField('field_lead') and node.field_lead.value %}
+      {% set page_description = node.field_lead.value %}
+    {% elseif node.hasField('field_summary') and node.field_summary.value %}
+      {% set page_description = node.field_summary.value %}
+    {% elseif node.hasField('field_description') and node.field_description.value %}
+      {% set page_description = node.field_description.value %}
+    {% endif %}
+    
+    {# Try to get background image from various fields #}
+    {% if node.hasField('field_header_image') and node.field_header_image.entity and node.field_header_image.entity.fileuri %}
+      {% set header_background_image = file_url(node.field_header_image.entity.fileuri) %}
+      {% set header_background_alt = node.field_header_image.alt|default('') %}
+    {% elseif node.hasField('field_featured_image') and node.field_featured_image.entity %}
+      {# field_featured_image is a media reference #}
+      {% if node.field_featured_image.entity.field_media_image.entity and node.field_featured_image.entity.field_media_image.entity.fileuri %}
+        {% set header_background_image = file_url(node.field_featured_image.entity.field_media_image.entity.fileuri) %}
+        {% set header_background_alt = node.field_featured_image.entity.field_media_image.alt|default('') %}
+      {% endif %}
+    {% elseif node.hasField('field_media') and node.field_media.entity and node.field_media.entity.bundle == 'image' %}
+      {% if node.field_media.entity.field_media_image.entity and node.field_media.entity.field_media_image.entity.fileuri %}
+        {% set header_background_image = file_url(node.field_media.entity.field_media_image.entity.fileuri) %}
+        {% set header_background_alt = node.field_media.entity.field_media_image.alt|default('') %}
+      {% endif %}
+    {% endif %}
+    
+  {% else %}
+    {# For non-node pages, use the page title #}
+    {% set page_title = page['#title'] %}
+  {% endif %}
+
+  {# Page Header Component using SDC - but NOT for landing pages #}
+
+
+  {# Main Content #}
+  <main role="main" id="main-content" class="flex-1" tabindex="-1">
+    <div id="content" class="layout-content container mx-auto py-24" >
+      {{ page.content }}
+    </div>
+  </main>
+
+  {# Footer Region - uses site-footer component #}
+  {% if page.footer %}
+    {{ page.footer }}
+  {% endif %}
+
+</div>{# /.layout-container #}

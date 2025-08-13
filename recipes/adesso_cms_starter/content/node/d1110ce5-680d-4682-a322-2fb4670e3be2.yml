@@ -1,0 +1,160 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d1110ce5-680d-4682-a322-2fb4670e3be2
+  bundle: event
+  default_langcode: de
+  depends:
+    76bcabae-6df3-4d79-aecc-6bfa818a9ea4: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Pitch, Deckel & Dialog'
+  created:
+    -
+      value: 1754291468
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Pitch, Deckel & Dialog | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/events/pitch-deckel-dialog'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/dtm-3-ba-bar-8_W1920xH1280_CUTOUT.jpg.webp?itok=laUCMI1a'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Pitch, Deckel & Dialog'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Impulse am Tresen'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/dtm-3-ba-bar-8_W1920xH1280_CUTOUT.jpg.webp?itok=laUCMI1a'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:44:12+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Impulse am Tresen'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Pitch, Deckel & Dialog'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/dtm-3-ba-bar-8_W1920xH1280_CUTOUT.jpg.webp?itok=W61QRvc4'
+  path:
+    -
+      alias: /events/pitch-deckel-dialog
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<p>In Dortmund geht man für klare Worte an den Tresen – und genau dort setzen wir an. Bei Pitch, Deckel &amp; Dialog bringen wir Menschen ins Gespräch, die sich mit den Chancen und Herausforderungen von Künstlicher Intelligenz auseinandersetzen wollen. Offen, ehrlich, auf Augenhöhe.</p><p>adesso lädt Sie ein zu einem besonderen Abend im Rahmen der Digitalen Woche Dortmund (diwodo): Mit kurzen Impulsen aus verschiedenen Perspektiven, mit Bierdeckeln statt Bulletpoints und mit Raum für Fragen, Haltung und Diskussion.</p><p>Denn KI ist längst mehr als Technologie – sie beeinflusst, wie wir arbeiten, kommunizieren und Verantwortung übernehmen. Gemeinsam wollen wir reflektieren, wie wir diese Entwicklung gestalten können und was dabei zählt.</p><p>Ob Sie neugierig sind, mitreden oder sich einfach inspirieren lassen wollen, kommen Sie vorbei. Der Tresen steht bereit.</p><p><br>&nbsp;</p>'
+      format: content_format
+  field_description:
+    -
+      value: "Impulse am Tresen\r\n"
+  field_event__date:
+    -
+      value: 1757001600
+      end_value: 1757012400
+      duration: 60
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__location_name:
+    -
+      value: Dortmund
+  field_featured_image:
+    -
+      entity: 76bcabae-6df3-4d79-aecc-6bfa818a9ea4

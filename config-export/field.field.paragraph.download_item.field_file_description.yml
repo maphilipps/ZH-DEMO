@@ -1,0 +1,24 @@
+uuid: 7b2b21fa-1441-4013-95c1-d15d75017bcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_file_description
+    - paragraphs.paragraphs_type.download_item
+  module:
+    - text
+_core:
+  default_config_hash: nlJGPUyaJSxHFmhsUm2jtNyWeQLgGZR6d9O5q5kn1oY
+id: paragraph.download_item.field_file_description
+field_name: field_file_description
+entity_type: paragraph
+bundle: download_item
+label: Description
+description: 'Optional description of the file.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

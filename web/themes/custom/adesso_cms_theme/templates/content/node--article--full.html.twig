@@ -15,37 +15,18 @@
   ]
 %}
 
-{# Page Header Section with article-specific fields #}
-{% set page_description = '' %}
-{% if node.hasField('field_lead') and node.field_lead.value %}
-  {% set page_description = node.field_lead.value %}
-{% elseif node.hasField('field_subhead') and node.field_subhead.value %}
-  {% set page_description = node.field_subhead.value %}
-{% endif %}
-
-{% set header_image = '' %}
-{% set header_alt = '' %}
-{% if node.hasField('field_media') and node.field_media.entity and node.field_media.entity.bundle == 'image' %}
-  {% set header_image = file_url(node.field_media.entity.field_media_image.entity.fileuri) %}
-  {% set header_alt = node.field_media.entity.field_media_image.alt|default('') %}
-{% endif %}
-
-{% include 'adesso_cms_theme:page-header' with {
-  title: label,
-  description: page_description,
-  background_image: header_image,
-  alt_text: header_alt
-} %}
+{# Page header is handled by page.html.twig for architectural consistency #}
+{# This ensures no duplicate headers and maintains clean separation of concerns #}
 
 <article{{ attributes.addClass(classes) }}>
   <div class="container mx-auto px-4">
     
     <div class="max-w-screen-lg mx-auto">
       {{ title_prefix }}
-      {# Title is now handled by the page header component above #}
+      {# Title is handled by the page header component in page.html.twig #}
       {{ title_suffix }}
 
-      <div class="prose prose-lg max-w-screen-md mx-auto mt-8">
+      <div class="prose prose-xl max-w-screen-md mx-auto mt-8">
         {{ content|without('field_subhead', 'field_lead', 'field_tags', 'field_authors', 'field_media') }}
       </div>
     </div>

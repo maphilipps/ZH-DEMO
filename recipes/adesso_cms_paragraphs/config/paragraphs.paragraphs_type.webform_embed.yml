@@ -1,0 +1,15 @@
+uuid: a6f8d8f2-7c8e-4b19-9f5e-3d2a8e5c4b1a
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+  content:
+    - 'file:file:b8c4f9e7-6d2a-4a15-8e9b-1f3c5d7a9e8b'
+_core:
+  default_config_hash: K9mLp3nR8sT5uW7vX9yA2bC4dE6fG8hI0jK2lM4nO6pQ
+id: webform_embed
+label: 'Webform Embed'
+icon_uuid: b8c4f9e7-6d2a-4a15-8e9b-1f3c5d7a9e8b
+description: 'Embeds a webform into the page with optional theming and layout options. Supports contact forms, registration forms, and custom form workflows.'
+behavior_plugins: {  }

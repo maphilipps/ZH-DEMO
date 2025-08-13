@@ -1,0 +1,16 @@
+uuid: 67a03b78-e7e1-4743-9330-2e895b5872bf
+langcode: de
+status: true
+dependencies:
+  module:
+    - pathauto
+  enforced:
+    module:
+      - node
+_core:
+  default_config_hash: 9uEZBoPB1pSJlXYOfWued_wpZMIhOScV0Y8Ra9c4O3s
+id: pathauto_update_alias_node
+label: 'URL-Alias aktualisieren'
+type: node
+plugin: pathauto_update_alias
+configuration: {  }

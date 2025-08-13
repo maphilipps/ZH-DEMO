@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 551dbfe1-ec51-438e-8f1b-2999de76550b
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 818eGZAADryXbLhsFR1Ev5B--JwycVi1vuxFfvw0-Kg.jpg
+  uri:
+    -
+      value: 'public://oembed_thumbnails/2025-07/818eGZAADryXbLhsFR1Ev5B--JwycVi1vuxFfvw0-Kg.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 28050
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754291200

@@ -1,0 +1,23 @@
+uuid: j0l5k7g9-fh2i-4j8k-gl5m-9h1j4l6k8i0g
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_element_theme
+    - paragraphs.paragraphs_type.webform_embed
+  module:
+    - options
+id: paragraph.webform_embed.field_content_element_theme
+field_name: field_content_element_theme
+entity_type: paragraph
+bundle: webform_embed
+label: 'Theme Variant'
+description: 'Select visual theme for the form container.'
+required: false
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,497 @@
+/**
+ * @file
+ * Drupal Core CSS Classes with Tailwind Styling
+ * 
+ * This file provides Tailwind-based styling for common Drupal core CSS classes
+ * to ensure consistent design system integration.
+ */
+
+@layer components {
+  /**
+   * Button Components
+   * Standard Drupal button classes with Tailwind styling
+   */
+  .button {
+    @apply inline-flex items-center gap-x-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200;
+  }
+
+  .button--primary {
+    @apply bg-primary text-white hover:bg-primary/90 focus-visible:outline-primary;
+  }
+
+  .button--secondary {
+    @apply bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-gray-500;
+  }
+
+  .button--danger {
+    @apply bg-red-600 text-white hover:bg-red-500 focus-visible:outline-red-600;
+  }
+
+  .button--small {
+    @apply px-2.5 py-1.5 text-xs;
+  }
+
+  .button--large {
+    @apply px-4 py-3 text-base;
+  }
+
+  /**
+   * Action Links
+   * Drupal action links styling
+   */
+  .button-action {
+    @apply inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-2.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  /**
+   * Form Elements
+   * Standard form input and select styling
+   */
+  .form-text,
+  .form-email,
+  .form-url,
+  .form-search,
+  .form-tel,
+  .form-password {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6;
+  }
+
+  .form-textarea {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 min-h-[80px] resize-y;
+  }
+
+  .form-select {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 cursor-pointer bg-white pr-8;
+  }
+
+  .form-checkbox,
+  .form-radio {
+    @apply h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded;
+  }
+
+  .form-radio {
+    @apply rounded-full;
+  }
+
+  /**
+   * Form Labels and Descriptions
+   */
+  .form-label {
+    @apply block text-sm font-medium text-gray-900 mb-1;
+  }
+
+  .form-required {
+    @apply text-red-500 ml-1;
+  }
+
+  .description {
+    @apply mt-1 text-sm text-gray-600;
+  }
+
+  .form-item {
+    @apply mb-4;
+  }
+
+  /**
+   * Messages
+   * Drupal status, warning, and error messages
+   */
+  .messages {
+    @apply rounded-md p-4 mb-4;
+  }
+
+  .messages--status {
+    @apply bg-green-50 border border-green-200 text-green-800;
+  }
+
+  .messages--warning {
+    @apply bg-yellow-50 border border-yellow-200 text-yellow-800;
+  }
+
+  .messages--error {
+    @apply bg-red-50 border border-red-200 text-red-800;
+  }
+
+  .messages__list {
+    @apply list-disc list-inside space-y-1;
+  }
+
+  /**
+   * Drupal Tables
+   */
+  .table,
+  table {
+    @apply min-w-full divide-y divide-gray-300;
+  }
+
+  .table th,
+  table th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+  }
+
+  .table td,
+  table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900 border-b border-gray-200;
+  }
+
+  .table tbody tr:hover,
+  table tbody tr:hover {
+    @apply bg-gray-50;
+  }
+
+  /**
+   * Drupal Tabs
+   */
+  .tabs {
+    @apply border-b border-gray-200 mb-6;
+  }
+
+  .tabs__tab {
+    @apply inline-flex px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:border-gray-300 border-b-2 border-transparent;
+  }
+
+  .tabs__tab.is-active {
+    @apply text-primary border-primary;
+  }
+
+  /**
+   * Drupal Breadcrumbs
+   */
+  .breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-gray-500 mb-6;
+  }
+
+  .breadcrumb__link {
+    @apply hover:text-gray-700 transition-colors;
+  }
+
+  .breadcrumb__separator {
+    @apply text-gray-400;
+  }
+
+  /**
+   * Drupal Pager
+   */
+  .pager {
+    @apply flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6;
+  }
+
+  .pager__item {
+    @apply relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 border border-gray-300;
+  }
+
+  .pager__item--current {
+    @apply z-10 bg-primary text-white border-primary;
+  }
+
+  .pager__item--first,
+  .pager__item--previous {
+    @apply rounded-l-md;
+  }
+
+  .pager__item--last,
+  .pager__item--next {
+    @apply rounded-r-md;
+  }
+
+  /**
+   * Field Collections and Items
+   */
+  .field {
+    @apply mb-4;
+  }
+
+  .field__label {
+    @apply block text-sm font-medium text-gray-900 mb-2;
+  }
+
+  .field__items {
+    @apply space-y-2;
+  }
+
+  .field__item {
+    @apply text-gray-900;
+  }
+
+  /**
+   * Node and Entity Display
+   */
+  .node {
+    @apply mb-8;
+  }
+
+  .node__title {
+    @apply text-2xl font-bold text-gray-900 mb-4;
+  }
+
+  .node__meta {
+    @apply text-sm text-gray-500 mb-4;
+  }
+
+  /**
+   * Skip Links - WCAG Compliance
+   */
+  .skip-links {
+    @apply relative z-50;
+  }
+  
+  .skip-link {
+    @apply absolute left-4 top-4 px-4 py-2 bg-primary text-white font-medium rounded-md shadow-lg transform -translate-y-20 opacity-0 transition-all duration-200 focus:translate-y-0 focus:opacity-100;
+  }
+  
+  .skip-link:focus {
+    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-primary;
+  }
+
+  /**
+   * Utility Classes
+   */
+  .visually-hidden {
+    @apply sr-only;
+  }
+
+  .js-hide {
+    @apply hidden;
+  }
+
+  .clearfix::after {
+    @apply block clear-both content-[''];
+  }
+
+  /**
+   * Links
+   */
+  .link {
+    @apply text-primary hover:text-primary/80 underline transition-colors;
+  }
+
+  /**
+   * Progress Indicators
+   */
+  .progress {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+
+  .progress__bar {
+    @apply bg-primary h-2 rounded-full transition-all duration-300;
+  }
+
+  /**
+   * Dropzone and File Upload
+   */
+  .dropzone {
+    @apply border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors;
+  }
+
+  .file-upload {
+    @apply relative cursor-pointer rounded-md bg-white font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primary/80;
+  }
+
+  /**
+   * Admin-specific styles
+   */
+  .admin-list {
+    @apply space-y-2;
+  }
+
+  .admin-list__item {
+    @apply p-4 bg-gray-50 rounded-lg border border-gray-200;
+  }
+
+  /**
+   * Theme Selector Admin Styling
+   * Enhanced styling for the Content Element Theme field in paragraph forms
+   */
+  .form-item-field-content-element-theme {
+    @apply mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg;
+  }
+
+  .form-item-field-content-element-theme .form-label {
+    @apply text-base font-semibold text-blue-900 mb-2 flex items-center gap-2;
+  }
+
+  .form-item-field-content-element-theme .form-label::before {
+    content: "🎨";
+    @apply text-lg;
+  }
+
+  .form-item-field-content-element-theme .form-select {
+    @apply border-blue-300 focus:border-blue-500 focus:ring-blue-500 text-base font-medium;
+  }
+
+  .form-item-field-content-element-theme .description {
+    @apply text-sm text-blue-700 bg-blue-100 px-3 py-2 rounded mt-2;
+  }
+
+  /* Alternative selector pattern for nested Drupal forms */
+  .js-form-item-field-content-element-theme-0-value,
+  [data-drupal-selector*="field-content-element-theme"] {
+    @apply mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg;
+  }
+
+  .js-form-item-field-content-element-theme-0-value .form-label,
+  [data-drupal-selector*="field-content-element-theme"] .form-label {
+    @apply text-base font-semibold text-blue-900 mb-2 flex items-center gap-2;
+  }
+
+  .js-form-item-field-content-element-theme-0-value .form-label::before,
+  [data-drupal-selector*="field-content-element-theme"] .form-label::before {
+    content: "🎨";
+    @apply text-lg;
+  }
+
+  .js-form-item-field-content-element-theme-0-value .form-select,
+  [data-drupal-selector*="field-content-element-theme"] .form-select {
+    @apply border-blue-300 focus:border-blue-500 focus:ring-blue-500 text-base font-medium;
+  }
+
+  /* Responsive adjustments for mobile admin */
+  @media (max-width: 768px) {
+    .form-item-field-content-element-theme,
+    .js-form-item-field-content-element-theme-0-value,
+    [data-drupal-selector*="field-content-element-theme"] {
+      @apply p-3 mb-4;
+    }
+
+    .form-item-field-content-element-theme .form-label,
+    .js-form-item-field-content-element-theme-0-value .form-label,
+    [data-drupal-selector*="field-content-element-theme"] .form-label {
+      @apply text-sm flex-col items-start gap-1;
+    }
+
+    .form-item-field-content-element-theme .form-label::before,
+    .js-form-item-field-content-element-theme-0-value .form-label::before,
+    [data-drupal-selector*="field-content-element-theme"] .form-label::before {
+      @apply text-base;
+    }
+  }
+
+  /* Theme preview indicators for admin */
+  .form-item-field-content-element-theme .form-select option[value="light"],
+  .js-form-item-field-content-element-theme-0-value .form-select option[value="light"],
+  [data-drupal-selector*="field-content-element-theme"] .form-select option[value="light"] {
+    background-color: #ffffff;
+    color: #374151;
+  }
+
+  .form-item-field-content-element-theme .form-select option[value="highlighted"],
+  .js-form-item-field-content-element-theme-0-value .form-select option[value="highlighted"],
+  [data-drupal-selector*="field-content-element-theme"] .form-select option[value="highlighted"] {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+
+  .form-item-field-content-element-theme .form-select option[value="dark"],
+  .js-form-item-field-content-element-theme-0-value .form-select option[value="dark"],
+  [data-drupal-selector*="field-content-element-theme"] .form-select option[value="dark"] {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+
+  /* Form field hierarchy - Theme field positioning */
+  .paragraph-form .form-item-field-title {
+    @apply order-1;
+  }
+  
+  .paragraph-form .form-item-field-content-element-theme,
+  .paragraph-form .js-form-item-field-content-element-theme-0-value,
+  .paragraph-form [data-drupal-selector*="field-content-element-theme"] {
+    @apply order-2;
+  }
+  
+  .paragraph-form .form-item:not(.form-item-field-title):not(.form-item-field-content-element-theme):not(.js-form-item-field-content-element-theme-0-value) {
+    @apply order-3;
+  }
+
+  /* Enhanced visual separation between theme selector and other fields */
+  .form-item-field-content-element-theme + .form-item,
+  .js-form-item-field-content-element-theme-0-value + .form-item,
+  [data-drupal-selector*="field-content-element-theme"] + .form-item {
+    @apply mt-8 pt-4 border-t border-gray-200;
+  }
+
+  /* Theme preview card interactions */
+  .theme-preview-card:hover {
+    @apply transform scale-105 shadow-lg;
+  }
+
+  .theme-preview-card:focus {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  }
+
+  .theme-preview-card.selected {
+    @apply ring-2 ring-blue-500 bg-blue-50;
+  }
+
+  /* Accessibility improvements for theme selector */
+  .form-item-field-content-element-theme,
+  .js-form-item-field-content-element-theme-0-value,
+  [data-drupal-selector*="field-content-element-theme"] {
+    position: relative;
+  }
+
+  .form-item-field-content-element-theme::after,
+  .js-form-item-field-content-element-theme-0-value::after,
+  [data-drupal-selector*="field-content-element-theme"]::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    transition: border-color 0.2s ease-in-out;
+  }
+
+  .form-item-field-content-element-theme:focus-within::after,
+  .js-form-item-field-content-element-theme-0-value:focus-within::after,
+  [data-drupal-selector*="field-content-element-theme"]:focus-within::after {
+    border-color: theme('colors.blue.500');
+  }
+
+  /**
+   * Status indicators
+   */
+  .status-published {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+  }
+
+  .status-unpublished {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800;
+  }
+}
+
+/**
+ * Base layer adjustments for Drupal-specific elements
+ */
+@layer base {
+  /* Ensure proper form styling inheritance */
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"] {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6;
+  }
+
+  select {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 cursor-pointer bg-white;
+  }
+
+  textarea {
+    @apply block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 min-h-[80px] resize-y;
+  }
+
+  /* Button reset for consistent styling */
+  button:not([class]) {
+    @apply inline-flex items-center gap-x-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  /* Link styling */
+  a:not([class]) {
+    @apply text-primary hover:text-primary/80 underline transition-colors;
+  }
+}

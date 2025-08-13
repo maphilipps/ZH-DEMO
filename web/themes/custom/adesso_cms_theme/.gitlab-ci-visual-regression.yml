@@ -1,0 +1,81 @@
+# GitLab CI/CD Integration for Visual Regression Testing
+# 
+# This file shows how to integrate BackstopJS visual regression testing
+# into your GitLab CI/CD pipeline. Include this in your main .gitlab-ci.yml
+# or use as a reference for implementation.
+
+# Visual Regression Testing Stage
+visual_regression_test:
+  stage: test
+  image: node:18
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: chrome
+  variables:
+    # Disable Chrome sandbox for Docker environment
+    PUPPETEER_ARGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage"
+  before_script:
+    - cd web/themes/custom/adesso_cms_theme
+    - npm ci
+    # Ensure site is running (adjust URL as needed)
+    - echo "Waiting for site to be available..."
+    - timeout 60 bash -c 'until curl -s -f http://adesso-cms.ddev.site; do sleep 2; done'
+  script:
+    # Run visual regression tests
+    - npm run backstop:test
+  artifacts:
+    when: always
+    paths:
+      - web/themes/custom/adesso_cms_theme/tests/visual-regression/html_report/
+      - web/themes/custom/adesso_cms_theme/tests/visual-regression/ci_report/
+    reports:
+      # CI report for GitLab to parse
+      junit: web/themes/custom/adesso_cms_theme/tests/visual-regression/ci_report/xunit.xml
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop
+  allow_failure: true # Allow MR to proceed even if visual tests fail
+
+# Generate new reference images (manual job)
+visual_regression_update_references:
+  stage: test
+  image: node:18
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: chrome
+  variables:
+    PUPPETEER_ARGS: "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage"
+  before_script:
+    - cd web/themes/custom/adesso_cms_theme
+    - npm ci
+    - timeout 60 bash -c 'until curl -s -f http://adesso-cms.ddev.site; do sleep 2; done'
+  script:
+    # Generate new reference images
+    - npm run backstop:reference
+  artifacts:
+    paths:
+      - web/themes/custom/adesso_cms_theme/tests/visual-regression/reference/
+    expire_in: 1 day
+  when: manual
+  only:
+    - main
+    - develop
+
+# Example integration with existing test pipeline
+test_suite_with_visual:
+  stage: test
+  extends: .base_test_job # Assuming you have a base test job
+  script:
+    # Run unit tests
+    - npm run test
+    # Run linting
+    - npm run lint:js
+    # Run visual regression tests
+    - npm run visual:test
+  artifacts:
+    when: always
+    paths:
+      - web/themes/custom/adesso_cms_theme/tests/visual-regression/html_report/
+    expire_in: 1 week

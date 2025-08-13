@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - label: (optional) The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - date: Formatted creation date.
+ * - author_name: Themed username of node author output from theme_username().
+ *
+ * @see template_preprocess_node()
+ */
+#}
+
+{# Header data extraction is handled by page.html.twig for consistency #}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
+
+<article{{ attributes.addClass(classes) }}>
+  
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer class="node__meta">
+      {{ author_picture }}
+      <div{{ author_attributes.addClass('node__submitted') }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {# Header fields are excluded from content since they're used in headers #}
+    {% if view_mode == 'full' %}
+      {% set content_type = node.bundle %}
+      {% set has_specific_template = content_type in ['news', 'event'] %}
+      {% if not has_specific_template %}
+        {{ content|without('field_header_image', 'field_featured_image', 'field_media', 'field_lead', 'field_summary', 'field_description') }}
+      {% else %}
+        {{ content }}
+      {% endif %}
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </div>
+
+</article>

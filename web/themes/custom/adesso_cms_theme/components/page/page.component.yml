@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Page
+description: Main page layout component with slot system for flexible content architecture
+status: stable
+group: Layout
+props:
+  type: object
+  properties:
+    is_landing_page:
+      type: boolean
+      title: Is Landing Page
+      description: Whether this is a landing page (affects header styling and positioning)
+      default: false
+    page_classes:
+      type: string
+      title: Page Classes
+      description: Additional CSS classes for the page wrapper
+      default: ""
+    show_default_header:
+      type: boolean
+      title: Show Default Header
+      description: Whether to show the standard site header
+      default: true
+    header_variant:
+      type: string
+      title: Header Variant
+      description: Header style variant
+      enum:
+        - default
+        - transparent
+      default: default
+slots:
+  custom_header:
+    title: Custom Header
+    description: Custom header content (overrides default site header when provided)
+  highlighted:
+    title: Highlighted Content
+    description: Highlighted content region
+  content:
+    title: Main Content
+    description: The main page content
+  footer:
+    title: Footer Content
+    description: Footer content region
+libraryDependencies:
+  - adesso_cms_theme/global

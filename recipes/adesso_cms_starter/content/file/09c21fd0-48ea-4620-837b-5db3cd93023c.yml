@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 09c21fd0-48ea-4620-837b-5db3cd93023c
+  default_langcode: de
+default:
+  filename:
+    -
+      value: dlr-samsung-smartwatch-study.jpg
+  uri:
+    -
+      value: 'public://news-images/dlr-samsung-smartwatch-study.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 102357
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754291491

@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override for search form block with el-popover.
+ */
+#}
+{%- set attributes = attributes.addClass('search-block-wrapper') -%}
+
+<div{{ attributes }}>
+  {# Search trigger button with magnifying glass icon #}
+  <button 
+    id="search-popover-button"
+    el-popover-target="search-popover"
+    type="button"
+    class="search-trigger inline-flex items-center p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 rounded-lg"
+    aria-label="{{ 'Open search'|t }}"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    </svg>
+  </button>
+
+  {# Popover content #}
+  <div
+    id="search-popover"
+    el-popover
+    class="invisible absolute z-10 w-80 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700"
+    role="tooltip"
+  >
+    <div class="p-4">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-sm font-medium text-gray-900 dark:text-white">
+          {{ 'Search'|t }}
+        </h3>
+        <button
+          type="button"
+          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1"
+          aria-label="{{ 'Close search'|t }}"
+          onclick="document.getElementById('search-popover-button').click()"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      {# Search form content #}
+      <div class="search-form-content">
+        {{ content }}
+      </div>
+    </div>
+    
+    {# Popover arrow #}
+    <div el-popover-arrow class="absolute w-2 h-2 bg-white border-l border-t border-gray-200 rotate-45 dark:bg-gray-800 dark:border-gray-700" style="top: -4px;"></div>
+  </div>
+</div>

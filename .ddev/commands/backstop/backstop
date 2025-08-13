@@ -1,0 +1,13 @@
+#!/bin/sh
+
+## Description: Run backstop visual regression tests
+## Usage: backstop [flags] [args]
+## Example: ddev backstop test --target=local --list=alls
+
+configFile="/src/backstop.json"
+
+if [ -f /src/backstop-local.json ]; then
+    configFile="/src/backstop-local.json"
+fi
+
+cd ../web && backstop --config=${configFile} "$@"

@@ -1,9 +1,18 @@
+{#
+/**
+ * @file
+ * Pricing card paragraph template (child component - no wrapper needed).
+ */
+#}
 {%
   set link = content.field_link[0] ? {
     url: content.field_link[0]['#url']|render|striptags,
     title: content.field_link[0]['#title']|render|striptags,
   } : {}
 %}
+
+{{ title_prefix }}
+{{ title_suffix }}
 
 {% embed '@adesso_cms_theme/pricing/pricing-card.twig' with {
   "title": content.field_title|render|striptags,

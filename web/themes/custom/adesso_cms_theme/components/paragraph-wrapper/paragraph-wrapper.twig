@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Paragraph Wrapper Component Template
+ *
+ * Provides a reusable wrapper for paragraph content with theme support
+ * and semantic HTML structure. Uses slots pattern for flexible content insertion.
+ *
+ * Available variables:
+ * - theme: Theme variant (default|light|dark)
+ * - className: Additional CSS classes
+ * - id: Optional unique identifier
+ * - tag: HTML tag for wrapper (default: div)
+ * - spacing: Spacing configuration (none|small|medium|large|xlarge)
+ * - attributes: Drupal Attribute object for additional HTML attributes
+ *
+ * Available slots:
+ * - prefix: Frontend editing tools and prefix content
+ * - content: The main paragraph content (required)
+ */
+#}
+
+{# Set default values #}
+{% set wrapper_tag = tag|default('div') %}
+{% set wrapper_theme = theme|default('default') %}
+{% set wrapper_id = id|default('') %}
+{% set wrapper_classes = className|default('') %}
+
+
+{% set css_classes = [
+  'paragraph-wrapper',
+  'bg-white',
+  'dark:bg-gray-900',
+  'light:bg-gray-100',
+  wrapper_classes
+] %}
+
+{# Add CSS classes to attributes #}
+{% set attributes = attributes.addClass(css_classes) %}
+
+{# Add component data attribute #}
+{% set attributes = attributes.setAttribute('data-component', 'paragraph-wrapper') %}
+
+{# Add theme data attribute - always set for CSS variables to work #}
+{% set attributes = attributes.setAttribute('data-theme', wrapper_theme) %}
+
+{# Add ID if specified #}
+{% if wrapper_id %}
+  {% set attributes = attributes.setAttribute('id', wrapper_id) %}
+{% endif %}
+
+
+{# Render the wrapper element with block slots #}
+<{{ wrapper_tag }}{{ attributes }}>
+{{ content.frontend_editing }}
+  {% block prefix %}{% endblock %}
+  {% block content %}{% endblock %}
+</{{ wrapper_tag }}>

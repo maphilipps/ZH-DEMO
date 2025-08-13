@@ -1,0 +1,120 @@
+{
+  "id": "adesso-cms",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "desktop",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Landing Page - Welcome adesso CMS",
+      "cookiePath": "./backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/welcome-adesso-cms",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Basic Page - Our Product Vision",
+      "cookiePath": "./backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/our-product-vision",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Basic Page - Events",
+      "cookiePath": "./backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/events",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Basic Page - Complete Paragraph Showcase",
+      "cookiePath": "./backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/complete-paragraph-showcase",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "./backstop_data/bitmaps_reference",
+    "bitmaps_test": "./backstop_data/bitmaps_test",
+    "engine_scripts": "./backstop_data/engine_scripts",
+    "html_report": "./backstop_data/html_report",
+    "json_report": "./backstop_data/json_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "ignoreHTTPSErrors": true,
+    "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-web-security"],
+    "headless": "new",
+    "gotoParameters": { "waitUntil": "networkidle0" }
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

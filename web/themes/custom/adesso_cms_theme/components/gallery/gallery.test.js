@@ -88,7 +88,7 @@ function renderLightboxModal() {
     <div class="lightbox-modal fixed inset-0 z-50 hidden" data-lightbox-modal>
       <div class="lightbox-backdrop absolute inset-0 bg-black bg-opacity-90" data-lightbox-backdrop></div>
       <div class="lightbox-container relative z-10 flex items-center justify-center min-h-screen p-4">
-        <div class="lightbox-content max-w-4xl max-h-full">
+        <div class="lightbox-content container max-h-full">
           <div class="lightbox-image-container" data-lightbox-image-container>
             <!-- Dynamic image content -->
           </div>

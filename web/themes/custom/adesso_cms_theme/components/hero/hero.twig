@@ -1,4 +1,4 @@
-<div class="hero-wrapper {{ modifier|default('') }} {{ (hero_layout|default('')) == 'video_background' ? 'video-header relative min-h-screen overflow-hidden' : '' }}">
+<div class="{{ modifier|default('') }} {{ (hero_layout|default('')) == 'video_background' ? 'video-header relative min-h-screen overflow-hidden' : '' }}">
   {% if (hero_layout|default('')) == 'video_background' %}
     {# Video Background Hero #}
     <div class="absolute inset-0 z-0">
@@ -43,7 +43,7 @@
     {# Hero Content for video background #}
     <div class="relative z-10 flex items-center justify-center min-h-screen">
       <div class="container mx-auto px-4 text-center text-white">
-        <div class="max-w-4xl mx-auto">
+        <div class="container mx-auto">
           {% if pre_headline|default('') %}
             <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">
               {{ pre_headline|default('') }}
@@ -94,7 +94,7 @@
     </div>
   {% else %}
     {# Regular Hero Layout #}
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+    <div class="py-8 px-4 mx-auto container text-center lg:py-16">
 
     {% if hero_layout == 'image_top' and media %}
       <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">

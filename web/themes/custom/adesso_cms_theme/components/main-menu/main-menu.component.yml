@@ -1,6 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Main Menu
-description: Main Menu Component with el-popover and el-dialog support
+description: Main Menu Component with el-popover and el-dialog support and variant styling
 status: stable
 libraryOverrides:
   dependencies:
@@ -17,6 +17,12 @@ props:
     target:
       type: string
       title: Target
+    variant:
+      type: string
+      title: variant
+      description: Menu variant styling
+      enum: [default, transparent]
+      default: default
     logo:
       type: [string, "null"]
       title: logo

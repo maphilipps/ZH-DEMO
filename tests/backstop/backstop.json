@@ -1,0 +1,167 @@
+{
+  "id": "adesso-cms",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "desktop", 
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onBeforeScript": "backstop_data/engine_scripts/puppet/onBefore.js",
+  "onReadyScript": "backstop_data/engine_scripts/puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "Landing Page - Welcome adesso CMS",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/welcome-adesso-cms",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Landing Page - Landing Page Demo",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/welcome-adesso-cms-landing-page-demo",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Basic Page - Our Product Vision",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/our-product-vision",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Basic Page - Events",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/events",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Header Component - Landing Page",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/welcome-adesso-cms",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "nav",
+        ".relative.isolate.overflow-hidden"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Header Component - Basic Page",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://web/our-product-vision",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "img, .site-header, nav",
+      "delay": 5000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".site-header",
+        "header"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "json_report": "backstop_data/json_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox", "--disable-web-security"],
+    "puppeteerOptions": {
+      "devtools": false,
+      "ignoreHTTPSErrors": true
+    }
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

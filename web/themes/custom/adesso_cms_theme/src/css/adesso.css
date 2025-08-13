@@ -5,6 +5,15 @@
 @import './base.css';
 @import './typography.css';
 @import './theme-variables.css';
+@import './prose-themes.css';
+@import './drupal-core.css';
+
+/* Alpine.js x-cloak support */
+[x-cloak] {
+  display: none !important;
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
 @source '../../components';
 @theme {
@@ -47,6 +56,164 @@
   /* --font-weight-black: 900; */
 }
 
+/* Paragraph Theme Data Attributes - Tailwind v4 Modern Approach */
+@layer components {
+
+  .frontend-editing-toggle {
+    left: calc(var(--drupal-displace-offset-left) + 20px) !important;
+    z-index: 9999 !important;
+  }
+  /* Base paragraph wrapper with modern Tailwind v4 data-attribute selectors */
+
+  /* === SLIDER COMPONENT THEME OVERRIDES === */
+  
+  /* Slider-specific light theme - force white text for better contrast */
+  .slider[data-theme="light"],
+  [data-theme="light"] .slider {
+    --slider-text: theme('colors.white');
+    --slider-heading: theme('colors.white');
+    --slider-link: theme('colors.white');
+    --slider-link-hover: theme('colors.gray.200');
+    --slider-muted: theme('colors.gray.200');
+  }
+
+  /* Slider light theme text elements */
+  .slider[data-theme="light"] h1,
+  .slider[data-theme="light"] h2,
+  .slider[data-theme="light"] h3,
+  .slider[data-theme="light"] h4,
+  .slider[data-theme="light"] h5,
+  .slider[data-theme="light"] h6,
+  [data-theme="light"] .slider h1,
+  [data-theme="light"] .slider h2,
+  [data-theme="light"] .slider h3,
+  [data-theme="light"] .slider h4,
+  [data-theme="light"] .slider h5,
+  [data-theme="light"] .slider h6 {
+    color: var(--slider-heading);
+  }
+
+  .slider[data-theme="light"] p,
+  .slider[data-theme="light"] .slider-content,
+  .slider[data-theme="light"] .slider-text,
+  [data-theme="light"] .slider p,
+  [data-theme="light"] .slider .slider-content,
+  [data-theme="light"] .slider .slider-text {
+    color: var(--slider-text);
+  }
+
+  .slider[data-theme="light"] a,
+  [data-theme="light"] .slider a {
+    color: var(--slider-link);
+  }
+
+  .slider[data-theme="light"] a:hover,
+  [data-theme="light"] .slider a:hover {
+    color: var(--slider-link-hover);
+  }
+
+  .slider[data-theme="light"] .text-muted,
+  [data-theme="light"] .slider .text-muted {
+    color: var(--slider-muted);
+  }
+
+  /* Slider item content overrides for light theme */
+  .slider[data-theme="light"] .slider-item,
+  [data-theme="light"] .slider .slider-item {
+    color: var(--slider-text);
+  }
+
+  .slider[data-theme="light"] .slider-item h1,
+  .slider[data-theme="light"] .slider-item h2,
+  .slider[data-theme="light"] .slider-item h3,
+  .slider[data-theme="light"] .slider-item h4,
+  .slider[data-theme="light"] .slider-item h5,
+  .slider[data-theme="light"] .slider-item h6,
+  [data-theme="light"] .slider .slider-item h1,
+  [data-theme="light"] .slider .slider-item h2,
+  [data-theme="light"] .slider .slider-item h3,
+  [data-theme="light"] .slider .slider-item h4,
+  [data-theme="light"] .slider .slider-item h5,
+  [data-theme="light"] .slider .slider-item h6 {
+    color: var(--slider-heading);
+  }
+
+  .slider[data-theme="light"] .slider-item p,
+  [data-theme="light"] .slider .slider-item p {
+    color: var(--slider-text);
+  }
+
+  .slider[data-theme="light"] .slider-item a,
+  [data-theme="light"] .slider .slider-item a {
+    color: var(--slider-link);
+  }
+
+  .slider[data-theme="light"] .slider-item a:hover,
+  [data-theme="light"] .slider .slider-item a:hover {
+    color: var(--slider-link-hover);
+  }
+
+  /* Slider controls for light theme */
+  .slider[data-theme="light"] .slider-nav,
+  .slider[data-theme="light"] .slider-controls,
+  .slider[data-theme="light"] .slider-dots,
+  .slider[data-theme="light"] .slider-arrows,
+  [data-theme="light"] .slider .slider-nav,
+  [data-theme="light"] .slider .slider-controls,
+  [data-theme="light"] .slider .slider-dots,
+  [data-theme="light"] .slider .slider-arrows {
+    color: var(--slider-text);
+  }
+
+  /* Ensure button elements in slider respect the white text theme */
+  .slider[data-theme="light"] .btn,
+  .slider[data-theme="light"] button,
+  [data-theme="light"] .slider .btn,
+  [data-theme="light"] .slider button {
+    color: var(--slider-text);
+    border-color: var(--slider-text);
+  }
+
+  .slider[data-theme="light"] .btn:hover,
+  .slider[data-theme="light"] button:hover,
+  [data-theme="light"] .slider .btn:hover,
+  [data-theme="light"] .slider button:hover {
+    color: var(--slider-link-hover);
+    border-color: var(--slider-link-hover);
+  }
+
+  /* Override any format text content in sliders for light theme */
+  .slider[data-theme="light"] .format,
+  [data-theme="light"] .slider .format {
+    color: var(--slider-text);
+  }
+
+  .slider[data-theme="light"] .format h1,
+  .slider[data-theme="light"] .format h2,
+  .slider[data-theme="light"] .format h3,
+  .slider[data-theme="light"] .format h4,
+  .slider[data-theme="light"] .format h5,
+  .slider[data-theme="light"] .format h6,
+  [data-theme="light"] .slider .format h1,
+  [data-theme="light"] .slider .format h2,
+  [data-theme="light"] .slider .format h3,
+  [data-theme="light"] .slider .format h4,
+  [data-theme="light"] .slider .format h5,
+  [data-theme="light"] .slider .format h6 {
+    color: var(--slider-heading);
+  }
+
+  .slider[data-theme="light"] .format a,
+  [data-theme="light"] .slider .format a {
+    color: var(--slider-link);
+  }
+
+  .slider[data-theme="light"] .format a:hover,
+  [data-theme="light"] .slider .format a:hover {
+    color: var(--slider-link-hover);
+  }
+}
+
 @layer base {
 
   html {
@@ -65,10 +232,21 @@
 
 }
 
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-
-@layer utilities {
-
+/* Stil für #editing-container mit @apply */
+#editing-container {
+  animation: slideInFromRight 0.3s ease-out forwards;
+  will-change: transform, opacity; /* Performance-Optimierung */
 }
 
 

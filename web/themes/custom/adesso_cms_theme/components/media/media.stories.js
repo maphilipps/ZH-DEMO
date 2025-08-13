@@ -48,7 +48,7 @@ Flexible media container component for displaying images, videos, audio files, a
 {# Video content #}
 {% include 'sdc:media' with {
   media: '<video class="w-full h-full object-cover" controls preload="metadata"><source src="/videos/demo.mp4" type="video/mp4"><p>Your browser doesn\'t support HTML5 video.</p></video>',
-  modifier: 'w-full max-w-4xl aspect-video'
+  modifier: 'w-full container aspect-video'
 } %}
 
 {# Audio content #}
@@ -189,7 +189,7 @@ export const VideoContent = {
   args: {
     ...Media.args,
     media: createVideoHtml('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'),
-    modifier: 'w-full max-w-4xl aspect-video',
+    modifier: 'w-full container aspect-video',
   },
 };
 

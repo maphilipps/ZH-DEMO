@@ -5,7 +5,7 @@ description: 'Provides install-time tweaks for Drupal CMS. Not to be used in pro
 
 # Use the `distribution` key to skip the installer's profile selection step.
 distribution:
-  name: adesso CMS
+  name: Drupal CMS
   install:
     finish_url: '/admin/dashboard/welcome'
     theme: drupal_cms_installer_theme

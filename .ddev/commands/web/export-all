@@ -1,0 +1,273 @@
+#!/bin/bash
+
+## Description: Export all configuration and content (combines cex and export-contents)
+## Usage: export-all [--skip-config] [--skip-content] [--force] [--quiet]
+## Example: "ddev export-all" or "ddev export-all --skip-config"
+
+set -eu -o pipefail
+
+# Parse command line arguments
+SKIP_CONFIG=false
+SKIP_CONTENT=false
+FORCE_EXPORT=false
+QUIET_MODE=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --skip-config)
+            SKIP_CONFIG=true
+            shift
+            ;;
+        --skip-content)
+            SKIP_CONTENT=true
+            shift
+            ;;
+        --force)
+            FORCE_EXPORT=true
+            shift
+            ;;
+        --quiet)
+            QUIET_MODE=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: ddev export-all [OPTIONS]"
+            echo ""
+            echo "Export both Drupal configuration and content entities"
+            echo ""
+            echo "Options:"
+            echo "  --skip-config     Skip configuration export (cex)"
+            echo "  --skip-content    Skip content export (export-contents)"
+            echo "  --force           Force export even if no changes detected"
+            echo "  --quiet           Minimal output (progress indicators only)"
+            echo "  -h, --help        Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  ddev export-all                 # Export config and content"
+            echo "  ddev export-all --skip-config   # Export content only"
+            echo "  ddev export-all --skip-content  # Export config only"
+            echo "  ddev export-all --force --quiet # Force export with minimal output"
+            echo ""
+            echo "This command combines:"
+            echo "  • Configuration export (ddev cex)"
+            echo "  • Content export (ddev export-contents)"
+            echo "  • German brand compliance validation"
+            echo "  • Git status reporting"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use 'ddev export-all --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+# Function for logging
+log() {
+    if [[ "$QUIET_MODE" == false ]]; then
+        echo "$1"
+    fi
+}
+
+# Function for progress indicators (always shown)
+progress() {
+    echo "$1"
+}
+
+# Validation checks
+if [[ "$SKIP_CONFIG" == true && "$SKIP_CONTENT" == true ]]; then
+    echo "❌ Error: Cannot skip both config and content export"
+    echo "💡 Use 'ddev export-all --help' for usage information"
+    exit 1
+fi
+
+progress "🚀 Starting comprehensive export process..."
+
+# Track what will be exported
+EXPORT_SUMMARY=()
+
+# ============================================================
+# PHASE 1: CONFIGURATION EXPORT
+# ============================================================
+
+if [[ "$SKIP_CONFIG" == false ]]; then
+    progress "📦 [1/3] Configuration Export Phase"
+    
+    log "🔍 Checking for configuration changes..."
+    
+    # Check if there are configuration changes (unless forced)
+    if [[ "$FORCE_EXPORT" == false ]]; then
+        CONFIG_DIFF=$(drush config:status --format=json 2>/dev/null || echo "[]")
+        
+        if [[ "$CONFIG_DIFF" == "[]" ]]; then
+            log "✓ No configuration changes detected"
+            EXPORT_SUMMARY+=("Config: No changes (skipped)")
+        else
+            log "📤 Configuration changes detected, exporting..."
+            
+            # Show the diff before exporting
+            if [[ "$QUIET_MODE" == false ]]; then
+                echo "Changes to be exported:"
+                drush config:status | head -20
+                if [[ $(drush config:status | wc -l) -gt 20 ]]; then
+                    echo "... and more (use 'drush config:status' to see all)"
+                fi
+            fi
+            
+            # Export configuration
+            drush config:export --yes
+            EXPORT_SUMMARY+=("Config: Exported successfully")
+            log "✓ Configuration exported to config-export/"
+        fi
+    else
+        log "🔧 Force export requested, exporting configuration..."
+        drush config:export --yes
+        EXPORT_SUMMARY+=("Config: Force exported")
+        log "✓ Configuration force exported to config-export/"
+    fi
+    
+    # German brand compliance check for configuration
+    log "🇩🇪 Running German brand compliance check..."
+    SITE_NAME=$(drush config:get system.site name --format=value 2>/dev/null || echo "")
+    if [[ -n "$SITE_NAME" && "$SITE_NAME" =~ [A]DESSO ]]; then
+        echo "⚠️  Brand compliance warning in site configuration:"
+        echo "     Site name contains 'ADESSO' - 'adesso wird immer klein geschrieben'"
+        echo "     Current site name: $SITE_NAME"
+        EXPORT_SUMMARY+=("Brand: Warning - Check site name case")
+    else
+        log "✓ German brand compliance check passed"
+    fi
+    
+else
+    EXPORT_SUMMARY+=("Config: Skipped (--skip-config)")
+    log "⏭️  Configuration export skipped"
+fi
+
+# ============================================================  
+# PHASE 2: CONTENT EXPORT
+# ============================================================
+
+if [[ "$SKIP_CONTENT" == false ]]; then
+    progress "📝 [2/3] Content Export Phase"
+    
+    log "🔍 Preparing content export directories..."
+    
+    # Ensure export directory exists
+    CONTENT_DIR="../recipes/adesso_cms_starter/content"
+    if [[ -d "$CONTENT_DIR" ]]; then
+        log "🗑️  Cleaning existing content export directory..."
+        rm -rf "$CONTENT_DIR"
+    fi
+    
+    log "📤 Exporting content entities..."
+    
+    # Export content entities with progress indicators
+    ENTITY_TYPES=("file" "media" "node" "menu_link_content")
+    
+    for entity_type in "${ENTITY_TYPES[@]}"; do
+        progress "  📋 Exporting $entity_type entities..."
+        
+        if drush dcer "$entity_type" --folder="$CONTENT_DIR" --quiet 2>/dev/null; then
+            log "    ✓ $entity_type entities exported"
+        else
+            log "    ⚠️  Warning: $entity_type export may have issues"
+        fi
+    done
+    
+    # Validate content export
+    if [[ -d "$CONTENT_DIR" && -n "$(ls -A $CONTENT_DIR 2>/dev/null)" ]]; then
+        CONTENT_COUNT=$(find "$CONTENT_DIR" -name "*.yml" | wc -l)
+        EXPORT_SUMMARY+=("Content: $CONTENT_COUNT files exported")
+        log "✓ Content exported: $CONTENT_COUNT YAML files"
+    else
+        EXPORT_SUMMARY+=("Content: Export directory empty")
+        log "⚠️  Warning: Content export directory is empty"
+    fi
+    
+else
+    EXPORT_SUMMARY+=("Content: Skipped (--skip-content)")  
+    log "⏭️  Content export skipped"
+fi
+
+# ============================================================
+# PHASE 3: VALIDATION & REPORTING
+# ============================================================
+
+progress "📊 [3/3] Validation & Reporting Phase"
+
+# Git status check
+log "📋 Checking Git status for exported files..."
+
+# Check for changes in config-export
+if [[ "$SKIP_CONFIG" == false ]]; then
+    CONFIG_CHANGES=$(git status --porcelain config-export/ 2>/dev/null | wc -l || echo "0")
+    if [[ "$CONFIG_CHANGES" -gt 0 ]]; then
+        log "📦 Configuration changes detected in Git:"
+        if [[ "$QUIET_MODE" == false ]]; then
+            git status --porcelain config-export/ 2>/dev/null | head -10
+            if [[ "$CONFIG_CHANGES" -gt 10 ]]; then
+                echo "... and $(($CONFIG_CHANGES - 10)) more files"
+            fi
+        fi
+    fi
+fi
+
+# Check for changes in content export  
+if [[ "$SKIP_CONTENT" == false ]]; then
+    CONTENT_CHANGES=$(git status --porcelain recipes/adesso_cms_starter/content/ 2>/dev/null | wc -l || echo "0")
+    if [[ "$CONTENT_CHANGES" -gt 0 ]]; then
+        log "📝 Content changes detected in Git:"
+        if [[ "$QUIET_MODE" == false ]]; then
+            git status --porcelain recipes/adesso_cms_starter/content/ 2>/dev/null | head -5
+            if [[ "$CONTENT_CHANGES" -gt 5 ]]; then
+                echo "... and $(($CONTENT_CHANGES - 5)) more files"  
+            fi
+        fi
+    fi
+fi
+
+# ============================================================
+# FINAL SUMMARY
+# ============================================================
+
+progress ""
+progress "🎯 Export Process Complete!"
+progress "================================="
+
+for summary_item in "${EXPORT_SUMMARY[@]}"; do
+    progress "  ✓ $summary_item"
+done
+
+progress ""
+progress "📁 Export Locations:"
+if [[ "$SKIP_CONFIG" == false ]]; then
+    progress "  • Configuration: config-export/"
+fi
+if [[ "$SKIP_CONTENT" == false ]]; then  
+    progress "  • Content: recipes/adesso_cms_starter/content/"
+fi
+
+progress ""
+progress "💡 Next Steps:"
+progress "   • Review changes: git status"
+progress "   • Commit changes: git add . && git commit -m 'Export configuration and content'"
+
+if [[ "$SKIP_CONFIG" == false ]]; then
+    progress "   • Import config elsewhere: ddev cim"
+fi
+
+if [[ "$SKIP_CONTENT" == false ]]; then
+    progress "   • Apply content elsewhere: ddev import-content"
+fi
+
+# Brand compliance final reminder
+if [[ "${EXPORT_SUMMARY[*]}" =~ "Brand: Warning" ]]; then
+    progress ""
+    progress "🇩🇪 German Brand Compliance Reminder:"
+    progress "     'adesso wird immer klein geschrieben'"
+    progress "     Please review and correct any uppercase 'ADESSO' references"
+fi
+
+progress ""
+log "🚀 All export operations completed successfully!"

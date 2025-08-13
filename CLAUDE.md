@@ -47,6 +47,34 @@ When creating or modifying agents:
 3. Use XML-style examples in descriptions for intelligent invocation
 4. Agents return structured findings for main agent coordination
 
+## KRITISCH: Linear Integration Workflow
+
+**IMMER jeden kleinen Schritt direkt in Linear dokumentieren - nicht nur am Ende!**
+
+### Linear Task Management Regeln:
+1. **Vor jedem Task**: Linear-Task erstellen/aktualisieren
+2. **Während der Arbeit**: Jeden kleinen Fortschritt sofort in Linear kommentieren
+3. **Bei jedem Dateiwechsel**: Linear Task Status und Progress aktualisieren
+4. **Bei jedem Commit**: Linear Task ID in Commit Message referenzieren
+5. **Nach Abschluss**: Linear Task als "Done" markieren mit vollständigem Summary
+
+### Beispiel Linear Integration:
+```bash
+# Schritt 1: Linear Task Update
+linear-task-coordinator: "Starting DDEV command implementation - ADC-501"
+
+# Schritt 2: Während File Creation
+linear-task-coordinator: "Created ddev cim command - validation logic implemented"
+
+# Schritt 3: Nach Testing  
+linear-task-coordinator: "ddev cim tested successfully - German brand compliance added"
+
+# Schritt 4: Final Update
+linear-task-coordinator: "ADC-501 complete - both ddev cim and export-all working"
+```
+
+**NIEMALS** nur am Ende dokumentieren - das ist zu spät!
+
 ## Orchestration Pattern for Claude Code
 
 Since sub-agents in Claude Code cannot directly invoke other sub-agents, orchestration follows this strict pattern:
@@ -1259,3 +1287,4 @@ Failed Quality Gates:
 - **Market Performance**: German market engagement and conversion rates
 
 This enterprise-grade Linear workflow integration ensures that adesso CMS development follows Lullabot's proven methodologies while leveraging the full power of MCP tool integration for automated quality assurance, comprehensive testing, and seamless stakeholder collaboration.
+- IMMER JEDEN SCHRITT IN LINEAR forumlieren. Möglichst mit Subtasks arbeiten.

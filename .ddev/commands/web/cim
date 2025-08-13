@@ -1,0 +1,136 @@
+#!/bin/bash
+
+## Description: Import Drupal configuration (smart wrapper for config:import with validation)
+## Usage: cim [--force] [--skip-validation]
+## Example: "ddev cim" or "ddev cim --force"
+
+set -eu -o pipefail
+
+# Parse command line arguments
+FORCE_IMPORT=false
+SKIP_VALIDATION=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --force)
+            FORCE_IMPORT=true
+            shift
+            ;;
+        --skip-validation)
+            SKIP_VALIDATION=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: ddev cim [--force] [--skip-validation]"
+            echo ""
+            echo "Import Drupal configuration from config-export/ directory"
+            echo ""
+            echo "Options:"
+            echo "  --force           Force import even if no changes detected"
+            echo "  --skip-validation Skip configuration validation checks"
+            echo "  -h, --help        Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  ddev cim                    # Standard config import"
+            echo "  ddev cim --force            # Force import"
+            echo "  ddev cim --skip-validation  # Skip validation"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use 'ddev cim --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+echo "🔍 Analyzing configuration import requirements..."
+
+# Check if config-export directory exists and has files
+CONFIG_DIR="../config-export"
+if [[ ! -d "$CONFIG_DIR" || -z "$(ls -A $CONFIG_DIR 2>/dev/null)" ]]; then
+    echo "❌ Configuration directory is empty or doesn't exist: $CONFIG_DIR"
+    echo "💡 Run 'ddev cex' first to export configuration"
+    exit 1
+fi
+
+# Validate configuration integrity (unless skipped)
+if [[ "$SKIP_VALIDATION" == false ]]; then
+    echo "🔒 Validating configuration integrity..."
+    
+    # Check for essential configuration files
+    REQUIRED_FILES=("system.site.yml" "core.extension.yml")
+    for file in "${REQUIRED_FILES[@]}"; do
+        if [[ ! -f "$CONFIG_DIR/$file" ]]; then
+            echo "⚠️  Warning: Missing essential configuration file: $file"
+        fi
+    done
+    
+    # Check for configuration changes
+    if [[ "$FORCE_IMPORT" == false ]]; then
+        CONFIG_STATUS=$(drush config:status --format=json 2>/dev/null || echo "[]")
+        if [[ "$CONFIG_STATUS" == "[]" ]]; then
+            echo "✓ No configuration changes to import"
+            echo "💡 Use 'ddev cim --force' to import anyway"
+            exit 0
+        fi
+    fi
+fi
+
+# Show what will be imported
+echo "📋 Configuration changes to be imported:"
+drush config:status || {
+    echo "⚠️  Unable to show configuration status. Proceeding with import..."
+}
+
+echo ""
+read -p "Continue with configuration import? [Y/n] " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "❌ Configuration import cancelled"
+    exit 1
+fi
+
+echo "🔄 Starting configuration import process..."
+
+# Step 1: Clear cache before import
+echo "  1️⃣  Clearing cache before import..."
+drush cache:rebuild --quiet
+
+# Step 2: Import configuration
+echo "  2️⃣  Importing configuration..."
+if ! drush config:import --yes; then
+    echo "❌ Configuration import failed!"
+    echo "💡 Try running 'ddev drush config:status' to diagnose issues"
+    exit 1
+fi
+
+# Step 3: Run database updates if needed
+echo "  3️⃣  Running database updates..."
+drush updatedb --yes --quiet
+
+# Step 4: Clear cache after import
+echo "  4️⃣  Clearing cache after import..."
+drush cache:rebuild --quiet
+
+# Step 5: German brand compliance check (adesso CMS specific)
+echo "  5️⃣  Running German brand compliance check..."
+if drush config:get system.site name --format=value | grep -i "ADESSO" >/dev/null 2>&1; then
+    echo "⚠️  Brand compliance warning: 'adesso wird immer klein geschrieben'"
+    echo "     Please verify site name uses lowercase 'adesso'"
+fi
+
+echo ""
+echo "✅ Configuration import completed successfully!"
+echo "🎯 Site configuration has been updated and caches cleared"
+
+# Show post-import status
+echo ""
+echo "📊 Post-import status:"
+drush status --fields=drupal-version,site-name,bootstrap --format=table
+
+echo ""
+echo "💡 Next steps:"
+echo "   • Review site functionality: ddev launch"
+echo "   • Run tests: ddev phpunit"
+echo "   • Clear any additional caches if needed: ddev drush cr"

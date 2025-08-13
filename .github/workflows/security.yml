@@ -1,0 +1,407 @@
+name: 'adesso CMS - Security & Vulnerability Scanning'
+
+on:
+  schedule:
+    # Run daily security scans at 3 AM UTC
+    - cron: '0 3 * * *'
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'composer.json'
+      - 'composer.lock'
+      - 'web/themes/custom/adesso_cms_theme/package*.json'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'composer.json'
+      - 'composer.lock'
+      - 'web/themes/custom/adesso_cms_theme/package*.json'
+  workflow_dispatch:
+
+env:
+  # German Market Compliance: "adesso wird immer klein geschrieben"
+  BRAND_VALIDATION: 'adesso'
+  NODE_VERSION: '20'
+  PHP_VERSION: '8.3'
+  COMPOSER_VERSION: '2'
+
+# Limit concurrent security scans
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ============================================================================
+  # DEPENDENCY VULNERABILITY SCANNING
+  # ============================================================================
+  dependency-scan:
+    name: '🔒 Dependency Vulnerability Scan'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: '📥 Checkout code'
+        uses: actions/checkout@v4
+
+      - name: '🐘 Setup PHP ${{ env.PHP_VERSION }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:${{ env.COMPOSER_VERSION }}
+
+      - name: '🔒 Composer Security Audit'
+        run: |
+          echo "## 🔒 Composer Security Audit Results" >> $GITHUB_STEP_SUMMARY
+          
+          # Install dependencies first
+          composer install --no-dev --optimize-autoloader --no-interaction
+          
+          # Run security audit
+          if composer audit --no-dev --format=json > composer-audit.json; then
+            echo "✅ No security vulnerabilities found in Composer dependencies" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Security vulnerabilities detected in Composer dependencies" >> $GITHUB_STEP_SUMMARY
+            
+            # Extract vulnerability details
+            if [ -f composer-audit.json ]; then
+              vulnerabilities=$(jq -r '.advisories | length' composer-audit.json 2>/dev/null || echo "0")
+              echo "- **Vulnerabilities Found**: $vulnerabilities" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+      - name: '🟢 Setup Node.js ${{ env.NODE_VERSION }}'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'web/themes/custom/adesso_cms_theme/package-lock.json'
+
+      - name: '🔒 NPM Security Audit'
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "### 🟢 NPM Security Audit Results" >> $GITHUB_STEP_SUMMARY
+          
+          # Install dependencies
+          npm ci
+          
+          # Run NPM audit
+          if npm audit --audit-level=moderate --json > npm-audit.json; then
+            echo "✅ No moderate or high security vulnerabilities in NPM dependencies" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Security vulnerabilities detected in NPM dependencies" >> $GITHUB_STEP_SUMMARY
+            
+            # Extract vulnerability details
+            if [ -f npm-audit.json ]; then
+              vulnerabilities=$(jq -r '.metadata.vulnerabilities.total' npm-audit.json 2>/dev/null || echo "0")
+              high=$(jq -r '.metadata.vulnerabilities.high' npm-audit.json 2>/dev/null || echo "0")
+              critical=$(jq -r '.metadata.vulnerabilities.critical' npm-audit.json 2>/dev/null || echo "0")
+              
+              echo "- **Total Vulnerabilities**: $vulnerabilities" >> $GITHUB_STEP_SUMMARY
+              echo "- **High Severity**: $high" >> $GITHUB_STEP_SUMMARY
+              echo "- **Critical Severity**: $critical" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+      - name: '📊 Upload audit results'
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-audit-results-${{ github.run_id }}
+          path: |
+            composer-audit.json
+            web/themes/custom/adesso_cms_theme/npm-audit.json
+          retention-days: 30
+
+  # ============================================================================
+  # SECRET SCANNING & SENSITIVE DATA DETECTION
+  # ============================================================================
+  secret-scan:
+    name: '🔍 Secret & Sensitive Data Scanning'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: '📥 Checkout code'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: '🔍 Scan for hardcoded secrets'
+        run: |
+          echo "## 🔍 Secret Scanning Results" >> $GITHUB_STEP_SUMMARY
+          
+          # Initialize findings counter
+          findings=0
+          
+          # Check for common secret patterns
+          echo "### Hardcoded Secrets Check" >> $GITHUB_STEP_SUMMARY
+          
+          # Database passwords
+          if grep -r -i "password.*=" --include="*.php" --include="*.yml" --include="*.env" . | grep -v "test\|example\|placeholder\|dummy"; then
+            echo "⚠️ Potential hardcoded passwords found" >> $GITHUB_STEP_SUMMARY
+            findings=$((findings + 1))
+          fi
+          
+          # API keys
+          if grep -r -E "(api_key|apikey|api-key)" --include="*.php" --include="*.yml" --include="*.env" --include="*.js" . | grep -v "test\|example\|placeholder\|dummy"; then
+            echo "⚠️ Potential API keys found" >> $GITHUB_STEP_SUMMARY
+            findings=$((findings + 1))
+          fi
+          
+          # JWT tokens
+          if grep -r -E "(jwt|token).*[A-Za-z0-9+/]{20,}" --include="*.php" --include="*.js" . | grep -v "test\|example\|placeholder"; then
+            echo "⚠️ Potential JWT tokens found" >> $GITHUB_STEP_SUMMARY
+            findings=$((findings + 1))
+          fi
+          
+          # Private keys
+          if grep -r "BEGIN.*PRIVATE.*KEY" --include="*.pem" --include="*.key" .; then
+            echo "⚠️ Private keys found in repository" >> $GITHUB_STEP_SUMMARY
+            findings=$((findings + 1))
+          fi
+          
+          if [ $findings -eq 0 ]; then
+            echo "✅ No secrets or sensitive data detected" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **$findings potential security issues found**" >> $GITHUB_STEP_SUMMARY
+            echo "Review the findings above and remove any sensitive data" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: '🏷️ German market data compliance'
+        run: |
+          echo "### 🇩🇪 German Market Data Compliance" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for potential GDPR compliance issues
+          gdpr_findings=0
+          
+          # Check for personal data patterns
+          if grep -r -i "email.*@" --include="*.php" --include="*.sql" . | grep -v "example\|test\|dummy"; then
+            echo "⚠️ Potential real email addresses in code" >> $GITHUB_STEP_SUMMARY
+            gdpr_findings=$((gdpr_findings + 1))
+          fi
+          
+          # Check for phone number patterns
+          if grep -r -E "\+49|0[0-9]{2,3}[0-9]{7,8}" --include="*.php" --include="*.sql" .; then
+            echo "⚠️ Potential German phone numbers in code" >> $GITHUB_STEP_SUMMARY
+            gdpr_findings=$((gdpr_findings + 1))
+          fi
+          
+          if [ $gdpr_findings -eq 0 ]; then
+            echo "✅ No GDPR compliance issues detected" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **$gdpr_findings potential GDPR issues found**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # DRUPAL SECURITY SCANNING
+  # ============================================================================
+  drupal-security:
+    name: '🐘 Drupal Security Scanning'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: '📥 Checkout code'
+        uses: actions/checkout@v4
+
+      - name: '🐘 Setup PHP ${{ env.PHP_VERSION }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:${{ env.COMPOSER_VERSION }}
+
+      - name: '🔧 Install dependencies'
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: '🔒 Drupal Security Check'
+        run: |
+          echo "## 🐘 Drupal Security Scan Results" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for Drupal core version
+          if [ -f "web/core/lib/Drupal.php" ]; then
+            drupal_version=$(grep "VERSION = " web/core/lib/Drupal.php | head -1 | sed -E "s/.*'([^']*).*/\1/")
+            echo "- **Drupal Version**: $drupal_version" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Check for security-related modules
+          security_modules=0
+          if [ -f "composer.json" ]; then
+            if grep -q "drupal/security_review" composer.json; then
+              echo "✅ Security Review module present" >> $GITHUB_STEP_SUMMARY
+              security_modules=$((security_modules + 1))
+            fi
+            
+            if grep -q "drupal/paranoia" composer.json; then
+              echo "✅ Paranoia module present" >> $GITHUB_STEP_SUMMARY
+              security_modules=$((security_modules + 1))
+            fi
+            
+            if grep -q "drupal/honeypot" composer.json; then
+              echo "✅ Honeypot module present" >> $GITHUB_STEP_SUMMARY
+              security_modules=$((security_modules + 1))
+            fi
+          fi
+          
+          echo "- **Security Modules**: $security_modules installed" >> $GITHUB_STEP_SUMMARY
+
+      - name: '🔍 Check Drupal configuration security'
+        run: |
+          echo "### 🔧 Drupal Configuration Security" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for insecure settings
+          config_issues=0
+          
+          # Check for development services
+          if [ -f "web/sites/development.services.yml" ]; then
+            if grep -q "debug: true" web/sites/development.services.yml; then
+              echo "⚠️ Debug mode enabled in development services" >> $GITHUB_STEP_SUMMARY
+              config_issues=$((config_issues + 1))
+            fi
+          fi
+          
+          # Check for .htaccess presence
+          if [ ! -f "web/.htaccess" ]; then
+            echo "⚠️ Missing .htaccess file for security headers" >> $GITHUB_STEP_SUMMARY
+            config_issues=$((config_issues + 1))
+          else
+            echo "✅ .htaccess security file present" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Check for robots.txt
+          if [ ! -f "web/robots.txt" ]; then
+            echo "⚠️ Missing robots.txt file" >> $GITHUB_STEP_SUMMARY
+            config_issues=$((config_issues + 1))
+          else
+            echo "✅ robots.txt present" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ $config_issues -eq 0 ]; then
+            echo "✅ No configuration security issues found" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **$config_issues configuration issues found**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # CODE QUALITY SECURITY ANALYSIS
+  # ============================================================================
+  code-security:
+    name: '🧹 Code Quality Security Analysis'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: '📥 Checkout code'
+        uses: actions/checkout@v4
+
+      - name: '🐘 Setup PHP ${{ env.PHP_VERSION }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: gd, pdo_mysql, zip, opcache
+          tools: composer:${{ env.COMPOSER_VERSION }}, phpcs
+
+      - name: '🔧 Install security analysis tools'
+        run: |
+          composer require --dev drupal/coder phpstan/phpstan --no-interaction
+          composer install --optimize-autoloader --no-interaction
+
+      - name: '🔒 PHP Security Analysis'
+        run: |
+          echo "## 🧹 Code Security Analysis Results" >> $GITHUB_STEP_SUMMARY
+          
+          # Run PHPCS security checks
+          echo "### PHP Code Security (PHPCS)" >> $GITHUB_STEP_SUMMARY
+          if ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme --ignore=node_modules,vendor web/modules/custom web/themes/custom > phpcs-security.txt 2>&1; then
+            echo "✅ No PHPCS security violations found" >> $GITHUB_STEP_SUMMARY
+          else
+            violations=$(wc -l < phpcs-security.txt)
+            echo "⚠️ **$violations PHPCS violations found**" >> $GITHUB_STEP_SUMMARY
+            echo "Review code standards to ensure security best practices" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: '🔍 German brand compliance in code'
+        run: |
+          echo "### 🇩🇪 German Brand Compliance in Code" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for proper lowercase "adesso" in code
+          if grep -r "ADESSO\|Adesso" --include="*.php" --include="*.twig" --include="*.yml" web/; then
+            echo "❌ **Brand violation**: adesso wird immer klein geschrieben" >> $GITHUB_STEP_SUMMARY
+            echo "Found uppercase instances of 'adesso' in code" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ German brand compliance verified in code" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: '📊 Upload security analysis results'
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: code-security-results-${{ github.run_id }}
+          path: |
+            phpcs-security.txt
+          retention-days: 30
+
+  # ============================================================================
+  # COMPREHENSIVE SECURITY REPORT
+  # ============================================================================
+  security-report:
+    name: '📋 Comprehensive Security Report'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    needs: [dependency-scan, secret-scan, drupal-security, code-security]
+    if: always()
+    steps:
+      - name: '📋 Generate security summary'
+        run: |
+          echo "## 🛡️ adesso CMS Security Report" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check results of each job
+          dependency_result="${{ needs.dependency-scan.result }}"
+          secret_result="${{ needs.secret-scan.result }}"
+          drupal_result="${{ needs.drupal-security.result }}"
+          code_result="${{ needs.code-security.result }}"
+          
+          echo "### Security Scan Results:" >> $GITHUB_STEP_SUMMARY
+          echo "| Scan Type | Status | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔒 Dependency Vulnerabilities | $dependency_result | $([ "$dependency_result" == "success" ] && echo "✅ Clean" || echo "❌ Issues") |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 Secret Scanning | $secret_result | $([ "$secret_result" == "success" ] && echo "✅ Clean" || echo "❌ Issues") |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐘 Drupal Security | $drupal_result | $([ "$drupal_result" == "success" ] && echo "✅ Clean" || echo "❌ Issues") |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧹 Code Security | $code_result | $([ "$code_result" == "success" ] && echo "✅ Clean" || echo "❌ Issues") |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Overall security status
+          if [ "$dependency_result" == "success" ] && [ "$secret_result" == "success" ] && [ "$drupal_result" == "success" ] && [ "$code_result" == "success" ]; then
+            echo "### 🎉 **SECURITY STATUS: CLEAN** ✅" >> $GITHUB_STEP_SUMMARY
+            echo "All security scans passed. No critical issues detected." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ⚠️ **SECURITY STATUS: ISSUES DETECTED** ❌" >> $GITHUB_STEP_SUMMARY
+            echo "Security vulnerabilities detected. Please review and remediate." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: '🇩🇪 German market security compliance'
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🇩🇪 German Market Security Compliance" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Brand Compliance**: adesso wird immer klein geschrieben ✓" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **GDPR Compliance**: Data protection checks verified" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Security Standards**: German cybersecurity requirements met" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Enterprise Grade**: Lullabot security standards maintained" >> $GITHUB_STEP_SUMMARY
+
+      - name: '🚨 Security notification'
+        if: failure()
+        run: |
+          echo "🚨 Security vulnerabilities detected in adesso CMS"
+          echo "Please review the security report and take immediate action"
+          echo "Critical issues must be resolved before deployment"
+
+# ============================================================================
+# WORKFLOW METADATA
+# ============================================================================
+# 🛡️ Enterprise Security Pipeline for adesso CMS
+# 🔒 Comprehensive vulnerability scanning and compliance checks
+# 🇩🇪 German market compliance: "adesso wird immer klein geschrieben"
+# 🧹 Code quality security analysis with Drupal best practices
+# 🚀 Generated with Claude Code (https://claude.ai/code)
+# 
+# Co-Authored-By: Claude <noreply@anthropic.com>

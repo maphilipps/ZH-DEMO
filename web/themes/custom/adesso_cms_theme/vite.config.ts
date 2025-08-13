@@ -11,6 +11,15 @@ const componentDir = resolve(import.meta.dirname, './components');
 const port = 5173;
 const origin = `https://adesso-cms.ddev.site:${port}`;
 
+// Function to determine origin based on request
+const getOrigin = (req: any) => {
+  const host = req.headers.host;
+  if (host === 'web' || host === 'adesso-cms-web' || host?.match(/^172\.19\.0\.\d+/)) {
+    return `http://${host}:${port}`;
+  }
+  return origin;
+};
+
 export default defineConfig({
   plugins: [
     tailwindcss(),
@@ -57,8 +66,24 @@ export default defineConfig({
     port: port,
     strictPort: true,
     origin: origin,
+    allowedHosts: [
+      '.ddev.site',
+      'web',
+      'adesso-cms-web',
+      '172.19.0.5',
+      '172.18.0.4',
+      'localhost',
+      'backstop'
+    ],
     cors: {
-      origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/
+      origin: [
+        /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
+        /https?:\/\/web(:\d+)?$/,
+        /https?:\/\/172\.19\.0\.\d+(:\d+)?$/,
+        /https?:\/\/adesso-cms-web(:\d+)?$/,
+        /https?:\/\/localhost(:\d+)?$/,
+        /http?:\/\/backstop(:\d+)?$/
+      ]
     },
     // Watch additional file types for better HMR
     watch: {

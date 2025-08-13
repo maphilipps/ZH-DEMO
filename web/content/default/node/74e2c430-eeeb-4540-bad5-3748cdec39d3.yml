@@ -1,0 +1,257 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 74e2c430-eeeb-4540-bad5-3748cdec39d3
+  bundle: landing_page
+  default_langcode: de
+  depends:
+    16f91bec-eff2-40cb-8e78-4428ebbff3b9: media
+    78baaa8a-44da-4b84-ad22-032879615e9f: node
+    dd76c3fc-c072-40b5-9f79-53fd9df5ac33: node
+    33f98d5a-5aaf-4f55-a04f-0df551ee730f: media
+    38dcc72f-9d0a-4a4f-90b7-d7cb8772705b: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Welcome to adesso CMS'
+  created:
+    -
+      value: 1752843392
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Welcome to adesso CMS | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=dbZxY16T'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Welcome to adesso CMS'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Das ist meine Beschreibung.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=dbZxY16T'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'AI Page Header'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-03T11:13:31+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Das ist meine Beschreibung.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Welcome to adesso CMS'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=rw_2aTKE'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'AI Page Header'
+  path:
+    -
+      alias: /welcome-adesso-cms
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_description:
+    -
+      value: 'Das ist meine Beschreibung.'
+  field_featured_image:
+    -
+      entity: 16f91bec-eff2-40cb-8e78-4428ebbff3b9
+  field_paragraphs:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bcad3491-44bb-48a4-acf6-65e5817418b1
+          bundle: hero
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752843490
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_heading:
+            -
+              value: 'Welcome the adesso Drupal CMS'
+              format: restricted_html
+          field_hero_layout:
+            -
+              value: image_top
+          field_link:
+            -
+              target_uuid: 78baaa8a-44da-4b84-ad22-032879615e9f
+              title: 'Our Vision'
+              options: {  }
+          field_link2:
+            -
+              target_uuid: dd76c3fc-c072-40b5-9f79-53fd9df5ac33
+              title: 'Contact us'
+              options: {  }
+          field_media:
+            -
+              entity: 33f98d5a-5aaf-4f55-a04f-0df551ee730f
+          field_pre_headline:
+            -
+              value: 'Our custom Drupal distribution'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a8392887-d43d-4f78-914d-e204226c6e5c
+          bundle: text
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752849213
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: false
+          field_link:
+            -
+              target_uuid: 38dcc72f-9d0a-4a4f-90b7-d7cb8772705b
+              title: 'Explore all Content Elements'
+              options: {  }
+          field_pre_headline:
+            -
+              value: 'Editing and Workflows'
+          field_text_layout:
+            -
+              value: centered
+          field_title:
+            -
+              value: 'Check out all our content Features'
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

@@ -1,25 +1,21 @@
 {# Sample newsletter markup #}
 <div class="text-gray-900">
-  <div class="py-4 px-4 mx-auto max-w-screen-xl lg:py-16">
+  <div class="py-4 px-4 mx-auto container lg:py-16">
     <div class="flex flex-col lg:space-y-8">
       {# Header Section #}
       <div class="flex flex-col justify-center">
-        {% if pre_headline %}
-          {% include 'adesso_cms_theme:heading' with {
-            heading: {
-              title: pre_headline,
-              as: 'h3',
-              custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900'
-            }
+        {% if pre_headline or title %}
+          {% include 'adesso_cms_theme:section-header' with {
+            title: title,
+            pre_headline: pre_headline,
+            alignment: 'left',
+            title_tag: 'h2',
+            pre_headline_tag: 'h3',
+            title_visual_level: '2',
+            pre_headline_visual_level: '3',
+            additional_classes: 'mb-4'
           } %}
         {% endif %}
-        {% include 'adesso_cms_theme:heading' with {
-          heading: {
-            title: title,
-            as: 'h2',
-            custom_classes: 'text-3xl font-bold mb-4'
-          }
-        } %}
         <div class="newsletter-summary">
           {{ summary }}
         </div>

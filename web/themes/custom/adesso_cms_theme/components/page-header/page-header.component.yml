@@ -1,28 +1,86 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: "Page Header: Simple with background image on dark"
-description: "A page header component with dark background, background image, and gradient overlays. Shows page title and optional description."
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: "Site Header: Unified header with navigation and hero variants"
+description: "Consolidated site header component supporting standard pages, landing pages, and hero sections with integrated navigation options"
+status: stable
+group: Layout
 props:
   type: object
   properties:
-    modifier:
+    variant:
       type: string
-      title: modifier
-      description: Additional CSS classes for the page header wrapper
-    background_image:
-      type: string
-      title: background_image
-      description: Background image URL for the header
-      default: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+      enum: ["default", "landing", "hero"]
+      title: Header Variant
+      description: Header layout and styling variant
+      default: "default"
+    includes_navigation:
+      type: boolean
+      title: Include Navigation
+      description: Whether to render integrated navigation within the header
+      default: false
     title:
       type: string
-      title: title
-      description: Page title
+      title: Page Title
+      description: The main page title
     description:
       type: string
-      title: description
+      title: Page Description
       description: Optional page description text
+    background_image:
+      type: string
+      title: Background Image URL
+      description: URL for header background image
+      default: "https://images.unsplash.com/photo-1521737604893-d14cc237varf11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
     alt_text:
       type: string
-      title: alt_text
-      description: Alt text for the background image
+      title: Background Image Alt Text
+      description: Alt text for accessibility
       default: ""
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes for the page header wrapper
+    # Navigation-related props (when includes_navigation is true)
+    site_name:
+      type: string
+      title: Site Name
+      description: Name of the site for logo
+      default: "adessoCMS"
+    logo:
+      type: string
+      title: Logo URL
+      description: Site logo URL
+    front_page:
+      type: string
+      title: Front Page URL
+      description: URL to the front page
+      default: "/"
+    main_menu:
+      type: array
+      title: Main Menu Items
+      description: Navigation menu items
+      default: []
+    has_admin_toolbar:
+      type: boolean
+      title: Has Admin Toolbar
+      description: Whether admin toolbar is present (adjusts positioning)
+      default: false
+    header_left:
+      type: string
+      title: Header Left Region Content
+      description: Logo and left navigation elements (Drupal region content)
+    header_right:
+      type: string
+      title: Header Right Region Content  
+      description: Main navigation and right elements (Drupal region content)
+variants:
+  default:
+    title: "Standard Page Header"
+    description: "Standard page header without navigation, moderate spacing"
+  landing:
+    title: "Landing Page Header"
+    description: "Large landing page header with optional integrated navigation and hero styling"
+  hero:
+    title: "Hero Header" 
+    description: "Full-screen hero header with overlay navigation and enhanced visuals"
+libraryDependencies:
+  - adesso_cms_theme/global

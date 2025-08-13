@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'hero' region.
+ *
+ * The hero region is designed for page headers and hero content.
+ * This template provides support for both block-based headers
+ * (modern approach) and template-based headers (legacy fallback).
+ */
+#}
+
+{% if content %}
+  <div{{ attributes.addClass('hero-region') }}>
+    {# Block-based headers: rendered directly from blocks #}
+    {{ content }}
+  </div>
+{% endif %}

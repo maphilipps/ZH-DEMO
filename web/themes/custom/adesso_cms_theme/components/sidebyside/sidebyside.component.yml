@@ -53,3 +53,10 @@ props:
       type: string
       title: modifier
       description: Additional classes for the component
+    theme:
+      type: string
+      title: theme
+      description: Theme variant for the component
+      enum:
+        - light
+        - dark

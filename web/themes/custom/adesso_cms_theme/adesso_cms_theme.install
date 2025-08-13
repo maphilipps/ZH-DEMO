@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for adesso_cms_theme.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Performs setup tasks when the theme is enabled.
+ */
+function adesso_cms_theme_install() {
+  // Install default block configurations
+  \Drupal::service('config.installer')->installDefaultConfig('theme', 'adesso_cms_theme');
+  
+  // Set block-based headers as default
+  \Drupal::configFactory()
+    ->getEditable('adesso_cms_theme.settings')
+    ->set('use_block_headers', TRUE)
+    ->save();
+  
+  // Log installation
+  \Drupal::logger('adesso_cms_theme')->info('Block-based header system activated for adesso_cms_theme.');
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Performs cleanup tasks when the theme is uninstalled.
+ */
+function adesso_cms_theme_uninstall() {
+  // Remove theme-specific configurations
+  \Drupal::configFactory()
+    ->getEditable('adesso_cms_theme.settings')
+    ->delete();
+}
+
+/**
+ * Enable block-based headers for existing installations.
+ */
+function adesso_cms_theme_update_8001() {
+  // Enable the new block-based header system
+  \Drupal::configFactory()
+    ->getEditable('adesso_cms_theme.settings')
+    ->set('use_block_headers', TRUE)
+    ->save();
+
+  // Install block configurations if they don't exist
+  $config_installer = \Drupal::service('config.installer');
+  
+  $blocks_to_install = [
+    'block.block.page_header_standard',
+    'block.block.page_header_landing',
+  ];
+  
+  foreach ($blocks_to_install as $block_config) {
+    if (!\Drupal::config($block_config)->isNew()) {
+      continue;
+    }
+    
+    $config_installer->installDefaultConfig('theme', 'adesso_cms_theme');
+    break; // Install all at once
+  }
+  
+  return t('Block-based header system has been enabled and default blocks have been installed.');
+}

@@ -1,0 +1,21 @@
+# Visual Regression Testing - BackstopJS
+
+# Ignore test screenshots (these are temporary comparison images)
+test/
+
+# Ignore HTML reports (regenerated on each test run)
+html_report/
+
+# Ignore CI reports (regenerated on each test run)
+ci_report/
+
+# Keep reference images (these are our baseline "golden master" images)
+# reference/ - DO NOT IGNORE - these should be committed to version control
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

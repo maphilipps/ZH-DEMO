@@ -44,9 +44,9 @@ const meta = {
         defaultValue: { summary: '' },
       },
     },
-    'heading.custom_classes': {
-      name: 'Custom Classes',
-      description: 'Override default styling with custom CSS classes',
+    'heading.additional_classes': {
+      name: 'Additional Classes',
+      description: 'Additional CSS classes merged with standard classes',
       control: { type: 'text' },
       table: {
         type: { summary: 'string' },
@@ -260,13 +260,13 @@ export const SemanticVsVisual = {
   },
 };
 
-// Custom styling override
-export const CustomStyling = {
+// Additional styling classes
+export const AdditionalStyling = {
   args: {
     heading: {
-      title: 'Completely Custom Design',
+      title: 'Additional Styled Heading',
       as: 'h2',
-      custom_classes: 'text-3xl font-light text-gray-600 italic border-l-4 border-green-500 pl-4',
+      additional_classes: 'text-green-600 border-l-4 border-green-500 pl-4',
     },
   },
 };
@@ -279,7 +279,7 @@ export const Playground = {
       as: 'h2',
       visual_level: '2',
       modifier: '',
-      custom_classes: '',
+      additional_classes: '',
       id: '',
       aria_label: '',
       url: '',

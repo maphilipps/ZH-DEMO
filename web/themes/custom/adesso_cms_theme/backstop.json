@@ -1,0 +1,246 @@
+{
+  "id": "adesso_cms_visual_regression",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onBeforeScript": "tests/visual-regression/engine_scripts/puppet/onBefore.js",
+  "onReadyScript": "tests/visual-regression/engine_scripts/puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "Homepage - Full Page",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "delay": 0,
+      "readySelector": "main",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Homepage - Site Header",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='site-header']",
+        ".site-header"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Homepage - Page Header",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='page-header']",
+        ".page-header"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Homepage - Main Navigation",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='main-menu']",
+        ".main-menu",
+        "nav[role='navigation']"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Landing Page - Full Page",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/landing-page",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Landing Page - Header Component",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/landing-page",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='landing-page-header']",
+        ".landing-page-header"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Article Page - Full Page",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/node/1",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Article Page - Page Header",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/node/1",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='page-header']",
+        ".page-header",
+        ".page-title"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Mobile Menu - Opened State",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "clickSelector": "[data-mobile-menu-toggle]",
+      "postInteractionWait": 500,
+      "selectors": [
+        "[data-component='mobile-menu']",
+        ".mobile-menu"
+      ],
+      "viewports": [
+        {
+          "label": "mobile",
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Navigation - Hover States",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "hoverSelector": ".main-menu a:first-child",
+      "postInteractionWait": 300,
+      "selectors": [
+        "[data-component='main-menu']",
+        ".main-menu"
+      ],
+      "viewports": [
+        {
+          "label": "desktop",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "misMatchThreshold": 0.2
+    },
+    {
+      "label": "Content Area - Article Layout",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/node/1",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        ".content-area",
+        ".node--article",
+        "main"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Footer - Site Footer",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "[data-component='site-footer']",
+        ".site-footer",
+        "footer"
+      ],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Events Page - Full Layout",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/events",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "News Page - Full Layout",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/news",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        "document"
+      ],
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "News Page - Content Area",
+      "url": "${BASE_URL:-http://adesso-cms.ddev.site}/news",
+      "delay": 0,
+      "readySelector": "main",
+      "selectors": [
+        ".content-area",
+        "main",
+        ".view-content"
+      ],
+      "misMatchThreshold": 0.1
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "tests/visual-regression/reference",
+    "bitmaps_test": "tests/visual-regression/test",
+    "engine_scripts": "tests/visual-regression/engine_scripts",
+    "html_report": "tests/visual-regression/html_report",
+    "ci_report": "tests/visual-regression/ci_report"
+  },
+  "report": [
+    "browser",
+    "CI"
+  ],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--disable-gpu"
+    ]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

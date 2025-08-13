@@ -1,0 +1,4 @@
+services:
+  adesso_cms_blocks.page_header_context:
+    class: Drupal\adesso_cms_theme\Service\PageHeaderContextService
+    arguments: []

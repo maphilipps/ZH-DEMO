@@ -25,6 +25,7 @@ global:
     - "adesso_cms_theme/elements"
     - "adesso_cms_theme/flowbite"
     - "adesso_cms_theme/icons"
+    -  "adesso_cms_theme/swiper"
 
 icons:
   version: 1.x

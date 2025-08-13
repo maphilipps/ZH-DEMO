@@ -1,22 +1,52 @@
-{% set is_dark = paragraph.field_content_element_theme.value %}
-{% set classes = [] %}
+{#
+/**
+ * @file
+ * Accordion paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
 
-<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
+{# Accordion paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}
+    {% include 'adesso_cms_theme:section-header' with {
+      title: title,
+      pre_headline: pre_headline,
+      alignment: 'center',
+      title_tag: 'h2',
+      pre_headline_tag: 'span',
+      pre_headline_visual_level: '3'
+    } %}
+  {% endblock %}
   {% block content %}
-    {{ content.frontend_editing }}
+      <div class="mx-auto max-w-3xl">
+
     {% embed 'adesso_cms_theme:accordion' with {
       content: content,
       title: content.field_title['#items'].getString(),
       pre_headline: content.field_pre_headline['#items'].getString(),
-      is_dark: is_dark ? true : false,
+      is_dark: wrapper_theme == 'dark',
     } only %}
       {% block accordion_items %}
         {{ content.field_accordion_item }}
       {% endblock accordion_items %}
     {% endembed %}
+      </div>
   {% endblock %}
-</div>
-</div>
+{% endembed %}

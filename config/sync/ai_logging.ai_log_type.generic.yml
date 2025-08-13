@@ -1,8 +1,0 @@
-uuid: f75705cf-78f3-4233-a7e7-f54dc828844a
-langcode: de
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: rWKq7Kq9Iwl3VFj3OxY_RaKA7W89-fVWMHOtS8aIsFw
-label: Allgemein
-id: generic

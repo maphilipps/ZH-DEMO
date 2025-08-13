@@ -1,0 +1,19 @@
+uuid: i9k4j6f8-eg1h-4i7j-fk4l-8g0i3k5j7h9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary
+    - paragraphs.paragraphs_type.webform_embed
+id: paragraph.webform_embed.field_summary
+field_name: field_summary
+entity_type: paragraph
+bundle: webform_embed
+label: 'Description'
+description: 'Introductory text above the form.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

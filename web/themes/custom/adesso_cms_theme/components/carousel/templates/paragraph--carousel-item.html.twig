@@ -1,7 +1,16 @@
+{#
+/**
+ * @file
+ * Carousel item paragraph template (child component - no wrapper needed).
+ */
+#}
+{{ title_prefix }}
+{{ title_suffix }}
+
 {% include '@adesso_cms_theme/carousel/carousel-item.twig' with {
-	"item": {
-		"media": content.field_media,
-		"title": content.field_title|render|striptags,
-		"summary": content.field_summary|render|striptags
-	}
+  "item": {
+    "media": content.field_media,
+    "title": content.field_title|render|striptags,
+    "summary": content.field_summary|render|striptags
+  }
 } only %}

@@ -178,69 +178,96 @@ install:
   - yoast_seo
   - selective_better_exposed_filters
   - content_translation
+  - status_messages
+  - media_bulk_upload
+  - media_bulk_upload_dropzonejs
 
 config:
   # If the config we're importing already exists, we don't really care
   # what it looks like.
   strict: false
   import:
+    # Import ALL configurations to ensure 1:1 reproduction
     adesso_cms_theme: '*'
-    block:
-      - block.block.adesso_cms_theme_branding
-      - block.block.adesso_cms_theme_mainnavigation
-      - block.block.adesso_cms_theme_pagetitle
-      - block.block.adesso_cms_theme_content
-      - block.block.adesso_cms_theme_messages
-      - block.block.adesso_cms_theme_help
-      - block.block.footer
-    navigation:
-      - navigation.settings
-    shortcut:
-      - shortcut.set.default
-    user:
-      # This view mode is only needed because Olivero expects it to exist
-      # in certain situations.
-      - core.entity_view_mode.user.compact
-      - views.view.user_admin_people
-    content_moderation: '*'
+    announcements_feed: '*'
+    automated_cron: '*'
+    automatic_updates: '*'
+    autosave_form: '*'
+    block: '*'
+    block_content: '*'
+    captcha: '*'
+    claro: '*'
+    coffee: '*'
+    crop: '*'
+    dashboard: '*'
+    dblog: '*'
+    dropzonejs: '*'
+    easy_breadcrumb: '*'
+    easy_email: '*'
+    easy_email_override: '*'
+    eca: '*'
     editor: '*'
-    file: '*'
-    field_ui: '*'
-    media_library:
-      - core.entity_view_mode.media.media_library
-      - core.entity_form_mode.media.media_library
-      - image.style.media_library
-      - views.view.media_library
-    media:
-      - core.entity_view_mode.media.full
-      - system.action.media_delete_action
-      - system.action.media_publish_action
-      - system.action.media_save_action
-      - system.action.media_unpublish_action
-      - views.view.media
-    image:
-      - image.style.medium
-      - image.style.large
-      - image.style.thumbnail
-    menu_ui: '*'
-    datetime: '*'
-    datetime_range: '*'
-    views: '*'
-    views_ui: '*'
-    #contrib
+    editoria11y: '*'
+    entity_browser: '*'
+    field: '*'
     field_group: '*'
+    filter: '*'
+    focal_point: '*'
+    friendlycaptcha: '*'
+    gin: '*'
+    gin_toolbar: '*'
+    honeypot: '*'
+    image: '*'
+    jquery_ui: '*'
+    klaro: '*'
+    language: '*'
+    leaflet: '*'
     linkit: '*'
+    login_emailusername: '*'
+    mailsystem: '*'
+    media: '*'
+    menu_link_attributes: '*'
     metatag: '*'
+    navigation: '*'
+    node: '*'
     node_revision_delete: '*'
-    pathauto: '*'
+    olivero: '*'
     paragraphs: '*'
+    paragraphs_edit: '*'
+    paragraphs_ee: '*'
     paragraphs_features: '*'
+    pathauto: '*'
     redirect: '*'
     responsive_image: '*'
+    robotstxt: '*'
+    sam: '*'
+    scheduler: '*'
+    search_api: '*'
+    seo_checklist: '*'
+    shortcut: '*'
+    simple_search_form: '*'
+    simple_sitemap: '*'
+    sitemap: '*'
     svg_image: '*'
     svg_image_responsive: '*'
+    symfony_mailer_lite: '*'
+    system: '*'
+    tagify: '*'
+    taxonomy: '*'
+    token: '*'
+    token_or: '*'
+    trash: '*'
+    twig_field_value: '*'
+    twig_tweak: '*'
+    user: '*'
     viewfield: '*'
+    views: '*'
+    views_ui: '*'
+    webform: '*'
     webp: '*'
+    workflows: '*'
+    yoast_seo: '*'
+    media_bulk_upload: '*'
   actions:
     frontend_editing.settings:
       simpleConfigUpdate:
@@ -443,3 +470,97 @@ config:
         hidden.layout_builder__layout: true
     workflows.workflow.basic_editorial:
       addNodeTypes: ['page']
+    # Disable Layout Builder for all content types
+    core.entity_view_display.node.landing_page.default:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.landing_page.card:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.landing_page.teaser:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.landing_page.search_index:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_form_display.node.landing_page.default:
+      simpleConfigUpdate:
+        hidden.layout_builder__layout: true
+    # Disable Layout Builder for all other content types
+    core.entity_view_display.node.event.card:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.event.default:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.event.teaser:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.news.card:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.news.default:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.news.teaser:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.news.search_index:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.person.card:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.person.default:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.person.teaser:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.person.search_index:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.project.card:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.project.default:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.project.teaser:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    core.entity_view_display.node.project.search_index:
+      simpleConfigUpdate:
+        third_party_settings.layout_builder.enabled: false
+        third_party_settings.layout_builder.allow_custom: false
+    # Hide layout builder fields in form displays
+    core.entity_form_display.node.event.default:
+      simpleConfigUpdate:
+        hidden.layout_builder__layout: true
+    core.entity_form_display.node.news.default:
+      simpleConfigUpdate:
+        hidden.layout_builder__layout: true
+    core.entity_form_display.node.person.default:
+      simpleConfigUpdate:
+        hidden.layout_builder__layout: true
+    core.entity_form_display.node.project.default:
+      simpleConfigUpdate:
+        hidden.layout_builder__layout: true

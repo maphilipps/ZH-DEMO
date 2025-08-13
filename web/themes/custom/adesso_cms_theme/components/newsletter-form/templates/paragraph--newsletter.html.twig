@@ -1,26 +1,40 @@
 {#
 /**
  * @file
- * Theme override to display a block.
- *
- * @see template_preprocess_block()
+ * Newsletter paragraph template using paragraph-wrapper component with embed pattern.
  */
 #}
-{% set classes = [] %}
-{% set is_dark = paragraph.field_content_element_theme.value %}
 
-<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
+{# Newsletter paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+
+  {% endblock %}
   {% block content %}
-    {{ content.frontend_editing }}
     {% include 'adesso_cms_theme:newsletter-form' with {
       pre_headline: paragraph.field_pre_headline.value,
       title: paragraph.field_title.value,
       summary: content.field_summary,
-      is_dark: is_dark ? true : false,
+      is_dark: wrapper_theme == 'dark',
     } only %}
   {% endblock %}
-</div>
-</div>
+{% endembed %}

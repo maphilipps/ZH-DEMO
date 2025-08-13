@@ -1,60 +1,44 @@
-{% set is_dark = paragraph.field_content_element_theme.value %}
+{#
+/**
+ * @file
+ * Carousel paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
 
-{%
-  set classes = [
-    'w-full',
-    is_dark ? 'bg-gray-100' : 'bg-white',
-  ]
-%}
+{# Carousel paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('light') %}
+{% set wrapper_spacing = 'none' %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
 
-{# Build items list from field items using proper Drupal Twig approach #}
-{% set carousel_items_list = [] %}
-{% if content.field_carousel_item %}
-  {% for carousel_item in content.field_carousel_item %}
-    {% if carousel_item['#paragraph'] %}
-      {% set carousel_entity = carousel_item['#paragraph'] %}
-      {% set item_data = {
-        'media': carousel_entity.field_media|view|render,
-        'title': carousel_entity.field_title.value|default(''),
-        'summary': carousel_entity.field_summary.value|default(''),
-        'link': {
-          'url': '',
-          'title': 'Read more'
-        }
-      } %}
-      {% set carousel_items_list = carousel_items_list|merge([item_data]) %}
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
-<div{{ attributes.addClass(classes) }}>
-
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}{% endblock %}
   {% block content %}
-    {{ content.frontend_editing }}
-    
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+    <div class="py-8 px-4 mx-auto container lg:py-16">
       <!-- Title section -->
-      <div class="flex flex-col items-start justify-center">
-        {% if content.field_pre_headline %}
-          {% include 'adesso_cms_theme:heading' with {
-            heading: {
-              title: content.field_pre_headline,
-              as: 'span',
-              custom_classes: 'mb-4 text-2xl text-center font-bold tracking-tight leading-none text-gray-900'
-            }
-          } %}
-        {% endif %}
-
-        {% if content.field_title %}
-          {% include 'adesso_cms_theme:heading' with {
-            heading: {
-              title: content.field_title,
-              as: 'h2',
-              custom_classes: 'text-3xl font-bold text-center'
-            }
-          } %}
-        {% endif %}
-      </div>
+      {% if content.field_pre_headline or content.field_title %}
+        {% include 'adesso_cms_theme:section-header' with {
+          title: content.field_title,
+          pre_headline: content.field_pre_headline,
+          alignment: 'center',
+          title_tag: 'h2',
+          pre_headline_tag: 'span',
+          title_visual_level: '2',
+          pre_headline_visual_level: '3'
+        } %}
+      {% endif %}
 
       <!-- Carousel Container -->
       <div class="max-w-[1536px] mx-auto">
@@ -84,9 +68,9 @@
           autoplay: false,
           interval: '5000',
           pause_on_hover: true,
-          class: 'max-w-7xl mx-auto'
+          class: 'container mx-auto'
         } only %}
       </div>
     </div>
   {% endblock %}
-</div>
+{% endembed %}

@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows - News list.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's rendered content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<div class="mx-auto max-w-2xl lg:container">
+  <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+    {% for row in rows %}
+      {% set row_attributes = row.attributes ? row.attributes : create_attribute() %}
+      <article{{ row_attributes.addClass('relative isolate flex flex-col gap-8 lg:flex-row') }}>
+        {{ row.content }}
+      </article>
+    {% endfor %}
+  </div>
+</div>

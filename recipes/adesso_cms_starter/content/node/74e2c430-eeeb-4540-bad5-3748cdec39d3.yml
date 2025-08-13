@@ -2,9 +2,10 @@ _meta:
   version: '1.0'
   entity_type: node
   uuid: 74e2c430-eeeb-4540-bad5-3748cdec39d3
-  bundle: page
+  bundle: landing_page
   default_langcode: de
   depends:
+    16f91bec-eff2-40cb-8e78-4428ebbff3b9: media
     78baaa8a-44da-4b84-ad22-032879615e9f: node
     dd76c3fc-c072-40b5-9f79-53fd9df5ac33: node
     33f98d5a-5aaf-4f55-a04f-0df551ee730f: media
@@ -34,9 +35,6 @@ default:
   revision_translation_affected:
     -
       value: true
-  moderation_state:
-    -
-      value: published
   metatag:
     -
       tag: meta
@@ -53,6 +51,11 @@ default:
       attributes:
         rel: shortlink
         href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
     -
       tag: meta
       attributes:
@@ -91,8 +94,33 @@ default:
     -
       tag: meta
       attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'AI Page Header'
+    -
+      tag: meta
+      attributes:
         property: 'og:updated_time'
-        content: '2025-08-02T15:28:52+02:00'
+        content: '2025-08-04T09:06:40+02:00'
     -
       tag: meta
       attributes:
@@ -108,6 +136,16 @@ default:
       attributes:
         name: 'twitter:title'
         content: 'Welcome to adesso CMS'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=8Cr_BI2o'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'AI Page Header'
   path:
     -
       alias: /welcome-adesso-cms
@@ -119,6 +157,9 @@ default:
   field_description:
     -
       value: 'Das ist meine Beschreibung.'
+  field_featured_image:
+    -
+      entity: 16f91bec-eff2-40cb-8e78-4428ebbff3b9
   field_paragraphs:
     -
       entity:

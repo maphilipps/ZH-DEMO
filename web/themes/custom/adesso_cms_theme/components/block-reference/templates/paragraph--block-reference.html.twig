@@ -1,32 +1,44 @@
 {#
 /**
  * @file
- * Default theme implementation to display a block reference paragraph.
- *
- * @see template_preprocess_paragraph()
- *
- * @ingroup themeable
+ * Block reference paragraph template using paragraph-wrapper component with embed pattern.
  */
 #}
-{% set is_dark = paragraph.field_content_element_theme.value %}
 
-<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-<div{{ attributes }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
+{# Block reference paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
 
-  {% block content %}
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-    {{ content.frontend_editing }}
-    {%
-      include 'adesso_cms_theme:block-reference' with {
-        pre_headline: content.field_pre_headline|render,
-        title: content.field_title|render,
-        block_content: content.field_block_reference|render,
-        is_dark: is_dark
-      } only
-    %}
-  </div>
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+
   {% endblock %}
-</div>
-</div>
+  {% block content %}
+    <div class="py-8 px-4 mx-auto container lg:py-16">
+      {%
+        include 'adesso_cms_theme:block-reference' with {
+          pre_headline: content.field_pre_headline|render,
+          title: content.field_title|render,
+          block_content: content.field_block_reference|render,
+          is_dark: wrapper_theme == 'dark'
+        } only
+      %}
+    </div>
+  {% endblock %}
+{% endembed %}

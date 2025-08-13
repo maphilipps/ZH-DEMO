@@ -1,6 +1,7 @@
 
-<h2 id="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}">
-  <button type="button" class="flex justify-between items-center py-5 w-full font-medium text-left border-b border-primary-200"
+<h2 id="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}" class="accordion-item">
+  <button type="button" 
+          class="accordion-trigger flex justify-between items-center py-5 px-4 w-full font-medium text-left transition-colors bg-neutral-100 text-neutral-900 border-b border-neutral-300 hover:bg-neutral-200"
           data-accordion-target="#accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
           aria-expanded="{{ (item.is_expanded|default(false)) ? 'true' : 'false' }}"
           aria-controls="accordion-content-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
@@ -20,15 +21,16 @@
   </button>
 </h2>
 <div id="accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
-     class="{{ (item.is_expanded|default(false)) ? '' : 'hidden' }}" aria-labelledby="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+     class="{{ (item.is_expanded|default(false)) ? '' : 'hidden' }} accordion-content bg-neutral-50 border-b border-neutral-300" 
+     aria-labelledby="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
      data-accordion-content>
-  <div class="py-5 border-b border-primary-200 prose-p:mb-2 prose-p:text-gray-900">
+  <div class="py-5 px-4 prose-p:mb-2 text-neutral-900">
     {% block accordion_content %}
       {{ item.body|default('') }}
     {% endblock %}
     {% if item.link.url|default('') %}
-      <a href="{{ item.link.url|default('') }}" class=" whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none
-        focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none text-primary">
+      <a href="{{ item.link.url|default('') }}" 
+         class="accordion-link whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none text-primary-600 hover:text-primary-700">
         {{ item.link.title|default('Read more'|t) }}
       </a>
     {% endif %}

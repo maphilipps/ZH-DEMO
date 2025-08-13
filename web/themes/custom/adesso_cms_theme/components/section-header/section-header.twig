@@ -1,0 +1,61 @@
+{# 
+  Section Header component with optional pre-headline and configurable alignment
+  - title: Main heading text (required)
+  - pre_headline: Optional subtitle/pre-headline text  
+  - alignment: Text alignment (left, center, right)
+  - title_tag: HTML tag for main title (h1-h6, default: h2)
+  - pre_headline_tag: HTML tag for pre-headline (h1-h6, span, default: span)
+  - title_visual_level: Visual styling level for main title
+  - pre_headline_visual_level: Visual styling level for pre-headline (default: 3)
+  - additional_classes: Additional classes for container
+  - attributes: Drupal Attribute object
+#}
+{% if title %}
+  {# Set up alignment classes #}
+  {% set alignment_class = alignment|default('center') %}
+  {% set alignment_classes = {
+    'left': 'text-left',
+    'center': 'text-center', 
+    'right': 'text-right'
+  } %}
+  {% set text_alignment = alignment_classes[alignment_class] ?: 'text-center' %}
+  
+  {# Base container classes #}
+  {% set base_classes = [
+    'space-y-2',
+    'flex',
+    'flex-col',
+    text_alignment
+  ] %}
+  
+  {# Add additional classes if provided #}
+  {% if additional_classes|default('') %}
+    {% set base_classes = base_classes|merge([additional_classes]) %}
+  {% endif %}
+  
+  {# Set up attributes object #}
+  {% set attributes = attributes|default(create_attribute()) %}
+  {% set attributes = attributes.addClass(base_classes) %}
+  
+  <div{{ attributes }}>
+    {% if pre_headline %}
+      {% include 'adesso_cms_theme:heading' with {
+        heading: {
+          title: pre_headline,
+          as: pre_headline_tag|default('span'),
+          visual_level: pre_headline_visual_level|default('3'),
+          additional_classes: text_alignment
+        }
+      } %}
+    {% endif %}
+    
+    {% include 'adesso_cms_theme:heading' with {
+      heading: {
+        title: title,
+        as: title_tag|default('h2'),
+        visual_level: title_visual_level,
+        additional_classes: text_alignment
+      }
+    } %}
+  </div>
+{% endif %}

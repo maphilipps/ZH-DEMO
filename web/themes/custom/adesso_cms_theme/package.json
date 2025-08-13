@@ -13,7 +13,17 @@
     "test:coverage": "vitest run --coverage",
     "lint:js": "eslint components/**/*.behavior.js --fix",
     "qa:validate": "npm run test && npm run lint:js && npm run lint:sass",
-    "storybook": "storybook dev -p 6006 --host 0.0.0.0"
+    "qa:visual": "npm run visual:test",
+    "qa:full": "npm run qa:validate && npm run qa:visual",
+    "storybook": "storybook dev -p 6006 --host 0.0.0.0",
+    "backstop:reference": "backstop reference",
+    "backstop:test": "backstop test",
+    "backstop:approve": "backstop approve",
+    "backstop:openReport": "backstop openReport",
+    "visual:reference": "npm run backstop:reference",
+    "visual:test": "npm run backstop:test",
+    "visual:approve": "npm run backstop:approve",
+    "visual:report": "npm run backstop:openReport"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "8.6.7",
@@ -27,6 +37,7 @@
     "@vitest/ui": "^3.2.4",
     "@whitespace/storybook-addon-html": "^7.0.0",
     "autoprefixer": "^10.4.20",
+    "backstopjs": "^6.3.25",
     "chokidar-cli": "^3.0.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",

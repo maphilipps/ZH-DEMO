@@ -1,0 +1,11 @@
+_core:
+  default_config_hash: CsE0TbzZ5FioeXicWZVw38bZoVMnA4p2_4DZXUMadoc
+langcode: de
+field_widget_prompt: "Du wirst gebeten, mit Inhaltsvorschlägen auf Basis der Eingaben im Markdown-Format zu helfen. Antworte nur mit\r\n\r\nVorschlägen, wiederhole nicht die Aufgabenbeschreibung und verwende keinen anderen Text außer den Vorschlägen.\r\n\r\nSchreibe jeden Vorschlag in einen Span-Tag mit der Klasse „ai-cs-use”. Hier ist ein Beispiel für einen einzelnen Vorschlag:\r\n\r\n```html\r\n\r\n<span class=\"ai-content-suggestion\"><span class=\"ai-use-cs\">Vorschlag</span></span>\r\n\r\n```\r\n\r\nWenn du mehrere Vorschläge hast, achte darauf, dass diese in <li>-Tags innerhalb einer geordneten Liste <ol> eingeschlossen sind.\r\n\r\nHier ist ein Beispiel für mehrere Vorschläge:\r\n\r\n```html\r\n\r\n<ol>\r\n\r\n    <span class=\"ai-content-suggestion\">\r\n\r\n\r\n      <span class=\"ai-use-cs\">Vorschlag</span>\r\n\r\n    </span>\r\n\r\n  </li>\r\n\r\n  <li>\r\n\r\n    <span class=\"ai-content-suggestion\">\r\n\r\n\r\n      <span class=\"ai-use-cs\">Ein weiterer Vorschlag</span>\r\n\r\n</span>\r\n\r\n</li>\r\n\r\n</ol>\r\n\r\n```\r\n\r\nWenn zu wenig Infos da sind, um eine Antwort zu geben, sag einfach: „Nicht genug Infos, bitte gib mehr ein, bevor Vorschläge gemacht werden.“\n"
+plugins:
+  moderate: openai__omni-moderation-latest
+  readability: openai__gpt-4o
+  summarise: openai__gpt-4o
+  taxonomy_suggest: openai__gpt-4o
+  title_suggest: openai__gpt-4o
+  tone: openai__gpt-4o

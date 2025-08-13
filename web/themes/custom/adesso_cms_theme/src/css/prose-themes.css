@@ -1,0 +1,149 @@
+/* 
+ * Theme System using CSS Variables
+ * Three themes: default (white bg), light (primary/10 bg), dark (dark bg)
+ * Components use these variables without knowing about themes
+ */
+
+/* Default Theme - White background */
+[data-theme="default"] {
+  /* Override Tailwind color variables */
+  --color-neutral: var(--color-slate-800);
+  --color-neutral-50: var(--color-slate-50);
+  --color-neutral-100: var(--color-slate-100);
+  --color-neutral-200: var(--color-slate-200);
+  --color-neutral-300: var(--color-slate-300);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+  
+  --color-primary: #3b82f6;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+}
+
+/* Light Theme - Primary tinted background */
+[data-theme="light"] {
+  /* Override Tailwind color variables */
+  --color-neutral: var(--color-slate-800);
+  --color-neutral-50: rgba(59, 130, 246, 0.05); /* primary/5 */
+  --color-neutral-100: rgba(59, 130, 246, 0.1); /* primary/10 */
+  --color-neutral-200: rgba(59, 130, 246, 0.15);
+  --color-neutral-300: var(--color-primary-200);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+  
+  --color-primary: #1d4ed8;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+}
+
+/* Dark Theme - Dark background */
+[data-theme="dark"] {
+  /* Override Tailwind color variables */
+  --color-neutral: var(--color-slate-200);
+  --color-neutral-50: var(--color-slate-900);
+  --color-neutral-100: var(--color-slate-800);
+  --color-neutral-200: var(--color-slate-700);
+  --color-neutral-300: var(--color-slate-600);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-300);
+  --color-neutral-600: var(--color-slate-200);
+  --color-neutral-700: var(--color-slate-100);
+  --color-neutral-800: var(--color-slate-50);
+  --color-neutral-900: var(--color-white);
+  
+  --color-primary: #60a5fa;
+  --color-primary-100: #1e3a8a;
+  --color-primary-200: #1e40af;
+  --color-primary-300: #1d4ed8;
+  --color-primary-400: #2563eb;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #60a5fa;
+  --color-primary-700: #93c5fd;
+  --color-primary-800: #bfdbfe;
+  --color-primary-900: #dbeafe;
+}
+
+/* Apply theme variables to prose elements */
+[data-theme] .prose {
+  --tw-prose-body: var(--color-neutral);
+  --tw-prose-headings: var(--color-neutral-900);
+  --tw-prose-lead: var(--color-neutral-700);
+  --tw-prose-links: var(--color-primary-600);
+  --tw-prose-bold: var(--color-neutral-900);
+  --tw-prose-counters: var(--color-neutral-600);
+  --tw-prose-bullets: var(--color-neutral-400);
+  --tw-prose-hr: var(--color-neutral-300);
+  --tw-prose-quotes: var(--color-neutral-900);
+  --tw-prose-quote-borders: var(--color-primary-300);
+  --tw-prose-captions: var(--color-neutral-600);
+  --tw-prose-code: var(--color-neutral-900);
+  --tw-prose-th-borders: var(--color-neutral-300);
+  --tw-prose-td-borders: var(--color-neutral-200);
+  --tw-prose-pre-code: var(--color-neutral-100);
+  --tw-prose-pre-bg: var(--color-neutral-800);
+}
+
+/* Dark theme specific overrides */
+[data-theme="dark"] .prose {
+  --tw-prose-pre-code: var(--color-neutral-800);
+  --tw-prose-pre-bg: var(--color-neutral-200);
+}
+
+/* Prose-specific overrides for pre/code blocks */
+.prose pre {
+  background-color: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  color: var(--tw-prose-pre-code);
+}
+
+.prose code {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-900);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.prose a {
+  color: var(--color-primary-600);
+}
+
+.prose a:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.prose th {
+  color: var(--color-neutral-900);
+  background-color: var(--color-neutral-100);
+}
+
+.prose td {
+  border-color: var(--color-neutral-200);
+}
+
+.prose blockquote {
+  color: var(--color-neutral-600);
+  border-left-color: var(--color-neutral-300);
+}

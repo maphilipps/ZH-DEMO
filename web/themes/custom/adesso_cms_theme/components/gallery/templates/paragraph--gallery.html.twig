@@ -1,29 +1,44 @@
 {#
 /**
  * @file
- * Theme override for gallery paragraph.
+ * Gallery paragraph template using paragraph-wrapper component with embed pattern.
  */
 #}
-{% set is_dark = paragraph.field_content_element_theme.value %}
 
-<div{{ attributes }}>
-  {{ title_prefix }}
-  {{ title_suffix }}
-  {{ content.frontend_editing }}
-  
-  <section class="{{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+{# Gallery paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}{% endblock %}
+  {% block content %}
+    <div class="py-8 px-4 mx-auto container lg:py-16">
       {# Title section with proper formatting #}
-      <div class="max-w-4xl mx-auto text-center mb-8">
-        {% if content.field_pre_headline|render|striptags|trim %}
-          <span class="block mb-4 text-2xl font-bold tracking-tight leading-none text-gray-900">
-            {{ content.field_pre_headline }}
-          </span>
-        {% endif %}
-        {% if content.field_title|render|striptags|trim %}
-          <h2 class="text-3xl font-bold mb-8 text-gray-900">
-            {{ content.field_title }}
-          </h2>
+      <div class="container mx-auto text-center mb-8">
+        {% if content.field_pre_headline|render|striptags|trim or content.field_title|render|striptags|trim %}
+          {% include 'adesso_cms_theme:section-header' with {
+            title: content.field_title|render|striptags,
+            pre_headline: content.field_pre_headline|render|striptags,
+            alignment: 'center',
+            title_tag: 'h2',
+            pre_headline_tag: 'span',
+            title_visual_level: '2',
+            pre_headline_visual_level: '3'
+          } %}
         {% endif %}
       </div>
       
@@ -32,5 +47,5 @@
         {{ content.field_media_item }}
       </div>
     </div>
-  </section>
-</div>
+  {% endblock %}
+{% endembed %}

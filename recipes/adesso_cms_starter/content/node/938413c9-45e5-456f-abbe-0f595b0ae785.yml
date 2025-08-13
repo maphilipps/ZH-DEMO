@@ -4,6 +4,8 @@ _meta:
   uuid: 938413c9-45e5-456f-abbe-0f595b0ae785
   bundle: page
   default_langcode: de
+  depends:
+    a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb: media
 default:
   revision_uid:
     -
@@ -49,6 +51,11 @@ default:
         rel: shortlink
         href: 'https://adesso-cms.ddev.site/'
     -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=Npmke1ii'
+    -
       tag: meta
       attributes:
         name: referrer
@@ -86,8 +93,28 @@ default:
     -
       tag: meta
       attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=Npmke1ii'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
         property: 'og:updated_time'
-        content: '2025-08-02T15:46:02+02:00'
+        content: '2025-08-04T09:47:36+02:00'
     -
       tag: meta
       attributes:
@@ -103,6 +130,11 @@ default:
       attributes:
         name: 'twitter:title'
         content: Events
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=CZzFjWuD'
   path:
     -
       alias: /events
@@ -111,6 +143,9 @@ default:
   field_description:
     -
       value: 'Lists all upcoming events.'
+  field_featured_image:
+    -
+      entity: a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb
   field_paragraphs:
     -
       entity:
@@ -136,12 +171,6 @@ default:
           field_content_element_theme:
             -
               value: false
-          field_pre_headline:
-            -
-              value: 'Tempo machen bei der digitalen Transformation!'
-          field_title:
-            -
-              value: 'Unsere Events'
           field_views_ref:
             -
               target_id: events

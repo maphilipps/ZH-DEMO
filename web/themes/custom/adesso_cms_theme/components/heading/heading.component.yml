@@ -1,6 +1,58 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Heading
-description: General/Heading component
+description: Flexible heading component with Drupal attributes support
 props:
   type: object
-  properties: {}
+  properties:
+    heading:
+      type: object
+      title: Heading Configuration
+      properties:
+        title:
+          type: ['string', 'object', 'null']
+          title: Heading Text
+          description: The text content of the heading
+        as:
+          type: string
+          title: HTML Tag
+          description: HTML tag to use for the heading
+          enum: [h1, h2, h3, h4, h5, h6, span]
+          default: h2
+        visual_level:
+          type: string
+          title: Visual Level
+          description: Visual styling level (can differ from semantic tag)
+          enum: ['1', '2', '3', '4', '5', '6']
+        additional_classes:
+          type: ['string', 'array']
+          title: Additional CSS Classes
+          description: Additional CSS classes merged with standard classes
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        id:
+          type: string
+          title: Element ID
+          description: Optional ID attribute for the heading element
+        aria_label:
+          type: string
+          title: ARIA Label
+          description: Optional aria-label for accessibility
+        url:
+          type: ['string', 'null']
+          title: Link URL
+          description: Optional URL to make the heading a link
+        icon:
+          type: string
+          title: Icon
+          description: Optional icon content (HTML/SVG)
+        modifier:
+          type: string
+          title: Modifier Class
+          description: Additional modifier class for special styling
+        attributes:
+          type: object
+          title: Drupal Attributes
+          description: Drupal Attribute object for additional HTML attributes

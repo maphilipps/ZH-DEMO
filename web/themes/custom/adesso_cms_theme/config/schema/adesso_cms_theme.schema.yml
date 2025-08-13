@@ -105,4 +105,3 @@ adesso_cms_theme.settings:
         enable_flowbite:
           type: boolean
           label: 'Enable Flowbite'
-    

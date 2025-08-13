@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Page component template with slot system.
+ * 
+ * This component provides a flexible page layout that can handle:
+ * - Normal pages with standard site header
+ * - Landing pages with custom headers
+ * - Proper header positioning and styling
+ * 
+ * Uses Drupal 11 SDC slot system for maximum flexibility.
+ */
+#}
+
+{# Set page wrapper classes #}
+{% set page_wrapper_classes = [
+  'min-h-dvh',
+  'flex',
+  'flex-col',
+  page_classes ? page_classes
+] %}
+
+<div{{ attributes.addClass(page_wrapper_classes) }}>
+  
+  {# Custom Header Block - when provided, overrides the default header completely #}
+  {% block custom_header %}
+    {# Default Site Header - shown when no custom header block is overridden #}
+    {% if show_default_header %}
+    {% set header_classes = [
+      'site-header',
+      is_landing_page ? 'absolute top-0 left-0 right-0 z-50 bg-transparent' : 'bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700'
+    ] %}
+    
+    <header class="{{ header_classes|join(' ') }}" role="banner">
+      <div class="mx-auto container px-4 lg:px-6 py-8">
+        <div class="flex items-center justify-between">
+          
+          {# Logo Section #}
+          <div class="flex items-center">
+            <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5">
+              {% include 'adesso_cms_theme:logo' with {
+                site_logo: logo|default(''),
+                site_name: site_name|default('adessoCMS'),
+                variant: header_variant == 'transparent' ? 'inverted' : 'default',
+                modifier: 'h-8 w-auto'
+              } %}
+            </a>
+          </div>
+
+          {# Navigation Section #}
+          <div class="flex items-center gap-4">
+            {% include 'adesso_cms_theme:main-menu' with {
+              variant: header_variant,
+              nested: main_menu|default([]),
+              show_logo: false,
+              site_name: site_name|default('adessoCMS'),
+              logo: logo|default(''),
+              front_page: front_page|default('/')
+            } %}
+          </div>
+          
+        </div>
+      </div>
+    </header>
+    {% endif %}
+  {% endblock %}
+
+  {# Live region for navigation state announcements #}
+  <div id="nav-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  {# Highlighted Region Block #}
+  {% block highlighted %}
+  {% endblock %}
+
+  {# Main Content Block #}
+  <main role="main" id="main-content" class="flex-1" tabindex="-1">
+    <div id="content" class="layout-content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+  {# Footer Block #}
+  {% block footer %}
+  {% endblock %}
+
+</div>

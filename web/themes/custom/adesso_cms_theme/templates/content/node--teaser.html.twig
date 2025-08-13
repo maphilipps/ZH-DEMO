@@ -1,0 +1,127 @@
+{#
+/**
+ * @file
+ * Enhanced node teaser template with flexible display options.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    'node--teaser',
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{# Extract image from various possible fields #}
+{% set teaser_image = null %}
+{% set teaser_image_alt = '' %}
+
+{# Try field_thumbnail first (media reference) #}
+{% if content.field_thumbnail.0 and content.field_thumbnail.0['#media'] %}
+  {% set media = content.field_thumbnail.0['#media'] %}
+  {% if media.field_media_image.entity %}
+    {% set teaser_image = file_url(media.field_media_image.entity.fileuri) %}
+    {% set teaser_image_alt = media.field_media_image.alt|default('') %}
+  {% endif %}
+{# Try field_featured_image (media reference) #}
+{% elseif content.field_featured_image.0 and content.field_featured_image.0['#media'] %}
+  {% set media = content.field_featured_image.0['#media'] %}
+  {% if media.field_media_image.entity %}
+    {% set teaser_image = file_url(media.field_media_image.entity.fileuri) %}
+    {% set teaser_image_alt = media.field_media_image.alt|default('') %}
+  {% endif %}
+{# Try direct image field #}
+{% elseif content.field_image.0 and content.field_image.0['#item'] %}
+  {% set teaser_image = file_url(content.field_image.0['#item'].entity.fileuri) %}
+  {% set teaser_image_alt = content.field_image.0['#item'].alt|default('') %}
+{% endif %}
+
+{# Get summary/excerpt #}
+{% set summary_text = '' %}
+{% if content.field_summary.0 %}
+  {% set summary_text = content.field_summary.0['#context'].value|striptags %}
+{% elseif content.field_lead.0 %}
+  {% set summary_text = content.field_lead.0['#context'].value|striptags %}
+{% elseif content.body.0 %}
+  {% set body_text = content.body.0['#text']|striptags %}
+  {% set summary_text = body_text|length > 150 ? body_text|slice(0, 150) ~ '...' : body_text %}
+{% endif %}
+
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  
+  <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+    
+    {# Featured Image #}
+    {% if teaser_image %}
+      <div class="aspect-video overflow-hidden">
+        <a href="{{ url }}" class="block" aria-label="{{ 'View'|t }} {{ label }}">
+          <img src="{{ teaser_image }}" 
+               alt="{{ teaser_image_alt }}" 
+               loading="lazy"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+        </a>
+      </div>
+    {% endif %}
+    
+    {# Content Area #}
+    <div class="p-6">
+      
+      {# Meta Information #}
+      {% if display_submitted %}
+        <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+          <time datetime="{{ node.getCreatedTime|date('c') }}">
+            {{ date }}
+          </time>
+          {% if author_name %}
+            <span class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+              </svg>
+              {{ author_name }}
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {# Title #}
+      <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+        <a href="{{ url }}" class="hover:text-primary transition-colors">
+          {{ label }}
+        </a>
+      </h3>
+      
+      {# Summary #}
+      {% if summary_text %}
+        <p class="text-gray-600 mb-4 line-clamp-3">{{ summary_text }}</p>
+      {% endif %}
+      
+      {# Tags/Categories #}
+      {% if content.field_tags %}
+        <div class="flex flex-wrap gap-2 mb-4">
+          {% for tag in content.field_tags %}
+            {% if tag['#title'] %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                {{ tag['#title'] }}
+              </span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      {# Read More Link #}
+      <a href="{{ url }}" class="inline-flex items-center gap-1 text-primary font-medium text-sm hover:underline">
+        {{ 'Read more'|t }}
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
+</article>

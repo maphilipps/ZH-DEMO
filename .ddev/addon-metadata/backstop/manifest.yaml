@@ -1,0 +1,9 @@
+name: backstop
+repository: fourkitchens/ddev-drupal-backstop
+version: 0.0.1
+install_date: "2025-08-03T13:39:15+02:00"
+project_files:
+    - docker-compose.backstop.yaml
+    - commands/backstop
+global_files: []
+removal_actions: []

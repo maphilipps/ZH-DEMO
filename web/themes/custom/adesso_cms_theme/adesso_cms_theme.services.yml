@@ -9,3 +9,14 @@ parameters:
     debug: true
     auto_reload: true
     cache: false
+
+services:
+  adesso_cms_theme.page_header_context:
+    class: Drupal\adesso_cms_theme\Service\PageHeaderContextService
+    arguments: []
+  
+  adesso_cms_theme.twig_extension.page_header:
+    class: Drupal\adesso_cms_theme\TwigExtension\PageHeaderExtension
+    arguments: ['@adesso_cms_theme.page_header_context', '@current_route_match']
+    tags:
+      - { name: twig.extension }

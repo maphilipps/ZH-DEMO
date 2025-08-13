@@ -1,0 +1,339 @@
+{
+  "id": "theme_selector_admin_ui",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "label": "tablet", 
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop",
+      "width": 1200,
+      "height": 800
+    }
+  ],
+  "onBeforeScript": "puppet/theme-selector-onBefore.js",
+  "onReadyScript": "puppet/theme-selector-onReady.js", 
+  "scenarios": [
+    {
+      "label": "Theme Selector - Text Paragraph Form - Default State",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages",
+        ".contextual"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Text Paragraph Form - Light Theme Selected",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": ".theme-preview-card[data-theme='light']",
+      "postInteractionWait": 500,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Text Paragraph Form - Highlighted Theme Selected",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": ".theme-preview-card[data-theme='highlighted']",
+      "postInteractionWait": 500,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Text Paragraph Form - Dark Theme Selected",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": ".theme-preview-card[data-theme='dark']",
+      "postInteractionWait": 500,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Hero Paragraph Form",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/hero/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Card Group Paragraph Form",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/card_group/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Hover State - Light Theme Card",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": ".theme-preview-card[data-theme='light']",
+      "clickSelector": "",
+      "postInteractionWait": 200,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Focus State - Select Dropdown",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "select[name*='field_theme']",
+      "postInteractionWait": 200,
+      "keyPressSelectors": [
+        {
+          "selector": "select[name*='field_theme']",
+          "keyPress": "Tab"
+        }
+      ],
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "onlyDesktop": true
+    },
+    {
+      "label": "Theme Selector - Complete Form Context - Text Paragraph",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".layout-region-content",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".layout-region-content"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Theme Selector - Mobile Responsive View",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://host.docker.internal/admin/structure/paragraphs_type/text/form-display",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": ".form-item-field-content-element-theme-0-value",
+      "delay": 1000,
+      "hideSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar",
+        ".messages"
+      ],
+      "removeSelectors": [
+        ".toolbar",
+        ".gin-secondary-toolbar"
+      ],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [
+        ".form-item-field-content-element-theme-0-value"
+      ],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "onlyMobile": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "playwright",
+  "engineOptions": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false,
+  "resembleOutputOptions": {
+    "errorColor": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "errorType": "movement",
+    "transparency": 0.3,
+    "ignoreAntialiasing": true
+  }
+}

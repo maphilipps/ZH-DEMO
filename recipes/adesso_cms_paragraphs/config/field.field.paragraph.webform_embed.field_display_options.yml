@@ -1,0 +1,23 @@
+uuid: f6h1g3c5-bd8e-4f4g-ch1i-5d7f9h2g4e6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_display_options
+    - paragraphs.paragraphs_type.webform_embed
+  module:
+    - options
+id: paragraph.webform_embed.field_display_options
+field_name: field_display_options
+entity_type: paragraph
+bundle: webform_embed
+label: 'Display Options'
+description: 'Configure how the form should be displayed.'
+required: false
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

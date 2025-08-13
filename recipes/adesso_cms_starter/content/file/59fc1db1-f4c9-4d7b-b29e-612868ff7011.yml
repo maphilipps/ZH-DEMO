@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 59fc1db1-f4c9-4d7b-b29e-612868ff7011
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: gs-koblenz-2_W1920xH1280_CUTOUT.jpg
+  uri:
+    -
+      value: 'public://2025-08/gs-koblenz-2_W1920xH1280_CUTOUT.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 846573
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

@@ -8,18 +8,51 @@
  */
 #}
 {% if breadcrumb %}
-  <nav role="navigation" class="container mb-4" aria-labelledby="system-breadcrumb">
+  <nav role="navigation" class="breadcrumb container mb-6" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ol>
-    {% for item in breadcrumb %}
-      <li>
-        {% if item.url %}
-          <a href="{{ item.url }}">{{ item.text }}</a>
-        {% else %}
-          {{ item.text }}
-        {% endif %}
-      </li>
-    {% endfor %}
+    
+    {# Schema.org structured data #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {% for item in breadcrumb %}
+          {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "name": "{{ item.text|escape('js') }}"{% if item.url %},
+            "item": "{{ url('<front>')|render|trim ~ item.url }}"{% endif %}
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    </script>
+    
+    <ol class="flex items-center space-x-2 text-sm text-gray-500">
+      {% for item in breadcrumb %}
+        <li class="flex items-center">
+          {% if item.url %}
+            <a href="{{ item.url }}" class="breadcrumb__link hover:text-gray-700 transition-colors">
+              {% if loop.first %}
+                {# Home icon for first item #}
+                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                </svg>
+              {% endif %}
+              {{ item.text }}
+            </a>
+          {% else %}
+            <span class="font-medium text-gray-700" aria-current="page">{{ item.text }}</span>
+          {% endif %}
+          
+          {% if not loop.last %}
+            <svg class="breadcrumb__separator w-4 h-4 mx-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          {% endif %}
+        </li>
+      {% endfor %}
     </ol>
   </nav>
 {% endif %}

@@ -1,7 +1,9 @@
-{# 
-  Enhanced heading component with direct tag control.
+{#
+  Enhanced heading component with Drupal attributes support
   - as: HTML tag to use (h1, h2, h3, h4, h5, h6, span)
   - visual_level: Visual styling level (1-6, can be different from as tag)
+  - additional_classes: Additional classes merged with standard classes
+  - attributes: Drupal Attribute object
   - Defaults to h2 if no tag is supplied
 #}
 {% set title_text = heading.title|default('') %}
@@ -9,48 +11,58 @@
   {% set title_text = title_text|render|striptags %}
 {% endif %}
 {% if title_text %}
-	{%
-    set as_value = heading.as|default('h2')
-  %}
-  {%
-    set valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span']
-  %}
-  {%
-    set tag = as_value in valid_tags ? as_value : 'h2'
-  %}
-  {%
-    set visual_level = heading.visual_level|default(tag == 'span' ? '3' : tag|replace({'h': ''}))
-  %}
-	{%
-    set base_classes = [
-      tag == 'span' ? 'block' : 'scroll-m-20',
-      'tracking-tight',
-      heading.modifier|default('') ? heading.modifier,
-    ]
-  %}
-  {%
-    set visual_classes = [
-      visual_level == '1' ? 'text-4xl font-extrabold lg:text-5xl xl:text-6xl' : '',
-      visual_level == '2' ? 'text-3xl font-bold' : '',
-      visual_level == '3' ? 'text-2xl font-bold' : '',
-      visual_level == '4' ? 'text-xl font-semibold' : '',
-      visual_level == '5' ? 'text-lg font-semibold' : '',
-      visual_level == '6' ? 'text-base font-semibold' : '',
-    ]
-  %}
-  {%
-    set heading_classes = base_classes|merge(visual_classes)|join(' ')
-  %}
-  
-  {# Additional custom styles can override visual_level classes #}
-  {% if heading.custom_classes|default('') %}
-    {% set heading_classes = heading.custom_classes %}
+  {# Set up element tag #}
+  {% set as_value = heading.as|default('h2') %}
+  {% set valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'] %}
+  {% set tag = as_value in valid_tags ? as_value : 'h2' %}
+
+  {# Set up visual styling level #}
+  {% set visual_level = heading.visual_level|default(tag == 'span' ? '3' : tag|replace({'h': ''})) %}
+
+  {# Base classes for the element #}
+  {% set base_classes = [
+    tag == 'span' ? 'block' : 'scroll-m-20',
+    'tracking-tight',
+    'text-black',
+    'dark:text-white',
+    'light:text-neutral-900',
+    heading.modifier|default('') ? heading.modifier,
+  ] %}
+
+  {# Visual level classes #}
+  {% set visual_classes = [
+    visual_level == '1' ? 'text-4xl font-extrabold lg:text-5xl xl:text-6xl' : '',
+    visual_level == '2' ? 'text-3xl font-bold' : '',
+    visual_level == '3' ? 'text-2xl font-bold' : '',
+    visual_level == '4' ? 'text-xl font-semibold' : '',
+    visual_level == '5' ? 'text-lg font-semibold' : '',
+    visual_level == '6' ? 'text-base font-semibold' : '',
+  ] %}
+
+  {# Merge all classes together #}
+  {% set all_classes = base_classes|merge(visual_classes) %}
+
+  {# Add additional classes merged with standard classes #}
+  {% if heading.additional_classes|default('') %}
+    {% set additional_classes = heading.additional_classes is iterable ? heading.additional_classes : [heading.additional_classes] %}
+    {% set all_classes = all_classes|merge(additional_classes) %}
   {% endif %}
 
-  <{{ tag }} 
-     class="{{ heading_classes }}"
-     {% if heading.id|default('') %}id="{{ heading.id }}"{% endif %}
-     {% if heading.aria_label|default('') %}aria-label="{{ heading.aria_label }}"{% endif %}>
+  {# Set up attributes object #}
+  {% set attributes = heading.attributes|default(create_attribute()) %}
+  {% set attributes = attributes.addClass(all_classes) %}
+
+  {# Add ID if specified #}
+  {% if heading.id|default('') %}
+    {% set attributes = attributes.setAttribute('id', heading.id) %}
+  {% endif %}
+
+  {# Add aria-label if specified #}
+  {% if heading.aria_label|default('') %}
+    {% set attributes = attributes.setAttribute('aria-label', heading.aria_label) %}
+  {% endif %}
+
+  <{{ tag }}{{ attributes }}>
     {% if heading.icon|default('') %}
       {{ heading.icon|default('') }}
     {% endif %}

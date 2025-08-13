@@ -1,15 +1,26 @@
-{%
-  set classes = []
-%}
-{% set is_dark = paragraph.field_content_element_theme.value %}
+{#
+/**
+ * @file
+ * Side by side paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Sidebyside paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
 
 {# Process link field #}
-{%
-  set link = content.field_link[0] ? {
-    url: content.field_link[0]['#url']|render|striptags,
-    title: content.field_link[0]['#title']|render|striptags,
-  } : {}
-%}
+{% set link = content.field_link[0] ? {
+  url: content.field_link[0]['#url']|render|striptags,
+  title: content.field_link[0]['#title']|render|striptags,
+} : {} %}
 
 {# Process features field #}
 {% set features = [] %}
@@ -21,7 +32,7 @@
       {% set feature_data = {
         'type': feature_type
       } %}
-      
+
       {# Process different feature types #}
       {% if feature_type == 'bullet' %}
         {% set feature_data = feature_data|merge({
@@ -42,25 +53,24 @@
   {% endfor %}
 {% endif %}
 
-<div class="w-full {{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
-<div{{attributes.addClass(classes)}}>
-	{{ title_prefix }}
-	{{ title_suffix }}
-
-	{% block content %}
-    {{ content.frontend_editing }}
-		{%
-      include 'adesso_cms_theme:sidebyside' with {
-        title: paragraph.field_title.value,
-        text: content.field_summary,
-        is_dark: is_dark ? true : false,
-        pre_headline: paragraph.field_pre_headline.value,
-        link: link,
-        media: content.field_media,
-        layout: paragraph.field_sidebyside_layout.value ?? 'left',
-        features: features
-      } only
-    %}
-	{% endblock %}
-</div>
-</div>
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+  {% block prefix %}{% endblock %}
+  {% block content %}
+    {% include 'adesso_cms_theme:sidebyside' with {
+      title: paragraph.field_title.value,
+      text: content.field_summary,
+      pre_headline: paragraph.field_pre_headline.value,
+      link: link,
+      media: content.field_media,
+      layout: paragraph.field_sidebyside_layout.value ?? 'left',
+      features: features
+    } only %}
+  {% endblock %}
+{% endembed %}

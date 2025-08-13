@@ -1,4 +1,14 @@
+{#
+/**
+ * @file
+ * Accordion item paragraph template (child component - no wrapper needed).
+ */
+#}
 {% set is_expanded = false %}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
 {% embed 'adesso_cms_theme:accordion-item' with {
   "item": {
     "heading": content.field_title|render|striptags,

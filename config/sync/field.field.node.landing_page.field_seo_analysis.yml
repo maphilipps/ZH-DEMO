@@ -1,0 +1,21 @@
+uuid: 11c55c8a-552f-4dec-912f-cbeeae009999
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_analysis
+    - node.type.landing_page
+  module:
+    - yoast_seo
+id: node.landing_page.field_seo_analysis
+field_name: field_seo_analysis
+entity_type: node
+bundle: landing_page
+label: 'SEO analysis'
+description: 'Pick the main keyword this landing page is about.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: yoast_seo

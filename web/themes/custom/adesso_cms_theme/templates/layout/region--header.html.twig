@@ -1,8 +1,15 @@
 {#
+/**
  * @file
- * Drupal region template for header region
- * Integrates the site-header SDC component
- #}
+ * Theme override to display the header region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically rendered blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ */
+#}
 
 {%
   set attributes = attributes.addClass([
@@ -11,10 +18,6 @@
   ])
 %}
 
-{# Get site configuration for header component #}
-
-{# Build menu items from main navigation #}
-{% set main_menu = drupal_menu('main') %}
-
-{# Use Drupal blocks instead of site-header component #}
-{{ content }}
+<div{{ attributes }}>
+  {{ content }}
+</div>

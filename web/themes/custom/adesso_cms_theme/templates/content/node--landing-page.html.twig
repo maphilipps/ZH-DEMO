@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Theme override to display a landing_page node.
+ * 
+ * LANDING PAGE ARCHITECTURE (BLOCK-BASED):
+ * 
+ * Landing page headers are now handled by the block system through:
+ * - PageHeaderBlock plugin (landing variant)
+ * - PageHeaderContextService for field extraction
+ * - Block placement in content region with proper visibility conditions
+ * 
+ * This template is simplified to focus on content rendering only.
+ * Header rendering is delegated to the block system for better flexibility.
+ */
+#}
+
+{# Standard node classes for landing page #}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  'node--landing-page',
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'has-block-based-header',
+] %}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer class="node__meta">
+      {{ author_picture }}
+      <div{{ author_attributes.addClass('node__submitted') }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {# Header fields are excluded from content since they're used in page.html.twig header #}
+    {% if view_mode == 'full' %}
+      {{ content|without('field_header_image', 'field_featured_image', 'field_media', 'field_lead', 'field_summary', 'field_description') }}
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </div>
+
+</article>

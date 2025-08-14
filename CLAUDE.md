@@ -1287,4 +1287,336 @@ Failed Quality Gates:
 - **Market Performance**: German market engagement and conversion rates
 
 This enterprise-grade Linear workflow integration ensures that adesso CMS development follows Lullabot's proven methodologies while leveraging the full power of MCP tool integration for automated quality assurance, comprehensive testing, and seamless stakeholder collaboration.
-- IMMER JEDEN SCHRITT IN LINEAR forumlieren. Möglichst mit Subtasks arbeiten.
+
+---
+
+## **Optimized Agent Routing Rules for adesso CMS Development**
+*Updated 2025-01-14 - Drupal 11 + AI Integration Specific Workflows*
+
+### **Technology Stack Confirmation**
+✅ **Detected & Optimized For:**
+- **Backend**: Drupal 11.2.2 + Drupal CMS Suite (AI, Content Types, Forms, Media, SEO)
+- **AI Providers**: Drupal CMS AI ^1.2 + DrupalX AI (Claude, GPT-4o, Groq integration)
+- **Frontend**: Vite 6.2.0 + Tailwind CSS v4.0 + Alpine.js patterns
+- **Components**: 25+ SDC components with Storybook 8.6.7 documentation
+- **Testing**: BackstopJS 6.3.25 + Vitest 3.2.4 + Playwright E2E
+- **Development**: DDEV environment with comprehensive quality gates
+
+---
+
+## **Essential Development Workflow Patterns**
+
+### **1. AI-Enhanced Content Features** 🤖
+**Trigger Patterns**: AI content suggestions, automated alt text, content moderation, AI-powered SEO
+
+**Optimized Agent Routing:**
+```yaml
+Request: "Add AI-powered alt text generation for media uploads"
+
+Linear Workflow (Always EVERY step documented):
+  Epic: "AI-Enhanced Media Management with Alt Text Generation"
+  
+  Subtasks (linear-task-coordinator creates):
+    - ADC-1001: AI provider configuration and testing
+    - ADC-1002: Media field integration for AI alt text
+    - ADC-1003: Content editor UI/UX improvements  
+    - ADC-1004: Privacy and safety validation
+    - ADC-1005: Accessibility compliance verification
+    - ADC-1006: Performance impact assessment
+  
+  Agent Execution Sequence:
+    1. linear-task-coordinator: Epic creation and risk assessment
+    2. drupal-ai-integration-specialist: AI provider setup (ADC-1001)
+    3. drupal-media-expert: Media type configuration (ADC-1002)
+    4. drupal-frontend-theming-specialist: Editor UI/UX (ADC-1003)
+    5. drupal-cms-security-privacy: Safety validation (ADC-1004)
+    6. qa-testing-specialist: Accessibility testing (ADC-1005)
+    7. drupal-performance-specialist: Impact measurement (ADC-1006)
+    8. code-reviewer: Security audit of AI integration
+```
+
+### **2. SDC Component Development** 🧩
+**Trigger Patterns**: Responsive components, accessible UI elements, interactive features
+
+**Optimized Agent Routing:**
+```yaml
+Request: "Create accessible accordion component with Storybook documentation"
+
+Linear Workflow (IMMER JEDEN SCHRITT):
+  Epic: "Enterprise SDC Accordion Component with Full Documentation"
+  
+  Subtasks (granular tracking):
+    - ADC-2001: Component architecture and accessibility planning
+    - ADC-2002: Twig template and SDC schema development
+    - ADC-2003: Alpine.js interactive behavior implementation
+    - ADC-2004: Storybook stories and documentation
+    - ADC-2005: Visual regression testing setup
+    - ADC-2006: WCAG 2.1 AA compliance validation
+  
+  Agent Execution Sequence:
+    1. linear-task-coordinator: Requirements analysis + Linear epic
+    2. sdc-component-specialist: Component architecture (ADC-2001, 2002)
+    3. alpine-js-frontend-developer: Interactive behavior (ADC-2003)
+    4. storybook-sdc-maintainer: Documentation system (ADC-2004)
+    5. qa-testing-specialist: Testing and accessibility (ADC-2005, 2006)
+    6. performance-optimizer: Performance impact measurement
+```
+
+### **3. Performance Optimization** ⚡
+**Trigger Patterns**: Core Web Vitals issues, page speed optimization, performance regressions
+
+**Optimized Agent Routing:**
+```yaml
+Request: "Optimize Core Web Vitals to achieve >90 scores across all metrics"
+
+Linear Workflow (Performance-Focused):
+  Epic: "Core Web Vitals Optimization (Enterprise Standards)"
+  
+  Subtasks (comprehensive approach):
+    - ADC-3001: Performance baseline and bottleneck analysis
+    - ADC-3002: Drupal caching strategy optimization
+    - ADC-3003: Database query optimization and indexing
+    - ADC-3004: Asset optimization (CSS, JS, images)
+    - ADC-3005: Component lazy loading implementation
+    - ADC-3006: Third-party integration optimization
+    - ADC-3007: Monitoring and alerting setup
+  
+  Agent Execution Sequence:
+    1. linear-task-coordinator: Performance audit and Linear tasks
+    2. drupal-performance-specialist: Drupal optimizations (ADC-3001, 3002, 3003)
+    3. drupal-frontend-theming-specialist: Asset optimization (ADC-3004, 3005)
+    4. drupal-devops-engineer: Infrastructure optimization (ADC-3006)
+    5. performance-optimizer: Monitoring and validation (ADC-3007)
+    6. qa-testing-specialist: Performance regression testing
+```
+
+### **4. Configuration & Recipe Management** ⚙️
+**Trigger Patterns**: Environment deployments, recipe creation, configuration synchronization
+
+**Optimized Agent Routing:**
+```yaml
+Request: "Deploy configuration changes across multiple environments safely"
+
+Linear Workflow (Config-Safe Deployment):
+  Epic: "Multi-Environment Configuration Deployment with Rollback Plan"
+  
+  Subtasks (environment safety):
+    - ADC-4001: Configuration impact analysis and dependency mapping
+    - ADC-4002: Recipe creation for reproducible installations
+    - ADC-4003: Environment-specific configuration validation
+    - ADC-4004: Staging deployment and testing
+    - ADC-4005: Production deployment with rollback plan
+    - ADC-4006: Post-deployment validation and monitoring
+  
+  Agent Execution Sequence:
+    1. linear-task-coordinator: Impact analysis and risk assessment
+    2. drupal-configuration-expert: Config analysis (ADC-4001, 4003)
+    3. recipe-configuration-specialist: Recipe creation (ADC-4002)
+    4. drupal-devops-engineer: Deployment pipeline (ADC-4004, 4005)
+    5. qa-testing-specialist: Validation testing (ADC-4006)
+    6. drupal-technical-pm: Stakeholder communication
+```
+
+### **5. Editorial & Content Management** ✍️
+**Trigger Patterns**: Content type creation, editorial workflow improvements, media management enhancement
+
+**Optimized Agent Routing:**
+```yaml
+Request: "Improve content editor experience with AI-powered suggestions"
+
+Linear Workflow (Editor-Centric Development):
+  Epic: "AI-Enhanced Editorial Experience with German Brand Compliance"
+  
+  Subtasks (editor-focused):
+    - ADC-5001: Current editor workflow analysis
+    - ADC-5002: Content type architecture enhancement
+    - ADC-5003: AI content suggestion integration
+    - ADC-5004: German brand compliance validation
+    - ADC-5005: Editor UI/UX improvements
+    - ADC-5006: Content quality assurance automation
+    - ADC-5007: Editor training and documentation
+  
+  Agent Execution Sequence:
+    1. linear-task-coordinator: Editorial workflow audit
+    2. drupal-content-strategist: Workflow analysis (ADC-5001)
+    3. drupal-cms-content-types: Content architecture (ADC-5002)
+    4. drupal-ai-integration-specialist: AI suggestions (ADC-5003)
+    5. drupal-cms-security-privacy: Brand compliance (ADC-5004)
+    6. drupal-frontend-theming-specialist: UI improvements (ADC-5005)
+    7. qa-testing-specialist: Quality automation (ADC-5006)
+    8. documentation-specialist: Training materials (ADC-5007)
+```
+
+---
+
+## **Emergency Response Protocols** 🚨
+
+### **Critical Production Issues (P0)**
+```yaml
+Trigger: Security vulnerabilities, site outages, data corruption
+
+Emergency Agent Sequence:
+  1. linear-task-coordinator: Immediate P0 Linear task creation
+  2. drupal-technical-support-lead: Incident triage and assessment
+  3. drupal-cms-security-privacy: Security vulnerability analysis (if applicable)
+  4. drupal-devops-engineer: Hotfix deployment and rollback planning
+  5. drupal-technical-pm: Stakeholder notification and coordination
+  
+Emergency Bypass Rules:
+  - Skip normal quality gates for P0 issues
+  - Single reviewer approval for hotfixes
+  - Accelerated deployment pipeline
+  - Post-incident review MANDATORY in Linear
+```
+
+### **Quality Gate Failures**
+```yaml
+Trigger: Accessibility violations, performance regressions, security issues
+
+Remediation Agent Sequence:
+  1. linear-task-coordinator: Remediation task creation
+  2. qa-testing-specialist: Issue analysis and reproduction
+  3. [Appropriate specialist]: Issue resolution implementation
+  4. code-reviewer: Solution validation
+  5. qa-testing-specialist: Verification and re-testing
+```
+
+---
+
+## **German Brand Compliance Integration** 🇩🇪
+
+**Automatic Brand Validation Rules:**
+- **"adesso wird immer klein geschrieben"**: All content validation
+- **German-First Content Strategy**: Content created in German, then translated
+- **Cultural Appropriateness**: German market-specific guidelines
+- **GDPR Compliance**: Privacy-focused data handling
+
+**Agent Responsibilities:**
+- `drupal-cms-security-privacy`: Brand compliance validation
+- `drupal-content-strategist`: German-first content workflows  
+- `qa-testing-specialist`: Cultural appropriateness testing
+- `linear-task-coordinator`: Compliance tracking in all Linear tasks
+
+---
+
+## **MCP Integration Enhancements** 🔗
+
+**Automated Quality Gates via MCP Tools:**
+```yaml
+Every Development Activity Triggers:
+  - mcp__a11y-accessibility__test_accessibility: WCAG 2.1 AA compliance
+  - mcp__browser-tools__runPerformanceAudit: Core Web Vitals monitoring
+  - mcp__github__create_pull_request: Automated PR with Linear context
+  - mcp__context7__get-library-docs: Lullabot pattern validation
+  - mcp__server-memory__create_entities: Decision documentation
+```
+
+**GitHub Automation Integration:**
+```yaml
+Automated PR Workflow:
+  - Feature branch creation with Linear task ID
+  - Automated reviewer assignment based on changed files
+  - Quality gate validation before merge approval
+  - Linear task status updates via GitHub webhooks
+  - Automated merge after all approvals and quality gates pass
+```
+
+---
+
+## **Success Metrics Dashboard** 📊
+
+**Development Velocity KPIs:**
+- **Linear Task Completion Rate**: >90% sprint goal achievement
+- **Lead Time**: <5 days from task creation to production
+- **Quality Gate Pass Rate**: >95% first-time pass rate
+- **German Brand Compliance**: 100% automated validation
+
+**Quality Excellence KPIs:**
+- **Accessibility Compliance**: >95% WCAG 2.1 AA score maintenance
+- **Performance Standards**: >90% Core Web Vitals scores consistently
+- **Security Posture**: Zero critical vulnerabilities in production
+- **Component Reusability**: >80% SDC component adoption rate
+
+**AI Integration KPIs:**
+- **AI Feature Adoption**: Content editor usage rates
+- **Content Quality Improvement**: AI-enhanced vs manual content metrics
+- **Performance Impact**: AI feature load time <100ms additional
+- **Safety Compliance**: 100% AI content moderation pass rate
+
+---
+
+---
+
+## **Project Status Summary** ✅
+
+### **Current Optimization Status**
+- **Agent Ecosystem**: ✅ 27+ specialized agents configured and optimized
+- **Linear Integration**: ✅ Real-time task tracking with granular subtasks
+- **Quality Gates**: ✅ WCAG 2.1 AA, Core Web Vitals, security compliance automated
+- **MCP Integration**: ✅ GitHub, accessibility, performance, context tools active
+- **German Compliance**: ✅ Brand validation and GDPR compliance enforced
+- **Enterprise Standards**: ✅ Lullabot methodology with peer review requirements
+
+### **Development Readiness**
+The adesso CMS project is now fully optimized for enterprise-grade development:
+- **Linear-First Workflows**: Every development activity creates structured tasks
+- **AI-Enhanced Features**: Complete AI integration pipeline with safety validation
+- **Component Development**: SDC + Storybook workflow with accessibility focus
+- **Performance Excellence**: Automated Core Web Vitals optimization
+- **Security & Compliance**: Multi-layer validation including German market requirements
+
+### **Quick Start Commands**
+```bash
+# AI Content Features
+"Add AI content suggestions for editors" → automatic Linear epic creation
+
+# Component Development  
+"Create accessible navigation component" → SDC workflow with Storybook docs
+
+# Performance Optimization
+"Optimize Core Web Vitals scores" → comprehensive performance enhancement
+
+# Configuration Management
+"Deploy changes safely across environments" → recipe-based deployment
+
+# Editorial Enhancements
+"Improve content editor experience" → AI-enhanced editorial workflow
+```
+
+---
+
+## **🚨 CRITICAL OPERATIONAL REMINDER**
+
+**IMMER JEDEN SCHRITT IN LINEAR formulieren. Möglichst mit Subtasks arbeiten.**
+
+Every agent interaction MUST update Linear tasks immediately, not at the end. This enterprise-grade workflow ensures:
+- Complete development traceability
+- Real-time stakeholder visibility  
+- Early blocker identification
+- Continuous quality gate validation
+- German market compliance verification
+
+**The adesso CMS development ecosystem is now fully optimized for Linear-first, quality-focused, AI-enhanced enterprise development following Lullabot best practices.**
+
+---
+
+## **Important Development Reminders**
+
+### **File Management Guidelines**
+- **Minimize File Creation**: Only create files when absolutely necessary for functionality
+- **Prefer Editing**: Always edit existing files rather than creating new ones
+- **Documentation Policy**: Never proactively create documentation files (*.md, README) unless explicitly requested
+- **Component Focus**: Leverage existing SDC component structure rather than creating new patterns
+
+### **Agent Coordination Principles**  
+- **Linear-First**: Every development action creates or updates Linear tasks immediately
+- **Quality Gates**: Apply WCAG 2.1 AA, Core Web Vitals, and security validation automatically
+- **German Compliance**: Enforce "adesso wird immer klein geschrieben" and cultural appropriateness
+- **MCP Integration**: Use available MCP tools for GitHub, accessibility, performance, and context validation
+
+### **Linear Task Management (Critical)**
+- **IMMER JEDEN SCHRITT IN LINEAR formulieren**: Document every development step in real-time
+- **Granular Subtasks**: Break complex tasks into specific, trackable subtasks (ADC-XXXX format)
+- **Immediate Updates**: Update Linear task status during work, not after completion
+- **Quality Integration**: Link quality gate results to Linear tasks for stakeholder visibility
+- **German Market Compliance**: Include brand and cultural compliance validation in all tasks

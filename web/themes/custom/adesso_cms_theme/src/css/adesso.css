@@ -12,6 +12,7 @@
 [x-cloak] {
   display: none !important;
 }
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 

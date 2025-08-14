@@ -1,0 +1,193 @@
+#!/bin/bash
+
+## Description: Manage Vite development server lifecycle for adesso CMS
+## Usage: vite-manager [command]
+## Example: "ddev vite-manager start" - Start Vite dev server with health checks
+## Example: "ddev vite-manager stop" - Stop Vite dev server cleanly
+## Example: "ddev vite-manager status" - Check Vite server status
+## Example: "ddev vite-manager restart" - Restart Vite server
+
+# Brand compliance: adesso wird immer klein geschrieben
+BRAND_CHECK="adesso wird immer klein geschrieben"
+
+VITE_PORT=5173
+THEME_DIR="web/themes/custom/adesso_cms_theme"
+VITE_PID_FILE="/tmp/vite-dev-server.pid"
+
+cd $THEME_DIR
+
+# Function to check if port is in use
+check_port_usage() {
+    local port=$1
+    if command -v ss >/dev/null 2>&1; then
+        ss -tuln | grep ":$port " >/dev/null 2>&1
+    elif command -v netstat >/dev/null 2>&1; then
+        netstat -tuln 2>/dev/null | grep ":$port " >/dev/null 2>&1
+    else
+        # Fallback: try to bind to the port
+        timeout 1 bash -c "exec 3<>/dev/tcp/localhost/$port" 2>/dev/null
+        return $?
+    fi
+}
+
+# Function to get process using port
+get_port_process() {
+    local port=$1
+    ps aux | grep -E "(vite|node.*$port)" | grep -v grep | head -1
+}
+
+# Function to start Vite server
+start_vite() {
+    echo "🚀 Starting adesso CMS Vite development server..."
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    
+    # Install dependencies if needed
+    if [ ! -d "node_modules" ]; then
+        echo "📦 Installing npm dependencies..."
+        npm install
+    fi
+    
+    # Check for port conflicts
+    if check_port_usage $VITE_PORT; then
+        echo "⚠️  Port $VITE_PORT is already in use:"
+        get_port_process $VITE_PORT
+        echo "Use 'ddev vite-manager stop' to clean up existing processes"
+        exit 1
+    fi
+    
+    # Start Vite in background with PID tracking
+    nohup npm run dev > /tmp/vite-dev-server.log 2>&1 &
+    VITE_PID=$!
+    echo $VITE_PID > $VITE_PID_FILE
+    
+    echo "🔧 Vite server starting with PID: $VITE_PID"
+    echo "📊 Logs: tail -f /tmp/vite-dev-server.log"
+    
+    # Wait for server to be ready
+    echo "⏳ Waiting for Vite server to be ready..."
+    for i in {1..30}; do
+        if curl -f -k -s https://localhost:$VITE_PORT >/dev/null 2>&1; then
+            echo "✅ Vite development server ready at https://adesso-cms.ddev.site:$VITE_PORT"
+            echo "🔥 Hot Module Replacement (HMR) active"
+            return 0
+        fi
+        sleep 1
+        echo -n "."
+    done
+    
+    echo ""
+    echo "⚠️  Server startup timeout. Check logs: tail -f /tmp/vite-dev-server.log"
+    return 1
+}
+
+# Function to stop Vite server
+stop_vite() {
+    echo "🛑 Stopping adesso CMS Vite development server..."
+    
+    # Stop by PID if available
+    if [ -f $VITE_PID_FILE ]; then
+        VITE_PID=$(cat $VITE_PID_FILE)
+        if kill -0 $VITE_PID 2>/dev/null; then
+            echo "🔧 Stopping Vite server PID: $VITE_PID"
+            kill $VITE_PID
+            sleep 2
+            kill -9 $VITE_PID 2>/dev/null || true
+        fi
+        rm -f $VITE_PID_FILE
+    fi
+    
+    # Cleanup any remaining Vite processes
+    pkill -f "vite" 2>/dev/null || true
+    pkill -f "node.*5173" 2>/dev/null || true
+    
+    echo "✅ Vite development server stopped"
+    echo "🧹 Port $VITE_PORT released"
+}
+
+# Function to check Vite server status
+check_status() {
+    echo "📊 adesso CMS Vite Development Server Status"
+    echo "=============================================="
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    
+    if check_port_usage $VITE_PORT; then
+        echo "🟢 Status: RUNNING"
+        echo "🌐 URL: https://adesso-cms.ddev.site:$VITE_PORT"
+        echo "🔥 HMR: Active"
+        
+        if [ -f $VITE_PID_FILE ]; then
+            echo "🆔 PID: $(cat $VITE_PID_FILE)"
+        fi
+        
+        echo ""
+        echo "👥 Process details:"
+        get_port_process $VITE_PORT
+        
+        echo ""
+        echo "🩺 Health check:"
+        if curl -f -k -s https://localhost:$VITE_PORT >/dev/null 2>&1; then
+            echo "✅ Server responding correctly"
+        else
+            echo "⚠️  Server not responding to HTTP requests"
+        fi
+    else
+        echo "🔴 Status: STOPPED"
+        echo "💡 Start with: ddev vite-manager start"
+    fi
+}
+
+# Function to restart Vite server
+restart_vite() {
+    echo "🔄 Restarting adesso CMS Vite development server..."
+    stop_vite
+    sleep 2
+    start_vite
+}
+
+# Main command handling
+case "$1" in
+    "start")
+        start_vite
+        ;;
+    "stop")
+        stop_vite
+        ;;
+    "status")
+        check_status
+        ;;
+    "restart")
+        restart_vite
+        ;;
+    "logs")
+        echo "📊 Vite Development Server Logs:"
+        echo "================================="
+        if [ -f /tmp/vite-dev-server.log ]; then
+            tail -f /tmp/vite-dev-server.log
+        else
+            echo "No log file found. Server might not be running."
+        fi
+        ;;
+    "help"|"--help"|"-h"|"")
+        echo "adesso CMS Vite Development Server Manager"
+        echo "=========================================="
+        echo "📝 Brand compliance: $BRAND_CHECK"
+        echo ""
+        echo "Available commands:"
+        echo "  start    - Start Vite development server"
+        echo "  stop     - Stop Vite development server"
+        echo "  status   - Check server status and health"
+        echo "  restart  - Restart server (stop + start)"
+        echo "  logs     - View server logs in real-time"
+        echo "  help     - Show this help message"
+        echo ""
+        echo "Examples:"
+        echo "  ddev vite-manager start"
+        echo "  ddev vite-manager status"
+        echo "  ddev vite-manager logs"
+        ;;
+    *)
+        echo "❌ Unknown command: $1"
+        echo "Use 'ddev vite-manager help' for available commands"
+        exit 1
+        ;;
+esac

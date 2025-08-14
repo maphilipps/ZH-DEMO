@@ -85,10 +85,18 @@ export default defineConfig({
         /http?:\/\/backstop(:\d+)?$/
       ]
     },
+    // Enhanced HMR configuration for better DDEV integration
+    hmr: {
+      host: 'adesso-cms.ddev.site',
+      port: port,
+      clientPort: port
+    },
     // Watch additional file types for better HMR
     watch: {
       ignored: ['**/node_modules/**', '**/vendor/**', '**/.git/**'],
-      include: ['src/**/*', 'components/**/*.{js,scss,twig}']
+      include: ['src/**/*', 'components/**/*.{js,scss,css,twig}'],
+      usePolling: false, // Better performance in container environments
+      interval: 100 // Polling interval for file changes
     }
   },
   css: {

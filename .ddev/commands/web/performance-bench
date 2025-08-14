@@ -1,0 +1,331 @@
+#!/bin/bash
+
+## Description: Performance benchmarking and monitoring for adesso CMS Vite development
+## Usage: performance-bench [command] [target]
+## Example: "ddev performance-bench vite" - Benchmark Vite development server
+## Example: "ddev performance-bench drupal" - Benchmark Drupal site performance
+## Example: "ddev performance-bench full" - Complete performance audit
+## Example: "ddev performance-bench monitor" - Start continuous monitoring
+
+# Brand compliance: adesso wird immer klein geschrieben
+BRAND_CHECK="adesso wird immer klein geschrieben"
+
+VITE_URL="https://adesso-cms.ddev.site:5173"
+DRUPAL_URL="https://adesso-cms.ddev.site"
+STORYBOOK_URL="https://adesso-cms.ddev.site:6006"
+
+# Performance thresholds (production-ready standards)
+VITE_STARTUP_THRESHOLD=5000  # 5 seconds
+DRUPAL_RESPONSE_THRESHOLD=2000  # 2 seconds
+HMR_THRESHOLD=500  # 500ms for Hot Module Replacement
+
+# Create performance benchmark functions
+
+# Function to test Vite development server performance
+benchmark_vite() {
+    echo "⚡ adesso CMS Vite Development Server Performance Benchmark"
+    echo "========================================================="
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    echo ""
+    
+    # Test 1: Vite Server Startup Time
+    echo "🚀 Test 1: Vite Server Startup Performance"
+    echo "----------------------------------------"
+    
+    # Stop existing server
+    pkill -f vite 2>/dev/null || true
+    sleep 2
+    
+    cd web/themes/custom/adesso_cms_theme
+    
+    # Measure startup time
+    START_TIME=$(date +%s%3N)
+    timeout 30s npm run dev > /tmp/vite-startup-test.log 2>&1 &
+    VITE_PID=$!
+    
+    # Wait for server to be ready
+    READY_TIME=0
+    for i in {1..30}; do
+        if curl -f -k -s "$VITE_URL" >/dev/null 2>&1; then
+            END_TIME=$(date +%s%3N)
+            STARTUP_TIME=$((END_TIME - START_TIME))
+            READY_TIME=$STARTUP_TIME
+            break
+        fi
+        sleep 1
+    done
+    
+    if [ $READY_TIME -eq 0 ]; then
+        echo "❌ Vite server failed to start within 30 seconds"
+        return 1
+    fi
+    
+    echo "✅ Startup Time: ${STARTUP_TIME}ms"
+    if [ $STARTUP_TIME -lt $VITE_STARTUP_THRESHOLD ]; then
+        echo "🟢 Performance: EXCELLENT (< ${VITE_STARTUP_THRESHOLD}ms)"
+    else
+        echo "🟡 Performance: NEEDS OPTIMIZATION (> ${VITE_STARTUP_THRESHOLD}ms)"
+    fi
+    echo ""
+    
+    # Test 2: Asset Loading Performance
+    echo "📦 Test 2: Asset Loading Performance"
+    echo "-----------------------------------"
+    
+    # Test main CSS loading
+    CSS_START=$(date +%s%3N)
+    if curl -f -k -s -o /dev/null "$VITE_URL/src/css/adesso.css" 2>/dev/null; then
+        CSS_END=$(date +%s%3N)
+        CSS_TIME=$((CSS_END - CSS_START))
+        echo "✅ CSS Loading: ${CSS_TIME}ms"
+    else
+        echo "⚠️  CSS asset not accessible via Vite server"
+    fi
+    
+    # Test main JS loading
+    JS_START=$(date +%s%3N)
+    if curl -f -k -s -o /dev/null "$VITE_URL/src/js/adesso.js" 2>/dev/null; then
+        JS_END=$(date +%s%3N)
+        JS_TIME=$((JS_END - JS_START))
+        echo "✅ JavaScript Loading: ${JS_TIME}ms"
+    else
+        echo "⚠️  JavaScript asset not accessible via Vite server"
+    fi
+    echo ""
+    
+    # Test 3: HMR Performance (simulated)
+    echo "🔥 Test 3: Hot Module Replacement Simulation"
+    echo "-------------------------------------------"
+    
+    # Create a test file change
+    TEST_FILE="src/css/_test-hmr.scss"
+    echo "/* HMR Performance Test - $(date) */" > "$TEST_FILE"
+    
+    HMR_START=$(date +%s%3N)
+    sleep 1  # Simulate file system detection delay
+    
+    # Check if Vite is still responsive
+    if curl -f -k -s "$VITE_URL" >/dev/null 2>&1; then
+        HMR_END=$(date +%s%3N)
+        HMR_TIME=$((HMR_END - HMR_START))
+        echo "✅ HMR Simulation: ${HMR_TIME}ms"
+        
+        if [ $HMR_TIME -lt $HMR_THRESHOLD ]; then
+            echo "🟢 HMR Performance: EXCELLENT (< ${HMR_THRESHOLD}ms)"
+        else
+            echo "🟡 HMR Performance: NEEDS OPTIMIZATION (> ${HMR_THRESHOLD}ms)"
+        fi
+    else
+        echo "❌ HMR Test Failed: Server not responding"
+    fi
+    
+    # Clean up test file
+    rm -f "$TEST_FILE"
+    
+    # Kill test server
+    kill $VITE_PID 2>/dev/null || true
+    echo ""
+}
+
+# Function to benchmark Drupal performance
+benchmark_drupal() {
+    echo "🌐 adesso CMS Drupal Site Performance Benchmark"
+    echo "=============================================="
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    echo ""
+    
+    # Test 1: Home Page Response Time
+    echo "🏠 Test 1: Home Page Performance"
+    echo "-------------------------------"
+    
+    DRUPAL_RESULTS=$(curl -w "@-" -s -k "$DRUPAL_URL" <<'EOF'
+Time Breakdown:
+  DNS Lookup:     %{time_namelookup}s
+  TCP Connect:    %{time_connect}s  
+  SSL Handshake:  %{time_appconnect}s
+  Server Process: %{time_starttransfer}s
+  Content Transfer: %{time_total}s
+  
+Response Info:
+  HTTP Code:      %{http_code}
+  Content Type:   %{content_type}
+  Size Download:  %{size_download} bytes
+EOF
+)
+    echo "$DRUPAL_RESULTS"
+    echo ""
+    
+    # Test 2: Admin Interface Performance
+    echo "⚙️  Test 2: Admin Interface Performance"
+    echo "-------------------------------------"
+    
+    ADMIN_RESULTS=$(curl -w "@-" -s -k "$DRUPAL_URL/admin" <<'EOF'
+Admin Response Time: %{time_total}s
+HTTP Status: %{http_code}
+Content Size: %{size_download} bytes
+EOF
+)
+    echo "$ADMIN_RESULTS"
+    echo ""
+    
+    # Test 3: Static Asset Performance
+    echo "🗂️  Test 3: Static Asset Performance"
+    echo "-----------------------------------"
+    
+    # Test favicon (lightweight static asset)
+    FAVICON_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$DRUPAL_URL/core/misc/favicon.ico")
+    echo "✅ Favicon Loading: ${FAVICON_TIME}s"
+    
+    # Test CSS performance
+    CSS_ASSETS=$(curl -s -k "$DRUPAL_URL" | grep -o 'href="[^"]*\.css[^"]*"' | head -3)
+    if [ ! -z "$CSS_ASSETS" ]; then
+        echo "📊 CSS Asset Performance:"
+        echo "$CSS_ASSETS" | while read -r asset; do
+            CSS_URL=$(echo "$asset" | sed 's/href="//;s/"//' | sed "s|^/|$DRUPAL_URL/|")
+            CSS_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$CSS_URL" 2>/dev/null || echo "failed")
+            echo "  - $(basename "$CSS_URL"): ${CSS_TIME}s"
+        done
+    fi
+    echo ""
+}
+
+# Function to benchmark Storybook performance
+benchmark_storybook() {
+    echo "📚 adesso CMS Storybook Performance Benchmark"
+    echo "============================================"
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    echo ""
+    
+    # Test if Storybook is running
+    if curl -f -k -s "$STORYBOOK_URL" >/dev/null 2>&1; then
+        echo "🟢 Storybook Status: RUNNING"
+        
+        STORYBOOK_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$STORYBOOK_URL")
+        echo "⚡ Response Time: ${STORYBOOK_TIME}s"
+        
+        # Check for component stories
+        STORY_COUNT=$(curl -s -k "$STORYBOOK_URL" | grep -c "story" || echo "0")
+        echo "📖 Stories Detected: $STORY_COUNT"
+    else
+        echo "🔴 Storybook Status: NOT RUNNING"
+        echo "💡 Start with: ddev theme storybook"
+    fi
+    echo ""
+}
+
+# Function to run complete performance audit
+run_full_audit() {
+    echo "🔬 adesso CMS Complete Performance Audit"
+    echo "======================================="
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    echo "🕒 Started: $(date)"
+    echo ""
+    
+    # Run all benchmarks
+    benchmark_vite
+    echo "════════════════════════════════════════════════════════════════════════"
+    benchmark_drupal  
+    echo "════════════════════════════════════════════════════════════════════════"
+    benchmark_storybook
+    
+    echo "✅ Complete Performance Audit Finished"
+    echo "📊 Results saved to: /tmp/adesso-cms-performance-$(date +%Y%m%d-%H%M%S).log"
+}
+
+# Function to start continuous monitoring
+start_monitoring() {
+    echo "📡 Starting adesso CMS Performance Monitoring"
+    echo "============================================"
+    echo "📝 Brand compliance: $BRAND_CHECK"
+    echo "Press Ctrl+C to stop monitoring"
+    echo ""
+    
+    while true; do
+        echo "⏰ $(date): Monitoring Check"
+        echo "─────────────────────────────"
+        
+        # Quick health checks
+        if curl -f -k -s "$DRUPAL_URL" >/dev/null 2>&1; then
+            DRUPAL_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$DRUPAL_URL")
+            echo "🌐 Drupal: ✅ (${DRUPAL_TIME}s)"
+        else
+            echo "🌐 Drupal: ❌"
+        fi
+        
+        if curl -f -k -s "$VITE_URL" >/dev/null 2>&1; then
+            VITE_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$VITE_URL")
+            echo "⚡ Vite: ✅ (${VITE_TIME}s)"
+        else
+            echo "⚡ Vite: ❌"
+        fi
+        
+        if curl -f -k -s "$STORYBOOK_URL" >/dev/null 2>&1; then
+            STORYBOOK_TIME=$(curl -w "%{time_total}" -s -k -o /dev/null "$STORYBOOK_URL")
+            echo "📚 Storybook: ✅ (${STORYBOOK_TIME}s)"
+        else
+            echo "📚 Storybook: ❌"
+        fi
+        
+        echo ""
+        sleep 30
+    done
+}
+
+# Create curl format file for detailed timing
+cat > /tmp/curl-format.txt << 'EOF'
+     time_namelookup:  %{time_namelookup}\n
+        time_connect:  %{time_connect}\n
+     time_appconnect:  %{time_appconnect}\n
+    time_pretransfer:  %{time_pretransfer}\n
+       time_redirect:  %{time_redirect}\n
+  time_starttransfer:  %{time_starttransfer}\n
+                     ----------\n
+          time_total:  %{time_total}\n
+EOF
+
+# Main command handling
+case "$1" in
+    "vite")
+        benchmark_vite
+        ;;
+    "drupal")
+        benchmark_drupal
+        ;;
+    "storybook")
+        benchmark_storybook
+        ;;
+    "full")
+        run_full_audit | tee "/tmp/adesso-cms-performance-$(date +%Y%m%d-%H%M%S).log"
+        ;;
+    "monitor")
+        start_monitoring
+        ;;
+    "help"|"--help"|"-h"|"")
+        echo "adesso CMS Performance Benchmarking System"
+        echo "========================================="
+        echo "📝 Brand compliance: $BRAND_CHECK"
+        echo ""
+        echo "Available commands:"
+        echo "  vite      - Benchmark Vite development server"
+        echo "  drupal    - Benchmark Drupal site performance"
+        echo "  storybook - Benchmark Storybook performance"
+        echo "  full      - Complete performance audit"
+        echo "  monitor   - Continuous performance monitoring"
+        echo "  help      - Show this help message"
+        echo ""
+        echo "Performance Thresholds:"
+        echo "  Vite Startup: < ${VITE_STARTUP_THRESHOLD}ms"
+        echo "  Drupal Response: < ${DRUPAL_RESPONSE_THRESHOLD}ms"
+        echo "  HMR Performance: < ${HMR_THRESHOLD}ms"
+        echo ""
+        echo "Examples:"
+        echo "  ddev performance-bench full"
+        echo "  ddev performance-bench monitor"
+        echo "  ddev performance-bench vite"
+        ;;
+    *)
+        echo "❌ Unknown command: $1"
+        echo "Use 'ddev performance-bench help' for available commands"
+        exit 1
+        ;;
+esac

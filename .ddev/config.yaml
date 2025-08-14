@@ -11,21 +11,25 @@ database:
     version: "10.11"
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
+web_environment: 
+    - VITE_DEV_SERVER_HOST=0.0.0.0
+    - VITE_DEV_SERVER_PORT=5173
+    - NODE_OPTIONS=--max-old-space-size=2048
+    - ADESSO_BRAND_LOWERCASE=true
 corepack_enable: true
 hooks:
     post-start:
-        - exec: echo '================================================================================='
-        - exec: echo '                            ADESSO CMS READY'
-        - exec: echo '================================================================================='
-        - exec: echo 'Theme development commands:'
-        - exec: echo '  ddev theme dev     # Start Vite dev server'
-        - exec: echo '  ddev theme watch   # Watch for changes'
-        - exec: echo '  ddev theme build   # Build production assets'
-        - exec: echo
-        - exec: echo 'Storybook (manual start):'
-        - exec: echo '  ddev theme storybook  # Start Storybook at https://adesso-cms.ddev.site:6006'
-        - exec: echo '================================================================================='
+        - exec: echo "================================================================================="
+        - exec: echo "                            ADESSO CMS READY"
+        - exec: echo "================================================================================="
+        - exec: echo "Theme development commands:"
+        - exec: echo "  ddev theme dev     # Start Vite dev server"
+        - exec: echo "  ddev theme watch   # Watch for changes"
+        - exec: echo "  ddev theme build   # Build production assets"
+        - exec: echo ""
+        - exec: echo "Storybook (manual start):"
+        - exec: echo "  ddev theme storybook  # Start Storybook at https://adesso-cms.ddev.site:6006"
+        - exec: echo "====================================================================="
 webimage_extra_packages: [xdg-utils, pkg-config, libpixman-1-dev, libcairo2-dev, libpango1.0-dev, make]
 nodejs_version: "20"
 web_extra_exposed_ports:
@@ -41,6 +45,9 @@ web_extra_daemons:
     - name: node.js
       command: tail -F package.json > /dev/null
       directory: /var/www/html
+# Production-ready optimizations for adesso CMS
+performance_mode: "global"
+default_container_timeout: 180
 # Key features of DDEV's config.yaml:
 
 # name: <projectname> # Name of the project, automatically provides

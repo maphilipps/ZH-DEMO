@@ -421,14 +421,14 @@ function adesso_cms_theme_preprocess_node_landing_page(array &$variables) {
  * Implements hook_page_attachments().
  */
 function adesso_cms_theme_page_attachments(array &$attachments) {
-  // Add Content Security Policy header for external CDN resources.
+  // Add Content Security Policy header for external CDN resources and Vite dev server.
   $csp_directives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net https://adesso-cms.ddev.site:5173",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://adesso-cms.ddev.site:5173",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https:",
-    "connect-src 'self'",
+    "connect-src 'self' wss://adesso-cms.ddev.site:5173 https://adesso-cms.ddev.site:5173",
     "frame-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",

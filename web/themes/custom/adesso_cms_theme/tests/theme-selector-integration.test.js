@@ -19,7 +19,9 @@ const THEME_OPTIONS = ['light', 'highlighted', 'dark'];
 
 // Mock paragraph template rendering function
 function renderParagraphWithTheme(paragraphType, theme = 'light', content = {}) {
-  const themeValue = theme || 'light';
+  // Validate theme value and fallback to 'light' for invalid values
+  const validThemes = ['light', 'highlighted', 'dark'];
+  const themeValue = (theme && validThemes.includes(theme)) ? theme : 'light';
   const defaultContent = {
     title: `Sample ${paragraphType} Title`,
     body: `Sample content for ${paragraphType} paragraph.`,

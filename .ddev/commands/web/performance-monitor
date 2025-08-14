@@ -1,0 +1,754 @@
+#!/usr/bin/env bash
+
+## #ddev-generated
+## Description: Comprehensive performance monitoring and alerting system
+## Usage: performance-monitor [options]
+## Example: "ddev performance-monitor --setup"
+##   or "ddev performance-monitor --status"
+##   or "ddev performance-monitor --dashboard"
+##   or "ddev performance-monitor --alert-test"
+
+set -e
+
+# Color output functions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+log_info() {
+    echo -e "${BLUE}[MONITOR]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+log_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+log_monitor() {
+    echo -e "${CYAN}[PERF-MON]${NC} $1"
+}
+
+# Performance monitoring settings
+MONITOR_DIR="/var/www/html/.performance-monitor"
+MONITOR_CONFIG="$MONITOR_DIR/monitor-config.json"
+ALERT_CONFIG="$MONITOR_DIR/alert-config.json"
+MONITOR_LOG="$MONITOR_DIR/performance.log"
+ALERT_LOG="$MONITOR_DIR/alerts.log"
+
+# Parse command line arguments
+SETUP_MODE=false
+STATUS_MODE=false
+DASHBOARD_MODE=false
+ALERT_TEST=false
+CONFIGURE_ALERTS=false
+INTERVAL=300  # 5 minutes default
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --setup)
+            SETUP_MODE=true
+            shift
+            ;;
+        --status)
+            STATUS_MODE=true
+            shift
+            ;;
+        --dashboard)
+            DASHBOARD_MODE=true
+            shift
+            ;;
+        --alert-test)
+            ALERT_TEST=true
+            shift
+            ;;
+        --configure-alerts)
+            CONFIGURE_ALERTS=true
+            shift
+            ;;
+        --interval=*)
+            INTERVAL="${1#*=}"
+            shift
+            ;;
+        *)
+            log_error "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# Create monitoring directory
+mkdir -p "$MONITOR_DIR"
+
+# Function to set up performance monitoring
+setup_monitoring() {
+    log_info "Setting up performance monitoring system..."
+    
+    # Create monitoring configuration
+    cat > "$MONITOR_CONFIG" << EOF
+{
+  "monitoring": {
+    "enabled": true,
+    "interval": $INTERVAL,
+    "retention_days": 30,
+    "metrics": {
+      "system": true,
+      "database": true,
+      "application": true,
+      "ai_integration": true
+    }
+  },
+  "thresholds": {
+    "cpu_warning": 70,
+    "cpu_critical": 85,
+    "memory_warning": 80,
+    "memory_critical": 90,
+    "disk_warning": 80,
+    "disk_critical": 90,
+    "query_time_warning": 0.5,
+    "query_time_critical": 2.0,
+    "build_time_warning": 30,
+    "build_time_critical": 60
+  },
+  "alerts": {
+    "enabled": true,
+    "email": "",
+    "slack_webhook": "",
+    "alert_cooldown": 1800
+  }
+}
+EOF
+    
+    # Create alert configuration
+    cat > "$ALERT_CONFIG" << 'EOF'
+{
+  "alert_rules": [
+    {
+      "name": "High CPU Usage",
+      "condition": "cpu_usage > threshold.cpu_critical",
+      "severity": "critical",
+      "message": "CPU usage is critically high: {cpu_usage}%"
+    },
+    {
+      "name": "High Memory Usage", 
+      "condition": "memory_usage > threshold.memory_critical",
+      "severity": "critical",
+      "message": "Memory usage is critically high: {memory_usage}%"
+    },
+    {
+      "name": "High Disk Usage",
+      "condition": "disk_usage > threshold.disk_critical", 
+      "severity": "critical",
+      "message": "Disk usage is critically high: {disk_usage}%"
+    },
+    {
+      "name": "Slow Database Queries",
+      "condition": "avg_query_time > threshold.query_time_critical",
+      "severity": "warning",
+      "message": "Database queries are running slowly: {avg_query_time}s average"
+    },
+    {
+      "name": "Slow Build Times",
+      "condition": "build_time > threshold.build_time_critical",
+      "severity": "warning", 
+      "message": "Theme build time is excessive: {build_time}s"
+    }
+  ]
+}
+EOF
+    
+    # Create monitoring daemon script
+    cat > "$MONITOR_DIR/monitor-daemon.sh" << 'EOF'
+#!/bin/bash
+
+# Performance monitoring daemon
+MONITOR_DIR="/var/www/html/.performance-monitor"
+CONFIG_FILE="$MONITOR_DIR/monitor-config.json"
+LOG_FILE="$MONITOR_DIR/performance.log"
+ALERT_LOG="$MONITOR_DIR/alerts.log"
+
+# Load configuration
+INTERVAL=$(python3 -c "
+import json
+with open('$CONFIG_FILE', 'r') as f:
+    config = json.load(f)
+print(config['monitoring']['interval'])
+")
+
+log_metric() {
+    local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    echo "$timestamp,$1" >> "$LOG_FILE"
+}
+
+check_alerts() {
+    local cpu_usage="$1"
+    local memory_usage="$2" 
+    local disk_usage="$3"
+    local query_time="$4"
+    
+    # Load thresholds
+    local cpu_critical=$(python3 -c "
+import json
+with open('$CONFIG_FILE', 'r') as f:
+    config = json.load(f)
+print(config['thresholds']['cpu_critical'])
+")
+    
+    local memory_critical=$(python3 -c "
+import json
+with open('$CONFIG_FILE', 'r') as f:
+    config = json.load(f)
+print(config['thresholds']['memory_critical'])
+")
+    
+    # Check CPU usage
+    if (( $(echo "$cpu_usage > $cpu_critical" | bc -l) )); then
+        local alert_msg="$(date -u +"%Y-%m-%dT%H:%M:%SZ"),CRITICAL,High CPU Usage,CPU usage is critically high: ${cpu_usage}%"
+        echo "$alert_msg" >> "$ALERT_LOG"
+        echo "🚨 CRITICAL ALERT: High CPU usage: ${cpu_usage}%" >&2
+    fi
+    
+    # Check memory usage
+    if (( $(echo "$memory_usage > $memory_critical" | bc -l) )); then
+        local alert_msg="$(date -u +"%Y-%m-%dT%H:%M:%SZ"),CRITICAL,High Memory Usage,Memory usage is critically high: ${memory_usage}%"
+        echo "$alert_msg" >> "$ALERT_LOG"
+        echo "🚨 CRITICAL ALERT: High memory usage: ${memory_usage}%" >&2
+    fi
+}
+
+while true; do
+    # Collect system metrics
+    CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1 | sed 's/us,//' || echo "0")
+    MEMORY_USAGE=$(free | grep Mem | awk '{printf "%.1f", ($3/$2) * 100.0}' || echo "0")
+    DISK_USAGE=$(df /var/www/html | tail -1 | awk '{print $5}' | sed 's/%//' || echo "0")
+    
+    # Test database query time
+    QUERY_START=$(date +%s.%N)
+    drush sql:query "SELECT COUNT(*) FROM node;" >/dev/null 2>&1 || true
+    QUERY_END=$(date +%s.%N)
+    QUERY_TIME=$(echo "$QUERY_END - $QUERY_START" | bc -l)
+    
+    # Log metrics
+    METRICS="cpu:$CPU_USAGE,memory:$MEMORY_USAGE,disk:$DISK_USAGE,query_time:$QUERY_TIME"
+    log_metric "$METRICS"
+    
+    # Check alerts
+    check_alerts "$CPU_USAGE" "$MEMORY_USAGE" "$DISK_USAGE" "$QUERY_TIME"
+    
+    # Keep log file manageable (last 10000 entries)
+    tail -n 10000 "$LOG_FILE" > "$LOG_FILE.tmp" && mv "$LOG_FILE.tmp" "$LOG_FILE" 2>/dev/null || true
+    tail -n 1000 "$ALERT_LOG" > "$ALERT_LOG.tmp" && mv "$ALERT_LOG.tmp" "$ALERT_LOG" 2>/dev/null || true
+    
+    sleep "$INTERVAL"
+done
+EOF
+    
+    chmod +x "$MONITOR_DIR/monitor-daemon.sh"
+    
+    # Create monitoring service startup script
+    cat > "$MONITOR_DIR/start-monitoring.sh" << 'EOF'
+#!/bin/bash
+
+MONITOR_DIR="/var/www/html/.performance-monitor"
+PID_FILE="$MONITOR_DIR/monitor.pid"
+
+# Check if already running
+if [ -f "$PID_FILE" ]; then
+    PID=$(cat "$PID_FILE")
+    if ps -p "$PID" > /dev/null 2>&1; then
+        echo "Performance monitor is already running (PID: $PID)"
+        exit 0
+    else
+        echo "Removing stale PID file"
+        rm -f "$PID_FILE"
+    fi
+fi
+
+# Start monitoring daemon
+echo "Starting performance monitoring daemon..."
+nohup "$MONITOR_DIR/monitor-daemon.sh" > "$MONITOR_DIR/monitor-output.log" 2>&1 &
+DAEMON_PID=$!
+
+# Save PID
+echo "$DAEMON_PID" > "$PID_FILE"
+echo "Performance monitor started (PID: $DAEMON_PID)"
+EOF
+    
+    chmod +x "$MONITOR_DIR/start-monitoring.sh"
+    
+    # Create monitoring service stop script
+    cat > "$MONITOR_DIR/stop-monitoring.sh" << 'EOF'
+#!/bin/bash
+
+MONITOR_DIR="/var/www/html/.performance-monitor"
+PID_FILE="$MONITOR_DIR/monitor.pid"
+
+if [ -f "$PID_FILE" ]; then
+    PID=$(cat "$PID_FILE")
+    if ps -p "$PID" > /dev/null 2>&1; then
+        echo "Stopping performance monitor (PID: $PID)..."
+        kill "$PID"
+        rm -f "$PID_FILE"
+        echo "Performance monitor stopped"
+    else
+        echo "Performance monitor is not running"
+        rm -f "$PID_FILE"
+    fi
+else
+    echo "Performance monitor is not running (no PID file)"
+fi
+EOF
+    
+    chmod +x "$MONITOR_DIR/stop-monitoring.sh"
+    
+    # Create dashboard generator script
+    cat > "$MONITOR_DIR/generate-dashboard.py" << 'EOF'
+#!/usr/bin/env python3
+
+import json
+import csv
+from datetime import datetime, timedelta
+import os
+
+def load_metrics(log_file, hours=24):
+    """Load performance metrics from the last N hours"""
+    metrics = []
+    cutoff_time = datetime.utcnow() - timedelta(hours=hours)
+    
+    if not os.path.exists(log_file):
+        return metrics
+    
+    with open(log_file, 'r') as f:
+        for line in f:
+            try:
+                parts = line.strip().split(',', 1)
+                if len(parts) != 2:
+                    continue
+                    
+                timestamp_str, metric_data = parts
+                timestamp = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+                
+                if timestamp < cutoff_time:
+                    continue
+                
+                # Parse metric data
+                metric_dict = {'timestamp': timestamp_str}
+                for metric in metric_data.split(','):
+                    key, value = metric.split(':')
+                    metric_dict[key] = float(value)
+                
+                metrics.append(metric_dict)
+                
+            except (ValueError, IndexError):
+                continue
+    
+    return metrics
+
+def generate_html_dashboard(metrics, alerts):
+    """Generate HTML dashboard"""
+    
+    # Calculate summary statistics
+    if metrics:
+        latest = metrics[-1]
+        avg_cpu = sum(m['cpu'] for m in metrics) / len(metrics)
+        avg_memory = sum(m['memory'] for m in metrics) / len(metrics)
+        avg_disk = sum(m['disk'] for m in metrics) / len(metrics)
+        avg_query_time = sum(m['query_time'] for m in metrics) / len(metrics)
+        max_cpu = max(m['cpu'] for m in metrics)
+        max_memory = max(m['memory'] for m in metrics)
+        max_query_time = max(m['query_time'] for m in metrics)
+    else:
+        latest = {'cpu': 0, 'memory': 0, 'disk': 0, 'query_time': 0}
+        avg_cpu = avg_memory = avg_disk = avg_query_time = 0
+        max_cpu = max_memory = max_query_time = 0
+    
+    recent_alerts = [a for a in alerts if a['timestamp'] > (datetime.utcnow() - timedelta(hours=24)).isoformat()]
+    
+    html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adesso CMS Performance Dashboard</title>
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; background: #f5f5f7; }}
+        .container {{ max-width: 1200px; margin: 0 auto; }}
+        .header {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }}
+        .metrics-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }}
+        .metric-card {{ background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 5px solid #667eea; }}
+        .metric-value {{ font-size: 2.5em; font-weight: bold; margin-bottom: 5px; }}
+        .metric-label {{ color: #666; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; }}
+        .metric-stats {{ font-size: 0.85em; color: #888; margin-top: 10px; }}
+        .alerts-section {{ background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; }}
+        .alert {{ background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; padding: 15px; margin: 10px 0; }}
+        .alert.critical {{ background: #f8d7da; border-color: #f5c6cb; }}
+        .status-good {{ color: #28a745; }}
+        .status-warning {{ color: #ffc107; }}
+        .status-critical {{ color: #dc3545; }}
+        .chart-container {{ background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }}
+        .refresh-info {{ text-align: center; color: #666; margin-top: 20px; font-size: 0.9em; }}
+    </style>
+    <script>
+        setTimeout(function(){{ location.reload(); }}, 300000); // Refresh every 5 minutes
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Adesso CMS Performance Dashboard</h1>
+            <p>Real-time performance monitoring and alerts</p>
+            <p>Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}</p>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">CPU Usage</div>
+                <div class="metric-value status-{'critical' if latest['cpu'] > 85 else 'warning' if latest['cpu'] > 70 else 'good'}">{latest['cpu']:.1f}%</div>
+                <div class="metric-stats">Avg: {avg_cpu:.1f}% | Max: {max_cpu:.1f}%</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Memory Usage</div>
+                <div class="metric-value status-{'critical' if latest['memory'] > 90 else 'warning' if latest['memory'] > 80 else 'good'}">{latest['memory']:.1f}%</div>
+                <div class="metric-stats">Avg: {avg_memory:.1f}% | Max: {max_memory:.1f}%</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Disk Usage</div>
+                <div class="metric-value status-{'critical' if latest['disk'] > 90 else 'warning' if latest['disk'] > 80 else 'good'}">{latest['disk']:.1f}%</div>
+                <div class="metric-stats">Current disk utilization</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Query Time</div>
+                <div class="metric-value status-{'critical' if latest['query_time'] > 2.0 else 'warning' if latest['query_time'] > 0.5 else 'good'}">{latest['query_time']:.3f}s</div>
+                <div class="metric-stats">Avg: {avg_query_time:.3f}s | Max: {max_query_time:.3f}s</div>
+            </div>
+        </div>
+        
+        <div class="alerts-section">
+            <h2>Recent Alerts (Last 24 Hours)</h2>
+            {f'<p>No alerts in the last 24 hours ✅</p>' if not recent_alerts else ''}
+"""
+    
+    for alert in recent_alerts[-10:]:  # Show last 10 alerts
+        alert_class = 'critical' if alert['severity'] == 'CRITICAL' else 'alert'
+        html += f"""
+            <div class="alert {alert_class}">
+                <strong>{alert['severity']}</strong> - {alert['name']} 
+                <span style="float: right;">{alert['timestamp']}</span><br>
+                {alert['message']}
+            </div>
+"""
+    
+    html += f"""
+        </div>
+        
+        <div class="chart-container">
+            <h2>Performance Trends</h2>
+            <p>Metrics collected: {len(metrics)} data points over the last 24 hours</p>
+            <div style="margin-top: 20px;">
+                <h3>System Health Status</h3>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div>🖥️ CPU: <span class="status-{'critical' if latest['cpu'] > 85 else 'warning' if latest['cpu'] > 70 else 'good'}">{'Critical' if latest['cpu'] > 85 else 'Warning' if latest['cpu'] > 70 else 'Good'}</span></div>
+                    <div>🧠 Memory: <span class="status-{'critical' if latest['memory'] > 90 else 'warning' if latest['memory'] > 80 else 'good'}">{'Critical' if latest['memory'] > 90 else 'Warning' if latest['memory'] > 80 else 'Good'}</span></div>
+                    <div>💾 Disk: <span class="status-{'critical' if latest['disk'] > 90 else 'warning' if latest['disk'] > 80 else 'good'}">{'Critical' if latest['disk'] > 90 else 'Warning' if latest['disk'] > 80 else 'Good'}</span></div>
+                    <div>🗃️ Database: <span class="status-{'critical' if latest['query_time'] > 2.0 else 'warning' if latest['query_time'] > 0.5 else 'good'}">{'Critical' if latest['query_time'] > 2.0 else 'Warning' if latest['query_time'] > 0.5 else 'Good'}</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="refresh-info">
+            📊 Dashboard refreshes automatically every 5 minutes<br>
+            🔧 Management: <code>ddev performance-monitor --status</code> | <code>ddev performance-monitor --setup</code>
+        </div>
+    </div>
+</body>
+</html>
+"""
+    
+    return html
+
+def load_alerts(alert_log):
+    """Load alerts from log file"""
+    alerts = []
+    
+    if not os.path.exists(alert_log):
+        return alerts
+    
+    with open(alert_log, 'r') as f:
+        for line in f:
+            try:
+                parts = line.strip().split(',', 3)
+                if len(parts) != 4:
+                    continue
+                    
+                timestamp, severity, name, message = parts
+                alerts.append({
+                    'timestamp': timestamp,
+                    'severity': severity,
+                    'name': name, 
+                    'message': message
+                })
+            except ValueError:
+                continue
+    
+    return alerts
+
+if __name__ == "__main__":
+    import sys
+    
+    monitor_dir = "/var/www/html/.performance-monitor"
+    log_file = f"{monitor_dir}/performance.log"
+    alert_log = f"{monitor_dir}/alerts.log"
+    dashboard_file = f"{monitor_dir}/dashboard.html"
+    
+    # Load data
+    metrics = load_metrics(log_file)
+    alerts = load_alerts(alert_log)
+    
+    # Generate dashboard
+    html = generate_html_dashboard(metrics, alerts)
+    
+    # Save dashboard
+    with open(dashboard_file, 'w') as f:
+        f.write(html)
+    
+    print(f"Dashboard generated: {dashboard_file}")
+    print(f"Metrics: {len(metrics)} data points")
+    print(f"Alerts: {len(alerts)} total alerts")
+EOF
+    
+    chmod +x "$MONITOR_DIR/generate-dashboard.py"
+    
+    log_success "Performance monitoring system set up successfully!"
+    echo "   Config: $MONITOR_CONFIG"
+    echo "   Alerts: $ALERT_CONFIG"
+    echo "   Scripts: $MONITOR_DIR/"
+    echo ""
+    echo "To start monitoring:"
+    echo "   $MONITOR_DIR/start-monitoring.sh"
+}
+
+# Function to show monitoring status
+show_status() {
+    log_monitor "Performance monitoring status..."
+    
+    local pid_file="$MONITOR_DIR/monitor.pid"
+    
+    if [ -f "$pid_file" ]; then
+        local pid=$(cat "$pid_file")
+        if ps -p "$pid" > /dev/null 2>&1; then
+            log_success "Performance monitoring is RUNNING (PID: $pid)"
+            
+            # Show recent metrics if available
+            if [ -f "$MONITOR_LOG" ]; then
+                echo ""
+                echo "📊 Recent metrics (last 5 entries):"
+                tail -n 5 "$MONITOR_LOG" | while IFS=',' read -r timestamp metrics; do
+                    echo "   $timestamp: $metrics"
+                done
+            fi
+            
+            # Show recent alerts if available
+            if [ -f "$ALERT_LOG" ]; then
+                local alert_count=$(wc -l < "$ALERT_LOG" 2>/dev/null || echo "0")
+                echo ""
+                echo "🚨 Total alerts: $alert_count"
+                
+                if [ "$alert_count" -gt 0 ]; then
+                    echo "Recent alerts (last 3):"
+                    tail -n 3 "$ALERT_LOG" | while IFS=',' read -r timestamp severity name message; do
+                        echo "   [$severity] $timestamp: $message"
+                    done
+                fi
+            fi
+            
+        else
+            log_warning "Performance monitoring is NOT RUNNING (stale PID file)"
+            echo "   Use: $MONITOR_DIR/start-monitoring.sh"
+        fi
+    else
+        log_warning "Performance monitoring is NOT RUNNING"
+        echo "   Use: $MONITOR_DIR/start-monitoring.sh"
+    fi
+    
+    # Show configuration status
+    echo ""
+    echo "📋 Configuration:"
+    if [ -f "$MONITOR_CONFIG" ]; then
+        python3 -c "
+import json
+with open('$MONITOR_CONFIG', 'r') as f:
+    config = json.load(f)
+print(f'   Monitoring interval: {config[\"monitoring\"][\"interval\"]}s')
+print(f'   Alerts enabled: {config[\"alerts\"][\"enabled\"]}')
+print(f'   Retention: {config[\"monitoring\"][\"retention_days\"]} days')
+"
+    else
+        echo "   ⚠️ Configuration not found. Run --setup first."
+    fi
+}
+
+# Function to generate and display dashboard
+show_dashboard() {
+    log_info "Generating performance dashboard..."
+    
+    if [ ! -f "$MONITOR_DIR/generate-dashboard.py" ]; then
+        log_error "Dashboard generator not found. Run --setup first."
+        exit 1
+    fi
+    
+    # Generate dashboard
+    python3 "$MONITOR_DIR/generate-dashboard.py"
+    
+    local dashboard_file="$MONITOR_DIR/dashboard.html"
+    
+    if [ -f "$dashboard_file" ]; then
+        log_success "Dashboard generated: $dashboard_file"
+        echo ""
+        echo "🌐 Open dashboard in browser:"
+        echo "   file://$dashboard_file"
+        echo ""
+        echo "📊 Quick stats:"
+        
+        # Show quick stats from dashboard data
+        if [ -f "$MONITOR_LOG" ]; then
+            local latest_metrics=$(tail -n 1 "$MONITOR_LOG" 2>/dev/null)
+            if [ -n "$latest_metrics" ]; then
+                echo "$latest_metrics" | cut -d',' -f2 | tr ',' '\n' | while IFS=':' read -r key value; do
+                    case "$key" in
+                        cpu) echo "   CPU Usage: ${value}%" ;;
+                        memory) echo "   Memory Usage: ${value}%" ;;
+                        disk) echo "   Disk Usage: ${value}%" ;;
+                        query_time) echo "   Query Time: ${value}s" ;;
+                    esac
+                done
+            fi
+        fi
+    else
+        log_error "Failed to generate dashboard"
+        exit 1
+    fi
+}
+
+# Function to test alerts
+test_alerts() {
+    log_info "Testing alert system..."
+    
+    if [ ! -f "$ALERT_CONFIG" ]; then
+        log_error "Alert configuration not found. Run --setup first."
+        exit 1
+    fi
+    
+    # Create test alert
+    local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    local test_alert="$timestamp,WARNING,Alert Test,This is a test alert from the performance monitoring system"
+    
+    echo "$test_alert" >> "$ALERT_LOG"
+    
+    log_success "Test alert generated and logged"
+    echo "   Alert: $test_alert"
+    echo ""
+    echo "🔍 Recent alerts:"
+    tail -n 5 "$ALERT_LOG" 2>/dev/null || echo "   No alerts found"
+}
+
+# Function to configure alerts
+configure_alerts() {
+    log_info "Configuring alert settings..."
+    
+    # Interactive alert configuration
+    echo "📧 Email configuration:"
+    read -p "Enter email address for alerts (optional): " email_address
+    
+    echo "💬 Slack configuration:"  
+    read -p "Enter Slack webhook URL (optional): " slack_webhook
+    
+    echo "⏱️ Alert thresholds:"
+    read -p "CPU warning threshold (default 70%): " cpu_warning
+    cpu_warning=${cpu_warning:-70}
+    
+    read -p "Memory warning threshold (default 80%): " memory_warning
+    memory_warning=${memory_warning:-80}
+    
+    # Update configuration
+    python3 -c "
+import json
+
+# Load existing config
+with open('$MONITOR_CONFIG', 'r') as f:
+    config = json.load(f)
+
+# Update alert settings
+config['alerts']['email'] = '$email_address'
+config['alerts']['slack_webhook'] = '$slack_webhook'
+config['thresholds']['cpu_warning'] = $cpu_warning
+config['thresholds']['memory_warning'] = $memory_warning
+
+# Save updated config
+with open('$MONITOR_CONFIG', 'w') as f:
+    json.dump(config, f, indent=2)
+
+print('Alert configuration updated successfully!')
+"
+    
+    log_success "Alert configuration updated"
+    echo "   Email: ${email_address:-'Not configured'}"
+    echo "   Slack: ${slack_webhook:+'Configured' || 'Not configured'}"
+    echo "   CPU Warning: ${cpu_warning}%"
+    echo "   Memory Warning: ${memory_warning}%"
+}
+
+# Main execution logic
+log_info "Adesso CMS Performance Monitor"
+
+# Check if monitoring directory exists
+if [ ! -d "$MONITOR_DIR" ] && [ "$SETUP_MODE" = false ]; then
+    log_warning "Performance monitoring not set up yet"
+    echo "Run: ddev performance-monitor --setup"
+    exit 1
+fi
+
+# Execute based on options
+if [ "$SETUP_MODE" = true ]; then
+    setup_monitoring
+elif [ "$STATUS_MODE" = true ]; then
+    show_status
+elif [ "$DASHBOARD_MODE" = true ]; then
+    show_dashboard
+elif [ "$ALERT_TEST" = true ]; then
+    test_alerts
+elif [ "$CONFIGURE_ALERTS" = true ]; then
+    configure_alerts
+else
+    log_info "Performance monitor management"
+    echo ""
+    echo "Available commands:"
+    echo "   --setup              Set up performance monitoring"
+    echo "   --status             Show monitoring status"
+    echo "   --dashboard          Generate and view dashboard"
+    echo "   --alert-test         Test alert system"
+    echo "   --configure-alerts   Configure alert settings"
+    echo ""
+    echo "Management scripts:"
+    if [ -d "$MONITOR_DIR" ]; then
+        echo "   Start: $MONITOR_DIR/start-monitoring.sh"
+        echo "   Stop:  $MONITOR_DIR/stop-monitoring.sh"
+    else
+        echo "   (Run --setup first to install management scripts)"
+    fi
+fi
+
+echo ""
+log_success "Performance monitoring ready! 📊"

@@ -1,0 +1,42 @@
+uuid: 7383b040-e8af-4eef-a8b9-36f7eb4b550e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.square
+    - field.field.media.image.field_image
+    - field.field.media.image.field_media_image
+    - media.type.image
+    - responsive_image.styles.square_images
+  module:
+    - svg_image_responsive
+_core:
+  default_config_hash: rFKU0EmViS_8VKt5hgSo8A9Q5L0zIF-dyQrlOoguajI
+id: media.image.square
+targetEntityType: media
+bundle: image
+mode: square
+content:
+  field_image:
+    type: responsive_image
+    label: hidden
+    settings:
+      responsive_image_style: square_images
+      image_link: ''
+      image_loading:
+        attribute: eager
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_image: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

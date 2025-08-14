@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 8335742b-424d-4e16-97a9-e8fcad29c9f1
+  bundle: image
+  default_langcode: de
+  depends:
+    6c91fb14-28b5-4ff7-ac8e-f44c48643c5e: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Piur, Donna Manuela_Tatarevic, Sadri_Ramhab, Jessica_19.png'
+  created:
+    -
+      value: 1753119769
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 6c91fb14-28b5-4ff7-ac8e-f44c48643c5e
+      alt: 'People at adesso'
+      title: ''
+      width: 1628
+      height: 1200

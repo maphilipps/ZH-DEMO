@@ -1,0 +1,357 @@
+#!/bin/bash
+
+## Description: Clean up old fragmented recipes and replace with adesso_cms_complete
+## Usage: cleanup-recipes [--dry-run] [--backup] [--force]
+## Example: "ddev cleanup-recipes --backup" or "ddev cleanup-recipes --dry-run"
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Configuration
+RECIPES_DIR="/var/www/html/recipes"
+BACKUP_DIR="/var/www/html/recipes-backup-$(date +%Y%m%d_%H%M%S)"
+DRY_RUN=false
+BACKUP=false
+FORCE=false
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        --backup)
+            BACKUP=true
+            shift
+            ;;
+        --force)
+            FORCE=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: cleanup-recipes [--dry-run] [--backup] [--force]"
+            echo ""
+            echo "Options:"
+            echo "  --dry-run     Show what would be done without making changes"
+            echo "  --backup      Create backup of old recipes before cleanup"
+            echo "  --force       Skip confirmation prompts"
+            echo "  -h, --help    Show this help message"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+    esac
+done
+
+# Helper functions
+log_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+log_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+log_info "=== adesso CMS Recipe Cleanup ==="
+log_info "Cleaning up old fragmented recipes..."
+
+if [ "$DRY_RUN" = true ]; then
+    log_warning "DRY RUN MODE - No changes will be made"
+fi
+
+# Check if we're in the correct directory
+if [ ! -d "$RECIPES_DIR" ]; then
+    log_error "Recipes directory not found: $RECIPES_DIR"
+    exit 1
+fi
+
+# Check if master recipe exists
+if [ ! -f "$RECIPES_DIR/adesso_cms_complete/recipe.yml" ]; then
+    log_error "Master recipe not found: $RECIPES_DIR/adesso_cms_complete/recipe.yml"
+    log_error "Please run 'ddev sync-to-installer' first to create the master recipe"
+    exit 1
+fi
+
+# List of old recipes to be removed/archived
+OLD_RECIPES=(
+    "adesso_cms_starter"
+    "adesso_cms_paragraphs"
+    "adesso_cms_ai_integration"
+    "adesso_cms_enhancements"
+    "adesso_cms_page_header"
+)
+
+# Drupal CMS recipes that should be kept (these are external dependencies)
+KEEP_RECIPES=(
+    "drupal_cms_accessibility_tools"
+    "drupal_cms_admin_ui"
+    "drupal_cms_ai"
+    "drupal_cms_anti_spam"
+    "drupal_cms_authentication"
+    "drupal_cms_blog"
+    "drupal_cms_case_study"
+    "drupal_cms_content_type_base"
+    "drupal_cms_events"
+    "drupal_cms_forms"
+    "drupal_cms_google_analytics"
+    "drupal_cms_image"
+    "drupal_cms_news"
+    "drupal_cms_page"
+    "drupal_cms_person"
+    "drupal_cms_privacy_basic"
+    "drupal_cms_project"
+    "drupal_cms_remote_video"
+    "drupal_cms_search"
+    "drupal_cms_seo_basic"
+    "drupal_cms_seo_tools"
+    "easy_email_express"
+    "easy_email_standard"
+    "easy_email_text_format"
+    "easy_email_types_core"
+    "easy_email_types_default"
+)
+
+# Display what will be affected
+log_info "Analyzing recipes directory..."
+
+FOUND_OLD_RECIPES=()
+FOUND_KEEP_RECIPES=()
+
+for recipe in "${OLD_RECIPES[@]}"; do
+    if [ -d "$RECIPES_DIR/$recipe" ]; then
+        FOUND_OLD_RECIPES+=("$recipe")
+    fi
+done
+
+for recipe in "${KEEP_RECIPES[@]}"; do
+    if [ -d "$RECIPES_DIR/$recipe" ]; then
+        FOUND_KEEP_RECIPES+=("$recipe")
+    fi
+done
+
+# Display summary
+log_info "=== Cleanup Summary ==="
+log_info "Master recipe: adesso_cms_complete (will be kept)"
+log_info "Old recipes to remove/archive: ${#FOUND_OLD_RECIPES[@]}"
+for recipe in "${FOUND_OLD_RECIPES[@]}"; do
+    echo "  - $recipe"
+done
+
+log_info "External recipes to keep: ${#FOUND_KEEP_RECIPES[@]}"
+for recipe in "${FOUND_KEEP_RECIPES[@]}"; do
+    echo "  - $recipe"
+done
+
+# Check for unknown recipes
+log_info "Checking for unknown recipes..."
+ALL_RECIPES=($(ls -1 "$RECIPES_DIR" | grep -v README.txt | grep -v adesso_cms_complete || true))
+UNKNOWN_RECIPES=()
+
+for recipe in "${ALL_RECIPES[@]}"; do
+    if [[ ! " ${OLD_RECIPES[@]} " =~ " $recipe " ]] && [[ ! " ${KEEP_RECIPES[@]} " =~ " $recipe " ]]; then
+        UNKNOWN_RECIPES+=("$recipe")
+    fi
+done
+
+if [ ${#UNKNOWN_RECIPES[@]} -gt 0 ]; then
+    log_warning "Found unknown recipes (will be preserved):"
+    for recipe in "${UNKNOWN_RECIPES[@]}"; do
+        echo "  - $recipe"
+    done
+fi
+
+# Confirmation if not in force mode
+if [ "$FORCE" = false ] && [ "$DRY_RUN" = false ]; then
+    echo ""
+    read -p "Do you want to continue with the cleanup? [y/N]: " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        log_info "Cleanup cancelled by user"
+        exit 0
+    fi
+fi
+
+# Create backup if requested
+if [ "$BACKUP" = true ] && [ "$DRY_RUN" = false ]; then
+    log_info "Creating backup of old recipes..."
+    mkdir -p "$BACKUP_DIR"
+    
+    for recipe in "${FOUND_OLD_RECIPES[@]}"; do
+        if [ -d "$RECIPES_DIR/$recipe" ]; then
+            cp -r "$RECIPES_DIR/$recipe" "$BACKUP_DIR/"
+            log_success "Backed up: $recipe"
+        fi
+    done
+    
+    log_success "Backup created at: $BACKUP_DIR"
+fi
+
+# Perform cleanup
+log_info "Starting cleanup process..."
+
+for recipe in "${FOUND_OLD_RECIPES[@]}"; do
+    if [ "$DRY_RUN" = true ]; then
+        log_info "Would remove: $RECIPES_DIR/$recipe"
+    else
+        if [ -d "$RECIPES_DIR/$recipe" ]; then
+            rm -rf "$RECIPES_DIR/$recipe"
+            log_success "Removed: $recipe"
+        fi
+    fi
+done
+
+# Update README.txt if it exists
+if [ -f "$RECIPES_DIR/README.txt" ]; then
+    if [ "$DRY_RUN" = true ]; then
+        log_info "Would update README.txt with cleanup information"
+    else
+        cat >> "$RECIPES_DIR/README.txt" << EOF
+
+# Recipe Cleanup - $(date)
+
+The following adesso-specific recipes have been consolidated into 'adesso_cms_complete':
+$(printf -- "- %s\n" "${OLD_RECIPES[@]}")
+
+Use 'adesso_cms_complete' for all new installations.
+
+For legacy installations, backups are available at:
+$BACKUP_DIR (if --backup was used)
+
+EOF
+        log_success "Updated README.txt with cleanup information"
+    fi
+fi
+
+# Create migration guide
+MIGRATION_GUIDE="$RECIPES_DIR/MIGRATION_GUIDE.md"
+if [ "$DRY_RUN" = false ]; then
+    cat > "$MIGRATION_GUIDE" << EOF
+# adesso CMS Recipe Migration Guide
+
+## Overview
+
+The adesso CMS recipes have been consolidated into a single, comprehensive recipe called \`adesso_cms_complete\`. This guide explains how to migrate from the old fragmented recipes to the new unified approach.
+
+## What Changed
+
+### Removed Recipes
+The following recipes have been consolidated:
+$(printf -- "- \`%s\`\n" "${OLD_RECIPES[@]}")
+
+### New Unified Recipe
+- \`adesso_cms_complete\` - Complete adesso CMS installation with all features
+
+## Migration Steps
+
+### For New Installations
+Simply use the new unified recipe:
+\`\`\`bash
+php core/scripts/drupal recipe recipes/adesso_cms_complete
+\`\`\`
+
+### For Existing Installations
+Your existing installation is not affected. The old recipes have been removed from new installations but your current site continues to work normally.
+
+### For Development/Testing
+1. Use \`ddev sync-to-installer\` to update the master recipe with current site state
+2. Test installations using \`recipes/adesso_cms_complete/test-recipe.sh\`
+3. Validate installations using \`recipes/adesso_cms_complete/validate-installation.sh\`
+
+## Benefits of Unified Recipe
+
+1. **No Conflicts**: Single recipe eliminates dependency conflicts
+2. **Complete State**: Captures entire site configuration in one place  
+3. **Easy Maintenance**: One recipe to update and maintain
+4. **Faster Installation**: No need to apply multiple recipes sequentially
+5. **Better Testing**: Single point of validation and testing
+
+## Backup Information
+
+$(if [ "$BACKUP" = true ]; then echo "Old recipes backed up to: $BACKUP_DIR"; else echo "No backup created (use --backup flag if needed)"; fi)
+
+## Support
+
+If you need to recreate any of the old recipe functionality:
+1. Check the current site configuration in \`config-export/\`
+2. Use \`ddev sync-to-installer\` to capture current state
+3. Manually create specific recipes if needed for modular deployment
+
+## Commands Reference
+
+- \`ddev sync-to-installer\` - Sync current site to master recipe
+- \`ddev cleanup-recipes --backup\` - This cleanup command
+- \`recipes/adesso_cms_complete/test-recipe.sh\` - Test recipe
+- \`recipes/adesso_cms_complete/validate-installation.sh\` - Validate installation
+
+Generated: $(date)
+EOF
+
+    log_success "Created migration guide: $MIGRATION_GUIDE"
+fi
+
+# Validate master recipe after cleanup
+if [ "$DRY_RUN" = false ]; then
+    log_info "Validating master recipe..."
+    if [ -x "$RECIPES_DIR/adesso_cms_complete/test-recipe.sh" ]; then
+        if "$RECIPES_DIR/adesso_cms_complete/test-recipe.sh" --quick; then
+            log_success "Master recipe validation passed"
+        else
+            log_warning "Master recipe validation had warnings (check output above)"
+        fi
+    else
+        log_warning "Master recipe test script not found or not executable"
+    fi
+fi
+
+# Final summary
+log_info "=== Cleanup Summary ==="
+
+if [ "$DRY_RUN" = true ]; then
+    log_info "DRY RUN completed - No files were modified"
+    log_info "The following actions would have been performed:"
+    echo "  - Remove ${#FOUND_OLD_RECIPES[@]} old recipes"
+    echo "  - Keep ${#FOUND_KEEP_RECIPES[@]} external recipes"
+    echo "  - Preserve ${#UNKNOWN_RECIPES[@]} unknown recipes"
+    if [ "$BACKUP" = true ]; then
+        echo "  - Create backup directory"
+    fi
+    echo "  - Update README.txt"
+    echo "  - Create migration guide"
+else
+    log_success "Cleanup completed successfully!"
+    log_success "Removed ${#FOUND_OLD_RECIPES[@]} old recipes"
+    log_success "Kept ${#FOUND_KEEP_RECIPES[@]} external recipes"
+    log_success "Preserved ${#UNKNOWN_RECIPES[@]} unknown recipes"
+    log_success "Master recipe: $RECIPES_DIR/adesso_cms_complete"
+    
+    if [ "$BACKUP" = true ]; then
+        log_success "Backup available at: $BACKUP_DIR"
+    fi
+    
+    log_success "Migration guide: $MIGRATION_GUIDE"
+    
+    log_info "Next steps:"
+    echo "  1. Test the master recipe: $RECIPES_DIR/adesso_cms_complete/test-recipe.sh"
+    echo "  2. Update deployment scripts to use adesso_cms_complete"
+    echo "  3. Update documentation to reference the new recipe"
+    echo "  4. Commit changes to version control"
+fi
+
+log_success "Recipe cleanup operation completed!"

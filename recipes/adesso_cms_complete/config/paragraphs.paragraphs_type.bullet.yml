@@ -1,0 +1,12 @@
+uuid: cac4196c-c45d-4d90-85e9-d5ac6988e497
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zXrP_5beQjVhUiQh5e-PzLHd187IZvtcv9HoYAoySS4
+id: bullet
+label: Bullet
+icon_uuid: null
+icon_default: null
+description: 'Item paragraph used to display icon list items within components.'
+behavior_plugins: {  }

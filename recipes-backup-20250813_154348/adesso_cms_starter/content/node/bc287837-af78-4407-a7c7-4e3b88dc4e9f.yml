@@ -1,0 +1,160 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bc287837-af78-4407-a7c7-4e3b88dc4e9f
+  bundle: event
+  default_langcode: de
+  depends:
+    2ddc6a55-9010-48a4-81d9-4e97a35eaee4: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Gipfelstürmer der IT'
+  created:
+    -
+      value: 1754291468
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Gipfelstürmer der IT | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/events/gipfelstuermer-der-it'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/gipfelstuermer-der-it_W2560xH1440_CUTOUT.jpg.webp?itok=0_9R0wvH'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Gipfelstürmer der IT'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Erleben Sie ein außergewöhnliches Event an einer der exklusivsten Adressen Hamburgs – dem Hafen-Klub!'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/gipfelstuermer-der-it_W2560xH1440_CUTOUT.jpg.webp?itok=0_9R0wvH'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:45:54+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Erleben Sie ein außergewöhnliches Event an einer der exklusivsten Adressen Hamburgs – dem Hafen-Klub!'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Gipfelstürmer der IT'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/gipfelstuermer-der-it_W2560xH1440_CUTOUT.jpg.webp?itok=mOHCHZ1_'
+  path:
+    -
+      alias: /events/gipfelstuermer-der-it
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<p>Über den Landungsbrücken erwartet Sie eine einzigartige Atmosphäre mit spektakulärem Blick auf die Elbe und den Hamburger Hafen. Tauchen Sie mit uns ein in die Welt von Innovation und Sicherheit. Gemeinsam mit Dani Arnold, Extrembergsteiger und Experte für Risikomanagement, zeigen wir Ihnen, wie Sie in der IT-Entwicklung Risiken frühzeitig erkennen und mit den richtigen Strategien sowie Partnern erfolgreich meistern.</p><p>Lassen Sie sich inspirieren, wie Sie Ihre IT-Projekte sicher und zielgerichtet „zum Gipfel“ führen – und genießen Sie dabei die hanseatische Eleganz und den modernen Flair des Hafen-Klubs. Freuen Sie sich auf:</p><ul><li>Inspirierende Geschichten von Dani Arnold, der Herausforderungen sicher meistert – in den Bergen und im Leben.</li><li>Austausch und Networking in einer exklusiven Location mit beeindruckender Kulisse.</li></ul><p>Seien Sie dabei und starten Sie mit uns Ihre nächste IT-Expedition! Wir freuen uns darauf, Sie in dieser einzigartigen Umgebung willkommen zu heißen.</p><p>&nbsp;</p>'
+      format: content_format
+  field_description:
+    -
+      value: "Erleben Sie ein außergewöhnliches Event an einer der exklusivsten Adressen Hamburgs – dem Hafen-Klub!\r\n"
+  field_event__date:
+    -
+      value: 1758034800
+      end_value: 1758045600
+      duration: 60
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__location_name:
+    -
+      value: Hamburg
+  field_featured_image:
+    -
+      entity: 2ddc6a55-9010-48a4-81d9-4e97a35eaee4

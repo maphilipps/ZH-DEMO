@@ -1,0 +1,160 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 513ab53d-7193-4755-b928-574fad6b4b61
+  bundle: event
+  default_langcode: de
+  depends:
+    22a3bb88-4145-4b6a-ae8e-82d4b64a60ab: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'DMEXCO 2025'
+  created:
+    -
+      value: 1754291468
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'DMEXCO 2025 | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/events/dmexco-2025'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/kalender-2022-dsc4625_W800xH600_CUTOUT.jpg.webp?itok=_wPHeNLX'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'DMEXCO 2025'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Wir sind mittendrin – an drei Partnerständen und beim Side Event mit JENTIS am Vorabend'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/kalender-2022-dsc4625_W800xH600_CUTOUT.jpg.webp?itok=_wPHeNLX'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:46:49+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Wir sind mittendrin – an drei Partnerständen und beim Side Event mit JENTIS am Vorabend'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'DMEXCO 2025'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/kalender-2022-dsc4625_W800xH600_CUTOUT.jpg.webp?itok=DXsVbv2W'
+  path:
+    -
+      alias: /events/dmexco-2025
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<p>Im September trifft sich die internationale Digitalbranche wieder in Köln und adesso ist mittendrin. Auf der <a href="https://dmexco.com/de/">DMEXCO 2025</a>, dem Hotspot für digitales Marketing, Commerce und Tech-Innovation, sind wir an den Ständen unserer drei CMS-Partner Crownpeak, ibexa und Magnolia vertreten.</p><p>Dabei denken wir weiter: Denn für uns ist CMS nur ein Teil einer ganzheitlichen Digital Experience Platform (DXP) – wir begleiten Unternehmen von der Strategie über die Technologie bis zur Umsetzung individueller digitaler Kundenerlebnisse.</p>'
+      format: content_format
+  field_description:
+    -
+      value: "Wir sind mittendrin – an drei Partnerständen und beim Side Event mit JENTIS am Vorabend\r\n"
+  field_event__date:
+    -
+      value: 1758092400
+      end_value: 1758211200
+      duration: 60
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__location_name:
+    -
+      value: Köln
+  field_featured_image:
+    -
+      entity: 22a3bb88-4145-4b6a-ae8e-82d4b64a60ab

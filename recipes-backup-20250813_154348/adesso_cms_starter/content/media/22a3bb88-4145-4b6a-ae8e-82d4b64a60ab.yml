@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 22a3bb88-4145-4b6a-ae8e-82d4b64a60ab
+  bundle: image
+  default_langcode: de
+  depends:
+    f72f874f-9ab7-4f31-af22-9f829689e3b5: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: kalender-2022-dsc4625_W800xH600_CUTOUT.jpg
+  created:
+    -
+      value: 1754293179
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 1
+  field_media_image:
+    -
+      entity: f72f874f-9ab7-4f31-af22-9f829689e3b5
+      alt: ''
+      title: kalender-2022-dsc4625_W800xH600_CUTOUT.jpg
+      width: 800
+      height: 600

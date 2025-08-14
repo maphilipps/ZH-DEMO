@@ -1,0 +1,21 @@
+uuid: c86785a8-1efd-49b1-933f-07adfea345e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_person__role_job_title
+    - node.type.person
+_core:
+  default_config_hash: DB10Wo7VfLX2S5OlyTGs5dKsBmIZOJOMkvs_P7IPVjM
+id: node.person.field_person__role_job_title
+field_name: field_person__role_job_title
+entity_type: node
+bundle: person
+label: 'Role or job title'
+description: 'Include a role or job title.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

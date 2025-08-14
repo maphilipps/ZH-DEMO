@@ -1,0 +1,7 @@
+logo:
+  provider: custom
+  path: profiles/adesso_cms_installer/images/logo.png
+  max:
+    filesize: 1048576
+    height: 40
+    width: 40

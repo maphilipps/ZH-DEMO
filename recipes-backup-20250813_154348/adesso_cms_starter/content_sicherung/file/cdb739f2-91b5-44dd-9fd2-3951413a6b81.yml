@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: cdb739f2-91b5-44dd-9fd2-3951413a6b81
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Tobias Riegel 3.png'
+  uri:
+    -
+      value: 'public://2025-07/Tobias Riegel 3.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 3086936
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753117505

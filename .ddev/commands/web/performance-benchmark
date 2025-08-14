@@ -1,0 +1,835 @@
+#!/usr/bin/env bash
+
+## #ddev-generated
+## Description: Run comprehensive performance benchmarks for the workflow system
+## Usage: performance-benchmark [options]
+## Example: "ddev performance-benchmark --full"
+##   or "ddev performance-benchmark --component=ddev-init"
+##   or "ddev performance-benchmark --ai-integration"
+##   or "ddev performance-benchmark --report=/tmp/perf-report"
+
+set -e
+
+# Color output functions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+log_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+log_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Performance benchmark settings
+BENCHMARK_DIR="/tmp/adesso-cms-perf"
+REPORT_FILE="$BENCHMARK_DIR/performance-report.json"
+HTML_REPORT="$BENCHMARK_DIR/performance-report.html"
+
+# Parse command line arguments
+FULL_BENCHMARK=false
+COMPONENT=""
+AI_INTEGRATION=false
+WORKFLOW_OPERATIONS=false
+DATABASE_PERFORMANCE=false
+CICD_PERFORMANCE=false
+CUSTOM_REPORT=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --full)
+            FULL_BENCHMARK=true
+            shift
+            ;;
+        --component=*)
+            COMPONENT="${1#*=}"
+            shift
+            ;;
+        --ai-integration)
+            AI_INTEGRATION=true
+            shift
+            ;;
+        --workflow-operations)
+            WORKFLOW_OPERATIONS=true
+            shift
+            ;;
+        --database-performance)
+            DATABASE_PERFORMANCE=true
+            shift
+            ;;
+        --cicd-performance)
+            CICD_PERFORMANCE=true
+            shift
+            ;;
+        --report=*)
+            CUSTOM_REPORT="${1#*=}"
+            shift
+            ;;
+        *)
+            log_error "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# Create benchmark directory
+mkdir -p "$BENCHMARK_DIR"
+
+# Initialize performance report
+cat > "$REPORT_FILE" << 'EOF'
+{
+  "benchmark_timestamp": "",
+  "drupal_version": "",
+  "php_version": "",
+  "node_version": "",
+  "system_info": {},
+  "workflow_performance": {},
+  "ai_integration_performance": {},
+  "database_performance": {},
+  "frontend_performance": {},
+  "cicd_performance": {},
+  "resource_utilization": {},
+  "recommendations": []
+}
+EOF
+
+# Get system information
+log_info "Collecting system information..."
+
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+DRUPAL_VERSION=$(drush status --field=drupal-version 2>/dev/null || echo "Unknown")
+PHP_VERSION=$(php -v | head -n1 | cut -d ' ' -f2)
+NODE_VERSION=$(node --version)
+
+# Update report with system info
+python3 -c "
+import json
+import sys
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['benchmark_timestamp'] = '$TIMESTAMP'
+data['drupal_version'] = '$DRUPAL_VERSION'
+data['php_version'] = '$PHP_VERSION'
+data['node_version'] = '$NODE_VERSION'
+
+data['system_info'] = {
+    'container_memory': '$(free -h | awk \"/^Mem:/ {print \$2}\")',
+    'container_cpu': '$(nproc)',
+    'disk_space': '$(df -h /var/www/html | tail -1 | awk \"{print \$4}\")',
+    'load_average': '$(uptime | awk -F \"load average:\" \"{print \$2}\")'
+}
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+
+# Function to benchmark DDEV operations
+benchmark_ddev_operations() {
+    log_info "Benchmarking DDEV operations..."
+    
+    local start_time end_time duration
+    local results="{"
+    
+    # Test ddev restart performance
+    start_time=$(date +%s.%N)
+    ddev restart >/dev/null 2>&1
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"ddev_restart_seconds": '$duration','
+    
+    # Test composer install performance
+    start_time=$(date +%s.%N)
+    composer install --no-dev --optimize-autoloader >/dev/null 2>&1
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"composer_install_seconds": '$duration','
+    
+    # Test theme build performance
+    start_time=$(date +%s.%N)
+    cd /var/www/html/web/themes/custom/adesso_cms_theme
+    npm run build >/dev/null 2>&1
+    cd /var/www/html
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"theme_build_seconds": '$duration','
+    
+    # Test configuration import performance
+    start_time=$(date +%s.%N)
+    drush config:import -y >/dev/null 2>&1
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"config_import_seconds": '$duration
+    
+    results+="}"
+    
+    # Update report
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['workflow_performance']['ddev_operations'] = $results
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "DDEV operations benchmarked"
+}
+
+# Function to benchmark AI integration performance
+benchmark_ai_integration() {
+    log_info "Benchmarking AI integration performance..."
+    
+    local start_time end_time duration
+    local results="{"
+    
+    # Test AI module status check
+    start_time=$(date +%s.%N)
+    drush pm:list --filter=ai 2>/dev/null | head -10 >/dev/null
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"ai_module_check_seconds": '$duration','
+    
+    # Test AI configuration loading
+    start_time=$(date +%s.%N)
+    drush config:get ai.settings 2>/dev/null >/dev/null
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"ai_config_load_seconds": '$duration','
+    
+    # Test AI provider configuration
+    local provider_count=0
+    if drush config:get ai_provider_openai.settings 2>/dev/null >/dev/null; then
+        ((provider_count++))
+    fi
+    if drush config:get ai_provider_anthropic.settings 2>/dev/null >/dev/null; then
+        ((provider_count++))
+    fi
+    if drush config:get ai_provider_groq.settings 2>/dev/null >/dev/null; then
+        ((provider_count++))
+    fi
+    
+    results+='"ai_provider_count": '$provider_count','
+    results+='"ai_integration_healthy": true'
+    
+    results+="}"
+    
+    # Update report
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['ai_integration_performance'] = $results
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "AI integration benchmarked"
+}
+
+# Function to benchmark database performance
+benchmark_database_performance() {
+    log_info "Benchmarking database performance..."
+    
+    local results="{"
+    
+    # Get database size
+    local db_size=$(drush sql:query "SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) AS 'DB Size in MB' FROM information_schema.tables WHERE table_schema='db';" 2>/dev/null | tail -n1 || echo "0")
+    results+='"database_size_mb": '$db_size','
+    
+    # Count total entities
+    local node_count=$(drush sql:query "SELECT COUNT(*) FROM node;" 2>/dev/null | tail -n1 || echo "0")
+    local media_count=$(drush sql:query "SELECT COUNT(*) FROM media;" 2>/dev/null | tail -n1 || echo "0")
+    local config_count=$(drush sql:query "SELECT COUNT(*) FROM config;" 2>/dev/null | tail -n1 || echo "0")
+    
+    results+='"node_count": '$node_count','
+    results+='"media_count": '$media_count','
+    results+='"config_count": '$config_count','
+    
+    # Test query performance
+    local start_time=$(date +%s.%N)
+    drush sql:query "SELECT n.nid, n.title FROM node_field_data n LIMIT 100;" >/dev/null 2>&1
+    local end_time=$(date +%s.%N)
+    local duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"sample_query_seconds": '$duration
+    
+    results+="}"
+    
+    # Update report
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['database_performance'] = $results
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "Database performance benchmarked"
+}
+
+# Function to benchmark frontend performance
+benchmark_frontend_performance() {
+    log_info "Benchmarking frontend performance..."
+    
+    local results="{"
+    local theme_dir="/var/www/html/web/themes/custom/adesso_cms_theme"
+    
+    # Count components
+    local component_count=$(ls -1 "$theme_dir/components" | wc -l)
+    results+='"component_count": '$component_count','
+    
+    # Check if node_modules exists
+    local node_modules_size=0
+    if [ -d "$theme_dir/node_modules" ]; then
+        node_modules_size=$(du -sm "$theme_dir/node_modules" 2>/dev/null | cut -f1 || echo "0")
+    fi
+    results+='"node_modules_size_mb": '$node_modules_size','
+    
+    # Check dist folder size
+    local dist_size=0
+    if [ -d "$theme_dir/dist" ]; then
+        dist_size=$(du -sm "$theme_dir/dist" 2>/dev/null | cut -f1 || echo "0")
+    fi
+    results+='"dist_size_mb": '$dist_size','
+    
+    # Test npm install performance
+    cd "$theme_dir"
+    local start_time=$(date +%s.%N)
+    npm install --silent >/dev/null 2>&1
+    local end_time=$(date +%s.%N)
+    local duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"npm_install_seconds": '$duration','
+    
+    # Test build performance
+    start_time=$(date +%s.%N)
+    npm run build --silent >/dev/null 2>&1
+    end_time=$(date +%s.%N)
+    duration=$(echo "$end_time - $start_time" | bc -l)
+    results+='"build_seconds": '$duration
+    
+    cd /var/www/html
+    
+    results+="}"
+    
+    # Update report
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['frontend_performance'] = $results
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "Frontend performance benchmarked"
+}
+
+# Function to benchmark resource utilization
+benchmark_resource_utilization() {
+    log_info "Monitoring resource utilization..."
+    
+    local results="{"
+    
+    # Memory usage
+    local memory_total=$(free -m | awk '/^Mem:/ {print $2}')
+    local memory_used=$(free -m | awk '/^Mem:/ {print $3}')
+    local memory_usage_percent=$(echo "scale=2; ($memory_used / $memory_total) * 100" | bc -l)
+    
+    results+='"memory_total_mb": '$memory_total','
+    results+='"memory_used_mb": '$memory_used','
+    results+='"memory_usage_percent": '$memory_usage_percent','
+    
+    # CPU usage
+    local cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)
+    results+='"cpu_usage_percent": '$cpu_usage','
+    
+    # Disk usage
+    local disk_total=$(df -BG /var/www/html | tail -1 | awk '{print $2}' | sed 's/G//')
+    local disk_used=$(df -BG /var/www/html | tail -1 | awk '{print $3}' | sed 's/G//')
+    local disk_usage_percent=$(echo "scale=2; ($disk_used / $disk_total) * 100" | bc -l)
+    
+    results+='"disk_total_gb": '$disk_total','
+    results+='"disk_used_gb": '$disk_used','
+    results+='"disk_usage_percent": '$disk_usage_percent
+    
+    results+="}"
+    
+    # Update report
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+data['resource_utilization'] = $results
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "Resource utilization benchmarked"
+}
+
+# Function to generate recommendations
+generate_recommendations() {
+    log_info "Generating performance recommendations..."
+    
+    python3 -c "
+import json
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+recommendations = []
+
+# Check workflow performance
+workflow_perf = data.get('workflow_performance', {}).get('ddev_operations', {})
+if workflow_perf.get('ddev_restart_seconds', 0) > 30:
+    recommendations.append({
+        'category': 'DDEV Performance',
+        'priority': 'medium',
+        'issue': 'DDEV restart taking longer than 30 seconds',
+        'recommendation': 'Consider optimizing Docker resource allocation or clearing unused containers',
+        'impact': 'Developer productivity'
+    })
+
+if workflow_perf.get('composer_install_seconds', 0) > 60:
+    recommendations.append({
+        'category': 'Dependency Management',
+        'priority': 'high',
+        'issue': 'Composer install taking longer than 60 seconds',
+        'recommendation': 'Implement Composer cache optimization and consider using --no-dev flag',
+        'impact': 'Build and deployment speed'
+    })
+
+if workflow_perf.get('theme_build_seconds', 0) > 30:
+    recommendations.append({
+        'category': 'Frontend Build',
+        'priority': 'medium',
+        'issue': 'Theme build taking longer than 30 seconds',
+        'recommendation': 'Optimize Vite configuration and consider build caching strategies',
+        'impact': 'Development workflow efficiency'
+    })
+
+# Check AI integration
+ai_perf = data.get('ai_integration_performance', {})
+if ai_perf.get('ai_provider_count', 0) > 3:
+    recommendations.append({
+        'category': 'AI Integration',
+        'priority': 'low',
+        'issue': 'Multiple AI providers configured',
+        'recommendation': 'Monitor API usage and costs across providers',
+        'impact': 'Operational costs'
+    })
+
+# Check database performance
+db_perf = data.get('database_performance', {})
+if db_perf.get('database_size_mb', 0) > 500:
+    recommendations.append({
+        'category': 'Database Performance',
+        'priority': 'medium',
+        'issue': 'Large database size detected',
+        'recommendation': 'Review data retention policies and consider archiving old content',
+        'impact': 'Query performance and backup speed'
+    })
+
+# Check frontend performance
+frontend_perf = data.get('frontend_performance', {})
+if frontend_perf.get('node_modules_size_mb', 0) > 200:
+    recommendations.append({
+        'category': 'Frontend Dependencies',
+        'priority': 'low',
+        'issue': 'Large node_modules directory',
+        'recommendation': 'Review and optimize npm dependencies, consider using .dockerignore',
+        'impact': 'Container size and build speed'
+    })
+
+if frontend_perf.get('component_count', 0) > 30:
+    recommendations.append({
+        'category': 'Component Architecture',
+        'priority': 'low',
+        'issue': 'High number of components detected',
+        'recommendation': 'Consider component consolidation and performance monitoring',
+        'impact': 'Build complexity and maintenance'
+    })
+
+# Check resource utilization
+resource_util = data.get('resource_utilization', {})
+if resource_util.get('memory_usage_percent', 0) > 80:
+    recommendations.append({
+        'category': 'Resource Management',
+        'priority': 'high',
+        'issue': 'High memory usage detected',
+        'recommendation': 'Increase container memory allocation or optimize memory-intensive processes',
+        'impact': 'System stability and performance'
+    })
+
+if resource_util.get('disk_usage_percent', 0) > 85:
+    recommendations.append({
+        'category': 'Storage Management',
+        'priority': 'high',
+        'issue': 'High disk usage detected',
+        'recommendation': 'Clean up temporary files, logs, and old backups',
+        'impact': 'System reliability and performance'
+    })
+
+# Always include general optimization recommendations
+recommendations.extend([
+    {
+        'category': 'Performance Monitoring',
+        'priority': 'medium',
+        'issue': 'Continuous performance monitoring needed',
+        'recommendation': 'Set up automated performance monitoring with alerting',
+        'impact': 'Proactive performance management'
+    },
+    {
+        'category': 'Caching Strategy',
+        'priority': 'high',
+        'issue': 'Optimize caching layers',
+        'recommendation': 'Review and optimize Drupal render cache, Redis/Memcache, and CDN settings',
+        'impact': 'Page load speed and server performance'
+    }
+])
+
+data['recommendations'] = recommendations
+
+with open('$REPORT_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+    
+    log_success "Performance recommendations generated"
+}
+
+# Function to generate HTML report
+generate_html_report() {
+    log_info "Generating HTML performance report..."
+    
+    python3 -c "
+import json
+import html
+from datetime import datetime
+
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+html_content = '''
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Adesso CMS Performance Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { background: #2563eb; color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+        .content { padding: 30px; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .metric-card { background: #f8fafc; padding: 20px; border-radius: 6px; border-left: 4px solid #2563eb; }
+        .metric-value { font-size: 2em; font-weight: bold; color: #1e40af; }
+        .metric-label { color: #64748b; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
+        .section { margin: 40px 0; }
+        .section h2 { color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .recommendations { margin: 20px 0; }
+        .recommendation { background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 20px; margin: 10px 0; }
+        .priority-high { border-left: 4px solid #dc2626; }
+        .priority-medium { border-left: 4px solid #f59e0b; }
+        .priority-low { border-left: 4px solid #10b981; }
+        .status-good { color: #10b981; }
+        .status-warning { color: #f59e0b; }
+        .status-error { color: #dc2626; }
+        .json-view { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 6px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class=\"container\">
+        <div class=\"header\">
+            <h1>Adesso CMS Performance Report</h1>
+            <p>Generated on ''' + data.get('benchmark_timestamp', 'Unknown') + '''</p>
+            <div style=\"display: flex; gap: 30px; margin-top: 20px;\">
+                <div>Drupal: ''' + data.get('drupal_version', 'Unknown') + '''</div>
+                <div>PHP: ''' + data.get('php_version', 'Unknown') + '''</div>
+                <div>Node: ''' + data.get('node_version', 'Unknown') + '''</div>
+            </div>
+        </div>
+        
+        <div class=\"content\">
+'''
+
+# System Overview
+system_info = data.get('system_info', {})
+html_content += '''
+            <div class=\"section\">
+                <h2>System Overview</h2>
+                <div class=\"metric-grid\">
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Container Memory</div>
+                        <div class=\"metric-value\">''' + str(system_info.get('container_memory', 'N/A')) + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">CPU Cores</div>
+                        <div class=\"metric-value\">''' + str(system_info.get('container_cpu', 'N/A')) + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Available Disk</div>
+                        <div class=\"metric-value\">''' + str(system_info.get('disk_space', 'N/A')) + '''</div>
+                    </div>
+                </div>
+            </div>
+'''
+
+# Workflow Performance
+workflow_perf = data.get('workflow_performance', {}).get('ddev_operations', {})
+if workflow_perf:
+    html_content += '''
+            <div class=\"section\">
+                <h2>Workflow Performance</h2>
+                <div class=\"metric-grid\">
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">DDEV Restart</div>
+                        <div class=\"metric-value\">''' + f\"{workflow_perf.get('ddev_restart_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Composer Install</div>
+                        <div class=\"metric-value\">''' + f\"{workflow_perf.get('composer_install_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Theme Build</div>
+                        <div class=\"metric-value\">''' + f\"{workflow_perf.get('theme_build_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Config Import</div>
+                        <div class=\"metric-value\">''' + f\"{workflow_perf.get('config_import_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                </div>
+            </div>
+'''
+
+# Database Performance
+db_perf = data.get('database_performance', {})
+if db_perf:
+    html_content += '''
+            <div class=\"section\">
+                <h2>Database Performance</h2>
+                <div class=\"metric-grid\">
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Database Size</div>
+                        <div class=\"metric-value\">''' + f\"{db_perf.get('database_size_mb', 0)} MB\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Node Count</div>
+                        <div class=\"metric-value\">''' + str(db_perf.get('node_count', 0)) + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Media Count</div>
+                        <div class=\"metric-value\">''' + str(db_perf.get('media_count', 0)) + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Query Performance</div>
+                        <div class=\"metric-value\">''' + f\"{db_perf.get('sample_query_seconds', 0):.3f}s\" + '''</div>
+                    </div>
+                </div>
+            </div>
+'''
+
+# Frontend Performance
+frontend_perf = data.get('frontend_performance', {})
+if frontend_perf:
+    html_content += '''
+            <div class=\"section\">
+                <h2>Frontend Performance</h2>
+                <div class=\"metric-grid\">
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Components</div>
+                        <div class=\"metric-value\">''' + str(frontend_perf.get('component_count', 0)) + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Node Modules Size</div>
+                        <div class=\"metric-value\">''' + f\"{frontend_perf.get('node_modules_size_mb', 0)} MB\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Build Time</div>
+                        <div class=\"metric-value\">''' + f\"{frontend_perf.get('build_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">NPM Install</div>
+                        <div class=\"metric-value\">''' + f\"{frontend_perf.get('npm_install_seconds', 0):.1f}s\" + '''</div>
+                    </div>
+                </div>
+            </div>
+'''
+
+# Resource Utilization
+resource_util = data.get('resource_utilization', {})
+if resource_util:
+    html_content += '''
+            <div class=\"section\">
+                <h2>Resource Utilization</h2>
+                <div class=\"metric-grid\">
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Memory Usage</div>
+                        <div class=\"metric-value\">''' + f\"{resource_util.get('memory_usage_percent', 0):.1f}%\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">CPU Usage</div>
+                        <div class=\"metric-value\">''' + f\"{resource_util.get('cpu_usage_percent', 0):.1f}%\" + '''</div>
+                    </div>
+                    <div class=\"metric-card\">
+                        <div class=\"metric-label\">Disk Usage</div>
+                        <div class=\"metric-value\">''' + f\"{resource_util.get('disk_usage_percent', 0):.1f}%\" + '''</div>
+                    </div>
+                </div>
+            </div>
+'''
+
+# Recommendations
+recommendations = data.get('recommendations', [])
+if recommendations:
+    html_content += '''
+            <div class=\"section\">
+                <h2>Performance Recommendations</h2>
+                <div class=\"recommendations\">
+'''
+    
+    for rec in recommendations:
+        priority_class = f\"priority-{rec.get('priority', 'low')}\"
+        html_content += f'''
+                    <div class=\"recommendation {priority_class}\">
+                        <h3>{rec.get('category', 'Unknown')}</h3>
+                        <p><strong>Issue:</strong> {rec.get('issue', 'N/A')}</p>
+                        <p><strong>Recommendation:</strong> {rec.get('recommendation', 'N/A')}</p>
+                        <p><strong>Impact:</strong> {rec.get('impact', 'N/A')}</p>
+                        <p><strong>Priority:</strong> <span class=\"status-{'error' if rec.get('priority') == 'high' else 'warning' if rec.get('priority') == 'medium' else 'good'}\">{rec.get('priority', 'low').upper()}</span></p>
+                    </div>
+'''
+
+    html_content += '''
+                </div>
+            </div>
+'''
+
+html_content += '''
+            <div class=\"section\">
+                <h2>Raw Data</h2>
+                <div class=\"json-view\">
+                    <pre>''' + json.dumps(data, indent=2).replace('<', '&lt;').replace('>', '&gt;') + '''</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+'''
+
+with open('$HTML_REPORT', 'w') as f:
+    f.write(html_content)
+"
+    
+    log_success "HTML report generated: $HTML_REPORT"
+}
+
+# Main execution logic
+log_info "Starting Adesso CMS Performance Benchmark..."
+log_info "Report directory: $BENCHMARK_DIR"
+
+# Run benchmarks based on options
+if [ "$FULL_BENCHMARK" = true ] || [ -z "$COMPONENT" ]; then
+    benchmark_ddev_operations
+    benchmark_ai_integration
+    benchmark_database_performance  
+    benchmark_frontend_performance
+    benchmark_resource_utilization
+elif [ "$COMPONENT" = "ddev-operations" ] || [ "$WORKFLOW_OPERATIONS" = true ]; then
+    benchmark_ddev_operations
+elif [ "$COMPONENT" = "ai-integration" ] || [ "$AI_INTEGRATION" = true ]; then
+    benchmark_ai_integration
+elif [ "$COMPONENT" = "database" ] || [ "$DATABASE_PERFORMANCE" = true ]; then
+    benchmark_database_performance
+elif [ "$COMPONENT" = "frontend" ]; then
+    benchmark_frontend_performance
+elif [ "$COMPONENT" = "resources" ]; then
+    benchmark_resource_utilization
+else
+    log_error "Unknown component: $COMPONENT"
+    exit 1
+fi
+
+# Generate recommendations and reports
+generate_recommendations
+generate_html_report
+
+# Copy to custom report location if specified
+if [ -n "$CUSTOM_REPORT" ]; then
+    cp "$HTML_REPORT" "$CUSTOM_REPORT"
+    log_info "Report copied to: $CUSTOM_REPORT"
+fi
+
+# Display summary
+log_success "Performance benchmark completed!"
+echo ""
+echo "📊 Reports generated:"
+echo "   JSON: $REPORT_FILE"
+echo "   HTML: $HTML_REPORT"
+echo ""
+echo "🔍 Quick summary:"
+python3 -c "
+import json
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+    
+workflow_perf = data.get('workflow_performance', {}).get('ddev_operations', {})
+db_perf = data.get('database_performance', {})
+frontend_perf = data.get('frontend_performance', {})
+recommendations = data.get('recommendations', [])
+
+print(f'   DDEV restart: {workflow_perf.get(\"ddev_restart_seconds\", 0):.1f}s')
+print(f'   Theme build: {frontend_perf.get(\"build_seconds\", 0):.1f}s')
+print(f'   Database size: {db_perf.get(\"database_size_mb\", 0)} MB')
+print(f'   Components: {frontend_perf.get(\"component_count\", 0)}')
+print(f'   Recommendations: {len(recommendations)}')
+"
+echo ""
+
+# Show high priority recommendations
+log_info "High priority recommendations:"
+python3 -c "
+import json
+with open('$REPORT_FILE', 'r') as f:
+    data = json.load(f)
+
+high_priority = [r for r in data.get('recommendations', []) if r.get('priority') == 'high']
+if high_priority:
+    for rec in high_priority:
+        print(f'   • {rec.get(\"category\", \"Unknown\")}: {rec.get(\"issue\", \"N/A\")}')
+else:
+    print('   No high priority issues found! 🎉')
+"
+
+echo ""
+log_success "View the full report: file://$HTML_REPORT"

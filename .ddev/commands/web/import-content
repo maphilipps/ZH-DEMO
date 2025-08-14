@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: Import site content (alias for import-default-content)
+## Usage: import-content
+## Example: "ddev import-content"
+
+# Forward to existing import-default-content command
+exec /mnt/ddev_config/commands/web/import-default-content "$@"

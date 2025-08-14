@@ -1,0 +1,43 @@
+#!/bin/bash
+
+## Description: Export configuration with diff check (ddev drush cex -y but only if there are changes)
+## Usage: cex [--force]
+## Example: "ddev cex" or "ddev cex --force"
+
+set -eu -o pipefail
+
+# Check if --force flag is passed
+FORCE_EXPORT=false
+if [[ "${1:-}" == "--force" ]]; then
+    FORCE_EXPORT=true
+fi
+
+echo "🔍 Checking for configuration changes..."
+
+# Check if there are configuration changes
+CONFIG_DIFF=$(drush config:status --format=json)
+
+if [[ "$CONFIG_DIFF" == "[]" && "$FORCE_EXPORT" == false ]]; then
+    echo "✓ No configuration changes detected. Skipping export."
+    echo "Use 'ddev cex --force' to export anyway."
+    exit 0
+fi
+
+echo "📤 Configuration changes detected. Exporting..."
+
+# Show the diff before exporting
+echo "Changes to be exported:"
+drush config:status
+
+# Export configuration
+drush config:export --yes
+
+echo "✓ Configuration exported successfully!"
+
+# Show what was exported
+echo ""
+echo "Exported configuration files:"
+git status --porcelain config-export/ 2>/dev/null | head -10 || echo "Configuration exported to config-export/"
+
+echo ""
+echo "💡 Remember to commit these configuration changes to Git!"

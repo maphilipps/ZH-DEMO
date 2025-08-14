@@ -1,0 +1,21 @@
+uuid: b1ff5ead-d8b4-459a-9e21-ffa9b565f5d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_title
+    - node.type.person
+_core:
+  default_config_hash: 2WmP26oAS_0zs2DOz4IM3nwnPXtw1eh46tB7PIV1hw0
+id: node.person.field_seo_title
+field_name: field_seo_title
+entity_type: node
+bundle: person
+label: 'SEO title'
+description: 'Use this field to overwrite the default HTML page title for SEO.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,137 @@
+{
+  "config": {
+    "configFile": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/playwright.config.js",
+    "rootDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/global-setup.js",
+    "globalTeardown": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "test-results/installer-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/installer-results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/test-results/installer-artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "smoke-tests",
+        "name": "smoke-tests",
+        "testDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+        "testIgnore": [],
+        "testMatch": [
+          "**/smoke.spec.js"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/test-results/installer-artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "comprehensive-tests",
+        "name": "comprehensive-tests",
+        "testDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+        "testIgnore": [],
+        "testMatch": [
+          "**/installer-comprehensive.spec.js"
+        ],
+        "timeout": 600000
+      },
+      {
+        "outputDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/test-results/installer-artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "performance-tests",
+        "name": "performance-tests",
+        "testDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+        "testIgnore": [],
+        "testMatch": [
+          "**/performance.spec.js"
+        ],
+        "timeout": 900000
+      },
+      {
+        "outputDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/test-results/installer-artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "accessibility-tests",
+        "name": "accessibility-tests",
+        "testDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+        "testIgnore": [],
+        "testMatch": [
+          "**/accessibility.spec.js"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/test-results/installer-artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "visual-tests",
+        "name": "visual-tests",
+        "testDir": "/Users/marc.philipps/Sites/adesso-cms/tests/installer/tests/installer",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual.spec.js"
+        ],
+        "timeout": 300000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 1,
+    "webServer": {
+      "command": "ddev start",
+      "port": 443,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
+      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+    }
+  ],
+  "stats": {
+    "startTime": "2025-08-13T17:18:37.443Z",
+    "duration": 97747.28099999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

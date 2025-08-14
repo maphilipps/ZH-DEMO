@@ -1,0 +1,56 @@
+name: 'adesso CMS Enhancements'
+description: 'Adds adesso-specific enhancements and modules to extend Drupal CMS functionality.'
+type: 'Site'
+install:
+  # Enhanced modules for better UX
+  - automatic_updates
+  - allowed_formats
+  - dashboard
+  - default_content
+  # - frontend_editing
+  - node_revision_delete
+  - project_browser
+  - svg_image_responsive
+  - webp
+  - vite
+
+  # File upload enhancements
+  - dropzonejs
+  - dropzonejs_eb_widget
+  - entity_browser
+
+  # Paragraphs module
+  # - paragraphs
+  # - paragraphs_features
+  # - paragraphs_ee
+
+  # Include our theme
+  - adesso_cms_theme
+
+config:
+  strict: false
+  actions:
+    frontend_editing.settings:
+      simpleConfigUpdate:
+        entity_types:
+          paragraph:
+            - accordion
+            - bullet
+            - card
+            - card_group
+            - carousel
+            - embed
+            - gallery
+            - hero
+            - logo_collection
+            - media
+            - newsletter
+            - pricing
+            - sidebyside
+            - text
+            - views
+        hover_highlight: false
+        primary_color: '#0081c9'
+        automatic_preview: true
+    system.theme:
+      default: adesso_cms_theme

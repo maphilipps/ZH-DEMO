@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 85e180b1-c2f9-455d-b678-15ee3af93405
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: forum-banken_W2560xH1440_CUTOUT.jpg
+  uri:
+    -
+      value: 'public://2025-08/forum-banken_W2560xH1440_CUTOUT.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 370105
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

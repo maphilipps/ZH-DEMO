@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 95a79d78-4b47-4784-89d7-f348d1fec838
+  bundle: image
+  default_langcode: de
+  depends:
+    237e5259-62e9-40ae-b3ae-291162b9e52d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'adesso DTM Bauabschnitt 3 8.png'
+  created:
+    -
+      value: 1754292870
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 237e5259-62e9-40ae-b3ae-291162b9e52d
+      alt: ''
+      title: 'adesso DTM Bauabschnitt 3 8.png'
+      width: 1804
+      height: 1200

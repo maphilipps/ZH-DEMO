@@ -1,0 +1,158 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4b882f1a-5084-4390-a299-20818ead1ac1
+  bundle: news
+  default_langcode: de
+  depends:
+    a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Zwischen Komplexität und KI: Studie zeigt Erfolgsfaktoren für IT-Transformationen bei Energieversorgern'
+  created:
+    -
+      value: 1750716000
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Zwischen Komplexität und KI: Studie zeigt Erfolgsfaktoren für IT-Transformationen bei Energieversorgern | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/news/2025-06/zwischen-komplexitaet-und-ki-studie-zeigt-erfolgsfaktoren-fuer-it-transformationen-bei'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=Npmke1ii'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Zwischen Komplexität und KI: Studie zeigt Erfolgsfaktoren für IT-Transformationen bei Energieversorgern'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Die IT-Transformation in der Energiebranche ist kein Sprint, sondern ein Marathon. Mut zur Veränderung, strategische Klarheit und die Bereitschaft, über technische Lösungen hinauszudenken, sind die entscheidenden Faktoren auf diesem Weg. Die neue Utilities-Transformationsstudie 2025 bietet Entscheidungsträgern mehr Transparenz, um ihre IT-Transformation besser zu planen und Fehler zu vermeiden.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=Npmke1ii'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T10:19:37+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Die IT-Transformation in der Energiebranche ist kein Sprint, sondern ein Marathon. Mut zur Veränderung, strategische Klarheit und die Bereitschaft, über technische Lösungen hinauszudenken, sind die entscheidenden Faktoren auf diesem Weg. Die neue Utilities-Transformationsstudie 2025 bietet Entscheidungsträgern mehr Transparenz, um ihre IT-Transformation besser zu planen und Fehler zu vermeiden.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Zwischen Komplexität und KI: Studie zeigt Erfolgsfaktoren für IT-Transformationen bei Energieversorgern'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/forum-banken_W2560xH1440_CUTOUT.jpg.webp?itok=CZzFjWuD'
+  path:
+    -
+      alias: /news/2025-06/zwischen-komplexitaet-und-ki-studie-zeigt-erfolgsfaktoren-fuer-it-transformationen-bei
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_content:
+    -
+      value: '<p>Die gemeinsam von adesso und Natuvion in Deutschland, Österreich und der Schweiz durchgeführte Studie „<a href="https://www.natuvion.com/de/utilities-transformationsstudie-2025/">IT-Transformation Utilities 2025</a>“ liefert Führungskräften mittelständischer sowie großer Energieversorgungsunternehmen wertvolle Einblicke in die Praxis der IT-Transformation. Ziel der Untersuchung bei 225 Führungskräften aus der Energiewirtschaft war es, Erfahrungswerte zu sammeln, Erfolgsfaktoren herauszuarbeiten und typische Fehlerquellen aufzuzeigen. Die Daten bieten CEOs, CIOs und Transformationsverantwortlichen Orientierung, um Transformationsprojekte zielgerichtet und risikoreduziert zu planen und umzusetzen.</p><h4>Zeit ist kritischer Faktor</h4><p>Im Entscheidungsprozess und in der Planung einer Transformation ist neben den Zielen und dem Budget insbesondere die Zeit ein entscheidender Faktor. 53,3 Prozent der befragten Energieversorgungsunternehmen haben mehr als ein Jahr für ihre Transformation eingeplant. Diese Ergebnisse sind vor allem bei genauerer Betrachtung der Umsatzklassen interessant: Während nur 39,9 Prozent der Unternehmen in der Umsatzklasse 150 bis 349 Millionen Euro länger als ein Jahr für ihre IT-Transformation angesetzt haben, sind es in der Umsatzklasse 350 bis 999 Millionen Euro 63,8 Prozent. Noch deutlicher wird der Unterschied in der Umsatzklasse von über eine Milliarde Euro. Dort sind es 80,5 Prozent.</p><h4>Komplexität ist größte Hürde</h4><p>Transformationen bei Versorgungsunternehmen sind naturgemäß komplex. Das bestätigt auch die Studie: 28,2 Prozent der Befragten aus der DACH-Region sehen die Komplexität als größte Herausforderung, gefolgt vom Budgetmanagement (24,2 Prozent) und der Analyse der bestehenden IT-Landschaften und Daten (22,9 Prozent). Interessant sind die Unterschiede in den drei Ländern: In Deutschland steht das Budgetmanagement der IT-Transformation auf Platz 1 der Herausforderungen. In der Schweiz scheinen die Berater- und Personalressourcen knapper zu sein als in Deutschland und Österreich. Gleichzeitig kämpfen die Österreicher mehr als die beiden anderen Länder mit der Komplexität des Gesamtprojekts.</p><h4>Einzug der Künstlichen Intelligenz</h4><p>Künstliche Intelligenz (KI) ist ein strategischer Hebel für Effizienz, Innovation und Resilienz – auch in der Branche der Energieversorger. Dennoch zeigt die Studie hier ein überraschendes Bild: Auf die Frage „Welche Rolle hat die Einführung und Nutzung von KI in Ihrem Transformationsprojekt gespielt?“ bestätigen nur 37,9 Prozent, dass „KI ein entscheidender Treiber für die Transformation“ gewesen sei. Allerdings geben 54,2 Prozent an, dass die Nutzung von Möglichkeiten wie KI einen positiven Zusatznutzen darstellt. Nur bei 7,9 Prozent der befragten Versorgungsunternehmen spielt KI keine Rolle. Trotz ihres großen Potenzials scheint KI bei Energieunternehmen in der DACH-Region kein entscheidender Auslöser für Transformationsprojekte zu sein. Stattdessen kommt sie eher als ergänzende Technologie in bestehenden Projekten zum Einsatz.</p><h4>Mehrheitlich zwei Tage für den betriebskritischen Cutover</h4><p>Der Cutover-Zeitraum, der den Übergang vom Projekt- in den Produktivbetrieb in der Transformation markiert, ist bei kritischen Infrastrukturen und damit auch bei den Utilities-Unternehmen von entscheidender Bedeutung. 30,9 Prozent benötigten lediglich einen Tag, 59,5 Prozent der Befragten bestätigen für ihren Cutover-Zeitraum zwei Tage. Auch hier existieren bemerkenswerte regionale Unterschiede: Während in Deutschland 86,8 Prozent und in der Schweiz 90 Prozent maximal zwei Tage für den Cutover brauchten, schafften das nur 37,5 Prozent der österreichischen Unternehmen. 62,5 Prozent brauchten in dieser Region drei Tage oder mehr.</p><h4>Ziele überwiegend erreicht</h4><p>Ein überaus positives Ergebnis der Studie ist, dass 87,7 Prozent der Befragten bestätigen, ihre gesetzten Ziele der Transformation erreicht zu haben. Zwar wird die Zielerreichung hoch bewertet, jedoch gibt es je nach Position im Unternehmen Varianzen: Während Vorstände und Geschäftsführer seltener bestätigen, alle Ziele erreicht zu haben (79,6 Prozent), bewerten Abteilungsleiter (97,8 Prozent) und Gruppenleiter (94,4 Prozent) die Situation deutlich positiver.</p><h4>Herausforderungen und Learnings</h4><p>Die Komplexität des Gesamtprojekts und das Management großer Transformationsvorhaben überraschen viele Verantwortliche am stärksten. Das Budgetmanagement und detaillierte Bestandsanalysen der Altsysteme bilden weitere Stolpersteine. Fast ein Viertel der Befragten musste Abweichungen bei der geplanten Betriebsunterbrechung hinnehmen, was verdeutlicht, dass präzise Planung und realistische Zeitpuffer essenziell sind. Die Bedeutung von KI hingegen wird von den Befragten noch eher als ergänzender Zusatznutzen wahrgenommen.</p><p>„Die Ergebnisse der Studie zeigen deutlich, dass IT-Transformationen in der Energiebranche kein Selbstläufer sind“, sagt Michael Bloß, Chief Sales Officer von adesso business consulting. „Sie erfordern strategische Klarheit, Mut zur Veränderung und eine realistische Planung. Mit der Utilities-Transformationsstudie 2025 möchten wir Entscheidungsträgern Orientierung bieten, um Herausforderungen wie Komplexität und Budgetmanagement gezielt zu meistern und ihre Projekte erfolgreich umzusetzen.“</p><p>Fragt man die Ansprechpartner der Energieversorger nach den entscheidenden Erfolgsfaktoren für ihre Transformation, so landet die „Steigerung der Datenqualität“ mit 64,2 Prozent ganz weit vorne. „Datenqualität ist kein Detail, sie ist die Basis jeder modernen IT – das zeigen die Ergebnisse der Transformationsstudie überdeutlich. Ohne verlässliche Daten bleiben Cloud, KI und Innovation Stückwerk“, konstatiert Holger Strotmann, Geschäftsführer der Natuvion GmbH, die seit August 2022 ein Teil von NTT DATA Business Solutions ist. Er empfiehlt: „Unternehmen müssen Daten strategisch angehen: mit Governance, Housekeeping und Kompetenzaufbau. Wer Transformation ernst meint, beginnt bei den Daten, nicht danach.“</p><h5>Über die Studie</h5><p>Die Studie basiert auf einer strukturierten Befragung von Entscheidungsträgern in 225 Versorgungsunternehmen aus Deutschland, Österreich und der Schweiz. Alle Studienteilnehmer waren entweder aktuell in Transformationsprozesse involviert oder haben diese innerhalb der letzten zwei Jahre abgeschlossen. 56,89 Prozent der Befragten hatten einen Bruttojahresumsatz zwischen 150 und 349 Millionen Euro, 25,33 Prozent zwischen 350 und 999 Millionen Euro sowie 17,78 Prozent von über einer Milliarde Euro.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>'
+      format: content_format
+  field_description:
+    -
+      value: "Die IT-Transformation in der Energiebranche ist kein Sprint, sondern ein Marathon. Mut zur Veränderung, strategische Klarheit und die Bereitschaft, über technische Lösungen hinauszudenken, sind die entscheidenden Faktoren auf diesem Weg. Die neue Utilities-Transformationsstudie 2025 bietet Entscheidungsträgern mehr Transparenz, um ihre IT-Transformation besser zu planen und Fehler zu vermeiden.\r\n\r\n"
+  field_featured_image:
+    -
+      entity: a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

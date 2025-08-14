@@ -1,0 +1,197 @@
+name: adesso CMS Base
+description: Essential Drupal functionality with modern admin UI and basic content management for adesso CMS
+type: Site
+recipes:
+  # Core Drupal recipes for performance and maintenance
+  - core/recipes/core_recommended_maintenance
+  - core/recipes/core_recommended_performance
+  - core/recipes/document_media_type
+  - core/recipes/basic_html_format_editor
+  - core/recipes/full_html_format_editor
+  - core/recipes/restricted_html_format
+  # Essential Drupal CMS recipes
+  - drupal_cms_admin_ui
+  - drupal_cms_authentication
+  - drupal_cms_anti_spam
+  - drupal_cms_privacy_basic
+  
+install:
+  # Core content management
+  - node
+  - datetime
+  - datetime_range
+  - taxonomy
+  - user
+  - system
+  - field
+  - field_ui
+  - file
+  - image
+  - text
+  - options
+  - link
+  - telephone
+  - editor
+  - filter
+  - ckeditor5
+  - media
+  - media_library
+  - responsive_image
+  - breakpoint
+  - views
+  - views_ui
+  - menu_ui
+  - menu_link_content
+  - shortcut
+  - block
+  - block_content
+  - path
+  - path_alias
+  - help
+  - contextual
+  - history
+  - search
+  - language
+  - locale
+  - content_translation
+  - workflows
+  - content_moderation
+  - layout_discovery
+  - big_pipe
+  - dynamic_page_cache
+  - page_cache
+  - automated_cron
+  - dblog
+  - update
+  - inline_form_errors
+  - config
+  - mysql
+  
+  # Modern Drupal 11 features
+  - navigation
+  - package_manager
+  - announcements_feed
+  - automatic_updates
+  - automatic_updates_extensions
+  - dashboard
+  - project_browser
+  
+  # Basic content enhancement
+  - field_group
+  - token
+  - pathauto
+  - redirect
+  - redirect_404
+  
+  # Security baseline
+  - captcha
+  - honeypot
+  
+  # Admin UX improvements
+  - gin_toolbar
+  - coffee
+  - status_messages
+  
+  # Webform - required for paragraphs
+  - webform
+  
+  # Themes
+  - claro
+  - gin
+  - olivero
+
+config:
+  strict: false
+  actions:
+    # Site Configuration
+    system.site:
+      simpleConfigUpdate:
+        name: 'adesso CMS'
+        mail: 'admin@adesso.de'
+        
+    system.theme:
+      simpleConfigUpdate:
+        default: olivero
+        admin: gin
+        
+    # Performance Configuration
+    system.performance:
+      simpleConfigUpdate:
+        css.preprocess: false
+        js.preprocess: false
+        cache.page.max_age: 3600
+        
+    # User Configuration  
+    user.settings:
+      simpleConfigUpdate:
+        verify_mail: true
+        register: admin_only
+        cancel_method: user_cancel_block
+        
+    # Gin Admin Theme Configuration
+    gin.settings:
+      simpleConfigUpdate:
+        preset_accent_color: custom
+        accent_color: '#0080c9'
+        preset_focus_color: gin
+        enable_darkmode: true
+        classic_toolbar: vertical
+        secondary_toolbar_frontend: true
+        
+    # Navigation Configuration
+    navigation.settings:
+      simpleConfigUpdate:
+        logo:
+          provider: custom
+          path: profiles/adesso_cms_installer/images/logo.png
+          max:
+            filesize: 1048576
+            height: 40
+            width: 40
+            
+    # Node Settings
+    node.settings:
+      simpleConfigUpdate:
+        use_admin_theme: true
+        
+    # Package Manager Settings
+    package_manager.settings:
+      simpleConfigUpdate:
+        additional_trusted_composer_plugins:
+          - tbachert/spi
+          
+    # Project Browser Settings
+    project_browser.admin_settings:
+      simpleConfigUpdate:
+        enabled_sources:
+          - drupalorg_jsonapi
+          - recipes
+        allow_ui_install: true
+        
+    # Announcements Settings
+    announcements_feed.settings:
+      simpleConfigUpdate:
+        limit: 2
+        
+    # Auto Updates Settings
+    automatic_updates.settings:
+      simpleConfigUpdate:
+        allow_core_minor_updates: true
+        
+    # Basic user roles
+    user.role.content_editor:
+      grantPermissions:
+        - 'access administration pages'
+        - 'access content overview'
+        - 'access contextual links'
+        - 'access navigation'
+        - 'administer url aliases'
+        - 'create url aliases'
+        - 'view the administration theme'
+        - 'use text format basic_html'
+        - 'use text format full_html'
+        
+    user.role.authenticated:
+      grantPermissions:
+        - 'access shortcuts'
+        - 'view own unpublished content'

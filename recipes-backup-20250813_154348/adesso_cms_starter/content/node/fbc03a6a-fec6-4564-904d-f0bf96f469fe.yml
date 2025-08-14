@@ -1,0 +1,158 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: fbc03a6a-fec6-4564-904d-f0bf96f469fe
+  bundle: news
+  default_langcode: de
+  depends:
+    95a79d78-4b47-4784-89d7-f348d1fec838: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'adesso erhält SAP-Zertifizierungen für Operations Partner'
+  created:
+    -
+      value: 1751407200
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'adesso erhält SAP-Zertifizierungen für Operations Partner | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/news/2025-07/adesso-erhaelt-sap-zertifizierungen-fuer-operations-partner'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/adesso%20DTM%20Bauabschnitt%203%208.png.webp?itok=MHMSSEFJ'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'adesso erhält SAP-Zertifizierungen für Operations Partner'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'adesso, einer der führenden IT-Dienstleister in Deutschland, hat im Rahmen des Programms SAP Operations Partner vier bedeutende SAP-Zertifizierungen erhalten: „SAP S/4HANA Solutions Operations and Works with RISE with SAP“, „SAP SuccessFactors Solutions Operations“, „SAP BTP Operations and Works with RISE with SAP“ sowie „BPO Operations“. Diese Zertifizierungen bestätigen die umfassende Expertise des Unternehmens für den qualitativ hochwertigen und zuverlässigen Betrieb von SAP-Lösungen. Zudem untermauern sie den Anspruch von adesso, das SAP-Geschäft weiter zu stärken und in den Bereichen Managed Services und Application Management Services (AMS) weiter auszubauen.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/adesso%20DTM%20Bauabschnitt%203%208.png.webp?itok=MHMSSEFJ'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T10:20:14+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'adesso, einer der führenden IT-Dienstleister in Deutschland, hat im Rahmen des Programms SAP Operations Partner vier bedeutende SAP-Zertifizierungen erhalten: „SAP S/4HANA Solutions Operations and Works with RISE with SAP“, „SAP SuccessFactors Solutions Operations“, „SAP BTP Operations and Works with RISE with SAP“ sowie „BPO Operations“. Diese Zertifizierungen bestätigen die umfassende Expertise des Unternehmens für den qualitativ hochwertigen und zuverlässigen Betrieb von SAP-Lösungen. Zudem untermauern sie den Anspruch von adesso, das SAP-Geschäft weiter zu stärken und in den Bereichen Managed Services und Application Management Services (AMS) weiter auszubauen.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'adesso erhält SAP-Zertifizierungen für Operations Partner'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/adesso%20DTM%20Bauabschnitt%203%208.png.webp?itok=AhOLXZfe'
+  path:
+    -
+      alias: /news/2025-07/adesso-erhaelt-sap-zertifizierungen-fuer-operations-partner
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_content:
+    -
+      value: '<p>Die herausragende Kompetenz von adesso für SAP-Transformationsprojekte sowie für SAP Operations wurde zuletzt auch durch das Analystenhaus ISG in seinen aktuellen Marktstudien bestätigt. So wird der IT-Dienstleister im Rahmen der <a href="https://www.adesso.de/de/technologien/sap/isg-provider-lens-2025/index.jsp">ISG Provider Lens „SAP Ecosystem 2025“</a> als führendes Unternehmen in der Kategorie „SAP S/4HANA System Transformation -- Midmarket“ geführt. Im Bereich „SAP Application Managed Services“ wurde das Unternehmen zudem als Product Challenger anerkannt.</p><h4>Exzellenz für die SAP-Anwendungslandschaft</h4><p>Die adesso SE und ihre auf SAP-Services spezialisierte Tochtergesellschaft, die adesso business consulting AG, gehören zu den führenden Beratungshäusern und Integratoren für das SAP-Ökosystem in Deutschland. Gemeinsam bieten sie Kunden ein umfassendes Dienstleistungsportfolio, das von der Prozessberatung und Implementierung von SAP-Technologie über die Entwicklung neuer SAP-Lösungen bis hin zur Übernahme des Betriebs und kontinuierlicher Optimierung von Anwendungen reicht.</p><p>Mit innovativen Lösungen auf Basis der SAP Business Technology Platform (BTP), Expertenwissen für erfolgreiche „RISE with SAP“-Initiativen und branchenspezifischem Know-how begleitet adesso Unternehmen End-to-End: von der Transformation und Bereitstellung maßgeschneiderter Lösungen bis hin zur Optimierung und Weiterentwicklung ihrer Geschäftsprozesse. Entsprechende Kompetenzen hat der IT-Dienstleister unter anderem bei der Einführung von SAP S/4HANA und der Entwicklung kundenindividueller Anwendungen auf Basis von SAP BTP in zahlreichen erfolgreichen Kundenprojekten, etwa beim Deutschen Fußball-Bund und bei Uniper, unter Beweis gestellt.</p><blockquote><p>Die neuen SAP-Zertifizierungen und die Anerkennung durch die ISG Provider Lens 2025 belegen, dass adesso für Unternehmen ein wichtiger strategischer Partner für die Weiterentwicklung ihrer IT-Landschaften und SAP-Ökosysteme ist”, erklärt Frank Beck, Mitglied des Vorstands der adesso business consulting AG. „Unsere Stärke liegt in der Verbindung von tiefem SAP-Know-how mit einer klaren Branchenfokussierung. Mit der adesso business consulting AG als SAP-Powerhouse in Verbindung mit den Ressourcen der Gruppe sind wir bei adesso optimal aufgestellt, um unsere Kunden auch langfristig in ihrer Transformation zu unterstützen und ihre Geschäftsprozesse zukunftssicher zu gestalten.</p></blockquote>'
+      format: content_format
+  field_description:
+    -
+      value: "adesso, einer der führenden IT-Dienstleister in Deutschland, hat im Rahmen des Programms SAP Operations Partner vier bedeutende SAP-Zertifizierungen erhalten: „SAP S/4HANA Solutions Operations and Works with RISE with SAP“, „SAP SuccessFactors Solutions Operations“, „SAP BTP Operations and Works with RISE with SAP“ sowie „BPO Operations“. Diese Zertifizierungen bestätigen die umfassende Expertise des Unternehmens für den qualitativ hochwertigen und zuverlässigen Betrieb von SAP-Lösungen. Zudem untermauern sie den Anspruch von adesso, das SAP-Geschäft weiter zu stärken und in den Bereichen Managed Services und Application Management Services (AMS) weiter auszubauen.\r\n\r\n"
+  field_featured_image:
+    -
+      entity: 95a79d78-4b47-4784-89d7-f348d1fec838
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

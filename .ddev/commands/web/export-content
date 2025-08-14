@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: Export site content (alias for export-contents)
+## Usage: export-content
+## Example: "ddev export-content"
+
+# Forward to existing export-contents command
+exec /mnt/ddev_config/commands/web/export-contents "$@"

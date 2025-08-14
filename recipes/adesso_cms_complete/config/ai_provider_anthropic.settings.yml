@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: 3ZIg_APwx_NmzY0aovgnuLNWPKpMZnmcoZgdhq5Cwh0
+api_key: anthropic_api_key
+openai_moderation: false
+version: '20240229'

@@ -1,0 +1,13 @@
+uuid: c397f8d5-a0d6-4e3f-a68a-c973ade16971
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: 2xrlCxvPxG_O_-7lJBgEgthB3u9hROIVaA2dI1jo9Bw
+id: node.carousel
+label: Carousel
+description: ''
+targetEntityType: node
+cache: true

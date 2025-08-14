@@ -1,0 +1,21 @@
+uuid: 5d72de3f-7dfc-4e14-b88b-1dfb1fc60f56
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pre_headline
+    - paragraphs.paragraphs_type.logo_collection
+_core:
+  default_config_hash: eOg1WdEzM1CFEa0X5iZKoi4OE-oAmAMtC_7SSrTxhds
+id: paragraph.logo_collection.field_pre_headline
+field_name: field_pre_headline
+entity_type: paragraph
+bundle: logo_collection
+label: Pre-Headline
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

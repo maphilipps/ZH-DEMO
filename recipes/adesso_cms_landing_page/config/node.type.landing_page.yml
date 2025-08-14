@@ -1,0 +1,29 @@
+uuid: a1b2c3d4-5678-9abc-def0-123456789abc
+langcode: en
+status: true
+dependencies:
+  module:
+    - scheduler
+third_party_settings:
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: true
+    publish_past_date: error
+    publish_past_date_created: false
+    publish_required: false
+    publish_revision: true
+    publish_touch: true
+    show_message_after_update: true
+    unpublish_enable: true
+    unpublish_required: false
+    unpublish_revision: true
+_core:
+  default_config_hash: ofBTVP5AmqIoiRQxuySnBpPvyzCT2nG0UVvuAZaGt3g
+name: 'Landing Page'
+type: landing_page
+description: "Use <em>landing pages</em> for marketing campaigns, product launches, and conversion-focused pages with advanced paragraph components."
+help: 'Landing pages are designed for marketing campaigns and conversion optimization. They include specialized paragraph components for hero sections, testimonials, pricing, and call-to-action elements.'
+new_revision: true
+preview_mode: 1
+display_submitted: false

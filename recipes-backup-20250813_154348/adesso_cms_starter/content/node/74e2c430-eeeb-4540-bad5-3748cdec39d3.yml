@@ -1,0 +1,327 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 74e2c430-eeeb-4540-bad5-3748cdec39d3
+  bundle: landing_page
+  default_langcode: de
+  depends:
+    16f91bec-eff2-40cb-8e78-4428ebbff3b9: media
+    a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb: media
+    78baaa8a-44da-4b84-ad22-032879615e9f: node
+    dd76c3fc-c072-40b5-9f79-53fd9df5ac33: node
+    22a3bb88-4145-4b6a-ae8e-82d4b64a60ab: media
+    38dcc72f-9d0a-4a4f-90b7-d7cb8772705b: node
+    c3d611ad-b71f-43fb-8734-872c58381704: media
+    9e46caa7-7aed-43e4-9860-73da2597bb60: media
+    1d62c720-5f14-4dc6-add0-0a3afe7f5313: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Welcome to adesso CMS'
+  created:
+    -
+      value: 1752843392
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Welcome to adesso CMS | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Welcome to adesso CMS'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Das ist meine Beschreibung.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'AI Page Header'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-12T16:09:34+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Das ist meine Beschreibung.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Welcome to adesso CMS'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=8Cr_BI2o'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'AI Page Header'
+  path:
+    -
+      alias: /welcome-adesso-cms
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_description:
+    -
+      value: 'Das ist meine Beschreibung.'
+  field_featured_image:
+    -
+      entity: 16f91bec-eff2-40cb-8e78-4428ebbff3b9
+  field_paragraphs:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2b5dc7a2-74ef-4df9-be24-ce824cf55f40
+          bundle: sidebyside
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1754315620
+          behavior_settings:
+            -
+              value: {  }
+          field_media:
+            -
+              entity: a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb
+          field_pre_headline:
+            -
+              value: ' consetetur sadipscing elitr'
+          field_sidebyside_layout:
+            -
+              value: left
+          field_summary:
+            -
+              value: '<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'At vero eos et accusam et justo duo dolores '
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bcad3491-44bb-48a4-acf6-65e5817418b1
+          bundle: hero
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752843490
+          behavior_settings:
+            -
+              value: {  }
+          field_heading:
+            -
+              value: 'Welcome the adesso Drupal CMS'
+              format: restricted_html
+          field_hero_layout:
+            -
+              value: image_top
+          field_link:
+            -
+              target_uuid: 78baaa8a-44da-4b84-ad22-032879615e9f
+              title: 'Unsere Vision'
+              options: {  }
+          field_link2:
+            -
+              target_uuid: dd76c3fc-c072-40b5-9f79-53fd9df5ac33
+              title: 'Contact us'
+              options: {  }
+          field_media:
+            -
+              entity: 22a3bb88-4145-4b6a-ae8e-82d4b64a60ab
+          field_pre_headline:
+            -
+              value: 'Our custom Drupal distribution Hallo'
+          field_summary:
+            -
+              value: '<p>Hier kommt ein Text</p>'
+              format: basic_html
+          field_theme:
+            -
+              value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a8392887-d43d-4f78-914d-e204226c6e5c
+          bundle: text
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752849213
+          behavior_settings:
+            -
+              value: {  }
+          field_body:
+            -
+              value: '<p>Hier gibt es noch einen schlauen Text.</p>'
+              format: basic_html
+              summary: ''
+          field_link:
+            -
+              target_uuid: 38dcc72f-9d0a-4a4f-90b7-d7cb8772705b
+              title: 'Explore all Content Elements'
+              options: {  }
+          field_pre_headline:
+            -
+              value: 'Editing and Workflows'
+          field_text_layout:
+            -
+              value: buttons-right
+          field_theme:
+            -
+              value: dark
+          field_title:
+            -
+              value: 'Check out all our content Features'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: adb36782-da9e-48e5-8b35-1d38d0212a96
+          bundle: gallery
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1754400144
+          behavior_settings:
+            -
+              value: {  }
+          field_media_item:
+            -
+              entity: c3d611ad-b71f-43fb-8734-872c58381704
+            -
+              entity: 9e46caa7-7aed-43e4-9860-73da2597bb60
+            -
+              entity: a51bad1e-ec94-4c91-ad09-0e8ffda3a7bb
+            -
+              entity: 22a3bb88-4145-4b6a-ae8e-82d4b64a60ab
+            -
+              entity: 1d62c720-5f14-4dc6-add0-0a3afe7f5313
+          field_theme:
+            -
+              value: dark
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

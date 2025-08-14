@@ -1,0 +1,19 @@
+{
+  "name": "adesso/adesso_cms_ai_suite",
+  "description": "AI content generation and optimization with multiple providers configured for adesso CMS",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "drupal/drupal_cms_ai": "^1.2",
+    "drupal/ai_ckeditor": "^1.0",
+    "drupal/ai_content_suggestions": "^1.0",
+    "drupal/ai_external_moderation": "^1.0",
+    "drupal/ai_translate": "^1.0",
+    "drupal/ai_image_alt_text": "^1.0",
+    "drupal/ai_image_bulk_alt_text": "^1.0",
+    "drupal/ai_provider_anthropic": "^1.0",
+    "drupal/ai_provider_openai": "^1.0"
+  }
+}

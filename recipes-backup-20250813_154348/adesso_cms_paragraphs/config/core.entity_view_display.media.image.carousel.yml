@@ -1,0 +1,38 @@
+uuid: 7b107df6-b64a-4a95-b2bd-0a316d7c0954
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.carousel
+    - field.field.media.image.field_image
+    - field.field.media.image.field_media_image
+    - image.style.16_9_1800x1080_focal_point_webp
+    - media.type.image
+  module:
+    - svg_image
+_core:
+  default_config_hash: xYFzvvFb5vWFnnTuR9S4i_73TJWCpGAbBS-hrLrEj_s
+id: media.image.carousel
+targetEntityType: media
+bundle: image
+mode: carousel
+content:
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: 16_9_1800x1080_focal_point_webp
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_image: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

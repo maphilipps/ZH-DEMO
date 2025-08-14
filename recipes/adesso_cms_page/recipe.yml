@@ -1,0 +1,74 @@
+name: adesso CMS Page
+description: Complete page content type with paragraph-based content building, SEO fields, and scheduling
+type: Site
+
+recipes:
+  - drupal_cms_content_type_base
+  - drupal_cms_seo_tools
+  - adesso_cms_paragraphs
+
+install:
+  # Core content management
+  - node
+  - field
+  - field_ui
+  - text
+  - image
+  - media
+  - media_library
+  - link
+  - datetime
+  # Paragraph system  
+  - paragraphs
+  - entity_reference_revisions
+  # Enhanced features
+  - scheduler
+  # SEO fields
+  - metatag
+  # Workflows for editorial workflow
+  - workflows
+  - content_moderation
+  
+config:
+  import:
+    config:
+      - node.type.page
+      - core.entity_form_display.node.page.default
+      - core.entity_view_display.node.page.default
+      - core.entity_view_display.node.page.card
+      - core.entity_view_display.node.page.search_index
+      - core.entity_view_display.node.page.teaser
+      # Field instances (storages provided by drupal_cms_content_type_base)
+      - field.field.node.page.field_content
+      - field.field.node.page.field_description
+      - field.field.node.page.field_featured_image
+      - field.field.node.page.field_paragraphs
+      - field.field.node.page.field_seo_analysis
+      - field.field.node.page.field_seo_description
+      - field.field.node.page.field_seo_image
+      - field.field.node.page.field_seo_title
+      - field.field.node.page.field_tags
+      - field.field.node.page.layout_builder__layout
+      - field.storage.node.field_hide_page_title
+      
+  actions:
+    # Grant permissions for page content type
+    user.role.content_editor:
+      grantPermissions:
+        - 'create page content'
+        - 'delete page revisions'
+        - 'delete any page content'
+        - 'edit any page content'
+        - 'view page revisions'
+        - 'revert page revisions'
+        - 'schedule publishing of nodes'
+        - 'view scheduled content'
+        
+    user.role.authenticated:
+      grantPermissions:
+        - 'view own unpublished content'
+        
+    # Add to editorial workflow
+    workflows.workflow.basic_editorial:
+      addNodeTypes: 
+        - page

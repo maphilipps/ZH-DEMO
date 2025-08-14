@@ -1,0 +1,52 @@
+# PHPStan Configuration for adesso CMS
+# Enterprise-grade static analysis following Lullabot standards
+
+parameters:
+  level: 6
+  
+  paths:
+    - web/modules/custom
+    - web/themes/custom
+    
+  excludePaths:
+    - web/themes/custom/adesso_cms_theme/node_modules
+    - web/themes/custom/adesso_cms_theme/dist
+    - web/themes/custom/adesso_cms_theme/backstop_data
+    - '*/tests/*'
+    - '*/Test/*'
+    
+  bootstrapFiles:
+    - web/core/tests/bootstrap.php
+    
+  # Drupal-specific configuration
+  drupal:
+    drupal_root: web
+    
+  # Brand compliance: Ensure "adesso" is always lowercase
+  ignoreErrors:
+    # Allow test files to have some flexibility
+    - '#.*Test\.php#'
+    - '#.*TestCase\.php#'
+    
+  # Performance optimizations for CI
+  tmpDir: %rootDir%/var/phpstan
+  
+  # Error format for CI/CD pipeline
+  errorFormat: table
+  
+  # Memory limit for large projects
+  memoryLimitFile: %rootDir%/var/phpstan/.memory_limit
+
+# Custom rules for adesso CMS
+rules:
+  # Custom rule to check for German brand compliance
+  - PHPStan\Rules\Classes\UnusedConstructorParametersRule
+  - PHPStan\Rules\Methods\UnusedConstructorParametersRule
+  
+services:
+  # Drupal-specific services would go here
+  # Custom brand compliance checker
+  -
+    class: App\PHPStan\Rules\AdessoComplianceRule
+    tags:
+      - phpstan.rules.rule

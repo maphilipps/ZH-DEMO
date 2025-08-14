@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 70e0d055-6e65-489d-b0fa-c616d927ca11
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: card_group-default-icon_26.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/card_group-default-icon_26.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 30437
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754245201

@@ -1,0 +1,69 @@
+uuid: k1m6l8h0-gi3j-4k9l-hm6n-0i2k5m7l9j1h
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.webform_embed.field_content_element_theme
+    - field.field.paragraph.webform_embed.field_display_options
+    - field.field.paragraph.webform_embed.field_pre_headline
+    - field.field.paragraph.webform_embed.field_summary
+    - field.field.paragraph.webform_embed.field_title
+    - field.field.paragraph.webform_embed.field_webform
+    - paragraphs.paragraphs_type.webform_embed
+  module:
+    - options
+    - text
+_core:
+  default_config_hash: L2n7P9qR4sT6uW8vX0yA3bC5dE7fG9hI1jK3lM5nO7pQ
+id: paragraph.webform_embed.default
+targetEntityType: paragraph
+bundle: webform_embed
+mode: default
+content:
+  field_webform:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: 'Start typing to find a webform...'
+    third_party_settings: {  }
+  field_display_options:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_content_element_theme:
+    type: options_select
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_summary:
+    type: text_textarea
+    weight: 8
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

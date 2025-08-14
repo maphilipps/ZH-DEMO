@@ -1,0 +1,15 @@
+{
+  "name": "adesso_cms/ai_integration",
+  "description": "AI integration recipe for adesso CMS with OpenAI, Anthropic, and Groq providers",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "drupal/ai": "^1.0@alpha",
+    "drupal/ai_provider_openai": "^1.0@alpha",
+    "drupal/ai_provider_anthropic": "^1.0@alpha",
+    "drupal/ai_provider_groq": "^1.0@alpha",
+    "drupal/key": "^1.15"
+  }
+}

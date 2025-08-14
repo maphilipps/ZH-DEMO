@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 74663b6e-a755-4758-83bd-d22bf56c50b9
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'db2022nr00004-large-1_W2560xH1440_CUTOUT (1).jpg'
+  uri:
+    -
+      value: 'public://2025-08/db2022nr00004-large-1_W2560xH1440_CUTOUT (1).jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 1613426
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

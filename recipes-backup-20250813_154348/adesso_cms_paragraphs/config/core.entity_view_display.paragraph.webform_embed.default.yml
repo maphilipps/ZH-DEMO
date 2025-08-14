@@ -1,0 +1,55 @@
+uuid: l2n7m9i1-hj4k-4l0m-in7o-1j3l6n8m0k2i
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.webform_embed.field_content_element_theme
+    - field.field.paragraph.webform_embed.field_display_options
+    - field.field.paragraph.webform_embed.field_pre_headline
+    - field.field.paragraph.webform_embed.field_summary
+    - field.field.paragraph.webform_embed.field_title
+    - field.field.paragraph.webform_embed.field_webform
+    - paragraphs.paragraphs_type.webform_embed
+  module:
+    - text
+    - webform
+_core:
+  default_config_hash: M3o8Q0rS5tT7uW9vX1yA4bC6dE8fG0hI2jK4lM6nO8pQ
+id: paragraph.webform_embed.default
+targetEntityType: paragraph
+bundle: webform_embed
+mode: default
+content:
+  field_webform:
+    type: webform
+    weight: 100
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_summary:
+    type: text_default
+    weight: 8
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_content_element_theme: true
+  field_display_options: true

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f72f874f-9ab7-4f31-af22-9f829689e3b5
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: kalender-2022-dsc4625_W800xH600_CUTOUT.jpg
+  uri:
+    -
+      value: 'public://2025-08/kalender-2022-dsc4625_W800xH600_CUTOUT.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 50686
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

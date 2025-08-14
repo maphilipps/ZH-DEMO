@@ -1,0 +1,27 @@
+uuid: d62b45bc-ba71-4280-a3ab-8013ef3156b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: g8gQoh2W6seZlr5RNd9a63qHaDlmUDd_pdQpknFfI3A
+id: footer
+theme: adesso_cms_theme
+region: footer
+weight: -10
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Footer
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

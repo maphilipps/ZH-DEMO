@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 6b98b90f-5b48-4771-89de-a33fbdba2d5a
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: newsletter-default-icon_26.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/newsletter-default-icon_26.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 13766
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754245201

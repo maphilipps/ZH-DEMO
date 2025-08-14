@@ -1,0 +1,33 @@
+uuid: null
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_download_item
+    - paragraphs.paragraphs_type.download
+    - paragraphs.paragraphs_type.download_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: null
+id: paragraph.download.field_download_item
+field_name: field_download_item
+entity_type: paragraph
+bundle: download
+label: 'Download items'
+description: 'Add files available for download.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      download_item: download_item
+    negate: 0
+    target_bundles_drag_drop:
+      download_item:
+        weight: 0
+        enabled: true
+field_type: entity_reference_revisions

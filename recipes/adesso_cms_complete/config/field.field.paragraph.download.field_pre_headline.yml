@@ -1,0 +1,21 @@
+uuid: db92f039-5152-4349-a84b-8fcb60353e05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pre_headline
+    - paragraphs.paragraphs_type.download
+_core:
+  default_config_hash: RBdO56ZA1OdvX1uY1eom2Rpe35NWrGJYO84FT3iFYxM
+id: paragraph.download.field_pre_headline
+field_name: field_pre_headline
+entity_type: paragraph
+bundle: download
+label: Pre-headline
+description: 'Text that appears above the headline.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

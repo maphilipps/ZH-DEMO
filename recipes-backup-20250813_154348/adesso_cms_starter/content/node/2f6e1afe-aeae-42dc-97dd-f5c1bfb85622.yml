@@ -1,0 +1,158 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2f6e1afe-aeae-42dc-97dd-f5c1bfb85622
+  bundle: news
+  default_langcode: de
+  depends:
+    1d62c720-5f14-4dc6-add0-0a3afe7f5313: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'adesso ist Solution Partner von Atlassian'
+  created:
+    -
+      value: 1751925600
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'adesso ist Solution Partner von Atlassian | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/news/2025-07/adesso-ist-solution-partner-von-atlassian'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/gs-koblenz-2_W1920xH1280_CUTOUT.jpg.webp?itok=OdZn6aJJ'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'adesso ist Solution Partner von Atlassian'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Der IT-Dienstleister adesso ist seit Mai 2025 offizieller Silver Solution Partner im Atlassian Partnerprogramm, um der steigenden Nachfrage seiner Kunden nach professioneller Beratung, Implementierung und Support für die weit verbreiteten Tools von Atlassian für Zusammenarbeit und Projektmanagement gerecht zu werden. Die Partnerschaft umfasst das gesamte Atlassian Portfolio für Cloud und Data-Center, darunter Jira, Confluence, Jira Service Management und Bitbucket.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/gs-koblenz-2_W1920xH1280_CUTOUT.jpg.webp?itok=OdZn6aJJ'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T10:17:10+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Der IT-Dienstleister adesso ist seit Mai 2025 offizieller Silver Solution Partner im Atlassian Partnerprogramm, um der steigenden Nachfrage seiner Kunden nach professioneller Beratung, Implementierung und Support für die weit verbreiteten Tools von Atlassian für Zusammenarbeit und Projektmanagement gerecht zu werden. Die Partnerschaft umfasst das gesamte Atlassian Portfolio für Cloud und Data-Center, darunter Jira, Confluence, Jira Service Management und Bitbucket.'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'adesso ist Solution Partner von Atlassian'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/gs-koblenz-2_W1920xH1280_CUTOUT.jpg.webp?itok=v20JVfyV'
+  path:
+    -
+      alias: /news/2025-07/adesso-ist-solution-partner-von-atlassian
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_content:
+    -
+      value: '<p>Mit dem Aufbau eines dedizierten Atlassian-Beratungsteams und der konzernweiten Bündelung von Expertise legt adesso zudem den Grundstein, um künftig auch große Projekte professionell und skalierbar zu betreuen. Ohne sich auf bestimmte Branchen zu konzentrieren, nimmt adesso als Partner von Atlassian Unternehmen in den Fokus, die den Wechsel von Data-Center-Umgebungen in die Cloud planen, sowie Organisationen, die ihre digitale Zusammenarbeit neu strukturieren oder optimieren möchten. Das Ziel besteht darin, Kunden entlang der gesamten Atlassian-Wertschöpfungskette nachhaltig zu unterstützen und ihre digitale Zusammenarbeit auf ein neues Niveau zu heben.</p><p>Als Silver Solution Partner verfügt adesso über das technische Know-how und die Erfahrung im Umgang mit dem Atlassian-Portfolio, um Unternehmen optimal bei der Einführung und Anwendung von Atlassian-Lösungen zu unterstützen. Ergänzt durch spezifisches Branchenwissen begleiten die zertifizierten Atlassian-Expertinnen und -Experten von adesso ihre Kunden ganzheitlich – von der Einführung über die Anpassung bis zur operativen Nutzung. Diese profitieren von einem umfangreichen Dienstleistungsangebot, das neben der Implementierung und Konfiguration der Tools auch methodenbasierte Schulungen sowie Beratung und Unterstützung bei der Auswahl und Integration passender Marketplace-Apps beinhaltet.</p><p>„Mit dieser Partnerschaft verfolgen wir ein klares Ziel: den strategischen Ausbau unseres Geschäftsfelds rund um Collaboration-Lösungen für alle Branchen. Die gezielte Nachfrage nach professioneller Unterstützung bei der Einführung und Nutzung von Atlassian-Produkten ist in den letzten Jahren auch bei unseren Kunden deutlich gestiegen“, erklärt Natalie Ohlwein, Leiterin des Geschäftsbereichs Cross Industries bei der adesso SE. „Als Silver Solution Partner werden wir nun unsere Kompetenzen gezielt ausbauen, um unseren Kunden ein umfassendes Leistungsportfolio anbieten zu können – von der Beratung über die Integration bis hin zur nachhaltigen operativen Nutzung.“</p>'
+      format: content_format
+  field_description:
+    -
+      value: 'Der IT-Dienstleister adesso ist seit Mai 2025 offizieller Silver Solution Partner im Atlassian Partnerprogramm, um der steigenden Nachfrage seiner Kunden nach professioneller Beratung, Implementierung und Support für die weit verbreiteten Tools von Atlassian für Zusammenarbeit und Projektmanagement gerecht zu werden. Die Partnerschaft umfasst das gesamte Atlassian Portfolio für Cloud und Data-Center, darunter Jira, Confluence, Jira Service Management und Bitbucket.'
+  field_featured_image:
+    -
+      entity: 1d62c720-5f14-4dc6-add0-0a3afe7f5313
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

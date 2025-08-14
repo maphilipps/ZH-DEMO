@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e293dbde-d7dc-4160-bcea-cc5feef4ff56
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'githubcopilotevent-webheader-4000x4000-12-2024_W2560xH1440_CUTOUT (1).jpg'
+  uri:
+    -
+      value: 'public://2025-08/githubcopilotevent-webheader-4000x4000-12-2024_W2560xH1440_CUTOUT (1).jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 298249
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754293177

@@ -1,0 +1,168 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c5b64f6f-f748-4049-952b-0790b8906b30
+  bundle: news
+  default_langcode: de
+  depends:
+    6b400f60-2a28-4c6a-bed4-4c372b44f9a5: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'adesso-Projekte gewinnen fünf German Brand Awards 2025'
+  created:
+    -
+      value: 1750975200
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'adesso-Projekte gewinnen fünf German Brand Awards 2025 | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/news/2025-06/adesso-projekte-gewinnen-fuenf-german-brand-awards-2025'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-27-gba-2025-adesso-x-vpv-bvb-dhb_W1700xH850_CUTOUT.jpg.webp?itok=_smca727'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'adesso-Projekte gewinnen fünf German Brand Awards 2025'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Fünf Awards, drei strahlende Marken, ein starker Umsetzungspartner: Gleich fünf Mal wurden Projekte von adesso mit dem German Brand Award 2025 ausgezeichnet. Die Auszeichnungen erhielten die adesso-Kunden Borussia Dortmund, VPV Versicherungen und Deutscher Handballbund – einer davon in der höchsten Kategorie "Best of Best".'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-27-gba-2025-adesso-x-vpv-bvb-dhb_W1700xH850_CUTOUT.jpg.webp?itok=_smca727'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: brandawards
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T10:18:31+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Fünf Awards, drei strahlende Marken, ein starker Umsetzungspartner: Gleich fünf Mal wurden Projekte von adesso mit dem German Brand Award 2025 ausgezeichnet. Die Auszeichnungen erhielten die adesso-Kunden Borussia Dortmund, VPV Versicherungen und Deutscher Handballbund – einer davon in der höchsten Kategorie "Best of Best".'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'adesso-Projekte gewinnen fünf German Brand Awards 2025'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-27-gba-2025-adesso-x-vpv-bvb-dhb_W1700xH850_CUTOUT.jpg.webp?itok=53qdCqSM'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: brandawards
+  path:
+    -
+      alias: /news/2025-06/adesso-projekte-gewinnen-fuenf-german-brand-awards-2025
+      langcode: de
+      pathauto: 1
+  sae_exclude:
+    -
+      value: false
+  field_content:
+    -
+      value: '<h4>Borussia Dortmund: Gold-Award für starke User Experience</h4><p>Borussia Dortmund wurde für das Projekt „BVB ClubHub“ zweimal ausgezeichnet: mit Gold für den besten Beitrag in der Kategorie „Brand Communication – User Experience“ sowie als Winner in der Kategorie „Brand Experience of the Year“. Kern des Projekts war der Relaunch der Website <a href="https://www.bvb.de/">bvb.de</a>, die neben einer neuen Informationsarchitektur vor allem durch eine konsequent nutzerzentrierte Gestaltung überzeugt. Die Jury lobte insbesondere das intuitive Design, die konsistente Markenführung und die messbar gestiegene Nutzerakzeptanz.</p><p>adesso und der BVB sind seit Jahren enge Partner – mit dem Website-Relaunch haben sie ihrer gemeinsamen Erfolgsgeschichte ein weiteres Kapitel hinzugefügt. Der Geschäftsbereich Digital Experience von adesso entwickelte dabei insbesondere die UX (User Experience)-Strategie sowie die Designkonzeption. Damit zeigte adesso einmal mehr, dass der IT-Dienstleister nicht nur exzellente Software liefert, sondern dabei den Menschen und seine Bedürfnisse im Blick hat.</p><h4>VPV Versicherungen: Best of Best für personalisierte Kundenreise bei Vertragsende</h4><p>Die VPV Versicherungen erhielten die höchste Auszeichnung Best of Best in der Kategorie „Brand Efficiency of the Year“ sowie einen Winner-Award in der Kategorie „Brand Communication – CRM &amp; Personalization“ für das Projekt „High Performance Customer Journey Wiederanlage“. Darin entwickelte die VPV eine personalisierte Kundenreise, die die Betreuung von Kunden mit auslaufenden Versicherungsverträgen auf ein neues Niveau hebt, urteilte die Jury. Mithilfe datengestützter Kommunikation und Maßnahmen wie individuellen Landingpages gelingt es der VPV heute, Kundenbeziehungen nachhaltig zu stärken.</p><p>Der Geschäftsbereich Digital Experience von adesso begleitete das Projekt mit exzellenter UX-Expertise. Zum Einsatz kam dabei die Personal Business Machine des adesso-Partners PBM AG – eine Plattform, die kanalübergreifende Personalisierung durch Machine Learning, Neuromarketing und Persona-Mapping ermöglicht.</p><h4>Deutscher Handballbund: Auszeichnung für modernen Webauftritt</h4><p>Der Deutsche Handballbund (DHB) wurde für den Relaunch seiner Website <a href="https://www.dhb.de/">dhb.de</a> ausgezeichnet. Das Projekt erhielt einen Winner-Award in der Kategorie „Brand Communication – Web &amp; Mobile“. Der neue Auftritt überzeugt durch klare Strukturen, mobile Optimierung und eine moderne, zielgruppengerechte Gestaltung, die die Marke DHB im digitalen Raum sichtbar stärkt.</p><p>Die Business Line Sports von adesso begleitete den Relaunch mit fachlicher und technischer Expertise. Dabei profitierte der DHB vom tiefen Branchenverständnis, UX-Know-how und der Technologiekompetenz der adesso Group. Gemeinsam entwickelten die Partner eine Plattform, die den Anforderungen eines modernen Sportverbands gerecht wird und gleichzeitig Fans, Vereine und Partner stärker miteinander vernetzt.</p><p><a href="https://www.adesso.de/de/branchen/sports/referenzen/dhb-digitale-zukunft-des-handballs.jsp">Mehr erfahren</a></p><p>Hintere Reihe v.l.n.r.: Ingo Gregus (adesso), Carolin Werning (VPV), Ralf Pispers (pbm), Peter Helmerichs, Dr. Olaf Schmitz, Sanija Memetovic (alle VPV), Vanessa Niestroj, Matthias Lahr (beide DHB), Maurice Sonneveld (adesso) und Sebastian Brüning (BVB). Vordere Reihe v.ln.r.: Kethe Theermann und Sara Zguric (beide adesso).</p><h4>„Gute UX gewinnt nicht nur Awards, sondern vor allem Menschen“</h4><p>Die Auszeichnungen zeigen, wie wichtig die Kombination aus strategischer Markenführung, exzellentem Design und technologischer Brillanz ist – besonders dann, wenn sie auf die Nutzerbedürfnisse ausgerichtet ist. Für adesso ist User Experience daher kein Add-on, sondern ein zentraler Bestandteil erfolgreicher Digitalprojekte in allen Branchen.</p><p>„Wir freuen uns sehr über die Auszeichnungen unserer Kunden – sie bestätigen den gemeinsamen Anspruch an Qualität, Wirkung und Nutzerzentrierung“, sagt Jens-Michael Blümel, Leiter der Business Unit Digital Experience – User Experience &amp; Brand Strategy bei adesso. „Gute UX gewinnt nicht nur Awards, sondern vor allem Menschen. Sie sind es, die unsere Software nutzen – ihre Erwartungen und ihr Nutzererlebnis stehen bei uns im Mittelpunkt.“</p><p>Jens-Michael Blümel leitet bei adesso die Business Unit Digital Experience – User Experience &amp; Brand Strategy. (Quelle: adesso)</p><p>&nbsp;</p><p><br>&nbsp;</p>'
+      format: content_format
+  field_description:
+    -
+      value: 'Fünf Awards, drei strahlende Marken, ein starker Umsetzungspartner: Gleich fünf Mal wurden Projekte von adesso mit dem German Brand Award 2025 ausgezeichnet. Die Auszeichnungen erhielten die adesso-Kunden Borussia Dortmund, VPV Versicherungen und Deutscher Handballbund – einer davon in der höchsten Kategorie "Best of Best".'
+  field_featured_image:
+    -
+      entity: 6b400f60-2a28-4c6a-bed4-4c372b44f9a5
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

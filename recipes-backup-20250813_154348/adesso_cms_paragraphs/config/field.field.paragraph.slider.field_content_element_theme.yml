@@ -1,0 +1,23 @@
+uuid: 5cada2e4-6a08-42dc-af2a-7440a05a1036
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_element_theme
+    - paragraphs.paragraphs_type.slider
+_core:
+  default_config_hash: mHwtmcaQ1rkv_6bVP7F8FAjTGqg3NBnLRBZj5rTQkaI
+id: paragraph.slider.field_content_element_theme
+field_name: field_content_element_theme
+entity_type: paragraph
+bundle: slider
+label: 'Content element theme'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings: {  }
+field_type: boolean

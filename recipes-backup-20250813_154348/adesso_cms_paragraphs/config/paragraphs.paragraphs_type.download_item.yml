@@ -1,0 +1,12 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: null
+id: download_item
+label: 'Download Item'
+icon_uuid: null
+icon_default: null
+description: 'A single download item with file reference, name, and optional description.'
+behavior_plugins: {  }

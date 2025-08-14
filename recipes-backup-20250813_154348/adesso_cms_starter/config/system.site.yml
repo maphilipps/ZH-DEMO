@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: de
+uuid: b1f4d3a4-1151-434d-bc53-aa30be294f8c
+name: adessoCMS
+mail: marc.philipps@adesso.de
+slogan: ''
+page:
+  403: /user/login
+  404: ''
+  front: /welcome-adesso-cms
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: de
+mail_notification: null

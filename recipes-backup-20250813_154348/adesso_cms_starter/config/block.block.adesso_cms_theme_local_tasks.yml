@@ -1,0 +1,22 @@
+uuid: 708a1dac-ae38-41dc-8e27-45a0d8e9c723
+langcode: en
+status: true
+dependencies:
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: h4Vhr9PjvXQC5KCWU5M5vsj7sjd2RXbm0jH2PM_V_wU
+id: adesso_cms_theme_local_tasks
+theme: adesso_cms_theme
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

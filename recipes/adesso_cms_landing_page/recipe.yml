@@ -1,0 +1,83 @@
+name: adesso CMS Landing Page
+description: Specialized landing page content type for marketing campaigns with conversion-focused paragraph components
+type: Site
+recipes:
+  # Base page functionality
+  - adesso_cms_page
+  # Extended paragraph system
+  - adesso_cms_paragraphs
+
+install:
+  # Marketing and conversion modules
+  - webform
+  - webform_ui
+  # Workflows for editorial workflow
+  - workflows
+  - content_moderation
+  
+config:
+  strict: false
+  import:
+    # Landing page content type definition
+    - 'recipes/adesso_cms_landing_page/config/node.type.landing_page.yml'
+    
+  actions:
+    # Copy page field configuration to landing_page
+    field.field.node.landing_page.field_paragraphs:
+      simpleConfigUpdate:
+        field_name: field_paragraphs
+        entity_type: node
+        bundle: landing_page
+        label: 'Landing Page Components'
+        description: 'Add conversion-focused components like Hero, Pricing, Testimonials, Newsletter signup, and Call-to-Action elements.'
+        settings:
+          handler_settings:
+            target_bundles:
+              hero: hero
+              pricing: pricing
+              newsletter: newsletter
+              text: text
+              sidebyside: sidebyside
+              gallery: gallery
+              media: media
+              carousel: carousel
+              card_group: card_group
+              download: download
+              embed: embed
+              views: views
+              stats_item: stats_item
+              accordion: accordion
+              block_reference: block_reference
+        required: false
+        default_value: []
+        
+    field.field.node.landing_page.field_featured_image:
+      simpleConfigUpdate:
+        field_name: field_featured_image
+        entity_type: node
+        bundle: landing_page
+        label: 'Hero Image'
+        description: 'Primary visual for social sharing and hero sections.'
+        
+    field.field.node.landing_page.field_description:
+      simpleConfigUpdate:
+        field_name: field_description
+        entity_type: node
+        bundle: landing_page
+        label: 'Meta Description'
+        description: 'Brief description for search engines and social media.'
+        
+    # Grant permissions for landing page content type
+    user.role.content_editor:
+      grantPermissions:
+        - 'create landing_page content'
+        - 'delete landing_page revisions'
+        - 'delete any landing_page content'
+        - 'edit any landing_page content'
+        - 'view landing_page revisions'
+        - 'revert landing_page revisions'
+        
+    # Add to editorial workflow
+    workflows.workflow.basic_editorial:
+      addNodeTypes: 
+        - landing_page

@@ -1,0 +1,12 @@
+uuid: c4194851-23d8-4a02-a470-4dd5ad4aae2f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: JrsM4i-J-4UW26xBVIVf7sOELJEctM2IS5LL5h6c_DA
+id: block_reference
+label: 'Block Reference'
+icon_uuid: null
+icon_default: null
+description: 'Reference and display a Drupal block.'
+behavior_plugins: {  }

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 1c30d490-9623-42f4-9c40-6134b15bcd40
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Adesso-Gebaeudeeroeffnung-April-24_TR55667.png
+  uri:
+    -
+      value: 'public://2025-08/Adesso-Gebaeudeeroeffnung-April-24_TR55667.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 1846261
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754292868

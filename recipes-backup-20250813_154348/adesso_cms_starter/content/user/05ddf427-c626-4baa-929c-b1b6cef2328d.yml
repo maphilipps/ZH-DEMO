@@ -1,0 +1,104 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: 05ddf427-c626-4baa-929c-b1b6cef2328d
+  default_langcode: de
+default:
+  preferred_langcode:
+    -
+      value: de
+  preferred_admin_langcode:
+    -
+      value: de
+  name:
+    -
+      value: editor
+  pass:
+    -
+      value: $2y$10$hMqx0EztQvtNAbhwWQEUIuvhnN4Rp8lQ7KXp547KZohXsA24UbGRG
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: editor@example.de
+  timezone:
+    -
+      value: Europe/Berlin
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754314993
+  access:
+    -
+      value: 1754405870
+  login:
+    -
+      value: 1754399884
+  init:
+    -
+      value: editor@example.de
+  roles:
+    -
+      target_id: content_editor
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'editor | adessoCMS'
+    -
+      tag: meta
+      attributes:
+        name: description
+        content: adessoCMS
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/user/2'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 1
+  field_last_password_reset:
+    -
+      value: '2025-08-04T13:43:13'
+  field_password_expiration:
+    -
+      value: false
+  field_pending_expire_sent:
+    -
+      value: 0

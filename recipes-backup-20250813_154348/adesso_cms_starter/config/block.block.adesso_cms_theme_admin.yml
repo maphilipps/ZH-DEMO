@@ -1,0 +1,27 @@
+uuid: 356b3b6e-1e6f-4bd3-95c2-96fee3979df4
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.admin
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+_core:
+  default_config_hash: OC_qboN5EKKAUjqjSlCqqIicni183pYgGEcU_TF8kmM
+id: adesso_cms_theme_admin
+theme: adesso_cms_theme
+region: header_left
+weight: -2
+provider: null
+plugin: 'system_menu_block:admin'
+settings:
+  id: 'system_menu_block:admin'
+  label: Administration
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

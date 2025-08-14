@@ -1,0 +1,32 @@
+uuid: e240dad8-3b0a-4667-9165-5702eaaf54c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary
+    - paragraphs.paragraphs_type.hero
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: '0'
+    restricted_html: '0'
+    scripts: '0'
+    full_html: '0'
+    plain_text: '0'
+_core:
+  default_config_hash: n5iWLtJ7PTxNGlQuyPLffN9zvCvxZHKhLo730Wh_Hug
+id: paragraph.hero.field_summary
+field_name: field_summary
+entity_type: paragraph
+bundle: hero
+label: Text
+description: 'Provide the teaser summary for the hero.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 37f05abf-0b27-43fb-87b1-0812d00bf49e
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Preiß_Julia, Theermann, Kethe_Santina Jarkass, Khalil_0.png'
+  uri:
+    -
+      value: 'public://2025-07/Preiß_Julia, Theermann, Kethe_Santina Jarkass, Khalil_0.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 2901714
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1753119815

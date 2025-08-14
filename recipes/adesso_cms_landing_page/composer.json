@@ -1,0 +1,14 @@
+{
+  "name": "adesso/adesso_cms_landing_page",
+  "description": "Specialized landing page content type for marketing campaigns with conversion-focused paragraph components",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "adesso/adesso_cms_page": "dev-main",
+    "adesso/adesso_cms_paragraphs": "dev-main",
+    "drupal/webform": "^6.3",
+    "drupal/scheduler": "^2.1"
+  }
+}

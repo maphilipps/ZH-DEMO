@@ -1,0 +1,21 @@
+uuid: 4b8d7e23-5c9a-4f1b-9563-1f9e1c673753
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pre_headline
+    - paragraphs.paragraphs_type.carousel
+_core:
+  default_config_hash: 9OWQ8gn2qn2b6ttcrnNGmXt_xqJh6SwE7u691B-HJN0
+id: paragraph.carousel.field_pre_headline
+field_name: field_pre_headline
+entity_type: paragraph
+bundle: carousel
+label: Pre-headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

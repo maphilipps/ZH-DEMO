@@ -1,0 +1,17 @@
+uuid: 884c1481-6867-4de6-bc33-c1dba8d669e9
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: KqK-29lsciQw_0iqLxXLTJ_rcnDm2PDAC4uh9vm_-8A
+id: time_only
+label: 'Nur Zeit'
+date_format: ''
+time_format: 'g:ia'
+time_hour_format: 'g:ia'
+allday_label: Ganztägig
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

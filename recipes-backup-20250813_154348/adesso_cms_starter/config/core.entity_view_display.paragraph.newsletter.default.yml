@@ -1,0 +1,43 @@
+uuid: 0975a012-dbee-4d51-8c36-3d703487737c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.newsletter.field_content_element_theme
+    - field.field.paragraph.newsletter.field_pre_headline
+    - field.field.paragraph.newsletter.field_summary
+    - field.field.paragraph.newsletter.field_title
+    - paragraphs.paragraphs_type.newsletter
+_core:
+  default_config_hash: U20dq7KLTaiPgcmEzvld7cgEMLJb5DZ_VvICkL_picc
+id: paragraph.newsletter.default
+targetEntityType: paragraph
+bundle: newsletter
+mode: default
+content:
+  field_pre_headline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_summary:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_content_element_theme: true
+  search_api_excerpt: true

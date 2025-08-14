@@ -1,0 +1,19 @@
+uuid: 03bc66d4-cd9a-4011-a820-abb10fbd838f
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pre_headline
+    - paragraphs.paragraphs_type.gallery
+id: paragraph.gallery.field_pre_headline
+field_name: field_pre_headline
+entity_type: paragraph
+bundle: gallery
+label: Pre-Headline
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

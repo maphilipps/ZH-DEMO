@@ -1,0 +1,62 @@
+uuid: eeeaadf2-1db1-4d59-b5e1-950be7013131
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.views.field_content_element_theme
+    - field.field.paragraph.views.field_link
+    - field.field.paragraph.views.field_pre_headline
+    - field.field.paragraph.views.field_title
+    - field.field.paragraph.views.field_views_ref
+    - paragraphs.paragraphs_type.views
+  module:
+    - link
+    - viewfield
+_core:
+  default_config_hash: ut4_cxbCYCZh_u0YKM5_uifYX1IsmCtlTXGgFXrTIYs
+id: paragraph.views.default
+targetEntityType: paragraph
+bundle: views
+mode: default
+content:
+  field_content_element_theme:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_views_ref:
+    type: viewfield_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  info: true
+  status: true

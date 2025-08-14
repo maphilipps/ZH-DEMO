@@ -1,0 +1,25 @@
+uuid: d406a78e-0018-4bdc-bd7b-ebb7f1190ddc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: kYB2mr5jGE0AkVQ77fxPGbPDqhkjHgOaDZ2YTov3LO0
+id: paragraph.accordion.field_paragraphs
+field_name: field_paragraphs
+entity_type: paragraph
+bundle: accordion
+label: Accordion
+description: 'An accordion paragraph with sample text.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings: {  }
+field_type: entity_reference_revisions

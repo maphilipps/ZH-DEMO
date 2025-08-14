@@ -1,0 +1,23 @@
+uuid: 4f01ce94-1b2f-4994-9da5-7bb0bd17f134
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_element_theme
+    - paragraphs.paragraphs_type.card
+_core:
+  default_config_hash: A1F5neIlKpW8z-7v_5Prbn9qhsLbWk28T54BCfdsRtA
+id: paragraph.card.field_content_element_theme
+field_name: field_content_element_theme
+entity_type: paragraph
+bundle: card
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

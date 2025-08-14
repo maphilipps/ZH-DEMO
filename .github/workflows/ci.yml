@@ -136,6 +136,15 @@ jobs:
 
       - name: '🔧 Install PHP dependencies'
         run: |
+          # Remove path repository dependencies for CI environment
+          composer config --unset repositories.starter || true
+          composer config --unset repositories.paragraphs || true  
+          composer config --unset repositories.theme || true
+          
+          # Remove path-based requirements that don't exist in CI
+          composer remove adesso/adesso_cms_paragraphs adesso/adesso_cms_starter adesso/adesso_cms_theme --no-interaction --no-update || true
+          
+          # Install remaining dependencies
           composer install --no-dev --optimize-autoloader --no-interaction
           composer require --dev drupal/coder dealerdirect/phpcodesniffer-composer-installer --no-interaction
 
@@ -297,7 +306,17 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: '🔧 Install dependencies'
-        run: composer install --no-dev --optimize-autoloader --no-interaction
+        run: |
+          # Remove path repository dependencies for CI environment
+          composer config --unset repositories.starter || true
+          composer config --unset repositories.paragraphs || true  
+          composer config --unset repositories.theme || true
+          
+          # Remove path-based requirements that don't exist in CI
+          composer remove adesso/adesso_cms_paragraphs adesso/adesso_cms_starter adesso/adesso_cms_theme --no-interaction --no-update || true
+          
+          # Install remaining dependencies
+          composer install --no-dev --optimize-autoloader --no-interaction
 
       - name: '⚙️ Configure Drupal'
         run: |
@@ -555,7 +574,17 @@ jobs:
           tools: composer:${{ env.COMPOSER_VERSION }}
 
       - name: '🔧 Install Composer dependencies'
-        run: composer install --no-dev --optimize-autoloader --no-interaction
+        run: |
+          # Remove path repository dependencies for CI environment
+          composer config --unset repositories.starter || true
+          composer config --unset repositories.paragraphs || true  
+          composer config --unset repositories.theme || true
+          
+          # Remove path-based requirements that don't exist in CI
+          composer remove adesso/adesso_cms_paragraphs adesso/adesso_cms_starter adesso/adesso_cms_theme --no-interaction --no-update || true
+          
+          # Install remaining dependencies
+          composer install --no-dev --optimize-autoloader --no-interaction
 
       - name: '🟢 Setup Node.js ${{ env.NODE_VERSION }}'
         uses: actions/setup-node@v4
@@ -678,7 +707,17 @@ jobs:
           tools: composer:${{ env.COMPOSER_VERSION }}
 
       - name: '🔧 Install dependencies'
-        run: composer install --no-dev --optimize-autoloader --no-interaction
+        run: |
+          # Remove path repository dependencies for CI environment
+          composer config --unset repositories.starter || true
+          composer config --unset repositories.paragraphs || true  
+          composer config --unset repositories.theme || true
+          
+          # Remove path-based requirements that don't exist in CI
+          composer remove adesso/adesso_cms_paragraphs adesso/adesso_cms_starter adesso/adesso_cms_theme --no-interaction --no-update || true
+          
+          # Install remaining dependencies
+          composer install --no-dev --optimize-autoloader --no-interaction
 
       - name: '⚙️ Setup Drupal'
         run: |

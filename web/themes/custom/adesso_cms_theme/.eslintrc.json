@@ -19,7 +19,8 @@
     "drupalTranslations": true,
     "jQuery": true,
     "$": true,
-    "Swiper": true
+    "Swiper": true,
+    "Prism": true
   },
   "parserOptions": {
     "ecmaVersion": 2022,

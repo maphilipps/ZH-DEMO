@@ -380,7 +380,7 @@ jobs:
 
       - name: '🔧 Install accessibility tools'
         run: |
-          npm install -g @axe-core/cli @pa11y/cli lighthouse
+          npm install -g @axe-core/cli pa11y lighthouse
           
       - name: '♿ Axe Core accessibility scan'
         run: |

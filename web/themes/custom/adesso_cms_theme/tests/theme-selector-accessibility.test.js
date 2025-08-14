@@ -3,7 +3,7 @@
  * Tests for WCAG 2.1 AA compliance of the theme selector feature
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { testBasicAccessibility, commonTests } from './utils/test-utils.js';
 
 // Mock axe-core for accessibility testing
@@ -45,7 +45,7 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
                 id="edit-field-content-element-theme-0-value" 
                 class="form-select block w-full rounded-md py-2 px-3 text-base font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 cursor-pointer bg-white transition-colors duration-200"
                 aria-describedby="theme-description theme-preview-description"
-                onchange="updateThemePreview(this.value)">
+                onchange="window.updateThemePreview(this.value)">
                 <option value="light" ${selectedValue === 'light' ? 'selected="selected"' : ''} data-theme="light">🌟 Light - Standard white background</option>
                 <option value="highlighted" ${selectedValue === 'highlighted' ? 'selected="selected"' : ''} data-theme="highlighted">🎯 Highlighted - Light gray background for emphasis</option>
                 <option value="dark" ${selectedValue === 'dark' ? 'selected="selected"' : ''} data-theme="dark">🌙 Dark - Dark background with light text</option>
@@ -114,16 +114,6 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
 
 // Setup accessible JavaScript functions
 function setupAccessibleThemeSelectorJS() {
-  window.selectTheme = function(themeValue) {
-    const themeSelect = document.querySelector('select[name*="field_theme"]');
-    if (themeSelect) {
-      themeSelect.value = themeValue;
-      themeSelect.dispatchEvent(new Event('change'));
-    }
-    updateThemePreview(themeValue);
-    updateRadioGroupState(themeValue);
-  };
-  
   window.updateThemePreview = function(selectedTheme) {
     const previewCards = document.querySelectorAll('.theme-preview-card');
     previewCards.forEach(card => {
@@ -137,6 +127,16 @@ function setupAccessibleThemeSelectorJS() {
         card.setAttribute('tabindex', '0');
       }
     });
+  };
+  
+  window.selectTheme = function(themeValue) {
+    const themeSelect = document.querySelector('select[name*="field_theme"]');
+    if (themeSelect) {
+      themeSelect.value = themeValue;
+      themeSelect.dispatchEvent(new Event('change'));
+    }
+    window.updateThemePreview(themeValue);
+    window.updateRadioGroupState(themeValue);
   };
   
   window.updateRadioGroupState = function(selectedTheme) {

@@ -1,0 +1,7 @@
+name: 'adesso CMS Content'
+type: module
+core_version_requirement: ^11
+package: 'adesso CMS'
+description: 'Content module for adesso CMS with default content and starter materials.'
+dependencies:
+  - default_content

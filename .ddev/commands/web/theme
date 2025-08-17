@@ -48,6 +48,10 @@ case "$1" in
       sleep 5
     done
     ;;
+  "dev")
+    echo "🚀 Starting Vite dev server at https://adesso-cms.ddev.site:5173"
+    npm run dev:ddev
+    ;;
   *)
     npm run $@
     ;;

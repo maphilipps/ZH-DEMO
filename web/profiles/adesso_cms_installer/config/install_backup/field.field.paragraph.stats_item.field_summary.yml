@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary
+    - paragraphs.paragraphs_type.stats_item
+id: paragraph.stats_item.field_summary
+field_name: field_summary
+entity_type: paragraph
+bundle: stats_item
+label: Summary
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: string_long

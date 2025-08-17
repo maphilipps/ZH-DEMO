@@ -95,6 +95,9 @@ default:
       alias: /news/2025-06/zwischen-komplexitaet-und-ki-studie-zeigt-erfolgsfaktoren-fuer-it-transformationen-bei
       langcode: de
       pathauto: 1
+  field_description:
+    -
+      value: 'Utilities-Transformationsstudie 2025: Strategische Klarheit und Mut zur Veränderung als Erfolgsfaktoren für IT-Transformationen bei Energieversorgern.'
   field_content:
     -
       value: '<p>Die IT-Transformation in der Energiebranche ist kein Sprint, sondern ein Marathon. Mut zur Veränderung, strategische Klarheit und die Bereitschaft, über technische Lösungen hinauszudenken, sind die entscheidenden Faktoren auf diesem Weg. Die neue Utilities-Transformationsstudie 2025 bietet Entscheidungsträgern mehr Transparenz.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/zwischen-komplexitaet-und-ki-studie-zeigt-erfolgsfaktoren-fuer-it-transformationen-bei-energieversorgern.jsp" target="_blank">hier</a>.</p>'

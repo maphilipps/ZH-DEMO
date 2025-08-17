@@ -95,6 +95,9 @@ default:
       alias: /news/2025-07/adesso-erweitert-sein-portfolio-um-produkte-von-siemens-xcelerator
       langcode: de
       pathauto: 1
+  field_description:
+    -
+      value: 'adesso erweitert Technologieportfolio um marktführende Siemens Xcelerator-Lösungen für digitale Transformation in der Fertigungsindustrie.'
   field_content:
     -
       value: '<p>Die adesso SE ist dem Partnerprogramm von Siemens Digital Industries Software beigetreten, um sein Technologieportfolio um marktführende Softwarelösungen aus dem Siemens Xcelerator-Portfolio in den Bereichen CAD, PLM, MES und IIoT zu erweitern. Damit positioniert sich adesso als starker Integrationspartner für die digitale Transformation in der Fertigungsindustrie.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/adesso-erweitert-sein-portfolio-um-produkte-von-siemens-xcelerator.jsp" target="_blank">hier</a>.</p>'

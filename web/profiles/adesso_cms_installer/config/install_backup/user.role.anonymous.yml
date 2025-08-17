@@ -1,0 +1,21 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - klaro
+    - media
+    - sitemap
+    - system
+id: anonymous
+label: Gast
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access sitemap'
+  - 'use klaro'
+  - 'use text format restricted_html'
+  - 'view media'

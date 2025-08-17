@@ -1,0 +1,191 @@
+name: adesso CMS Installer
+type: profile
+core_version_requirement: '>=11.2'
+description: 'Complete adesso CMS installation profile with AI integration, content management, and modern frontend capabilities.'
+# Drupal CMS isn't a distribution, but we need to use this `distribution` key in order
+# to skip the installer's profile selection step.
+distribution:
+  name: adesso CMS
+  install:
+    finish_url: '/admin/dashboard/welcome'
+
+# Core dependencies
+dependencies:
+  # Core modules
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:field
+  - drupal:file
+  - drupal:image
+  - drupal:media
+  - drupal:text
+  - drupal:link
+  - drupal:taxonomy
+  - drupal:menu_ui
+  - drupal:menu_link_content
+  - drupal:block
+  - drupal:block_content
+  - drupal:views
+  - drupal:filter
+  - drupal:editor
+  - drupal:ckeditor5
+  - drupal:path
+  - drupal:path_alias
+  - drupal:page_cache
+  - drupal:dynamic_page_cache
+  - drupal:big_pipe
+  - drupal:dblog
+  - drupal:update
+  - drupal:help
+  - drupal:search
+  - drupal:language
+  - drupal:locale
+  - drupal:content_translation
+  - drupal:responsive_image
+  - drupal:breakpoint
+  - drupal:datetime
+  - drupal:datetime_range
+  - drupal:telephone
+  - drupal:options
+  - drupal:inline_form_errors
+  
+  # Extended content management
+  - paragraphs:paragraphs
+  - paragraphs:paragraphs_ee
+  - entity_reference_revisions:entity_reference_revisions
+  - field_group:field_group
+  - viewfield:viewfield
+  - content_moderation:content_moderation
+  - workflows:workflows
+  - scheduler:scheduler
+  - scheduler:scheduler_content_moderation_integration
+  - pathauto:pathauto
+  - redirect:redirect
+  - redirect:redirect_404
+  - metatag:metatag
+  - metatag:metatag_open_graph
+  - metatag:metatag_twitter_cards
+  - simple_sitemap:simple_sitemap
+  - sitemap:sitemap
+  - robotstxt:robotstxt
+  
+  # Media and files
+  - media_library:media_library
+  - entity_browser:entity_browser
+  - dropzonejs:dropzonejs
+  - dropzonejs:dropzonejs_eb_widget
+  - focal_point:focal_point
+  - crop:crop
+  - svg_image:svg_image
+  - svg_image:svg_image_responsive
+  - webp:webp
+  
+  # AI Integration
+  - ai:ai
+  - ai_content_suggestions:ai_content_suggestions
+  - ai_image_alt_text:ai_image_alt_text
+  - ai_translate:ai_translate
+  - ai_external_moderation:ai_external_moderation
+  - ai_logging:ai_logging
+  - ai_agents:ai_agents
+  - ai_ckeditor:ai_ckeditor
+  - ai_assistant_api:ai_assistant_api
+  - ai_provider_openai:ai_provider_openai
+  - ai_provider_anthropic:ai_provider_anthropic
+  - ai_provider_groq:ai_provider_groq
+  
+  # User experience and interface
+  - gin_toolbar:gin_toolbar
+  - easy_breadcrumb:easy_breadcrumb
+  - frontend_editing:frontend_editing
+  - preview:preview
+  - coffee:coffee
+  - dashboard:dashboard
+  - navigation:navigation
+  
+  # Forms and user interaction
+  - webform:webform
+  - webform:webform_ui
+  - captcha:captcha
+  - friendlycaptcha:friendlycaptcha
+  - honeypot:honeypot
+  - easy_email:easy_email
+  - easy_email:easy_email_override
+  - login_emailusername:login_emailusername
+  
+  # Search and discovery
+  - search_api:search_api
+  - search_api:search_api_db
+  - search_api:search_api_autocomplete
+  - search_api:search_api_exclude
+  - simple_search_form:simple_search_form
+  
+  # SEO and marketing
+  - yoast_seo:yoast_seo
+  - seo_checklist:seo_checklist
+  - klaro:klaro
+  - editoria11y:editoria11y
+  
+  # User interface enhancements
+  - allowed_formats:allowed_formats
+  - better_exposed_filters:better_exposed_filters
+  - selective_better_exposed_filters:selective_better_exposed_filters
+  - autosave_form:autosave_form
+  - tagify:tagify
+  - tagify:tagify_user_list
+  - twig_field_value:twig_field_value
+  - twig_tweak:twig_tweak
+  - linkit:linkit
+  - token:token
+  - token_or:token_or
+  
+  # Development and workflow tools
+  - eca:eca
+  - eca:eca_base
+  - eca:eca_config
+  - eca:eca_content
+  - eca:eca_form
+  - eca:eca_misc
+  - eca:eca_modeller_bpmn
+  - eca:eca_render
+  - eca:eca_ui
+  - eca:eca_user
+  - bpmn_io:bpmn_io
+  - components:components
+  - default_content:default_content
+  - trash:trash
+  - node_revision_delete:node_revision_delete
+  
+  # Performance and optimization
+  - automated_cron:automated_cron
+  - vite:vite
+  
+  # Additional utilities
+  - address:address
+  - geofield:geofield
+  - leaflet:leaflet
+  - smart_date:smart_date
+  - mailsystem:mailsystem
+  - symfony_mailer_lite:symfony_mailer_lite
+  - jquery_ui:jquery_ui
+  - jquery_ui:jquery_ui_resizable
+  
+  # Content bundles and starter content
+  - add_content_by_bundle:add_content_by_bundle
+  - adesso_cms_content:adesso_cms_content
+  - adesso_cms_blocks:adesso_cms_blocks
+  - adesso_cms_starter:adesso_cms_starter
+  
+  # Updates and maintenance
+  - automatic_updates:automatic_updates
+  - automatic_updates:automatic_updates_extensions
+  - package_manager:package_manager
+  - announcements_feed:announcements_feed
+  
+# Themes to install
+themes:
+  - gin
+  - adesso_cms_theme
+'interface translation project': adesso_cms_installer
+'interface translation server pattern': profiles/%project/translations/%project.%language.po

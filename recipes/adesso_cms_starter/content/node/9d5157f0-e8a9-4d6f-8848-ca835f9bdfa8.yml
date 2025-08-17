@@ -95,6 +95,10 @@ default:
       alias: /news/2025-07/fast-jedes-zweite-unternehmen-sieht-sich-durch-cyberangriffe-existenziell-bedroht
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Cyberangriffe, wachsende regulatorische Anforderungen und disruptive Technologien stellen Unternehmen zunehmend vor sicherheitsrelevante Herausforderungen. Die von adesso und Statista erarbeitete neue Meta-Studie "Security neu gedacht: Resilienz, Compliance und KI als Zukunftsfaktoren" zeigt: Wer auch in Zukunft wettbewerbsfähig bleiben will, muss Cybersicherheit strategisch denken.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/fast-jedes-zweite-unternehmen-sieht-sich-durch-cyberangriffe-existenziell-bedroht.jsp" target="_blank">hier</a>.</p>'

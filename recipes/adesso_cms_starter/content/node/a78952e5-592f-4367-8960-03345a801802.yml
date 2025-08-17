@@ -137,6 +137,10 @@ default:
       alias: /news/2025-07/reachbird-influencer-marketing-map-2025-uebersicht-bringt-licht-den-anbieter-dschungel
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Der Markt für Influencer Marketing im deutschsprachigen Raum wächst ungebremst. Mit zunehmender Anzahl an Plattformen, Tools, Agenturen und Dienstleistern steigt jedoch auch die Komplexität für Marketingverantwortliche. Um eine bessere Orientierung zu ermöglichen, hat Reachbird, der Spezialist für datengetriebenes Influencer Marketing der adesso Group, erneut eine umfassende Marktübersicht erstellt: die Influencer Marketing Map 2025.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/reachbird-influencer-marketing-map-2025-uebersicht-bringt-licht-in-den-anbieter-dschungel.jsp" target="_blank">hier</a>.</p>'

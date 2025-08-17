@@ -1,0 +1,19 @@
+uuid: g7i2h4d6-ce9f-4g5h-di2j-6e8g1i3h5f7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.webform_embed
+id: paragraph.webform_embed.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: webform_embed
+label: 'Section Title'
+description: 'Optional title above the form.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

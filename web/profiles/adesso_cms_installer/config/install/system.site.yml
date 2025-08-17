@@ -1,0 +1,12 @@
+langcode: de
+name: 'adesso CMS'
+mail: admin@example.com
+slogan: 'Modern CMS mit KI-Integration'
+page:
+  403: /user/login
+  404: ''
+  front: /user
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: de
+mail_notification: null

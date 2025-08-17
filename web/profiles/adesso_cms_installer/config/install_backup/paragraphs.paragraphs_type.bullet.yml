@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bullet
+label: Bullet
+icon_uuid: null
+icon_default: null
+description: 'Item paragraph used to display icon list items within components.'
+behavior_plugins: {  }

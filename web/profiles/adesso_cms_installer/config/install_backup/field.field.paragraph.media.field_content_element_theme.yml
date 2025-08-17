@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_element_theme
+    - paragraphs.paragraphs_type.media
+id: paragraph.media.field_content_element_theme
+field_name: field_content_element_theme
+entity_type: paragraph
+bundle: media
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

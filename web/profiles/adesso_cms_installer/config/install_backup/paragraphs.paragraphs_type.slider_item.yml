@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: slider_item
+label: 'Slider item'
+icon_uuid: null
+icon_default: null
+description: 'Slider item for the Slider component.'
+behavior_plugins: {  }

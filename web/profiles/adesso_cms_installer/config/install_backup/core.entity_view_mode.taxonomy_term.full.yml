@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.full
+label: 'Seite des Taxonomiebegriffs'
+description: ''
+targetEntityType: taxonomy_term
+cache: true

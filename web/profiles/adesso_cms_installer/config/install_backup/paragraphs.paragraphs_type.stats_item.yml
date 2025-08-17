@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: stats_item
+label: 'Stats item'
+icon_uuid: null
+icon_default: null
+description: 'A list of title + summaries that belong to the stats block.'
+behavior_plugins: {  }

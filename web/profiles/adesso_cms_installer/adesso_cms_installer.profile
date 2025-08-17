@@ -37,6 +37,10 @@ function adesso_cms_installer_install_tasks(): array {
   }
 
   return [
+    'adesso_cms_installer_finalize_setup' => [
+      'display_name' => t('Finalizing setup'),
+      'type' => 'normal',
+    ],
     'adesso_cms_installer_uninstall_myself' => [
       // As a final task, this profile should uninstall itself.
     ],
@@ -303,6 +307,50 @@ function adesso_cms_installer_library_info_alter(array &$libraries, string $exte
   }
   if ($extension === 'core') {
     $libraries['drupal.progress']['js']["$base_path/js/progress.js"] = [];
+  }
+}
+
+/**
+ * Finalizes the adesso CMS setup after installation.
+ */
+function adesso_cms_installer_finalize_setup(): void {
+  // Enable custom modules that might not be automatically enabled
+  $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+  
+  $custom_modules = [
+    'adesso_cms_content',
+    'adesso_cms_blocks', 
+    'adesso_cms_starter'
+  ];
+  
+  foreach ($custom_modules as $module) {
+    if (!\Drupal::moduleHandler()->moduleExists($module)) {
+      try {
+        $module_installer->install([$module]);
+        \Drupal::logger('adesso_cms_installer')->info('Successfully enabled module: @module', ['@module' => $module]);
+      } catch (\Exception $e) {
+        \Drupal::logger('adesso_cms_installer')->warning('Could not enable module @module: @error', [
+          '@module' => $module,
+          '@error' => $e->getMessage()
+        ]);
+      }
+    }
+  }
+  
+  // Set default theme after everything is installed
+  $theme_handler = \Drupal::service('theme_handler');
+  if (!$theme_handler->themeExists('adesso_cms_theme')) {
+    try {
+      $theme_installer = \Drupal::service('theme_installer');
+      $theme_installer->install(['adesso_cms_theme']);
+      \Drupal::configFactory()
+        ->getEditable('system.theme')
+        ->set('default', 'adesso_cms_theme')
+        ->save();
+      \Drupal::logger('adesso_cms_installer')->info('Successfully set adesso_cms_theme as default theme');
+    } catch (\Exception $e) {
+      \Drupal::logger('adesso_cms_installer')->warning('Could not set default theme: @error', ['@error' => $e->getMessage()]);
+    }
   }
 }
 

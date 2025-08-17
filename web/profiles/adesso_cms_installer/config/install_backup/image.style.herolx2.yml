@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: herolx2
+label: 'Hero Large 2x'
+effects:
+  a666fdda-dfec-4c5b-aa2a-c67a294bfcb3:
+    uuid: a666fdda-dfec-4c5b-aa2a-c67a294bfcb3
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1536
+      height: 864
+      anchor: center-center

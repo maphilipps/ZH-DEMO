@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: herol
+label: 'Hero Large'
+effects:
+  5982e31c-0259-4b4b-bf01-0f708b50f482:
+    uuid: 5982e31c-0259-4b4b-bf01-0f708b50f482
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 766
+      height: 431
+      anchor: center-center

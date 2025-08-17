@@ -95,6 +95,10 @@ default:
       alias: /news/2025-06/adesso-projekte-gewinnen-fuenf-german-brand-awards-2025
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Fünf Awards, drei strahlende Marken, ein starker Umsetzungspartner: Gleich fünf Mal wurden Projekte von adesso mit dem German Brand Award 2025 ausgezeichnet. Die Auszeichnungen erhielten die adesso-Kunden Borussia Dortmund, VPV Versicherungen und Deutscher Handballbund – einer davon in der höchsten Kategorie "Best of Best".</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/adesso-projekte-gewinnen-fuenf-german-brand-awards-2025.jsp" target="_blank">hier</a>.</p>'

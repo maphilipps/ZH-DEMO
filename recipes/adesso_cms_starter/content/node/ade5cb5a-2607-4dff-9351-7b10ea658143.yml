@@ -95,6 +95,10 @@ default:
       alias: /events/sap-executive-dinner-fuer-life-sciences-prozessindustrie
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Ein exklusives Dinner-Event für Entscheider aus Life Sciences und Prozessindustrie. Diskutieren Sie aktuelle SAP-Trends und branchenspezifische Herausforderungen.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/veranstaltungen/sap-executive-dinner-fuer-life-sciences-prozessindustrie.jsp" target="_blank">hier</a>.</p>'

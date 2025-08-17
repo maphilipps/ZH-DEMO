@@ -95,6 +95,10 @@ default:
       alias: /news/2025-07/10-jahre-reachbird-vom-start-zum-innovationsfuehrer-im-influencer-marketing
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Die Influencer-Marketing-Agentur Reachbird feiert ihr zehnjähriges Bestehen. Das im Jahr 2015 aus einem Universitätsprojekt hervorgegangene und seit 2021 zur adesso SE gehörende Unternehmen zählt heute zu den führenden Anbietern von Services im Bereich Influencer Marketing im DACH-Raum.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/10-jahre-reachbird-vom-start-up-zum-innovationsfuehrer-im-influencer-marketing.jsp" target="_blank">hier</a>.</p>'

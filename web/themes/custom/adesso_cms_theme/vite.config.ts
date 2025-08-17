@@ -9,16 +9,18 @@ import sdcPlugin from './.storybook/sdc-plugin.js';
 const componentDir = resolve(import.meta.dirname, './components');
 
 const port = 5173;
-const origin = `https://adesso-cms.ddev.site:${port}`;
+const isDDEV = process.env.DDEV_PROJECT_TYPE ? true : false;
 
-// Function to determine origin based on request
-const getOrigin = (req: any) => {
-  const host = req.headers.host;
-  if (host === 'web' || host === 'adesso-cms-web' || host?.match(/^172\.19\.0\.\d+/)) {
-    return `http://${host}:${port}`;
+// Use DDEV's primary URL for development origin
+const getDDEVOrigin = () => {
+  if (!isDDEV || !process.env.DDEV_PRIMARY_URL) {
+    return `http://localhost:${port}`;
   }
-  return origin;
+  // Remove any existing port from DDEV_PRIMARY_URL and add our Vite port
+  return `${process.env.DDEV_PRIMARY_URL.replace(/:\d+$/, "")}:${port}`;
 };
+
+const origin = getDDEVOrigin();
 
 export default defineConfig({
   plugins: [
@@ -66,30 +68,8 @@ export default defineConfig({
     port: port,
     strictPort: true,
     origin: origin,
-    allowedHosts: [
-      '.ddev.site',
-      'web',
-      'adesso-cms-web',
-      '172.19.0.5',
-      '172.18.0.4',
-      'localhost',
-      'backstop'
-    ],
     cors: {
-      origin: [
-        /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
-        /https?:\/\/web(:\d+)?$/,
-        /https?:\/\/172\.19\.0\.\d+(:\d+)?$/,
-        /https?:\/\/adesso-cms-web(:\d+)?$/,
-        /https?:\/\/localhost(:\d+)?$/,
-        /http?:\/\/backstop(:\d+)?$/
-      ]
-    },
-    // Enhanced HMR configuration for better DDEV integration
-    hmr: {
-      host: 'adesso-cms.ddev.site',
-      port: port,
-      clientPort: port
+      origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
     },
     // Watch additional file types for better HMR
     watch: {

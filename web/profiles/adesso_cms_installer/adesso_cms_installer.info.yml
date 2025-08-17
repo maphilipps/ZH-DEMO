@@ -1,16 +1,57 @@
 name: adesso CMS Installer
 type: profile
-core_version_requirement: '>=10.3'
-description: 'Provides install-time tweaks for adesso CMS. Not to be used in production.'
+core_version_requirement: '>=11.2'
+description: 'Complete adesso CMS installation profile with AI integration, content management, and modern frontend capabilities.'
 # Drupal CMS isn't a distribution, but we need to use this `distribution` key in order
 # to skip the installer's profile selection step.
 distribution:
   name: adesso CMS
   install:
-    finish_url: '/admin/dashboard/welcome'
-# Explicitly provide an empty list of themes -- this prevents the installer from
-# injecting Stark into it.
-# @see install_profile_info()
-themes: []
+    finish_url: '/admin'
+
+# Drupal 11 compatible dependencies with webform 6.3.0-beta4
+dependencies:
+  # Core modules (essential)
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:field
+  - drupal:file
+  - drupal:image
+  - drupal:media
+  - drupal:text
+  - drupal:link
+  - drupal:taxonomy
+  - drupal:menu_ui
+  - drupal:menu_link_content
+  - drupal:block
+  - drupal:block_content
+  - drupal:views
+  - drupal:filter
+  - drupal:editor
+  - drupal:ckeditor5
+  - drupal:path
+  - drupal:path_alias
+  - drupal:page_cache
+  - drupal:dynamic_page_cache
+  - drupal:big_pipe
+  - drupal:dblog
+  - drupal:update
+  - drupal:help
+  - drupal:datetime
+  - drupal:options
+  # Required for webform configs in optional
+  - drupal:filter
+  - drupal:editor  
+  - drupal:ckeditor5
+  # Webform module (Drupal 11 compatible beta4)
+  - webform:webform
+
+# Themes to install
+# Note: Themes are installed via hook_install in .profile file
+# after all modules are installed to avoid dependency issues
+themes:
+  - gin
+  
 'interface translation project': adesso_cms_installer
 'interface translation server pattern': profiles/%project/translations/%project.%language.po

@@ -1,0 +1,38 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - dashboard.dashboard.welcome
+    - filter.format.basic_html
+    - filter.format.webform_default
+  module:
+    - captcha
+    - coffee
+    - dashboard
+    - file
+    - filter
+    - honeypot
+    - klaro
+    - media
+    - node
+    - shortcut
+    - sitemap
+    - system
+id: authenticated
+label: 'Angemeldeter Benutzer'
+weight: 1
+is_admin: false
+permissions:
+  - 'access coffee'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access sitemap'
+  - 'bypass honeypot protection'
+  - 'delete own files'
+  - 'skip CAPTCHA'
+  - 'use klaro'
+  - 'use text format basic_html'
+  - 'use text format webform_default'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view welcome dashboard'

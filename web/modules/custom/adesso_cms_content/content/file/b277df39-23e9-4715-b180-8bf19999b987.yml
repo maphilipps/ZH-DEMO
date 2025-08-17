@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b277df39-23e9-4715-b180-8bf19999b987
+  default_langcode: de
+default:
+  uid:
+    -
+      target_id: 0
+  filename:
+    -
+      value: pricing-default-icon_34.png
+  uri:
+    -
+      value: 'public://paragraphs_type_icon/pricing-default-icon_34.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 34683
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1754291052

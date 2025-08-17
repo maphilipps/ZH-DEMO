@@ -21,7 +21,7 @@ bundle: webform_embed
 mode: default
 content:
   field_webform:
-    type: webform
+    type: webform_entity_reference_entity_view
     weight: 100
     region: content
     label: hidden

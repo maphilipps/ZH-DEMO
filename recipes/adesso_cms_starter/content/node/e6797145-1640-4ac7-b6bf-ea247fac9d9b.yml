@@ -95,6 +95,10 @@ default:
       alias: /news/2025-06/fuenf-schritten-zu-einer-europaeischen-genai-loesung-wechseln
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>Viele Unternehmen wünschen sich europäische Alternativen zu den marktbeherrschenden GenAI-Angeboten aus den USA oder China. Die Motive sind vielfältig: rechtliche Anforderungen, Datenschutzbedenken und strategische Unabhängigkeit. Der IT-Dienstleister adesso zeigt, wie eine Multi-KI-Strategie gelingen kann.</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/in-fuenf-schritten-zu-einer-europaeischen-genai-loesung-wechseln.jsp" target="_blank">hier</a>.</p>'

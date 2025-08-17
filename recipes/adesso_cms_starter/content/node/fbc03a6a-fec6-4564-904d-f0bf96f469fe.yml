@@ -95,6 +95,10 @@ default:
       alias: /news/2025-07/adesso-erhaelt-sap-zertifizierungen-fuer-operations-partner
       langcode: de
       pathauto: 1
+  field_description:
+  field_description:
+    -
+      value: ' - Weitere Informationen zu dieser adesso Initiative finden Sie in der vollständigen Pressemitteilung.'
   field_content:
     -
       value: '<p>adesso, einer der führenden IT-Dienstleister in Deutschland, hat im Rahmen des Programms SAP Operations Partner vier bedeutende SAP-Zertifizierungen erhalten: "SAP S/4HANA Solutions Operations and Works with RISE with SAP", "SAP SuccessFactors Solutions Operations", "SAP BTP Operations and Works with RISE with SAP" sowie "BPO Operations".</p><p>Weitere Informationen finden Sie <a href="https://www.adesso.de/de/news/presse/adesso-erhaelt-sap-zertifizierungen-fuer-operations-partner.jsp" target="_blank">hier</a>.</p>'

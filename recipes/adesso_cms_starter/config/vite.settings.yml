@@ -1,0 +1,4 @@
+dev_server_enabled: '1'
+dev_server_url: 'https://adesso-cms.ddev.site:5173'
+use_ssl: '1'
+auto_reload: '1'

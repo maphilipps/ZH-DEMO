@@ -1,0 +1,28 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - block_content.type.social_media
+    - field.storage.block_content.field_social_media
+    - media.type.image_with_link
+id: block_content.social_media.field_social_media
+field_name: field_social_media
+entity_type: block_content
+bundle: social_media
+label: 'Social Media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image_with_link: image_with_link
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

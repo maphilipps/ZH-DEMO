@@ -1,0 +1,10 @@
+langcode: de
+status: false
+dependencies:
+  module:
+    - node
+id: node.search_index
+label: Suchindex
+description: ''
+targetEntityType: node
+cache: true

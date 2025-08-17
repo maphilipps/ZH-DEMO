@@ -1,0 +1,54 @@
+name: adesso CMS Installer
+type: profile
+core_version_requirement: '>=11.2'
+description: 'Complete adesso CMS installation profile with AI integration, content management, and modern frontend capabilities.'
+# Drupal CMS isn't a distribution, but we need to use this `distribution` key in order
+# to skip the installer's profile selection step.
+distribution:
+  name: adesso CMS
+  install:
+    finish_url: '/admin/dashboard/welcome'
+
+# Core dependencies (minimal working set)
+dependencies:
+  # Essential core modules only
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:field
+  - drupal:file
+  - drupal:image
+  - drupal:media
+  - drupal:text
+  - drupal:link
+  - drupal:taxonomy
+  - drupal:menu_ui
+  - drupal:menu_link_content
+  - drupal:block
+  - drupal:views
+  - drupal:filter
+  - drupal:editor
+  - drupal:ckeditor5
+  - drupal:path
+  - drupal:path_alias
+  - drupal:page_cache
+  - drupal:dynamic_page_cache
+  - drupal:big_pipe
+  - drupal:dblog
+  - drupal:update
+  - drupal:help
+  - drupal:language
+  - drupal:locale
+  - drupal:responsive_image
+  - drupal:breakpoint
+  - drupal:datetime
+  - drupal:options
+  - drupal:inline_form_errors
+
+# Themes to install
+themes:
+  - gin
+  - adesso_cms_theme
+  
+'interface translation project': adesso_cms_installer
+'interface translation server pattern': profiles/%project/translations/%project.%language.po

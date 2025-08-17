@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: pricing_card
+label: 'Pricing card'
+icon_uuid: null
+icon_default: null
+description: 'Card with basic information and bullets about a product or service.'
+behavior_plugins: {  }

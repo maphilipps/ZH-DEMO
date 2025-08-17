@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: carousel_item
+label: 'Carousel item'
+icon_uuid: null
+icon_default: null
+description: 'Carousel item for the Carousel component.'
+behavior_plugins: {  }

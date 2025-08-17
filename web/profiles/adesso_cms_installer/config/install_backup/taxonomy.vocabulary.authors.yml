@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Authors
+vid: authors
+description: 'Content authors.'
+weight: 0
+new_revision: false

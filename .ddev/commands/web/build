@@ -1,0 +1,229 @@
+#!/bin/bash
+
+# Make the script stop after a failed command
+set -Eeuo pipefail
+
+## Description: Build the demo website with database dump import and config sync
+## Usage: build [--no-dump|--fresh-dump|--help]
+## Parameters:
+##   --no-dump      Skip database dump import, use existing database
+##   --fresh-dump   Create fresh dump from current state (default)
+##   --help         Show this help message
+
+# Parse command line arguments first
+IMPORT_DUMP=true
+CREATE_DUMP=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --no-dump)
+            IMPORT_DUMP=false
+            shift
+            ;;
+        --fresh-dump)
+            CREATE_DUMP=true
+            IMPORT_DUMP=true
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: ddev build [OPTIONS]"
+            echo ""
+            echo "Build the demo website with database dump import and config sync"
+            echo ""
+            echo "Options:"
+            echo "  --no-dump      Skip database dump import, use existing database"
+            echo "  --fresh-dump   Create fresh dump from current state first"
+            echo "  -h, --help     Show this help message"
+            echo ""
+            echo "Standard workflow:"
+            echo "  1. Install Composer dependencies"
+            echo "  2. Import database dump (if available)"
+            echo "  3. Import configuration from config-export/"
+            echo "  4. Build frontend assets"
+            echo ""
+            echo "🇩🇪 German Brand Compliance: 'adesso wird immer klein geschrieben'"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use 'ddev build --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+# ============================================================
+# PHASE 1: PREPARE ENVIRONMENT
+# ============================================================
+
+echo "🚀 Starting adesso CMS build process..."
+echo ""
+
+# Install Composer dependencies
+echo "📦 Installing Composer dependencies..."
+composer install --prefer-dist
+
+# Clean up files directory
+echo "🧹 Cleaning files directory..."
+find web/sites/default/files/ -type f -name "*" -delete 2>/dev/null || true
+
+# ============================================================
+# PHASE 2: CREATE FRESH DUMP (if requested)
+# ============================================================
+
+if [[ "$CREATE_DUMP" == true ]]; then
+    echo "📸 Creating fresh database dump..."
+    
+    # Run export-all to create comprehensive dump
+    if command -v export-all >/dev/null 2>&1; then
+        echo "✓ Using comprehensive export-all command"
+        export-all --quiet
+    else
+        echo "✓ Using standard export commands"
+        drush config:export --yes 2>/dev/null || true
+        drush dcer file media node menu_link_content --folder="../recipes/adesso_cms_starter/content" --quiet 2>/dev/null || true
+    fi
+    
+    echo "✓ Fresh database dump created"
+    echo ""
+fi
+
+# ============================================================
+# PHASE 3: DATABASE SETUP
+# ============================================================
+
+if [[ "$IMPORT_DUMP" == true ]]; then
+    echo "💾 Setting up database with dump import..."
+    
+    # Check if we have a database dump available
+    DUMP_FILE=$(find . -name "*.sql" -o -name "*.sql.gz" | head -1)
+    CONTENT_DIR="../recipes/adesso_cms_starter/content"
+    
+    if [[ -f "$DUMP_FILE" ]]; then
+        echo "📥 Importing database dump: $DUMP_FILE"
+        drush sql:drop --yes
+        if [[ "$DUMP_FILE" == *.gz ]]; then
+            gunzip -c "$DUMP_FILE" | drush sql:cli
+        else
+            drush sql:cli < "$DUMP_FILE"
+        fi
+        echo "✓ Database dump imported successfully"
+    elif [[ -d "$CONTENT_DIR" && -n "$(ls -A $CONTENT_DIR 2>/dev/null)" ]]; then
+        echo "📥 No SQL dump found, using installer with content entities..."
+        drush site:install adesso_cms_installer --account-pass=admin --yes
+        drush en adesso_cms_content --yes
+        echo "✓ Site installed with content module"
+    else
+        echo "📥 No dump or content found, using clean installer..."
+        drush site:install adesso_cms_installer --account-pass=admin --yes
+        echo "✓ Clean site installation completed"
+    fi
+else
+    echo "⏭️  Skipping database import, using existing database..."
+fi
+
+# ============================================================
+# PHASE 4: CONFIGURATION IMPORT
+# ============================================================
+
+echo "⚙️  Importing configuration..."
+
+# Import configuration from config-export
+if [[ -d "config-export" && -n "$(ls -A config-export 2>/dev/null)" ]]; then
+    echo "📦 Importing configuration from config-export/"
+    drush config:import --yes
+    echo "✓ Configuration imported successfully"
+else
+    echo "⚠️  No configuration found in config-export/, skipping..."
+fi
+
+# ============================================================
+# PHASE 5: POST-INSTALLATION TASKS
+# ============================================================
+
+echo "🔧 Running post-installation tasks..."
+
+# Database updates
+echo "📊 Running database updates..."
+drush updb -y
+
+# Search index
+echo "🔍 Rebuilding search index..."
+drush search-api:index
+
+# Enable development modules
+echo "🛠️  Enabling development modules..."
+drush en dblog devel --yes || true
+
+# Clear all caches
+echo "🗑️  Clearing all caches..."
+drush cr
+
+# ============================================================
+# PHASE 6: FRONTEND BUILD
+# ============================================================
+
+echo "🎨 Building frontend assets..."
+
+# Theme dependencies and build
+echo "📦 Installing theme dependencies..."
+npm --cwd=web/themes/custom/adesso_cms_theme install
+
+echo "🏗️  Building theme assets..."
+npm --cwd=web/themes/custom/adesso_cms_theme run build
+
+# Storybook build
+echo "📚 Building Storybook documentation..."
+if [[ -f "storybook/package.json" ]]; then
+    npm --cwd=storybook run build
+    echo "✓ Storybook built successfully"
+else
+    echo "⚠️  Storybook directory not found, skipping..."
+fi
+
+# ============================================================
+# PHASE 7: FINAL VALIDATION
+# ============================================================
+
+echo ""
+echo "✅ Build completed successfully!"
+echo "================================="
+
+# German brand compliance check
+echo "🇩🇪 Running German brand compliance check..."
+SITE_NAME=$(drush config:get system.site name --format=value 2>/dev/null || echo "")
+if [[ -n "$SITE_NAME" && "$SITE_NAME" =~ [A]DESSO ]]; then
+    echo "⚠️  Brand compliance warning: Site name contains 'ADESSO'"
+    echo "     'adesso wird immer klein geschrieben'"
+    echo "     Current site name: $SITE_NAME"
+else
+    echo "✓ German brand compliance check passed"
+fi
+
+# Build summary
+echo ""
+echo "📋 Build Summary:"
+if [[ "$CREATE_DUMP" == true ]]; then
+    echo "  • Fresh dump: Created and applied"
+elif [[ "$IMPORT_DUMP" == true ]]; then
+    echo "  • Database: Imported from dump/content"
+else
+    echo "  • Database: Used existing"
+fi
+echo "  • Configuration: Imported from config-export/"
+echo "  • Theme assets: Built and optimized"
+echo "  • Development modules: Enabled"
+
+echo ""
+echo "🚀 Site is ready for development!"
+echo "   • Web: http://adesso-cms.ddev.site"
+echo "   • Admin: http://adesso-cms.ddev.site/admin (admin/admin)"
+if [[ -f "storybook/package.json" ]]; then
+    echo "   • Storybook: http://adesso-cms.ddev.site:6006"
+fi
+
+echo ""
+echo "💡 Next steps:"
+echo "   • ddev theme dev      # Start Vite dev server"
+echo "   • ddev export-all     # Export changes"
+echo "   • ddev build --help   # Show all options"

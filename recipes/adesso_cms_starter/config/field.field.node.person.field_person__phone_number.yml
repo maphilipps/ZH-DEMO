@@ -8,7 +8,7 @@ dependencies:
   module:
     - telephone
 _core:
-  default_config_hash: aKoFFFulBhN_4i1dJfm46K-lvVfW3uo2x8Se1BNtq4c
+  default_config_hash: Fan1jUm823__N975Ggc-TEh0YuySs6FH3WGieKX8UwA
 id: node.person.field_person__phone_number
 field_name: field_person__phone_number
 entity_type: node

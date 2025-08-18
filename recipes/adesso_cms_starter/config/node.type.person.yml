@@ -26,7 +26,7 @@ third_party_settings:
   search_api_exclude:
     enabled: true
 _core:
-  default_config_hash: Hbo2FEMZJSC6rwTxOyljMwMkiClqbRPXcixxAOBNZTk
+  default_config_hash: xMaph5GeZkzwPpCnM540iDGGD68C8MSHzvSvOtKkiVQ
 name: 'Person profile'
 type: person
 description: 'Person profile content provides information about a person.'

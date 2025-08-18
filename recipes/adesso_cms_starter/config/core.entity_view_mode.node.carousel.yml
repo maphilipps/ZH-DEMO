@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: 2xrlCxvPxG_O_-7lJBgEgthB3u9hROIVaA2dI1jo9Bw
+  default_config_hash: iLmnxNZuH-UUVfneABeHFEBBZy51aWVunXUmn-4xDso
 id: node.carousel
 label: Carousel
 description: ''

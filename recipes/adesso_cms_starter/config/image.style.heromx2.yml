@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: GAHvDVDelyn08kyK4kHBgz-7xQNftQV1HbQWhSXYSLo
+  default_config_hash: uad_bfWNY9WOsWhxzrIcfYjqmZuFJV1BdF9FCp6nUPw
 name: heromx2
 label: 'Hero Medium 2x'
 effects:

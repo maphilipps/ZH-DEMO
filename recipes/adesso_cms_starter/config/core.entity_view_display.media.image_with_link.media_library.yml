@@ -11,7 +11,7 @@ dependencies:
   module:
     - svg_image
 _core:
-  default_config_hash: EaSNfKDnjg0dXtz03Y97wPM_DIXDRn9WaL7O_dVKIHQ
+  default_config_hash: A-SYxBaYPi0vBwMpTUZnRRFXFMcOCpUABVLOWhB5euc
 id: media.image_with_link.media_library
 targetEntityType: media
 bundle: image_with_link

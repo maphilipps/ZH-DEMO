@@ -3,17 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.sidebyside.field_content_element_theme
-    - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
     - field.field.paragraph.sidebyside.field_pre_headline
     - field.field.paragraph.sidebyside.field_sidebyside_layout
     - field.field.paragraph.sidebyside.field_summary
+    - field.field.paragraph.sidebyside.field_theme
     - field.field.paragraph.sidebyside.field_title
     - paragraphs.paragraphs_type.sidebyside
   module:
-    - entity_reference_revisions
     - link
     - options
     - text
@@ -33,15 +31,6 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_features:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 7
     region: content
   field_link:
     type: link
@@ -85,6 +74,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_title:
     type: string

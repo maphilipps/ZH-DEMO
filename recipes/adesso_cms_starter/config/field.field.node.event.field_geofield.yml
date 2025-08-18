@@ -25,7 +25,7 @@ third_party_settings:
       status_message: true
       log: true
 _core:
-  default_config_hash: hSZkqS2xB73CZbPEc88AvSvkyyQ_v5CeGwpwj4r5320
+  default_config_hash: 82XghPhmZD-NlvDesjlUhSPynGy9LkPnKGogh4Dhjq8
 id: node.event.field_geofield
 field_name: field_geofield
 entity_type: node

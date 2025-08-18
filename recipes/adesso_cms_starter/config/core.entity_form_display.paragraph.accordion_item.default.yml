@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.accordion_item.field_body
     - field.field.paragraph.accordion_item.field_link
+    - field.field.paragraph.accordion_item.field_theme
     - field.field.paragraph.accordion_item.field_title
     - paragraphs.paragraphs_type.accordion_item
   module:
@@ -34,6 +35,12 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

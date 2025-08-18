@@ -8,7 +8,7 @@ dependencies:
   module:
     - image
 _core:
-  default_config_hash: WavvV6qGpmSFrtxRBXQvl0mNMlbra9GilEVUq4R1PhQ
+  default_config_hash: 8m-6-Xt2Y0AIwbGD2gAk0tNWp7Bc7z6g5rqT_m22Pjk
 id: media.svg_image.field_image
 field_name: field_image
 entity_type: media

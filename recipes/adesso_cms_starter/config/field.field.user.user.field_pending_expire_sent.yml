@@ -10,7 +10,7 @@ dependencies:
     module:
       - password_policy
 _core:
-  default_config_hash: gODB3M8iS0U4n5vEq4rD3HZPW5LTUbjCUhJFtQvYI8c
+  default_config_hash: TjWZHnxPUcNAutsGkxfAdcIUF2ElwhvpbYqM0d7CZcc
 id: user.user.field_pending_expire_sent
 field_name: field_pending_expire_sent
 entity_type: user

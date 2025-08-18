@@ -1,4 +1,4 @@
-uuid: 518a4d1b-4655-4fb8-b76d-348b2f9ad6c3
+uuid: 325ff32c-f701-41cf-9fe2-b83e64af419f
 langcode: de
 status: false
 dependencies:
@@ -6,6 +6,7 @@ dependencies:
     - system.menu.admin
   module:
     - media
+    - smart_date
     - user
   enforced:
     module:

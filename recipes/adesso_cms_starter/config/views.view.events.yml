@@ -12,7 +12,7 @@ dependencies:
     - smart_date
     - user
 _core:
-  default_config_hash: T_CXgO1IOByqYZFR5QFMVPvrYnY6wabVDMLxu9bqV6I
+  default_config_hash: 02160MlFZqipMJLBl1_zOo3A6TBJgIGs0VW5wUHvj9A
 id: events
 label: Events
 module: views

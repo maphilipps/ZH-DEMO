@@ -8,7 +8,7 @@ dependencies:
     config:
       - node.type.news
 _core:
-  default_config_hash: _qA8WrVzh9O6e6ZQ749ab43DuA6ZjNIsxzuV8aw5nTY
+  default_config_hash: v7IJ11kdADX918tt4vBFlKDYz7WYKwumOOUrBPOdxRE
 id: news_content
 label: 'News content'
 type: 'canonical_entities:node'

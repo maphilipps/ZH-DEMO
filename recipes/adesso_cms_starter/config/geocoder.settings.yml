@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: uKetXXp8VLLSYVVaRV8Ks2zgEimGkRYov1nTN7G0s0Y
+  default_config_hash: VbUHLGAVo1M49HN7zmNVIWGXyhIIPWWro312oMZZTpA
 geocoder_presave_disabled: false
 cache: true
 queue: false

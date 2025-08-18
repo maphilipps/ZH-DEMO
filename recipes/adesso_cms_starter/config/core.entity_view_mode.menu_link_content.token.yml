@@ -4,6 +4,8 @@ status: true
 dependencies:
   module:
     - menu_link_content
+_core:
+  default_config_hash: OaK4PaVkFyjvb3_90JAbqm3TrLs94onNrH02Lv1RSiE
 id: menu_link_content.token
 label: Token
 description: null

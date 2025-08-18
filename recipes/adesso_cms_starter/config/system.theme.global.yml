@@ -14,3 +14,4 @@ logo:
   path: ''
   url: null
   use_default: true
+debug: 'false'

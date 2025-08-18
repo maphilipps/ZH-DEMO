@@ -46,7 +46,7 @@ third_party_settings:
         description: ''
         required_fields: false
 _core:
-  default_config_hash: SGwDpa93S58TTCu13EPWsrx0598jFi9GDkzUAn9475A
+  default_config_hash: IQ4G0H_DCtX4GCn9O25RFYeE7VjYhhp8sGunPD6faiM
 id: node.project.default
 targetEntityType: node
 bundle: project
@@ -239,5 +239,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  layout_builder__layout: true
   publish_state: true
   unpublish_state: true

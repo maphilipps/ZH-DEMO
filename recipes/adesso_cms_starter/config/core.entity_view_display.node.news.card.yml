@@ -21,7 +21,7 @@ third_party_settings:
     enabled: false
     allow_custom: false
 _core:
-  default_config_hash: rhL22Q4E4ncykTZ8FIoOv0RdWm35vWNQqFmeO_uIipw
+  default_config_hash: 5uk7NLSxY5pj0AJ_qbiAF2L7csCUpFXm2a4gKqZTeA8
 id: node.news.card
 targetEntityType: node
 bundle: news
@@ -38,7 +38,7 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: 16_9_medium
+      view_mode: 2_3_medium
       link: false
     third_party_settings: {  }
     weight: 0

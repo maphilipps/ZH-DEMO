@@ -4,12 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.carousel.field_carousel_item
+    - field.field.paragraph.carousel.field_pre_headline
+    - field.field.paragraph.carousel.field_theme
+    - field.field.paragraph.carousel.field_title
     - paragraphs.paragraphs_type.carousel
   module:
     - paragraphs
     - paragraphs_features
 _core:
-  default_config_hash: 6tT6Z1tgFsbI00wbzhxXi4NGw_Qdv5oePy-Jb1g8RLQ
+  default_config_hash: n-QEfKLmzic7Er2HDTdBpzt0oKJtMWiQOzlVpSWhyk8
 id: paragraph.carousel.default
 targetEntityType: paragraph
 bundle: carousel
@@ -39,6 +42,28 @@ content:
         delete_confirmation: false
         show_drag_and_drop: true
         split_text: false
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
   created: true
   info: true

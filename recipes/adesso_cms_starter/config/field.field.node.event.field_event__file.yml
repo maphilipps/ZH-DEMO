@@ -7,7 +7,7 @@ dependencies:
     - media.type.document
     - node.type.event
 _core:
-  default_config_hash: gLq9_RSdxJQgAV7CVnJ1K-eh3jBvzsQXCngl0NX8h1M
+  default_config_hash: uhaXIP_rQtPHHNRD0KJXXdsUg-zE-4ftlNaX2pVkuDc
 id: node.event.field_event__file
 field_name: field_event__file
 entity_type: node

@@ -1,4 +1,4 @@
-uuid: 356d04e3-27b0-4c6c-aebc-b5cb0587a674
+uuid: c378f1c6-182d-4f3d-bd2f-77e810a8d145
 langcode: de
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: mPWBT52fKHyINRl9S3cCWFxY3rKbwkIRxaK6sIA26oo
 id: webform_submission_make_sticky_action
-label: 'Star/flag submission'
+label: 'Formularübermittlung kennzeichnen/markieren'
 type: webform_submission
 plugin: webform_submission_make_sticky_action
 configuration: {  }

@@ -1,11 +1,11 @@
-uuid: 1d8746d8-d3f9-41d9-92e1-a91f71f154f6
+uuid: 6f57543b-3529-4cbe-a727-37e6622d9eb2
 langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: UZvIaJZ9a4oUBjO5V8LwEPQ79XLbmxkCXypYc703v2g
+  default_config_hash: j0gQIr7B1P1LqNRq2lZ9VoLkD6MZo3EkShOC9J79jSc
 name: ai_image_alt_text
-label: 'KI Bild Alt-Text'
+label: 'AI Image Alt Text'
 effects:
   6c9c9f31-ab65-41b2-bd39-bac4c63433aa:
     uuid: 6c9c9f31-ab65-41b2-bd39-bac4c63433aa

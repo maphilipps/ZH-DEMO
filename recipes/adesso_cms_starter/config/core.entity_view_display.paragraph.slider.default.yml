@@ -3,13 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.slider.field_content_element_theme
     - field.field.paragraph.slider.field_pre_headline
     - field.field.paragraph.slider.field_slider_item
+    - field.field.paragraph.slider.field_theme
     - field.field.paragraph.slider.field_title
     - paragraphs.paragraphs_type.slider
   module:
     - entity_reference_revisions
+    - options
 _core:
   default_config_hash: VtzRWWrr6VIKWNZ5hu5VytEgvAg4iBtc-EnGccfJdBk
 id: paragraph.slider.default
@@ -33,6 +34,13 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_title:
     type: string

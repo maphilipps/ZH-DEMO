@@ -1,4 +1,4 @@
-uuid: 63170495-17e0-474d-b591-06b0a0e4aa8d
+uuid: 9e1c60ce-a01e-4901-8880-1a196746d631
 langcode: de
 status: true
 dependencies:
@@ -7,9 +7,11 @@ dependencies:
     - filter.format.basic_html
     - filter.format.webform_default
   module:
+    - ai_ckeditor
     - captcha
     - coffee
     - dashboard
+    - dropzonejs
     - file
     - filter
     - honeypot
@@ -32,7 +34,9 @@ permissions:
   - 'access sitemap'
   - 'bypass honeypot protection'
   - 'delete own files'
+  - 'dropzone upload files'
   - 'skip CAPTCHA'
+  - 'use ai ckeditor'
   - 'use klaro'
   - 'use text format basic_html'
   - 'use text format webform_default'

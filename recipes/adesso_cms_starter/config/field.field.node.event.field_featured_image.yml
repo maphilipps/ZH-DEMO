@@ -7,7 +7,7 @@ dependencies:
     - media.type.image
     - node.type.event
 _core:
-  default_config_hash: X1nlUd7o05Feph63wZ5gOYiiemFFvalJW6x-x9vQz1c
+  default_config_hash: QKc4lwsBL0yda7sCVLmqgGVGFYzoZox7ivBv5VrcOQ0
 id: node.event.field_featured_image
 field_name: field_featured_image
 entity_type: node

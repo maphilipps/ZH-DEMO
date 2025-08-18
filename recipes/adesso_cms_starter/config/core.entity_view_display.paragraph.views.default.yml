@@ -3,14 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.views.field_content_element_theme
     - field.field.paragraph.views.field_link
     - field.field.paragraph.views.field_pre_headline
+    - field.field.paragraph.views.field_theme
     - field.field.paragraph.views.field_title
     - field.field.paragraph.views.field_views_ref
     - paragraphs.paragraphs_type.views
   module:
     - link
+    - options
     - viewfield
 _core:
   default_config_hash: 1D8_DgPwHSohfw6cfd8w0uRdL0wiVw13Tv6Gg2bUq7g
@@ -38,6 +39,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_title:
     type: string

@@ -1,0 +1,160 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d627c13d-e55f-4f51-b14b-e7fa6cf3fdbc
+  bundle: event
+  default_langcode: de
+  depends:
+    06491728-fa04-4622-9840-995e3cf64be5: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Wolfsburg Tomorrow'
+  created:
+    -
+      value: 1754291468
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Wolfsburg Tomorrow | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/events/wolfsburg-tomorrow'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/db2022nr00004-large-1_W2560xH1440_CUTOUT%20%281%29.jpg.webp?itok=5qvsn1kK'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Wolfsburg Tomorrow'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Re:Defined – Local.Global.Together'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/db2022nr00004-large-1_W2560xH1440_CUTOUT%20%281%29.jpg.webp?itok=5qvsn1kK'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:43:23+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Re:Defined – Local.Global.Together'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Wolfsburg Tomorrow'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/db2022nr00004-large-1_W2560xH1440_CUTOUT%20%281%29.jpg.webp?itok=oRaYxrCh'
+  path:
+    -
+      alias: /events/wolfsburg-tomorrow
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<p>Wolfsburg steht wie kaum eine andere Stadt für Wandel, Innovation und Mobilität. Mit unserer neuen Eventreihe Wolfsburg Tomorrow möchten wir gemeinsam mit Ihnen den Blick nach vorn richten: auf die Herausforderungen und Chancen der digitalen und automobilen Transformation – lokal wie global.</p><p>Unter dem Leitgedanken „Re:Defined – Local.Global.Together“ schaffen wir eine Plattform für Austausch, Inspiration und Vernetzung zwischen Wirtschaft, Technologie und Gesellschaft.</p><p>Wir laden Sie herzlich zur ersten Ausgabe von Wolfsburg Tomorrow ein!</p><ul><li>Donnerstag, 4. September 2025</li><li>Courtyard Hotel, Am Allersee 1, Wolfsburg</li></ul>'
+      format: content_format
+  field_description:
+    -
+      value: 'Re:Defined – Local.Global.Together'
+  field_event__date:
+    -
+      value: 1756994400
+      end_value: 1757008800
+      duration: 60
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__location_name:
+    -
+      value: Wolfsburg
+  field_featured_image:
+    -
+      target_id: 06491728-fa04-4622-9840-995e3cf64be5

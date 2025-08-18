@@ -21,9 +21,12 @@ dependencies:
     - media
     - text
     - user
-third_party_settings: {  }
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: Dr5lkg-RMib3t67rieViLEtFOHsYLzdXUqvOQJ4rW-8
+  default_config_hash: zn_AXjxDUGBt-kAgrEX17oOcH9t8isAIE4YDxL9SMIg
 id: node.project.default
 targetEntityType: node
 bundle: project

@@ -24,7 +24,7 @@ third_party_settings:
     enabled: false
     allow_custom: false
 _core:
-  default_config_hash: D6XOpjz4kMMweIl8FmW6rqW4o_LYaXoPJlaRqKACpd8
+  default_config_hash: gxqpkDKmoIEOTVc3xjndOFfX6-7N3NSgGffBG3iQkM8
 id: node.person.teaser
 targetEntityType: node
 bundle: person

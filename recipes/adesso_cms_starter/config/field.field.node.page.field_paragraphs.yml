@@ -5,10 +5,33 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.page
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.block_reference
+    - paragraphs.paragraphs_type.card_group
+    - paragraphs.paragraphs_type.carousel
+    - paragraphs.paragraphs_type.download
+    - paragraphs.paragraphs_type.embed
+    - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.hero
+    - paragraphs.paragraphs_type.logo_collection
+    - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.newsletter
+    - paragraphs.paragraphs_type.pricing
+    - paragraphs.paragraphs_type.sidebyside
+    - paragraphs.paragraphs_type.slider
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.views
+    - paragraphs.paragraphs_type.webform_embed
   module:
+    - ai_translate
     - entity_reference_revisions
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
 _core:
-  default_config_hash: npctt7LB90ZHnN1nsqVur65i2H8mID01TFVbIyRaYAs
+  default_config_hash: bi7fQnSKNrptLecj675YcrLtkb17mRqOwd-0SwWzf24
 id: node.page.field_paragraphs
 field_name: field_paragraphs
 entity_type: node
@@ -25,6 +48,7 @@ settings:
     target_bundles:
       accordion: accordion
       block_reference: block_reference
+      webform_embed: webform_embed
       card_group: card_group
       carousel: carousel
       download: download
@@ -68,6 +92,9 @@ settings:
       download:
         weight: 30
         enabled: true
+      download_item:
+        weight: 36
+        enabled: false
       embed:
         weight: 31
         enabled: true
@@ -109,5 +136,8 @@ settings:
         enabled: true
       views:
         weight: 44
+        enabled: true
+      webform_embed:
+        weight: 26
         enabled: true
 field_type: entity_reference_revisions

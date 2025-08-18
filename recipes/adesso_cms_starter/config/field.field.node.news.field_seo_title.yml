@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_seo_title
     - node.type.news
 _core:
-  default_config_hash: QDrDyZ97otEW3VFbOwzJma44mBwTocO-xkmafwcS3M8
+  default_config_hash: 8q4hlecX1XNuuaO9jqrc_onncq4SEa1mtc_Qi4_ROac
 id: node.news.field_seo_title
 field_name: field_seo_title
 entity_type: node

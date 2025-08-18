@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.slider.field_content_element_theme
     - field.field.paragraph.slider.field_pre_headline
     - field.field.paragraph.slider.field_slider_item
+    - field.field.paragraph.slider.field_theme
     - field.field.paragraph.slider.field_title
     - paragraphs.paragraphs_type.slider
   module:
@@ -19,8 +19,8 @@ bundle: slider
 mode: default
 content:
   field_content_element_theme:
-    type: boolean_checkbox
-    weight: 0
+    type: options_select
+    weight: 1
     region: content
     settings:
       display_label: true
@@ -57,6 +57,12 @@ content:
         delete_confirmation: false
         show_drag_and_drop: true
         split_text: false
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_title:
     type: string_textfield
     weight: 2

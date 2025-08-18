@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: iqgqcoBKQfzDr2FUX7_LtrB3sqCBP5EOzRHMIyvY4ZI
+  default_config_hash: s0n9-F5N7KFVQaSjRIV5o8g1yBCfGCkIRq1-rJKKFQg
 name: heros
 label: 'Hero Small'
 effects:

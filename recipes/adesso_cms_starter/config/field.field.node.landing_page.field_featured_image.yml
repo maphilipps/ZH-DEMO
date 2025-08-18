@@ -1,3 +1,4 @@
+uuid: 6d24a98c-9d4b-4771-a3f2-dfb839432b84
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.node.field_featured_image
     - media.type.image
     - node.type.landing_page
+_core:
+  default_config_hash: kYRsVof2eF9rfVm72KaLAtpmymoWGJhyAO1tJ3OB7W0
 id: node.landing_page.field_featured_image
 field_name: field_featured_image
 entity_type: node

@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.views.field_content_element_theme
     - field.field.paragraph.views.field_link
     - field.field.paragraph.views.field_pre_headline
+    - field.field.paragraph.views.field_theme
     - field.field.paragraph.views.field_title
     - field.field.paragraph.views.field_views_ref
     - paragraphs.paragraphs_type.views
@@ -41,6 +41,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

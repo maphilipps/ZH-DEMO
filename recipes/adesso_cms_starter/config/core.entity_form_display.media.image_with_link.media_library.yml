@@ -12,7 +12,7 @@ dependencies:
     - link
     - svg_image
 _core:
-  default_config_hash: 4nIZc7NBZSFRUpkRWbAmCz8I0rRPe2oFwS6PJ6emu_s
+  default_config_hash: khMiU4q7oimnZJuGUve9i-9cxzIwGSsubknYTvbJwzc
 id: media.image_with_link.media_library
 targetEntityType: media
 bundle: image_with_link

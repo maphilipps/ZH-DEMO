@@ -3,14 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.logo_collection.field_content_element_theme
     - field.field.paragraph.logo_collection.field_media_item
     - field.field.paragraph.logo_collection.field_pre_headline
+    - field.field.paragraph.logo_collection.field_theme
     - field.field.paragraph.logo_collection.field_title
     - image.style.medium
     - paragraphs.paragraphs_type.logo_collection
   module:
     - media
+    - options
 _core:
   default_config_hash: R3dD8pM6WtUGh53hSV_aNIWNzoFi0vsJ2xJzuwDQ4-Y
 id: paragraph.logo_collection.default
@@ -55,6 +56,13 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_title:
     type: string
     label: hidden
@@ -63,4 +71,5 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

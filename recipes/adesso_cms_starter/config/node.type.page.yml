@@ -1,3 +1,4 @@
+uuid: 72d4cc6f-01ad-4b35-a980-079deb3f201c
 langcode: en
 status: true
 dependencies:
@@ -17,6 +18,8 @@ third_party_settings:
     unpublish_enable: true
     unpublish_required: false
     unpublish_revision: true
+_core:
+  default_config_hash: ofBTVP5AmqIoiRQxuySnBpPvyzCT2nG0UVvuAZaGt3g
 name: 'Basic page'
 type: page
 description: "Use <em>basic pages</em> for your static content, such as an 'About us' page."

@@ -42,7 +42,7 @@ third_party_settings:
         description: ''
         required_fields: false
 _core:
-  default_config_hash: JflOGM9OdkQ7r4TvuX2t0mb-cNh7ZUg9vKWjWeMvKr4
+  default_config_hash: aoC5sd4832lddQkfDlOBcPsqVvvZJnu8qodyJRP1oVQ
 id: node.news.default
 targetEntityType: node
 bundle: news
@@ -212,5 +212,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  layout_builder__layout: true
   publish_state: true
   unpublish_state: true

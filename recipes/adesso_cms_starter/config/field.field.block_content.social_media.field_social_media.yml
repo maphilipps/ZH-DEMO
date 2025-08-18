@@ -7,7 +7,7 @@ dependencies:
     - field.storage.block_content.field_social_media
     - media.type.image_with_link
 _core:
-  default_config_hash: h8Ldz70gbRBJhEwrUCQpgqhn8rxLrEGr4NppFEz1oOw
+  default_config_hash: cULL6aHdNW28tM-kD1ZGMPokO8SwOpKJrNoBURVfYxM
 id: block_content.social_media.field_social_media
 field_name: field_social_media
 entity_type: block_content

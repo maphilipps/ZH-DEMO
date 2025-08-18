@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.logo_collection.field_content_element_theme
     - field.field.paragraph.logo_collection.field_media_item
     - field.field.paragraph.logo_collection.field_pre_headline
+    - field.field.paragraph.logo_collection.field_theme
     - field.field.paragraph.logo_collection.field_title
     - paragraphs.paragraphs_type.logo_collection
   module:
@@ -46,6 +46,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

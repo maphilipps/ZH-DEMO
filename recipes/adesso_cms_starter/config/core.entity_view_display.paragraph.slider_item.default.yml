@@ -8,7 +8,7 @@ dependencies:
     - field.field.paragraph.slider_item.field_title
     - paragraphs.paragraphs_type.slider_item
 _core:
-  default_config_hash: 3gwW3BSipimzpDfBndmvuBMrn8oh4wDMwbn9OObJ9FM
+  default_config_hash: AaIBKJG7MEQstGBQ85FqjYp5EHCCH7n7xzo_Y7f-Rnk
 id: paragraph.slider_item.default
 targetEntityType: paragraph
 bundle: slider_item
@@ -18,7 +18,7 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: default
+      view_mode: carousel
       link: false
     third_party_settings: {  }
     weight: 1

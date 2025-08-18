@@ -24,7 +24,7 @@ third_party_settings:
     enabled: false
     allow_custom: false
 _core:
-  default_config_hash: QMr3gZo6Wm8tBGORaGAfZX7bPkv-YpG6EgKuJRGp5SU
+  default_config_hash: SKBK9830bBJlpZR0O_6tSHiypeXvRsqxc5dvvPHHcXQ
 id: node.person.card
 targetEntityType: node
 bundle: person

@@ -4,10 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.accordion.field_accordion_item
-    - field.field.paragraph.accordion.field_content_element_theme
-    - field.field.paragraph.accordion.field_paragraphs
     - field.field.paragraph.accordion.field_pre_headline
     - field.field.paragraph.accordion.field_sub_headline
+    - field.field.paragraph.accordion.field_theme
     - field.field.paragraph.accordion.field_title
     - paragraphs.paragraphs_type.accordion
   module:
@@ -46,6 +45,6 @@ content:
     region: content
 hidden:
   field_content_element_theme: true
-  field_paragraphs: true
   field_sub_headline: true
+  field_theme: true
   search_api_excerpt: true

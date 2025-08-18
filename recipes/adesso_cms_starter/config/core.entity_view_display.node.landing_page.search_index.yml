@@ -1,3 +1,4 @@
+uuid: 8e2a546e-ba82-41a7-9e94-b0fb68361b20
 langcode: de
 status: true
 dependencies:
@@ -16,8 +17,12 @@ dependencies:
     - node.type.landing_page
   module:
     - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: 0wMi3agHohhBy8PKcsILwA1npScRC31iZ-Lc5hZ7mf8
+  default_config_hash: 8tMFMtPgDePCyygOwMYRTwwIoB9WroAmWYM_AQYir8s
 id: node.landing_page.search_index
 targetEntityType: node
 bundle: landing_page

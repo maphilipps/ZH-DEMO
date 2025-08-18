@@ -8,7 +8,7 @@ dependencies:
   module:
     - yoast_seo
 _core:
-  default_config_hash: hr_cRQ9Pp0ut57WJ00yWSUQVO3rTA95QbkDgmjTNrEA
+  default_config_hash: YXZmO0AJpR0Yf-t_ujZJ7AVajNwaTROx4eyNpeuOcpg
 id: node.news.field_seo_analysis
 field_name: field_seo_analysis
 entity_type: node

@@ -8,7 +8,7 @@ dependencies:
   module:
     - smart_date
 _core:
-  default_config_hash: IwCiqZQFCD5FGxxsdPCCrkAEAfmTJUoa7Vibg7C4WKY
+  default_config_hash: DBO9ze10SCMgbaXXegVGSin_lubWgqAhVn1rOcJjlgE
 id: node.event.field_event__date
 field_name: field_event__date
 entity_type: node

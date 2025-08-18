@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_seo_description
     - node.type.person
 _core:
-  default_config_hash: tepDMDMv4grfN8cvMw11LZIVo-5J2lNv1x0hwwx8I5k
+  default_config_hash: OsiET3_QtKqAyDFbXR7ysIuvgJETwkg-ZmQjRPn4opE
 id: node.person.field_seo_description
 field_name: field_seo_description
 entity_type: node

@@ -3,7 +3,7 @@ langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: SegMYK-7wW9dQMcB7oCzNJW1blmI6Cxl9CzZB4hCkiY
+  default_config_hash: 4Shk3WHGKhR_NjBtM9Bc22U5Fkp7edD5vdYe35CQPzw
 id: taxonomy_term
 label: Taxonomie-Begriff
 tags:

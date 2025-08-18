@@ -1,10 +1,11 @@
-uuid: 1df6b8d0-f499-4116-a8f0-6677f2fbc3a0
+uuid: 815f6d92-6433-4e44-bb4c-a9584d7fbc73
 langcode: de
 status: false
 dependencies:
   config:
     - system.menu.admin
   module:
+    - smart_date
     - taxonomy
     - user
   enforced:

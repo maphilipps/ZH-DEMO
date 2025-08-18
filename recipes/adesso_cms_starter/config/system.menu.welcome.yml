@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: 9yXSZmiaoN64u6e7s0bXcjdyTpJr3COoggmH1SWwTdM
+  default_config_hash: ofeOi2MnPSa2d59ptIjMKADs7nvxSZ5TCRCagm8hw9Y
 id: welcome
 label: Welcome
 description: 'Things users can do when they start using Drupal CMS.'

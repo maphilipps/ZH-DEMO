@@ -8,7 +8,7 @@ dependencies:
   module:
     - media_library
 _core:
-  default_config_hash: JjxzRu7qDXb4vDZzJu0uQz_b_PPUPmXMW_2E1g4fEBs
+  default_config_hash: OZmhakd7R2HxY3W-_IuQ-oToOupqEPmyWiedXDdbAnc
 id: block_content.social_media.default
 targetEntityType: block_content
 bundle: social_media

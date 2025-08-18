@@ -7,7 +7,7 @@ dependencies:
     - media.type.image
     - node.type.project
 _core:
-  default_config_hash: 2a23zqOULxEIbOoq606U8EjPDvvJQYFXZTnDeueBZAg
+  default_config_hash: 9NMKILq9uDKrUlBEW_XWjCqbn0ZEA_GBW_GuyGCnhm0
 id: node.project.field_project__client_logo
 field_name: field_project__client_logo
 entity_type: node

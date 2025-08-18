@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: HAssnjEp0ppTwd_6_-6q98jrYlZxymC5Y6D53w5nnr4
+  default_config_hash: ZSV7qCwHpOncP7DWVCJKkoQuM4tUNwI2UPA8EipVF8o
 name: herom
 label: 'Hero Medium'
 effects:

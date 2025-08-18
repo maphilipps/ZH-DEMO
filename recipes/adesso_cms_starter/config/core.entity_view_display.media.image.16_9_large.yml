@@ -1,4 +1,4 @@
-uuid: 9218aeb2-9234-4a50-8947-9663ae1971a8
+uuid: 85cc64db-16cd-45a9-8667-f7ca6f2c1a58
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,8 @@ dependencies:
     - core.entity_view_mode.media.16_9_large
     - field.field.media.image.field_image
     - field.field.media.image.field_media_image
-    - image.style.16_9_1800x1080_focal_point_webp
     - media.type.image
+    - responsive_image.styles.16_9_large
   module:
     - svg_image_responsive
 _core:
@@ -18,10 +18,10 @@ bundle: image
 mode: 16_9_large
 content:
   field_media_image:
-    type: image
+    type: responsive_image
     label: visually_hidden
     settings:
-      image_style: 16_9_1800x1080_focal_point_webp
+      responsive_image_style: 16_9_large
       image_link: ''
       image_loading:
         attribute: lazy

@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.newsletter.field_content_element_theme
     - field.field.paragraph.newsletter.field_pre_headline
     - field.field.paragraph.newsletter.field_summary
+    - field.field.paragraph.newsletter.field_theme
     - field.field.paragraph.newsletter.field_title
     - paragraphs.paragraphs_type.newsletter
+  module:
+    - options
 _core:
   default_config_hash: U20dq7KLTaiPgcmEzvld7cgEMLJb5DZ_VvICkL_picc
 id: paragraph.newsletter.default
@@ -29,6 +31,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 4
+    region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_title:
     type: string

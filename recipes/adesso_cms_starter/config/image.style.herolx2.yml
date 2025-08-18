@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: I5wzhAVYqifAi6rHb3KIYG2mUeFWGj6kmasdnwwNbdY
+  default_config_hash: zv2xBIPwlaxe1H6cw6prGijTZzEIZEZJM_OCqP2vf-U
 name: herolx2
 label: 'Hero Large 2x'
 effects:

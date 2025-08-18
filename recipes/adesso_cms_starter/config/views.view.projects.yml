@@ -11,7 +11,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: opUWfTTgoCNJ9v_sRO4q5irvrZQX7Ej5JXbdVzeYg50
+  default_config_hash: eKkQ-UlGOss1Fj0xzy_53QRC9zQrdqpzJM_WwfZmClI
 id: projects
 label: Projects
 module: views

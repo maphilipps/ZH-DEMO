@@ -1,3 +1,4 @@
+uuid: e78dfc2f-4f23-4821-a6e9-28955a3a8ed8
 langcode: de
 status: true
 dependencies:
@@ -6,6 +7,8 @@ dependencies:
     - node.type.landing_page
   module:
     - yoast_seo
+_core:
+  default_config_hash: WuM_dokdhUt-TYfP5ZOSKv6qYLpb_vYZjHj03VmJdec
 id: node.landing_page.field_seo_analysis
 field_name: field_seo_analysis
 entity_type: node

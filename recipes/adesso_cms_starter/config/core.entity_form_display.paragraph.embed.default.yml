@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.embed.field_content_element_theme
     - field.field.paragraph.embed.field_pre_headline
     - field.field.paragraph.embed.field_script
     - field.field.paragraph.embed.field_sub_headline
+    - field.field.paragraph.embed.field_theme
     - field.field.paragraph.embed.field_title
     - paragraphs.paragraphs_type.embed
   module:
@@ -20,7 +20,7 @@ mode: default
 content:
   field_content_element_theme:
     type: boolean_checkbox
-    weight: 4
+    weight: 1
     region: content
     settings:
       display_label: true
@@ -48,6 +48,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

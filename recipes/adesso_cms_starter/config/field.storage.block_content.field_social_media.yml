@@ -6,7 +6,7 @@ dependencies:
     - block_content
     - media
 _core:
-  default_config_hash: zewgyFc6jU8y15PwHZf8kwjsnKDwy6kR0apKy1oFfUI
+  default_config_hash: qcDWjS8yJqjYtLb1OG9Ah9Dk85vRg2GeLEhHBjCfwTI
 id: block_content.field_social_media
 field_name: field_social_media
 entity_type: block_content

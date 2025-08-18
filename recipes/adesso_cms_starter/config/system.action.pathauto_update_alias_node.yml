@@ -8,7 +8,7 @@ dependencies:
     module:
       - node
 _core:
-  default_config_hash: Ux5_FtXdZZIMwiEidfmKY4gN7F0TcdzZE8ZtGOU4AJA
+  default_config_hash: 9uEZBoPB1pSJlXYOfWued_wpZMIhOScV0Y8Ra9c4O3s
 id: pathauto_update_alias_node
 label: 'URL-Alias aktualisieren'
 type: node

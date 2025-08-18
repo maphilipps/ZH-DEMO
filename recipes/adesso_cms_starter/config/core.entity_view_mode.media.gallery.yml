@@ -1,13 +1,13 @@
-uuid: b81a739e-cf0e-430c-8002-4e1988e124f7
+uuid: 0171c8d7-e787-4957-87bb-09dfda16718e
 langcode: en
 status: true
 dependencies:
   module:
     - media
 _core:
-  default_config_hash: O-Jn0_PkakN69EJmxvhn45IWgEfDcocyWQmNqnaobJU
+  default_config_hash: 6-BNaOqmgN5qOG7baEHVvni-t9qrzllT-qyOCO_oN3U
 id: media.gallery
 label: Gallery
-description: ''
+description: null
 targetEntityType: media
 cache: true

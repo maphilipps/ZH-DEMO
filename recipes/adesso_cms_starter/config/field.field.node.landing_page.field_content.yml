@@ -1,11 +1,15 @@
+uuid: 39b92794-289b-4b94-9978-c015183fdac7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_content
+    - filter.format.content_format
     - node.type.landing_page
   module:
     - text
+_core:
+  default_config_hash: 3IgWKCSMBS9cJouvKQfOynLSM-KIq-JbK7pzM4f2ZUQ
 id: node.landing_page.field_content
 field_name: field_content
 entity_type: node

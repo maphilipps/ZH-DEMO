@@ -23,7 +23,7 @@ third_party_settings:
     available_menus: {  }
     parent: ''
 _core:
-  default_config_hash: _81s4yekVGQIm2bYn1a2hQAEyZSFFOxnToS93BNI1Kw
+  default_config_hash: jVMIbJzDz4pW8-5201pOBW0Cd1MeAF5pe0dCPokF8k0
 name: Event
 type: event
 description: 'Content which describes something happening at a specific time.'

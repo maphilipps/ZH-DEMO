@@ -8,7 +8,7 @@ dependencies:
   module:
     - views
 _core:
-  default_config_hash: dMTXBxkmoF8w6BMNsK5DaAfMKfE1ZnbZGgA8hDWO9ww
+  default_config_hash: o4_0Hfg3ACn9fauUEiuEF_HG4sSRovNO9EPla9OVjeE
 id: content_autocomplete
 label: 'Content Autocomplete'
 index_id: content

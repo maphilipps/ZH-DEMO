@@ -8,7 +8,7 @@ dependencies:
     module:
       - user
 _core:
-  default_config_hash: tk6KtNyy_e0XOs9f-j2umr7yBTaCvOB9Edeh09ILdBY
+  default_config_hash: kO2fLFRiIEwvbSvG9VSUwunxLGXUQoAA0D_E1Fl4RxU
 id: pathauto_update_alias_user
 label: 'URL-Alias aktualisieren'
 type: user

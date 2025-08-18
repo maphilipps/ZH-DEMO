@@ -3,7 +3,7 @@ langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: AueQEKkW-18UWpFyFwPgcBKUObyVuq2p9BiM-RPSL5Q
+  default_config_hash: FEEYLqWWBU6A7TdzcgRctYEYR84UEzEySBsg6Q9Knz8
 id: social_media
 label: 'Social Media'
 revision: false

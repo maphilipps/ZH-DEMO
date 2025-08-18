@@ -24,7 +24,7 @@ third_party_settings:
     enabled: false
     allow_custom: false
 _core:
-  default_config_hash: O1d_Zm2vYrWVHjIh0hhQgqViEyML4Dsribbjm-e-g5c
+  default_config_hash: _Ms19EszeCAZFkR5ankXYkAhZzDtVTjmPRjk2yIpYkk
 id: node.project.card
 targetEntityType: node
 bundle: project

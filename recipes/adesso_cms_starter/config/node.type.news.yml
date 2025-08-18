@@ -26,7 +26,7 @@ third_party_settings:
   search_api_exclude:
     enabled: true
 _core:
-  default_config_hash: BHnNUrWT-CtZ95LBx_jWpy5KPC5CtbhBBA1KKEpkF90
+  default_config_hash: MYKgYcLKb0M1new9KrJtUWBE7fpmP_yEWoiQjLrQmXw
 name: 'News item'
 type: news
 description: 'A simple news item, categorized by tags.'

@@ -8,7 +8,7 @@ dependencies:
     config:
       - node.type.project
 _core:
-  default_config_hash: ZGdAk1m7BOyzqKZy_s3Y066crzoaxD1e9TOJtHN3gBo
+  default_config_hash: T7n1B-wDTttFOnV_RHwB2UeFZyZyNhmkMi5JZ8mEjNk
 id: project_content
 label: 'Project content'
 type: 'canonical_entities:node'

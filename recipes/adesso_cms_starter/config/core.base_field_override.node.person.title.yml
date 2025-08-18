@@ -5,7 +5,7 @@ dependencies:
   config:
     - node.type.person
 _core:
-  default_config_hash: FjG2zG-BVEW-CwMpXplVXDh22tRRSkm45qlFJ9fST7o
+  default_config_hash: 10UYVWvZ69KXOknwOUbu3piHPWWeNDyUBxUcsoI34To
 id: node.person.title
 field_name: title
 entity_type: node

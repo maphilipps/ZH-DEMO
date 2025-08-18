@@ -6,7 +6,7 @@ dependencies:
     - media
     - node
 _core:
-  default_config_hash: rpoYYEbJ1p9hLd5X2ZO1bTw7YQEWyk_V9vwkX12J38Q
+  default_config_hash: pC_Ssl7wyqqYqxhsTzq0hw01_Be5IixmSQyIDvnBLCE
 id: node.field_project__client_logo
 field_name: field_project__client_logo
 entity_type: node

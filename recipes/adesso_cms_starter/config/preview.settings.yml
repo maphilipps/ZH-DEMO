@@ -1,12 +1,21 @@
 enabled:
+  block_content:
+    social_media: default
+  content_moderation_state:
+    content_moderation_state: default
+  crop:
+    focal_point: default
   paragraph:
     accordion: default
     accordion_item: default
+    block_reference: default
     bullet: default
     card: default
     card_group: default
     carousel: default
     carousel_item: default
+    download: default
+    download_item: default
     embed: default
     gallery: default
     hero: default
@@ -21,3 +30,4 @@ enabled:
     stats_item: default
     text: default
     views: default
+    webform_embed: default

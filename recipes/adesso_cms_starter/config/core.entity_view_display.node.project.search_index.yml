@@ -22,9 +22,12 @@ dependencies:
     - media
     - text
     - user
-third_party_settings: {  }
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: aJcBvJkfa0qBDudeKkFlM26Q75wEzbLLr5LhfdB3Y14
+  default_config_hash: 0Jiq712CcSCTrIsRLs9OR_3MU6jPUE1JGLZTuavOIJ4
 id: node.project.search_index
 targetEntityType: node
 bundle: project

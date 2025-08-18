@@ -6,7 +6,7 @@ dependencies:
     - geofield
     - node
 _core:
-  default_config_hash: dWaD0qfbcl8yjqUws8l0U3u3ruuBrWNrBtDQbineaQs
+  default_config_hash: DZs2zE62k33AEwWV2LYAqnHTq9jlv-tuYaSgRhkjgn4
 id: node.field_geofield
 field_name: field_geofield
 entity_type: node

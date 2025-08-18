@@ -6,7 +6,7 @@ dependencies:
     - address
     - node
 _core:
-  default_config_hash: SbNvfD2y1OqGgn-ZPVg3BPDX339RLf_4G9x2pNA_m-g
+  default_config_hash: KTuMRl0cjXz8vzkKY6GgaOUhWplDeqcQ32BOnR2xdTI
 id: node.field_event__location_address
 field_name: field_event__location_address
 entity_type: node

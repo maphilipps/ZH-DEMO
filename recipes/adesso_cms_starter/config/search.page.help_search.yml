@@ -5,7 +5,7 @@ dependencies:
   module:
     - help
 _core:
-  default_config_hash: 1eryLuvsslapBSSzWzmPEMyJRoBbGtFWPK3Fu-AFPgY
+  default_config_hash: RjszAx3xNcEx7z55ypzNvJRlKxcjRsZqMJKMQlng6os
 id: help_search
 label: Hilfe
 path: help

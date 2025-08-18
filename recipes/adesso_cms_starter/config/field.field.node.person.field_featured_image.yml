@@ -7,7 +7,7 @@ dependencies:
     - media.type.image
     - node.type.person
 _core:
-  default_config_hash: LFAsx9aQa6JF3lwVjSZ4FhfcWppvq-8Mk-22jtnQ0TE
+  default_config_hash: V5kiHLXkfU6uVptGpSm2huO07Z807qNBgGBL6aqnG1c
 id: node.person.field_featured_image
 field_name: field_featured_image
 entity_type: node

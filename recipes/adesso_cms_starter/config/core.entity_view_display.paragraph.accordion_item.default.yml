@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.accordion_item.field_body
     - field.field.paragraph.accordion_item.field_link
+    - field.field.paragraph.accordion_item.field_theme
     - field.field.paragraph.accordion_item.field_title
     - paragraphs.paragraphs_type.accordion_item
   module:
@@ -45,4 +46,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_theme: true
   search_api_excerpt: true

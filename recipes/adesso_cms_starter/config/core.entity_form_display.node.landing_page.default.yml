@@ -1,3 +1,4 @@
+uuid: 617fe6d0-8bfe-4d52-819f-aad8338485fa
 langcode: en
 status: true
 dependencies:
@@ -6,17 +7,46 @@ dependencies:
     - field.field.node.landing_page.field_description
     - field.field.node.landing_page.field_featured_image
     - field.field.node.landing_page.field_paragraphs
+    - field.field.node.landing_page.field_seo_analysis
+    - field.field.node.landing_page.field_seo_description
+    - field.field.node.landing_page.field_seo_image
+    - field.field.node.landing_page.field_seo_title
     - field.field.node.landing_page.field_tags
+    - field.field.node.landing_page.layout_builder__layout
     - node.type.landing_page
-    - workflows.workflow.basic_editorial
   module:
     - content_moderation
-    - entity_reference_revisions
+    - field_group
     - media_library
     - paragraphs
     - path
     - scheduler
+    - tagify
     - text
+    - yoast_seo
+third_party_settings:
+  field_group:
+    group_seo:
+      children:
+        - field_seo_title
+        - field_seo_description
+        - field_seo_image
+        - field_seo_analysis
+      label: 'Search Engine Optimization (SEO) Information'
+      region: content
+      parent_name: ''
+      weight: 50
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: group_seo
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: false
+_core:
+  default_config_hash: cPpjeUlAt_HzovfSfLaAY0_0NYexE4Rx5ExVxgXNV3c
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -61,15 +91,48 @@ content:
       edit_mode: open
       closed_mode: summary
       autocollapse: none
-      autocollapse_default: all
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: ''
       features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
         add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+      autocollapse_default: all
+    third_party_settings: {  }
+  field_seo_analysis:
+    type: yoast_seo_widget
+    weight: 18
+    region: content
+    settings:
+      edit_title: false
+      edit_description: false
+      render_theme: null
+      render_view_mode: default
+    third_party_settings: {  }
+  field_seo_description:
+    type: string_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_seo_image:
+    type: media_library_widget
+    weight: 17
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_seo_title:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_tags:
     type: tagify_entity_reference_autocomplete_widget
@@ -123,6 +186,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 16
@@ -158,6 +226,11 @@ content:
   unpublish_on:
     type: datetime_timestamp_no_default
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
     region: content
     settings: {  }
     third_party_settings: {  }

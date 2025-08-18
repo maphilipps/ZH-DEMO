@@ -18,7 +18,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: 0wMi3agHohhBy8PKcsILwA1npScRC31iZ-Lc5hZ7mf8
+  default_config_hash: lPBLdQ7SjSN5gAbYXgRzawafA2FdgLpQxxOj4irnSUI
 id: node.page.search_index
 targetEntityType: node
 bundle: page

@@ -1,4 +1,4 @@
-uuid: 3a4b2019-a6f6-4351-a559-768b269b79d1
+uuid: 54481091-6a12-40c5-8f77-3ebeb1f132f1
 langcode: en
 status: true
 dependencies:
@@ -30,7 +30,7 @@ content:
         height: null
       svg_render_as_image: true
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
 hidden:
   created: true

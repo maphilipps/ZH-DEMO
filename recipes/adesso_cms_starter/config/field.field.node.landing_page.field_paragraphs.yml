@@ -1,4 +1,4 @@
-uuid: null
+uuid: 3a244173-9241-466a-b95d-183a8223f2dc
 langcode: en
 status: true
 dependencies:
@@ -21,10 +21,11 @@ dependencies:
     - paragraphs.paragraphs_type.slider
     - paragraphs.paragraphs_type.text
     - paragraphs.paragraphs_type.views
+    - paragraphs.paragraphs_type.webform_embed
   module:
     - entity_reference_revisions
 _core:
-  default_config_hash: bi7fQnSKNrptLecj675YcrLtkb17mRqOwd-0SwWzf24
+  default_config_hash: zbrit4Sjyu2dhw0nQ3bdxCPwGoAQN0xAw_ZU5qLDoOw
 id: node.landing_page.field_paragraphs
 field_name: field_paragraphs
 entity_type: node
@@ -55,6 +56,7 @@ settings:
       slider: slider
       text: text
       views: views
+      webform_embed: webform_embed
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -125,5 +127,8 @@ settings:
         enabled: true
       views:
         weight: 44
+        enabled: true
+      webform_embed:
+        weight: 45
         enabled: true
 field_type: entity_reference_revisions

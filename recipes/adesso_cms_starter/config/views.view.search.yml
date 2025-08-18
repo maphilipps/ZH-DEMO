@@ -8,7 +8,7 @@ dependencies:
     - search_api
     - user
 _core:
-  default_config_hash: h8L-5DcTwTSVoqmn32sHcDNU3MzhcKmAoXYQnISJ0RM
+  default_config_hash: T_6iqndxVzyqs1eKZx8BjgTthyfk5N8UtQ0qPU-cTao
 id: search
 label: Search
 module: views

@@ -12,7 +12,7 @@ dependencies:
     - system
     - views
 _core:
-  default_config_hash: Ku1aUPirgkE_m6IDzzFb1hzIX_YS_xdNS4gzlrMD0vA
+  default_config_hash: CsEnTEUI2EUc_GUvJBIv3KHwpzlpIwFU-fqHLXKfyYQ
 id: welcome
 label: 'Welcome to your site'
 description: 'Presented to users when they complete the Drupal CMS install process.'

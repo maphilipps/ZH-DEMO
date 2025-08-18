@@ -9,7 +9,7 @@ dependencies:
     - node
     - search_api_exclude
 _core:
-  default_config_hash: T_pgjlVJiDxCxoPQ8LwrT1huLFE_DLv24j-NKZjKwEI
+  default_config_hash: 7gbZrc8NmNVZwhGZo6_E6WSvmMJRPAoN1A-UqauK-oU
 id: content
 name: Content
 description: 'Can search within all content types.'

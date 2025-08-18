@@ -45,7 +45,7 @@ third_party_settings:
         description: ''
         required_fields: false
 _core:
-  default_config_hash: 9YjBueVl9GhGEGMm2B-YoY1R-1I--ZmbiUXQImCSio8
+  default_config_hash: HE8-wxXeV6dXmzhP3LSPklBet1bCBoshkplrHP1unM0
 id: node.person.default
 targetEntityType: node
 bundle: person
@@ -239,5 +239,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  layout_builder__layout: true
   publish_state: true
   unpublish_state: true

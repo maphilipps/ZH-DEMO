@@ -1,9 +1,12 @@
+uuid: 66a658ca-1202-4e67-ab24-d20181fb52b0
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_description
     - node.type.page
+_core:
+  default_config_hash: cNlFl-oRIOsqwCDvw0RGnOEdWtwcp0WgKTsZXtuZ63E
 id: node.page.field_description
 field_name: field_description
 entity_type: node

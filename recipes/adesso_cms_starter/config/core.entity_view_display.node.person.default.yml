@@ -19,9 +19,12 @@ dependencies:
     - media
     - text
     - user
-third_party_settings: {  }
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: 6uOB3XzZQrQPAUhUnIh6a4KYEpEoI0cHw_cApcjA6ac
+  default_config_hash: 9SBKgwkhYRFtuUIEnQEhvbV-QVmeBmG8ddo3sFLlZ4Y
 id: node.person.default
 targetEntityType: node
 bundle: person

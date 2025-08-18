@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text.field_body
-    - field.field.paragraph.text.field_content_element_theme
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
     - field.field.paragraph.text.field_pre_headline
     - field.field.paragraph.text.field_text_layout
+    - field.field.paragraph.text.field_theme
     - field.field.paragraph.text.field_title
     - paragraphs.paragraphs_type.text
   module:
@@ -32,8 +32,8 @@ content:
       show_summary: false
     third_party_settings: {  }
   field_content_element_theme:
-    type: boolean_checkbox
-    weight: 3
+    type: options_select
+    weight: 1
     region: content
     settings:
       display_label: true
@@ -57,6 +57,12 @@ content:
   field_text_layout:
     type: options_select
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

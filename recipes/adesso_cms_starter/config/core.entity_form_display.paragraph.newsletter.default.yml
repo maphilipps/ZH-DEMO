@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.newsletter.field_content_element_theme
     - field.field.paragraph.newsletter.field_pre_headline
     - field.field.paragraph.newsletter.field_summary
+    - field.field.paragraph.newsletter.field_theme
     - field.field.paragraph.newsletter.field_title
     - paragraphs.paragraphs_type.newsletter
 _core:
@@ -37,6 +37,12 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_theme:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

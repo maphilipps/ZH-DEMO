@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.media.field_content_element_theme
     - field.field.paragraph.media.field_media
     - field.field.paragraph.media.field_pre_headline
+    - field.field.paragraph.media.field_theme
     - field.field.paragraph.media.field_title
     - paragraphs.paragraphs_type.media
+  module:
+    - options
 _core:
   default_config_hash: qFrOLl2-jsxeCu6XJdbMzkq0IEEtaSCPCitby7eMXQg
 id: paragraph.media.default
@@ -31,6 +33,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_title:
     type: string

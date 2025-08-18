@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: RGedRkFydKZjS0ZJ6vbtZH00KbhYVGsK-ABILHdQLyw
 prompt_logging: false
 prompt_logging_tags: ''
 default_providers:
@@ -31,3 +33,6 @@ default_providers:
   text_to_speech:
     provider_id: openai
     model_id: tts-1-hd
+  chat_with_image_json:
+    provider_id: anthropic
+    model_id: claude-3-5-sonnet-latest

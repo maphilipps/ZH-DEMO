@@ -10,7 +10,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: S1VjZkkx2vp282ytx6UfmbSePM_2lj1ZixfDrUeAXHI
+  default_config_hash: 9lEwa7X_7DzIdWL0x6fJ2KFn6CAlHvTCm0FECnle38o
 id: person_profiles
 label: 'Person profiles'
 module: views

@@ -12,14 +12,15 @@ dependencies:
     - field.field.node.news.field_seo_title
     - field.field.node.news.field_tags
     - node.type.news
-    - views.view.news
   module:
     - text
     - user
-    - views
-third_party_settings: {  }
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: byrM5cpqSYIVPP5Xqg4vLLWgzQHFOceV3Hf7cJ-2bZM
+  default_config_hash: rVUL9Fv8H9DIazm-ytNUFFywnc-QhP3jCkb1HYjrZk0
 id: node.news.default
 targetEntityType: node
 bundle: news

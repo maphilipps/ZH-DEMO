@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_seo_title
     - node.type.project
 _core:
-  default_config_hash: tC89l80LP8SwxqQWfQGBwcGG9F7NWR62TsiHPS74RFk
+  default_config_hash: F8hpolJHeN03Ha_0DLiAf3wjCKjH00ezkEZXE0ggad0
 id: node.project.field_seo_title
 field_name: field_seo_title
 entity_type: node

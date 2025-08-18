@@ -21,6 +21,7 @@ plugins:
     settings:
       title: ''
       show_disabled: false
+      menu_depth: 9
     id: 'menu:main'
     provider: sitemap
 include_css: true

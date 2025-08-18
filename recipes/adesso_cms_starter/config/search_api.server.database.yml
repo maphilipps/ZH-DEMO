@@ -5,7 +5,7 @@ dependencies:
   module:
     - search_api_db
 _core:
-  default_config_hash: c9MuCHjXPRxboP7KCWPNzuKo8iJ0LOJXdSaGx109sCM
+  default_config_hash: ZXKEIuMnahs7TbRS4lmU7awf_bbX898Yc03QaDqRYe0
 id: database
 name: Database
 description: 'Uses database tables for indexing content.'

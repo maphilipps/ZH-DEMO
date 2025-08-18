@@ -4,6 +4,8 @@ status: true
 dependencies:
   module:
     - content_moderation
+_core:
+  default_config_hash: 0JapDOjd33A6-ni9hBj1LiJHNao9gHWaZriv7DnG_WE
 id: content_moderation_state.token
 label: Token
 description: null

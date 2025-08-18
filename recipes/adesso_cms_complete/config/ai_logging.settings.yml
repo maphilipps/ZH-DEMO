@@ -1,6 +1,0 @@
-_core:
-  default_config_hash: mJFbRLLZWyoWv1XtWPOQaDFPyDPWUBfGdpKXGS3okPM
-prompt_logging: false
-prompt_logging_tags: ''
-prompt_logging_max_messages: 1000
-prompt_logging_max_age: 30

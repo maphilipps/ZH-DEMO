@@ -8,7 +8,7 @@ dependencies:
   module:
     - link
 _core:
-  default_config_hash: xA2xLD0OoTnH4igFguN3b_UgU88uarGMrwb7xulslOQ
+  default_config_hash: grNoSEwIdUoTeL_aKxIep4kaxxS2j3QVpAtERKcWWMs
 id: node.project.field_project__client_link
 field_name: field_project__client_link
 entity_type: node

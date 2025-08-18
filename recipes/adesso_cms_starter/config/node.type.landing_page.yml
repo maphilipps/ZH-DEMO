@@ -1,3 +1,4 @@
+uuid: b14cfafe-7007-4132-9bda-27d8e3d69414
 langcode: en
 status: true
 dependencies:
@@ -17,9 +18,11 @@ third_party_settings:
     unpublish_enable: true
     unpublish_required: false
     unpublish_revision: true
+_core:
+  default_config_hash: WBsxKew19WQ47ZBarjarFeVQNut00GLxsBucR-Vp0rI
 name: 'Landing Page'
 type: landing_page
-description: "Use <em>landing pages</em> for marketing pages with custom layouts and components."
+description: 'Use <em>landing pages</em> for marketing pages with custom layouts and components.'
 help: null
 new_revision: true
 preview_mode: 1

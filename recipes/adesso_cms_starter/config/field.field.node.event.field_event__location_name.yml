@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_event__location_name
     - node.type.event
 _core:
-  default_config_hash: IZ38IS7IaFyGe67LKR_RzjJxqeyH9bUlD6zq01X16Gk
+  default_config_hash: iTxQ3dmsfYokjU2I_VaFHHDJLX1Ak45Pag26HKN2dew
 id: node.event.field_event__location_name
 field_name: field_event__location_name
 entity_type: node

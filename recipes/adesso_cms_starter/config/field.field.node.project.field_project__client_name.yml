@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_project__client_name
     - node.type.project
 _core:
-  default_config_hash: xAFX9jGdIarBNY3l9_MTAzyr38cPHqglmtup5YG1R90
+  default_config_hash: KcuV4MIrF1ZVDCbNpTMP0BJ6BJ7x8gjXPIUeIYpwThM
 id: node.project.field_project__client_name
 field_name: field_project__client_name
 entity_type: node

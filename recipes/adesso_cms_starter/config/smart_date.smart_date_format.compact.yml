@@ -3,7 +3,7 @@ langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: ovGkBZLkMyAaB-QDvum_97BT_gy7sF2F2jbbOoqPTy0
+  default_config_hash: CKFVJvLYVwFTddto6_jjp5BswMxqXUn7jUPW3x2IeqM
 id: compact
 label: Kompakt
 date_format: 'M j Y'

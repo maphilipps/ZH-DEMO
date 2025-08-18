@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: faYLSTFTst5aODV-lTDqjyxL9VvJqxyo6dp_GoUx6OA
+  default_config_hash: 8elCXumPE3GVgqdCdQjkrk1qBtiJQ-rwQxrFaWoWYpw
 name: herol
 label: 'Hero Large'
 effects:

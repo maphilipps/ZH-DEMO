@@ -3,7 +3,7 @@ langcode: de
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: '-uBwkwEL62tdUVIJYmhTL-UEmvRAsxGpQbTRkZOusr8'
+  default_config_hash: 5TioQaz2PNpGcyC9MIPIDnDJe5OjjwNhxC7OIf1yrCo
 id: image_with_link
 label: 'image with link'
 description: ''

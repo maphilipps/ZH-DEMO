@@ -1,11 +1,14 @@
+uuid: c1b6b88b-57e1-4206-adb6-205d6b7cd88e
 langcode: en
 status: true
 dependencies:
+  module:
+    - node
   enforced:
     config:
       - node.type.page
-  module:
-    - node
+_core:
+  default_config_hash: ufS9yFb1v8YrfiIRN4steBSrb1NQGxkfZLSUls3rWU4
 id: page_content
 label: 'Page content'
 type: 'canonical_entities:node'

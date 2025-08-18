@@ -8,7 +8,7 @@ dependencies:
     config:
       - node.type.person
 _core:
-  default_config_hash: B_oX2tigNuoHEUMbcNpCJW850Qs3TfMt0R163TZgh8g
+  default_config_hash: FvWtcjm6gDJtvlxd8fqHzD1167Okv6OHef0g2xc3_gY
 id: person_content
 label: 'Person content'
 type: 'canonical_entities:node'

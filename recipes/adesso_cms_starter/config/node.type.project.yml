@@ -26,7 +26,7 @@ third_party_settings:
   search_api_exclude:
     enabled: true
 _core:
-  default_config_hash: WG80DOBl2I6vUvM6P0OKJJy7Xyv2q3hsf0cItftvog0
+  default_config_hash: CvtppPybp9c7tAVyVQoNEzw0ZdvhzsFeWqT3vjJzKbs
 name: Project
 type: project
 description: 'Project content provides information about an example of work to the intended audience.'

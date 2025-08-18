@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: eae3105a-991f-4747-ade6-b2592b90a2ad
+  bundle: image
+  default_langcode: de
+  depends:
+    e293dbde-d7dc-4160-bcea-cc5feef4ff56: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'githubcopilotevent-webheader-4000x4000-12-2024_W2560xH1440_CUTOUT (1).jpg'
+  created:
+    -
+      value: 1754293177
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/node/7'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+  path:
+    -
+      alias: ''
+      langcode: de
+      pathauto: 1
+  field_media_image:
+    -
+      target_id: e293dbde-d7dc-4160-bcea-cc5feef4ff56
+      alt: ''
+      title: 'githubcopilotevent-webheader-4000x4000-12-2024_W2560xH1440_CUTOUT (1).jpg'
+      width: 2560
+      height: 1440

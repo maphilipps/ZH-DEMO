@@ -5,7 +5,7 @@ dependencies:
   config:
     - media.type.image_with_link
 _core:
-  default_config_hash: iQ9tiA3UZ6yyLXyFbp51B8xUquUS_s7_35nXPJZ-jVw
+  default_config_hash: Bnd7-5z6juVMg8tVDY5glIL1-2dWtVis1S47igPJbVA
 id: media.image_with_link
 target_entity_type_id: media
 target_bundle: image_with_link

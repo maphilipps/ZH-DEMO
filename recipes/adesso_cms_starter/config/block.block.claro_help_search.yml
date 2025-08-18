@@ -11,7 +11,7 @@ dependencies:
     config:
       - search.page.help_search
 _core:
-  default_config_hash: K9xyxglfkyy7NWGpqRJ2cTKWmvIx9BnfoBgXx2vh0nI
+  default_config_hash: NW42w83pF-J5yxS1Bx0uD9GQyHSCCpqMODf2eauq4_I
 id: claro_help_search
 theme: claro
 region: help

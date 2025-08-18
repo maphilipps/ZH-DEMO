@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: ICO2KIhRd2PNJqChux-JvTnjjPOywzJjkXfps9jpO0M
+  default_config_hash: o2o1P038ntplkgo7bw_h4sfjeBox1F_J6gYbwmxjeHQ
 id: events
 label: Events
 type: 'canonical_entities:node'

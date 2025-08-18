@@ -1,0 +1,170 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: a8f00977-65eb-4240-82d5-bd9f9fdf6285
+  bundle: event
+  default_langcode: de
+  depends:
+    16f91bec-eff2-40cb-8e78-4428ebbff3b9: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Webinar: Zukunftssicher mit souveräner KI'
+  created:
+    -
+      value: 1754291467
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Webinar: Zukunftssicher mit souveräner KI | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/events/webinar-zukunftssicher-mit-souveraener-ki'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Webinar: Zukunftssicher mit souveräner KI'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Wettbewerb braucht Unabhängigkeit'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_facebook/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=qLBYgsGd'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:type'
+        content: image/webp
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:width'
+        content: '1200'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:height'
+        content: '630'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:alt'
+        content: 'AI Page Header'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:42:12+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Wettbewerb braucht Unabhängigkeit'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Webinar: Zukunftssicher mit souveräner KI'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'https://adesso-cms.ddev.site/sites/default/files/styles/social_media_x/public/2025-08/2025-06-perfkamp-genai-website-header-4000x2000px-var_W2560xH1440_CUTOUT.png.webp?itok=8Cr_BI2o'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image:alt'
+        content: 'AI Page Header'
+  path:
+    -
+      alias: /events/webinar-zukunftssicher-mit-souveraener-ki
+      langcode: de
+      pathauto: 1
+  field_content:
+    -
+      value: '<p>Gemeinsam mit unserem Partner <em>BigData-Insider </em>veranstalten wir ein Webinar zum Thema „Zukunftssicher mit souveräner KI".<br>Souveränität in der digitalen Welt ist mehr als ein Schlagwort – sie ist zum strategischen Imperativ geworden.<br>Unternehmen, die auf Künstliche Intelligenz setzen, stehen heute vor einer doppelten Herausforderung: das enorme Potenzial nutzen und gleichzeitig technologische Unabhängigkeit wahren.</p><p>Dieses Webinar liefert fundierte Impulse für den Einstieg in eine souveräne KI-Strategie. Es zeigt, welche Bausteine relevant sind, welche Rolle Open-Source spielt und wie der Technologie-Stack zukunftsfähig bleibt. Die Referenten geben praxisnahe Einblicke und konkrete Empfehlungen aus erster Hand.</p><p><br><a href="https://www.bigdata-insider.de/zukunftssicher-mit-souveraener-ki-w-685e80312b652/?cmp=adesso">Jetzt anmelden</a></p><h2>Highlights des Webinars:</h2><ul><li><strong>Bestandteile eines GenAI-Stacks</strong>:<br>Technische und organisatorische Grundlagen für souveräne KI.</li><li><strong>Open-Source im Vergleich:</strong><br>Wie wettbewerbsfähig offene Modelle wirklich sind.</li><li><strong>Souveräne KI in Aktion:</strong><br>Live-Demo mit Use Cases und konkreten Einstiegsideen.</li></ul>'
+      format: content_format
+  field_description:
+    -
+      value: "Wettbewerb braucht Unabhängigkeit\r\n\r\n"
+  field_event__date:
+    -
+      value: 1756454400
+      end_value: 1756458000
+      duration: 60
+      rrule: 0
+      rrule_index: 0
+      timezone: ''
+  field_event__location_name:
+    -
+      value: Online
+  field_featured_image:
+    -
+      target_id: 16f91bec-eff2-40cb-8e78-4428ebbff3b9

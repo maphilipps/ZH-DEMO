@@ -5,7 +5,7 @@ dependencies:
   config:
     - block_content.type.social_media
 _core:
-  default_config_hash: vFy9L2d4hDCMuZG37lyG2VANOIqb4BXhBEHskxbLcK0
+  default_config_hash: 0XcNUrzrOF5ioOto-rw41FiJtdZIoyICOWGHxwj02sY
 id: block_content.social_media
 target_entity_type_id: block_content
 target_bundle: social_media

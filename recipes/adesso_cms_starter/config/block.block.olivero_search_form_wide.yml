@@ -7,7 +7,7 @@ dependencies:
   theme:
     - olivero
 _core:
-  default_config_hash: 4D8jEvpncvRKLx9W6HPzy3iGjE-cwaB4ZUUXynA-s9Q
+  default_config_hash: l_Zd2ORS5HNNoZQDwEppgsPfAoWlWih2JzHkwn7B8IM
 id: olivero_search_form_wide
 theme: olivero
 region: secondary_menu

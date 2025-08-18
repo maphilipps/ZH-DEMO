@@ -1,0 +1,32 @@
+gpzh_mcp_integration.dashboard:
+  path: '/admin/gpzh/mcp'
+  defaults:
+    _controller: '\Drupal\gpzh_mcp_integration\Controller\McpDashboardController::dashboard'
+    _title: 'GPZH MCP Integration Dashboard'
+  requirements:
+    _permission: 'administer gpzh mcp integration'
+
+gpzh_mcp_integration.test:
+  path: '/admin/gpzh/mcp/test'
+  defaults:
+    _controller: '\Drupal\gpzh_mcp_integration\Controller\McpDashboardController::test'
+    _title: 'Test MCP Integration'
+  requirements:
+    _permission: 'administer gpzh mcp integration'
+
+gpzh_mcp_integration.settings:
+  path: '/admin/config/gpzh/mcp'
+  defaults:
+    _form: '\Drupal\gpzh_mcp_integration\Form\GpzhMcpSettingsForm'
+    _title: 'GPZH MCP Settings'
+  requirements:
+    _permission: 'administer gpzh mcp integration'
+
+gpzh_mcp_integration.municipality_test:
+  path: '/admin/gpzh/mcp/test/{municipality}'
+  defaults:
+    _controller: '\Drupal\gpzh_mcp_integration\Controller\McpDashboardController::testMunicipality'
+    _title: 'Test Municipality MCP Integration'
+  requirements:
+    _permission: 'administer gpzh mcp integration'
+    municipality: '^(thalwil|thalheim|erlenbach)$'

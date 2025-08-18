@@ -1,0 +1,12 @@
+administer gpzh mcp integration:
+  title: 'Administer GPZH MCP integration'
+  description: 'Configure and manage Model Context Protocol integration for GPZH municipalities.'
+  restrict access: true
+
+view gpzh mcp status:
+  title: 'View GPZH MCP status'
+  description: 'View the status and configuration of MCP integration across GPZH municipality sites.'
+
+test gpzh mcp integration:
+  title: 'Test GPZH MCP integration'
+  description: 'Run tests and diagnostics for MCP integration functionality.'

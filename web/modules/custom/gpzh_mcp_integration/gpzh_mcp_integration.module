@@ -1,0 +1,117 @@
+<?php
+
+/**
+ * @file
+ * GPZH MCP Integration module for Gemeindeportale Zürich.
+ *
+ * This module provides Model Context Protocol integration for automated
+ * testing, development workflows, and quality assurance across the three
+ * GPZH municipality sites: Thalwil, Thalheim, and Erlenbach.
+ */
+
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function gpzh_mcp_integration_theme() {
+  return [
+    'gpzh_mcp_status' => [
+      'variables' => [
+        'municipalities' => [],
+        'mcp_servers' => [],
+        'test_results' => [],
+      ],
+      'template' => 'gpzh-mcp-status',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_help().
+ */
+function gpzh_mcp_integration_help($route_name, $route_match) {
+  switch ($route_name) {
+    case 'help.page.gpzh_mcp_integration':
+      return '<p>' . t('GPZH MCP Integration provides Model Context Protocol integration for the Gemeindeportale Zürich project, enabling automated testing, development workflows, and quality assurance across all municipality sites.') . '</p>';
+  }
+}
+
+/**
+ * Get GPZH municipality configurations.
+ *
+ * @return array
+ *   Array of municipality configurations with site names and URLs.
+ */
+function gpzh_mcp_integration_get_municipalities() {
+  return [
+    'thalwil' => [
+      'name' => 'Thalwil',
+      'description' => 'Zürichsee-Gemeinde mit modernem Design',
+      'url' => 'https://thalwil.adesso-cms.ddev.site',
+      'config_dir' => 'sync_thalwil',
+      'design_theme' => 'zurichsee_modern',
+    ],
+    'thalheim' => [
+      'name' => 'Thalheim',
+      'description' => 'Weinland-Gemeinde mit traditionellem Design',
+      'url' => 'https://thalheim.adesso-cms.ddev.site',
+      'config_dir' => 'sync_thalheim',
+      'design_theme' => 'weinland_traditional',
+    ],
+    'erlenbach' => [
+      'name' => 'Erlenbach',
+      'description' => 'Zürichsee-Gemeinde mit Seeblick-Design',
+      'url' => 'https://erlenbach.adesso-cms.ddev.site',
+      'config_dir' => 'sync_erlenbach',
+      'design_theme' => 'zurichsee_seeblick',
+    ],
+  ];
+}
+
+/**
+ * Get configured MCP servers for GPZH integration.
+ *
+ * @return array
+ *   Array of MCP server configurations.
+ */
+function gpzh_mcp_integration_get_mcp_servers() {
+  return [
+    'github' => [
+      'name' => 'GitHub MCP',
+      'description' => 'Repository management and PR automation',
+      'status' => 'configured',
+    ],
+    'playwright' => [
+      'name' => 'Playwright MCP',
+      'description' => 'Multi-site testing and browser automation',
+      'status' => 'configured',
+    ],
+    'browser-tools' => [
+      'name' => 'Browser Tools MCP',
+      'description' => 'Performance and accessibility auditing',
+      'status' => 'configured',
+    ],
+    'atlassian-jira' => [
+      'name' => 'Atlassian Jira MCP',
+      'description' => 'Task management and workflow integration',
+      'status' => 'configured',
+    ],
+    'puppeteer' => [
+      'name' => 'Puppeteer MCP',
+      'description' => 'Demo automation and content generation',
+      'status' => 'configured',
+    ],
+    'sequential-thinking' => [
+      'name' => 'Sequential Thinking MCP',
+      'description' => 'Complex workflow orchestration',
+      'status' => 'configured',
+    ],
+    'memory' => [
+      'name' => 'Server Memory MCP',
+      'description' => 'Knowledge management and pattern storage',
+      'status' => 'configured',
+    ],
+  ];
+}

@@ -1,0 +1,9 @@
+name: 'GPZH MCP Integration'
+type: module
+description: 'Model Context Protocol integration for Gemeindeportale Zürich (GPZH) project. Provides integration with GitHub, Jira, Playwright, and other MCP servers for automated testing and workflow management.'
+package: 'GPZH'
+core_version_requirement: ^11
+dependencies:
+  - drupal:system
+  - jsonrpc:jsonrpc
+configure: gpzh_mcp_integration.settings

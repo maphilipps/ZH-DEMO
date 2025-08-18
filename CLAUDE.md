@@ -4,6 +4,86 @@
 
 Dieser **ZH-DEMO Prototyp** ist optimal konfiguriert für die GPZH Präqualifikations-Präsentation am **Kanton Zürich**. Als moderne **Drupal 11.2.2 Enterprise CMS-Lösung** mit fortschrittlicher **KI-Integration** und **Schweizer Public Sector Standards** demonstrieren wir eine zukunftssichere Plattform für kommunale Webportale basierend auf den analysierten Gemeinde-Websites.
 
+## 📋 Development Guidelines & DDEV Snapshot Workflow
+
+### **DDEV Snapshot-Based Development** 🔄
+**CRITICAL WORKFLOW**: Ständig mit DDEV Snapshots arbeiten für robuste Entwicklung:
+
+```bash
+# Vor jeder größeren Änderung: Snapshot erstellen
+ddev snapshot --name="before-gpzh-30-work"
+
+# Nach erfolgreicher Iteration: Snapshot aktualisieren  
+ddev snapshot --name="gpzh-30-iteration-1-success"
+
+# Bei Problemen nach 3 Iterationen: Zurücksetzen
+ddev snapshot restore "before-gpzh-30-work"
+
+# Mit Learnings neu starten
+# (Learnings aus LEARNINGS.md berücksichtigen)
+```
+
+**Snapshot Strategie:**
+- ✅ Vor jedem Jira-Task: Baseline-Snapshot
+- ✅ Nach erfolgreicher Feature-Implementation: Progress-Snapshot  
+- ✅ Bei Problemen nach max. 3 Versuchen: Reset und Neustart mit Learnings
+- ✅ Regelmäßig LEARNINGS.md lesen und anwenden
+
+### **tmux-cli für Parallele Entwicklung** ⚡
+**ALWAYS use tmux-cli for parallel work streams:**
+
+```bash
+# Multi-pane setup für GPZH Entwicklung
+tmux-cli create-session "gpzh-dev" --panes=4
+
+# Pane 1: DDEV Environment Management
+tmux-cli send-to-pane 1 "ddev start && ddev drush uli"
+
+# Pane 2: Frontend Development (Vite + Storybook)  
+tmux-cli send-to-pane 2 "cd web/themes/custom/adesso_cms_theme && npm run dev"
+
+# Pane 3: Playwright Testing
+tmux-cli send-to-pane 3 "npx playwright test --ui"
+
+# Pane 4: AI Integration Testing
+tmux-cli send-to-pane 4 "ddev drush ai:content-suggest --test-mode"
+
+# Capture output von allen Panes parallel
+tmux-cli capture-all-panes --format=markdown > development-session.log
+```
+
+**Why tmux-cli?**
+- 🚀 **Parallel Development**: Multiple work streams simultaneously
+- 🔍 **Real-time Monitoring**: Watch all processes at once  
+- 📊 **Session Persistence**: Resume work exactly where left off
+- 🤖 **Automation Ready**: Perfect for MCP integration
+
+### **Playwright MCP Verification - MANDATORY** ✅
+**EVERY implementation MUST be verified with Playwright MCP:**
+
+```bash
+# Nach jeder Code-Änderung: Sofortige Verification
+@playwright-verify-change --municipality="all" --features="affected-by-change"
+
+# Vor PR-Erstellung: Full-Suite Testing  
+@playwright-test-municipality --site="thalwil,thalheim,erlenbach" \
+                             --features="navigation,forms,ai-search,performance" \
+                             --generate-evidence=true
+
+# Performance & Accessibility Mandatory
+@playwright-audit-accessibility --wcag-level="AA" --ech-0059=true
+@playwright-audit-performance --core-web-vitals=true --target-score=90
+
+# Visual Regression Protection
+@playwright-visual-regression --baseline="demo-ready" --threshold=0.1
+```
+
+**Integration Pattern:**
+- 🎯 **Real-time Feedback**: Playwright results feed into development decisions
+- 📋 **Evidence-based PRs**: All PRs include Playwright test evidence  
+- 🔄 **Continuous Validation**: Every commit triggers municipality-wide testing
+- 📊 **Performance Gates**: <2s load times, >90 Core Web Vitals enforced
+
 ## 📋 Development Guidelines & Folder Structure
 
 ### **Folder-Specific Documentation**

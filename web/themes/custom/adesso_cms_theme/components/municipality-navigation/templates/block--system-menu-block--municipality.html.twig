@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override for municipality navigation menu block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ * - content: The content of this block.
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: HTML attributes for the title element.
+ * - title_prefix: Additional output populated by modules.
+ * - title_suffix: Additional output populated by modules.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{% set current_language = language.getId() %}
+{% set municipality = municipality_context|default('thalwil') %}
+
+{# Build navigation items from Drupal menu #}
+{% set nav_items = [] %}
+{% for item in content['#items'] %}
+  {% set children = [] %}
+  {% if item.below %}
+    {% for child in item.below %}
+      {% set children = children|merge([{
+        'title': child.title,
+        'url': child.url,
+        'active': child.in_active_trail
+      }]) %}
+    {% endfor %}
+  {% endif %}
+  
+  {% set nav_items = nav_items|merge([{
+    'title': item.title,
+    'url': item.url,
+    'active': item.in_active_trail,
+    'children': children
+  }]) %}
+{% endfor %}
+
+{# Build language links #}
+{% set language_links = [] %}
+{% for lang_code, lang in languages %}
+  {% set language_links = language_links|merge([{
+    'code': lang_code,
+    'label': lang.name,
+    'url': path('<current>', {}, {'language': lang}),
+    'active': lang_code == current_language
+  }]) %}
+{% endfor %}
+
+{# Render municipality navigation component #}
+{{ include('@adesso_cms_theme/municipality-navigation/municipality-navigation.twig', {
+  'municipality': municipality,
+  'items': nav_items,
+  'languageLinks': language_links,
+  'searchEnabled': true,
+  'mobileBreakpoint': 'lg',
+  'attributes': attributes
+}) }}

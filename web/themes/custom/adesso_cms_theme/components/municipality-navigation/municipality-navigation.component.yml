@@ -1,0 +1,89 @@
+name: Municipality Navigation
+status: experimental
+description: 'Responsive navigation component for Swiss municipality portals with multi-site support'
+props:
+  type: object
+  properties:
+    municipality:
+      type: string
+      title: Municipality Name
+      description: 'The current municipality (thalwil, thalheim, erlenbach)'
+      enum:
+        - thalwil
+        - thalheim
+        - erlenbach
+    items:
+      type: array
+      title: Navigation Items
+      description: 'Main navigation menu items'
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            title: Menu Item Title
+          url:
+            type: string
+            title: Menu Item URL
+          active:
+            type: boolean
+            title: Is Active
+          children:
+            type: array
+            title: Submenu Items
+            items:
+              type: object
+              properties:
+                title:
+                  type: string
+                url:
+                  type: string
+                active:
+                  type: boolean
+    languageLinks:
+      type: array
+      title: Language Links
+      description: 'Available language options'
+      items:
+        type: object
+        properties:
+          code:
+            type: string
+            title: Language Code
+          label:
+            type: string
+            title: Language Label
+          url:
+            type: string
+            title: Language URL
+          active:
+            type: boolean
+            title: Is Active Language
+    searchEnabled:
+      type: boolean
+      title: Enable Search
+      description: 'Show AI-enhanced search functionality'
+      default: true
+    mobileBreakpoint:
+      type: string
+      title: Mobile Breakpoint
+      description: 'Tailwind breakpoint for mobile menu'
+      default: 'lg'
+    attributes:
+      type: object
+      title: Wrapper Attributes
+      description: 'HTML attributes for the navigation wrapper'
+slots:
+  logo:
+    title: Logo
+    description: 'Municipality logo slot'
+  search:
+    title: Search
+    description: 'AI-enhanced search component slot'
+  mobile_menu_extra:
+    title: Mobile Menu Extra
+    description: 'Additional content for mobile menu'
+libraryOverrides:
+  dependencies:
+    - core/once
+    - adesso_cms_theme/alpine

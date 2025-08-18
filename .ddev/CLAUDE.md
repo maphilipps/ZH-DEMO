@@ -1,358 +1,300 @@
-# DDEV Development Environment Guide
+# DDEV Development Environment Guide - ZH-DEMO Prototyp
 
-This folder contains DDEV configuration for the adesso CMS Drupal 11 project with comprehensive development tooling and enterprise workflow integration.
+Dieses Verzeichnis enthält die DDEV-Konfiguration für den **ZH-DEMO Prototyp** - ein Drupal 11 System für die GPZH (Gemeindeportale Zürich) Präqualifikations-Präsentation.
 
-## Linear-First Development Environment
+## 🎯 Jira Integration für DDEV Workflow
 
-### **Automatic Linear Task Creation**
-All DDEV environment work automatically creates Linear tasks:
-```yaml
-Epic: "Development Environment Enhancement"
-Tasks:
-  - ADC-DDEV-001: Environment configuration and optimization
-  - ADC-DDEV-002: Service integration and testing
-  - ADC-DDEV-003: Performance tuning and monitoring
-  - ADC-DDEV-004: Documentation and team onboarding
+### **Jira-DDEV Development Workflow**
+```
+Jira Ticket → DDEV Environment → Development → Testing → PR with @claude Review
 ```
 
-## DDEV Configuration Overview
+### **Jira Commands für DDEV**
+```bash
+# Jira-integrierte DDEV Commands
+@jira-ddev-start GPZH-XXX     # Start DDEV environment for Jira ticket
+@jira-ddev-test GPZH-XXX      # Test changes for Jira ticket
+@jira-ddev-build GPZH-XXX     # Build assets for Jira ticket
+@jira-ddev-deploy GPZH-XXX    # Prepare deployment for Jira ticket
+```
 
-### **Current Environment Stack**
+## GPZH Prototyp Development Environment
+
+### **Automatische Entwicklungsumgebung**
+Das ZH-DEMO System ist optimal konfiguriert für die Entwicklung und Demonstration von Gemeinde-Portal Funktionalitäten:
+
+```yaml
+Prototyp-Features:
+  - Drupal 11.2.2 mit PHP 8.3
+  - Multi-Site Architektur für verschiedene Gemeinden
+  - AI-Integration für Content-Generierung
+  - Moderne Frontend-Tools (Vite, Tailwind CSS v4)
+  - Storybook-Komponenten-Dokumentation
+```
+
+## DDEV Konfiguration Übersicht
+
+### **Aktuelle Umgebungs-Stack**
 ```yaml
 Services:
   web:
-    - drupal11 with PHP 8.3
-    - nginx-fpm for optimal performance
-    - Node.js 20 with Corepack
+    - drupal11 mit PHP 8.3
+    - nginx-fpm für optimale Performance  
+    - Node.js 20 mit Corepack
     - Vite dev server (:5173)
     - Storybook server (:6006)
     
   db:
     - MariaDB 10.11 enterprise-grade
-    - Optimized for Drupal performance
-    
-  backstop:
-    - Visual regression testing
-    - BackstopJS scenarios
-    
-  selenium-chrome:
-    - E2E testing with Playwright
-    - Browser automation support
+    - Optimiert für Drupal Performance
     
   mailpit:
-    - Email testing and debugging
-    - SMTP server simulation
+    - E-Mail Testing und Debugging
+    - SMTP Server Simulation
 ```
 
-### **Development Services**
+### **GPZH Entwicklungs-Commands mit Jira Integration**
 ```bash
-# Core development commands
-ddev start                    # Initialize full environment
-ddev stop                     # Stop all services
-ddev restart                  # Restart with fresh containers
+# Basis-Umgebung mit Jira-Tracking
+ddev start                    # ZH-DEMO Umgebung starten
+ddev stop                     # Alle Services stoppen
+ddev restart                  # Neustart mit frischen Containern
+ddev logs --follow           # Live-Logs für Debugging
 
-# Theme development
-ddev theme dev               # Vite HMR development (:5173)
-ddev theme build             # Production asset compilation
-ddev theme watch             # Watch mode with live reload
-ddev theme storybook         # Component documentation (:6006)
+# Jira-spezifische DDEV Commands
+@jira-ddev-fresh GPZH-XXX    # Fresh DDEV environment for ticket
+@jira-ddev-branch GPZH-XXX   # Create branch and start DDEV
+@jira-ddev-sync GPZH-XXX     # Sync database for ticket testing
 
-# Database operations
-ddev drush sql-drop -y       # Reset database (testing)
-ddev drush cr                # Clear Drupal caches
-ddev drush cex               # Export configuration
-ddev drush cim               # Import configuration
+# Theme-Entwicklung für Gemeinde-Portale
+ddev theme dev               # Vite HMR Entwicklung (:5173)
+ddev theme build             # Produktions-Asset-Kompilierung
+ddev theme watch             # Watch-Modus mit Live-Reload
+ddev theme storybook         # Komponenten-Dokumentation (:6006)
 
-# Testing services
-npm run test                 # Run Vitest unit tests
-npm run test:e2e             # Playwright E2E tests
-npm run test:visual          # BackstopJS visual regression
-npm run test:a11y            # Accessibility compliance
+# Drupal-Operations für Gemeinde-Content
+ddev drush cr                # Drupal Caches leeren
+ddev drush cex               # Konfiguration exportieren
+ddev drush cim               # Konfiguration importieren
+ddev drush uli               # Admin-Login generieren
+
+# Multi-Site Verwaltung mit Jira-Context
+@multi-site-test GPZH-XXX    # Test across all municipalities for ticket
+ddev drush --uri=thalwil.gpzh.local cr      # Cache für Thalwil
+ddev drush --uri=thalheim.gpzh.local cr     # Cache für Thalheim
+ddev drush --uri=erlenbach.gpzh.local cr    # Cache für Erlenbach
 ```
 
-## Enterprise Development Workflow
+## GPZH Prototyp Workflow
 
-### **1. Environment Initialization**
+### **1. Gemeinde-Site Entwicklung**
 ```bash
-# Starting development with Linear integration
-# Linear task: "Initialize development environment for [feature/fix]"
+# Entwicklung für spezifische Gemeinden
+# Beispiel: Neue Funktionalität für Erlenbach
 
-# Fresh environment setup
-ddev start --fresh                    # Clean container start
-ddev composer install                 # Install PHP dependencies
-ddev npm install                      # Install Node.js dependencies
-ddev drush site:install               # Install Drupal (if needed)
+# Entwicklungsumgebung starten
+ddev start                               # ZH-DEMO Environment
+ddev theme dev                          # Frontend-Entwicklung
+ddev launch erlenbach.zh-demo.ddev.site # Erlenbach-Site öffnen
+
+# Content-Entwicklung mit AI
+ddev drush ai:generate-content "Gemeinderatssitzung" # AI Content-Generation
+ddev drush ai:translate de-fr "Content"              # Mehrsprachigkeit
 ```
 
-### **2. Feature Development Process**
+### **2. Multi-Site Testing Workflow**
 ```yaml
-Development Cycle:
-  1. Feature Branch Creation:
-     - Linear task created automatically
-     - Branch: feature/linear-[TASK-ID]-[description]
-     - DDEV environment specific to branch
+Gemeinde-Testing:
+  1. Erlenbach (Seegemeinde):
+     - URL: https://erlenbach.zh-demo.ddev.site
+     - Design: Zürichsee-Ästhetik
+     - Features: Tourismus, Vereinsleben
      
-  2. Development Environment:
-     - ddev theme dev → Start Vite HMR
-     - ddev theme storybook → Component development
-     - Real-time asset compilation
+  2. Thalheim (Ländlich):
+     - URL: https://thalheim.zh-demo.ddev.site  
+     - Design: Weinland-Charakter
+     - Features: Landwirtschaft, Verwaltung
      
-  3. Testing Integration:
-     - Unit tests run on file changes
-     - Visual regression testing via BackstopJS
-     - E2E testing with Playwright automation
-     
-  4. Quality Assurance:
-     - Automated accessibility testing
-     - Performance monitoring with Core Web Vitals
-     - Cross-browser compatibility validation
+  3. Thalwil (Modern):
+     - URL: https://thalwil.zh-demo.ddev.site
+     - Design: Zeitgemäß-urban
+     - Features: Online-Services, Klimaschutz
 ```
 
-### **3. AI Integration Development**
+### **3. GPZH Präsentations-Vorbereitung**
 ```bash
-# AI-enhanced development environment
-ddev drush ai:status                  # Check AI provider status
-ddev drush ai:test-connection         # Validate AI API connectivity
-ddev drush ai:generate-content        # Test content generation
-ddev drush ai:moderate-content        # Test content moderation
+# Präsentations-System vorbereiten
+ddev start --fresh                      # Frische Umgebung
+ddev drush sql:sync @prod @local        # Aktuelle Demo-Daten
+ddev theme build                        # Produktions-Build
+ddev launch                             # System für Demo öffnen
+
+# Performance-Validierung
+ddev exec npm run test:performance      # Lighthouse-Audit
+ddev exec npm run test:accessibility    # WCAG 2.1 AA Compliance
 ```
 
-## Service Configuration
+## Gemeinde-spezifische Konfiguration
 
-### **Web Service Optimization**
+### **Multi-Site Setup**
 ```yaml
-# .ddev/config.yaml highlights
-php_version: "8.3"
-type: drupal11
-docroot: web
-nodejs_version: "20"
-
-# Performance optimizations
-upload_dirs:
-  - web/sites/default/files
-  - private
-
-# Development tools
-hooks:
-  post-start:
-    - exec: composer install
-    - exec: npm install
+# sites/sites.php Konfiguration
+Sites:
+  erlenbach.zh-demo.ddev.site: sites/erlenbach
+  thalheim.zh-demo.ddev.site: sites/thalheim  
+  thalwil.zh-demo.ddev.site: sites/thalwil
+  zh-demo.ddev.site: sites/default  # Haupt-Administration
 ```
 
-### **Database Performance Tuning**
-```yaml
-# MariaDB optimization for Drupal
-Database Settings:
-  innodb_buffer_pool_size: 256M
-  query_cache_size: 64M
-  max_connections: 100
-  slow_query_log: enabled
-  
-# Development-specific settings
-Development Mode:
-  sql_mode: TRADITIONAL
-  character_set_server: utf8mb4
-  collation_server: utf8mb4_unicode_ci
-```
-
-### **Frontend Development Configuration**
+### **Gemeinde-Theme Konfiguration**
 ```javascript
-// Vite configuration for DDEV
+// Vite-Konfiguration für Multi-Site Themes
 export default {
-  server: {
-    host: '0.0.0.0',
-    port: 5173,
-    hmr: {
-      port: 5173,
-      host: 'localhost'
-    }
-  },
   build: {
-    outDir: 'dist',
     rollupOptions: {
       input: {
-        main: 'src/main.js',
-        style: 'src/style.css'
+        erlenbach: 'src/themes/erlenbach/main.js',
+        thalheim: 'src/themes/thalheim/main.js', 
+        thalwil: 'src/themes/thalwil/main.js',
+        admin: 'src/themes/admin/main.js'
       }
     }
   }
 }
 ```
 
-## Testing Environment Integration
+## AI-Integration für Gemeinde-Content
 
-### **Automated Testing Pipeline**
+### **AI-Enhanced Development**
 ```bash
-# Comprehensive testing in DDEV
-ddev exec npm run test:full           # Complete testing suite
+# AI-Services testen
+ddev drush ai:status                     # AI Provider Status prüfen
+ddev drush ai:test-connection openai     # OpenAI Verbindung testen
+ddev drush ai:test-connection anthropic  # Claude Verbindung testen
 
-# Individual test types
-ddev exec npm run test:unit           # Vitest unit tests
-ddev exec npm run test:e2e            # Playwright E2E
-ddev exec npm run test:visual         # BackstopJS visual regression
-ddev exec npm run test:performance    # Lighthouse performance
-ddev exec npm run test:accessibility  # WCAG 2.1 AA compliance
+# Content-Generierung für Gemeinden
+ddev drush ai:generate "Pressemitteilung Gemeinderat" --site=erlenbach
+ddev drush ai:translate de-fr "Inhalt" --site=thalwil
+ddev drush ai:moderate-content "User Generated Content"
 ```
 
-### **Quality Gate Integration**
+### **Schweizer Standards Integration**
 ```yaml
-Pre-Commit Quality Gates:
-  1. Code Quality:
-     - ESLint validation for JavaScript
-     - Stylelint validation for CSS
-     - PHP_CodeSniffer for Drupal standards
-     
-  2. Performance Testing:
-     - Lighthouse audit via DDEV
-     - Core Web Vitals measurement
-     - Asset optimization verification
-     
-  3. Accessibility Validation:
-     - Automated WCAG 2.1 AA testing
-     - Color contrast verification
-     - Screen reader compatibility
+AI Content Standards:
+  - Behördensprache (Schweizer Amtsdeutsch)
+  - GDPR/DSG-konforme Datenverarbeitung
+  - Mehrsprachigkeit (DE/FR/IT)
+  - Barrierefreie Alt-Texte
 ```
 
-## Agent Integration
+## Testing für GPZH Demonstration
 
-### **Primary Agents for DDEV Management**
-- `drupal-devops-engineer` - Environment configuration and optimization
-- `drupal-11-lead-developer` - Development workflow coordination
-- `qa-testing-specialist` - Testing pipeline integration
-- `performance-optimizer` - Environment performance tuning
+### **Automatisierte Qualitätssicherung**
+```bash
+# Comprehensive Testing vor Präsentation
+ddev exec npm run test:full              # Komplette Testing-Suite
 
-### **MCP Integration**
+# Einzelne Test-Kategorien  
+ddev exec npm run test:unit              # Unit-Tests
+ddev exec npm run test:e2e               # End-to-End Tests
+ddev exec npm run test:visual            # Visual Regression
+ddev exec npm run test:performance       # Performance-Tests
+ddev exec npm run test:accessibility     # Accessibility-Tests
+```
+
+### **Multi-Site Testing**
+```bash
+# Alle Gemeinde-Sites testen
+for site in erlenbach thalheim thalwil; do
+  echo "Testing $site..."
+  ddev exec curl -s "https://$site.zh-demo.ddev.site" > /dev/null && echo "✓ $site OK"
+done
+
+# Responsive Testing
+ddev exec npm run test:responsive        # Mobile/Tablet/Desktop
+ddev exec npm run test:browsers          # Chrome/Firefox/Safari
+```
+
+## Performance-Optimierung
+
+### **GPZH-Spezifische Optimierungen**
+```bash
+# Gemeinde-Site Performance
+ddev config --performance-mode=mutagen  # File-Sync Optimierung
+ddev restart                            # Änderungen anwenden
+
+# Cache-Strategien
+ddev drush cr                           # Drupal Cache
+ddev exec npm run build:optimized       # Asset-Optimierung
+```
+
+### **Schweizer Hosting-Optimierung**
 ```yaml
-DDEV + MCP Automation:
-  Browser Tools:
-    - Automated site auditing in development
-    - Performance monitoring during development
-    - Accessibility testing integration
-    
-  Playwright Integration:
-    - E2E testing via DDEV services
-    - Cross-browser testing automation
-    - User workflow validation
-    
-  Memory Management:
-    - Development environment patterns
-    - Performance optimization history
-    - Configuration decision documentation
+Swiss Hosting Preparation:
+  - CDN-ready Asset-Struktur
+  - GDPR-konforme Session-Handling
+  - Multi-Language URL-Struktur  
+  - Accessibility-optimierte Assets
 ```
 
-## Environment Troubleshooting
+## Troubleshooting für GPZH Demo
 
-### **Common Issues & Solutions**
+### **Häufige Demo-Probleme**
 ```bash
-# Service startup issues
-ddev logs                            # Check all service logs
-ddev logs web                        # Check web service specifically
-ddev logs db                         # Check database logs
+# Site nicht erreichbar
+ddev describe                           # Port-Zuweisungen prüfen
+ddev logs web                          # Web-Service Logs
+ddev restart                           # Services neustarten
 
-# Port conflicts
-ddev describe                        # Show current port assignments
-netstat -tlnp | grep :8080          # Check for port conflicts
-ddev restart                         # Restart with fresh ports
+# Multi-Site Probleme
+ddev exec ls -la web/sites/            # Sites-Struktur prüfen
+ddev drush status --uri=erlenbach.zh-demo.ddev.site  # Site-Status
 
-# Performance issues
-ddev exec htop                       # Monitor container resources
-ddev exec free -h                    # Check memory usage
-docker system prune                  # Clean up Docker resources
+# Performance-Probleme
+ddev exec htop                         # Container-Ressourcen
+docker system prune                   # Docker aufräumen
 ```
 
-### **Database Issues**
+### **AI-Integration Debugging**
 ```bash
-# Database connectivity problems
-ddev mysql                           # Test database connection
-ddev drush sql:connect               # Test Drupal database access
-ddev drush sql:drop -y && ddev drush site:install  # Reset database
-
-# Configuration sync issues
-ddev drush cex -y                    # Export current config
-ddev drush cim -y                    # Import stored config
-ddev drush cr                        # Clear caches
+# AI-Service Probleme
+ddev logs | grep -i "ai\|openai\|anthropic"  # AI-Service Logs
+ddev drush ai:debug                           # AI-Debug Informationen
+ddev exec env | grep -i api                  # API-Keys prüfen
 ```
 
-### **Frontend Development Issues**
-```bash
-# Node.js/npm issues
-ddev exec node --version             # Check Node.js version
-ddev exec npm --version              # Check npm version
-ddev exec rm -rf node_modules && npm install  # Reinstall packages
+## GPZH Präsentations-Checkliste
 
-# Vite/build issues
-ddev theme clean                     # Clean build artifacts
-ddev theme build --verbose          # Debug build process
-ddev exec npm run dev -- --debug     # Debug development server
-```
-
-## German Market Development
-
-### **Localization Environment**
-```bash
-# German locale development
-ddev drush locale:import de [file]    # Import German translations
-ddev drush config:set system.site default_langcode de  # Set German default
-ddev drush cr                        # Clear language caches
-```
-
-### **GDPR Compliance Testing**
-```yaml
-Privacy Testing in DDEV:
-  - Cookie consent functionality
-  - Data export/deletion workflows
-  - Privacy policy integration
-  - Contact form data handling
-```
-
-## Performance Optimization
-
-### **Development Performance**
-```bash
-# Optimize DDEV for development speed
-ddev config --performance-mode=none  # Disable performance mode for dev
-ddev config --nfs-mount-enabled=true # Enable NFS for file sync speed
-ddev restart                         # Apply changes
-```
-
-### **Memory Management**
-```yaml
-Resource Allocation:
-  Web Container: 2GB RAM minimum
-  Database: 512MB buffer pool
-  Node.js: 1GB heap size
-  
-Optimization Techniques:
-  - Use DDEV mutagen for file sync
-  - Enable opcache for PHP performance
-  - Configure MariaDB query cache
-  - Use Redis for Drupal caching
-```
-
-## Linear Workflow Integration
-
-### **Environment Setup Tasks**
+### **Technische Vorbereitung**
 ```markdown
-User: "Set up development environment for new team member"
-
-Linear Tasks Created:
-- ADC-ENV-001: DDEV installation and configuration
-- ADC-ENV-002: Database setup and content import
-- ADC-ENV-003: Frontend tooling configuration
-- ADC-ENV-004: Testing environment validation
-- ADC-ENV-005: Team onboarding and documentation
+☐ ZH-DEMO Environment läuft stabil
+☐ Alle drei Gemeinde-Sites sind erreichbar
+☐ AI-Content-Generierung funktioniert
+☐ Performance >90 Core Web Vitals Score
+☐ Accessibility WCAG 2.1 AA compliant
+☐ Mobile Responsiveness auf allen Sites
+☐ Multi-Language Switching funktional
+☐ Admin-Login für Live-Demo bereit
 ```
 
-### **Performance Optimization Tasks**
+### **Content-Vorbereitung**
 ```markdown
-User: "Optimize development environment performance"
-
-Linear Tasks Created:
-- ADC-PERF-DEV-001: Environment performance baseline
-- ADC-PERF-DEV-002: Container resource optimization
-- ADC-PERF-DEV-003: File sync performance improvement
-- ADC-PERF-DEV-004: Database query optimization
-- ADC-PERF-DEV-005: Frontend build process enhancement
+☐ Beispiel-Content für alle Gemeinden
+☐ Formular-Workflows demonstrierbar
+☐ AI-generierte Inhalte als Showcase
+☐ Bildergalerien mit Alt-Texten
+☐ Mehrsprachige Navigationen
+☐ Contact-Formulare funktional
 ```
 
-This DDEV environment provides enterprise-grade development capabilities with comprehensive testing, performance monitoring, and seamless integration with the Linear workflow management system.
+### **Demo-Scenarios Ready**
+```markdown
+☐ Responsive Navigation (Mobile/Desktop)
+☐ Content-Editor mit AI-Unterstützung  
+☐ Formular-Builder Demonstration
+☐ Multi-Site Administration
+☐ Performance-Monitoring Live
+☐ Accessibility Screen-Reader Demo
+```
+
+Dieses ZH-DEMO DDEV-Environment bietet eine vollständige Entwicklungsumgebung für die GPZH-Präqualifikations-Präsentation mit modernen Web-Standards, AI-Integration und optimaler Performance für Schweizer Gemeinde-Portale.

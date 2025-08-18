@@ -41,7 +41,7 @@ while [[ $# -gt 0 ]]; do
             echo "  3. Import configuration from config-export/"
             echo "  4. Build frontend assets"
             echo ""
-            echo "🇩🇪 German Brand Compliance: 'adesso wird immer klein geschrieben'"
+            echo "🇨🇭 Swiss Demo Environment: ZH-DEMO für GPZH Präqualifikation"
             exit 0
             ;;
         *)
@@ -56,7 +56,7 @@ done
 # PHASE 1: PREPARE ENVIRONMENT
 # ============================================================
 
-echo "🚀 Starting adesso CMS build process..."
+echo "🚀 Starting ZH-DEMO build process..."
 echo ""
 
 # Install Composer dependencies
@@ -110,12 +110,12 @@ if [[ "$IMPORT_DUMP" == true ]]; then
         echo "✓ Database dump imported successfully"
     elif [[ -d "$CONTENT_DIR" && -n "$(ls -A $CONTENT_DIR 2>/dev/null)" ]]; then
         echo "📥 No SQL dump found, using installer with content entities..."
-        drush site:install adesso_cms_installer --account-pass=admin --yes
-        drush en adesso_cms_content_import --yes
+        drush site:install zh_demo_installer --account-pass=admin --yes
+        drush en zh_demo_content_import --yes
         echo "✓ Site installed with content import module"
     else
         echo "📥 No dump or content found, using clean installer..."
-        drush site:install adesso_cms_installer --account-pass=admin --yes
+        drush site:install zh_demo_installer --account-pass=admin --yes
         echo "✓ Clean site installation completed"
     fi
 else
@@ -183,10 +183,10 @@ echo "🎨 Building frontend assets..."
 
 # Theme dependencies and build
 echo "📦 Installing theme dependencies..."
-npm --cwd=web/themes/custom/adesso_cms_theme install
+npm --cwd=web/themes/custom/zh_demo_theme install
 
 echo "🏗️  Building theme assets..."
-npm --cwd=web/themes/custom/adesso_cms_theme run build
+npm --cwd=web/themes/custom/zh_demo_theme run build
 
 # Storybook build
 echo "📚 Building Storybook documentation..."
@@ -206,14 +206,14 @@ echo "✅ Build completed successfully!"
 echo "================================="
 
 # German brand compliance check
-echo "🇩🇪 Running German brand compliance check..."
+echo "🇨🇭 Running GPZH demo environment check..."
 SITE_NAME=$(drush config:get system.site name --format=value 2>/dev/null || echo "")
-if [[ -n "$SITE_NAME" && "$SITE_NAME" =~ [A]DESSO ]]; then
-    echo "⚠️  Brand compliance warning: Site name contains 'ADESSO'"
-    echo "     'adesso wird immer klein geschrieben'"
+if [[ -n "$SITE_NAME" && "$SITE_NAME" =~ [Zz][Hh].*[Dd][Ee][Mm][Oo] ]]; then
+    echo "✓ GPZH demo environment check passed"
     echo "     Current site name: $SITE_NAME"
 else
-    echo "✓ German brand compliance check passed"
+    echo "⚠️  Demo environment warning: Site name should contain 'ZH DEMO'"
+    echo "     Current site name: $SITE_NAME"
 fi
 
 # Build summary
@@ -232,10 +232,10 @@ echo "  • Development modules: Enabled"
 
 echo ""
 echo "🚀 Site is ready for development!"
-echo "   • Web: http://adesso-cms.ddev.site"
-echo "   • Admin: http://adesso-cms.ddev.site/admin (admin/admin)"
+echo "   • Web: http://zh-demo.ddev.site"
+echo "   • Admin: http://zh-demo.ddev.site/admin (admin/admin)"
 if [[ -f "storybook/package.json" ]]; then
-    echo "   • Storybook: http://adesso-cms.ddev.site:6006"
+    echo "   • Storybook: http://zh-demo.ddev.site:6006"
 fi
 
 echo ""

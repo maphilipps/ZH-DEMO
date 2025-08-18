@@ -1,7 +1,43 @@
-# Adesso CMS Theme Development Guide
+# Adesso CMS Theme Development Guide - GPZH Multi-Site System
 
 ## 🎯 Core Principle
 **Think carefully and only action the specific task given with the most concise and elegant solution that changes as little code as possible.**
+
+## 🏛️ GPZH Multi-Municipality Theme Architecture
+This theme serves three distinct municipalities with shared components and municipality-specific customizations:
+- **Thalwil**: Modern lakeside community (Blue theme)
+- **Thalheim**: Traditional wine region (Green theme)  
+- **Erlenbach**: Upscale Goldküste location (Turquoise theme)
+
+## 🎯 Jira Integration for Theme Development
+
+### **Theme Development Workflow**
+```
+Jira Ticket → Component Design → Implementation → Testing → Storybook → PR with @claude Review
+```
+
+### **Jira Task Types for Theme Work**
+- **GPZH-XXX**: New component development
+- **GPZH-XXX**: Municipality-specific styling
+- **GPZH-XXX**: Responsive design improvements
+- **GPZH-XXX**: Accessibility enhancements
+- **GPZH-XXX**: Performance optimizations
+
+### **Branch Naming for Theme Changes**
+```bash
+theme/GPZH-123-hero-component-municipality-variants
+theme/GPZH-456-mobile-navigation-improvements
+theme/GPZH-789-accessibility-wcag-compliance
+```
+
+### **Jira Theme Commands**
+```bash
+# Jira-integrated theme development
+@jira-theme-start GPZH-XXX      # Start theme development for ticket
+@jira-component-create GPZH-XXX  # Create new component for ticket
+@jira-storybook-update GPZH-XXX  # Update Storybook for ticket
+@jira-theme-test GPZH-XXX        # Test theme changes for ticket
+```
 
 ## 📂 Theme Structure
 
@@ -25,6 +61,70 @@ adesso_cms_theme/
 ├── dist/               # Compiled assets
 ├── storybook/          # Storybook configuration
 └── tests/              # Frontend tests
+```
+
+## 🏛️ Municipality-Specific Theming
+
+### **Thalwil Theme Configuration**
+```scss
+// src/css/municipalities/thalwil.scss
+$thalwil-primary: #1E3A8A;  // Modern blue
+$thalwil-secondary: #3B82F6;
+$thalwil-accent: #60A5FA;
+
+.municipality-thalwil {
+  --color-primary: #{$thalwil-primary};
+  --color-secondary: #{$thalwil-secondary};
+  --font-family-heading: 'Inter', sans-serif;
+  --hero-background: linear-gradient(135deg, #{$thalwil-primary}, #{$thalwil-accent});
+}
+```
+
+### **Thalheim Theme Configuration**  
+```scss
+// src/css/municipalities/thalheim.scss
+$thalheim-primary: #15803D;  // Wine green
+$thalheim-secondary: #22C55E;
+$thalheim-accent: #16A34A;
+
+.municipality-thalheim {
+  --color-primary: #{$thalheim-primary};
+  --color-secondary: #{$thalheim-secondary};
+  --font-family-heading: 'Crimson Text', serif;
+  --hero-background: linear-gradient(135deg, #{$thalheim-primary}, #{$thalheim-accent});
+}
+```
+
+### **Erlenbach Theme Configuration**
+```scss
+// src/css/municipalities/erlenbach.scss  
+$erlenbach-primary: #0891B2;  // Lake turquoise
+$erlenbach-secondary: #06B6D4;
+$erlenbach-accent: #67E8F9;
+
+.municipality-erlenbach {
+  --color-primary: #{$erlenbach-primary};
+  --color-secondary: #{$erlenbach-secondary}; 
+  --font-family-heading: 'Playfair Display', serif;
+  --hero-background: linear-gradient(135deg, #{$erlenbach-primary}, #{$erlenbach-accent});
+}
+```
+
+### **Multi-Municipality Component Pattern**
+```twig
+{# components/hero/hero.twig #}
+{% set municipality_class = 'municipality-' ~ municipality|default('default') %}
+<section class="hero {{ municipality_class }}" {{ attributes }}>
+  <div class="hero__content">
+    <h1 class="hero__title">{{ title }}</h1>
+    <p class="hero__summary">{{ summary }}</p>
+    {% if link %}
+      <a href="{{ link.url }}" class="button button--primary municipality-button">
+        {{ link.title }}
+      </a>
+    {% endif %}
+  </div>
+</section>
 ```
 
 ## 🔄 Theme Development Workflow

@@ -1,1 +1,0 @@
-../../install-core-only.sh

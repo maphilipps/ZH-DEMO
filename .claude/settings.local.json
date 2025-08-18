@@ -13,7 +13,13 @@
       "mcp__serena__think_about_collected_information",
       "Bash(cp:*)",
       "Bash(chmod:*)",
-      "Bash(./cleanup-installer-config.sh:*)"
+      "Bash(./cleanup-installer-config.sh:*)",
+      "mcp__atlassian__getAccessibleAtlassianResources",
+      "mcp__atlassian__getVisibleJiraProjects",
+      "mcp__atlassian__createJiraIssue",
+      "mcp__atlassian__editJiraIssue",
+      "mcp__atlassian__getJiraIssue",
+      "mcp__atlassian__searchJiraIssuesUsingJql"
     ]
   },
   "outputStyle": "Drupal Master Architect"

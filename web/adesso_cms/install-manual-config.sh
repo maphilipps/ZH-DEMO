@@ -1,1 +1,0 @@
-../../install-manual-config.sh

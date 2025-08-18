@@ -1,0 +1,21 @@
+uuid: b8c9d0e1-f2g3-4567-8901-234567rstuvw
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.pricing_card
+id: paragraph.pricing_card.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: pricing_card
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

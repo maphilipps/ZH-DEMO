@@ -1,0 +1,63 @@
+uuid: e3ae7a62-3e21-43b3-be58-4e889073c174
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.embed.field_pre_headline
+    - field.field.paragraph.embed.field_script
+    - field.field.paragraph.embed.field_sub_headline
+    - field.field.paragraph.embed.field_theme
+    - field.field.paragraph.embed.field_title
+    - paragraphs.paragraphs_type.embed
+  module:
+    - text
+_core:
+  default_config_hash: KjG9yIdO9NNn-ySxDgSMV7VIXPT06HbEMtR9SAj4PY0
+id: paragraph.embed.default
+targetEntityType: paragraph
+bundle: embed
+mode: default
+content:
+  field_theme:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_pre_headline:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_script:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_sub_headline:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  info: true
+  status: true

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.pricing.field_content_element_theme
+    - field.field.paragraph.pricing.field_theme
     - field.field.paragraph.pricing.field_eyebrow
     - field.field.paragraph.pricing.field_pricing_cards
     - field.field.paragraph.pricing.field_summary
@@ -51,4 +52,5 @@ content:
     region: content
 hidden:
   field_content_element_theme: true
+  field_theme: true
   search_api_excerpt: true

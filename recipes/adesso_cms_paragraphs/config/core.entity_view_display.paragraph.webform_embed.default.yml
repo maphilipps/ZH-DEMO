@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.webform_embed.field_content_element_theme
+    - field.field.paragraph.webform_embed.field_theme
     - field.field.paragraph.webform_embed.field_display_options
     - field.field.paragraph.webform_embed.field_pre_headline
     - field.field.paragraph.webform_embed.field_summary
@@ -52,4 +53,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_content_element_theme: true
+  field_theme: true
   field_display_options: true

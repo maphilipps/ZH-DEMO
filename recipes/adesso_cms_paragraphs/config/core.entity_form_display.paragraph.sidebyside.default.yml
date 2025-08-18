@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.sidebyside.field_content_element_theme
+    - field.field.paragraph.sidebyside.field_theme
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media
@@ -28,6 +29,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 4
     region: content
     settings:
       display_label: true

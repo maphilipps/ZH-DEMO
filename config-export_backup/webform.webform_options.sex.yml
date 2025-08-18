@@ -1,0 +1,14 @@
+uuid: fe2fd25b-4751-449b-b82d-5511c5eaf30e
+langcode: de
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform
+_core:
+  default_config_hash: WRpxpwYpfcO_i0so7BV4QXxXlbPiSVppYmAV6DAz4c0
+id: sex
+label: Geschlecht
+category: Demographisch
+likert: false
+options: "Männlich: Männlich\r\nWeiblich: Weiblich\n"

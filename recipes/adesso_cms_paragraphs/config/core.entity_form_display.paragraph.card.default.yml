@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.card.field_link
     - field.field.paragraph.card.field_media
     - field.field.paragraph.card.field_summary
+    - field.field.paragraph.card.field_theme
     - field.field.paragraph.card.field_title
     - paragraphs.paragraphs_type.card
   module:
@@ -22,6 +23,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 8
     region: content
     settings:
       display_label: true

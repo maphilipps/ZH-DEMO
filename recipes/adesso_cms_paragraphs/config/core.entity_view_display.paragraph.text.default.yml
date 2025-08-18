@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.text.field_body
     - field.field.paragraph.text.field_content_element_theme
+    - field.field.paragraph.text.field_theme
     - field.field.paragraph.text.field_link
     - field.field.paragraph.text.field_link2
     - field.field.paragraph.text.field_pre_headline

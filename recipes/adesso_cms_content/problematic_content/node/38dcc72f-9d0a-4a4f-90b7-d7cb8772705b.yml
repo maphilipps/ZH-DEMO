@@ -1,0 +1,878 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 38dcc72f-9d0a-4a4f-90b7-d7cb8772705b
+  bundle: page
+  default_langcode: de
+  depends:
+    744c4ce0-0066-4784-a0dc-194911c555cf: media
+    aef7833e-2758-4ced-b7c8-5e804cd98267: media
+    faef6028-9b8d-45ac-acc3-d11b7b941c93: media
+    a9712a73-2201-43c8-942b-4718bde4bffd: media
+    c0363a58-806b-40e1-b3ac-a3095c1a90d6: media
+    178d07ec-8f6b-4b18-a73a-4988ba9d8ba6: media
+    8335742b-424d-4e16-97a9-e8fcad29c9f1: media
+    9d08b4db-5980-4dbb-b80d-52f9bf3127d3: media
+    33f98d5a-5aaf-4f55-a04f-0df551ee730f: media
+    930856d3-0fff-455c-819d-2c74e01cff3d: media
+    ce7496dd-f778-4451-9d2f-76fa362b6a17: media
+    b300f291-9fb4-49a8-bcd5-fa9fdae1e692: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Complete Paragraph Showcase'
+  created:
+    -
+      value: 1752901332
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Complete Paragraph Showcase | adessoCMS'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'https://adesso-cms.ddev.site/complete-paragraph-showcase'
+    -
+      tag: link
+      attributes:
+        rel: shortlink
+        href: 'https://adesso-cms.ddev.site/'
+    -
+      tag: meta
+      attributes:
+        name: referrer
+        content: unsafe-url
+    -
+      tag: meta
+      attributes:
+        name: rights
+        content: 'Copyright ©2025 All rights reserved.'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: adessoCMS
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: article
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'https://adesso-cms.ddev.site/welcome-adesso-cms'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Complete Paragraph Showcase'
+    -
+      tag: meta
+      attributes:
+        property: 'og:description'
+        content: 'Comprehensive showcase of all available paragraph components'
+    -
+      tag: meta
+      attributes:
+        property: 'og:updated_time'
+        content: '2025-08-04T09:06:40+02:00'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:description'
+        content: 'Comprehensive showcase of all available paragraph components'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Complete Paragraph Showcase'
+  path:
+    -
+      alias: /complete-paragraph-showcase
+      langcode: de
+      pathauto: 1
+  field_description:
+    -
+      value: 'Comprehensive showcase of all available paragraph components'
+  field_paragraphs:
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5cd1c315-1df7-4e90-8c57-c15b6557157d
+          bundle: hero
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901898
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_heading:
+            -
+              value: 'Hero Layout: Image Top'
+              format: restricted_html
+          field_hero_layout:
+            -
+              value: image_top
+          field_media:
+            -
+              target_id: 744c4ce0-0066-4784-a0dc-194911c555cf
+          field_pre_headline:
+            -
+              value: 'Hero Variant 1'
+          field_sub_headline:
+            -
+              value: 'Dark Theme'
+          field_summary:
+            -
+              value: '<p>This hero variant displays the image at the top with dark theme styling.</p>'
+              format: basic_html
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1050ee93-acaf-49d8-98f5-b3f4daa3d51a
+          bundle: text
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901898
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_body:
+            -
+              value: '<p>This text component uses <strong>left alignment</strong> - the standard layout for most content blocks.</p><p><strong>Bold</strong></p><p><em>Italic</em></p><p><s>Durchgestrichen</s></p><p><sup>Hoch</sup>gestellt</p><p><sub>Tief</sub>gestellt</p><p><a href="https://adesso.de">Link</a></p><ul><li>Liste</li><li>Liste</li><li>Liste</li></ul><ol><li>Liste</li><li>Liste</li><li>Liste</li></ol><blockquote><p>Quote</p></blockquote>'
+              format: full_html
+              summary: ''
+          field_content_element_theme:
+            -
+              value: false
+          field_pre_headline:
+            -
+              value: 'Text Variant 1'
+          field_text_layout:
+            -
+              value: left
+          field_title:
+            -
+              value: 'Text Layout: Left Aligned'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5d3e54d1-3df9-4156-a49d-6ba589d2748b
+          bundle: hero
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901898
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_heading:
+            -
+              value: 'Hero Layout: Image Bottom'
+              format: restricted_html
+          field_hero_layout:
+            -
+              value: image_bottom
+          field_media:
+            -
+              target_id: aef7833e-2758-4ced-b7c8-5e804cd98267
+          field_pre_headline:
+            -
+              value: 'Hero Variant 2'
+          field_sub_headline:
+            -
+              value: 'Light Theme'
+          field_summary:
+            -
+              value: '<p>Content first approach with image positioned below.</p>'
+              format: basic_html
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cb012b81-038d-43c1-984b-96b9febe2da6
+          bundle: text
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901920
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_body:
+            -
+              value: '<p>This text component uses <strong>centered alignment</strong> with dark theme styling.</p>'
+              format: full_html
+              summary: ''
+          field_content_element_theme:
+            -
+              value: false
+          field_pre_headline:
+            -
+              value: 'Text Variant 2'
+          field_text_layout:
+            -
+              value: centered
+          field_title:
+            -
+              value: 'Text Layout: Centered'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 674c45c0-08bd-46a8-a1bb-6cba0e5f3ea7
+          bundle: sidebyside
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901920
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_media:
+            -
+              target_id: faef6028-9b8d-45ac-acc3-d11b7b941c93
+          field_pre_headline:
+            -
+              value: 'SideBySide Variant 1'
+          field_sidebyside_layout:
+            -
+              value: left
+          field_summary:
+            -
+              value: '<p>Image on the left side with content on the right.</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'Side by Side: Image Left'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 659b496d-4ce8-41be-be83-055a73b66812
+          bundle: sidebyside
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901920
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: false
+          field_media:
+            -
+              target_id: a9712a73-2201-43c8-942b-4718bde4bffd
+          field_pre_headline:
+            -
+              value: 'SideBySide Variant 2'
+          field_sidebyside_layout:
+            -
+              value: right
+          field_summary:
+            -
+              value: '<p>Content on the left with image on the right side.</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'Side by Side: Image Right'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 90b735d4-4fc2-425a-afe8-1860d2222712
+          bundle: media
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901941
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_media:
+            -
+              target_id: c0363a58-806b-40e1-b3ac-a3095c1a90d6
+          field_pre_headline:
+            -
+              value: 'Rich Media Integration'
+          field_title:
+            -
+              value: 'Featured Media Content'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1f84977f-9f39-4ed4-8f00-ad4a6ab46dbc
+          bundle: gallery
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901941
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: false
+          field_media_item:
+            -
+              target_id: 178d07ec-8f6b-4b18-a73a-4988ba9d8ba6
+            -
+              target_id: 8335742b-424d-4e16-97a9-e8fcad29c9f1
+            -
+              target_id: 9d08b4db-5980-4dbb-b80d-52f9bf3127d3
+            -
+              target_id: aef7833e-2758-4ced-b7c8-5e804cd98267
+            -
+              target_id: a9712a73-2201-43c8-942b-4718bde4bffd
+            -
+              target_id: 744c4ce0-0066-4784-a0dc-194911c555cf
+            -
+              target_id: faef6028-9b8d-45ac-acc3-d11b7b941c93
+          field_pre_headline:
+            -
+              value: 'Visual Portfolio'
+          field_sub_headline:
+            -
+              value: 'Our Recent Work'
+          field_title:
+            -
+              value: 'Project Gallery Showcase'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1f6580f6-6fa1-4281-8b6f-22cdb019ac16
+          bundle: newsletter
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901941
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_pre_headline:
+            -
+              value: 'Newsletter Signup'
+          field_summary:
+            -
+              value: '<p>Get the latest updates and insights delivered to your inbox.</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'Stay Connected with adesso CMS'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5a8dd254-72e6-4a2f-ad4b-43fafb4e2585
+          bundle: card_group
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901959
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_card:
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 434eb1b2-64a1-4691-b216-28d82343f259
+                  bundle: card
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1752901959
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_content_element_theme:
+                    -
+                      value: false
+                  field_media:
+                    -
+                      target_id: 33f98d5a-5aaf-4f55-a04f-0df551ee730f
+                  field_summary:
+                    -
+                      value: 'Professional web development services with modern technologies.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Services
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4d3bab0a-a874-4a69-8922-b422c8b4aba1
+                  bundle: card
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1752901959
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_content_element_theme:
+                    -
+                      value: false
+                  field_media:
+                    -
+                      target_id: 8335742b-424d-4e16-97a9-e8fcad29c9f1
+                  field_summary:
+                    -
+                      value: 'Custom solutions tailored to your business needs.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Solutions
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 108ce1fc-becb-4867-8d2f-f1b472545110
+                  bundle: card
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1752901959
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_content_element_theme:
+                    -
+                      value: false
+                  field_media:
+                    -
+                      target_id: 178d07ec-8f6b-4b18-a73a-4988ba9d8ba6
+                  field_summary:
+                    -
+                      value: 'Comprehensive support for your digital projects.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Support
+          field_content_element_theme:
+            -
+              value: false
+          field_pre_headline:
+            -
+              value: 'Content Grid'
+          field_title:
+            -
+              value: 'Card Components'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4f820649-6aec-4768-80d6-731b5197f2e6
+          bundle: accordion
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901977
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_accordion_item:
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6a66d488-29d0-4071-92b9-b7f063e6a107
+                  bundle: accordion_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1752901977
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_body:
+                    -
+                      value: '<p>The <strong>adesso CMS</strong> is a powerful, future-ready content management system built on the robust foundation of the <strong>2025 release of Drupal CMS</strong>. As a custom Drupal distribution, it combines the flexibility and reliability of Drupal 11 with a finely tuned suite of enhancements tailored for enterprise-grade digital experiences. adesso CMS is designed to accelerate project delivery by offering pre-configured content types, customizable page templates, and a rich library of reusable <strong>Paragraph-based content elements</strong>—all optimized for intuitive editorial control and responsive design. This distribution empowers organizations to manage complex content structures with ease, scale across multiple sites or languages, and maintain consistent branding. With its modular architecture, adesso CMS supports seamless integration into existing system landscapes, including marketing automation tools, CRM platforms, and DAM solutions. Out-of-the-box governance features, such as role-based access and workflow management, ensure secure and compliant content publishing. adesso CMS also prioritizes performance and accessibility, aligning with WCAG and modern SEO standards. Whether for corporate websites, portals, or campaign-driven microsites, adesso CMS delivers a streamlined, future-proof content platform that reduces technical overhead while maximizing digital impact. It’s the ideal choice for enterprises looking to combine innovation, editorial freedom, and long-term scalability—all within the proven Drupal ecosystem.</p>'
+                      format: basic_html
+                      summary: ''
+                  field_title:
+                    -
+                      value: 'What is adesso CMS?'
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1b495317-3ac8-4590-af43-0e99df691018
+                  bundle: accordion_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1752901977
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_body:
+                    -
+                      value: '<p>In the <strong>adesso Drupal CMS</strong>, page creation is streamlined through the use of predefined <strong>page types</strong> and a flexible system of <strong>content elements based on Paragraphs</strong>. Editors begin by selecting a page type—such as Landing Page, Article, or Product Page—each tailored with specific fields and layout presets to serve distinct business goals. These page types come with pre-configured metadata settings, layout regions, and content placeholders, reducing setup time and ensuring consistency across the site.</p><p>&nbsp;</p><p>Once a page type is selected, editors use the <strong>Paragraphs system</strong> to build content dynamically. Content elements—such as text blocks, image galleries, sliders, videos, teasers, accordions, CTAs, and forms—are available as reusable Paragraph types. These elements can be added, reordered, or nested directly in the page editor, giving non-technical users maximum flexibility within defined design constraints. Each content element is responsive by default and adheres to the corporate design system, ensuring visual consistency.</p><p>&nbsp;</p><p>The editor-friendly UI in the backend allows for real-time previewing and inline editing, helping content teams work faster and more confidently. With multilingual support, revision history, and role-based access control, adesso CMS ensures that content workflows remain efficient and secure while enabling creative freedom through structured flexibility.</p>'
+                      format: basic_html
+                      summary: ''
+                  field_title:
+                    -
+                      value: 'How do I use these components?'
+          field_content_element_theme:
+            -
+              value: true
+          field_pre_headline:
+            -
+              value: 'On adesso cms'
+          field_sub_headline:
+            -
+              value: 'Accordion Component'
+          field_title:
+            -
+              value: 'Frequently Asked Questions'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d05a2c7b-7441-4cd7-aace-59e122a3f698
+          bundle: logo_collection
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1752901977
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: false
+          field_media_item:
+            -
+              target_id: 930856d3-0fff-455c-819d-2c74e01cff3d
+            -
+              target_id: ce7496dd-f778-4451-9d2f-76fa362b6a17
+            -
+              target_id: b300f291-9fb4-49a8-bcd5-fa9fdae1e692
+          field_pre_headline:
+            -
+              value: 'Build on industry standards'
+          field_title:
+            -
+              value: 'Our technology partnerships'
+    -
+      target_id:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1a393285-f84f-4f80-9a0e-43251abd2d82
+          bundle: slider
+          default_langcode: de
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1753277469
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_content_element_theme:
+            -
+              value: true
+          field_pre_headline:
+            -
+              value: 'Build on industry standards'
+          field_slider_item:
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a0888d95-87d9-4628-a7d0-45bb2f557d05
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277488
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_media:
+                    -
+                      target_id: 9d08b4db-5980-4dbb-b80d-52f9bf3127d3
+                  field_summary:
+                    -
+                      value: 'Custom solutions tailored to your business needs.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Solutions
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d311384e-7551-4ecd-895e-1fe464757053
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277516
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_media:
+                    -
+                      target_id: aef7833e-2758-4ced-b7c8-5e804cd98267
+                  field_summary:
+                    -
+                      value: 'Comprehensive support for your digital projects.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Support
+            -
+              target_id:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c6dea75e-7d05-4463-b2a0-39875990d7f2
+                  bundle: slider_item
+                  default_langcode: de
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1753277535
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_media:
+                    -
+                      target_id: 744c4ce0-0066-4784-a0dc-194911c555cf
+                  field_summary:
+                    -
+                      value: 'Professional web development services with modern technologies.'
+                      format: ''
+                  field_title:
+                    -
+                      value: Services
+          field_title:
+            -
+              value: 'Our technology partnerships'
+  field_seo_analysis:
+    -
+      status: '0'
+      focus_keyword: ''
+      title: ''
+      description: ''

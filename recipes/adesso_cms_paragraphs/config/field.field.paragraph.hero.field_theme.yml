@@ -1,0 +1,21 @@
+uuid: b3c4d5e6-f7g8-9012-3456-789012mnopqr
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: hero
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

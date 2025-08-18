@@ -1,8 +1,14 @@
-# Documentation - Claude Agent Guide
+# Documentation - GPZH Präsentation
 
-## Overview
+## 🎯 GPZH Präqualifikations-Präsentation Support
 
-This directory contains comprehensive project documentation including Architecture Decision Records (ADRs), development guides, and technical specifications for the adesso CMS project.
+Dieser Ordner enthält alle relevanten Dokumentationen für die **GPZH Präqualifikations-Präsentation** sowie umfassende Projektdokumentation einschließlich Architecture Decision Records (ADRs), Entwicklungsleitfäden und technische Spezifikationen für das adesso CMS Projekt.
+
+### **Präsentations-spezifische Dokumentation**
+- **GPZH System Architecture**: Multi-Site CMS für Schweizer Gemeinden
+- **AI Integration Guide**: KI-Features für Gemeindekommunikation  
+- **Compliance Framework**: DSGVO/CH-DSG + eCH-0059 Standards
+- **Performance Benchmarks**: Core Web Vitals für kommunale Websites
 
 ## Technology Stack
 

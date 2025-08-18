@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.sidebyside.field_content_element_theme
+    - field.field.paragraph.sidebyside.field_theme
     - field.field.paragraph.sidebyside.field_features
     - field.field.paragraph.sidebyside.field_link
     - field.field.paragraph.sidebyside.field_media

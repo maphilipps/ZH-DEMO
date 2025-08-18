@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.block_reference.field_block_reference
     - field.field.paragraph.block_reference.field_content_element_theme
+    - field.field.paragraph.block_reference.field_theme
     - field.field.paragraph.block_reference.field_pre_headline
     - field.field.paragraph.block_reference.field_title
     - paragraphs.paragraphs_type.block_reference

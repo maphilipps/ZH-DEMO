@@ -1,0 +1,23 @@
+uuid: 7c1a15d6-d0ac-4be7-870e-ce2546942577
+langcode: de
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - olivero
+_core:
+  default_config_hash: l_Zd2ORS5HNNoZQDwEppgsPfAoWlWih2JzHkwn7B8IM
+id: olivero_search_form_wide
+theme: olivero
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Suchformular (breit)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

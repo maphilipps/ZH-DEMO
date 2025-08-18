@@ -1,0 +1,10 @@
+{
+  "name": "adesso/adesso_cms_content",
+  "description": "Adds a blog post content type and listing page.",
+  "type": "drupal-recipe",
+  "license": ["GPL-2.0-or-later"],
+  "require": {
+    "drupal/core": "^10.4 || ^11",
+    "drupal/default_content": "^2.0@alpha"
+  }
+}

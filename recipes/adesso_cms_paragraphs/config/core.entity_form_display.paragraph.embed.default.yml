@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.embed.field_content_element_theme
+    - field.field.paragraph.embed.field_theme
     - field.field.paragraph.embed.field_pre_headline
     - field.field.paragraph.embed.field_script
     - field.field.paragraph.embed.field_sub_headline
@@ -21,6 +22,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 5
     region: content
     settings:
       display_label: true

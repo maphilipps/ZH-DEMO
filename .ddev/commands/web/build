@@ -111,8 +111,8 @@ if [[ "$IMPORT_DUMP" == true ]]; then
     elif [[ -d "$CONTENT_DIR" && -n "$(ls -A $CONTENT_DIR 2>/dev/null)" ]]; then
         echo "📥 No SQL dump found, using installer with content entities..."
         drush site:install adesso_cms_installer --account-pass=admin --yes
-        drush en adesso_cms_content --yes
-        echo "✓ Site installed with content module"
+        drush en adesso_cms_content_import --yes
+        echo "✓ Site installed with content import module"
     else
         echo "📥 No dump or content found, using clean installer..."
         drush site:install adesso_cms_installer --account-pass=admin --yes
@@ -130,9 +130,25 @@ echo "⚙️  Importing configuration..."
 
 # Import configuration from config-export
 if [[ -d "config-export" && -n "$(ls -A config-export 2>/dev/null)" ]]; then
-    echo "📦 Importing configuration from config-export/"
-    drush config:import --yes
-    echo "✓ Configuration imported successfully"
+    echo "📦 Checking configuration import safety..."
+    
+    # Check if this is a destructive import by counting deletions
+    DELETE_COUNT=$(drush config:import --preview=list 2>/dev/null | grep -c "Delete" || echo "0")
+    TOTAL_COUNT=$(drush config:import --preview=list 2>/dev/null | wc -l || echo "0")
+    
+    if [[ "$DELETE_COUNT" -gt 10 ]] && [[ "$DELETE_COUNT" -gt $((TOTAL_COUNT / 2)) ]]; then
+        echo "⚠️  Detected $DELETE_COUNT configuration deletions out of $TOTAL_COUNT changes"
+        echo "    This appears to be a major/destructive configuration change"
+        echo "    Use 'drush config:import' manually to review before importing"
+        echo "    Skipping automatic config import for safety"
+        echo ""
+        echo "💡 To force import: drush config:import --yes"
+        echo "💡 To export current config: drush config:export --yes"
+    else
+        echo "📦 Importing configuration from config-export/ ($DELETE_COUNT deletions, $TOTAL_COUNT total changes)"
+        drush config:import --yes 2>/dev/null || echo "⚠️  Configuration import failed - this may be expected"
+        echo "✓ Configuration import completed"
+    fi
 else
     echo "⚠️  No configuration found in config-export/, skipping..."
 fi

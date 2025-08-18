@@ -1,0 +1,20 @@
+uuid: a8cbf6ce-be59-4e4e-bf1e-40e142451246
+langcode: de
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - webform
+id: paragraph.field_select_webform
+field_name: field_select_webform
+entity_type: paragraph
+type: webform
+settings:
+  target_type: webform
+module: webform
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

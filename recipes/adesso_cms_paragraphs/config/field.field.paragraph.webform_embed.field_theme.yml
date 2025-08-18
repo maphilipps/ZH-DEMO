@@ -1,0 +1,21 @@
+uuid: c5d6e7f8-g9h0-1234-5678-901234yzabcd
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.webform_embed
+id: paragraph.webform_embed.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: webform_embed
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

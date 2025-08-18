@@ -46,6 +46,19 @@ dependencies:
   - drupal:ckeditor5
   # Webform module (Drupal 11 compatible beta4)
   - webform:webform
+  # AI Integration modules for graphical installer
+  - ai:ai
+  - ai:ai_agents
+  - ai:ai_assistant_api
+  - ai:ai_ckeditor
+  - ai:ai_content_suggestions
+  - ai:ai_external_moderation
+  - ai:ai_image_alt_text
+  - ai:ai_image_bulk_alt_text
+  - ai:ai_translate
+  - ai:provider_anthropic
+  - ai:provider_groq
+  - ai:provider_openai
 
 # Themes to install
 # Note: Themes are installed via hook_install in .profile file

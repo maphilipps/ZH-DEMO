@@ -1,0 +1,21 @@
+uuid: c8d3f85e-fe13-4098-b7e4-f32ea1972717
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.block_reference
+_core:
+  default_config_hash: QYuhp-D5Pqj_ewwtXD9pDsnL-3F2yx9BZwbPySe90rk
+id: paragraph.block_reference.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: block_reference
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

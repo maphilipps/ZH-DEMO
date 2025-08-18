@@ -16,12 +16,8 @@ install:
   # Contrib modules
   - focal_point
   - paragraphs
-  - paragraphs_features
-  - paragraphs_ee
   - paragraphs_edit
   - entity_reference_revisions
-  - viewfield
-  - webp
   - crop
   - entity_browser
   - dropzonejs

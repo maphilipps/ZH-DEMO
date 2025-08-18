@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.download.field_content_element_theme
+    - field.field.paragraph.download.field_theme
     - field.field.paragraph.download.field_download_item
     - field.field.paragraph.download.field_pre_headline
     - field.field.paragraph.download.field_title
@@ -36,6 +37,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 3
     region: content
     settings:
       display_label: true

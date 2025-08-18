@@ -1,0 +1,21 @@
+uuid: c4d5e6f7-g8h9-0123-4567-890123xyzabc
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.views
+id: paragraph.views.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: views
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

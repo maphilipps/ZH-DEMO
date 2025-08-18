@@ -1,0 +1,21 @@
+uuid: c1d2e3f4-g5h6-7890-1234-567890uvwxyz
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.slider_item
+id: paragraph.slider_item.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: slider_item
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

@@ -1,7 +1,0 @@
-_core:
-  default_config_hash: JRxplwXi4CaUk3DQtIhs8xpHAzTP7JhnX5nzIuv2GGU
-api_key: ''
-reasoning_format: hidden
-temperature: 0.6
-max_tokens: 1024
-json_mode: false

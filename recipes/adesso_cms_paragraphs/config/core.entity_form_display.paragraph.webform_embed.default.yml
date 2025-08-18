@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.webform_embed.field_content_element_theme
+    - field.field.paragraph.webform_embed.field_theme
     - field.field.paragraph.webform_embed.field_display_options
     - field.field.paragraph.webform_embed.field_pre_headline
     - field.field.paragraph.webform_embed.field_summary
@@ -41,6 +42,13 @@ content:
     weight: 15
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_title:
     type: string_textfield

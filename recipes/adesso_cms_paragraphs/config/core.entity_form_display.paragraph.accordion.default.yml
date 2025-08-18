@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.accordion.field_content_element_theme
     - field.field.paragraph.accordion.field_pre_headline
     - field.field.paragraph.accordion.field_sub_headline
+    - field.field.paragraph.accordion.field_theme
     - field.field.paragraph.accordion.field_title
     - paragraphs.paragraphs_type.accordion
   module:
@@ -46,6 +47,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 4
     region: content
     settings:
       display_label: true

@@ -1,0 +1,21 @@
+uuid: 6bf2e770-d91c-44da-a40d-0caf1e4d41e7
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_description
+    - node.type.landing_page
+_core:
+  default_config_hash: GuQIO4bQpwvyoqJy_wO30UL-8rdoRRHU7HyPQePMAwU
+id: node.landing_page.field_seo_description
+field_name: field_seo_description
+entity_type: node
+bundle: landing_page
+label: 'SEO description'
+description: 'Write a description for search engines and social media sites.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.slider.field_content_element_theme
+    - field.field.paragraph.slider.field_theme
     - field.field.paragraph.slider.field_pre_headline
     - field.field.paragraph.slider.field_slider_item
     - field.field.paragraph.slider.field_title
@@ -21,6 +22,13 @@ content:
   field_content_element_theme:
     type: boolean_checkbox
     weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_theme:
+    type: boolean_checkbox
+    weight: 1
     region: content
     settings:
       display_label: true

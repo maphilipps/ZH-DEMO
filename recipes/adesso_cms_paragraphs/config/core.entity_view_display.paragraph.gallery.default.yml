@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.gallery.field_content_element_theme
+    - field.field.paragraph.gallery.field_theme
     - field.field.paragraph.gallery.field_media_item
     - field.field.paragraph.gallery.field_pre_headline
     - field.field.paragraph.gallery.field_title

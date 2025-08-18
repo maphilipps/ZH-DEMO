@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.slider.field_content_element_theme
+    - field.field.paragraph.slider.field_theme
     - field.field.paragraph.slider.field_pre_headline
     - field.field.paragraph.slider.field_slider_item
     - field.field.paragraph.slider.field_title
@@ -44,4 +45,5 @@ content:
     region: content
 hidden:
   field_content_element_theme: true
+  field_theme: true
   search_api_excerpt: true

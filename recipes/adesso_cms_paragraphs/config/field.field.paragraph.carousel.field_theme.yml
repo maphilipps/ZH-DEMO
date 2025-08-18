@@ -1,0 +1,21 @@
+uuid: a7b8c9d0-e1f2-3456-7890-123456ghijkl
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: carousel
+label: 'Dark Theme'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Dark
+  off_label: Light
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: 81cbae88-00d3-4141-ade8-ef7e5d7248c3
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - options
+id: paragraph.accordion.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: accordion
+label: Theme
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

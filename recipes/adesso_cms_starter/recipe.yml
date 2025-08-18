@@ -20,6 +20,7 @@ recipes:
   - drupal_cms_accessibility_tools
   - drupal_cms_forms
   - adesso_cms_paragraphs
+  - adesso_cms_content
 install:
   - node
   - datetime_range
@@ -102,6 +103,20 @@ install:
   - webp
   - webform
   - webform_ui
+  - webform_node
+  # AI Integration modules
+  - ai
+  - ai_agents
+  - ai_assistant_api
+  - ai_ckeditor
+  - ai_content_suggestions
+  - ai_external_moderation
+  - ai_image_alt_text
+  - ai_image_bulk_alt_text
+  - ai_translate
+  - provider_anthropic
+  - provider_groq
+  - provider_openai
   # File upload enhancements
   - dropzonejs
   - dropzonejs_eb_widget
@@ -268,6 +283,19 @@ config:
     workflows: '*'
     yoast_seo: '*'
     media_bulk_upload: '*'
+    # AI Integration configuration
+    ai: '*'
+    ai_agents: '*' 
+    ai_assistant_api: '*'
+    ai_ckeditor: '*'
+    ai_content_suggestions: '*'
+    ai_external_moderation: '*'
+    ai_image_alt_text: '*'
+    ai_image_bulk_alt_text: '*'
+    ai_translate: '*'
+    provider_anthropic: '*'
+    provider_groq: '*'
+    provider_openai: '*'
   actions:
     frontend_editing.settings:
       simpleConfigUpdate:

@@ -1,0 +1,21 @@
+uuid: 89e1bb3b-7f1e-44ec-aaa1-26dc80d76a6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pre_headline
+    - paragraphs.paragraphs_type.block_reference
+_core:
+  default_config_hash: x2su78KZFzKR9XTuFmqsiGo3-SF1qettMFHRvRoM_hw
+id: paragraph.block_reference.field_pre_headline
+field_name: field_pre_headline
+entity_type: paragraph
+bundle: block_reference
+label: Pre-Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

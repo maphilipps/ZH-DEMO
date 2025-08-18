@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hero.field_content_element_theme
+    - field.field.paragraph.hero.field_theme
     - field.field.paragraph.hero.field_heading
     - field.field.paragraph.hero.field_hero_layout
     - field.field.paragraph.hero.field_link

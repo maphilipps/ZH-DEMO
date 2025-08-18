@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.card_group.field_card
     - field.field.paragraph.card_group.field_content_element_theme
+    - field.field.paragraph.card_group.field_theme
     - field.field.paragraph.card_group.field_pre_headline
     - field.field.paragraph.card_group.field_title
     - paragraphs.paragraphs_type.card_group

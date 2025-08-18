@@ -1,0 +1,23 @@
+uuid: 94394171-9732-4c76-a179-e946b95133f6
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.sidebyside
+  module:
+    - options
+id: paragraph.sidebyside.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: sidebyside
+label: Theme
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

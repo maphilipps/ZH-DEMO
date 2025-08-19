@@ -77,7 +77,7 @@ export default defineConfig({
 });
 ```
 
-### **Playwright E2E Configuration**
+### **Playwright E2E Configuration - GPZH Multi-Site**
 ```javascript
 // playwright.config.js
 module.exports = defineConfig({
@@ -85,17 +85,49 @@ module.exports = defineConfig({
   timeout: 30000,
   retries: process.env.CI ? 2 : 0,
   use: {
-    baseURL: 'https://adesso-cms.ddev.site',
+    baseURL: 'https://zh-demo.ddev.site',
     trace: 'on-first-retry',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure'
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    { name: 'mobile', use: { ...devices['iPhone 12'] } }
-  ]
+    // Municipality-specific test projects
+    {
+      name: 'thalwil-desktop',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://thalwil.zh-demo.ddev.site'
+      },
+    },
+    {
+      name: 'thalheim-mobile',
+      use: { 
+        ...devices['iPhone 12'],
+        baseURL: 'https://thalheim.zh-demo.ddev.site'
+      },
+    },
+    {
+      name: 'erlenbach-accessibility',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://erlenbach.zh-demo.ddev.site',
+      },
+    },
+    // Cross-municipality testing
+    {
+      name: 'multi-site-validation',
+      use: { ...devices['Desktop Chrome'] },
+    }
+  ],
+  
+  // GPZH-specific test configuration
+  use: {
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    // Swiss compliance testing
+    ignoreHTTPSErrors: true,
+  },
 });
 ```
 
@@ -285,6 +317,74 @@ A11y MCP:
   - mcp__a11y-accessibility__test_accessibility: Comprehensive WCAG testing
   - mcp__a11y-accessibility__check_color_contrast: Color compliance
   - mcp__a11y-accessibility__check_aria_attributes: ARIA validation
+  
+Puppeteer MCP:
+  - mcp__puppeteer__puppeteer_navigate: Multi-site navigation testing
+  - mcp__puppeteer__puppeteer_screenshot: Municipality comparison screenshots
+  - mcp__puppeteer__puppeteer_evaluate: Performance metrics collection
+```
+
+## GPZH Multi-Site Testing Strategy
+
+### **Municipality-Specific Test Scenarios**
+```yaml
+Thalwil (Modern Urban Municipality):
+  - Modern design pattern validation
+  - Online services workflow testing
+  - Climate action content verification
+  - Performance optimization validation
+  
+Thalheim (Rural/Wine Country):
+  - Rural community design patterns
+  - Agriculture/wine industry content
+  - Traditional municipal services
+  - Local business directory functionality
+
+Erlenbach (Lake Zurich Community):
+  - Tourism content and functionality
+  - Lakeside community features
+  - Event calendar and community engagement
+  - Recreational services testing
+```
+
+### **Cross-Municipality Testing**
+```bash
+# Multi-site testing commands with MCP integration
+@playwright-test-municipality --site="thalwil" --features="navigation,forms,ai-search"
+@playwright-test-municipality --site="thalheim" --features="navigation,forms,ai-search" 
+@playwright-test-municipality --site="erlenbach" --features="navigation,forms,ai-search"
+
+# Comprehensive multi-site suite
+@playwright-run-full-suite --all-municipalities --include-accessibility --include-performance
+
+# Visual regression testing across municipalities
+@playwright-visual-test --baseline="demo-ready" --municipalities="all"
+@playwright-compare-screenshots --before="GPZH-122" --after="GPZH-123"
+
+# Swiss compliance validation
+@gpzh-compliance-test --wcag-level="AA" --ech-0059=true --all-municipalities
+```
+
+### **Swiss Compliance Testing**
+```yaml
+Swiss Standards Validation:
+  WCAG 2.1 AA:
+    - Automated accessibility scanning
+    - Color contrast validation (4.5:1 minimum)
+    - Keyboard navigation testing
+    - Screen reader compatibility
+    
+  eCH-0059 (Swiss Accessibility):
+    - Additional Swiss accessibility requirements
+    - Public sector compliance validation
+    - Government service accessibility
+    - Multi-language accessibility support
+    
+  Performance Standards:
+    - Core Web Vitals >90 score target
+    - <2s load time requirement
+    - Mobile-first performance validation
+    - Swiss hosting optimization
 ```
 
 ## Testing Scenarios

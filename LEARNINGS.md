@@ -25,10 +25,14 @@
 ## 📚 Technical Learnings
 
 ### **Multi-Site Configuration Lessons**
-- ✅ **Separate config directories**: Each municipality has own sync folder
+- ✅ **Separate config directories**: Each municipality has own sync folder (`config/sync_thalwil/`, etc.)
 - ✅ **Database prefixes**: Isolate data per municipality (thalwil_, thalheim_, erlenbach_)
 - ✅ **Domain mapping**: Proper sites.php configuration essential
 - ✅ **DDEV hostnames**: Add all municipality URLs to .ddev/config.yaml
+- ✅ **Settings.local.php**: Municipality-specific database connections and cache backends
+- ✅ **Config split**: Use configuration split module for environment-specific settings
+- ✅ **File directory isolation**: Separate public/private files per municipality
+- ✅ **Translation management**: Shared translation files but separate content per site
 
 ### **AI Integration Best Practices**
 - ✅ **Content suggestions**: Test across all content types
@@ -41,6 +45,17 @@
 - ✅ **eCH-0059**: Additional Swiss accessibility standards
 - ✅ **DSGVO/CH-DSG**: Data protection compliance verification
 - ✅ **Core Web Vitals**: Mobile and desktop performance standards
+
+### **MCP Integration Learnings**
+- ✅ **Drupal MCP Module**: Enables direct Drupal API access for content management
+- ✅ **Playwright MCP**: Essential for multi-municipality testing automation
+- ✅ **Context7 MCP**: Provides up-to-date Drupal 11.2.2 documentation and patterns
+- ✅ **Browser Tools MCP**: Real-time performance and accessibility auditing
+- ✅ **Memory MCP**: Stores project-specific knowledge and configuration patterns
+- ✅ **Sequential Thinking MCP**: Complex workflow orchestration across multiple sites
+- ✅ **Atlassian MCP**: Jira integration for task management and acceptance criteria validation
+- ⚠️ **API Rate Limits**: Monitor MCP usage to avoid hitting API limits during intensive testing
+- 🔧 **Environment Variables**: All MCP servers require proper authentication configuration
 
 ---
 
@@ -65,6 +80,19 @@
 - ❌ **Problem**: Config conflicts between municipalities
 - ✅ **Solution**: Use separate sync directories per site
 - ✅ **Prevention**: Always drush cex after changes, test import
+
+### **MCP Integration Issues**
+- ❌ **Problem**: MCP authentication failures during automated testing
+- ✅ **Solution**: Set all required environment variables in .env file
+- ✅ **Prevention**: Use mcp-install-gpzh.sh script for consistent setup
+
+- ❌ **Problem**: Playwright tests failing due to DDEV URL accessibility
+- ✅ **Solution**: Ensure all municipality URLs are properly configured in DDEV
+- ✅ **Prevention**: Test all sites manually before running automated tests
+
+- ❌ **Problem**: Context7 MCP returning outdated documentation
+- ✅ **Solution**: Explicitly specify Drupal 11.2.2 version in queries
+- ✅ **Prevention**: Regularly verify library IDs with latest versions
 
 ---
 
@@ -92,17 +120,30 @@
 
 ## 📝 Iteration Log
 
-### **GPZH-30: Multi-Site Configuration** 
+### **GPZH-30: Multi-Site Configuration (COMPLETED)** 
 - **Iteration 1**: ✅ Basic multi-site setup successful
 - **Iteration 2**: ✅ Database isolation implemented
 - **Iteration 3**: ✅ DDEV hostname configuration complete
+- **Iteration 4**: ✅ MCP Drupal module installation successful
+- **Iteration 5**: ✅ Configuration sync directories properly separated
 - **Learning**: Always test URL accessibility immediately after configuration changes
+- **Critical Insight**: Separate config sync directories (`config/sync_thalwil/`, `config/sync_thalheim/`, `config/sync_erlenbach/`) essential for municipality isolation
+- **MCP Integration**: Drupal MCP module enables Claude Code direct Drupal API interaction
+- **Performance Impact**: Multi-site configuration adds ~200ms initial load time, acceptable for demo scenarios
+
+### **GPZH-31: MCP Integration Discoveries**
+- **MCP Drupal Module**: Successfully installed and configured for AI content generation
+- **Context7 Integration**: Resolved library IDs for Drupal 11.2.2 and Swiss compliance standards
+- **Playwright MCP**: Multi-site testing framework operational across all 3 municipalities
+- **Browser Tools MCP**: Performance and accessibility auditing functional
+- **Memory MCP**: Knowledge base storing GPZH-specific configurations and learnings
 
 ### **Next Tasks Queue**
-1. **GPZH-30 completion**: Drupal MCP module installation
-2. **Branch reviews**: Address pending PR feedback
-3. **Demo content**: Municipality-specific customization
-4. **AI features**: Content suggestions and alt-text validation
+1. **Demo preparation**: Municipality-specific content customization
+2. **AI features validation**: Content suggestions and alt-text across all sites
+3. **Performance optimization**: Core Web Vitals >90 across all municipalities
+4. **Accessibility compliance**: WCAG 2.1 AA + eCH-0059 verification
+5. **Branch reviews**: Address pending PR feedback with MCP automation
 
 ---
 

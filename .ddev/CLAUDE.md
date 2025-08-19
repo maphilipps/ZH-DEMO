@@ -16,6 +16,11 @@ Jira Ticket → DDEV Environment → Development → Testing → PR with @claude
 @jira-ddev-test GPZH-XXX      # Test changes for Jira ticket
 @jira-ddev-build GPZH-XXX     # Build assets for Jira ticket
 @jira-ddev-deploy GPZH-XXX    # Prepare deployment for Jira ticket
+
+# MCP-Enhanced DDEV Commands
+@mcp-ddev-validate GPZH-XXX   # Use MCP servers to validate environment
+@playwright-test-all GPZH-XXX # Run Playwright tests across all municipalities
+@browser-audit-all GPZH-XXX   # Performance/accessibility audit via MCP
 ```
 
 ## GPZH Prototyp Development Environment
@@ -161,6 +166,48 @@ export default {
     }
   }
 }
+```
+
+## MCP Integration für GPZH Development
+
+### **MCP Server Configuration**
+```bash
+# Required MCP servers for GPZH development
+export MCP_SERVERS="atlassian,github,playwright,browser-tools,puppeteer,sequential-thinking,memory,context7"
+
+# Environment variables for MCP integration
+export JIRA_API_TOKEN="your_jira_token"
+export GITHUB_PERSONAL_ACCESS_TOKEN="your_github_token" 
+export GPZH_BASE_URL="https://zh-demo.ddev.site"
+export GPZH_MUNICIPALITIES="thalwil,thalheim,erlenbach"
+```
+
+### **MCP-Enhanced DDEV Workflows**
+```bash
+# Multi-municipality testing with MCP
+ddev start && @playwright-test-municipality --all-sites
+
+# Performance monitoring during development
+ddev exec @browser-audit-performance --all-municipalities
+
+# Jira integration for task management
+@jira-create-ticket --type="Story" --project="GPZH" --summary="[Description]"
+@jira-link-pr GPZH-XXX --branch="feature/GPZH-XXX-description"
+
+# Context7 for Drupal 11.2.2 documentation
+@context7-resolve "drupal-multi-site-configuration"
+@context7-get-docs "drupal/core" --version="11.2.2"
+```
+
+### **Automated Quality Gates**
+```bash
+# Comprehensive quality validation
+ddev exec @gpzh-qa-pipeline GPZH-XXX
+# This runs:
+# - Playwright multi-site testing
+# - Browser-tools performance audits
+# - Accessibility validation (WCAG 2.1 AA + eCH-0059)
+# - Jira acceptance criteria verification
 ```
 
 ## AI-Integration für Gemeinde-Content

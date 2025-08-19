@@ -51,6 +51,61 @@ content/GPZH-456-multi-lang-navigation
 content/GPZH-789-erlenbach-events-calendar
 ```
 
+## 🔧 Multi-Site Configuration Insights (GPZH-30)
+
+### **Separate Configuration Management**
+```yaml
+Configuration Isolation:
+  Thalwil:
+    - Config Directory: config/sync_thalwil/
+    - Database Prefix: thalwil_
+    - Domain: thalwil.zh-demo.ddev.site
+    - Theme Variant: modern-urban
+    
+  Thalheim:
+    - Config Directory: config/sync_thalheim/
+    - Database Prefix: thalheim_
+    - Domain: thalheim.zh-demo.ddev.site
+    - Theme Variant: rural-wine
+    
+  Erlenbach:
+    - Config Directory: config/sync_erlenbach/
+    - Database Prefix: erlenbach_
+    - Domain: erlenbach.zh-demo.ddev.site
+    - Theme Variant: lakeside-premium
+```
+
+### **Content Isolation Strategies**
+```bash
+# Municipality-specific content operations
+ddev drush --uri=thalwil.zh-demo.ddev.site cr    # Thalwil cache clear
+ddev drush --uri=thalheim.zh-demo.ddev.site cex  # Thalheim config export
+ddev drush --uri=erlenbach.zh-demo.ddev.site uli # Erlenbach admin login
+
+# Content testing across all municipalities
+@playwright-test-content --all-municipalities --content-type=news
+@browser-audit-content --accessibility --all-municipalities
+```
+
+### **MCP Integration for Content Management**
+```yaml
+Content MCP Workflows:
+  Memory MCP:
+    - Store municipality-specific content patterns
+    - Recall successful content templates
+    - Track performance metrics per municipality
+    
+  Context7 MCP:
+    - Access Drupal multi-site documentation
+    - Swiss municipal content best practices
+    - Government communication standards
+    
+  Sequential Thinking MCP:
+    - Orchestrate complex content workflows
+    - Coordinate multi-municipality updates
+    - Automate content review processes
+```
+
 ## 📝 Content Types and Structure
 
 ### **Standard Content Types for All Municipalities**
@@ -170,6 +225,20 @@ Example_Prompt: "Schreibe eine Ankündigung für die Goldküsten-Gemeinde Erlenb
 @ai-content-translate de-fr "Event description" --municipality=erlenbach  
 @ai-alt-text-generate "council_photo.jpg" --municipality=thalheim
 @ai-form-suggestions "Baubewilligung" --municipality=all
+
+# MCP-enhanced content commands
+@sequential-content-workflow GPZH-XXX "
+1. @memory-recall 'municipality-context' --municipality=thalwil
+2. @ai-content-generate 'news-article' --context-aware
+3. @playwright-test-content --accessibility --municipality=thalwil
+4. @browser-audit-performance --content-impact --municipality=thalwil
+5. @memory-store 'content-performance' --track-engagement
+"
+
+# Content quality validation with MCP
+@gpzh-content-validate GPZH-XXX --municipality=erlenbach
+# This runs: AI content review, accessibility check, performance impact, 
+#           Swiss compliance validation, municipality brand consistency
 ```
 
 ## 🌍 Multi-Language Content Strategy
@@ -303,6 +372,86 @@ Erlenbach_Visual_Identity:
 
 ## Review Request
 @claude bitte prüfe den Content für Gemeinde [Municipality] aus Ticket GPZH-XXX auf Konsistenz, Qualität und Gemeinde-spezifische Angemessenheit.
+```
+
+## 🇨🇭 Swiss Municipal Content Compliance
+
+### **eCH-0059 Content Requirements**
+```yaml
+Swiss Municipal Standards:
+  Content Accessibility:
+    - Plain language for government services
+    - Multi-language support (DE/FR/IT as required)
+    - Clear service process descriptions
+    - Accessible document formats (PDF/A compliance)
+    
+  Information Architecture:
+    - Consistent navigation across all municipality sites
+    - Service categorization following federal standards
+    - Contact information transparency
+    - Emergency information prominence
+    
+  Digital Service Delivery:
+    - Online form accessibility (beyond WCAG 2.1 AA)
+    - Mobile-first government service design
+    - Clear error messages and help text
+    - Progress indicators for multi-step processes
+```
+
+### **GDPR/CH-DSG Municipal Compliance**
+```yaml
+Municipal Data Protection:
+  Content Publishing:
+    - Personal data anonymization in news/events
+    - Consent for photo publication
+    - Data retention policies for form submissions
+    - Privacy notice integration
+    
+  User-Generated Content:
+    - Comment moderation procedures
+    - User consent for public contributions
+    - Right to deletion for public comments
+    - Cross-border data transfer restrictions
+    
+  Analytics and Tracking:
+    - Cookie consent for analytics
+    - User behavior tracking limitations
+    - Data export capabilities for citizens
+    - Third-party service data agreements
+```
+
+### **Municipal Communication Standards**
+```yaml
+Swiss Administrative Communication:
+  Official Language Requirements:
+    - Swiss Standard German for formal communications
+    - Regional language considerations (Zürich dialect sensitivity)
+    - Technical term explanations
+    - Citizen-friendly language guidelines
+    
+  Legal Compliance:
+    - Official publication requirements
+    - Public consultation notice standards
+    - Legal document accessibility
+    - Appeal procedure transparency
+    
+  Quality Assurance:
+    - Fact-checking procedures for municipal information
+    - Regular content audits for accuracy
+    - Stakeholder review processes
+    - Community feedback integration
+```
+
+### **Content Compliance Testing**
+```bash
+# Swiss compliance validation for municipal content
+@browser-audit-accessibility --ech-0059 --municipality=all --content-focus
+@gpzh-compliance-content GPZH-XXX --swiss-standards --language-requirements
+@privacy-audit-content --gdpr --ch-dsg --municipality-specific
+
+# Multi-language compliance verification
+@language-compliance-test --languages="de,fr,it" --municipality=all
+@cultural-sensitivity-check --municipality-context --all-sites
 ```
 
 ## 📚 Resources and References

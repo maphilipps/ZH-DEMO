@@ -611,6 +611,11 @@
     "@tailwindcss/oxide" "4.1.11"
     tailwindcss "4.1.11"
 
+"@tailwindplus/elements@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@tailwindplus/elements/-/elements-1.0.8.tgz"
+  integrity sha512-pGBfG6i/eI64g4QucbpXCrDLJcf0q5p584TUKTequPtz043VjKvob+bDLVbyj7ippRdWXaaoH30gS56qLr3TBQ==
+
 "@testing-library/jest-dom@^6.6.4":
   version "6.6.4"
   resolved "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-6.6.4.tgz"

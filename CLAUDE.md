@@ -2,7 +2,17 @@
 
 ## 🏛️ Projekt: Gemeindeportale Zürich (GPZH) Demo-System
 
-Dieser **ZH-DEMO Prototyp** ist optimal konfiguriert für die GPZH Präqualifikations-Präsentation am **Kanton Zürich**. Als moderne **Drupal 11.2.2 Enterprise CMS-Lösung** mit fortschrittlicher **KI-Integration** und **Schweizer Public Sector Standards** demonstrieren wir eine zukunftssichere Plattform für kommunale Webportale basierend auf den analysierten Gemeinde-Websites.
+Dieser **ZH-DEMO Prototyp** ist optimal konfiguriert für die GPZH Präqualifikations-Präsentation am **Kanton Zürich**. Als moderne **Drupal 11.2.2 Enterprise CMS-Lösung** mit fortschrittlicher **KI-Integration** und **Schweizer Public Sector Standards** demonstrieren wir eine **Single-Site Backend-Lösung** für kommunale Content-Verwaltung, fokussiert auf die **"Inhaltliche Themen (2.)" Anforderungen** aus der GPZH Vorlage.
+
+## 🎯 **WICHTIGE PROJEKT-ANPASSUNG**
+
+**Scope Change**: Das Projekt fokussiert sich auf **EIN System (kein Multi-Site)** mit Schwerpunkt auf **Backend-Pflege für Gemeindemitarbeitende**. Multi-Site Architektur wird bei einem anderen Kundenprojekt demonstriert.
+
+**Demo-Fokus**: 
+- **Systemübersicht und Navigation** (10 Min)
+- **Einfache Geschäftsprozess-Formulare** (7 Min) 
+- **Backend für Gemeindemitarbeitende** (15 Min)
+- **Content-Verwaltung** mit stimmigen Inhalten orientiert am Prototypen
 
 ## 📋 Development Guidelines & Folder Structure
 
@@ -31,7 +41,7 @@ instructions.
 
 ### **Core MCPs for GPZH Development**
 
-The GPZH project leverages advanced MCP servers for comprehensive automation, testing, and integration workflows specifically optimized for multi-site municipality portal development.
+The GPZH project leverages advanced MCP servers for comprehensive automation, testing, and integration workflows specifically optimized for **single-site backend content management** with focus on **"Inhaltliche Themen"** requirements.
 
 #### **1. Atlassian MCP - Jira & Confluence Integration**
 ```bash
@@ -84,70 +94,71 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="your_github_token"
 @gh-sync-branch --with-jira-status
 ```
 
-#### **3. Playwright MCP - Multi-Site Testing Excellence**
+#### **3. Playwright MCP - Backend Content Management Testing**
 ```bash
 # Installation  
 claude mcp add playwright -- npx -y @modelcontextprotocol/server-playwright
 
-# GPZH Multi-Site Testing Framework
+# GPZH Backend Testing Framework
 npm install @playwright/test @axe-core/playwright
 ```
 
-**Municipality Testing Commands:**
+**Backend Content Management Testing:**
 ```bash
-# Cross-Municipality Testing
-@playwright-test-municipality --site="thalwil" --features="navigation,forms,ai-search"
-@playwright-test-municipality --site="thalheim" --features="navigation,forms,ai-search" 
-@playwright-test-municipality --site="erlenbach" --features="navigation,forms,ai-search"
+# Backend Workflow Testing per GPZH Vorlage
+@playwright-test-backend --features="forms,directory,wysiwyg,workflow"
+@playwright-test-business-forms --types="feedback,infrastructure,events,room-booking"
+@playwright-test-guest-workflows --include="registration,approval,publishing"
 
-# Comprehensive Multi-Site Suite
-@playwright-run-full-suite --all-municipalities --include-accessibility --include-performance
+# Content Management Testing
+@playwright-test-content-management --wysiwyg=true --media-integration=true
+@playwright-test-ai-features --content-suggestions=true --alt-text=true
 
-# Visual Regression Testing
-@playwright-visual-test --baseline="demo-ready" --municipalities="all"
-@playwright-compare-screenshots --before="GPZH-122" --after="GPZH-123"
-
-# Acceptance Criteria Validation
-@playwright-validate-acceptance GPZH-123 --municipality="all" --generate-evidence
+# Acceptance Criteria Validation  
+@playwright-validate-backend-requirements GPZH-123 --inhaltliche-themen=true
 ```
 
 **Playwright Test Configuration (playwright.config.js):**
 ```javascript
-// Multi-Municipality Test Configuration
+// GPZH Backend Content Management Test Configuration
 export default defineConfig({
   testDir: './tests',
   projects: [
-    // Municipality-specific test projects
+    // Backend-focused test projects per GPZH Vorlage
     {
-      name: 'thalwil-desktop',
+      name: 'admin-backend-desktop',
       use: { 
         ...devices['Desktop Chrome'],
-        baseURL: 'https://thalwil.adesso-cms.ddev.site'
+        baseURL: 'https://zh-demo.ddev.site/admin',
+        storageState: 'tests/.auth/admin.json'
       },
     },
     {
-      name: 'thalheim-mobile',
+      name: 'editor-workflow-testing',
       use: { 
-        ...devices['iPhone 12'],
-        baseURL: 'https://thalheim.adesso-cms.ddev.site'
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://zh-demo.ddev.site',
+        storageState: 'tests/.auth/editor.json'
       },
     },
     {
-      name: 'erlenbach-accessibility',
+      name: 'guest-account-workflow',
       use: { 
         ...devices['Desktop Chrome'],
-        baseURL: 'https://erlenbach.adesso-cms.ddev.site',
+        baseURL: 'https://zh-demo.ddev.site',
+        storageState: 'tests/.auth/guest.json'
       },
     },
   ],
   
-  // GPZH-specific test configuration
+  // GPZH backend-specific test configuration
   use: {
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    // Swiss compliance testing
-    ignoreHTTPSErrors: true,
+    // Focus on backend workflows and content management
+    actionTimeout: 10000,
+    navigationTimeout: 15000,
   },
 });
 ```
@@ -158,19 +169,21 @@ export default defineConfig({
 claude mcp add browser-tools -- npx -y @modelcontextprotocol/server-browser-tools
 ```
 
-**Live Demo Preparation Commands:**
+**Backend Demo Preparation Commands:**
 ```bash
-# Performance & Accessibility Audits
-@browser-audit-performance --url="https://thalwil.adesso-cms.ddev.site" --mobile=true
-@browser-audit-accessibility --url="https://thalheim.adesso-cms.ddev.site" --wcag-level="AA"
-@browser-audit-seo --url="https://erlenbach.adesso-cms.ddev.site" --language="de"
+# Backend Performance & Accessibility Audits per GPZH Vorlage
+@browser-audit-backend --url="https://zh-demo.ddev.site/admin" --focus="content-management"
+@browser-audit-forms --url="https://zh-demo.ddev.site" --types="feedback,infrastructure,events"
+@browser-audit-accessibility --url="https://zh-demo.ddev.site" --wcag-level="AA" --ech-0059=true
 
-# Live Demo Screenshots
-@browser-screenshot --url="https://thalwil.adesso-cms.ddev.site/baubewilligung" --fullpage=true
-@browser-screenshot --url="https://thalheim.adesso-cms.ddev.site/admin" --auth="admin:admin123"
+# Backend Demo Screenshots per "Inhaltliche Themen"
+@browser-screenshot-backend --url="https://zh-demo.ddev.site/admin" --workflow="content-creation"
+@browser-screenshot-forms --url="https://zh-demo.ddev.site" --business-processes=true
+@browser-screenshot-directory --url="https://zh-demo.ddev.site/vereine" --guest-workflow=true
 
-# Cross-Browser Testing
-@browser-test-compatibility --municipalities="all" --browsers="chrome,firefox,safari"
+# Backend Workflow Testing
+@browser-test-wysiwyg --editor="ckeditor5" --ai-integration=true
+@browser-test-guest-accounts --registration=true --approval-workflow=true
 ```
 
 #### **5. Puppeteer MCP - Advanced Browser Automation**
@@ -179,15 +192,17 @@ claude mcp add browser-tools -- npx -y @modelcontextprotocol/server-browser-tool
 claude mcp add puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
 ```
 
-**Demo Automation Scripts:**
+**Backend Demo Automation per GPZH Vorlage:**
 ```bash
-# Automated Demo Content Creation
-@puppeteer-demo-setup --scenario="baubewilligung-workflow" --municipality="thalwil"
-@puppeteer-create-test-content --type="gemeinderat-artikel" --with-ai-content=true
+# Automated Backend Demo Content per "Inhaltliche Themen"
+@puppeteer-setup-business-forms --types="feedback,infrastructure,events,room-booking"
+@puppeteer-create-directory-content --type="vereine" --guest-workflow=true --with-ai-content=true
+@puppeteer-setup-wysiwyg-demo --content="gemeinderat-artikel" --ai-suggestions=true
 
-# Live Demo Automation
-@puppeteer-demo-walkthrough --scenario="full-presentation" --duration="35min"
-@puppeteer-backup-scenarios --for-presentation=true
+# Backend Workflow Automation
+@puppeteer-demo-backend-workflows --duration="15min" --focus="content-management"
+@puppeteer-demo-forms --duration="7min" --business-processes=true
+@puppeteer-demo-navigation --duration="10min" --ai-search=true
 ```
 
 #### **6. Sequential-Thinking MCP - Complex Workflow Orchestration**
@@ -196,26 +211,26 @@ claude mcp add puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
 claude mcp add sequential-thinking -- npx -y @modelcontextprotocol/server-sequential-thinking
 ```
 
-**GPZH Workflow Orchestration:**
+**GPZH Backend Workflow Orchestration per "Inhaltliche Themen":**
 ```bash
-# Complete Feature Development Workflow  
-@sequential-workflow-execute "
-1. @jira-start GPZH-123
-2. @gh-create-branch feature/GPZH-123
-3. Implement municipality navigation enhancement
-4. @playwright-test-municipality --all-sites
-5. @jira-pr GPZH-123 --with-acceptance-criteria
-6. @claude-review-pr --validate-acceptance-criteria
+# Complete Backend Feature Development Workflow  
+@sequential-backend-workflow "
+1. @jira-start GPZH-123 --inhaltliche-themen=true
+2. @gh-create-branch feature/GPZH-123-backend-feature
+3. Implement backend content management per GPZH Vorlage
+4. @playwright-test-backend --features=forms,directory,wysiwyg
+5. @jira-pr GPZH-123 --backend-acceptance-criteria=true
+6. @claude-review-pr --validate-backend-requirements
 7. @jira-complete GPZH-123
 "
 
-# Demo Preparation Workflow
-@sequential-demo-prep "
-1. @browser-audit-performance --all-municipalities
-2. @playwright-visual-test --generate-baseline
-3. @puppeteer-demo-setup --all-scenarios
-4. @browser-screenshot --all-demo-pages
-5. Generate demo presentation checklist
+# Backend Demo Preparation Workflow per GPZH Vorlage
+@sequential-backend-demo-prep "
+1. @browser-audit-backend --content-management=true
+2. @puppeteer-setup-business-forms --all-types=true
+3. @puppeteer-create-directory-content --guest-workflow=true
+4. @browser-screenshot-backend --wysiwyg-demo=true
+5. Generate backend presentation checklist für 'Inhaltliche Themen'
 "
 ```
 
@@ -225,60 +240,63 @@ claude mcp add sequential-thinking -- npx -y @modelcontextprotocol/server-sequen
 claude mcp add memory -- npx -y @modelcontextprotocol/server-memory
 ```
 
-**GPZH Knowledge Base:**
+**GPZH Backend Knowledge Base per "Inhaltliche Themen":**
 ```bash
-# Store Municipality-Specific Information
-@memory-store "municipality-configs" --data="thalwil={design: 'zurichsee', theme: 'blue'}"
-@memory-store "demo-scenarios" --data="baubewilligung-workflow={steps: [form, review, approval]}"
+# Store Backend-Specific Information per GPZH Vorlage
+@memory-store "backend-workflows" --data="content-management={wysiwyg: true, ai-integration: true}"
+@memory-store "business-forms" --data="feedback,infrastructure,events,room-booking"
+@memory-store "guest-workflows" --data="registration,approval,publishing"
 
-# Retrieve Development Patterns
-@memory-recall "drupal-sdc-patterns"
-@memory-recall "ai-integration-examples"
-@memory-recall "swiss-compliance-checklist"
+# Retrieve Backend Development Patterns
+@memory-recall "drupal-backend-patterns"
+@memory-recall "webform-workflows"
+@memory-recall "guest-account-management"
+@memory-recall "wysiwyg-ai-integration"
 
-# Document Lessons Learned
-@memory-store "demo-issues-resolved" --data="performance-optimization={solution: 'image-lazy-loading'}"
+# Document Backend Demo Scenarios
+@memory-store "backend-demo-scenarios" --data="inhaltliche-themen={duration: '15min', focus: 'content-management'}"
 ```
 
 ### **MCP Integration Patterns for GPZH**
 
-#### **Integrated Development Workflow**
+#### **Backend Development Workflow per GPZH Vorlage**
 ```bash
-# Complete ticket-to-deployment workflow using multiple MCPs
-@gpzh-full-workflow GPZH-123 "Municipality theme enhancement"
+# Complete backend workflow for "Inhaltliche Themen"
+@gpzh-backend-workflow GPZH-123 "Backend content management enhancement"
 # This command orchestrates:
-# 1. Jira ticket creation/assignment
-# 2. GitHub branch creation  
-# 3. Development environment setup
-# 4. Multi-municipality testing
-# 5. PR creation with acceptance criteria
-# 6. Claude review automation
-# 7. Deployment preparation
+# 1. Jira ticket für "Inhaltliche Themen" 
+# 2. GitHub branch creation für backend features
+# 3. Backend development environment setup
+# 4. Business forms testing (feedback, infrastructure, events, room-booking)
+# 5. Guest workflow testing (registration, approval, publishing)
+# 6. WYSIWYG and AI integration testing
+# 7. Backend deployment preparation
 ```
 
-#### **Demo Preparation Automation**
+#### **Backend Demo Preparation per GPZH Vorlage**
 ```bash  
-# Comprehensive demo readiness check
-@gpzh-demo-ready-check
-# This command validates:
-# 1. All 3 municipalities are responsive and functional
-# 2. Performance scores >90 on Core Web Vitals
-# 3. Accessibility compliance (WCAG 2.1 AA + eCH-0059)
-# 4. AI features are working (content suggestions, alt-text)
-# 5. Form workflows complete successfully
-# 6. Screenshots and videos are up-to-date
+# Backend demo readiness check für "Inhaltliche Themen"
+@gpzh-backend-demo-ready
+# This command validates per GPZH Vorlage:
+# 1. Business forms functional (feedback, infrastructure, events, room-booking)
+# 2. Directory management with guest accounts working
+# 3. WYSIWYG editor with AI integration ready
+# 4. Backend workflows (registration → approval → publishing) tested
+# 5. Content management performance >90 Core Web Vitals
+# 6. Accessibility compliance (WCAG 2.1 AA + eCH-0059)
 ```
 
-#### **Quality Assurance Pipeline**
+#### **Backend Quality Assurance Pipeline**
 ```bash
-# Comprehensive QA using multiple MCPs
-@gpzh-qa-pipeline GPZH-123
+# Backend-focused QA per "Inhaltliche Themen"
+@gpzh-backend-qa-pipeline GPZH-123
 # Integrates:
-# - Playwright multi-site testing
-# - Browser-tools performance audits  
-# - Accessibility validation
-# - Jira acceptance criteria verification
-# - GitHub status updates
+# - Playwright backend workflow testing
+# - Browser-tools content management audits
+# - Business forms validation 
+# - Guest account workflow testing
+# - AI features backend testing
+# - WYSIWYG editor compliance validation
 ```
 
 ### **MCP Environment Setup**
@@ -292,11 +310,12 @@ export JIRA_USER_EMAIL="your_email@adesso.com"
 export GITHUB_PERSONAL_ACCESS_TOKEN="your_github_token"
 export CONFLUENCE_API_TOKEN="your_confluence_token"
 
-# GPZH-specific configurations
-export GPZH_BASE_URL="https://adesso-cms.ddev.site"
+# GPZH-specific backend configurations per "Inhaltliche Themen"
+export GPZH_BASE_URL="https://zh-demo.ddev.site"
 export GPZH_ADMIN_USER="admin"
 export GPZH_ADMIN_PASS="admin123"
-export GPZH_MUNICIPALITIES="thalwil,thalheim,erlenbach"
+export GPZH_BACKEND_FOCUS="inhaltliche-themen"
+export GPZH_DEMO_SEGMENTS="navigation,forms,backend"
 ```
 
 #### **MCP Installation Script**
@@ -399,7 +418,7 @@ Bei jedem Pull Request MÜSSEN folgende Punkte beachtet werden:
 - **Drupal Core**: 11.2.2 (neueste Version, Langzeit-Support bis 2028)
 - **PHP 8.3**: Moderne Performance und Security
 - **MariaDB 10.11**: Robuste Datenbank für kommunale Anforderungen
-- **Multi-Site Architecture**: Ein CMS für alle Gemeinden im Kanton Zürich
+- **Single-Site Backend Architecture**: Fokus auf Content-Verwaltung für Gemeindemitarbeitende
 
 ### **KI-Integration für Moderne Verwaltung** 🤖
 - **Drupal AI Suite**: Content-Generierung mit GPT-4o, Claude, Groq
@@ -423,73 +442,82 @@ Bei jedem Pull Request MÜSSEN folgende Punkte beachtet werden:
 
 ---
 
-## 🎭 GPZH Live-Demo Szenarien (35 Minuten)
+## 🎭 GPZH Live-Demo Szenarien per "Inhaltliche Themen" (35 Minuten)
 
 ### **1. Systemübersicht und Navigation (10 Min)** 
 
-#### **Multi-Site Demo: 3 Beispiel-Gemeinden**
+#### **Backend System Demo per GPZH Vorlage:**
 ```bash
-Quick Demo Commands:
-"Zeige Gemeinde Erlenbach mit Zürichsee-Design"  
-"Wechsel zu Gemeinde Thalheim mit Weinland-Design"
-"Mobile Navigation für Gemeinde Thalwil mit modernem Design testen"
+Demo Commands für Backend-Fokus:
+"Zeige Backend-Navigation und Systemübersicht"  
+"AI-unterstützte Suche: 'Wo melde ich Infrastrukturschäden?'"
+"Filter und Datenvisualisierung für strukturierte Daten"
 ```
 
-#### **Features Live-Demo:**
-- ✅ **Responsive Navigation**: Mobile-First mit Hamburger-Menü
-- ✅ **Individual Design**: Verschiedene Corporate Designs pro Gemeinde
+#### **Features Live-Demo per GPZH Vorlage:**
+- ✅ **Kurze Navigationswege**: Optimierte Backend-Navigation 
 - ✅ **AI-Enhanced Search**: "Wo kann ich einen Baum fällen anmelden?" 
-- ✅ **Component Library**: 25+ wiederverwendbare Module
+- ✅ **Filter auf strukturierte Daten**: Verzeichnis-Suche und -Filter
+- ✅ **Werkzeuge für Datenvisualisierung**: Dashboard und Übersichten
 - ✅ **Performance**: <2s Ladezeiten, >90 Core Web Vitals Scores
 
-### **2. Geschäftsprozess-Formulare (7 Min)**
+### **2. Einfache Geschäftsprozess-Formulare (7 Min)**
 
-#### **Live-Demo: Baubewilligung Online-Antrag**
+#### **Live-Demo per GPZH Vorlage: "Einfache Geschäftsprozess-Formulare"**
 ```bash
-Demo-Szenario: "Terrassenüberdachung Bewilligung Winterthur"
-- Formular-Builder für Redakteure ohne Programmierung
-- Datentabelle mit Status-Verwaltung  
-- E-Mail Workflow zu Bauamt
-- PDF-Generation für Antragsdokumentation
+Demo-Szenarien per GPZH Anforderungsvorlage:
+"Feedback-Formular" - Bürgerfeedback an Gemeinde
+"Meldung an die Gemeinde betreffend Infrastrukturschäden" - Strassenschäden etc.
+"Anmeldung für Anlässe" - Gemeindeveranstaltungen
+"Anfrage für Raumnutzung" - Gemeindesaal-Reservierung
 ```
 
-#### **Webform Enterprise Features:**
-- ✅ **Visual Form Builder**: Drag-and-Drop ohne Code
-- ✅ **Workflow Integration**: Status (Eingegangen→Prüfung→Genehmigt)
-- ✅ **Data Export**: Excel/CSV für Verwaltung
-- ✅ **Email Automation**: Bürgerin + Sachbearbeiter benachrichtigen
+#### **Backend Features per GPZH Vorlage:**
+- ✅ **Formulargestaltung durch Gemeindemitarbeitende**: Drag-and-Drop ohne Programmierung
+- ✅ **Datenspeicherung in Tabellenform**: Strukturierte Datenerfassung
+- ✅ **Statusverwaltung (soweit vorhanden)**: Eingegangen→Bearbeitung→Erledigt
+- ✅ **Einfache Workflow-Funktionalitäten**: Email-Benachrichtigungen und Zuweisungen
 
-### **3. Backend für Gemeindemitarbeitende (15 Min)**
+### **3. Backend für Gemeindemitarbeitende (15 Min) - per GPZH Vorlage**
 
-#### **WYSIWYG Content-Erstellung mit AI** 
+#### **Strukturierte Daten: Pflege eines Verzeichnisses** 
 ```bash
-Demo-Szenario: "Gemeinderats-Artikel mit AI-Unterstützung"
-- AI Content-Vorschläge für Behördensprache
-- Automatische Alt-Text für Politiker-Fotos
-- Responsive Vorschau für Mobile/Desktop
-- SEO-Optimierung automatisch
+Demo-Szenario per GPZH Vorlage: "Verzeichnis-Verwaltung (Vereine, Firmen oder Gastgewerbe)"
+- Strukturierte Datenfelder: Name, Kategorie, Kontakt, Website, Beschreibung
+- Sortierung und Filterung nach Kategorien
+- Export-Funktionen für Gemeinde-Jahresheft
+- Batch-Import bestehender Daten
 ```
 
-#### **Strukturierte Daten-Verwaltung**
+#### **Pflege durch Externe mit Gastkonto (mit Workflow/Freigabe)**
 ```bash
-Demo-Szenario: "Vereinsverzeichnis mit Gastkonto-Zugang"  
-- Verein trägt selbst Daten ein (Gastkonto)
-- Workflow: Prüfung durch Gemeindemitarbeiter
-- Automatische Freischaltung nach Approval
-- Export als PDF-Verzeichnis für Gemeindeheft
+Demo-Szenario per GPZH Vorlage: "Gastkonto-Workflow"  
+- Gastkonto-Registrierung für Vereine/Firmen
+- Self-Service Dateneingabe und -pflege
+- Workflow: Externe Eingabe → Gemeindemitarbeiter Prüfung → Freigabe/Ablehnung
+- Benachrichtigungs-System für alle Workflow-Stufen
 ```
 
-#### **Backend Features Live:**
+#### **"Einfache Inhaltsseite": WYSIWYG-Editor** 
+```bash
+Demo-Szenario per GPZH Vorlage: "Außergewöhnliche Anlässe oder Projekte"
+- WYSIWYG-Editor mit attraktiver Gestaltung
+- Titel, Schriftauszeichnungen, Textboxen, Listen
+- Einbindung von Medien (Bilder, Videos) und Flyern (PDF)
+- AI-Integration für Content-Vorschläge und Alt-Text
+```
+
+#### **Backend Features Live per GPZH Vorlage:**
 - ✅ **Gin Admin Theme**: Moderne, benutzerfreundliche Oberfläche
 - ✅ **CKEditor 5**: WYSIWYG mit AI-Integration
-- ✅ **Paragraphs System**: Modularer Page-Builder
-- ✅ **Media Management**: Bulk-Upload mit AI Alt-Text
-- ✅ **User Roles**: Redakteur, Administrator, Gastkonto-Verwaltung
+- ✅ **Structured Data Management**: Verzeichnis-Verwaltung mit Kategorien
+- ✅ **Guest Account System**: Registration, Approval, Publishing Workflow
+- ✅ **Media Management**: Bulk-Upload mit AI Alt-Text für Flyers und Medien
 
-### **3. Fragen & Abschluss (10 Min)**
-- Performance-Benchmarks zeigen
-- Accessibility-Demo mit Screen Reader
-- Kosten-Nutzen für Multi-Site Deployment
+### **4. Fragen & Abschluss (3 Min)**
+- Performance-Benchmarks für Backend-Workflows zeigen
+- Accessibility-Demo mit Screen Reader für Redakteure
+- Kosten-Nutzen für Backend Content-Management 
 - Vendor-Independence durch Open Source
 
 ---
@@ -511,16 +539,17 @@ Demo-Szenario: "Vereinsverzeichnis mit Gastkonto-Zugang"
 @pr-review                  # List PRs awaiting review
 @pr-status                  # Check PR status for current branch
 
-# GPZH Development Workflow
-@gpzh-dev-start             # Start DDEV environment for GPZH
-@gpzh-demo-prep             # Prepare system for live demo
-@gpzh-qa-full              # Run complete QA pipeline for 3 municipalities
-@gpzh-ai-test              # Test AI features across all sites
+# GPZH Backend Development Workflow per "Inhaltliche Themen"
+@gpzh-backend-start         # Start DDEV environment für Backend-Demo
+@gpzh-backend-demo-prep     # Prepare backend system for live demo
+@gpzh-backend-qa-full      # Run complete QA pipeline für Content-Management
+@gpzh-ai-backend-test      # Test AI features im Backend (Content-Suggestions, Alt-Text)
 
-# Multi-Site Commands
-@gemeinde-switch [thalwil|thalheim|erlenbach]  # Switch to specific municipality
-@multi-site-test           # Test feature across all 3 municipalities
-@demo-content-sync         # Sync demo content across sites
+# Backend-Specific Commands per GPZH Vorlage
+@gpzh-setup-business-forms  # Setup business forms (feedback, infrastructure, events, room-booking)
+@gpzh-setup-directory       # Setup directory management (vereine, firmen, gastgewerbe)
+@gpzh-setup-guest-workflow  # Setup guest account registration and approval workflow
+@gpzh-demo-content-create   # Create demo content für "Inhaltliche Themen"
 ```
 
 ### **Jira Integration Flags**

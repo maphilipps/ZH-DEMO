@@ -26,21 +26,13 @@
           {# Desktop menu items with children (popover) #}
           {% if item.children is not empty %}
             <div class="relative">
-              {% if item.url is empty or item.url.toString() == '<nolink>' %}
-                <button popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
-                  {{ item.title }}
-                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
-                    <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-                  </svg>
-                </button>
-              {% else %}
-                <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %} popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
-                  {{ item.title }}
-                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
-                    <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-                  </svg>
-                </a>
-              {% endif %}
+              {# Always use button for parent items with children #}
+              <button popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
+                {{ item.title }}
+                <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+                  <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                </svg>
+              </button>
 
               {# Desktop Popover #}
               <el-popover id="desktop-menu-{{ loop.index }}" anchor="bottom" popover class="w-screen max-w-min overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">

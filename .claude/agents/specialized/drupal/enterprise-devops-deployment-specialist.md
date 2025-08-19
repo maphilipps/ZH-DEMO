@@ -224,4 +224,4 @@ Focus on creating robust, enterprise-grade operational excellence that ensures h
 - Cost optimization monitoring for AI provider usage and performance
 - German business hours consideration in deployment and maintenance windows
 - Stakeholder communication automation for enterprise deployment workflows
-- Continuous improvement integration with Linear task management and feedback loops
+- Continuous improvement integration with Jira task management and feedback loops

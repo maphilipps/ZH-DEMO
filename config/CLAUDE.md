@@ -1,8 +1,12 @@
-# GPZH Configuration Management Guidelines
+# GPZH Configuration Management - Multi-Site Setup
 
-## ⚙️ Drupal Configuration Management for Multi-Site GPZH System
+## ⚙️ Drupal Configuration per GPZH Anforderungsvorlage
 
-This guide covers configuration management best practices for the GPZH (Gemeindeportale Zürich) multi-site Drupal system, ensuring consistency across Thalwil, Thalheim, and Erlenbach while maintaining municipality-specific customizations.
+Das `/config` Verzeichnis enthält die exportierten Drupal-Konfigurationen für das GPZH (Gemeindeportale Zürich) Prototyp-System. Alle Konfigurationen sind spezifisch auf die **35-minütige Systemdemonstration** und die drei Demo-Segmente abgestimmt:
+
+1. **Systemübersicht und Navigation** (10 Min)
+2. **Einfache Geschäftsprozess-Formulare** (7 Min)  
+3. **Backend für Gemeindemitarbeitende** (15 Min)
 
 ## 📁 Configuration Structure
 

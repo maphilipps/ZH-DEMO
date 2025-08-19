@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "@tailwindplus/elements": "^1.0.8",
     "flowbite": "^3.1.2",
     "swiper": "^11.2.10"
   },

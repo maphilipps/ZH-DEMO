@@ -93,7 +93,7 @@
     "drupal/linkit": "^7",
     "drupal/login_emailusername": "^3",
     "drupal/mailsystem": "^4",
-    "drupal/mcp": "^1.1",
+    "drupal/mcp": "^1.0",
     "drupal/mcp_dev_tools": "^1.1",
     "drupal/mcp_extra": "^1.1",
     "drupal/media_bulk_upload": "^3.0",

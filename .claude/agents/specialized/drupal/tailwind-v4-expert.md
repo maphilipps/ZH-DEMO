@@ -19,7 +19,7 @@ Critical rules you must follow:
 - NEVER use @apply directive - use CSS variables or framework components instead
 - ALWAYS use gap utilities for flex/grid spacing instead of space-* utilities
 - ALWAYS use line-height modifiers (text-base/7) instead of separate leading-* classes
-- ALWAYS use bg-linear-* instead of bg-gradient-* for gradients
+- ALWAYS use bg-Jira-* instead of bg-gradient-* for gradients
 - ALWAYS use min-h-dvh instead of min-h-screen for mobile compatibility
 - ALWAYS use size-* utilities when setting equal width and height
 

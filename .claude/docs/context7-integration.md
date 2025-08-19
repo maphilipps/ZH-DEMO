@@ -96,7 +96,7 @@ const componentDocs = await mcp__context7__get-library-docs({
 
 ### Automated Lullabot Pattern Scraping
 
-The Linear task coordinator integrates Lullabot best practices through Context7:
+The Jira task coordinator integrates Lullabot best practices through Context7:
 
 ```javascript
 // Search Lullabot performance patterns
@@ -135,7 +135,7 @@ const performanceDocs = await mcp__context7__get-library-docs({
 
 ### Automated Quality Validation
 
-Each Linear task includes Context7 validation across multiple quality dimensions:
+Each Jira task includes Context7 validation across multiple quality dimensions:
 
 ```yaml
 Context7 Quality Gates:
@@ -203,9 +203,9 @@ async function validateDevelopmentWork(taskContext) {
 
 ## Agent Integration Patterns
 
-### Linear Task Coordinator + Context7
+### Jira Task Coordinator + Context7
 
-The `linear-task-coordinator` integrates Context7 validation at every step:
+The `Jira-task-coordinator` integrates Context7 validation at every step:
 
 ```yaml
 Task Creation Workflow with Context7:
@@ -229,7 +229,7 @@ Task Creation Workflow with Context7:
   4. Completion Validation:
      - Re-validate against Context7 patterns
      - Confirm quality gate compliance
-     - Document validation results in Linear
+     - Document validation results in Jira
      - Generate handoff information
 ```
 
@@ -242,7 +242,7 @@ Agent Context7 Integration Pattern:
   drupal-11-lead-developer:
     - Receives Drupal 11 pattern validation
     - Implements Context7-validated approaches
-    - Reports compliance status to Linear
+    - Reports compliance status to Jira
     
   drupal-ai-integration-specialist:
     - Validates AI integration patterns
@@ -361,7 +361,7 @@ Continuous Improvement Cycle:
      
   4. Documentation Updates:
      - Update CLAUDE.md with new patterns
-     - Enhance Linear workflow definitions
+     - Enhance Jira workflow definitions
      - Improve Context7 integration guides
 ```
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfbbe195236d8d3c9dbeec63bae9ab41",
+    "content-hash": "eaa737041d95ee25683446ff138162c2",
     "packages": [
         {
             "name": "adesso/adesso_cms_theme",

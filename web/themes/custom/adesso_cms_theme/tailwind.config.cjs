@@ -46,6 +46,7 @@ module.exports = {
     },
     plugins: [
         require('flowbite/plugin'),
+        require('@tailwindplus/elements'),
         function({ addUtilities, theme }) {
             const screens = theme('screens');
             const utilities = {

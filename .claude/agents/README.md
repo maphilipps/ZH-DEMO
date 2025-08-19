@@ -15,7 +15,7 @@ This directory contains specialized Claude agent configurations optimized for th
 
 #### @drupal-technical-pm  
 **Role**: Technical project management and workflow orchestration
-**Specialization**: Linear task routing, multi-agent coordination, quality gate enforcement
+**Specialization**: Jira task routing, multi-agent coordination, quality gate enforcement
 **When to use**: Project planning, task coordination, workflow optimization, progress tracking
 
 ### Backend Development Agents
@@ -169,17 +169,17 @@ This directory contains specialized Claude agent configurations optimized for th
 - **Quality agents**: Comprehensive testing, automated validation, monitoring
 - **Strategy agents**: Stakeholder communication, requirement validation, planning
 
-## Linear Integration
+## Jira Integration
 
 ### Automatic Agent Routing
-The @drupal-technical-pm agent handles automatic routing of Linear tasks based on:
+The @drupal-technical-pm agent handles automatic routing of Jira tasks based on:
 - **Task complexity** (simple, medium, complex)
 - **Domain requirements** (backend, frontend, testing, etc.)
 - **Current agent availability** and workload
 - **Project dependencies** and timeline constraints
 
 ### Task Status Integration
-- **Linear task creation** → Automatic agent assignment
+- **Jira task creation** → Automatic agent assignment
 - **Development progress** → Real-time status updates
 - **Quality validation** → Automated testing and review
 - **Task completion** → Final validation and closure

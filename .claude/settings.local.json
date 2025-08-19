@@ -22,5 +22,25 @@
       "mcp__atlassian__searchJiraIssuesUsingJql"
     ]
   },
-  "outputStyle": "Drupal Master Architect"
+  "outputStyle": "Drupal Master Architect",
+  "mcp-server-drupal": {
+    "command": "docker",
+    "args": [
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "DRUPAL_AUTH_USER",
+      "-e",
+      "DRUPAL_AUTH_PASSWORD",
+      "--network=host",
+      "ghcr.io/omedia/mcp-server-drupal:latest",
+      "--drupal-url=https://zh-demo.ddev.site",
+      "--unsafe-net"
+    ],
+    "env": {
+      "DRUPAL_AUTH_USER": "admin",
+      "DRUPAL_AUTH_PASSWORD": "secret"
+    }
+  }
 }

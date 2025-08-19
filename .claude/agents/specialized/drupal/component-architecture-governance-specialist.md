@@ -204,7 +204,7 @@ Focus on creating sustainable, high-performance component architectures that sup
 
 **Enterprise Governance Requirements**
 - Design system evolution without breaking existing implementations
-- Component quality gates integrated with Linear task management
+- Component quality gates integrated with Jira task management
 - Automated component testing and validation in CI/CD pipelines
 - Brand compliance enforcement (adesso lowercase) in component systems
 - German market design patterns and cultural appropriateness standards

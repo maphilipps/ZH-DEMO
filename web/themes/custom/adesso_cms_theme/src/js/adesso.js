@@ -1,5 +1,6 @@
 import 'flowbite/dist/flowbite.js';
 import { initDropdowns } from 'flowbite';
+import '@tailwindplus/elements';
 
 // Initialize Flowbite components when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {

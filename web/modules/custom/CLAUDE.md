@@ -1,13 +1,49 @@
-# GPZH Custom Modules Development Guidelines
+# GPZH Custom Module Development - Backend für Gemeindemitarbeitende
 
-## 🧩 Custom Module Development for GPZH Multi-Site System
+## 🧩 Custom Module Development per GPZH Anforderungsvorlage
 
-This guide covers development guidelines for custom Drupal modules in the GPZH (Gemeindeportale Zürich) project, focusing on multi-site municipality portals with AI integration and Swiss compliance standards.
+Dieses Verzeichnis enthält die Custom Drupal-Module für die **Backend-Anwendung für Gemeindemitarbeitende (Redaktoren/innen)** gemäß GPZH Präqualifikations-Vorlage. Die Module implementieren spezifisch die erforderlichen Features für die 15-minütige Backend-Demonstration.
 
 ## 📁 Module Structure
 
-### **Current Custom Modules**
-- **zh_demo**: Core GPZH functionality and multi-site configuration
+### **GPZH-Spezifische Module per Anforderungsvorlage**
+
+#### **Einfache Geschäftsprozess-Formulare** (7 Min Demo)
+```yaml
+Module: gpzh_simple_forms
+Purpose: Formulargestaltung durch Gemeindemitarbeitende
+Required Features:
+  - Feedback-Formular
+  - Meldung Infrastrukturschäden  
+  - Anmeldung für Anlässe
+  - Anfrage für Raumnutzung
+  - Datenspeicherung in Tabellenform
+  - Statusverwaltung (soweit vorhanden)
+  - Einfache Workflow-Funktionalitäten
+```
+
+#### **Strukturierte Daten-Verwaltung** (15 Min Backend Demo)
+```yaml
+Module: gpzh_directory_management
+Purpose: Backend-Anwendung für Gemeindemitarbeitende
+Required Features:
+  - Strukturierte Daten: Pflege eines Verzeichnisses (Vereine, Firmen, Gastgewerbe)
+  - Pflege durch Externe mit Gastkonto (mit Workflow/Freigabe)
+  - WYSIWYG "Einfache Inhaltsseite" für außergewöhnliche Anlässe/Projekte
+  - Attraktive Gestaltung (Titel, Schriftauszeichnungen, Textboxen)
+  - Einbindung von Medien und Flyern
+```
+
+#### **System-Navigation & Suche** (10 Min Demo) 
+```yaml
+Module: gpzh_navigation_search
+Purpose: Systemübersicht und Navigation
+Required Features:
+  - Kurze Navigationswege
+  - Suchfunktionen (falls verfügbar auch mit KI-Unterstützung)
+  - Filter auf strukturierten Daten (z.B. Verzeichnisse)
+  - Werkzeuge für die Visualisierung von Daten
+```
 - **gpzh_content**: Municipality-specific content types and fields
 - **gpzh_ai**: AI integration for content generation and alt-text
 - **gpzh_compliance**: Swiss compliance features (DSGVO, eCH-0059)

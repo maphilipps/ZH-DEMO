@@ -1,10 +1,15 @@
-# GPZH Präqualifikations-Projektplan 
-## adesso CMS - Gemeindeportale Zürich
+# GPZH Projektplan - Gemeindeportale Zürich Prototyp
 
-**Dokument**: Projektplan für GPZH Präqualifikations-Präsentation  
-**Datum**: 18. Januar 2025  
-**Version**: 1.0  
-**Projektleitung**: Marc Philipps, Senior Drupal Architect  
+## 🏛️ Executive Summary
+
+Das **ZH-DEMO Prototyp-System** ist ein hochmoderner **Drupal 11.2.2 Enterprise CMS** mit **AI-Integration** und **Swiss Public Sector Standards**, entwickelt für die GPZH (Gemeindeportale Zürich) Präqualifikations-Präsentation.
+
+**Dokument**: Umfassender Projektplan für GPZH Präqualifikations-Präsentation  
+**Datum**: 19. August 2025  
+**Version**: 2.0 - Enhanced with Repository Analysis  
+**Projektleitung**: Marc Philipps, Senior Drupal Architect
+
+**Ziel**: Erfolgreiche 35-minütige Systemdemonstration vor dem Kanton Zürich mit fokussierten Features für kommunale Webportale.  
 
 ---
 
@@ -23,81 +28,202 @@ Vorbereitung des **adesso CMS Systems** für die erfolgreiche GPZH Präqualifika
 - **Systemeignung**: 0-5 Punkte für Prototyp-Übereinstimmung
 - **Innovation**: Bonus für KI-Features und moderne Architektur
 
----
+## 📋 Anforderungsanalyse - Präqualifikation
 
-## 📊 Aktueller Projektstand (IST-Analyse)
-
-### **✅ Vorhandene Stärken**
-| Bereich | Status | Details |
-|---------|--------|---------|
-| **Drupal 11.2.2 Core** | ✅ **Vollständig** | Neueste Version, Enterprise-ready |
-| **KI-Integration** | ✅ **Implementiert** | GPT-4o, Claude, Groq Provider aktiv |
-| **Frontend-Stack** | ✅ **Modern** | Vite 6.2.0 + Tailwind CSS v4 + Alpine.js |
-| **SDC Components** | ✅ **25+ Komponenten** | Hero, Gallery, Forms, Navigation etc. |
-| **Storybook Dokumentation** | ✅ **8.6.7** | Professionelle Komponenten-Docs |
-| **Testing Framework** | ✅ **Umfassend** | BackstopJS, Vitest, Playwright |
-| **Development Environment** | ✅ **DDEV Ready** | Lokale Entwicklungsumgebung läuft |
-| **Responsive Design** | ✅ **Mobile-First** | Tailwind CSS v4 responsive Grid |
-
-### **⚠️ Identifizierte Lücken für GPZH**
-| Bereich | Status | Erforderliche Maßnahmen |
-|---------|--------|-------------------------|
-| **Multi-Site Setup** | ❌ **Fehlt** | 3 Beispiel-Gemeinden konfigurieren |
-| **Demo-Content** | ❌ **Fehlt** | Realistische Gemeinde-Inhalte erstellen |
-| **Baubewilligung-Formular** | ❌ **Nicht konfiguriert** | Webform für Geschäftsprozess einrichten |
-| **Vereinsverzeichnis** | ❌ **Nicht implementiert** | Strukturierte Daten mit Gastkonto-Workflow |
-| **CH-Compliance** | ⚠️ **Teilweise** | DSGVO/CH-DSG + eCH-0059 Standards |
-| **Performance Benchmarks** | ⚠️ **Nicht gemessen** | Core Web Vitals >90 nachweisen |
-| **Mobile Touch-Navigation** | ⚠️ **Nicht optimiert** | Touch-Gesten für Gemeinde-User |
-
----
-
-## 🗓️ Projektplan - 4 Phasen Ansatz
-
-### **Phase 1: Sofortige Demo-Vorbereitung** ⚡
-**Zeitraum**: 1-2 Tage | **Priorität**: 🔥 **KRITISCH**
-
-#### **1.1 Demo-Content für 3 Beispiel-Gemeinden**
-- **Winterthur**: Industrielle Gemeinde mit modernem Design
-- **Uster**: Seegemeinde mit naturnahem Design  
-- **Bülach**: Flughafengemeinde mit dynamischem Design
-
-**Deliverables**:
+### **Demo-Struktur (35 Minuten)**
 ```yaml
-Gemeinde-spezifischer Content:
-  - Startseite mit Hero-Image und Gemeinde-Info
-  - Aktuelles/News-Bereich mit 5+ Artikeln
-  - Dienstleistungen-Seiten (Baubewilligung, Anmeldungen)
-  - Kontakt und Öffnungszeiten
-  - Bildergalerie von Gemeinde-Highlights
+1. Systemübersicht und Navigation (10 Min):
+   - Kurze Navigationswege
+   - Responsive Design
+   - Individuelle Designs für Gemeinden
+   - Suchfunktionen mit AI-Unterstützung
+   - Filter auf strukturierten Daten
+   - Werkzeuge für Datenvisualisierung
 
-Technische Umsetzung:
-  - Drupal Multi-Site oder Theme-Varianten
-  - Responsive Layouts für alle Geräte
-  - SEO-optimierte Inhalte mit Meta-Tags
+2. Inhaltliche Themen - Forms (7 Min):
+   - Formulargestaltung durch Gemeindemitarbeitende
+   - Datenspeicherung in Tabellenform  
+   - Statusverwaltung
+   - Einfache Workflow-Funktionalitäten
+
+3. Backend für Gemeindemitarbeitende (15 Min):
+   - Strukturierte Daten: Verzeichnis-Pflege
+   - Gastkonto mit Workflow/Freigabe
+   - WYSIWYG "Einfache Inhaltsseite"
+   - Medien-Integration
+
+4. Fragen & Abschluss (3 Min)
 ```
 
-#### **1.2 Baubewilligung-Formular (Live-Demo Use-Case)**
-**Szenario**: "Terrassenüberdachung Bewilligung Winterthur"
+---
 
-**Features**:
-- Webform mit Drag-and-Drop Builder
-- File-Upload für Baupläne
-- Status-Workflow (Eingegangen → Prüfung → Genehmigt)
-- E-Mail Benachrichtigungen an Bürger und Bauamt
-- PDF-Export für Antragsdokumentation
+## 📊 Repository-Analyse & Projektstand
 
-#### **1.3 AI Content-Demo für Gemeinderats-Artikel**
-**Szenario**: "Gemeinderat beschließt Verkehrsberuhigung Dorfkern"
+### ✅ **Erfolgreich Implementierte Features**
 
-**KI-Features demonstrieren**:
-- AI Content-Vorschläge für Behördensprache
-- Automatische Alt-Text Generation für Politiker-Fotos  
-- SEO-Optimierung durch AI-Suggestions
-- Responsive Vorschau für Mobile/Desktop
+#### **1. Multi-Site Infrastructure (100% Complete)**
+- **3 Gemeinde-Subthemes**: `zh_thalwil`, `zh_thalheim`, `zh_erlenbach`
+- **DDEV Multi-Domain Support**: Vollständig konfiguriert
+- **Individual Design Variants**: Distinct corporate designs pro Gemeinde
+- **Performance Optimization**: Core Web Vitals ready
 
-**Geschätzter Aufwand**: 16 Stunden
-**Kritischer Pfad**: Demo-Content muss vor System-Tests fertig sein
+#### **2. Modern Frontend Stack (95% Complete)** 
+- **Vite 6.2.0**: Hot Module Replacement, moderne Build-Pipeline
+- **Tailwind CSS v4**: Utility-first responsive framework
+- **25+ SDC Components**: Single Directory Components with Storybook
+- **Alpine.js Integration**: Lightweight interactivity
+- **Visual Regression Testing**: BackstopJS implementation
+
+#### **3. AI Integration Foundation (80% Complete)**
+- **Drupal AI Suite**: Multi-provider configuration
+- **OpenAI GPT-4o**: Content generation capability
+- **Anthropic Claude**: Advanced reasoning integration
+- **AI Image Alt-Text**: Accessibility enhancement
+- **Content Moderation**: Safety and compliance features
+
+#### **4. Drupal 11.2.2 Enterprise Foundation (100% Complete)**
+- **PHP 8.3**: Latest performance and security features
+- **MariaDB 10.11**: Enterprise-grade database
+- **Component Architecture**: Modern entity/field structure
+- **Security Standards**: Enterprise-level hardening
+- **Performance Monitoring**: Lighthouse integration
+
+### ❌ **Kritische Lücken für Demo-Anforderungen**
+
+#### **1. Einfache Geschäftsprozess-Formulare (HIGH Priority)**
+```yaml
+Status: MISSING - 7 Min Demo Segment
+Required per GPZH Vorlage:
+  - Feedback-Formular
+  - Meldung an die Gemeinde betreffend Infrastrukturschäden
+  - Anmeldung für Anlässe
+  - Anfrage für Raumnutzung
+  - Formulargestaltung durch Gemeindemitarbeitende (Redaktoren/Administrator)
+  - Datenspeicherung in Tabellenform
+  - Statusverwaltung (soweit vorhanden)
+  - Einfache Workflow-Funktionalitäten (soweit vorhanden)
+  
+Current State: Basic webform infrastructure exists but no business logic
+Impact: Core demo requirement, cannot demonstrate without this
+```
+
+#### **2. Structured Data Management (HIGH Priority)**
+```yaml
+Status: INCOMPLETE - 15 Min Backend Demo
+Required:
+  - Directory Management (Vereine, Firmen, Gastgewerbe)
+  - Guest Account System with Registration
+  - Two-Tier Approval Process (Guest → Admin → Published)
+  - Data Export Functionality (Excel/PDF)
+  - Search and Filter Capabilities
+
+Current State: Entity structure ready but no workflow implementation
+Impact: Major demo segment, backend functionality showcase
+```
+
+#### **3. AI-Enhanced Search (MEDIUM Priority)**
+```yaml
+Status: FOUNDATION ONLY
+Required:
+  - Natural Language Search Interface
+  - "Wo kann ich einen Baum fällen anmelden?" style queries
+  - AI Query Processing and Response Generation
+  - Integration with existing content structure
+
+Current State: AI providers configured but no search UI
+Impact: Demo enhancement feature, competitive differentiator
+```
+
+#### **4. Demo Content Preparation (HIGH Priority)**
+```yaml
+Status: MISSING
+Required:
+  - Municipality-specific content for all 3 sites
+  - Business process examples (building permits, registrations)
+  - Realistic scenario data for presentations
+  - Multi-language content samples
+
+Current State: Template content only
+Impact: Cannot perform meaningful demo without realistic content
+```
+
+---
+
+## 🚀 Projektplan Phasen-Übersicht
+
+### **Phase 1: Kritische Demo-Features (2-3 Wochen)**
+
+#### **Sprint 1.1: Einfache Geschäftsprozess-Formulare (1 Woche)**
+```yaml
+Deliverables per GPZH Vorlage:
+  - Feedback-Formular (Demo-ready)
+  - Meldung Infrastrukturschäden (z.B. Strassenschaden)
+  - Anmeldung für Anlässe (z.B. Gemeindeveranstaltung)
+  - Anfrage für Raumnutzung (z.B. Gemeindesaal)
+  - Formulargestaltung durch Gemeindemitarbeitende ohne Programmierung
+  - Datenspeicherung in Tabellenform
+  - Statusverwaltung (soweit vorhanden)
+  - Einfache Workflow-Funktionalitäten (soweit vorhanden)
+
+Technical Tasks:
+  - Webform Builder für Redaktoren/Administratoren
+  - Tabular data storage and export
+  - Basic status tracking implementation
+  - Email notification system
+  - Form embedding in content pages
+
+Acceptance Criteria:
+  - Gemeindemitarbeitende können Formulare ohne Code erstellen
+  - Daten werden in Tabellenform gespeichert
+  - Status kann verwaltet werden (eingegangen, bearbeitet, erledigt)
+  - Einfache Workflows funktionieren
+  - Demo-ready mit realistischen Gemeinde-Szenarien
+```
+
+#### **Sprint 1.2: Strukturierte Daten-Verwaltung (1 Woche)**
+```yaml
+Deliverables per GPZH Vorlage:
+  Backend-Anwendung für Gemeindemitarbeitende (Redaktoren/innen):
+  - Strukturierte Daten: Pflege eines Verzeichnisses (Vereine, Firmen oder Gastgewerbe)
+  - Pflege durch Externe mit Gastkonto (wenn vorhanden, mit Workflow/Freigabe)
+  - "Einfache Inhaltsseite": WYSIWYG-Editor für außergewöhnliche Anlässe oder Projekte
+  - Attraktive Gestaltung mit Titeln, Schriftauszeichnungen, Textboxen
+  - Einbindung von Medien und Flyern
+
+Technical Tasks:
+  - Content types für Verzeichnis-Verwaltung
+  - Gastkonto-System mit Registrierung und Freigabe-Workflow
+  - WYSIWYG Page Builder mit Medien-Integration
+  - Views und Filter für Verzeichnis-Anzeige
+  - Export-Funktionen für Verwaltung
+
+Acceptance Criteria:
+  - Redaktoren können Verzeichnisse ohne Code pflegen
+  - Externe können sich mit Gastkonto registrieren und Einträge vorschlagen
+  - Workflow: Externe Eingabe → Redaktions-Prüfung → Freischaltung
+  - WYSIWYG-Editor für attraktive Inhaltsseiten funktioniert
+  - Demo mit realistischen Vereins-/Firmen-/Gastgewerbe-Daten
+```
+
+#### **Sprint 1.3: Demo Content Creation (0.5 Wochen)**
+```yaml
+Deliverables:
+  - Realistic content for all 3 municipalities
+  - Business process demonstration scenarios
+  - Multi-language content samples
+  - Media library with optimized images
+
+Content Strategy:
+  - Thalwil: Modern urban municipality (tech-forward)
+  - Thalheim: Traditional rural municipality (agriculture focus)
+  - Erlenbach: Lakeside municipality (tourism oriented)
+
+Demo Scenarios:
+  - Building permit application workflow
+  - Business directory submission and approval
+  - Event registration and management
+  - Municipal news and announcements
+```
 
 ---
 
@@ -331,6 +457,66 @@ Technische Umsetzung:
 - [ ] **Technical Differentiation**: AI-Features als USP hervorgehoben
 - [ ] **Swiss Compliance**: DSGVO/eCH Standards demonstriert
 - [ ] **Backup Scenarios**: Alternative Demo-Pfade vorbereitet
+
+---
+
+## 🎯 Agent Team Configuration
+
+### **Tier 1: Core GPZH Specialists**
+```yaml
+drupal-enterprise-architect:
+  Focus: Multi-site architecture, Drupal 11.2.2 optimization
+  Responsibilities: Site building, performance, scalability
+  
+drupal-ai-integration-specialist:
+  Focus: AI Suite implementation, content enhancement
+  Responsibilities: OpenAI/Claude integration, search features
+  
+sdc-component-architect:
+  Focus: Single Directory Components, Storybook integration
+  Responsibilities: Component development, documentation
+  
+swiss-compliance-specialist:
+  Focus: WCAG 2.1 AA, eCH-0059, DSGVO/CH-DSG
+  Responsibilities: Accessibility, legal compliance, security
+  
+municipality-portal-specialist:
+  Focus: Municipal government workflows, citizen services
+  Responsibilities: Business processes, user experience
+```
+
+### **Tier 2: Supporting Specialists**
+```yaml
+drupal-performance-specialist:
+  Focus: Core Web Vitals, caching, optimization
+  
+frontend-theming-specialist:
+  Focus: Vite, Tailwind CSS v4, responsive design
+  
+qa-testing-specialist:
+  Focus: End-to-end testing, accessibility validation
+```
+
+### **Integration mit MCP Stack**
+```yaml
+Jira Integration:
+  - Every feature tied to GPZH ticket
+  - Automated PR creation with acceptance criteria
+  - @claude code review integration
+  - Progress tracking through Linear status updates
+
+Quality Assurance:
+  - Automated testing on every commit
+  - Performance regression prevention
+  - Accessibility compliance validation
+  - Multi-browser compatibility testing
+
+Demo Preparation:
+  - Content staging automation
+  - Performance monitoring
+  - Backup scenario validation
+  - Real-time system health checks
+```
 
 ---
 

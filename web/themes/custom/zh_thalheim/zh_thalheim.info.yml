@@ -1,0 +1,37 @@
+name: ZH Thalheim
+type: theme
+description: 'Subtheme für Gemeinde Thalheim - Ländlich, traditionell, persönlich (Weinland)'
+package: 'GPZH Municipalities'
+core_version_requirement: ^11
+base theme: adesso_cms_theme
+version: 1.0.0
+
+# Override specific libraries for Thalheim
+libraries:
+  - zh_thalheim/global
+
+# Municipality-specific regions (if needed)
+regions:
+  header: Header
+  primary_menu: Primary menu  
+  secondary_menu: Secondary menu
+  hero: Hero (full width)
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content_above: Content Above
+  content: Content
+  sidebar: Sidebar
+  content_below: Content Below
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+
+# Theme settings
+settings:
+  municipality_name: 'thalheim'
+  municipality_colors:
+    primary: '#15803D'
+    secondary: '#22C55E'
+    accent: '#16A34A'
+  municipality_fonts:
+    heading: 'Crimson Text'
+    body: 'Source Serif Pro'

@@ -1,0 +1,225 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts for traditional typography */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Thalheim Municipality Theme - Rural Traditional Personal (Weinland) */
+
+/* CSS Custom Properties for dynamic theming */
+:root {
+  --thalheim-primary: #15803d;
+  --thalheim-secondary: #22c55e;
+  --thalheim-accent: #dc2626;
+  --thalheim-earth: #78716c;
+  --thalheim-earth-light: #a8a29e;
+  --thalheim-text: #1c1917;
+  --thalheim-text-light: #57534e;
+  --thalheim-surface: #fafaf9;
+  --thalheim-surface-alt: #f5f5f4;
+}
+
+/* Municipality-specific body class */
+.municipality-thalheim {
+  /* Override CSS custom properties */
+  --color-primary: var(--thalheim-primary);
+  --color-secondary: var(--thalheim-secondary);
+  --color-accent: var(--thalheim-accent);
+  
+  /* Typography - Traditional serif fonts */
+  font-family: 'Source Serif Pro', Georgia, serif;
+  
+  /* Subtle texture background */
+  background-color: var(--thalheim-surface);
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(21, 128, 61, 0.03) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Typography Overrides */
+.municipality-thalheim h1,
+.municipality-thalheim h2,
+.municipality-thalheim h3,
+.municipality-thalheim h4 {
+  font-family: 'Crimson Text', Georgia, serif;
+  @apply text-earth-900 font-semibold;
+  line-height: 1.3;
+}
+
+.municipality-thalheim p,
+.municipality-thalheim li {
+  @apply text-earth-700 leading-relaxed;
+  font-family: 'Source Serif Pro', Georgia, serif;
+}
+
+/* Component Overrides */
+.municipality-thalheim .hero {
+  @apply bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-500;
+  background-image: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill="%23ffffff10" d="M0,1000 Q250,800 500,850 T1000,800 L1000,1000 Z"/></svg>'),
+    linear-gradient(135deg, #15803d 0%, #22c55e 50%, #16a34a 100%);
+  position: relative;
+}
+
+.municipality-thalheim .hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff10"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff08"/><circle cx="40" cy="80" r="1" fill="%23ffffff05"/></svg>');
+  background-size: 100px 100px;
+  pointer-events: none;
+}
+
+.municipality-thalheim .hero__title {
+  @apply text-white font-bold text-municipal-xl md:text-6xl lg:text-7xl;
+  font-family: 'Crimson Text', Georgia, serif;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.01em;
+}
+
+.municipality-thalheim .hero__summary {
+  @apply text-green-100 text-lg md:text-xl;
+  font-family: 'Source Serif Pro', Georgia, serif;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.6;
+}
+
+/* Navigation styling - Traditional feel */
+.municipality-thalheim .site-header {
+  @apply bg-thalheim-surface/95 backdrop-blur-md border-b border-earth-200;
+  box-shadow: 0 1px 6px rgba(120, 113, 108, 0.1);
+}
+
+.municipality-thalheim .main-menu a {
+  @apply text-earth-700 hover:text-primary-600 font-medium transition-colors duration-300;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.1rem;
+}
+
+/* Card components - Organic feel */
+.municipality-thalheim .card {
+  @apply thalheim-card;
+  background: linear-gradient(145deg, #fafaf9 0%, #f5f5f4 100%);
+}
+
+.municipality-thalheim .card:hover {
+  @apply transform -translate-y-1;
+  box-shadow: 0 20px 60px -10px rgba(21, 128, 61, 0.4), 
+              0 8px 32px -8px rgba(120, 113, 108, 0.2);
+}
+
+/* Button components - Traditional rounded */
+.municipality-thalheim .button--primary {
+  @apply thalheim-button;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 600;
+}
+
+.municipality-thalheim .button--secondary {
+  @apply bg-earth-100 hover:bg-earth-200 text-primary-700 border border-earth-300 rounded-organic;
+  font-family: 'Crimson Text', Georgia, serif;
+  transition: all 0.3s ease;
+}
+
+.municipality-thalheim .button--accent {
+  @apply bg-wine-600 hover:bg-wine-700 text-white rounded-organic;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
+}
+
+/* Footer styling - Earth tones */
+.municipality-thalheim .site-footer {
+  @apply bg-earth-800 text-earth-300;
+  background-image: 
+    linear-gradient(145deg, #292524 0%, #1c1917 100%);
+}
+
+.municipality-thalheim .site-footer h3 {
+  @apply text-earth-100;
+  font-family: 'Crimson Text', Georgia, serif;
+}
+
+.municipality-thalheim .site-footer a {
+  @apply text-earth-300 hover:text-primary-400 transition-colors duration-300;
+}
+
+/* Form elements - Traditional styling */
+.municipality-thalheim input[type="text"],
+.municipality-thalheim input[type="email"],
+.municipality-thalheim textarea,
+.municipality-thalheim select {
+  @apply border-earth-300 focus:border-primary-500 focus:ring-primary-500 rounded-organic;
+  font-family: 'Source Serif Pro', Georgia, serif;
+  background-color: var(--thalheim-surface);
+}
+
+/* Unique Thalheim elements */
+.municipality-thalheim .wine-accent {
+  @apply border-l-4 border-wine-600 pl-4 bg-wine-50;
+}
+
+.municipality-thalheim .traditional-quote {
+  @apply font-serif text-xl italic text-earth-700 border-l-2 border-primary-400 pl-6 my-8;
+  font-family: 'Crimson Text', Georgia, serif;
+}
+
+/* Accessibility enhancements */
+.municipality-thalheim .sr-only {
+  @apply sr-only;
+}
+
+.municipality-thalheim :focus {
+  @apply outline-primary-600;
+  outline-offset: 2px;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .municipality-thalheim .hero__title {
+    @apply text-4xl;
+  }
+  
+  .municipality-thalheim .hero__summary {
+    @apply text-base;
+    line-height: 1.7;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .municipality-thalheim {
+    --thalheim-primary: #0d4d20;
+    --thalheim-accent: #b91c1c;
+    --thalheim-text: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .municipality-thalheim * {
+    @apply transition-none;
+  }
+  
+  .municipality-thalheim .hero::before {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .municipality-thalheim .hero {
+    @apply bg-none text-black;
+  }
+  
+  .municipality-thalheim .thalheim-button {
+    @apply bg-none border border-black text-black;
+  }
+  
+  .municipality-thalheim .card {
+    @apply border border-gray-300;
+  }
+}

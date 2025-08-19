@@ -1,0 +1,37 @@
+name: ZH Thalwil
+type: theme
+description: 'Subtheme für Gemeinde Thalwil - Modern, urban, professionell'
+package: 'GPZH Municipalities'
+core_version_requirement: ^11
+base theme: adesso_cms_theme
+version: 1.0.0
+
+# Override specific libraries for Thalwil
+libraries:
+  - zh_thalwil/global
+
+# Municipality-specific regions (if needed)
+regions:
+  header: Header
+  primary_menu: Primary menu  
+  secondary_menu: Secondary menu
+  hero: Hero (full width)
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content_above: Content Above
+  content: Content
+  sidebar: Sidebar
+  content_below: Content Below
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+
+# Theme settings
+settings:
+  municipality_name: 'thalwil'
+  municipality_colors:
+    primary: '#1E3A8A'
+    secondary: '#3B82F6'
+    accent: '#60A5FA'
+  municipality_fonts:
+    heading: 'Inter'
+    body: 'Inter'

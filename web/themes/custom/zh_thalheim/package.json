@@ -1,0 +1,30 @@
+{
+  "name": "zh-thalheim-theme",
+  "version": "1.0.0",
+  "description": "Thalheim municipality subtheme - Rural traditional personal (Weinland)",
+  "main": "src/css/thalheim.css",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.ts",
+    "lint:fix": "eslint src --ext .js,.ts --fix"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0",
+    "tailwindcss": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "eslint": "^8.57.1"
+  },
+  "dependencies": {
+    "flowbite": "^2.5.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

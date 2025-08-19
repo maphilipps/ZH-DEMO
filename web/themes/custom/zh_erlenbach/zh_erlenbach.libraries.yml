@@ -1,0 +1,10 @@
+global:
+  version: VERSION
+  css:
+    theme:
+      dist/erlenbach.css: {}
+  js:
+    dist/erlenbach.js: {}
+  dependencies:
+    - adesso_cms_theme/global
+    - core/drupal

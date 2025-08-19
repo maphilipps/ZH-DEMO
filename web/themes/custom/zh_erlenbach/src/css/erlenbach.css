@@ -1,0 +1,328 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts for elegant typography */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* Erlenbach Municipality Theme - Elegant Zürichsee-Flair (Goldküste) */
+
+/* CSS Custom Properties for dynamic theming */
+:root {
+  --erlenbach-primary: #0891b2;
+  --erlenbach-secondary: #06b6d4;
+  --erlenbach-accent: #f59e0b;
+  --erlenbach-lake: #0ea5e9;
+  --erlenbach-gold: #f59e0b;
+  --erlenbach-pearl: #737373;
+  --erlenbach-text: #171717;
+  --erlenbach-text-light: #404040;
+  --erlenbach-surface: #fafafa;
+  --erlenbach-surface-alt: #f5f5f5;
+  --erlenbach-glass: rgba(250, 250, 250, 0.85);
+}
+
+/* Municipality-specific body class */
+.municipality-erlenbach {
+  /* Override CSS custom properties */
+  --color-primary: var(--erlenbach-primary);
+  --color-secondary: var(--erlenbach-secondary);
+  --color-accent: var(--erlenbach-accent);
+  
+  /* Typography - Elegant sans-serif with display serif for headings */
+  font-family: 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+  
+  /* Elegant background with subtle texture */
+  background-color: var(--erlenbach-surface);
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(8, 145, 178, 0.02) 1px, transparent 0),
+    radial-gradient(circle at 75px 75px, rgba(245, 158, 11, 0.015) 1px, transparent 0);
+  background-size: 100px 100px, 150px 150px;
+  
+  /* High-quality text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Overrides - Elegant hierarchy */
+.municipality-erlenbach h1,
+.municipality-erlenbach h2,
+.municipality-erlenbach h3,
+.municipality-erlenbach h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  @apply text-pearl-900 font-medium;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.municipality-erlenbach h1 {
+  @apply text-display font-semibold;
+}
+
+.municipality-erlenbach h2 {
+  @apply text-municipal-lg;
+}
+
+.municipality-erlenbach p,
+.municipality-erlenbach li {
+  @apply text-pearl-700 leading-relaxed;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.municipality-erlenbach .lead {
+  @apply text-xl text-pearl-600 font-light leading-relaxed;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+}
+
+/* Component Overrides - Lake & Gold Luxury */
+.municipality-erlenbach .hero {
+  @apply bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-400;
+  background-image: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff15"/><stop offset="50%" stop-color="%23ffffff08"/><stop offset="100%" stop-color="%23ffffff03"/></linearGradient></defs><path fill="url(%23shimmer)" d="M0,1000 Q200,850 400,900 T800,850 Q900,825 1000,800 L1000,1000 Z"/></svg>'),
+    linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.municipality-erlenbach .hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.municipality-erlenbach .hero__title {
+  @apply text-white font-bold text-municipal-xl md:text-6xl lg:text-7xl;
+  font-family: 'Playfair Display', Georgia, serif;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.municipality-erlenbach .hero__summary {
+  @apply text-cyan-50 text-lg md:text-xl;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Navigation styling - Glassmorphism */
+.municipality-erlenbach .site-header {
+  background: var(--erlenbach-glass);
+  @apply backdrop-blur-elegant border-b border-pearl-200/50;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.municipality-erlenbach .main-menu a {
+  @apply text-pearl-700 hover:text-primary-600 font-medium transition-all duration-300;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.municipality-erlenbach .main-menu a:hover {
+  @apply transform scale-105;
+}
+
+/* Card components - Premium glassmorphism */
+.municipality-erlenbach .card {
+  @apply erlenbach-card;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 250, 250, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(115, 115, 115, 0.1);
+}
+
+.municipality-erlenbach .card:hover {
+  @apply transform -translate-y-2;
+  box-shadow: 
+    0 24px 72px -12px rgba(8, 145, 178, 0.35),
+    0 4px 20px -4px rgba(0, 0, 0, 0.1);
+}
+
+.municipality-erlenbach .card-premium {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 158, 11, 0.02) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  @apply shadow-gold;
+}
+
+/* Button components - Elegant interactions */
+.municipality-erlenbach .button--primary {
+  @apply erlenbach-button;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.municipality-erlenbach .button--gold {
+  @apply erlenbach-button-gold;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.municipality-erlenbach .button--secondary {
+  @apply bg-pearl-100 hover:bg-pearl-200 text-primary-700 border border-pearl-300 rounded-elegant;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.municipality-erlenbach .button--outline {
+  @apply bg-transparent border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white rounded-elegant;
+  transition: all 0.3s ease;
+}
+
+/* Footer styling - Elegant dark */
+.municipality-erlenbach .site-footer {
+  @apply bg-pearl-900 text-pearl-300;
+  background-image: 
+    linear-gradient(145deg, #171717 0%, #262626 100%);
+}
+
+.municipality-erlenbach .site-footer h3 {
+  @apply text-pearl-100;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+}
+
+.municipality-erlenbach .site-footer a {
+  @apply text-pearl-300 hover:text-primary-400 transition-all duration-300;
+}
+
+.municipality-erlenbach .site-footer a:hover {
+  @apply transform translate-x-1;
+}
+
+/* Form elements - Premium styling */
+.municipality-erlenbach input[type="text"],
+.municipality-erlenbach input[type="email"],
+.municipality-erlenbach textarea,
+.municipality-erlenbach select {
+  @apply border-pearl-300 focus:border-primary-500 focus:ring-primary-500 rounded-elegant;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.municipality-erlenbach input[type="text"]:focus,
+.municipality-erlenbach input[type="email"]:focus,
+.municipality-erlenbach textarea:focus,
+.municipality-erlenbach select:focus {
+  @apply shadow-erlenbach;
+}
+
+/* Unique Erlenbach elements */
+.municipality-erlenbach .gold-accent {
+  @apply border-l-4 border-gold-500 pl-6 bg-gradient-to-r from-gold-50 to-transparent;
+}
+
+.municipality-erlenbach .lake-quote {
+  @apply font-display text-2xl text-primary-700 border-l-2 border-primary-400 pl-8 my-12 italic;
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.4;
+}
+
+.municipality-erlenbach .premium-badge {
+  @apply bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-medium;
+  font-family: 'Source Sans Pro', system-ui, sans-serif;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+
+.municipality-erlenbach .glassmorphism {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Accessibility enhancements */
+.municipality-erlenbach .sr-only {
+  @apply sr-only;
+}
+
+.municipality-erlenbach :focus {
+  @apply outline-primary-600;
+  outline-offset: 2px;
+  outline-width: 2px;
+}
+
+.municipality-erlenbach :focus-visible {
+  @apply ring-2 ring-primary-500 ring-offset-2;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .municipality-erlenbach .hero__title {
+    @apply text-5xl;
+    line-height: 1.1;
+  }
+  
+  .municipality-erlenbach .hero__summary {
+    @apply text-base;
+    line-height: 1.6;
+  }
+  
+  .municipality-erlenbach .lake-quote {
+    @apply text-xl pl-4;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .municipality-erlenbach {
+    --erlenbach-primary: #006080;
+    --erlenbach-accent: #cc7a00;
+    --erlenbach-text: #000000;
+  }
+  
+  .municipality-erlenbach .glassmorphism {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .municipality-erlenbach * {
+    @apply transition-none;
+  }
+  
+  .municipality-erlenbach .hero::before {
+    display: none;
+  }
+  
+  .municipality-erlenbach .card:hover,
+  .municipality-erlenbach .button:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .municipality-erlenbach .hero {
+    @apply bg-none text-black;
+  }
+  
+  .municipality-erlenbach .erlenbach-button {
+    @apply bg-none border border-black text-black;
+  }
+  
+  .municipality-erlenbach .glassmorphism {
+    @apply bg-white border border-gray-300;
+  }
+  
+  .municipality-erlenbach .card {
+    @apply border border-gray-300;
+    box-shadow: none;
+  }
+}

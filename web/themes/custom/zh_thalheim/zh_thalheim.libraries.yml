@@ -1,0 +1,10 @@
+global:
+  version: VERSION
+  css:
+    theme:
+      dist/thalheim.css: {}
+  js:
+    dist/thalheim.js: {}
+  dependencies:
+    - adesso_cms_theme/global
+    - core/drupal

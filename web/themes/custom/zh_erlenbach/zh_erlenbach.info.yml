@@ -1,0 +1,37 @@
+name: ZH Erlenbach
+type: theme
+description: 'Subtheme für Gemeinde Erlenbach - Elegant, Zürichsee-Flair, hochwertig (Goldküste)'
+package: 'GPZH Municipalities'
+core_version_requirement: ^11
+base theme: adesso_cms_theme
+version: 1.0.0
+
+# Override specific libraries for Erlenbach
+libraries:
+  - zh_erlenbach/global
+
+# Municipality-specific regions (if needed)
+regions:
+  header: Header
+  primary_menu: Primary menu  
+  secondary_menu: Secondary menu
+  hero: Hero (full width)
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content_above: Content Above
+  content: Content
+  sidebar: Sidebar
+  content_below: Content Below
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+
+# Theme settings
+settings:
+  municipality_name: 'erlenbach'
+  municipality_colors:
+    primary: '#0891B2'
+    secondary: '#06B6D4'
+    accent: '#F59E0B'
+  municipality_fonts:
+    heading: 'Playfair Display'
+    body: 'Source Sans Pro'

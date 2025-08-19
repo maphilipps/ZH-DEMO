@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Thalwil Municipality Theme - Modern Urban Professional */
+
+/* CSS Custom Properties for dynamic theming */
+:root {
+  --thalwil-primary: #1e3a8a;
+  --thalwil-secondary: #3b82f6;
+  --thalwil-accent: #60a5fa;
+  --thalwil-text: #1e293b;
+  --thalwil-text-light: #64748b;
+  --thalwil-surface: #ffffff;
+  --thalwil-surface-alt: #f8fafc;
+}
+
+/* Municipality-specific body class */
+.municipality-thalwil {
+  /* Override CSS custom properties */
+  --color-primary: var(--thalwil-primary);
+  --color-secondary: var(--thalwil-secondary);
+  --color-accent: var(--thalwil-accent);
+  
+  /* Typography */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Component Overrides */
+.municipality-thalwil .hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,1000 0,800 400,600 800,800 1000,600 1000,1000"/></svg>'),
+                    linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+}
+
+.municipality-thalwil .hero__title {
+  color: white;
+  font-weight: bold;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .municipality-thalwil .hero__title {
+    font-size: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .municipality-thalwil .hero__title {
+    font-size: 7rem;
+  }
+}
+
+.municipality-thalwil .hero__summary {
+  color: #dbeafe;
+  font-size: 1.125rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .municipality-thalwil .hero__summary {
+    font-size: 1.25rem;
+  }
+}
+
+/* Navigation styling */
+.municipality-thalwil .site-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.municipality-thalwil .main-menu a {
+  color: #334155;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.municipality-thalwil .main-menu a:hover {
+  color: #1e3a8a;
+}
+
+/* Card components */
+.municipality-thalwil .card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.municipality-thalwil .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px -10px rgba(30, 58, 138, 0.3);
+}
+
+/* Button components */
+.municipality-thalwil .button--primary {
+  background: #1e3a8a;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 40px -10px rgba(30, 58, 138, 0.3);
+}
+
+.municipality-thalwil .button--primary:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px -10px rgba(30, 58, 138, 0.4);
+}
+
+.municipality-thalwil .button--secondary {
+  background: #f1f5f9;
+  color: #1e3a8a;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.municipality-thalwil .button--secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Footer styling */
+.municipality-thalwil .site-footer {
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+.municipality-thalwil .site-footer h3 {
+  color: white;
+}
+
+.municipality-thalwil .site-footer a {
+  color: #cbd5e1;
+  transition: color 0.2s ease;
+}
+
+.municipality-thalwil .site-footer a:hover {
+  color: #60a5fa;
+}
+
+/* Form elements */
+.municipality-thalwil input[type="text"],
+.municipality-thalwil input[type="email"],
+.municipality-thalwil textarea,
+.municipality-thalwil select {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.municipality-thalwil input[type="text"]:focus,
+.municipality-thalwil input[type="email"]:focus,
+.municipality-thalwil textarea:focus,
+.municipality-thalwil select:focus {
+  border-color: #3b82f6;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Accessibility */
+.municipality-thalwil .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.municipality-thalwil :focus {
+  outline: 2px solid #1e3a8a;
+  outline-offset: 2px;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .municipality-thalwil .hero__title {
+    font-size: 2.5rem;
+  }
+  
+  .municipality-thalwil .hero__summary {
+    font-size: 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .municipality-thalwil {
+    --thalwil-primary: #000080;
+    --thalwil-secondary: #0066cc;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .municipality-thalwil * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .municipality-thalwil .hero {
+    background: none !important;
+    color: black !important;
+  }
+  
+  .municipality-thalwil .button--primary {
+    background: none !important;
+    border: 1px solid black !important;
+    color: black !important;
+  }
+}

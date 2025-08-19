@@ -22,7 +22,7 @@
       "mcp__atlassian__searchJiraIssuesUsingJql"
     ]
   },
-  "outputStyle": "Drupal Master Architect",
+  "outputStyle": "Architect",
   "mcp-server-drupal": {
     "command": "docker",
     "args": [

@@ -4,8 +4,20 @@ docroot: web
 php_version: "8.3"
 webserver_type: nginx-fpm
 xdebug_enabled: false
-additional_hostnames: []
-additional_fqdns: []
+# GPZH-29: Multi-Site Domains für 3 Gemeinden
+# Standard DDEV hostnames (automatisch mit .ddev.site suffix)
+additional_hostnames:
+  - thalwil.zh-demo.ddev.site
+  - thalheim.zh-demo.ddev.site
+  - erlenbach.zh-demo.ddev.site
+  - thalwil.adesso-cms.ddev.site
+  - thalheim.adesso-cms.ddev.site
+  - erlenbach.adesso-cms.ddev.site
+# Schönere URLs für die Präsentation (fully qualified domain names)
+additional_fqdns:
+  - thalwil.gemeinde-zh.ch.ddev.site
+  - thalheim.gemeinde-zh.ch.ddev.site
+  - erlenbach.gemeinde-zh.ch.ddev.site
 database:
     type: mariadb
     version: "10.11"

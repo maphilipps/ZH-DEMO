@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <!-- Citrus/Flower Symbol -->
+  <g transform="translate(50, 50)">
+    <!-- Outer petals/segments in red -->
+    <circle cx="-15" cy="-15" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="15" cy="-15" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="-15" cy="15" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="15" cy="15" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="0" cy="-22" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="0" cy="22" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="-22" cy="0" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    <circle cx="22" cy="0" r="12" fill="#DC2626" stroke="#B91C1C" stroke-width="1"/>
+    
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
+    
+    <!-- Center star/cross -->
+    <path d="M 0,-5 L 1.5,-1.5 L 5,0 L 1.5,1.5 L 0,5 L -1.5,1.5 L -5,0 L -1.5,-1.5 Z" 
+          fill="#DC2626"/>
+  </g>
+  
+  <!-- Text "Gemeinde" -->
+  <text x="120" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#4A5568">
+    Gemeinde
+  </text>
+  
+  <!-- Text "Bruchtal" -->
+  <text x="120" y="70" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#2D3748">
+    Bruchtal
+  </text>
+</svg>

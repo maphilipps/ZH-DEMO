@@ -1,0 +1,25 @@
+uuid: 4d8d455d-3e4b-4089-ae78-722016bac3e9
+langcode: de
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+id: adesso_cms_theme_main_menu
+theme: adesso_cms_theme
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Hauptnavigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: true
+visibility: {}

@@ -4,44 +4,24 @@ docroot: web
 php_version: "8.3"
 webserver_type: nginx-fpm
 xdebug_enabled: false
-# GPZH-29: Multi-Site Domains für 3 Gemeinden
-# Standard DDEV hostnames (automatisch mit .ddev.site suffix)
-additional_hostnames:
-  - thalwil.zh-demo.ddev.site
-  - thalheim.zh-demo.ddev.site
-  - erlenbach.zh-demo.ddev.site
-  - thalwil.adesso-cms.ddev.site
-  - thalheim.adesso-cms.ddev.site
-  - erlenbach.adesso-cms.ddev.site
-# Schönere URLs für die Präsentation (fully qualified domain names)
-additional_fqdns:
-  - thalwil.gemeinde-zh.ch.ddev.site
-  - thalheim.gemeinde-zh.ch.ddev.site
-  - erlenbach.gemeinde-zh.ch.ddev.site
+additional_hostnames: []
+additional_fqdns: []
 database:
     type: mariadb
     version: "10.11"
-use_dns_when_possible: true
-composer_version: "2"
-web_environment: 
-    - VITE_DEV_SERVER_HOST=0.0.0.0
-    - VITE_DEV_SERVER_PORT=5173
-    - NODE_OPTIONS=--max-old-space-size=2048
-    - GPZH_DEMO_MODE=true
-    - DDEV_PRIMARY_URL=https://zh-demo.ddev.site
-corepack_enable: true
+performance_mode: global
 hooks:
     post-start:
         - exec: echo "================================================================================="
         - exec: echo "                    ZH-DEMO - GPZH PROTOTYP BEREIT"
         - exec: echo "================================================================================="
         - exec: echo "Theme development commands:"
-        - exec: echo "  ddev theme dev     # Start Vite dev server"
-        - exec: echo "  ddev theme watch   # Watch for changes"
-        - exec: echo "  ddev theme build   # Build production assets"
+        - exec: echo "  ddev theme dev
+        - exec: echo "  ddev theme watch
+        - exec: echo "  ddev theme build
         - exec: echo ""
         - exec: echo "Storybook (manual start):"
-        - exec: echo "  ddev theme storybook  # Start Storybook at https://zh-demo.ddev.site:6006"
+        - exec: echo "  ddev theme storybook
         - exec: echo "====================================================================="
         - exec: |
             # Ensure Vite settings are configured automatically
@@ -51,7 +31,17 @@ hooks:
               echo "\$settings['vite']['devServerUrl'] = 'https://zh-demo.ddev.site:5173';" >> /var/www/html/web/sites/default/settings.ddev.php
             fi
 webimage_extra_packages: [xdg-utils, pkg-config, libpixman-1-dev, libcairo2-dev, libpango1.0-dev, make]
+use_dns_when_possible: true
+composer_version: "2"
+web_environment:
+    - VITE_DEV_SERVER_HOST=0.0.0.0
+    - VITE_DEV_SERVER_PORT=5173
+    - NODE_OPTIONS=--max-old-space-size=2048
+    - GPZH_DEMO_MODE=true
+    - DDEV_PRIMARY_URL=https://zh-demo.ddev.site
 nodejs_version: "20"
+corepack_enable: true
+default_container_timeout: "180"
 web_extra_exposed_ports:
     - name: storybook
       container_port: 6006
@@ -65,15 +55,15 @@ web_extra_daemons:
     - name: node.js
       command: tail -F package.json > /dev/null
       directory: /var/www/html
-# Production-ready optimizations for ZH-DEMO Prototyp
-performance_mode: "global"
-default_container_timeout: 180
+
 # Key features of DDEV's config.yaml:
 
 # name: <projectname> # Name of the project, automatically provides
 #   http://projectname.ddev.site and https://projectname.ddev.site
+# If the name is omitted, the project will take the name of the enclosing directory,
+# which is useful if you want to have a copy of the project side by side with this one.
 
-# type: <projecttype>  # backdrop, cakephp, craftcms, drupal, drupal6, drupal7, drupal8, drupal9, drupal10, drupal11, laravel, magento, magento2, php, shopware6, silverstripe, symfony, typo3, wordpress
+# type: <projecttype>  # backdrop, cakephp, craftcms, drupal, drupal6, drupal7, drupal8, drupal9, drupal10, drupal11, generic, laravel, magento, magento2, php, shopware6, silverstripe, symfony, typo3, wordpress
 # See https://ddev.readthedocs.io/en/stable/users/quickstart/ for more
 # information on the different project types
 
@@ -90,9 +80,9 @@ default_container_timeout: 180
 # database:
 #   type: <dbtype> # mysql, mariadb, postgres
 #   version: <version> # database version, like "10.11" or "8.0"
-#   MariaDB versions can be 5.5-10.8, 10.11, and 11.4.
-#   MySQL versions can be 5.5-8.0.
-#   PostgreSQL versions can be 9-17.
+#   MariaDB versions can be 5.5-10.8, 10.11, 11.4, 11.8
+#   MySQL versions can be 5.5-8.0, 8.4
+#   PostgreSQL versions can be 9-17
 
 # router_http_port: <port>  # Port to be used for http (defaults to global configuration, usually 80)
 # router_https_port: <port> # Port for https (defaults to global configuration, usually 443)
@@ -102,12 +92,29 @@ default_container_timeout: 180
 # "ddev xdebug" to enable Xdebug and "ddev xdebug off" to disable it work better,
 # as leaving Xdebug enabled all the time is a big performance hit.
 
+# xhgui_https_port: 8142
+# Can be used to change the router https port for xhgui application
+# Very rarely used
+
+# xhgui_http_port: 8143
+# Can be used to change the router http port for xhgui application
+# Very rarely used
+
+# host_xhgui_port: 8142
+# Can be used to change the host binding port of the xhgui
+# application. Rarely used; only when port conflict and
+# bind_all_ports is used (normally with router disabled)
+
 # xhprof_enabled: false  # Set to true to enable Xhprof and "ddev start" or "ddev restart"
 # Note that for most people the commands
 # "ddev xhprof" to enable Xhprof and "ddev xhprof off" to disable it work better,
 # as leaving Xhprof enabled all the time is a big performance hit.
 
-# webserver_type: nginx-fpm or apache-fpm
+# xhprof_mode: [prepend|xhgui|global]
+# Set to "xhgui" to enable XHGui features
+# "xhgui" will become default in a future major release
+
+# webserver_type: nginx-fpm, apache-fpm, generic
 
 # timezone: Europe/Berlin
 # If timezone is unset, DDEV will attempt to derive it from the host system timezone
@@ -250,7 +257,7 @@ default_container_timeout: 180
 
 # ngrok_args: --basic-auth username:pass1234
 # Provide extra flags to the "ngrok http" command, see
-# https://ngrok.com/docs/ngrok-agent/config or run "ngrok http -h"
+# https://ngrok.com/docs/agent/config/v3/#agent-configuration or run "ngrok http -h"
 
 # disable_settings_management: false
 # If true, DDEV will not create CMS-specific settings files like

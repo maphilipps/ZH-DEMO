@@ -39,10 +39,18 @@
     
     {# Desktop Navigation Menu #}
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Product</a>
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Features</a>
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Marketplace</a>
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
+      {% if menu_items %}
+        {% for item in menu_items %}
+          {% if loop.index <= 6 %}
+            <a href="{{ item.url }}" class="text-sm/6 font-semibold text-gray-900">{{ item.title }}</a>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <a href="/" class="text-sm/6 font-semibold text-gray-900">Startseite</a>
+        <a href="/aktuelles" class="text-sm/6 font-semibold text-gray-900">Aktuelles</a>
+        <a href="/veranstaltungen" class="text-sm/6 font-semibold text-gray-900">Veranstaltungen</a>
+        <a href="/themen" class="text-sm/6 font-semibold text-gray-900">Themen</a>
+      {% endif %}
     </div>
     
     {# Login Button (Desktop) #}
@@ -86,10 +94,16 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+              {% if menu_items %}
+                {% for item in menu_items %}
+                  <a href="{{ item.url }}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{{ item.title }}</a>
+                {% endfor %}
+              {% else %}
+                <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Startseite</a>
+                <a href="/aktuelles" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Aktuelles</a>
+                <a href="/veranstaltungen" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Veranstaltungen</a>
+                <a href="/themen" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Themen</a>
+              {% endif %}
             </div>
             <div class="py-6">
               <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{{ 'Log in'|t }}</a>

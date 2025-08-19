@@ -18,18 +18,18 @@
 
 @source '../../components';
 @theme {
-  --color-primary: #3b82f6;
-  --color-primary-50: color-mix(in srgb, var(--color-primary) 5%, white);
-  --color-primary-100: color-mix(in srgb, var(--color-primary) 10%, white);
-  --color-primary-200: color-mix(in srgb, var(--color-primary) 25%, white);
-  --color-primary-300: color-mix(in srgb, var(--color-primary) 40%, white);
-  --color-primary-400: color-mix(in srgb, var(--color-primary) 60%, white);
-  --color-primary-500: var(--color-primary);
-  --color-primary-600: color-mix(in srgb, var(--color-primary) 80%, black);
-  --color-primary-700: color-mix(in srgb, var(--color-primary) 70%, black);
-  --color-primary-800: color-mix(in srgb, var(--color-primary) 60%, black);
-  --color-primary-900: color-mix(in srgb, var(--color-primary) 50%, black);
-  --color-primary-950: color-mix(in srgb, var(--color-primary) 30%, black);
+  --color-primary: #dc2626;
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #ef4444;
+  --color-primary-600: var(--color-primary);
+  --color-primary-700: #b91c1c;
+  --color-primary-800: #991b1b;
+  --color-primary-900: #7f1d1d;
+  --color-primary-950: #450a0a;
   --color-secondary: oklch(76.75% 0.16089370062474417 102.29484006182389);
   --color-secondary-foreground: #ffffff;
   --color-primary-foreground: #ffffff;

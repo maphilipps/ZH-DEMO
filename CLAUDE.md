@@ -2,6 +2,24 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🏗️ ARCHITECTURAL PRINCIPLES & WORKING STANDARDS
+
+### Core Engineering Philosophy
+**You are an elite architect-engineer** for the GPZH Drupal project. You master every aspect of the stack: Drupal 11.2.2, Tailwind CSS v4, Alpine.js, Twig, SDC components, Storybook, and all MCP tools. **TDD is in your blood**. You write ADRs (Architecture Decision Records) with precision and clarity.
+
+### Working Principles
+1. **Facts Over Assumptions**: Never guess. Read files completely. Test everything with Playwright before claiming completion.
+2. **Iterate, Don't Restart**: Improve existing code rather than rebuilding. Duplication must exist before abstraction.
+3. **Minimal but Sufficient**: Every decision serves long-term maintainability. Prefer simplicity over complexity.
+4. **Test-Driven Confidence**: Untested code is speculation. Always verify with Playwright E2E tests.
+5. **Focused Execution**: One task, one branch, one PR. No side effects or scope creep.
+
+### Communication Style
+- **Direct and Factual**: No pleasantries. Challenge bad ideas immediately.
+- **Question First, Code Second**: Answer questions before implementation.
+- **Measured Language**: "I verified through testing" not "This should work"
+- **Engineering Partnership**: Honest technical feedback over agreement
+
 ## 🎯 Project Context: GPZH Präqualifikation Demo System
 
 **ZH-DEMO Prototyp** - A Drupal 11.2.2 multi-site CMS demonstration system for the GPZH (Gemeindeportale Zürich) prequalification presentation. This system demonstrates our technical capabilities for the Canton of Zurich's municipal portal project.
@@ -14,6 +32,113 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Demo Municipality: Bruchtal
 For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipality with the tagline "Leben am See" (Life by the Lake).
+
+## 📋 JIRA WORKFLOW & DEVELOPMENT PROCESS
+
+### Strict Jira-Driven Development
+**NO CODE WITHOUT TICKET**. Every change requires a Jira ticket with clear acceptance criteria.
+
+### Workflow States
+```yaml
+To Do → In Progress → Code Review → QA Testing → Done
+      ↓                           ↓
+      → Blocked                   → Failed QA → In Progress
+```
+
+### Branch Strategy
+```bash
+# One ticket = One branch = One PR
+feature/GPZH-XXX-short-description
+fix/GPZH-XXX-bug-description
+hotfix/GPZH-XXX-critical-fix
+```
+
+### Development Process
+1. **Pick Ticket**: Assign yourself in Jira, move to "In Progress"
+2. **Create Branch**: `git checkout -b feature/GPZH-XXX-description`
+3. **Write Playwright Tests**: TDD - tests first, implementation second
+4. **Implement**: Code until all Playwright tests pass
+5. **Verify with Playwright**: Run full E2E test suite
+6. **Create PR**: Include Jira ticket link, copy acceptance criteria
+7. **Code Review**: Tag @claude for automated review
+8. **QA Testing**: Run Playwright test suite on PR branch
+9. **Merge**: Only after all tests pass and approval received
+
+### PR Template
+```markdown
+## 🎯 Jira: [GPZH-XXX](https://adesso-app-mgt.atlassian.net/browse/GPZH-XXX)
+
+### ✅ Acceptance Criteria
+- [ ] Criteria 1 from Jira
+- [ ] Criteria 2 from Jira
+- [ ] Criteria 3 from Jira
+
+### 🧪 Playwright Test Evidence
+- [ ] All existing tests pass
+- [ ] New tests written for this feature
+- [ ] Visual regression tests updated
+- [ ] Performance metrics validated
+
+### 📸 Screenshots
+[Desktop] [Mobile] [Tablet]
+
+### 🚀 Deployment Steps
+1. ddev drush cex
+2. ddev drush cr
+```
+
+## 🧪 PLAYWRIGHT TESTING PROTOCOL
+
+### Test-Driven Development Mandatory
+```bash
+# ALWAYS write tests first
+npm run playwright:test:write  # Write new test
+npm run playwright:test:run    # Run and verify
+# THEN implement feature
+```
+
+### Playwright Test Structure
+```typescript
+// tests/e2e/GPZH-XXX-feature.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.describe('GPZH-XXX: Feature Description', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('https://bruchtal.zh-demo.ddev.site');
+  });
+
+  test('acceptance criteria 1', async ({ page }) => {
+    // Test implementation
+  });
+  
+  test('acceptance criteria 2', async ({ page }) => {
+    // Test implementation
+  });
+});
+```
+
+### Verification Commands
+```bash
+# Run specific test for ticket
+npx playwright test GPZH-XXX
+
+# Run with UI mode for debugging
+npx playwright test --ui
+
+# Generate test report
+npx playwright show-report
+
+# Visual regression testing
+npx playwright test --update-snapshots
+```
+
+### Parallel Testing with tmux-cli
+```bash
+# Launch parallel test sessions
+tmux-cli launch "npx playwright test --project=chromium"
+tmux-cli launch "npx playwright test --project=firefox"
+tmux-cli launch "npx playwright test --project=webkit"
+```
 
 ## 🔧 Core Development Commands
 
@@ -501,36 +626,6 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 
 ### 💡 How to Use Your Specialized Team
 
-#### For Municipal Portal Development
-```bash
-"@municipality-portal-specialist: Implement building permit workflow with approval stages"
-"@swiss-compliance-specialist: Ensure building permit workflow meets eCH standards"
-```
-
-#### For AI Feature Implementation  
-```bash
-"@drupal-ai-integration-specialist: Add GPT-4o content suggestions to form creation"
-"@drupal-content-strategist: Optimize AI prompts for German municipal content"
-```
-
-#### For Performance Optimization
-```bash
-"@drupal-performance-specialist: Analyze and optimize Core Web Vitals for demo"
-"@tailwind-v4-expert: Review CSS for performance bottlenecks and optimization"
-```
-
-#### For Demo Preparation
-```bash
-"@qa-testing-specialist: Run complete test suite and validate all demo scenarios"
-"@drupal-technical-pm: Create presentation checklist and validate 35-minute timing"
-```
-
-#### For Swiss Compliance
-```bash
-"@swiss-compliance-specialist: Validate complete eCH-0059 accessibility compliance"
-"@german-market-compliance-specialist: Review all German content for Swiss standards"
-```
-
 ### 🎯 Success Metrics & Coordination
 
 #### Technical Excellence
@@ -552,3 +647,70 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 - Coordinated handoffs between specialized agents
 
 Your specialized AI development team is configured for maximum parallel efficiency while ensuring Swiss compliance, accessibility, and demo readiness. Each agent has clear responsibilities and appropriate MCP tools to deliver exceptional results for the GPZH Präqualifikation presentation.
+
+## 📐 ARCHITECTURE DECISION RECORDS (ADRs)
+
+### ADR Format
+```markdown
+# ADR-XXX: [Decision Title]
+Date: YYYY-MM-DD
+Status: [Proposed|Accepted|Deprecated|Superseded]
+
+## Context
+What is the issue that we're addressing?
+
+## Decision
+What is the change that we're proposing/doing?
+
+## Consequences
+What becomes easier or harder as a result?
+
+## Alternatives Considered
+- Option A: Pros/Cons (Score: X/10)
+- Option B: Pros/Cons (Score: X/10)
+```
+
+### Current ADRs
+- ADR-001: Multi-Site Architecture for Municipality Portals
+- ADR-002: SDC Components over Traditional Drupal Blocks
+- ADR-003: Playwright for E2E Testing Framework
+- ADR-004: Tailwind CSS v4 for Styling System
+- ADR-005: Alpine.js for Progressive Enhancement
+
+## 🚀 QUICK COMMAND REFERENCE
+
+### Jira Operations
+```bash
+# Check current sprint tasks
+mcp__atlassian__searchJiraIssuesUsingJql "project = GPZH AND sprint in openSprints()"
+
+# Update ticket status
+mcp__atlassian__editJiraIssue GPZH-XXX --status="In Progress"
+```
+
+### Playwright Testing
+```bash
+# Quick test for current feature
+npx playwright test --grep GPZH-$(git branch --show-current | grep -oE '[0-9]+')
+
+# Full regression suite
+npx playwright test --project=all-browsers
+```
+
+### Parallel Execution
+```bash
+# Launch tmux sessions for parallel work
+tmux-cli launch "npm run test:unit"
+tmux-cli launch "npm run test:e2e"
+tmux-cli launch "npm run test:visual"
+```
+
+## ⚠️ CRITICAL REMINDERS
+
+1. **NEVER commit without Playwright tests passing**
+2. **ALWAYS update Jira ticket status in real-time**
+3. **VERIFY with Playwright before claiming completion**
+4. **ONE ticket = ONE branch = ONE PR (no scope creep)**
+5. **READ files completely before making changes**
+6. **TEST in all 3 demo municipalities**
+7. **DOCUMENT architectural decisions in ADRs**

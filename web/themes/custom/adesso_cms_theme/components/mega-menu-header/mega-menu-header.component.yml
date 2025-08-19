@@ -1,0 +1,91 @@
+name: Mega Menu Header
+status: stable
+props:
+  type: object
+  properties:
+    site_name:
+      type: string
+      title: Site Name
+      description: The name of the site
+    logo:
+      type: string
+      title: Logo URL
+      description: Path to the site logo
+    logo_alt:
+      type: string
+      title: Logo Alt Text
+      description: Alternative text for the logo
+    front_page:
+      type: string
+      title: Front Page URL
+      description: URL to the front page
+      default: '/'
+    main_menu:
+      type: array
+      title: Main Menu Items
+      description: Main navigation menu items
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+          target:
+            type: string
+          has_children:
+            type: boolean
+    theme_categories:
+      type: array
+      title: Theme Categories
+      description: Theme categories for mega menu
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          icon:
+            type: string
+          url:
+            type: string
+          children:
+            type: array
+    frequently_searched:
+      type: array
+      title: Frequently Searched Items
+      description: Frequently searched links
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+    user_menu:
+      type: array
+      title: User Menu Items
+      description: User/meta navigation menu items
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+          icon:
+            type: string
+    municipality:
+      type: string
+      title: Municipality Identifier
+      description: Identifier for municipality-specific theming
+      enum: [default, thalwil, thalheim, erlenbach, bruchtal]
+      default: default
+slots:
+  search_form:
+    title: Search Form
+    description: Search form slot
+    required: false
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - adesso_cms_theme/alpinejs

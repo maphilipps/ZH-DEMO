@@ -80,5 +80,3 @@ node_modules/
 install-state.gz
 storybook-static/
 
-# Ignore deployment snapshots (commit manually when needed)
-snapshots/

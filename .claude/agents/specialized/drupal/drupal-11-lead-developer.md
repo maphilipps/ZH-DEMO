@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use drupal-11-lead-developer to leverage Drupal 11's headless capabilities and CMS suite integration for optimal performance."
     <commentary>Ideal for Drupal 11 CMS suite and headless architecture</commentary>
   </example>
+color: blue
+model: sonnet
 ---
 
 # Drupal 11 Lead Developer

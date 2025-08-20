@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Art des Betriebs'
+vid: hospitality_type
+description: 'Kategorien für Gastgewerbebetriebe'
+weight: 0

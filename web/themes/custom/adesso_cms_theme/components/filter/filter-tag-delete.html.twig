@@ -1,0 +1,10 @@
+<button
+  class="delete-filter inline-flex font-medium items-center border-2 border-blue-20 bg-blue-20 text-white px-3 py-2 rounded-full"
+  aria-label="{{ label }}"
+>
+  {{ icon }}
+  <span class="ml-3">{{ label }}</span>
+  {% if resultAmount %}
+    <span class="ml-3">{{ resultAmount }}</span>
+  {% endif %}
+</button>

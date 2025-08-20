@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for unformatted summary links.
+ *
+ * Available variables:
+ * - rows: The rows contained in this view.
+ *   - url: The URL to this row's content.
+ *   - count: The number of items this summary item represents.
+ *   - separator: A separator between each row.
+ *   - attributes: HTML attributes for a row.
+ *   - active: A flag indicating whether the row is active.
+ * - options: Flags indicating how each row should be displayed.
+ */
+#}
+{% set items %}
+    {% for row in rows %}
+        {{ include('@components/menu-item/menu-item-glossary.html.twig', {
+            'title': row.link,
+            'url': row.url ~ '#glossary-letters-filter-container',
+            'active': row.active
+        }) }}
+    {% endfor %}
+{% endset %}
+
+
+
+{{ include('@components/glossary-menu/glossary-menu.html.twig', {items: items}) }}

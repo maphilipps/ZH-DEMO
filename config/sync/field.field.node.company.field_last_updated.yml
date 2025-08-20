@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_updated
+    - node.type.company
+  module:
+    - datetime
+id: node.company.field_last_updated
+field_name: field_last_updated
+entity_type: node
+bundle: company
+label: 'Letzte Aktualisierung'
+description: 'Datum der letzten Aktualisierung der Firmendaten'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: datetime

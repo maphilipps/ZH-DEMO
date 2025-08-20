@@ -21,6 +21,7 @@ description: |
     </commentary>
   </example>
 tools: Read, Grep, Glob, LS, Bash
+model: opus
 ---
 
 # Project Analyst - Your Codebase Expert

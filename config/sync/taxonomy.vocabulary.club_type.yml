@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Vereinsart'
+vid: club_type
+description: 'Arten von Vereinen'
+weight: 0

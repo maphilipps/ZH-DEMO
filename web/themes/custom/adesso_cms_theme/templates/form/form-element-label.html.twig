@@ -15,12 +15,22 @@
 {%
   set classes = [
     'form-label',
-    title_display == 'after' ? 'option',
-    title_display == 'invisible' ? 'visually-hidden',
-    required ? 'js-form-required',
-    required ? 'form-required',
+    'block',
+    'text-sm',
+    'font-medium',
+    'text-gray-700',
+    'mb-2',
+    title_display == 'after' ? 'option inline-flex items-center ml-2' : '',
+    title_display == 'invisible' ? 'sr-only' : '',
+    required ? 'js-form-required' : '',
+    required ? 'form-required' : '',
   ]
 %}
 {% if title is not empty or required -%}
-  <label{{ attributes.addClass(classes) }}>{{ title }}</label>
+  <label{{ attributes.addClass(classes) }}>
+    {{ title }}
+    {% if required %}
+      <span class="text-red-500 ml-1" aria-label="{{ 'Required'|t }}">*</span>
+    {% endif %}
+  </label>
 {%- endif %}

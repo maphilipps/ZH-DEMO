@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Theme override for checkbox form elements.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label: The rendered label element.
+ * - children: The checkbox element.
+ * - description: The description.
+ *
+ * @see template_preprocess_form_element()
+ */
+#}
+
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'form-type-checkbox',
+    'flex',
+    'items-start',
+    'mb-3',
+    errors ? 'form-item--error' : '',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  <div class="flex items-start">
+    {{ children }}
+    {% if label %}
+      <div class="ml-3">
+        {{ label }}
+        {% if description.content %}
+          <div class="text-sm text-gray-600 mt-1">
+            {{ description.content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+  {% if errors %}
+    <div class="form-item--error-message mt-1 text-sm text-red-600 ml-7">
+      <strong>{{ errors }}</strong>
+    </div>
+  {% endif %}
+</div>

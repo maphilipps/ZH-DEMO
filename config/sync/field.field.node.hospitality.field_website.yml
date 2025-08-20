@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.hospitality
+  module:
+    - link
+id: node.hospitality.field_website
+field_name: field_website
+entity_type: node
+bundle: hospitality
+label: Website
+description: 'Website URL des Gastgewerbebetriebs'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

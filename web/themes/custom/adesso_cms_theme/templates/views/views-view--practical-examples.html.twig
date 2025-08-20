@@ -1,0 +1,105 @@
+{#
+/**
+ * @file
+ * Default theme implementation for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   JavaScript.
+ *
+ * @see template_preprocess_views_view()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+] %}
+<div{{ attributes.addClass(classes) }}>
+    {% set title %}
+        {{ title_prefix }}
+        {{ include('@components/h1.html.twig', {
+            content: view.title,
+        }) }}
+        {{ title_suffix }}
+    {% endset %}
+
+
+    {% set description %}
+        Hier finden Sie Praxisbeispiele, die Ihnen für Ihr eigenes Projekt Anregungen geben können. Haben Sie selbst ein tolles Projekt durchgeführt und möchten Ihre Erfahrungen mitteilen? Das Eingabeformular finden Sie hier.
+        <div class="mt-8">
+
+            {% set button_icon %}
+                {{ include("@designsystem/icon-arrow_right.html.twig", {
+                    size: 'h-6 w-6 mr-2',
+                    classes: 'text-blue-70'
+                }) }}
+            {% endset %}
+
+            {% set button %}
+                {{ include("@designsystem/button-tertiary.html.twig", {
+                    url: 'https://mitmachen.energieatlas.bayern.de',
+                    attributes: create_attribute({href: 'https://mitmachen.energieatlas.bayern.de'}),
+                    icon: button_icon,
+                    text: 'Beispiel melden',
+                }) }}
+            {% endset %}
+
+            {{ button }}
+        </div>
+    {% endset %}
+    {{ include('@module/filter-stage.html.twig', {
+        headline: title,
+        description: description,
+        searchLayer: exposed
+    }) }}
+
+    <div class="fluid-container">
+        <div class="outer-grid">
+            <div class="col-span-full pb-4">
+                {% if header %}
+                  <div id="count-results" class="flex justify-between size-xl lg:size-lg m-2 text-2xl">
+                    {{ header }}
+                  </div>
+                {% endif %}
+                {{ attachment_before }}
+            </div>
+            <div class="col-span-full relative lg:columns-3 gap-8 break-inside-avoid-column">
+                {% if rows -%}
+                    {{ rows }}
+                {% elseif empty -%}
+                    {{ empty }}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="grid">
+            {{ pager }}
+        </div>
+    </div>
+
+    {{ attachment_after }}
+    {{ more }}
+
+    {{ feed_icons }}
+</div>

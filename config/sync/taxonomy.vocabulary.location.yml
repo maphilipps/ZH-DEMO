@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Standort'
+vid: location
+description: 'Standorte in der Gemeinde'
+weight: 0

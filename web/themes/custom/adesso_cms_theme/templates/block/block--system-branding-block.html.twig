@@ -28,7 +28,8 @@
       {% include 'adesso_cms_theme:logo' with {
         site_logo: site_logo|default('/themes/custom/adesso_cms_theme/logo.svg'),
         site_name: site_name|default('Home'),
-        modifier: 'h-8 sm:h-10'
+        modifier: 'h-8 sm:h-16',
+        variant: logo_variant|default('default')
       } %}
     </a>
   {% endif %}

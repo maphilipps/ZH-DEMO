@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use drupal-cms-suite-specialist to implement CMS suite patterns, optimize editorial workflows, and enhance content management capabilities."
     <commentary>Selected for CMS suite implementation and editorial experience optimization</commentary>
   </example>
+color: blue
+model: sonnet
 ---
 
 # Drupal CMS Suite Specialist

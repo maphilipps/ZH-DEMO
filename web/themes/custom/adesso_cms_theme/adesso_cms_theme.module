@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Adesso CMS theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_preprocess_HOOK() for html templates.
+ */
+function adesso_cms_theme_preprocess_html(&$variables) {
+  // Add municipality class if available.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $host = \Drupal::request()->getHost();
+  
+  if (strpos($host, 'thalwil') !== FALSE) {
+    $variables['attributes']['class'][] = 'municipality-thalwil';
+  }
+  elseif (strpos($host, 'thalheim') !== FALSE) {
+    $variables['attributes']['class'][] = 'municipality-thalheim';
+  }
+  elseif (strpos($host, 'erlenbach') !== FALSE) {
+    $variables['attributes']['class'][] = 'municipality-erlenbach';
+  }
+  elseif (strpos($host, 'bruchtal') !== FALSE) {
+    $variables['attributes']['class'][] = 'municipality-bruchtal';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function adesso_cms_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#form_id']) {
+    $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#form_id']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node() for node templates.
+ */
+function adesso_cms_theme_preprocess_node(&$variables) {
+  // Add custom variables for node templates.
+  $node = $variables['node'];
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  
+  // Add date formatting for events.
+  if ($node->bundle() == 'event') {
+    if ($node->hasField('field_event__date') && !$node->get('field_event__date')->isEmpty()) {
+      $date = $node->get('field_event__date')->value;
+      $variables['formatted_date'] = \Drupal::service('date.formatter')->format(strtotime($date), 'custom', 'd. F Y');
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_field() for field templates.
+ */
+function adesso_cms_theme_preprocess_field(&$variables) {
+  // Custom field preprocessing.
+  $element = $variables['element'];
+  
+  // Add field-specific classes.
+  if ($element['#field_name'] == 'field_featured_image') {
+    $variables['attributes']['class'][] = 'featured-image-field';
+  }
+}
+
+/**
+ * Implements hook_form_alter() for form alterations.
+ */
+function adesso_cms_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add custom classes to forms.
+  if (strpos($form_id, 'webform_') === 0) {
+    $form['#attributes']['class'][] = 'gpzh-webform';
+  }
+}

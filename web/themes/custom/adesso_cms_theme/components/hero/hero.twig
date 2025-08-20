@@ -69,15 +69,21 @@
           {# Action Buttons #}
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             {% if link|default({}) and link.url|default('') %}
-              <a href="{{ link.url|default('') }}" class="btn bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                {{ link.title|default('') }}
-              </a>
+              {% include 'adesso_cms_theme:button' with {
+                url: link.url,
+                text: link.title,
+                variant: 'default',
+                size: 'lg'
+              } %}
             {% endif %}
             
             {% if link2|default({}) and link2.url|default('') %}
-              <a href="{{ link2.url|default('') }}" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                {{ link2.title|default('') }}
-              </a>
+              {% include 'adesso_cms_theme:button' with {
+                url: link2.url,
+                text: link2.title,
+                variant: 'outline',
+                size: 'lg'
+              } %}
             {% endif %}
           </div>
         </div>
@@ -125,34 +131,33 @@
     {% endif %}
 
     {% if text %}
-      <div class="prose-p:mb-8 prose-p:text-lg prose-p:font-normal
-                prose-p:lg:text-xl prose-p:sm:px-168 prose-p:lg:px-48">
+      <div class="prose-p:my-8 prose-p:text-lg prose-p:font-normal
+                prose-p:lg:text-xl prose-p:sm:px-168 dark:prose-p:text-white prose-p:lg:px-48">
         {{ text }}
       </div>
     {% endif %}
 
-    {% if link.url %}
-      <a href="{{ link.url }}"
-         class="inline-flex justify-center items-center py-3 px-5 text-base font-medium
-              text-center text-primary-foreground rounded-lg bg-primary hover:bg-primary/90
-              focus:ring-4 focus:ring-primary-300">
-        {{ link.title }}
-        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
-             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-        </svg>
-      </a>
-    {% endif %}
+    {# Action Buttons #}
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+      {% if link.url %}
+        {% include 'adesso_cms_theme:button' with {
+          url: link.url,
+          text: link.title,
+          icon: 'arrow-right',
+          variant: 'default',
+          size: 'default'
+        } %}
+      {% endif %}
 
-    {% if link2.url %}
-      <a href="{{ link2.url }}"
-         class="inline-flex py-3 px-5 sm:ms-4 text-base font-medium  focus:outline-none
-              rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700
-              focus:z-10 focus:ring-4 focus:ring-gray-100">
-        {{ link2.title }}
-      </a>
-    {% endif %}
+      {% if link2.url %}
+        {% include 'adesso_cms_theme:button' with {
+          url: link2.url,
+          text: link2.title,
+          variant: 'outline',
+          size: 'default'
+        } %}
+      {% endif %}
+    </div>
 
     {% if hero_layout == 'image_bottom' and media %}
       <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">

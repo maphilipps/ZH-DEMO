@@ -58,7 +58,7 @@
 <div class="text-container {{ className|default('') }}">
   {% if (text_layout|default('')) == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
-      <div class="container lg:flex-grow">
+      <div class="lg:flex-grow">
         {{ macros.render_content(pre_headline|default(''), title|default(''), body|default('')) }}
       </div>
 

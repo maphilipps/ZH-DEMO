@@ -38,6 +38,8 @@ description: |
     assistant: "I'll engage the Jira-task-coordinator to create Jira tasks for each optimization, validate approaches through Context7, and coordinate with drupal-performance-specialist."
     <commentary>Ensures external best practices are properly integrated through Context7 validation</commentary>
   </example>
+color: purple
+model: opus
 ---
 
 # Jira Task Coordinator

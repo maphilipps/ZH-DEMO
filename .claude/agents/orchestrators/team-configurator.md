@@ -35,6 +35,7 @@ description: |
     Target: code-archaeologist
     Handoff: "Analyze this project structure to understand stack and patterns"
   </delegation>
+model: opus
 ---
 
 # Team Configurator - Your AI Development Team Setup Expert

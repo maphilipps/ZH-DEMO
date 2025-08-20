@@ -1,0 +1,29 @@
+{#
+/**
+ * Field "Auslöser" for content type "Praxisbeispiel"
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+{% set headline %}
+  {{ include('@components/h2.html.twig', {
+    content: 'Auslöser',
+    attributes: create_attribute(),
+  }) }}
+{% endset %}
+{% set anchor %}
+  {{ include('@components/anchor.html.twig', {text: 'ausloeser'}) }}
+{% endset %}
+{% set text %}
+  {{ include('@components/text.html.twig', {
+    text: items.0.content,
+    attributes: create_attribute({classes: ['text-black']})
+  }) }}
+{% endset %}
+
+{{ include('@module/text.html.twig', {
+  anchor: anchor,
+  headline: headline,
+  text: text,
+}) }}

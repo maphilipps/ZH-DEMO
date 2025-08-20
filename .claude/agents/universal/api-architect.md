@@ -45,6 +45,8 @@ description: |
     Target: security-guardian
     Handoff: "API design ready. Security review needed for: [auth and data flow]"
   </delegation>
+color: orange
+model: sonnet
 ---
 
 # Universal API Architect

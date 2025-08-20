@@ -41,13 +41,13 @@
         
         {# Logo Section #}
         <div class="flex items-center">
-          <a href="{{ front_page }}" class="-m-1.5 p-1.5">
+          <a href="{{ front_page }}">
             {% if logo %}
               {% include 'adesso_cms_theme:logo' with {
                 site_logo: logo,
                 site_name: site_name,
                 variant: 'inverted',
-                modifier: 'h-8 w-auto'
+                modifier: 'h-16 w-auto'
               } %}
             {% else %}
               <span class="text-xl font-bold text-white">{{ site_name }}</span>

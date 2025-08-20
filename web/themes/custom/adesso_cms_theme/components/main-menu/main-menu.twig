@@ -2,15 +2,15 @@
 {% set variant = variant|default('default') %}
 {% set variant_classes = {
   'default': {
-    'link_classes': 'text-sm/6 font-semibold text-gray-900 hover:text-primary',
-    'button_classes': 'inline-flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900',
+    'link_classes': 'font-semibold text-gray-900 hover:text-primary',
+    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6  font-semibold text-gray-900',
     'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700',
     'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
     'logo_variant': 'default'
   },
   'transparent': {
-    'link_classes': 'text-sm/6 font-semibold text-white hover:text-gray-200',
-    'button_classes': 'inline-flex items-center gap-x-1 text-sm/6 font-semibold text-white',
+    'link_classes': 'font-semibold text-white hover:text-gray-200',
+    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6 font-semibold text-white',
     'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white',
     'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
     'logo_variant': 'inverted'
@@ -38,7 +38,7 @@
           {# Desktop Popover #}
           <el-popover id="desktop-menu-{{ loop.index }}" anchor="bottom" popover
                       class="w-screen max-w-min overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
-            <div class="max-w-xl w-screen grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4 shrink rounded-xl bg-white p-4 text-sm/6 font-semibold text-gray-900 shadow-lg ring-1 ring-gray-900/5">
+            <div class="max-w-xl w-screen grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4 shrink rounded-xl bg-white p-4 text-md/6 font-semibold text-gray-900 shadow-lg ring-1 ring-gray-900/5">
               {% for child in item.children %}
                 <div>
                   {% if child.url is empty or child.url.toString() == '<nolink>' %}
@@ -52,7 +52,7 @@
                   {% if child.children is not empty %}
                     {% for grandchild in child.children %}
                       {% if grandchild.url is empty or grandchild.url.toString() == '<nolink>' %}
-                        <span class="block p-2text-xs text-gray-400">{{ grandchild.title }}</span>
+                        <span class="block p-2 text-xs text-gray-400">{{ grandchild.title }}</span>
                       {% else %}
                         <a href="{{ grandchild.url }}"{% if grandchild.target %} target="{{ grandchild.target }}"{% endif %}
                            class="block p-2 text-xs hover:text-primary">{{ grandchild.title }}</a>

@@ -1,0 +1,17 @@
+<button
+        x-data="filterButtonComponent({ label: '{{ label }}', resultAmount: {{ resultAmount | default(0) }}, iconPath: '{{ iconPath }}', activeFilters })"
+        @click="toggle"
+        @reset-filters.window="reset"
+        :class="buttonClasses"
+        class="add-filter border-blue-20 inline-flex group font-medium items-center border-2 px-3 py-2 rounded-full"
+        aria-label="{{ label }}"
+>
+    <svg class="svg-icon shrink-0 max-w-full size-6 fill-current"
+         aria-hidden="true">
+        <use :href="iconHref"></use>
+    </svg>
+    <span class="ml-3">{{ label }}</span>
+    {% if resultAmount %}
+        <span class="ml-3">{{ resultAmount }}</span>
+    {% endif %}
+</button>

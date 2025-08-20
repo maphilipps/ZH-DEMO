@@ -52,16 +52,19 @@
     'form-type-' ~ type|clean_class,
     'js-form-item-' ~ name|clean_class,
     'form-item-' ~ name|clean_class,
-    title_display not in ['after', 'before'] ? 'form-no-label',
-    disabled == 'disabled' ? 'form-disabled',
-    errors ? 'form-item--error',
-    'mb-3',
+    title_display not in ['after', 'before'] ? 'form-no-label' : '',
+    disabled == 'disabled' ? 'form-disabled opacity-50' : '',
+    errors ? 'form-item--error' : '',
+    'mb-4',
   ]
 %}
 {%
   set description_classes = [
     'description',
-    description_display == 'invisible' ? 'visually-hidden',
+    'text-sm',
+    'text-gray-600',
+    'mt-1',
+    description_display == 'invisible' ? 'sr-only' : '',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
@@ -84,7 +87,7 @@
     {{ label }}
   {% endif %}
   {% if errors %}
-    <div class="form-item--error-message">
+    <div class="form-item--error-message mt-1 text-sm text-red-600">
       <strong>{{ errors }}</strong>
     </div>
   {% endif %}

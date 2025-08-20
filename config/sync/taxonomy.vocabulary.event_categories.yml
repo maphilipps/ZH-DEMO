@@ -1,0 +1,7 @@
+langcode: de
+status: true
+dependencies: {  }
+name: 'Veranstaltungskategorien'
+vid: event_categories
+description: 'Kategorien für Veranstaltungen in der Gemeinde'
+weight: 0

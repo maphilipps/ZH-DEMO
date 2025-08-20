@@ -1,0 +1,93 @@
+{#
+/**
+ * @file
+ * Theme implementation for a social share menu.
+ *
+ * This template provides a social sharing menu for nodes, with links to
+ * share the current content on various social media platforms such as
+ * Facebook, Twitter, and LinkedIn.
+ *
+ * Available variables:
+ * - node: The node object containing the information about the content.
+ *   - node.id: The unique ID of the node.
+ *   - node.title: The title of the node.
+ *
+ * @see template_preprocess_social_share_menu()
+ * @see social_share_menu_theme()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set items %}
+    {% set linkedin_icon %}
+        {{ include(get_icon('linkedin'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {{ include("@module/social-share-item.html.twig", {
+        'url': 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ uri,
+        'text': 'LinkedIn',
+        'icon': linkedin_icon,
+    }) }}
+
+    {% set xing_icon %}
+        {{ include(get_icon('xing'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {{ include("@module/social-share-item.html.twig", {
+        'url': 'https://www.xing.com/spi/shares/new?url=' ~ uri,
+        'text': 'Xing',
+        'icon': xing_icon,
+    }) }}
+
+    {% set x_icon %}
+        {{ include(get_icon('x'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {{ include("@module/social-share-item.html.twig", {
+        'url': 'https://twitter.com/intent/tweet?url=' ~ uri,
+        'text': 'X',
+        'icon': x_icon,
+    }) }}
+
+    {% set facebook_icon %}
+        {{ include(get_icon('facebook'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {{ include("@module/social-share-item.html.twig", {
+        'url': 'https://www.facebook.com/sharer/sharer.php?u=' ~ uri,
+        'text': 'Facebook',
+        'icon': facebook_icon,
+    }) }}
+
+    {% set mail_icon %}
+        {{ include(get_icon('mail'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {% set title %}
+        {{- node.title.value -}}
+    {% endset %}
+    {{ include("@module/social-share-item.html.twig", {
+        'url': 'mailto:?subject=' ~ title ~ '&body=' ~ uri,
+        'text': 'E-Mail',
+        'icon': mail_icon,
+    }) }}
+
+    {% set copy_icon %}
+        {{ include(get_icon('copy'), {
+            'classes': 'size-6 ml-2 mr-2'
+        }) }}
+    {% endset %}
+    {{ include("@module/social-share-item-event.html.twig", {
+        'text': 'Link Kopieren',
+        'icon': copy_icon,
+    }) }}
+{% endset %}
+
+{{ include("@module/social-share.html.twig", {
+    'socialMedias': items,
+}) }}

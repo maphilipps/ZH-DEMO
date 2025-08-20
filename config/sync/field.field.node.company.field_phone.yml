@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone
+    - node.type.company
+  module:
+    - telephone
+id: node.company.field_phone
+field_name: field_phone
+entity_type: node
+bundle: company
+label: Telefon
+description: 'Haupttelefonnummer der Firma (z.B. +41 44 123 45 67)'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: telephone

@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override for a link to a file.
+ *
+ * Available variables:
+ * - attributes: The HTML attributes for the containing element.
+ * - link: A link to the file.
+ * - icon: The icon image representing the file type.
+ * - file_size: The size of the file.
+ *
+ * @see template_preprocess_file_link()
+ */
+#}
+
+{% set icon %}
+
+    {% include '@designsystem/icon-download.html.twig' with {
+        'size': 'size-6',
+    } %}
+
+{% endset %}
+
+
+{{ include('@designsystem/button-tertiary-download.html.twig', {
+    'icon': icon,
+    'text': 'Bildpaket herunterladen',
+    'attributes': attributes.setAttribute('href', link['#url'].toString()).setAttribute('target', '_blank'),
+    'fileSize': file_size,
+    'fileType': file_type|upper,
+}) }}

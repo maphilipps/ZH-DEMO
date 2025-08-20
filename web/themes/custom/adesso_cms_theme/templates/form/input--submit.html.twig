@@ -1,7 +1,10 @@
 {#
 /**
  * @file
- * Theme override for an 'input' #type form element.
+ * Theme override for submit button input elements.
+ *
+ * This template uses the button component styling from the SDC library
+ * to ensure consistent styling across the site.
  *
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
@@ -10,6 +13,36 @@
  * @see template_preprocess_input()
  */
 #}
-<button{{attributes.removeClass('button').addClass('btn btn-primary px-4 py-2')}}>{{ attributes.value }}</button>
+
+{# Extract button text from attributes #}
+{% set button_text = attributes.value|default('Submit') %}
+
+{# Apply button component classes matching components/button/button.twig #}
+<button{{ attributes
+  .removeClass(['button', 'button--primary', 'form-submit', 'btn', 'btn-primary'])
+  .addClass([
+    'inline-flex',
+    'items-center', 
+    'justify-center',
+    'whitespace-nowrap',
+    'text-sm',
+    'font-medium',
+    'shadow',
+    'transition-colors',
+    'focus-visible:outline-none',
+    'focus-visible:ring-1',
+    'focus-visible:ring-ring',
+    'disabled:pointer-events-none',
+    'disabled:opacity-50',
+    'bg-primary',
+    'text-primary-foreground',
+    'hover:bg-primary/90',
+    'h-9',
+    'px-4',
+    'py-2',
+    'rounded-lg'
+  ])
+  .setAttribute('type', 'submit') 
+}}>{{ button_text }}</button>
 {{ children }}
 

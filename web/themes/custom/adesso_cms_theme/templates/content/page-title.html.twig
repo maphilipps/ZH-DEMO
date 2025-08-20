@@ -12,30 +12,6 @@
  *   displayed after the main title tag that appears in the template.
  */
 #}
-{% if title and not hide %}
-  {# Check if we're on a node page and if it's already handled by node template #}
-  {% set route_name = app.request.attributes.get('_route') %}
-  {% set is_node_page = route_name starts with 'entity.node.' %}
-  {% set current_path = app.request.getPathInfo() %}
-  
-  {# Skip rendering headers for specific content types that have their own templates #}
-  {% set skip_header = is_node_page and (current_path starts with '/news/' or current_path starts with '/events/') %}
-  
-  {% if not skip_header %}
-    {# Use page header component for non-node pages (like Views, taxonomy, etc.) #}
-    {% set page_description = '' %}
-    {% if title == 'News' %}
-      {% set page_description = 'Stay updated with our latest news and announcements' %}
-    {% elseif title == 'Events' %}
-      {% set page_description = 'Discover our upcoming events and workshops' %}
-    {% endif %}
-    
-    {% include 'adesso_cms_theme:page-header' with {
-      variant: 'default',
-      title: title,
-      description: page_description,
-      background_image: '',
-      alt_text: ''
-    } %}
-  {% endif %}
-{% endif %}
+{{ title_prefix }}
+  <h1 class="text-2xl font-bold text-nord-1">{{ title }}</h1>
+{{ title_suffix }}

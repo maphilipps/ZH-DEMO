@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_updated
+    - node.type.hospitality
+  module:
+    - datetime
+id: node.hospitality.field_last_updated
+field_name: field_last_updated
+entity_type: node
+bundle: hospitality
+label: 'Letzte Aktualisierung'
+description: 'Datum der letzten Aktualisierung der Gastgewerbe-Daten'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: datetime

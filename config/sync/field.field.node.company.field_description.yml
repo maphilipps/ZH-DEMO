@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.company
+  module:
+    - text
+id: node.company.field_description
+field_name: field_description
+entity_type: node
+bundle: company
+label: Beschreibung
+description: 'Ausführliche Beschreibung der Firma'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: text_long

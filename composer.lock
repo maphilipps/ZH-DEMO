@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaa737041d95ee25683446ff138162c2",
+    "content-hash": "4b428ee4e6bc1e064133d839765868e1",
     "packages": [
         {
             "name": "adesso/adesso_cms_theme",
-            "version": "dev-main",
+            "version": "dev-feature/directory-system",
             "dist": {
                 "type": "path",
                 "url": "web/themes/custom/adesso_cms_theme",
@@ -2039,6 +2039,151 @@
             }
         },
         {
+            "name": "drupal/ai_search",
+            "version": "1.1.3",
+            "require": {
+                "drupal/ai": "*",
+                "drupal/core": "^10.2 || ^11",
+                "drupal/search_api": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.3",
+                    "datestamp": "1755081815",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a.dmitriiev",
+                    "homepage": "https://www.drupal.org/user/3235287"
+                },
+                {
+                    "name": "andrewbelcher",
+                    "homepage": "https://www.drupal.org/user/655282"
+                },
+                {
+                    "name": "gxleano",
+                    "homepage": "https://www.drupal.org/user/3591999"
+                },
+                {
+                    "name": "kevinquillen",
+                    "homepage": "https://www.drupal.org/user/317279"
+                },
+                {
+                    "name": "kristen pol",
+                    "homepage": "https://www.drupal.org/user/8389"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
+                },
+                {
+                    "name": "seogow",
+                    "homepage": "https://www.drupal.org/user/3065779"
+                },
+                {
+                    "name": "valthebald",
+                    "homepage": "https://www.drupal.org/user/239562"
+                },
+                {
+                    "name": "wouters_f",
+                    "homepage": "https://www.drupal.org/user/721548"
+                },
+                {
+                    "name": "yautja_cetanu",
+                    "homepage": "https://www.drupal.org/user/626050"
+                }
+            ],
+            "description": "Offers an implementation of the Search API that uses a Vector DB server for indexing content.",
+            "homepage": "https://www.drupal.org/project/ai",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai"
+            }
+        },
+        {
+            "name": "drupal/ai_vdb_provider_milvus",
+            "version": "1.1.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ai_vdb_provider_milvus.git",
+                "reference": "1.1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ai_vdb_provider_milvus-1.1.0-beta2.zip",
+                "reference": "1.1.0-beta2",
+                "shasum": "11859c5c7a2ede228a38a8050478b8cdf09dbe67"
+            },
+            "require": {
+                "drupal/ai": "^1.1.0",
+                "drupal/ai_search": "*",
+                "drupal/core": "^10.2 || ^11",
+                "drupal/key": "^1.18"
+            },
+            "require-dev": {
+                "drupal/search_api": "^1.35"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.0-beta2",
+                    "datestamp": "1749732205",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "kevinquillen",
+                    "homepage": "https://www.drupal.org/user/317279"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
+                },
+                {
+                    "name": "seogow",
+                    "homepage": "https://www.drupal.org/user/3065779"
+                },
+                {
+                    "name": "wouters_f",
+                    "homepage": "https://www.drupal.org/user/721548"
+                },
+                {
+                    "name": "yautja_cetanu",
+                    "homepage": "https://www.drupal.org/user/626050"
+                }
+            ],
+            "description": "Milvus VDB provider implementation for the AI module for Drupal",
+            "homepage": "https://www.drupal.org/project/ai_vdb_provider_milvus",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai_vdb_provider_milvus"
+            }
+        },
+        {
             "name": "drupal/all_entity_preview",
             "version": "1.0.0-alpha6",
             "source": {
@@ -3600,6 +3745,45 @@
             "time": "2025-07-09T13:09:00+00:00"
         },
         {
+            "name": "drupal/drupal_cms_content_type_base",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/drupal_cms_content_type_base.git",
+                "reference": "241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_content_type_base/repository/archive.zip?sha=241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35",
+                "reference": "241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/autosave_form": "^1.10",
+                "drupal/bpmn_io": "^2.0.6",
+                "drupal/core": "^10.4 || ^11",
+                "drupal/drupal_cms_image": "^1.2",
+                "drupal/eca": "^2.1.4",
+                "drupal/linkit": "^7",
+                "drupal/pathauto": "^1.13",
+                "drupal/scheduler": "^2.2",
+                "drupal/scheduler_content_moderation_integration": "^3.0.4",
+                "drupal/tagify": "^1.2",
+                "drupal/token": "^1",
+                "drupal/trash": "^3.0.13"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Provides basic tools for creating content.",
+            "support": {
+                "source": "https://git.drupalcode.org/project/drupal_cms_content_type_base/-/tree/1.2.3"
+            },
+            "time": "2025-07-09T13:09:00+00:00"
+        },
+        {
             "name": "drupal/drupal_cms_google_analytics",
             "version": "1.2.3",
             "source": {
@@ -3626,6 +3810,98 @@
             "description": "Adds tracking of website traffic using Google Analytics and Google Tag Manager. Requires a Google Tag Manager ID.",
             "support": {
                 "source": "https://git.drupalcode.org/project/drupal_cms_google_analytics/-/tree/1.2.3"
+            },
+            "time": "2025-07-09T13:09:00+00:00"
+        },
+        {
+            "name": "drupal/drupal_cms_image",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/drupal_cms_image.git",
+                "reference": "78a6a2248093fab652f78b790eb1f7873cfdf3df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_image/repository/archive.zip?sha=78a6a2248093fab652f78b790eb1f7873cfdf3df",
+                "reference": "78a6a2248093fab652f78b790eb1f7873cfdf3df",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^10.4 || ^11",
+                "drupal/focal_point": "^2",
+                "drupal/svg_image": "^3.1"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Sets up base image configuration including responsive image styles, view modes, focal point-based cropping and SVG images.",
+            "support": {
+                "source": "https://git.drupalcode.org/project/drupal_cms_image/-/tree/1.2.3"
+            },
+            "time": "2025-07-09T13:09:00+00:00"
+        },
+        {
+            "name": "drupal/drupal_cms_page",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/drupal_cms_page.git",
+                "reference": "5973d7ad256c67285fc49cfa549458a44ea2f136"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_page/repository/archive.zip?sha=5973d7ad256c67285fc49cfa549458a44ea2f136",
+                "reference": "5973d7ad256c67285fc49cfa549458a44ea2f136",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^10.4 || ^11",
+                "drupal/drupal_cms_content_type_base": "^1.2"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Adds a content type for simple pages.",
+            "support": {
+                "source": "https://git.drupalcode.org/project/drupal_cms_page/-/tree/1.2.3"
+            },
+            "time": "2025-07-09T13:09:00+00:00"
+        },
+        {
+            "name": "drupal/drupal_cms_privacy_basic",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/drupal_cms_privacy_basic.git",
+                "reference": "0fd31d5515a681dbac620f292c5e6180ab68781f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_privacy_basic/repository/archive.zip?sha=0fd31d5515a681dbac620f292c5e6180ab68781f",
+                "reference": "0fd31d5515a681dbac620f292c5e6180ab68781f",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/bpmn_io": "^2.0.6",
+                "drupal/core": "^10.4 || ^11",
+                "drupal/drupal_cms_page": "^1.2",
+                "drupal/eca": "^2.1.4",
+                "drupal/klaro": "^3",
+                "drupal/menu_link_attributes": "^1.5"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Adds basic privacy features such as consent management and remote content blocking.",
+            "support": {
+                "source": "https://git.drupalcode.org/project/drupal_cms_privacy_basic/-/tree/1.2.3"
             },
             "time": "2025-07-09T13:09:00+00:00"
         },
@@ -20878,7 +21154,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "adesso/adesso_cms_theme": 20,
+        "drupal/ai_vdb_provider_milvus": 10,
         "drupal/all_entity_preview": 15,
         "drupal/default_content": 15,
         "drupal/node_revision_delete": 5,

@@ -5,9 +5,15 @@ dependencies:
     - field.storage.node.field_description
     - field.storage.node.field_phone
     - field.storage.node.field_email
+    - field.storage.node.field_industry
+    - field.storage.node.field_services
+    - field.storage.node.field_service_area
     - node.type.company
+    - taxonomy.vocabulary.industry
   module:
     - node
+    - options
+    - taxonomy
     - text
     - user
 id: firmen
@@ -42,13 +48,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          submit_button: Filtern
+          reset_button: true
+          reset_button_label: 'Filter zurücksetzen'
+          exposed_sorts_label: 'Sortieren nach'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'Aufsteigend'
+          sort_desc_label: 'Absteigend'
       pager:
         type: full
         options:
@@ -400,6 +406,130 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_industry_target_id:
+          id: field_industry_target_id
+          table: node__field_industry
+          field: field_industry_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_industry_target_id_op
+            label: 'Branche'
+            description: ''
+            use_operator: false
+            operator: field_industry_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: industry
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: industry
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_services_value:
+          id: field_services_value
+          table: node__field_services
+          field: field_services_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_services_value_op
+            label: 'Angebotene Services'
+            description: ''
+            use_operator: false
+            operator: field_services_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: services
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: list_field
+        field_service_area_value:
+          id: field_service_area_value
+          table: node__field_service_area
+          field: field_service_area_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_service_area_value_op
+            label: 'Servicegebiet'
+            description: ''
+            use_operator: false
+            operator: field_service_area_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: service_area
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: list_field
       sorts:
         title:
           id: title

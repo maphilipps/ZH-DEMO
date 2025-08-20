@@ -3,9 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_description
+    - field.storage.node.field_club_type
+    - field.storage.node.field_age_groups
+    - field.storage.node.field_accepting_members
     - node.type.club
+    - taxonomy.vocabulary.club_type
   module:
     - node
+    - options
+    - taxonomy
     - text
     - user
 id: vereine
@@ -40,13 +46,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          submit_button: Filtern
+          reset_button: true
+          reset_button_label: 'Filter zurücksetzen'
+          exposed_sorts_label: 'Sortieren nach'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'Aufsteigend'
+          sort_desc_label: 'Absteigend'
       pager:
         type: full
         options:
@@ -238,6 +244,130 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_club_type_target_id:
+          id: field_club_type_target_id
+          table: node__field_club_type
+          field: field_club_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_club_type_target_id_op
+            label: 'Vereinsart'
+            description: ''
+            use_operator: false
+            operator: field_club_type_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: club_type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: club_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_age_groups_value:
+          id: field_age_groups_value
+          table: node__field_age_groups
+          field: field_age_groups_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_age_groups_value_op
+            label: 'Altersgruppen'
+            description: ''
+            use_operator: false
+            operator: field_age_groups_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: age_groups
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: list_field
+        field_accepting_members_value:
+          id: field_accepting_members_value
+          table: node__field_accepting_members
+          field: field_accepting_members_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_accepting_members_value_op
+            label: 'Neue Mitglieder'
+            description: ''
+            use_operator: false
+            operator: field_accepting_members_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: accepting_members
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
       sorts:
         created:
           id: created

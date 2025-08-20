@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_owner
+    - node.type.company
+id: node.company.field_directory_owner
+field_name: field_directory_owner
+entity_type: node
+bundle: company
+label: 'Verzeichnis-Eigentümer'
+description: 'Benutzer, der für die Pflege dieses Firmeneintrags verantwortlich ist'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: false
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,30 @@
+{#
+/**
+ * Template for quicklinks menu.
+ *
+ * Relevant parameter:
+ * @var quicklinks = [{url: '#example', title: 'Example'}]
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+{% set menu %}
+  {% for link in quicklinks %}
+    {{ include('@components/menu-item-quicklink.html.twig', {
+      url: link.url,
+      title: link.title,
+      isJumpMark: true,
+    }) }}
+  {% endfor %}
+{% endset %}
+
+{% set menu %}
+  {{ include('@components/menu-quicklinks.html.twig', {items: menu}) }}
+{% endset %}
+
+{{ include('@module/quicklinks.html.twig', {
+  title: 'Schnelleinstieg',
+  menu: menu,
+  isJumpMark: true,
+}) }}

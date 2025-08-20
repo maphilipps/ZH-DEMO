@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_phone
+    - node.type.company
+  module:
+    - telephone
+id: node.company.field_contact_phone
+field_name: field_contact_phone
+entity_type: node
+bundle: company
+label: 'Kontaktperson Telefon'
+description: 'Telefonnummer der Kontaktperson (z.B. +41 44 123 45 67)'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: telephone

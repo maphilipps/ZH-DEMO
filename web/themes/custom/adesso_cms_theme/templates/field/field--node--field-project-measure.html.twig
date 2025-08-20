@@ -1,0 +1,36 @@
+{#
+/**
+ * Field "Weiterführende Informationen" for content type "Praxisbeispiel"
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+{% set link_list_items %}
+    {% for item in items %}
+        {% set icon %}
+            {% if item.content['#url'].isExternal() %}
+                {{ include("@designsystem/icon-arrow_up_right.html.twig", {size: 'size-6'}) }}
+            {% else %}
+                {{ include("@designsystem/icon-arrow_right.html.twig", {size: 'size-6'}) }}
+            {% endif %}
+        {% endset %}
+
+        {{ include('@components/list-item-icon.html.twig', {
+            icon: icon,
+            title: item.content,
+        }) }}
+    {% endfor %}
+{% endset %}
+{% set link_list %}
+    {{ include('@module/link-list-item.html.twig', {
+        title: 'Weiterführende Informationen',
+        title_spacing: 'mb-6',
+        items: link_list_items,
+    }) }}
+{% endset %}
+{{ include('@module/link-list.html.twig', {
+    items: {
+        0: link_list,
+    }
+}) }}

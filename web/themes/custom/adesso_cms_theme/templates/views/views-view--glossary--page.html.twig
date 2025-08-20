@@ -1,0 +1,35 @@
+{% set accordion %}
+    {{ include('@module/accordion/accordion.html.twig',
+        {
+            'items': rows,
+            'showAll': true
+        }
+    ) }}
+{% endset %}
+
+{% set title %}
+    {% include '@components/headline/h1.html.twig' with {
+        content: view.title,
+    } %}
+{% endset %}
+
+{% set share %}
+    {% set uri %}
+        {{- url('<current>') -}}
+    {% endset %}
+    {{ include('@eab_2024/misc/social-share-menu.html.twig', {
+        'uri': uri,
+        'node': node
+    }) }}
+{% endset %}
+
+{{ include('@module/glossary/glossary.html.twig',
+    {
+        'accordion': accordion,
+        'menu': attachment_before,
+        'title': title,
+        'share': share,
+        'activeLetter': view.args[0],
+    }
+) }}
+

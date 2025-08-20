@@ -1,0 +1,23 @@
+{#
+Themes hierarchical taxonomy terms as nested <ul> elements.
+
+This template is intended to be called from within another template to provide
+the "scaffolding" of nested lists while the calling template provides the
+actual filter element via the 'item' variable.
+
+Available variables:
+  - current_nesting_level: the nesting level of the most recently printe item.
+  - new_nesting_level: the nesting level of the item to print.
+  - item: The item to print.
+  - loop: The loop variable from the iterator that calls this template.
+    Requires the loop.first and loop.last elements.
+#}
+{% set item_classes = 'add-filter' %}
+
+{% if child in selected %}
+    {% set item_classes = 'bg-blue-20 text-white remove-filter' %}
+
+{% endif %}
+<div class="{{ item_classes }}  border-blue-20 mr-3 inline-flex group font-medium items-center border-2 px-3 py-2 rounded-full text-blue-70 hover:bg-blue-20 hover:text-white transition-colors duration-200">
+    <span class="flex flex-row gap-2 items-center text-md/5">{{ item }}</span>
+</div>

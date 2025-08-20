@@ -1,0 +1,17 @@
+{#
+/**
+ * Field "Gesammtkosten" for content type "Praxisbeispiel"
+ * To be displayed as one of several items in a tiles-info module
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+{% for item in items %}
+  {{ include('@components/h4.html.twig', {
+    level: 4,
+    attributes: create_attribute(),
+    content: item.content,
+  }) }}
+{% endfor %}
+

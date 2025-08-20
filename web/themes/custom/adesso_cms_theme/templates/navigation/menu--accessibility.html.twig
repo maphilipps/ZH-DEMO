@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% if items %}
+    {% set rendered_items %}
+        {% for item in items %}
+            {% set icon %}
+                {{ include(get_menu_icon(item), {
+                    'size': 'size-4',
+                    'classes': 'mr-2'
+                }) }}
+            {% endset %}
+
+            {% if 'readspeaker' in item.url.toString %}
+              {{ include('menu--accessibility--readspeaker.html.twig', {
+                'title': item.title,
+                'icon': icon,
+              }) }}
+            {% else %}
+                {{ include('@module/menu-accessibility-item.html.twig', {
+                  'title': item.title,
+                  'url': item.url,
+                  'icon': icon,
+                  'active': item.in_active_trail,
+                }) }}
+            {% endif %}
+
+        {% endfor %}
+    {% endset %}
+
+    {{ include('@module/menu-accessibility.html.twig',{
+        'items': rendered_items,
+        'atributtes': attributes,
+    }) }}
+{% endif %}

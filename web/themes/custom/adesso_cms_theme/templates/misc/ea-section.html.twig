@@ -1,0 +1,31 @@
+
+{% set anchor %}
+  {{ include('@components/anchor.html.twig', {
+    text: anchor,
+  }) }}
+{% endset %}
+
+{% set headline %}
+  {{ include('@components/h2.html.twig', {
+    content: headline,
+    attributes: create_attribute(),
+  }) }}
+{% endset %}
+
+{% set text_content %}
+  {{ text }}
+  <hr>
+{% endset %}
+
+{% set text %}
+  {{ include('@components/text.html.twig', {
+    text: text_content,
+    attributes: create_attribute().addClass('text-black'),
+  }) }}
+{% endset %}
+
+{{ include('@module/text.html.twig', {
+  headline: headline,
+  anchor: anchor,
+  text: text,
+}) }}

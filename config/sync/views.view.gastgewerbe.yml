@@ -4,9 +4,16 @@ dependencies:
   config:
     - field.storage.node.field_description
     - field.storage.node.field_opening_hours
+    - field.storage.node.field_hospitality_type
+    - field.storage.node.field_price_category
+    - field.storage.node.field_location
     - node.type.hospitality
+    - taxonomy.vocabulary.hospitality_type
+    - taxonomy.vocabulary.location
   module:
     - node
+    - options
+    - taxonomy
     - text
     - user
 id: gastgewerbe
@@ -41,13 +48,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          submit_button: Filtern
+          reset_button: true
+          reset_button_label: 'Filter zurücksetzen'
+          exposed_sorts_label: 'Sortieren nach'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'Aufsteigend'
+          sort_desc_label: 'Absteigend'
       pager:
         type: full
         options:
@@ -301,6 +308,137 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_hospitality_type_target_id:
+          id: field_hospitality_type_target_id
+          table: node__field_hospitality_type
+          field: field_hospitality_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_hospitality_type_target_id_op
+            label: 'Art des Betriebs'
+            description: ''
+            use_operator: false
+            operator: field_hospitality_type_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: hospitality_type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: hospitality_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_price_category_value:
+          id: field_price_category_value
+          table: node__field_price_category
+          field: field_price_category_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_price_category_value_op
+            label: 'Preiskategorie'
+            description: ''
+            use_operator: false
+            operator: field_price_category_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: price_category
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: list_field
+        field_location_target_id:
+          id: field_location_target_id
+          table: node__field_location
+          field: field_location_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_location_target_id_op
+            label: 'Standort'
+            description: ''
+            use_operator: false
+            operator: field_location_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: location
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: location
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         created:
           id: created

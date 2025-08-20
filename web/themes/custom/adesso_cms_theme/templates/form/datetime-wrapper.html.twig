@@ -21,14 +21,16 @@
   ]
 %}
 {% if title %}
-  <label{{ title_attributes.addClass(title_classes) }}>{{ title }}</label>
+  <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
 {% endif %}
 {{ content }}
 {% if errors %}
-  <div class="alert alert-danger" role="alert">
+  <div class="form-item--error-message">
     <strong>{{ errors }}</strong>
   </div>
 {% endif %}
 {% if description %}
-  <small class="description text-body-secondary">{{ description }}</small>
+  <div{{ description_attributes.addClass('description') }}>
+    {{ description }}
+  </div>
 {% endif %}

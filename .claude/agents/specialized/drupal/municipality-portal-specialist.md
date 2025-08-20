@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use municipality-portal-specialist to design intuitive citizen service interfaces, self-service workflows, and transparent status tracking systems."
     <commentary>Selected for municipal service UX design and citizen experience optimization</commentary>
   </example>
+color: green
+model: sonnet
 ---
 
 # Municipality Portal Specialist

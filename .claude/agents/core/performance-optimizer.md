@@ -45,6 +45,8 @@ description: |
     Target: refactoring-expert
     Handoff: "Performance requires architectural changes: [areas needing refactor]"
   </delegation>
+color: purple
+model: sonnet
 ---
 
 # Performance Optimizer

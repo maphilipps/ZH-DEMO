@@ -3334,10 +3334,6 @@
                     "homepage": "https://www.drupal.org/user/959536"
                 },
                 {
-                    "name": "phenaproxima",
-                    "homepage": "https://www.drupal.org/user/205645"
-                },
-                {
                     "name": "pingers",
                     "homepage": "https://www.drupal.org/user/56282"
                 },
@@ -3439,6 +3435,10 @@
                     "services": {
                         "drush.services.yml": "^9 || ^10 || ^11 || ^12"
                     }
+                },
+                "patches_applied": {
+                    "#2786479: Drush comand to export all items from entity with defined criteria": "https://www.drupal.org/files/issues/2023-10-06/2786479-46.patch",
+                    "#3160146: Add a Normalizer and Denormalizer to support Layout Builder": "https://git.drupalcode.org/project/default_content/-/merge_requests/15.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3600,45 +3600,6 @@
             "time": "2025-07-09T13:09:00+00:00"
         },
         {
-            "name": "drupal/drupal_cms_content_type_base",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_content_type_base.git",
-                "reference": "241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_content_type_base/repository/archive.zip?sha=241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35",
-                "reference": "241fcf42d3820113dd1cdfa6a8c2b69d01ddcd35",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/autosave_form": "^1.10",
-                "drupal/bpmn_io": "^2.0.6",
-                "drupal/core": "^10.4 || ^11",
-                "drupal/drupal_cms_image": "^1.2",
-                "drupal/eca": "^2.1.4",
-                "drupal/linkit": "^7",
-                "drupal/pathauto": "^1.13",
-                "drupal/scheduler": "^2.2",
-                "drupal/scheduler_content_moderation_integration": "^3.0.4",
-                "drupal/tagify": "^1.2",
-                "drupal/token": "^1",
-                "drupal/trash": "^3.0.13"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Provides basic tools for creating content.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_content_type_base/-/tree/1.2.3"
-            },
-            "time": "2025-07-09T13:09:00+00:00"
-        },
-        {
             "name": "drupal/drupal_cms_google_analytics",
             "version": "1.2.3",
             "source": {
@@ -3665,98 +3626,6 @@
             "description": "Adds tracking of website traffic using Google Analytics and Google Tag Manager. Requires a Google Tag Manager ID.",
             "support": {
                 "source": "https://git.drupalcode.org/project/drupal_cms_google_analytics/-/tree/1.2.3"
-            },
-            "time": "2025-07-09T13:09:00+00:00"
-        },
-        {
-            "name": "drupal/drupal_cms_image",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_image.git",
-                "reference": "78a6a2248093fab652f78b790eb1f7873cfdf3df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_image/repository/archive.zip?sha=78a6a2248093fab652f78b790eb1f7873cfdf3df",
-                "reference": "78a6a2248093fab652f78b790eb1f7873cfdf3df",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/core": "^10.4 || ^11",
-                "drupal/focal_point": "^2",
-                "drupal/svg_image": "^3.1"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Sets up base image configuration including responsive image styles, view modes, focal point-based cropping and SVG images.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_image/-/tree/1.2.3"
-            },
-            "time": "2025-07-09T13:09:00+00:00"
-        },
-        {
-            "name": "drupal/drupal_cms_page",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_page.git",
-                "reference": "5973d7ad256c67285fc49cfa549458a44ea2f136"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_page/repository/archive.zip?sha=5973d7ad256c67285fc49cfa549458a44ea2f136",
-                "reference": "5973d7ad256c67285fc49cfa549458a44ea2f136",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/core": "^10.4 || ^11",
-                "drupal/drupal_cms_content_type_base": "^1.2"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Adds a content type for simple pages.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_page/-/tree/1.2.3"
-            },
-            "time": "2025-07-09T13:09:00+00:00"
-        },
-        {
-            "name": "drupal/drupal_cms_privacy_basic",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/drupal_cms_privacy_basic.git",
-                "reference": "0fd31d5515a681dbac620f292c5e6180ab68781f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fdrupal_cms_privacy_basic/repository/archive.zip?sha=0fd31d5515a681dbac620f292c5e6180ab68781f",
-                "reference": "0fd31d5515a681dbac620f292c5e6180ab68781f",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/bpmn_io": "^2.0.6",
-                "drupal/core": "^10.4 || ^11",
-                "drupal/drupal_cms_page": "^1.2",
-                "drupal/eca": "^2.1.4",
-                "drupal/klaro": "^3",
-                "drupal/menu_link_attributes": "^1.5"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Adds basic privacy features such as consent management and remote content blocking.",
-            "support": {
-                "source": "https://git.drupalcode.org/project/drupal_cms_privacy_basic/-/tree/1.2.3"
             },
             "time": "2025-07-09T13:09:00+00:00"
         },
@@ -6466,6 +6335,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "#3488022: Missing schema entry for split_text": "https://git.drupalcode.org/project/paragraphs_features/-/merge_requests/22.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -13877,7 +13749,7 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
@@ -13937,7 +13809,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -13949,6 +13821,10 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
@@ -13957,7 +13833,7 @@
         },
         {
             "name": "symfony/polyfill-php81",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php81.git",
@@ -14013,7 +13889,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php81/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -14025,6 +13901,10 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
@@ -14033,16 +13913,16 @@
         },
         {
             "name": "symfony/polyfill-php83",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php83.git",
-                "reference": "2fb86d65e2d424369ad2905e83b236a8805ba491"
+                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/2fb86d65e2d424369ad2905e83b236a8805ba491",
-                "reference": "2fb86d65e2d424369ad2905e83b236a8805ba491",
+                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/17f6f9a6b1735c0f163024d959f700cfbc5155e5",
+                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5",
                 "shasum": ""
             },
             "require": {
@@ -14089,7 +13969,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php83/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-php83/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -14101,11 +13981,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T11:45:10+00:00"
+            "time": "2025-07-08T02:45:35+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
@@ -20688,7 +20572,7 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
@@ -20744,7 +20628,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -20753,6 +20637,10 @@
                 },
                 {
                     "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
                     "type": "github"
                 },
                 {

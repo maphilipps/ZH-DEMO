@@ -45,6 +45,8 @@ description: |
     Target: refactoring-expert
     Handoff: "Code needs significant refactoring: [reasons]. Recommend restructuring."
   </delegation>
+color: red
+model: sonnet
 tools: Read, Grep, Glob, Bash
 ---
 

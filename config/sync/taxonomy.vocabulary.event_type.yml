@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Veranstaltungsart'
+vid: event_type
+description: 'Arten von Veranstaltungen'
+weight: 0

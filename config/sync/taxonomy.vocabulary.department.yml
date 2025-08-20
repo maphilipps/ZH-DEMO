@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Abteilung'
+vid: department
+description: 'Gemeinde-Abteilungen'
+weight: 0

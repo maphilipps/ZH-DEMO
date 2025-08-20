@@ -1,3 +1,7 @@
+---
+name: Agent Configuration README
+---
+
 # adesso CMS Agent Configuration
 
 ## Overview

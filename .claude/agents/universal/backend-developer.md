@@ -45,6 +45,8 @@ description: |
     Target: frontend-developer
     Handoff: "Backend ready. Frontend can connect to: [endpoints]"
   </delegation>
+color: blue
+model: sonnet
 ---
 
 # Universal Backend Developer

@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override for Firmen directory view.
+ * Based on events view template.
+ */
+#}
+<div class="mx-auto container px-6 lg:px-8">
+
+  {# Exposed filters #}
+  {% if exposed %}
+    <div class="mt-8 mb-8">
+      {{ exposed }}
+    </div>
+  {% endif %}
+
+  {# Main content area #}
+  <div class="mx-auto mt-16 sm:mt-20">
+    {% if rows %}
+      {{ rows }}
+    {% elseif empty %}
+      {{ empty }}
+    {% endif %}
+  </div>
+
+  {# Pager #}
+  {% if pager %}
+    <div class="mt-16">
+      {{ pager }}
+    </div>
+  {% endif %}
+
+  {# Footer #}
+  {% if footer %}
+    <div class="mt-16">
+      {{ footer }}
+    </div>
+  {% endif %}
+
+</div>

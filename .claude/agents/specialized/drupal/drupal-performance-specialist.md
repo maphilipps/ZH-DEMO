@@ -1,5 +1,7 @@
 ---
 name: drupal-performance-specialist
+color: blue
+model: sonnet
 description: |
   Drupal performance optimization specialist focusing on Core Web Vitals, database optimization, caching strategies, and scalability. Expert in Drupal-specific performance patterns, media optimization, and enterprise-scale performance tuning.
   

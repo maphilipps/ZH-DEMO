@@ -275,6 +275,28 @@ function adesso_cms_theme_theme_suggestions_node_alter(array &$suggestions, arra
 }
 
 /**
+ * Implements hook_preprocess_views_view().
+ */
+function adesso_cms_theme_preprocess_views_view(&$variables) {
+  $view = $variables['view'];
+  $view_id = $view->id();
+  
+  // Add custom classes for directory views
+  if (in_array($view_id, ['vereine', 'firmen', 'gastgewerbe'])) {
+    $variables['attributes']['class'][] = 'directory-listing';
+    $variables['attributes']['class'][] = 'directory-listing--' . $view_id;
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function adesso_cms_theme_preprocess_views_view_fields(&$variables) {
+  // The row entity is already available as row._entity in templates
+  // No need to set additional variables that might cause array + null errors
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function adesso_cms_theme_preprocess_block(array &$variables) {
@@ -287,6 +309,31 @@ function adesso_cms_theme_preprocess_block(array &$variables) {
     $variables['site_logo'] = $logo_url;
     $variables['site_name'] = $config->get('name');
     $variables['show_logo'] = !empty($logo_url);
+  }
+
+  // Add logo variant for system branding block in header based on page type.
+  if (isset($variables['plugin_id']) && $variables['plugin_id'] == 'system_branding_block') {
+    // Only apply inverted logo to the header region block.
+    $block_id = $variables['elements']['#id'] ?? '';
+    
+    // Default to 'default' variant.
+    $logo_variant = 'default';
+    
+    // Check if this is the header branding block (not footer).
+    if ($block_id == 'adesso_cms_theme_brandingderwebsite') {
+      // Get the current node to check if it's a landing page.
+      $node = \Drupal::request()->attributes->get('node');
+      
+      // Check if we're on a landing page node.
+      if ($node && is_object($node) && method_exists($node, 'bundle')) {
+        if ($node->bundle() == 'landing_page') {
+          $logo_variant = 'inverted';
+        }
+      }
+    }
+    
+    // Pass the logo variant to the template.
+    $variables['logo_variant'] = $logo_variant;
   }
 }
 

@@ -1,6 +1,32 @@
-# CLAUDE.md
+# CLAUDE.md - Compounding Engineering Knowledge Base
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code and serves as the living memory system for the GPZH project. Every interaction, lesson learned, and architectural decision compounds into permanent system knowledge.
+
+## 🔄 Compounding Engineering Status
+
+**Last Updated**: 2025-08-20
+**Knowledge Iterations**: 2
+**Active Learning Patterns**: Full compounding engineering implementation
+**Current Phase**: Complete system with automated learning
+
+### Three-Lane Development System
+- **Planning Lane**: Strategic analysis and architecture (@drupal-solution-architect + @drupal-technical-pm)
+- **Building Lane**: Implementation and development (@drupal-11-lead-developer + @municipality-portal-specialist)  
+- **Reviewing Lane**: Quality assurance and compliance (@swiss-compliance-specialist + @qa-testing-specialist)
+
+### Compounding Engineering Components (NEW)
+- **Failure-to-Knowledge System**: Every bug/issue automatically becomes permanent prevention knowledge
+- **Memory Integration**: Cross-session knowledge persistence using mcp__server-memory
+- **Frustration Detector**: GPZH-specific frustration detection with automated solutions
+- **Automated Learning**: PR, bug, and review analysis that continuously improves the system
+- **Hook-based Coordination**: Automatic handoffs and learning capture between lanes
+
+**Three Window Orchestrator Setup**:
+- **Window 1**: `claude --model opus` → `/planning` → @planning-lane-orchestrator
+- **Window 2**: `claude` → `/building` → @building-lane-orchestrator  
+- **Window 3**: `claude` → `/reviewing` → @reviewing-lane-orchestrator
+
+**Orchestrator Pattern**: Jede Lane hat einen Orchestrator der NIE direkt arbeitet, sondern immer an Spezialisten delegiert (wie @tech-lead-orchestrator).
 
 ## 🎯 Project Context: GPZH Präqualifikation Demo System
 
@@ -15,19 +41,82 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Demo Municipality: Bruchtal
 For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipality with the tagline "Leben am See" (Life by the Lake).
 
+## 🧠 Compounding Knowledge Sections
+
+### Lessons Learned (Automatic Learning)
+*This section automatically updates as we learn from successes and failures*
+
+#### Architecture Decisions That Worked
+- **Directory System Architecture**: Separate content types (Vereine, Firmen, Gastgewerbe) instead of single bundle for clearer field management
+- **Workflow Choice**: Using core content_moderation module instead of custom workflow for reliability and maintenance
+- **Guest Account Strategy**: Requiring registration for external editors provides better spam control and ownership tracking
+
+#### Implementation Patterns That Succeeded  
+- *[To be populated by Building Lane experiences]*
+
+#### Review Feedback That Prevented Issues
+- *[To be populated by Reviewing Lane experiences]*
+
+#### Swiss Compliance Patterns
+- **eCH-0010 Address Format**: Separate street and house number fields for Swiss standard compliance
+- **CH-DSG Implementation**: 30-day soft delete and annual review process for data protection compliance
+- **Swiss German Standards**: No ß character, Sie-Form addressing, DD.MM.YYYY date format
+
+### Failure-to-Knowledge Conversions
+*Every bug becomes permanent prevention knowledge*
+
+#### Known Issues → Tests → Rules
+- *[To be populated as issues are discovered and resolved]*
+
+#### Performance Optimizations → Patterns
+- *[To be populated as optimizations are discovered]*
+
+#### Demo Scenarios → Validated Workflows
+- *[To be populated as demo preparations are tested]*
+
+### Code Style Evolution
+*Preferences that have emerged from reviews and become standard*
+
+#### Drupal Patterns
+- *[To be populated by code reviews and successful implementations]*
+
+#### Swiss Municipal Standards
+- *[To be populated by compliance work]*
+
+#### AI Integration Patterns
+- *[To be populated by GPT-4o integration work]*
+
 ## 🔧 Core Development Commands
 
 ### Environment Management
 ```bash
-# DDEV Environment
-ddev start                    # Start environment
-ddev stop                     # Stop services
-ddev restart                  # Fresh restart
-ddev describe                 # Show URLs and services
-ddev logs --follow           # Live logs for debugging
+# Hook-based Compounding Development (NEW)
+claude-coordinate start         # Start hook-based three-lane system (auto-spawns)
+claude-coordinate status        # Show system and lane status
+claude-coordinate stop          # Stop system and archive session
+
+# Cross-Lane Coordination
+claude-coordinate send-task 'task description' building    # Send task to building lane
+claude-coordinate send-task 'task description' reviewing   # Send task to reviewing lane
+claude-coordinate notifications                            # Show your notifications
+claude-coordinate activity                                 # Show recent coordination
+
+# GPZH Workflows
+./claude/gpzh-workflows.sh demo         # 35-minute demo preparation
+./claude/gpzh-workflows.sh compliance   # Swiss compliance validation  
+./claude/gpzh-workflows.sh forms        # Municipal forms implementation
+./claude/gpzh-workflows.sh performance  # Core Web Vitals >90 optimization
+./claude/gpzh-workflows.sh ai           # GPT-4o integration
+
+# DDEV Environment  
+ddev start                      # Start environment
+ddev stop                       # Stop services
+ddev restart                    # Fresh restart
+ddev describe                   # Show URLs and services
+ddev logs --follow             # Live logs for debugging
 
 # Multi-Site Access
-ddev launch                   # Open main site
+ddev launch                     # Open main site
 ddev launch bruchtal.zh-demo.ddev.site  # Bruchtal demo site
 ```
 
@@ -57,6 +146,58 @@ ddev drush uli              # Generate admin login
 ddev drush sql:sync @prod @local  # Sync database
 ddev export-contents        # Export demo content
 ddev import-content         # Import demo content
+```
+
+## 🤖 Compounding Engineering Commands
+
+### Master Orchestrator
+```bash
+# Complete System Control
+./claude/compounding-orchestrator.sh start     # Start full compounding system
+./claude/compounding-orchestrator.sh status    # Show comprehensive status
+./claude/compounding-orchestrator.sh stop      # Stop and backup knowledge
+
+# GPZH Workflows with Knowledge
+./claude/compounding-orchestrator.sh gpzh-workflow demo        # Demo prep with learning
+./claude/compounding-orchestrator.sh gpzh-workflow compliance  # Swiss compliance with patterns
+./claude/compounding-orchestrator.sh gpzh-workflow forms       # Municipal forms with memory
+
+# System Analysis and Improvement
+./claude/compounding-orchestrator.sh analyze   # Analyze patterns for improvements
+./claude/compounding-orchestrator.sh backup    # Backup all knowledge
+./claude/compounding-orchestrator.sh export    # Export knowledge for sharing
+```
+
+### Individual Components
+```bash
+# Failure-to-Knowledge System
+./claude/failure-to-knowledge.sh capture-failure bug "Form submission failing" forms high
+./claude/failure-to-knowledge.sh capture-success demo "Bruchtal theme impressed client" demo
+./claude/failure-to-knowledge.sh status
+
+# Memory Integration System  
+./claude/memory-integration.sh store-session development "Implemented Swiss compliance" swiss
+./claude/memory-integration.sh retrieve-task demo_prep gpzh
+./claude/memory-integration.sh store-review accessibility_review "WCAG compliant" "All tests pass"
+
+# Frustration Detection System
+./claude/frustration-detector.sh detect "Drupal errors keep happening" development
+./claude/frustration-detector.sh analyze "Long conversation text..." demo_prep
+./claude/frustration-detector.sh train
+
+# Automated Learning System
+./claude/automated-learning.sh learn-pr "Add Swiss validation" "eCH-0059 compliance" "Good tests" merged
+./claude/automated-learning.sh learn-bug "Form timeout" "Database connection" "timeout" "Fixed" high
+./claude/automated-learning.sh analyze-trends
+```
+
+### Quick Workflows
+```bash
+# Simple Entry Points
+./claude/compound-dev start        # Start three-lane system with compounding
+./claude/compound-dev demo         # Quick demo preparation mode  
+./claude/compound-dev compliance   # Quick Swiss compliance mode
+./claude/compound-dev status       # Show system status with metrics
 ```
 
 ## 📊 GPZH Demo Preparation Workflow
@@ -104,6 +245,123 @@ ddev drush --uri=bruchtal.zh-demo.ddev.site uli  # Admin access
 - WYSIWYG content pages
 - Media integration (images, PDFs, flyers)
 - Attractive content design options
+
+## 🤖 Hook-based Three-Lane Coordination
+
+### Automatic Lane Spawning
+Starting the Planning Lane automatically spawns the other two lanes via Claude Code hooks:
+
+```bash
+# Start Planning Lane (auto-spawns others)
+export CLAUDE_ROLE=planning && claude --config .claude/planning-config.json
+
+# The session-start hook automatically:
+# 1. Detects CLAUDE_ROLE=planning
+# 2. Spawns Building Lane in new terminal 
+# 3. Spawns Reviewing Lane in new terminal
+# 4. Initializes cross-lane coordination
+```
+
+### Hook-triggered Coordination
+
+#### Automatic Handoffs
+The system automatically coordinates work between lanes:
+
+- **Planning Complete** → Triggers Building Lane implementation
+- **Implementation Done** → Triggers Reviewing Lane validation  
+- **Issues Found** → Triggers Building Lane fixes
+- **Compliance Validated** → Updates knowledge base
+
+#### Agent Spawn Coordination
+When specialized agents are spawned, hooks automatically coordinate:
+
+```bash
+# Planning Lane spawns @drupal-solution-architect
+# → Automatically notifies Building/Reviewing lanes
+# → Creates coordination expectations
+
+# Building Lane spawns @municipality-portal-specialist  
+# → Automatically notifies Reviewing lane for compliance check
+# → Sets up municipal process validation
+
+# Reviewing Lane spawns @swiss-compliance-specialist
+# → Automatically notifies Building lane for potential fixes
+# → Triggers compliance documentation update
+```
+
+### Manual Cross-Lane Communication
+
+#### Send Tasks Between Lanes
+```bash
+# Send specific tasks to other lanes
+claude-coordinate send-task "Implement Bruchtal feedback form" building
+claude-coordinate send-task "Validate eCH-0059 compliance" reviewing
+claude-coordinate send-task "Document architectural decision" planning
+```
+
+#### Check Lane Notifications
+```bash
+# See what other lanes have sent you
+claude-coordinate notifications
+
+# View recent cross-lane activity
+claude-coordinate activity
+
+# Check overall system status
+claude-coordinate status
+```
+
+### GPZH-Specific Workflows
+
+#### Demo Preparation (35-minute presentation)
+```bash
+# Automated workflow across all lanes
+./claude/gpzh-workflows.sh demo
+
+# Planning Lane: Creates timing plan and scenarios
+# Building Lane: Prepares forms, content, and features  
+# Reviewing Lane: Validates demo readiness and compliance
+```
+
+#### Swiss Compliance Validation
+```bash
+# Comprehensive compliance workflow
+./claude/gpzh-workflows.sh compliance
+
+# Planning Lane: Research eCH-0059 and CH-DSG requirements
+# Building Lane: Implement accessibility and data protection
+# Reviewing Lane: Validate compliance with automated testing
+```
+
+#### Municipal Forms Implementation  
+```bash
+# All 4 required municipal forms
+./claude/gpzh-workflows.sh forms
+
+# Planning Lane: Design form architecture and workflows
+# Building Lane: Implement feedback, damage reports, events, room booking
+# Reviewing Lane: Test forms and validate business processes
+```
+
+### Hook Integration Points
+
+#### Session Events
+- **session-start**: Auto-spawns lanes, initializes coordination
+- **user-prompt-submit**: Detects coordination needs, triggers handoffs
+- **task-complete**: Creates automatic handoffs to appropriate lanes
+- **agent-spawn**: Coordinates based on specialized agent requirements
+
+#### Workflow Triggers
+- Demo preparation keywords → Triggers multi-lane demo workflow
+- Swiss compliance mentions → Triggers compliance validation workflow  
+- Performance issues → Triggers optimization workflow across lanes
+- Municipal business → Triggers municipal forms workflow
+
+#### Learning Integration
+- Every task completion updates compounding knowledge
+- Cross-lane coordination patterns become automated
+- Failure learning triggers prevention rules across all lanes
+- Swiss compliance learnings become reusable patterns
 
 ## 🤖 MCP Tools Integration
 
@@ -360,182 +618,125 @@ ddev drush ai:status
 
 Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, Alpine.js, OpenAI GPT-4o, and Swiss compliance requirements.
 
-### 🎯 Parallel Work Streams for Maximum Efficiency
+### 🎯 Three-Lane Specialized Development
 
-#### Stream 1: Presentation & Project Management
-- **Lead Agent**: @drupal-technical-pm
-- **MCP Tools**: mcp__atlassian (Jira tracking), mcp__server-memory (demo coordination)
-- **Responsibilities**:
-  - 35-minute presentation coordination
-  - Demo segment preparation and timing
-  - Stakeholder communication and requirements management
-  - Project milestone tracking and team coordination
+#### Lane 1: Planning & Strategy (Left Terminal)
+- **Lead Agents**: @drupal-solution-architect + @drupal-technical-pm
+- **Role**: Strategic analysis, requirements research, architectural decisions
+- **Memory Focus**: Requirements, patterns, architectural decisions, demo scenarios
+- **Trigger**: Complex planning, architecture, demo preparation, ADR creation
 
-#### Stream 2: Municipal Portal Development  
-- **Lead Agent**: @municipality-portal-specialist
-- **Supporting**: @drupal-solution-architect
-- **MCP Tools**: mcp__mcp-server-drupal (Drupal operations), mcp__server-memory (requirements)
-- **Responsibilities**:
-  - Swiss municipal business process forms (Feedback, Infrastructure damage, Event registration, Room booking)
-  - Multi-site architecture (Bruchtal, Thalwil, Thalheim, Erlenbach)
-  - Citizen service workflows and approval processes
-  - Directory management (Vereine, Firmen, Gastgewerbe)
+#### Lane 2: Implementation & Building (Center Terminal)  
+- **Lead Agents**: @drupal-11-lead-developer + @municipality-portal-specialist
+- **Role**: Feature implementation, code development, testing
+- **Memory Focus**: Code patterns, testing strategies, component architecture, AI integration
+- **Trigger**: Feature development, coding tasks, testing, AI integration
 
-#### Stream 3: Swiss Compliance & Accessibility
-- **Lead Agent**: @swiss-compliance-specialist
-- **Supporting**: @german-market-compliance-specialist
-- **MCP Tools**: mcp__a11y-accessibility (WCAG testing), mcp__browser-tools (accessibility audits)
-- **Responsibilities**:
-  - eCH-0059 accessibility standards compliance
-  - CH-DSG data protection implementation
-  - Multilingual compliance (DE/FR/IT) with Swiss cultural standards
-  - Government service delivery standards
-
-#### Stream 4: AI Integration & Content Workflows
-- **Lead Agent**: @drupal-ai-integration-specialist
-- **Supporting**: @drupal-content-strategist
-- **MCP Tools**: mcp__mcp-server-drupal (AI modules), mcp__server-memory (AI workflows)
-- **Responsibilities**:
-  - OpenAI GPT-4o integration for content suggestions
-  - Automated alt text generation for accessibility
-  - AI-powered search functionality
-  - Content moderation and quality assessment
-
-#### Stream 5: Frontend Performance & Components
-- **Lead Agents**: @drupal-frontend-theming-specialist + @tailwind-v4-expert + @sdc-component-specialist
-- **Supporting**: @drupal-storybook-expert + @alpine-js-frontend-developer
-- **MCP Tools**: mcp__browser-tools (performance audits), mcp__puppeteer (UI testing)
-- **Responsibilities**:
-  - Core Web Vitals >90 performance optimization
-  - 25+ SDC component architecture
-  - Responsive municipality-specific theming (lake theme for Bruchtal)
-  - Vite 6.2.0 build optimization and Storybook documentation
-
-#### Stream 6: Testing & Quality Assurance
-- **Lead Agent**: @qa-testing-specialist
-- **Supporting**: @drupal-performance-specialist
-- **MCP Tools**: mcp__browser-tools (full audits), mcp__puppeteer (automation), mcp__a11y-accessibility
-- **Responsibilities**:
-  - Automated testing suite execution
-  - Visual regression testing with BackstopJS  
-  - Accessibility validation across all features
-  - Demo preparation validation and monitoring
+#### Lane 3: Quality & Compliance (Right Terminal)
+- **Lead Agents**: @swiss-compliance-specialist + @qa-testing-specialist
+- **Role**: Quality assurance, compliance validation, performance optimization
+- **Memory Focus**: Quality standards, Swiss compliance, performance, accessibility
+- **Trigger**: Code review, compliance checking, performance optimization, accessibility validation
 
 ### 🔄 Coordination Strategy
 
 #### Shared Knowledge Management
-- **Primary Tool**: mcp__server-memory for cross-team knowledge sharing
-- **Usage**: All agents document discoveries, test results, and requirements
-- **Benefit**: Prevents duplication and ensures team-wide awareness
+- **Primary Tool**: mcp__server-memory for cross-lane knowledge sharing
+- **Usage**: All lanes document discoveries, test results, and patterns
+- **Benefit**: Prevents duplication and ensures team-wide learning
 
 #### Parallel Execution Patterns
-- **Performance Testing**: Multiple agents can run browser audits simultaneously
-- **Component Development**: Frontend agents work in parallel on different component areas
+- **Performance Testing**: Multiple lanes can run browser audits simultaneously
+- **Component Development**: Lanes work in parallel on different aspects
 - **Compliance Validation**: Swiss compliance runs independently while features develop
 - **Content & AI**: AI integration develops parallel to business process implementation
 
 #### Handoff Protocols
-1. **Requirements** → @drupal-technical-pm captures → mcp__server-memory → All teams access
-2. **Feature Complete** → @qa-testing-specialist validates → Results to mcp__server-memory
-3. **Swiss Compliance** → @swiss-compliance-specialist validates → Documentation via mcp__server-memory
-4. **Demo Ready** → All teams confirm via mcp__server-memory coordination
+1. **Requirements** → Planning Lane captures → mcp__server-memory → All lanes access
+2. **Feature Complete** → Building Lane delivers → Reviewing Lane validates → Results to mcp__server-memory
+3. **Swiss Compliance** → Reviewing Lane validates → Documentation via mcp__server-memory
+4. **Demo Ready** → All lanes confirm via mcp__server-memory coordination
 
 ### 🚀 Recommended Workflows for Common Tasks
 
-#### Demo Preparation Workflow
+#### Demo Preparation Workflow (Hook-based)
 ```bash
-# Parallel execution across agents
-@drupal-technical-pm: "Create comprehensive demo checklist and timing validation"
-@municipality-portal-specialist: "Validate all 4 required forms are functional and demonstrable" 
-@qa-testing-specialist: "Run full test suite including performance and accessibility"
-@swiss-compliance-specialist: "Validate eCH compliance for presentation readiness"
+# Automated workflow coordination
+./claude/gpzh-workflows.sh demo
+
+# Hook system automatically:
+# 1. Creates 35-minute timing plan in Planning Lane
+# 2. Triggers form preparation in Building Lane  
+# 3. Initiates compliance validation in Reviewing Lane
+# 4. Coordinates handoffs between all lanes
 ```
 
-#### Performance Optimization Workflow  
+#### Performance Optimization Workflow (Hook-based)
 ```bash
-# Coordinated parallel optimization
-@drupal-frontend-theming-specialist: "Optimize theme CSS and build process"
-@tailwind-v4-expert: "Review and optimize Tailwind usage patterns"
-@sdc-component-specialist: "Audit component performance and optimization opportunities"
-@drupal-performance-specialist: "Monitor and validate Core Web Vitals improvements"
+# Automated performance workflow
+./claude/gpzh-workflows.sh performance
+
+# Hook system automatically:
+# 1. Analyzes bottlenecks in Planning Lane
+# 2. Implements optimizations in Building Lane
+# 3. Validates Core Web Vitals >90 in Reviewing Lane  
+# 4. Creates performance learning patterns
 ```
 
-#### Feature Implementation Workflow
+#### Feature Implementation Workflow (Hook-based)
 ```bash
-# Integrated feature development
-@municipality-portal-specialist: "Implement municipal business process workflow"
-@drupal-ai-integration-specialist: "Add AI content suggestions to workflow"
-@swiss-compliance-specialist: "Validate workflow meets eCH and CH-DSG requirements"
-@qa-testing-specialist: "Create automated tests for complete workflow"
+# Municipal forms workflow example
+./claude/gpzh-workflows.sh forms
+
+# Hook system automatically:
+# 1. Plans form architecture in Planning Lane
+# 2. Implements all 4 forms in Building Lane
+# 3. Validates compliance in Reviewing Lane
+# 4. Creates reusable municipal patterns
+
+# Or manual coordination:
+claude-coordinate send-task "Plan municipal workflow architecture" planning
+claude-coordinate send-task "Implement feedback form with Swiss compliance" building
+claude-coordinate send-task "Validate eCH-0059 compliance" reviewing
 ```
-
-### 🎛️ MCP Tool Assignments by Specialization
-
-#### Project Management & Coordination
-- **mcp__atlassian**: Task creation, sprint planning, demo milestone tracking
-- **mcp__server-memory**: Cross-team knowledge sharing and requirements documentation
-
-#### Drupal Development & Configuration  
-- **mcp__mcp-server-drupal**: Core Drupal operations, module management, multi-site configuration
-- **mcp__server-memory**: Technical documentation and configuration sharing
-
-#### Frontend & Performance
-- **mcp__browser-tools**: Performance audits, Core Web Vitals monitoring, responsive testing
-- **mcp__puppeteer**: UI automation, form testing, navigation validation
-- **mcp__server-memory**: Component documentation and performance metrics
-
-#### Swiss Compliance & Accessibility
-- **mcp__a11y-accessibility**: WCAG 2.1 AA testing, eCH-0059 validation, color contrast checking  
-- **mcp__browser-tools**: Accessibility audits and government standard compliance
-- **mcp__server-memory**: Compliance documentation and validation results
-
-#### AI Integration & Content
-- **mcp__mcp-server-drupal**: AI module configuration, content workflow setup
-- **mcp__server-memory**: AI prompt optimization and content strategy documentation
-
-#### Testing & Quality Assurance
-- **mcp__browser-tools**: Comprehensive audits (performance, accessibility, SEO, best practices)
-- **mcp__puppeteer**: Automated testing, demo scenario validation, form submission testing
-- **mcp__a11y-accessibility**: Specialized accessibility testing and validation
-- **mcp__server-memory**: Test results and quality metrics documentation
 
 ### 💡 How to Use Your Specialized Team
 
 #### For Municipal Portal Development
 ```bash
+# Planning Lane
+"@drupal-solution-architect: Design building permit workflow architecture"
+# Building Lane  
 "@municipality-portal-specialist: Implement building permit workflow with approval stages"
+# Reviewing Lane
 "@swiss-compliance-specialist: Ensure building permit workflow meets eCH standards"
 ```
 
 #### For AI Feature Implementation  
 ```bash
+# Planning Lane
+"@drupal-technical-pm: Plan GPT-4o integration for content suggestions"
+# Building Lane
 "@drupal-ai-integration-specialist: Add GPT-4o content suggestions to form creation"
-"@drupal-content-strategist: Optimize AI prompts for German municipal content"
-```
-
-#### For Performance Optimization
-```bash
-"@drupal-performance-specialist: Analyze and optimize Core Web Vitals for demo"
-"@tailwind-v4-expert: Review CSS for performance bottlenecks and optimization"
+# Reviewing Lane  
+"@qa-testing-specialist: Test AI features for reliability and performance"
 ```
 
 #### For Demo Preparation
 ```bash
-"@qa-testing-specialist: Run complete test suite and validate all demo scenarios"
+# Planning Lane
 "@drupal-technical-pm: Create presentation checklist and validate 35-minute timing"
-```
-
-#### For Swiss Compliance
-```bash
-"@swiss-compliance-specialist: Validate complete eCH-0059 accessibility compliance"
-"@german-market-compliance-specialist: Review all German content for Swiss standards"
+# Building Lane
+"@municipality-portal-specialist: Prepare demo content and scenarios for all 4 forms"
+# Reviewing Lane
+"@qa-testing-specialist: Run complete test suite and validate all demo scenarios"
 ```
 
 ### 🎯 Success Metrics & Coordination
 
 #### Technical Excellence
-- Core Web Vitals >90 (monitored via mcp__browser-tools)
-- WCAG 2.1 AA + eCH-0059 compliance (validated via mcp__a11y-accessibility)
+- Core Web Vitals >90 (monitored via Reviewing Lane)
+- WCAG 2.1 AA + eCH-0059 compliance (validated via Reviewing Lane)
 - Zero critical accessibility issues across all forms and workflows
 - Sub-2-second page load times for all demo scenarios
 
@@ -546,9 +747,20 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 - Swiss compliance documentation ready for stakeholder review
 
 #### Team Efficiency
-- Parallel work streams operating without blocking dependencies
+- Three-lane parallel work streams operating without blocking dependencies
 - Shared knowledge base updated in real-time via mcp__server-memory
 - Automated testing suite covering all demo scenarios
-- Coordinated handoffs between specialized agents
+- Coordinated handoffs between specialized lanes
 
-Your specialized AI development team is configured for maximum parallel efficiency while ensuring Swiss compliance, accessibility, and demo readiness. Each agent has clear responsibilities and appropriate MCP tools to deliver exceptional results for the GPZH Präqualifikation presentation.
+Your three-lane compounding engineering system is configured for maximum parallel efficiency while ensuring Swiss compliance, accessibility, and demo readiness. Each lane has clear responsibilities and learns from every interaction to compound knowledge and accelerate future development.
+
+---
+
+*This file evolves with every interaction. Each success and failure teaches the system, making tomorrow's development faster than today's.*
+- nutze tmux-cli für die zweiweiteren lanes. Du kannst damit weitere claude-code sessions starten.
+- Bevor du eine neue Aufgabe anfängst. Immer erst bei Context7 die Dokumentation dazu lesen!
+- Für alle Fragen rundum Claude Code optimierung bitte https://docs.anthropic.com/llms.txt im hinterkopf behalten. Wir brauchen hier sowieso ein Ordner .claude/llms/ diese Dateien immer berücksichten.
+- Immer im Drupal-Weg denken. Wir wollen einen Standard Nutzen und die vorhandenen Dinge, die uns Drupal gibt, verwenden. Keine wilden Ideen dort entwickeln.
+- wenn du Mock daten erzeugst, kannst du ruhig Herr der Ringe Referenzen hernehmen. "Theodin <Nachname>" kann also ruhig der Vorsitzende des Reitvereines sein ;).
+- Bitte dran denken, dass es nur eine Demo ist. Wir brauchen also      │
+│   keine krassen Dinge machen.

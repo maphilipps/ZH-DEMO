@@ -45,6 +45,7 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     emptyOutDir: false, // Keep compiled SCSS files
+    sourcemap: true, // Enable source maps for better debugging and testing
     rollupOptions: {
       input: [
         ...globSync('./src/js/adesso.js'),
@@ -53,7 +54,8 @@ export default defineConfig({
       output: {
         assetFileNames: 'assets/[name].[ext]',
         chunkFileNames: 'assets/[name].js',
-        entryFileNames: 'assets/[name].js'
+        entryFileNames: 'assets/[name].js',
+        sourcemap: true // Enable source maps in output
       }
     }
   },

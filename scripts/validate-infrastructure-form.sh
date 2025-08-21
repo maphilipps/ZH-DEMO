@@ -41,7 +41,7 @@ print_header
 
 # Check 1: Webform configuration file exists
 print_check "Checking webform configuration file..."
-if [ -f "web/modules/custom/zh_demo/config/install/webform.webform.infrastructure_damage_report.yml" ]; then
+if [ -f "config/install/webform.webform.infrastructure_damage_report.yml" ]; then
     print_success "Webform configuration file exists"
 else
     print_error "Webform configuration file missing"
@@ -59,7 +59,7 @@ fi
 
 # Check 3: Validate webform configuration structure
 print_check "Validating webform configuration structure..."
-config_file="web/modules/custom/zh_demo/config/install/webform.webform.infrastructure_damage_report.yml"
+config_file="config/install/webform.webform.infrastructure_damage_report.yml"
 
 if [ -f "$config_file" ]; then
     # Check for required fields
@@ -75,7 +75,7 @@ if [ -f "$config_file" ]; then
     done
     
     # Check for Swiss compliance patterns
-    if grep -q "pattern.*+41\|0" "$config_file"; then
+    if grep -q "pattern.*\\(\\+41\\|0\\)" "$config_file"; then
         print_success "Swiss phone number validation pattern found"
     else
         print_warning "Swiss phone number validation pattern may be missing"
@@ -110,7 +110,7 @@ fi
 
 # Check 4: Required directories exist
 print_check "Checking required directories..."
-required_dirs=("web/modules/custom/zh_demo" "scripts" "web/modules/custom/zh_demo/config" "web/modules/custom/zh_demo/config/install")
+required_dirs=("config" "scripts" "config/install")
 
 for dir in "${required_dirs[@]}"; do
     if [ -d "$dir" ]; then

@@ -71,12 +71,21 @@ print_success "Upload directories created"
 print_status "Importing Infrastructure Damage Report webform configuration..."
 
 # Check if the webform configuration file exists
-WEBFORM_CONFIG="web/modules/custom/zh_demo/config/install/webform.webform.infrastructure_damage_report.yml"
+WEBFORM_CONFIG="config/install/webform.webform.infrastructure_damage_report.yml"
 if [ -f "$WEBFORM_CONFIG" ]; then
     print_status "Webform configuration found, installing..."
     
-    # Install the webform using Drush config import
-    ddev drush config:set --input-format=yaml webform.webform.infrastructure_damage_report "$(cat $WEBFORM_CONFIG)"
+    # Create temporary config directory and copy the webform config
+    TEMP_CONFIG_DIR="/tmp/webform_import_$(date +%s)"
+    mkdir -p "$TEMP_CONFIG_DIR"
+    cp "$WEBFORM_CONFIG" "$TEMP_CONFIG_DIR/"
+    
+    # Import using Drush config import from directory
+    print_status "Importing webform configuration via Drush..."
+    ddev drush config:import --partial --source="$TEMP_CONFIG_DIR" -y
+    
+    # Clean up temporary directory
+    rm -rf "$TEMP_CONFIG_DIR"
     
     print_success "Infrastructure Damage Report webform created"
 else

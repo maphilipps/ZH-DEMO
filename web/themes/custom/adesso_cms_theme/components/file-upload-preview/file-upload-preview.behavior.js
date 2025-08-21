@@ -14,6 +14,9 @@
    */
   Drupal.behaviors.fileUploadPreview = {
     attach: function (context, settings) {
+      // Initialize Alpine.js component data
+      this.initializeAlpineComponent();
+      
       // Initialize Alpine.js components when DOM is ready
       if (typeof Alpine !== 'undefined') {
         // Ensure Alpine.js has access to our file upload components
@@ -27,6 +30,147 @@
             // Add drag and drop event listeners
             this.initializeDragAndDrop(component);
           }
+        });
+      }
+    },
+
+    /**
+     * Initialize Alpine.js component data for file upload preview.
+     */
+    initializeAlpineComponent: function() {
+      if (typeof Alpine !== 'undefined' && typeof document !== 'undefined') {
+        document.addEventListener('alpine:init', () => {
+          Alpine.data('fileUploadPreview', () => ({
+            files: [],
+            maxFiles: 3,
+            maxFileSize: '5 MB',
+            allowedTypes: ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'],
+            uploadUrl: '/upload',
+            validationError: '',
+
+            init() {
+              // Safely parse data attributes from the DOM element
+              const element = this.$el;
+              
+              try {
+                // Parse files from data attribute
+                const filesData = element.getAttribute('data-files');
+                if (filesData) {
+                  this.files = JSON.parse(filesData);
+                }
+              } catch (e) {
+                console.warn('Failed to parse files data:', e);
+                this.files = [];
+              }
+              
+              // Parse other data attributes safely
+              const maxFiles = element.getAttribute('data-max-files');
+              if (maxFiles && !isNaN(parseInt(maxFiles))) {
+                this.maxFiles = parseInt(maxFiles);
+              }
+              
+              const maxFileSize = element.getAttribute('data-max-file-size');
+              if (maxFileSize) {
+                this.maxFileSize = maxFileSize;
+              }
+              
+              try {
+                const allowedTypesData = element.getAttribute('data-allowed-types');
+                if (allowedTypesData) {
+                  this.allowedTypes = JSON.parse(allowedTypesData);
+                }
+              } catch (e) {
+                console.warn('Failed to parse allowed types data:', e);
+              }
+              
+              const uploadUrl = element.getAttribute('data-upload-url');
+              if (uploadUrl) {
+                this.uploadUrl = uploadUrl;
+              }
+            },
+
+            handleFileSelect(event) {
+              const selectedFiles = Array.from(event.target.files);
+              
+              // Validate file count
+              if (this.files.length + selectedFiles.length > this.maxFiles) {
+                this.validationError = `Maximal ${this.maxFiles} Dateien erlaubt. Sie haben bereits ${this.files.length} Datei(en) hochgeladen.`;
+                return;
+              }
+
+              selectedFiles.forEach(file => this.processFile(file));
+              event.target.value = ''; // Reset input
+            },
+
+            processFile(file) {
+              // Validate file type
+              const extension = file.name.split('.').pop().toLowerCase();
+              if (!this.allowedTypes.includes(extension)) {
+                this.validationError = `Dateityp .${extension} ist nicht erlaubt. Erlaubte Typen: ${this.allowedTypes.join(', ')}`;
+                return;
+              }
+
+              // Create file object
+              const fileObj = {
+                id: Date.now() + Math.random(),
+                name: file.name,
+                size: this.formatFileSize(file.size),
+                type: file.type,
+                preview_url: '',
+                upload_progress: 0,
+                status: 'uploading',
+                error_message: ''
+              };
+
+              // Generate preview for images
+              if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  fileObj.preview_url = e.target.result;
+                  this.$nextTick(() => this.$forceUpdate());
+                };
+                reader.readAsDataURL(file);
+              }
+
+              this.files.push(fileObj);
+              this.validationError = '';
+
+              // Simulate upload process
+              this.simulateUpload(fileObj);
+            },
+
+            simulateUpload(fileObj) {
+              let progress = 0;
+              const interval = setInterval(() => {
+                progress += Math.random() * 30;
+                if (progress >= 100) {
+                  progress = 100;
+                  fileObj.upload_progress = progress;
+                  fileObj.status = 'completed';
+                  clearInterval(interval);
+                } else {
+                  fileObj.upload_progress = Math.floor(progress);
+                }
+              }, 200);
+            },
+
+            removeFile(fileId) {
+              this.files = this.files.filter(file => file.id != fileId);
+              this.validationError = '';
+            },
+
+            cancelUpload(fileId) {
+              this.removeFile(fileId);
+            },
+
+            formatFileSize(bytes) {
+              if (bytes === 0) return '0 Bytes';
+              const k = 1024;
+              const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+              const i = Math.floor(Math.log(bytes) / Math.log(k));
+              return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+            }
+          }));
         });
       }
     },

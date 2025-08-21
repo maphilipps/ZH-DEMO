@@ -9,6 +9,10 @@
  */
 
 $sites = [
+  // Bruchtal - Demo-Gemeinde "Leben am See" (Primary demo)
+  'bruchtal.zh-demo.ddev.site' => 'bruchtal',
+  'bruchtal.adesso-cms.ddev.site' => 'bruchtal',
+  
   // Thalwil - Moderne Stadtgemeinde
   'thalwil.zh-demo.ddev.site' => 'thalwil',
   'thalwil.adesso-cms.ddev.site' => 'thalwil',

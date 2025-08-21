@@ -1,0 +1,72 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Damage Report Card
+description: Compact card layout for Infrastructure Damage Reports in dashboard list view
+props:
+  type: object
+  properties:
+    submission_id:
+      type: string
+      title: Submission ID
+      description: Unique identifier for the submission
+    title:
+      type: string
+      title: Title
+      description: Brief title or damage type
+    description:
+      type: string
+      title: Description
+      description: Damage description or location
+    status:
+      type: string
+      title: Status
+      description: Current workflow status
+      enum:
+        - neu
+        - in_bearbeitung
+        - erledigt
+        - abgelehnt
+    priority:
+      type: string
+      title: Priority
+      description: Damage priority level
+      enum:
+        - niedrig
+        - mittel
+        - hoch
+        - notfall
+    damage_type:
+      type: string
+      title: Damage Type
+      description: Type of infrastructure damage
+    location:
+      type: string
+      title: Location
+      description: Damage location or address
+    created_date:
+      type: string
+      title: Created Date
+      description: Submission date (DD.MM.YYYY format)
+    thumbnail_url:
+      type: string
+      title: Thumbnail URL
+      description: URL to damage photo thumbnail
+    thumbnail_alt:
+      type: string
+      title: Thumbnail Alt Text
+      description: Alt text for damage photo
+    assigned_to:
+      type: string
+      title: Assigned To
+      description: Municipal staff member assigned
+    action_url:
+      type: string
+      title: Action URL
+      description: Link to detailed view or edit page
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes
+  required:
+    - submission_id
+    - title
+    - status

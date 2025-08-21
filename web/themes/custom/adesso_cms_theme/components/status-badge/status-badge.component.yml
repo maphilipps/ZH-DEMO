@@ -1,0 +1,30 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Status Badge
+description: Displays form submission status with appropriate Swiss municipal styling
+props:
+  type: object
+  properties:
+    status:
+      type: string
+      title: Status
+      description: Current workflow status
+      enum:
+        - neu
+        - in_bearbeitung
+        - erledigt
+        - abgelehnt
+    size:
+      type: string
+      title: Size
+      description: Badge size variant
+      enum:
+        - sm
+        - md
+        - lg
+      default: md
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes
+  required:
+    - status

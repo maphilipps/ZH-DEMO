@@ -1,0 +1,162 @@
+{#
+/**
+ * @file
+ * Form Progress component template for Infrastructure Damage Report workflow.
+ *
+ * @param {string} current_status - Current workflow status (required) - neu|in_bearbeitung|erledigt|abgelehnt
+ * @param {boolean} show_labels - Display stage labels below progress bar
+ * @param {boolean} compact - Smaller progress bar for mobile/dashboard
+ * @param {string} modifier - Additional CSS classes
+ */
+#}
+{% set status = current_status|default('neu') %}
+{% set labels_visible = show_labels|default(true) %}
+{% set is_compact = compact|default(false) %}
+{% set progress_modifier = modifier|default('') %}
+
+{# Workflow stages configuration #}
+{% set stages = [
+  {
+    'key': 'neu',
+    'label': 'Neu',
+    'description': 'Meldung eingegangen'
+  },
+  {
+    'key': 'in_bearbeitung', 
+    'label': 'In Bearbeitung',
+    'description': 'Wird bearbeitet'
+  },
+  {
+    'key': 'erledigt',
+    'label': 'Erledigt',
+    'description': 'Abgeschlossen'
+  }
+] %}
+
+{# Determine current stage index #}
+{% set current_index = 0 %}
+{% set is_rejected = status == 'abgelehnt' %}
+
+{% for stage in stages %}
+  {% if stage.key == status %}
+    {% set current_index = loop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{# Progress calculation #}
+{% set total_stages = stages|length %}
+{% set progress_percent = ((current_index + 1) / total_stages * 100)|round %}
+
+{# Container classes #}
+{% set container_classes = [
+  'form-progress',
+  is_compact ? 'form-progress--compact' : '',
+  is_rejected ? 'form-progress--rejected' : '',
+  progress_modifier
+]|join(' ')|trim %}
+
+<div class="{{ container_classes }}" role="progressbar" aria-valuenow="{{ current_index + 1 }}" aria-valuemax="{{ total_stages }}" aria-label="Bearbeitungsfortschritt">
+  
+  {# Progress bar track #}
+  <div class="relative {{ is_compact ? 'mb-2' : 'mb-4' }}">
+    
+    {# Background track #}
+    <div class="w-full {{ is_compact ? 'h-2' : 'h-3' }} bg-gray-200 rounded-full overflow-hidden">
+      
+      {# Progress fill - different colors for rejected vs normal flow #}
+      {% if is_rejected %}
+        <div class="h-full bg-red-500 rounded-full transition-all duration-500" style="width: 33%"></div>
+      {% else %}
+        <div class="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full transition-all duration-500" style="width: {{ progress_percent }}%"></div>
+      {% endif %}
+    </div>
+    
+    {# Stage indicators #}
+    <div class="absolute top-0 flex justify-between w-full {{ is_compact ? '-mt-0.5' : '-mt-1' }}">
+      {% for stage in stages %}
+        {% set stage_index = loop.index0 %}
+        {% set is_completed = stage_index <= current_index and not is_rejected %}
+        {% set is_current = stage_index == current_index and not is_rejected %}
+        
+        <div class="flex flex-col items-center">
+          {# Stage indicator dot #}
+          <div class="
+            {{ is_compact ? 'w-4 h-4' : 'w-6 h-6' }} 
+            rounded-full border-2 flex items-center justify-center
+            {% if is_rejected and stage_index == 0 %}
+              bg-red-500 border-red-500 text-white
+            {% elseif is_completed %}
+              bg-green-500 border-green-500 text-white
+            {% elseif is_current %}
+              bg-blue-500 border-blue-500 text-white animate-pulse
+            {% else %}
+              bg-white border-gray-300 text-gray-400
+            {% endif %}
+          " aria-label="Stufe {{ stage_index + 1 }}: {{ stage.label }}">
+            
+            {# Icon for completed stages #}
+            {% if is_completed and not is_compact %}
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            {% elseif is_rejected and stage_index == 0 %}
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            {% else %}
+              <span class="text-xs font-bold">{{ stage_index + 1 }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  {# Stage labels #}
+  {% if labels_visible %}
+    <div class="flex justify-between {{ is_compact ? 'text-xs' : 'text-sm' }}">
+      {% for stage in stages %}
+        {% set stage_index = loop.index0 %}
+        {% set is_completed = stage_index <= current_index and not is_rejected %}
+        {% set is_current = stage_index == current_index and not is_rejected %}
+        
+        <div class="flex-1 text-center {{ stage_index > 0 ? 'ml-2' : '' }}">
+          <div class="
+            font-medium
+            {% if is_rejected and stage_index == 0 %}
+              text-red-600
+            {% elseif is_completed %}
+              text-green-600
+            {% elseif is_current %}
+              text-blue-600
+            {% else %}
+              text-gray-500
+            {% endif %}
+          ">
+            {{ stage.label }}
+          </div>
+          {% if not is_compact %}
+            <div class="text-xs text-gray-500 mt-1">
+              {{ stage.description }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  {# Rejected status indicator #}
+  {% if is_rejected %}
+    <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+      <div class="flex items-center">
+        <svg class="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+        <div>
+          <div class="text-sm font-medium text-red-800">Meldung abgelehnt</div>
+          <div class="text-xs text-red-600 mt-1">Die Bearbeitung wurde eingestellt</div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

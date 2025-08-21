@@ -1,0 +1,31 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Form Progress
+description: Visual progress bar for Infrastructure Damage Report workflow stages
+props:
+  type: object
+  properties:
+    current_status:
+      type: string
+      title: Current Status
+      description: Current workflow status
+      enum:
+        - neu
+        - in_bearbeitung
+        - erledigt
+        - abgelehnt
+    show_labels:
+      type: boolean
+      title: Show Labels
+      description: Display stage labels below progress bar
+      default: true
+    compact:
+      type: boolean
+      title: Compact Mode
+      description: Smaller progress bar for mobile/dashboard
+      default: false
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes
+  required:
+    - current_status

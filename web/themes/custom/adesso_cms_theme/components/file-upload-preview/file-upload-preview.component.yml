@@ -1,0 +1,80 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: File Upload Preview
+description: Enhanced file upload experience with previews for Infrastructure Damage Report forms
+props:
+  type: object
+  properties:
+    files:
+      type: array
+      title: Files
+      description: Array of uploaded files with metadata
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            title: File ID
+            description: Unique identifier for the file
+          name:
+            type: string
+            title: File Name
+            description: Original filename
+          size:
+            type: string
+            title: File Size
+            description: Human readable file size (e.g., "2.1 MB")
+          type:
+            type: string
+            title: File Type
+            description: MIME type or file category
+          preview_url:
+            type: string
+            title: Preview URL
+            description: URL for preview (images only)
+          upload_progress:
+            type: number
+            title: Upload Progress
+            description: Upload progress percentage (0-100)
+          status:
+            type: string
+            title: Status
+            description: Upload status
+            enum:
+              - uploading
+              - completed
+              - error
+              - validating
+          error_message:
+            type: string
+            title: Error Message
+            description: Error message if upload failed
+    max_files:
+      type: number
+      title: Maximum Files
+      description: Maximum number of files allowed
+      default: 3
+    max_file_size:
+      type: string
+      title: Maximum File Size
+      description: Maximum file size in human readable format
+      default: "5 MB"
+    allowed_types:
+      type: array
+      title: Allowed File Types
+      description: List of allowed file types/extensions
+      items:
+        type: string
+      default: ["jpg", "jpeg", "png", "pdf", "doc", "docx"]
+    upload_url:
+      type: string
+      title: Upload URL
+      description: Endpoint for file uploads
+    compact:
+      type: boolean
+      title: Compact Mode
+      description: Smaller layout for mobile devices
+      default: false
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes

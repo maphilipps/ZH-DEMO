@@ -1,13 +1,25 @@
-# Component Testing with Storybook + Vitest
+# GPZH Demo System - Comprehensive Test Infrastructure
 
-This directory contains comprehensive component tests for the adesso CMS theme components using Storybook's experimental addon test with Vitest.
+This directory contains the complete testing infrastructure for the Adesso CMS theme, specifically designed for the GPZH (Gemeindeportale Zürich) prequalification demonstration system.
 
-## Overview
+## 🎯 Testing Strategy Overview
 
-Our testing setup combines:
-- **Storybook**: Component documentation and isolation
-- **Vitest**: Fast unit testing framework with browser testing
-- **Playwright**: Browser automation for integration testing
+Our testing strategy ensures Swiss compliance, accessibility standards, and optimal performance for municipal portals:
+
+- **Unit Testing**: Component-level testing with Vitest and Storybook integration
+- **E2E Testing**: End-to-end browser testing with Playwright
+- **Visual Regression**: BackstopJS for UI consistency
+- **Accessibility**: eCH-0059 and WCAG 2.1 AA compliance testing
+- **Performance**: Core Web Vitals >90 target validation
+- **Swiss Compliance**: Municipal form workflows and data protection standards
+
+## 🛠️ Test Infrastructure Components
+
+### Core Testing Technologies
+- **Vitest**: Fast unit testing framework with browser testing capabilities
+- **Playwright**: Browser automation for E2E testing with Swiss compliance focus
+- **BackstopJS**: Visual regression testing for theme consistency
+- **Storybook**: Component documentation and isolation testing
 - **@storybook/experimental-addon-test**: Bridge between Storybook and Vitest
 
 ## Quick Start

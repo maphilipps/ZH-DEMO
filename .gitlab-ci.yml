@@ -147,6 +147,69 @@ audit dependencies:
     - composer audit --working-dir=$BUILD_DIR
   allow_failure: true
 
+# Frontend Testing for GPZH Demo System
+test frontend:
+  stage: test
+  image: node:18
+  needs:
+    - 'build test project'
+  before_script:
+    - cd $BUILD_DIR/web/themes/custom/adesso_cms_theme
+    - npm ci
+  script:
+    # Run unit tests with Vitest
+    - npm run test
+    # Run visual regression tests
+    - npm run visual:test || true  # Allow failure for visual tests
+  artifacts:
+    paths:
+      - $BUILD_DIR/web/themes/custom/adesso_cms_theme/coverage/
+      - $BUILD_DIR/web/themes/custom/adesso_cms_theme/tests/results/
+      - $BUILD_DIR/web/themes/custom/adesso_cms_theme/backstop_data/
+    when: always
+    expire_in: 1 week
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: $BUILD_DIR/web/themes/custom/adesso_cms_theme/coverage/cobertura-coverage.xml
+  allow_failure: true
+
+# E2E Testing with Playwright for Swiss compliance
+test e2e:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.49.1-focal
+  needs:
+    - 'build test project'
+  services:
+    - name: 'drupalci/mysql-8'
+      alias: database
+  variables:
+    DDEV_PRIMARY_URL: http://localhost/$_WEB_ROOT
+    SIMPLETEST_DB: mysql://drupaltestbot:drupaltestbotpw@database/mysql
+  before_script:
+    # Set up Apache to point to the project's document root
+    - ln -s -f $_PROJECT_ROOT/$_WEB_ROOT /var/www/html/$_WEB_ROOT
+    - chown -R www-data:www-data $_PROJECT_ROOT/$_WEB_ROOT
+    - service apache2 start
+    # Install theme dependencies
+    - cd $BUILD_DIR/web/themes/custom/adesso_cms_theme
+    - npm ci
+    - npx playwright install chromium
+  script:
+    # Install Drupal and prepare test environment
+    - cd $BUILD_DIR
+    - vendor/bin/drush site:install --db-url=$SIMPLETEST_DB --yes
+    # Run E2E tests for GPZH demo
+    - cd web/themes/custom/adesso_cms_theme
+    - npm run test:e2e
+  artifacts:
+    paths:
+      - $BUILD_DIR/web/themes/custom/adesso_cms_theme/test-results/
+      - $BUILD_DIR/web/themes/custom/adesso_cms_theme/playwright-report/
+    when: always
+    expire_in: 1 week
+  allow_failure: true
+
 #build and push docker image:
 #  stage: build
 #  image: docker:24

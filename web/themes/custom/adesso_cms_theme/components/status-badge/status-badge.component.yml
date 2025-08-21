@@ -8,11 +8,15 @@ props:
     status:
       type: string
       title: Status
-      description: 'The status value (draft, published, rejected)'
+      description: 'The status value (draft, published, rejected, neu, in_bearbeitung, erledigt, abgelehnt)'
       examples:
         - draft
         - published
         - rejected
+        - neu
+        - in_bearbeitung
+        - erledigt
+        - abgelehnt
     label:
       type: string
       title: Label
@@ -35,6 +39,12 @@ props:
       title: Show Icon
       description: 'Whether to display a status icon'
       default: true
+    modifier:
+      type: string
+      title: Modifier Classes
+      description: Additional CSS classes
+  required:
+    - status
 libraryOverrides:
   css:
     component:

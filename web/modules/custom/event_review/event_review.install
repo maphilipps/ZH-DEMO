@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the event_review module.
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ */
+function event_review_install() {
+  // Grant permissions to the content editor role.
+  $role = Role::load('editor');
+  if ($role) {
+    $role->grantPermission('access event review dashboard');
+    $role->grantPermission('use event_approval transition approve');
+    $role->grantPermission('use event_approval transition reject');
+    $role->save();
+  }
+
+  // Grant permissions to the administrator role.
+  $role = Role::load('administrator');
+  if ($role) {
+    $role->grantPermission('access event review dashboard');
+    $role->grantPermission('use event_approval transition approve');
+    $role->grantPermission('use event_approval transition reject');
+    $role->grantPermission('use event_approval transition resubmit');
+    $role->save();
+  }
+}

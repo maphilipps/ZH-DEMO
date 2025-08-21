@@ -980,3 +980,139 @@ function adesso_cms_theme_preprocess_input(&$variables) {
   $type = $variables['element']['#type'] ?? '';
   $variables['type'] = $type;
 }
+
+/**
+ * Implements hook_preprocess_views_view() for Event Review Dashboard.
+ */
+function adesso_cms_theme_preprocess_views_view__event_review_dashboard(&$variables) {
+  // Attach Event Review Dashboard libraries
+  $variables['#attached']['library'][] = 'adesso_cms_theme/event-review-dashboard';
+  
+  // Add Bruchtal-specific styling classes
+  $variables['attributes']['class'][] = 'event-review-dashboard';
+  $variables['attributes']['class'][] = 'bruchtal-theme';
+  
+  // Add skip link for accessibility
+  $variables['skip_link'] = [
+    '#markup' => '<a href="#event-review-content" class="event-review-skip-link">Springe zum Hauptinhalt des Event Review Dashboards</a>',
+  ];
+  
+  // Add CSRF token for AJAX operations
+  $variables['csrf_token'] = \Drupal::csrfToken()->get('event-review-dashboard');
+}
+
+/**
+ * Implements hook_preprocess_views_view_table() for Event Review Dashboard.
+ */
+function adesso_cms_theme_preprocess_views_view_table__event_review_dashboard(&$variables) {
+  // Add table-specific classes for Event Review Dashboard
+  $variables['attributes']['class'][] = 'event-review-table';
+  
+  // Add accessibility attributes
+  $variables['attributes']['role'] = 'table';
+  $variables['attributes']['aria-label'] = 'Veranstaltungen zur Überprüfung';
+  
+  // Enhance header accessibility
+  if (isset($variables['header'])) {
+    foreach ($variables['header'] as $key => &$header_cell) {
+      if ($key === 'views_bulk_operations_bulk_form') {
+        $header_cell['attributes']['scope'] = 'col';
+        $header_cell['attributes']['aria-label'] = 'Veranstaltungen auswählen';
+      } elseif ($key === 'title') {
+        $header_cell['attributes']['scope'] = 'col';
+        $header_cell['attributes']['aria-sort'] = 'none';
+      } elseif ($key === 'moderation_state') {
+        $header_cell['attributes']['scope'] = 'col';
+        $header_cell['attributes']['aria-label'] = 'Genehmigungsstatus';
+      } elseif ($key === 'operations') {
+        $header_cell['attributes']['scope'] = 'col';
+        $header_cell['attributes']['aria-label'] = 'Verfügbare Aktionen';
+      }
+    }
+  }
+  
+  // Enhance row accessibility
+  if (isset($variables['rows'])) {
+    foreach ($variables['rows'] as $row_index => &$row) {
+      $row['attributes']['class'][] = 'event-review-row';
+      $row['attributes']['role'] = 'row';
+      
+      if (isset($row['columns'])) {
+        foreach ($row['columns'] as $col_key => &$column) {
+          $column['attributes']['role'] = 'cell';
+          
+          // Add specific attributes for different column types
+          if ($col_key === 'views_bulk_operations_bulk_form') {
+            $column['attributes']['aria-label'] = 'Veranstaltung auswählen';
+          } elseif ($col_key === 'moderation_state') {
+            $column['attributes']['class'][] = 'status-column';
+          } elseif ($col_key === 'operations') {
+            $column['attributes']['class'][] = 'actions-column';
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_exposed_form() for Event Review Dashboard.
+ */
+function adesso_cms_theme_preprocess_views_exposed_form__event_review_dashboard(&$variables) {
+  // Add accessibility attributes to the exposed form
+  $variables['attributes']['role'] = 'search';
+  $variables['attributes']['aria-label'] = 'Filter für Veranstaltungen';
+  
+  // Add form-specific classes
+  $variables['attributes']['class'][] = 'event-review-filters';
+  $variables['attributes']['class'][] = 'bruchtal-theme';
+}
+
+/**
+ * Implements hook_preprocess_form() for VBO form.
+ */
+function adesso_cms_theme_preprocess_form__views_form_event_review_dashboard_page_1(&$variables) {
+  // Attach quick action buttons library
+  $variables['#attached']['library'][] = 'adesso_cms_theme/quick-action-buttons';
+  
+  // Add form-specific classes
+  $variables['attributes']['class'][] = 'event-review-vbo-form';
+  $variables['attributes']['class'][] = 'bruchtal-theme';
+  
+  // Add accessibility attributes
+  $variables['attributes']['role'] = 'form';
+  $variables['attributes']['aria-label'] = 'Bulk-Operationen für Veranstaltungen';
+}
+
+/**
+ * Implements hook_preprocess_field() for moderation state in Event Review Dashboard.
+ */
+function adesso_cms_theme_preprocess_field__moderation_state(&$variables) {
+  // Check if we're in the Event Review Dashboard context
+  $view = \Drupal::routeMatch()->getParameter('view_id');
+  if ($view === 'event_review_dashboard') {
+    // Attach status badge library
+    $variables['#attached']['library'][] = 'adesso_cms_theme/status-badge';
+    
+    // Add field-specific classes
+    $variables['attributes']['class'][] = 'event-review-status-field';
+  }
+}
+
+/**
+ * Implements hook_preprocess_field() for operations field in Event Review Dashboard.
+ */
+function adesso_cms_theme_preprocess_field__operations(&$variables) {
+  // Check if we're in the Event Review Dashboard context
+  $view = \Drupal::routeMatch()->getParameter('view_id');
+  if ($view === 'event_review_dashboard') {
+    // Attach quick action buttons library
+    $variables['#attached']['library'][] = 'adesso_cms_theme/quick-action-buttons';
+    
+    // Add field-specific classes
+    $variables['attributes']['class'][] = 'event-review-operations-field';
+    
+    // Add CSRF token for quick actions
+    $variables['csrf_token'] = \Drupal::csrfToken()->get('event-review-operations');
+  }
+}

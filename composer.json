@@ -133,6 +133,7 @@
     "drupal/twig_field_value": "^2.0",
     "drupal/twig_tweak": "^3.4",
     "drupal/viewfield": "^3.0@beta",
+    "drupal/views_bulk_operations": "^4.3",
     "drupal/webform": "6.3.0-beta4",
     "drupal/webp": "^1.0@RC",
     "drupal/yoast_seo": "^2.1",

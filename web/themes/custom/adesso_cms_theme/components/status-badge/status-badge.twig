@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Status Badge Component for Event Review Dashboard
+ * 
+ * Swiss-compliant status indicators with Bruchtal theme colors
+ *
+ * @param {string} status - Status value (draft|published|rejected)
+ * @param {string} label - Display label for the status
+ * @param {string} size - Badge size (sm|md|lg)
+ * @param {boolean} show_icon - Whether to show status icon
+ */
+#}
+
+{% set badge_status = status|default('draft') %}
+{% set badge_label = label|default('') %}
+{% set badge_size = size|default('md') %}
+{% set show_icon = show_icon|default(true) %}
+
+{# Status-specific configurations #}
+{% set status_config = {
+  'draft': {
+    'label': 'Entwurf',
+    'classes': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    'icon': 'clock',
+    'aria_label': 'Status: Ausstehende Überprüfung'
+  },
+  'published': {
+    'label': 'Genehmigt', 
+    'classes': 'bg-green-100 text-green-800 border-green-200',
+    'icon': 'check-circle',
+    'aria_label': 'Status: Genehmigt und veröffentlicht'
+  },
+  'rejected': {
+    'label': 'Abgelehnt',
+    'classes': 'bg-red-100 text-red-800 border-red-200', 
+    'icon': 'x-circle',
+    'aria_label': 'Status: Abgelehnt'
+  }
+} %}
+
+{# Size-specific classes #}
+{% set size_classes = {
+  'sm': 'text-xs px-2 py-1',
+  'md': 'text-sm px-2.5 py-1.5', 
+  'lg': 'text-base px-3 py-2'
+} %}
+
+{# Icon sizes based on badge size #}
+{% set icon_sizes = {
+  'sm': 'w-3 h-3',
+  'md': 'w-4 h-4',
+  'lg': 'w-5 h-5'
+} %}
+
+{# Get current status configuration #}
+{% set current_config = status_config[badge_status]|default(status_config.draft) %}
+{% set display_label = badge_label ?: current_config.label %}
+
+{# Build complete class string #}
+{% set badge_classes = [
+  'inline-flex',
+  'items-center',
+  'font-medium',
+  'rounded-full',
+  'border',
+  'transition-colors',
+  'duration-200',
+  current_config.classes,
+  size_classes[badge_size]|default(size_classes.md)
+]|join(' ')|trim %}
+
+{# Icon SVG definitions #}
+{% set icons = {
+  'clock': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>',
+  'check-circle': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>',
+  'x-circle': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
+} %}
+
+<span 
+  class="status-badge {{ badge_classes }}"
+  aria-label="{{ current_config.aria_label }}"
+  role="status"
+  data-status="{{ badge_status }}"
+>
+  {% if show_icon %}
+    <svg 
+      class="{{ icon_sizes[badge_size]|default(icon_sizes.md) }} mr-1.5 flex-shrink-0" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      {{ icons[current_config.icon]|raw }}
+    </svg>
+  {% endif %}
+  
+  <span class="flex-shrink-0">{{ display_label }}</span>
+</span>

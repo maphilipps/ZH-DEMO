@@ -111,3 +111,33 @@ swiper:
   dependencies:
     - core/drupal
     - core/once
+
+# Event Review Dashboard Theme Integration
+event-review-dashboard:
+  version: 1.x
+  css:
+    component:
+      src/css/event-review-accessibility.css: {}
+  js:
+    components/quick-action-buttons/quick-action-buttons.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - adesso_cms_theme/navigation  # For Alpine.js
+    - adesso_cms_theme/icons       # For Lucide icons
+
+# Status Badge Component
+status-badge:
+  version: 1.x
+  dependencies:
+    - core/drupal
+
+# Quick Action Buttons Component  
+quick-action-buttons:
+  version: 1.x
+  js:
+    components/quick-action-buttons/quick-action-buttons.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - adesso_cms_theme/navigation  # For Alpine.js modal functionality

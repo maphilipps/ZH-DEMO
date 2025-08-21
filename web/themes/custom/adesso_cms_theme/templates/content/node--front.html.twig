@@ -84,17 +84,21 @@
 
       {{ title_prefix }}
       {% if overwrite %}
-        {{ include('@components/h2.html.twig', {
-          content: overwrite,
+        {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: overwrite,
           as: 'h1',
-          attributes: create_attribute(),
-        }) }}
+          visual_level: '2'
+        }
+      }) }}
       {% else %}
-        {{ include('@components/h2.html.twig', {
-          content: label,
+        {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
           as: 'h1',
-          attributes: create_attribute(),
-        }) }}
+          visual_level: '2'
+        }
+      }) }}
       {% endif %}
       {{ title_suffix }}
     {% endset %}

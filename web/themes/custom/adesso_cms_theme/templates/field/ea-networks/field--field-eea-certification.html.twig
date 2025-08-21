@@ -37,6 +37,10 @@
  * @see template_preprocess_field()
  */
 #}
-{{ include('@components/h3.html.twig', {
-  content: label,
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}

@@ -37,7 +37,10 @@
  * @see template_preprocess_field()
  */
 #}
-{{ include('@components/h2.html.twig', {
-  'content': items.0.content,
-  attributes: create_attribute(),
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: items.0.content,
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}

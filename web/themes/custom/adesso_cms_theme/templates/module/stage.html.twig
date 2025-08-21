@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Stage module template - simplified placeholder.
+ *
+ * Variables:
+ * - picture: Image/media content
+ * - title: Title content
+ * - body: Body content
+ * - socialShare: Social share content
+ */
+#}
+<div class="stage-module">
+  {% if picture %}
+    <div class="stage-module__picture">
+      {{ picture }}
+    </div>
+  {% endif %}
+  
+  <div class="stage-module__content container mx-auto px-6 lg:px-8">
+    {% if title %}
+      <div class="stage-module__title">
+        {{ title }}
+      </div>
+    {% endif %}
+    
+    {% if body %}
+      <div class="stage-module__body">
+        {{ body }}
+      </div>
+    {% endif %}
+    
+    {% if socialShare %}
+      <div class="stage-module__social">
+        {{ socialShare }}
+      </div>
+    {% endif %}
+  </div>
+</div>

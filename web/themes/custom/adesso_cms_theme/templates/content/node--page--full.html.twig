@@ -96,10 +96,7 @@
       {{- url('entity.node.canonical', {'node': node.id}, {'absolute': true}) -}}
     {% endset %}
     {% set socialShare %}
-      {{ include('@eab_2024/misc/social-share-menu.html.twig', {
-        'uri': uri,
-        'node': node
-      }) }}
+      {# Social share menu placeholder - component not available #}
     {% endset %}
 
     {% set title %}
@@ -107,16 +104,20 @@
 
       {{ title_prefix }}
       {% if overwrite %}
-        {{ include('@components/h2.html.twig', {
-          content: overwrite,
-          as: 'h1',
-          attributes: create_attribute(),
+        {{ include('@adesso_cms_theme/heading/heading.twig', {
+          heading: {
+            title: overwrite,
+            as: 'h1',
+            attributes: create_attribute()
+          }
         }) }}
       {% else %}
-        {{ include('@components/h2.html.twig', {
-          content: label,
-          as: 'h1',
-          attributes: create_attribute(),
+        {{ include('@adesso_cms_theme/heading/heading.twig', {
+          heading: {
+            title: label,
+            as: 'h1',
+            attributes: create_attribute()
+          }
         }) }}
       {% endif %}
       {{ title_suffix }}

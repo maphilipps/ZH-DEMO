@@ -37,10 +37,13 @@
  * @see template_preprocess_field()
  */
 #}
-{{ include('@components/h3.html.twig', {
-  content: label,
-  attributes: create_attribute(),
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
 
 {# Groups items by type #}
 {% set energy = [] %}
@@ -54,10 +57,13 @@
 {% endfor %}
 
 {% if energy|length %}
-  {{ include('@components/h4.html.twig', {
-    content: 'Strom',
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Strom',
+          as: 'h4',
+          visual_level: '4'
+        }
+      }) }}
   <ul>
   {% for item in energy %}
     <li>
@@ -67,10 +73,13 @@
   </ul>
 {% endif %}
 {% if warmth|length %}
-  {{ include('@components/h4.html.twig', {
-    content: 'Wärme',
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Wärme',
+          as: 'h4',
+          visual_level: '4'
+        }
+      }) }}
   <ul>
   {% for item in warmth %}
     <li>

@@ -149,10 +149,13 @@
 {% set text_efficiency %}
   {% if content.field_em_social_infrastructure|render|trim is not empty
     or content.field_em_street_lighting|render|trim is not empty %}
-    {{ include('@components/h3.html.twig', {
-      content: 'Maßnahmen zur energetischen Modernisierung',
-      attributes: create_attribute(),
-    }) }}
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Maßnahmen zur energetischen Modernisierung',
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
     {{ content.field_em_social_infrastructure }}
     {{ content.field_em_street_lighting }}
   {% endif %}
@@ -186,10 +189,13 @@
     or content.field_bioenergy_region['#items'].value == '1'
     or content.field_100ee_region['#items'].value is not null
   %}
-    {{ include('@components/h3.html.twig', {
-      content: 'Kommune ist ein/e',
-      attributes: create_attribute(),
-    }) }}
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Kommune ist ein/e',
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
     {% if content.field_bioenergy_village['#items'].value == '1' %}
       {{ content.field_bioenergy_village }}
     {% endif %}
@@ -272,10 +278,12 @@
 
     {% set title %}
       {{ title_prefix }}
-      {{ include('@components/h2.html.twig', {
-        content: label,
-        as: 'h1',
-        attributes: create_attribute(),
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h1',
+          visual_level: '2'
+        }
       }) }}
       {{ title_suffix }}
     {% endset %}

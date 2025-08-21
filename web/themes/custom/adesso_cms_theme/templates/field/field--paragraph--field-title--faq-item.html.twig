@@ -40,7 +40,13 @@
 
 
   {%- for item in items -%}
-      {{ include('@components/headline/h4.html.twig', { 'content': item.content, 'as': 'span' }) }}
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: item.content,
+          as: 'span',
+          visual_level: '4'
+        }
+      }) }}
   {%- endfor -%}
 
 

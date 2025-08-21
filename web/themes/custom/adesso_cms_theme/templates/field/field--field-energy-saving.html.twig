@@ -8,11 +8,13 @@
  */
 #}
 {%  set title %}
-  {{ include('@components/h4.html.twig', {
-    level: 4,
-    attributes: create_attribute(),
-    content: label,
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h4',
+          visual_level: '4'
+        }
+      }) }}
 {% endset %}
 
 {% for item in items %}

@@ -14,7 +14,7 @@ Available variables:
 #}
 {% set item_classes = 'add-filter' %}
 
-{% if child in selected %}
+{% if selected is iterable and child in selected %}
     {% set item_classes = 'bg-blue-20 text-white remove-filter' %}
 
 {% endif %}

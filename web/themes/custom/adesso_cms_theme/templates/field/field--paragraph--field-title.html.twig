@@ -40,8 +40,7 @@
 
 
 {%- for item in items -%}
-    {{ include('@components/headline/h2.html.twig', {
-      'content': item.content,
-      'attributes': attributes.setAttribute('id', item.content['#text']|eab_clean_id)
-    }) }}
+    <h2{{ attributes.setAttribute('id', item.content['#text']|default('')|clean_id) }}>
+      {{ item.content }}
+    </h2>
 {%- endfor -%}

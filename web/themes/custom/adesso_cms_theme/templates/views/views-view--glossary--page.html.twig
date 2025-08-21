@@ -8,9 +8,13 @@
 {% endset %}
 
 {% set title %}
-    {% include '@components/headline/h1.html.twig' with {
-        content: view.title,
-    } %}
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: view.title,
+          as: 'h1',
+          visual_level: '1'
+        }
+    }) }}
 {% endset %}
 
 {% set share %}

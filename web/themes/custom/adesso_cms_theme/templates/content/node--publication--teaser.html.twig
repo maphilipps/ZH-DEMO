@@ -86,9 +86,12 @@
   <div class="w-3/4 p-2">
     {{ title_prefix }}
     {% if label and not page %}
-      {{ include('@components/h3.html.twig', {
-        content: label,
-        as: 'h2',
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h2',
+          visual_level: '3'
+        }
       }) }}
     {% endif %}
     {{ title_suffix }}

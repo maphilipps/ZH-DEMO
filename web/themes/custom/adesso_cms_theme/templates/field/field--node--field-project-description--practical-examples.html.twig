@@ -7,10 +7,13 @@
  */
 #}
 {% set headline %}
-  {{ include('@components/h2.html.twig', {
-    content: 'Projektbeschreibung',
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Projektbeschreibung',
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}
 {% endset %}
 {% set anchor %}
   {{ include('@components/anchor.html.twig', {text: 'projektbeschreibung'}) }}

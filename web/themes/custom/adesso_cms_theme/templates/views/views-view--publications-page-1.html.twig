@@ -40,9 +40,13 @@
 <div{{ attributes.addClass(classes) }}>
   {% set title %}
     {{ title_prefix }}
-    {{ include('@components/h1.html.twig', {
-      content: view.title,
-    }) }}
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: view.title,
+          as: 'h1',
+          visual_level: '1'
+        }
+      }) }}
     {{ title_suffix }}
   {% endset %}
 

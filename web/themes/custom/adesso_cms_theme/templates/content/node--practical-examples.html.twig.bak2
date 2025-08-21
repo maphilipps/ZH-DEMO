@@ -1,0 +1,332 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: (optional) The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: (optional) Themed creation date field.
+ * - author_name: (optional) Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ */
+#}
+{%
+  set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
+%}
+{% set quicklinks = [] %}
+    {% if content.field_effects[0]
+      or content.field_cost_saving[0]['#context'].value
+      or content.field_energy_saving[0]['#context'].value
+      or content.field_co2_saving[0]['#context'].value
+      or content.field_total_costs[0]['#context'].value
+    %}
+  {% set quicklinks = quicklinks|merge([{url: '#auf_einen_blick', title: 'Auf einen Blick'}]) %}
+{% endif %}
+{% if content.field_project_reason[0]['#text'] %}
+  {% set quicklinks = quicklinks|merge([{url: '#ausloeser', title: 'Auslöser'}]) %}
+{% endif %}
+{% if content.field_project_description[0]['#text'] %}
+  {% set quicklinks = quicklinks|merge([{url: '#projektbeschreibung', title: 'Projektbeschreibung'}]) %}
+{% endif %}
+
+{{ attach_library('adesso_cms_theme/node') }}
+<article {{ attributes.addClass(classes) }}>
+  {# Unset attributes to prevent it being used in included templates #}
+  {% set attributes = create_attribute() %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {% set socialShare %}
+      {% set uri %}
+        {{- url('entity.node.canonical', {'node': node.id}, {'absolute': true}) -}}
+      {% endset %}
+      {{ include('@eab_2024/misc/social-share-menu.html.twig', {
+        'uri': uri,
+        'node': node
+      }) }}
+    {% endset %}
+
+    {% set title %}
+      {{ title_prefix }}
+      {{ include('@components/h2.html.twig', {
+        content: content.field_promoter_company,
+        as: 'h1',
+        attributes: create_attribute(),
+      }) }}
+      {{ title_suffix }}
+    {% endset %}
+
+    {% set body %}
+      <p>
+        {{ content.field_project_title }}
+      </p>
+    {% endset %}
+
+    {% set appreciationMessage %}
+      <p class="font-semibold text-sm">
+        Diese Seite wurde von den Projektbeteiligten erstellt
+      </p>
+    {% endset %}
+
+    {{ include('@module/stage.html.twig', {
+      'picture': content.field_map,
+      'title': title,
+      'body': body,
+      'socialShare': socialShare,
+      'appreciationMessage': appreciationMessage
+    }) }}
+
+    {% if quicklinks %}
+      {{ include('@eab_2024/misc/menu-quicklinks.html.twig', {
+        quicklinks: quicklinks,
+      }) }}
+    {% endif %}
+
+    {% if content.field_effects[0]
+       or content.field_cost_saving[0]['#context'].value
+       or content.field_energy_saving[0]['#context'].value
+       or content.field_co2_saving[0]['#context'].value
+       or content.field_total_costs[0]['#context'].value
+    %}
+      <div class="fluid-container">
+        <div class="outer-grid">
+          <div class="col-span-full">
+            {{ include('@components/anchor.html.twig', {text: 'auf_einen_blick'}) }}
+            {{ include('@components/h2.html.twig', {
+              content: 'Auf einen Blick',
+              attributes: create_attribute(),
+            }) }}
+
+            {% set savings = [] %}
+            {% if content.field_cost_saving[0]['#context'].value %}
+              {% set savings = savings|merge([{
+                title: 'Kosteneinsparung',
+                text: content.field_cost_saving[0]['#context'].value
+              }]) %}
+            {% endif %}
+            {% if content.field_energy_saving[0]['#context'].value %}
+              {% set savings = savings|merge([{
+                title: 'Energieeinsparung',
+                text: content.field_energy_saving[0]['#context'].value
+              }]) %}
+            {% endif %}
+            {% if content.field_co2_saving[0]['#context'].value %}
+              {% set savings = savings|merge([{
+                title: 'CO₂-Einsparung',
+                text: content.field_co2_saving[0]['#context'].value
+              }]) %}
+            {% endif %}
+
+            {{ include('@module/auf-einen-blick.html.twig', {
+              left: {title: 'Nutzen', content: content.field_effects|filter((v, k) => k|first != '#'), },
+              rightTop: {title: 'Einsparung', content: savings, },
+              rightBottom: [costData, financialSupportData],
+            }) }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {{ content.field_project_reason }}
+
+    {{ content.field_quote }}
+
+    {{ content.field_project_description }}
+
+    {% if content.field_cost_saving[0]['#context'].value is not empty
+       or content.field_co2_saving[0]['#context'].value is not empty
+       or content.field_total_costs[0]['#context'].value is not empty
+       or content.field_energy_saving[0]['#context'].value is not empty
+    %}
+      {% set slides %}
+        {% if content.field_cost_saving[0] is not empty %}
+        {% set title %}
+          {{ include('@components/h3.html.twig', {
+            content: content.field_cost_saving[0]['#context'].value,
+            attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
+          }) }}
+        {% endset %}
+        {{ include('@components/teaser-data-facts.html.twig', {
+          title: title,
+          description: 'Kosteneinsparung',
+        }) }}
+        {% endif %}
+        {% if content.field_energy_saving[0] is not empty %}
+          {% set title %}
+            {{ include('@components/h3.html.twig', {
+              content: content.field_energy_saving[0]['#context'].value,
+              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
+            }) }}
+          {% endset %}
+          {{ include('@components/teaser-data-facts.html.twig', {
+            title: title,
+            description: 'Energieeinsparung',
+          }) }}
+        {% endif %}
+        {% if content.field_co2_saving[0] is not empty %}
+          {% set title %}
+            {{ include('@components/h3.html.twig', {
+              content: content.field_co2_saving[0]['#context'].value,
+              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
+            }) }}
+          {% endset %}
+          {{ include('@components/teaser-data-facts.html.twig', {
+            title: title,
+            description: 'CO₂-Einsparung',
+          }) }}
+        {% endif %}
+        {% if content.field_total_costs[0] is not empty %}
+          {% set title %}
+            {{ include('@components/h3.html.twig', {
+              content: content.field_total_costs[0]['#context'].value,
+              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
+            }) }}
+          {% endset %}
+          {{ include('@components/teaser-data-facts.html.twig', {
+            title: title,
+            description: 'Gesamtkosten',
+          }) }}
+        {% endif %}
+      {% endset %}
+      <div{{ create_attribute().addClass(['relative', 'data-[theme=blue-light]:bg-blue-light', 'data-[theme=blue-dark]:bg-blue-70', 'transition', 'duration-300', 'group', 'overflow-hidden']).setAttribute('data-theme', 'blue-light').setAttribute('data-eab-paragraph-type', 'data-facts-slider') }}>
+        <div class="fluid-container">
+          <div class="outer-grid">
+            {{ include('@module/slider-data-facts.html.twig', {
+              title: '',
+              description: '',
+              slides: slides,
+              images: '',
+              classes: 'bg-blue-light',
+            }) }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if content.field_tips[0] or content.field_stumbling_blocks[0] %}
+      <div class="fluid-container">
+        <div class="outer-grid !pb-0">
+          <div class="size-lg">
+            {{ include('@components/h2.html.twig', {
+              content: 'Was haben wir daraus gelernt',
+              attributes: create_attribute(),
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="practical-examples-space">
+        {{ content.field_tips }}
+        {{ content.field_stumbling_blocks }}
+      </div>
+    {% endif %}
+
+    {% if content.field_gallery[0] is defined and content.field_gallery[0] is not empty %}
+      <article class="my-12">
+        {{ include('@module/slider-image-carousel.html.twig', {
+          'slides': content.field_gallery,
+        }) }}
+      </article>
+    {% endif %}
+
+    <div class="practical-examples-space">
+      {% if content.field_award[0] is defined and content.field_award[0] is not empty %}
+        <div class="fluid-container">
+          <div class="outer-grid">
+            <div class="size-lg">
+              {{ include('@components/h2.html.twig', {
+                content: 'Auszeichnungen',
+                attributes: create_attribute(),
+              }) }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if content.field_award['#title'] is defined %}
+        <div class="!pb-10">
+          {{ content.field_award }}
+        </div>
+      {% endif %}
+
+      {{ content.field_project_measure }}
+
+      {% if content.field_show_contact %}
+        {{ content.field_contact }}
+      {% endif %}
+    </div>
+
+    <div class="practical-examples-space fluid-container">
+      <div class="outer-grid">
+        <div class="size-lg">
+          <p class="text-align-right"><i>Beispiel gemeldet: {{ node.getCreatedTime() | date('m/Y') }}</i></p>
+          <p class="text-align-right"><i>Zuletzt aktualisiert: {{ node.getRevisionCreationTime() | date('m/Y') }}</i></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>

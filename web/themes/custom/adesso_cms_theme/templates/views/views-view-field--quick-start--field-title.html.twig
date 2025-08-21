@@ -22,7 +22,7 @@
 #}
 {% if output %}
   {{ include('@components/menu-item-quicklink.html.twig', {
-    url: '#' ~ output|eab_clean_id,
+    url: '#' ~ output|clean_id,
     title: output,
     isJumpMark: true,
   }) }}

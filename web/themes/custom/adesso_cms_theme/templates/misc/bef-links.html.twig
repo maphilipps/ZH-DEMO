@@ -16,7 +16,7 @@
   {% set current_nesting_level = 0 %}
   {% for child in children %}
     {% set item = attribute(element, child) %}
-    {% if child in selected %}
+    {% if selected is iterable and child in selected %}
       {% set new_nesting_level = attribute(depth, child) ?? 0 %}
     {% endif %}
     {% set new_nesting_level = attribute(depth, child) ?? 0%}

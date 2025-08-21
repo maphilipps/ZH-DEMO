@@ -6,10 +6,13 @@
 {% endset %}
 
 {% set headline %}
-  {{ include('@components/h2.html.twig', {
-    content: headline,
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: headline,
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}
 {% endset %}
 
 {% set text_content %}

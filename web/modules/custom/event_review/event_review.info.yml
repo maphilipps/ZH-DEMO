@@ -1,0 +1,10 @@
+name: 'Event Review'
+type: module
+description: 'Provides event review dashboard and bulk operations for event approval/rejection.'
+package: 'ZH Demo'
+core_version_requirement: ^11
+dependencies:
+  - drupal:node
+  - drupal:user
+  - content_moderation:content_moderation
+  - views_bulk_operations:views_bulk_operations

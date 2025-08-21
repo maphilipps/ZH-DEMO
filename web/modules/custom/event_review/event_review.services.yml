@@ -1,0 +1,8 @@
+services:
+  event_review.municipal_rules:
+    class: Drupal\event_review\Service\MunicipalEventRulesService
+    arguments: ['@entity_type.manager', '@config.factory', '@logger.factory']
+  
+  event_review.swiss_compliance:
+    class: Drupal\event_review\Service\SwissEventComplianceService
+    arguments: ['@config.factory', '@logger.factory']

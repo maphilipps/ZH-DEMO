@@ -1,0 +1,168 @@
+{#
+/**
+ * @file
+ * Event Review Dashboard Main View Template
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the view wrapper
+ * - css_name: CSS class name for the view
+ * - css_class: CSS class string for the view
+ * - view_array: The renderable array that was passed to the theme function
+ * - title: View title
+ * - header: View header content
+ * - exposed: Exposed form content
+ * - more: More link content
+ * - footer: View footer content
+ * - empty: Empty result content
+ * - rows: View rows (table content)
+ * - pager: Pager content
+ * - attachment_before: Attachment before content
+ * - attachment_after: Attachment after content
+ */
+#}
+
+<div{{ attributes.addClass('event-review-dashboard', 'bg-white', 'rounded-lg', 'shadow-sm', 'border', 'border-gray-200') }}>
+  
+  {# Dashboard Header #}
+  <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">
+    <div class="flex items-center justify-between">
+      <div>
+        {% if title %}
+          <h1 class="text-2xl font-bold text-gray-900 flex items-center">
+            <svg class="w-6 h-6 mr-3 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            {{ title }}
+          </h1>
+        {% endif %}
+        <p class="mt-1 text-sm text-gray-600">
+          Verwalten Sie eingereichte Veranstaltungen und treffen Sie Genehmigungsentscheidungen
+        </p>
+      </div>
+      
+      {# Quick stats (if needed) #}
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="text-center">
+          <div class="text-lg font-semibold text-red-600" id="draft-count">-</div>
+          <div class="text-xs text-gray-500">Ausstehend</div>
+        </div>
+        <div class="text-center">
+          <div class="text-lg font-semibold text-green-600" id="approved-count">-</div>
+          <div class="text-xs text-gray-500">Genehmigt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Exposed Filters #}
+  {% if exposed %}
+    <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+      <div class="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center">
+          <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707v4.586a1 1 0 01-.293.707L9 19.414A1 1 0 018 18.707V14.586a1 1 0 00-.293-.707L1.293 7.293A1 1 0 011 6.586V4z"></path>
+          </svg>
+          Filter
+        </h3>
+        {{ exposed }}
+      </div>
+    </div>
+  {% endif %}
+
+  {# Header content #}
+  {% if header %}
+    <div class="px-6 py-4">
+      {{ header }}
+    </div>
+  {% endif %}
+
+  {# Before attachment #}
+  {% if attachment_before %}
+    <div class="px-6 py-2">
+      {{ attachment_before }}
+    </div>
+  {% endif %}
+
+  {# Main content area #}
+  <div class="event-review-content">
+    {% if rows %}
+      <div class="overflow-hidden">
+        {{ rows }}
+      </div>
+    {% elseif empty %}
+      <div class="px-6 py-12 text-center">
+        <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <div class="text-gray-500">
+          {{ empty }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {# After attachment #}
+  {% if attachment_after %}
+    <div class="px-6 py-2">
+      {{ attachment_after }}
+    </div>
+  {% endif %}
+
+  {# Pager #}
+  {% if pager %}
+    <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+      {{ pager }}
+    </div>
+  {% endif %}
+
+  {# Footer content #}
+  {% if footer %}
+    <div class="px-6 py-4 border-t border-gray-200">
+      {{ footer }}
+    </div>
+  {% endif %}
+
+  {# More link #}
+  {% if more %}
+    <div class="px-6 py-4 text-center border-t border-gray-200">
+      {{ more }}
+    </div>
+  {% endif %}
+
+</div>
+
+{# JavaScript for dynamic stats update #}
+<script>
+(function() {
+  // Update stats counters based on visible table rows
+  function updateStats() {
+    const tableRows = document.querySelectorAll('.event-review-dashboard tbody tr');
+    let draftCount = 0;
+    let approvedCount = 0;
+    
+    tableRows.forEach(row => {
+      const statusBadge = row.querySelector('.status-badge');
+      if (statusBadge) {
+        const status = statusBadge.textContent.trim().toLowerCase();
+        if (status.includes('entwurf') || status.includes('draft')) {
+          draftCount++;
+        } else if (status.includes('genehmigt') || status.includes('published')) {
+          approvedCount++;
+        }
+      }
+    });
+    
+    const draftElement = document.getElementById('draft-count');
+    const approvedElement = document.getElementById('approved-count');
+    
+    if (draftElement) draftElement.textContent = draftCount;
+    if (approvedElement) approvedElement.textContent = approvedCount;
+  }
+  
+  // Update stats on page load and after AJAX operations
+  document.addEventListener('DOMContentLoaded', updateStats);
+  
+  // Listen for AJAX completion (Views AJAX updates)
+  document.addEventListener('viewsAjaxComplete', updateStats);
+})();
+</script>

@@ -1,0 +1,15 @@
+access event review dashboard:
+  title: 'Access Event Review Dashboard'
+  description: 'Allows access to the event review dashboard at /admin/content/events/review'
+
+use event_approval transition approve:
+  title: 'Use Event Approval: Approve Transition'
+  description: 'Allows approving events in the event approval workflow'
+
+use event_approval transition reject:
+  title: 'Use Event Approval: Reject Transition'  
+  description: 'Allows rejecting events in the event approval workflow'
+
+use event_approval transition resubmit:
+  title: 'Use Event Approval: Resubmit Transition'
+  description: 'Allows resubmitting rejected events in the event approval workflow'

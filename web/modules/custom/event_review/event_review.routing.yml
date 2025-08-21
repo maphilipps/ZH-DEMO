@@ -1,0 +1,15 @@
+event_review.approve_confirm:
+  path: '/admin/content/events/approve-confirm'
+  defaults:
+    _form: '\Drupal\views_bulk_operations\Form\ConfirmAction'
+    _title: 'Veranstaltungen genehmigen'
+  requirements:
+    _permission: 'use event_approval transition approve'
+
+event_review.reject_confirm:
+  path: '/admin/content/events/reject-confirm'
+  defaults:
+    _form: '\Drupal\views_bulk_operations\Form\ConfigureAction'
+    _title: 'Veranstaltungen ablehnen'
+  requirements:
+    _permission: 'use event_approval transition reject'

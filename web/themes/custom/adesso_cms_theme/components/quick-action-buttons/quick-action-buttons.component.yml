@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.json
+name: Quick Action Buttons
+status: stable
+description: 'Quick action buttons for Event Review Dashboard (Approve/Reject)'
+props:
+  type: object
+  properties:
+    event_id:
+      type: [string, number]
+      title: Event ID
+      description: 'The Event node ID'
+      examples:
+        - "123"
+        - 456
+    current_status:
+      type: string
+      title: Current Status
+      description: 'Current moderation state of the event'
+      default: draft
+      enum:
+        - draft
+        - published
+        - rejected
+    show_approve:
+      type: boolean
+      title: Show Approve Button
+      description: 'Whether to show the approve button'
+      default: true
+    show_reject:
+      type: boolean
+      title: Show Reject Button
+      description: 'Whether to show the reject button'
+      default: true
+    compact:
+      type: boolean
+      title: Compact Mode
+      description: 'Use compact button layout for mobile'
+      default: false
+    csrf_token:
+      type: string
+      title: CSRF Token
+      description: 'CSRF token for form security'
+libraryOverrides:
+  css:
+    component:
+      quick-action-buttons.css: {}
+  js:
+    quick-action-buttons.js: {}

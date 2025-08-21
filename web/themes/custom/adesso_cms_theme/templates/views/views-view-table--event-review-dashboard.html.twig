@@ -1,0 +1,248 @@
+{#
+/**
+ * @file
+ * Event Review Dashboard Table Template
+ * Swiss-compliant responsive table for municipal editors
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the table
+ * - responsive: Boolean indicating if the table should be responsive
+ * - sticky: Boolean indicating if the table header should be sticky
+ * - header: Table header cells
+ * - rows: Table rows
+ * - empty: Empty result content
+ * - caption: Table caption
+ * - summary: Table summary
+ * - description: Table description
+ */
+#}
+
+{% if header or rows %}
+  
+  {# Mobile Card View (< md breakpoint) #}
+  <div class="md:hidden">
+    {% if rows %}
+      <div class="space-y-4 p-4">
+        {% for row in rows %}
+          <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+            {% for key, cell in row.columns %}
+              {% if key == 'views_bulk_operations_bulk_form' %}
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center">
+                    {{ cell.content }}
+                  </div>
+                  {% if row.columns.operations %}
+                    <div class="flex space-x-2">
+                      {{ row.columns.operations.content }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% elseif key == 'title' %}
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  {{ cell.content }}
+                </h3>
+              {% elseif key == 'moderation_state' %}
+                <div class="mb-2">
+                  <span class="text-sm font-medium text-gray-500">Status:</span>
+                  {{ cell.content }}
+                </div>
+              {% elseif key == 'name' %}
+                <div class="mb-2">
+                  <span class="text-sm font-medium text-gray-500">Eingereicht von:</span>
+                  <span class="text-sm text-gray-900">{{ cell.content }}</span>
+                </div>
+              {% elseif key == 'created' %}
+                <div class="mb-2">
+                  <span class="text-sm font-medium text-gray-500">Eingereicht am:</span>
+                  <span class="text-sm text-gray-900">{{ cell.content }}</span>
+                </div>
+              {% elseif key != 'operations' %}
+                <div class="mb-1">
+                  <span class="text-sm font-medium text-gray-500">{{ header[key].content }}:</span>
+                  <span class="text-sm text-gray-900">{{ cell.content }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  {# Desktop Table View (>= md breakpoint) #}
+  <div class="hidden md:block overflow-hidden">
+    <div class="overflow-x-auto">
+      <table{{ attributes.addClass('w-full', 'bg-white', 'divide-y', 'divide-gray-200') }}>
+        
+        {# Table Caption for Accessibility #}
+        {% if caption %}
+          <caption class="sr-only">{{ caption }}</caption>
+        {% endif %}
+        
+        {# Table Summary for Screen Readers #}
+        {% if summary %}
+          <div class="sr-only">{{ summary }}</div>
+        {% endif %}
+        
+        {# Table Description #}
+        {% if description %}
+          <div class="sr-only">{{ description }}</div>
+        {% endif %}
+
+        {# Table Header #}
+        {% if header %}
+          <thead class="bg-gray-50{% if sticky %} sticky top-0 z-10{% endif %}">
+            <tr>
+              {% for key, column in header %}
+                {% set header_classes = [
+                  'px-6',
+                  'py-3',
+                  'text-left',
+                  'text-xs',
+                  'font-medium',
+                  'text-gray-500',
+                  'uppercase',
+                  'tracking-wider',
+                  'border-b',
+                  'border-gray-200'
+                ] %}
+                
+                {# Special styling for different columns #}
+                {% if key == 'views_bulk_operations_bulk_form' %}
+                  {% set header_classes = header_classes|merge(['w-12']) %}
+                {% elseif key == 'title' %}
+                  {% set header_classes = header_classes|merge(['min-w-0', 'flex-1']) %}
+                {% elseif key == 'moderation_state' %}
+                  {% set header_classes = header_classes|merge(['w-32']) %}
+                {% elseif key == 'created' %}
+                  {% set header_classes = header_classes|merge(['w-40']) %}
+                {% elseif key == 'operations' %}
+                  {% set header_classes = header_classes|merge(['w-24']) %}
+                {% endif %}
+                
+                <th{{ column.attributes.addClass(header_classes) }}>
+                  {% if column.sort_indicator %}
+                    <div class="flex items-center space-x-1">
+                      <span>{{ column.content }}</span>
+                      <span class="flex-shrink-0">{{ column.sort_indicator }}</span>
+                    </div>
+                  {% else %}
+                    {{ column.content }}
+                  {% endif %}
+                </th>
+              {% endfor %}
+            </tr>
+          </thead>
+        {% endif %}
+
+        {# Table Body #}
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for row in rows %}
+            <tr class="hover:bg-gray-50 transition-colors {% if loop.index is odd %}bg-white{% else %}bg-gray-50{% endif %}">
+              {% for key, cell in row.columns %}
+                {% set cell_classes = [
+                  'px-6',
+                  'py-4',
+                  'whitespace-nowrap'
+                ] %}
+                
+                {# Column-specific styling #}
+                {% if key == 'views_bulk_operations_bulk_form' %}
+                  {% set cell_classes = cell_classes|merge(['w-12']) %}
+                {% elseif key == 'title' %}
+                  {% set cell_classes = cell_classes|merge(['min-w-0', 'flex-1']) %}
+                  {% set cell_classes = cell_classes|merge(['whitespace-normal']) %}
+                {% elseif key == 'moderation_state' %}
+                  {% set cell_classes = cell_classes|merge(['w-32']) %}
+                {% elseif key == 'created' %}
+                  {% set cell_classes = cell_classes|merge(['w-40', 'text-sm', 'text-gray-500']) %}
+                {% elseif key == 'name' %}
+                  {% set cell_classes = cell_classes|merge(['text-sm', 'text-gray-900']) %}
+                {% elseif key == 'operations' %}
+                  {% set cell_classes = cell_classes|merge(['w-24', 'text-right']) %}
+                {% endif %}
+                
+                <td{{ cell.attributes.addClass(cell_classes) }}>
+                  {% if key == 'title' %}
+                    <div class="text-sm font-medium text-gray-900">
+                      {{ cell.content }}
+                    </div>
+                  {% elseif key == 'moderation_state' %}
+                    <div class="status-badge">
+                      {{ cell.content }}
+                    </div>
+                  {% elseif key == 'operations' %}
+                    <div class="flex items-center justify-end space-x-2">
+                      {{ cell.content }}
+                    </div>
+                  {% else %}
+                    {{ cell.content }}
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% elseif empty %}
+  <div class="text-center py-12">
+    <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+    </svg>
+    <div class="text-gray-500">
+      {{ empty }}
+    </div>
+  </div>
+{% endif %}
+
+{# Custom CSS for enhanced table styling #}
+<style>
+  /* Enhanced focus states for accessibility */
+  .event-review-dashboard table th,
+  .event-review-dashboard table td {
+    position: relative;
+  }
+  
+  .event-review-dashboard table th:focus,
+  .event-review-dashboard table td:focus {
+    outline: 2px solid #dc2626;
+    outline-offset: -2px;
+    z-index: 1;
+  }
+  
+  /* Smooth hover transitions */
+  .event-review-dashboard tbody tr {
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  /* Mobile card hover effect */
+  @media (max-width: 767px) {
+    .event-review-dashboard .bg-white:hover {
+      transform: translateY(-1px);
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .event-review-dashboard table {
+      border: 2px solid;
+    }
+    
+    .event-review-dashboard th,
+    .event-review-dashboard td {
+      border: 1px solid;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .event-review-dashboard * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>

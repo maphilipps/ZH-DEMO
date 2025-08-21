@@ -75,7 +75,7 @@ if [ -f "$config_file" ]; then
     done
     
     # Check for Swiss compliance patterns
-    if grep -q "pattern.*\\(\\+41\\|0\\)" "$config_file"; then
+    if grep -E -q "pattern:.*\\^\\(\\\\\\+41\\|0\\)\\[0-9\\]\\{9\\}" "$config_file"; then
         print_success "Swiss phone number validation pattern found"
     else
         print_warning "Swiss phone number validation pattern may be missing"

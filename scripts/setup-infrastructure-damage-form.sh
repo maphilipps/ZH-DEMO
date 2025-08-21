@@ -6,6 +6,13 @@
 
 set -e
 
+# Input validation - script takes no parameters
+if [ $# -gt 0 ]; then
+    echo "Usage: $0 (no parameters required)"
+    echo "This script sets up the Infrastructure Damage Report Form for GPZH Demo"
+    exit 1
+fi
+
 echo "🏗️  Setting up Infrastructure Damage Report Form for GPZH Demo"
 echo "================================================================"
 

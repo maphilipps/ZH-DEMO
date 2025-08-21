@@ -34,10 +34,10 @@
 
 <div class="{{ container_classes }}" 
   x-data="fileUploadPreview()" 
-  data-files="{{ upload_files|json_encode|escape('html_attr') }}" 
+  data-files="{{ upload_files|json_encode|escape('js') }}" 
   data-max-files="{{ max_uploads }}" 
   data-max-file-size="{{ max_size|escape('html_attr') }}" 
-  data-allowed-types="{{ allowed_extensions|json_encode|escape('html_attr') }}" 
+  data-allowed-types="{{ allowed_extensions|json_encode|escape('js') }}" 
   data-upload-url="{{ upload_endpoint|escape('html_attr') }}">
   
   {# Upload area #}

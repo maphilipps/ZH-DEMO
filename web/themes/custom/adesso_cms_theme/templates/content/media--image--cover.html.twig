@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ * - copyright: Copyright information. field_copyright if exists, as fallaback the media name.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set attributes = attributes.addClass('w-full', 'h-full') %}
+{% if content %}
+  {{ include('@components/picture-with-caption.html.twig', {
+    'picture': content.field_media_image,
+    'caption': copyright,
+    'attributes': attributes,
+    'alignment': 'right'
+  }) }}
+{% endif %}
+
+

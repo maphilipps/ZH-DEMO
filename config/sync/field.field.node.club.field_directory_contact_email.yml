@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_contact_email
+    - node.type.club
+id: node.club.field_directory_contact_email
+field_name: field_directory_contact_email
+entity_type: node
+bundle: club
+label: 'Kontaktperson E-Mail'
+description: 'E-Mail-Adresse der Kontaktperson'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings: {}
+field_type: email

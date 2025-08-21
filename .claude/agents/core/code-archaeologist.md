@@ -45,6 +45,8 @@ description: |
     Target: security-guardian
     Handoff: "Potential security issues in: [locations]. Patterns: [details]"
   </delegation>
+color: purple
+model: sonnet
 tools: Read, Grep, Glob, Bash, LS
 ---
 

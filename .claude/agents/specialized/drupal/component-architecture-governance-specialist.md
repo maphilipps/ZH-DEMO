@@ -1,5 +1,7 @@
 ---
 name: component-architecture-governance-specialist
+color: blue
+model: sonnet
 description: |
   Component architecture and design system governance specialist for enterprise SDC systems. Expert in design system evolution, component standards enforcement, architecture patterns, and scalable component library governance with Storybook integration.
   

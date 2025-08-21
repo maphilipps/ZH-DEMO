@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use recipe-configuration-specialist to create modular paragraph configurations that integrate seamlessly with SDC components and provide flexible content authoring."
     <commentary>Selected for content architecture and field configuration expertise</commentary>
   </example>
+color: orange
+model: sonnet
 ---
 
 # Recipe Configuration Specialist

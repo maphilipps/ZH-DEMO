@@ -1,0 +1,20 @@
+{#
+/**
+ * Field "CO₂-Einsparung" for content type "Praxisbeispiel"
+ * To be displayed as one of several items in a tiles-info module
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+
+{{ include('@components/h4.html.twig', {
+  level: 4,
+  attributes: create_attribute(),
+  content: label,
+}) }}
+
+{{ include('@components/text.html.twig', {
+  attributes: create_attribute({classes: ['text-lg', 'leading-6']}),
+  text: items.0.content,
+}) }}

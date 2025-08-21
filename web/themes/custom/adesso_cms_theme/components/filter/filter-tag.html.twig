@@ -1,0 +1,19 @@
+<button
+        type="submit"
+        class="border-blue-20 mr-2 mb-2 inline-flex group font-medium items-center border-2 px-3 py-2 rounded-full text-blue-70 hover:bg-blue-20 hover:text-white transition-colors duration-200"
+        :class="{ 'bg-blue-20 text-white': {{ selected }} }"
+        name="{{ name }}"
+        value="{{ value }}"
+>
+    <template x-if="{{ selected }}">
+        {% include "@designsystem/Icons/icon-close.html.twig" with {
+            'classes': 'shrink-0 max-w-full size-6 fill-current'
+        } %}
+    </template>
+    <template x-if="!{{ selected }}">
+        {% include "@designsystem/Icons/icon-plus.html.twig" with {
+            'classes': 'shrink-0 max-w-full size-6 fill-current'
+        } %}
+    </template>
+    <span class="ml-3">{{ title }}</span>
+</button>

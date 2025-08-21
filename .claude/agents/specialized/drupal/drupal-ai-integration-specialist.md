@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use drupal-ai-integration-specialist to design custom AI workflows, implement provider fallback patterns, and create taxonomy suggestion systems."
     <commentary>Selected for custom AI workflow implementation and multi-provider orchestration</commentary>
   </example>
+color: purple
+model: sonnet
 ---
 
 # Drupal AI Integration Specialist

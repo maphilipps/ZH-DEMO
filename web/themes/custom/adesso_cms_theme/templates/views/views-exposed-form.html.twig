@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override for exposed filter form.
+ */
+#}
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+
+<form{{ attributes.addClass('divide-y divide-gray-200') }}>
+  {# Text search filter #}
+  {% if form.title %}
+    <div class="py-10 first:pt-0 last:pb-0">
+      <fieldset>
+        <legend class="block text-sm font-medium text-gray-900">{{ 'Suche'|t }}</legend>
+        <div class="pt-6">
+          {{ form.title }}
+        </div>
+      </fieldset>
+    </div>
+  {% endif %}
+
+  {# Category filter #}
+  {% if form.field_directory_category_target_id %}
+    <div class="py-10 first:pt-0 last:pb-0">
+      <fieldset>
+        <legend class="block text-sm font-medium text-gray-900">{{ 'Kategorie'|t }}</legend>
+        <div class="space-y-3 pt-6">
+          {{ form.field_directory_category_target_id }}
+        </div>
+      </fieldset>
+    </div>
+  {% endif %}
+
+  {# Sort and other filters #}
+  {% for key, field in form %}
+    {% if key not in ['title', 'field_directory_category_target_id', 'actions', 'form_build_id', 'form_token', 'form_id'] %}
+      <div class="py-10 first:pt-0 last:pb-0">
+        {{ field }}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {# Action buttons #}
+  {% if form.actions %}
+    <div class="pt-6">
+      {{ form.actions }}
+    </div>
+  {% endif %}
+
+  {# Hidden form elements #}
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+</form>

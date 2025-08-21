@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * @file
+ * Contains event_review.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function event_review_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the event_review module.
+    case 'help.page.event_review':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides event review dashboard and bulk operations for event approval/rejection in the ZH Demo system.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function event_review_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'event_status_notification':
+      $event = $params['event'];
+      $submitter = $params['submitter'];
+      $municipality = $params['municipality'];
+      $context = $params['context'];
+      
+      if ($context === 'approval') {
+        // Swiss German approval email template
+        $message['subject'] = t('Ihre Veranstaltungsanmeldung wurde genehmigt - @municipality', [
+          '@municipality' => $municipality
+        ]);
+        
+        $message['body'][] = t('Sehr geehrte/r @submitter_name', [
+          '@submitter_name' => $submitter->getDisplayName()
+        ]);
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Wir freuen uns, Ihnen mitteilen zu können, dass Ihre Veranstaltungsanmeldung "@event_title" genehmigt wurde.', [
+          '@event_title' => $event->getTitle()
+        ]);
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Details Ihrer Veranstaltung:');
+        $message['body'][] = t('- Titel: @title', ['@title' => $event->getTitle()]);
+        
+        if ($event->hasField('field_event_date') && !$event->get('field_event_date')->isEmpty()) {
+          $date = $event->get('field_event_date')->value;
+          $formatted_date = \Drupal::service('date.formatter')->format(strtotime($date), 'custom', 'd.m.Y H:i');
+          $message['body'][] = t('- Datum: @date', ['@date' => $formatted_date]);
+        }
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Ihre Veranstaltung ist nun öffentlich sichtbar und wird auf der Gemeinde-Website angezeigt.');
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Freundliche Grüsse');
+        $message['body'][] = t('@municipality', ['@municipality' => $municipality]);
+        $message['body'][] = t('Leben am See');
+        
+      } elseif ($context === 'rejection') {
+        // Swiss German rejection email template
+        $message['subject'] = t('Ihre Veranstaltungsanmeldung benötigt Überarbeitung - @municipality', [
+          '@municipality' => $municipality
+        ]);
+        
+        $message['body'][] = t('Sehr geehrte/r @submitter_name', [
+          '@submitter_name' => $submitter->getDisplayName()
+        ]);
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Vielen Dank für Ihre Veranstaltungsanmeldung "@event_title". Leider können wir diese in der aktuellen Form noch nicht genehmigen.', [
+          '@event_title' => $event->getTitle()
+        ]);
+        
+        if (!empty($params['rejection_reason'])) {
+          $message['body'][] = '';
+          $message['body'][] = t('Grund der Ablehnung:');
+          $message['body'][] = $params['rejection_reason'];
+        }
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Bitte überarbeiten Sie Ihre Anmeldung entsprechend und reichen Sie diese erneut ein. Bei Fragen stehen wir Ihnen gerne zur Verfügung.');
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Kontakt:');
+        $message['body'][] = t('Gemeindekanzlei @municipality', ['@municipality' => $municipality]);
+        $message['body'][] = t('Email: info@bruchtal.ch');
+        $message['body'][] = t('Telefon: +41 44 123 45 67');
+        
+        $message['body'][] = '';
+        $message['body'][] = t('Freundliche Grüsse');
+        $message['body'][] = t('@municipality', ['@municipality' => $municipality]);
+        $message['body'][] = t('Leben am See');
+      }
+      
+      // Set headers for professional municipal communication
+      $message['headers']['Content-Type'] = 'text/plain; charset=UTF-8; format=flowed; delsp=yes';
+      $message['headers']['X-Mailer'] = 'Drupal Municipal Portal System';
+      break;
+  }
+}

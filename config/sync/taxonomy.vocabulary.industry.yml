@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Branche'
+vid: industry
+description: 'Branchen und Geschäftsbereiche'
+weight: 0

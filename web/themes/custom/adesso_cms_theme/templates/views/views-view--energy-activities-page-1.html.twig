@@ -1,0 +1,105 @@
+{#
+/**
+ * @file
+ * Default theme implementation for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   JavaScript.
+ *
+ * @see template_preprocess_views_view()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% set title %}
+    {{ title_prefix }}
+    <h1 class="contextual-region text-5xl lg:text-8xl leading-11 lg:leading-14 font-barlow font-medium tracking-wide group-data-[theme=blue-dark]:text-white text-pretty hyphens-auto text-black">
+      {{ view.title }}
+    </h1>
+    {{ title_suffix }}
+  {% endset %}
+
+  {% set search %}
+    {{ exposed }}
+    {{ footer }}
+  {% endset %}
+
+
+
+  {{ include('@module/filter-stage.html.twig', {
+    headline: title,
+    description: header,
+    searchLayer: search
+  }) }}
+
+  {{ attachment_before }}
+
+  <div class="fluid-container" x-data="{ isLoading: false }" 
+       @views:form:submit.window="isLoading = true" 
+       @views:form:complete.window="isLoading = false">
+    <!-- Loading overlay for results -->
+    <div x-show="isLoading" 
+         x-transition:enter="transition ease-out duration-200" 
+         x-transition:enter-start="opacity-0" 
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200" 
+         x-transition:leave-start="opacity-100" 
+         x-transition:leave-end="opacity-0"
+         class="relative">
+      <div class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-10">
+        <div class="flex items-center space-x-3 text-gray-600">
+          <div class="animate-spin">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v2m0 16v2m8.485-8.485l-1.414 1.414M4.929 4.929L3.515 3.515m0 16.97l1.414-1.414M19.071 19.071l1.414 1.414M22 12h-2M4 12H2"></path>
+            </svg>
+          </div>
+          <span class="text-lg">Wird geladen...</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="outer-grid" :class="{ 'opacity-50 pointer-events-none': isLoading }">
+      {% if rows -%}
+        {{ rows }}
+      {% elseif empty -%}
+        {{ empty }}
+      {% endif %}
+    </div>
+    <div class="grid" :class="{ 'opacity-50 pointer-events-none': isLoading }">
+      {{ pager }}
+    </div>
+  </div>
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {{ feed_icons }}
+</div>

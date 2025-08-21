@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_social_media_instagram
+    - node.type.hospitality
+  module:
+    - link
+id: node.hospitality.field_social_media_instagram
+field_name: field_social_media_instagram
+entity_type: node
+bundle: hospitality
+label: Instagram
+description: 'Instagram-Profil des Gastgewerbebetriebs'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,52 @@
+# Building Lane - Implementation Rules & Standards
+
+## Code Quality Standards
+- Drupal 11 coding standards mandatory
+- Error handling: Always include user-friendly messages
+- Performance: Every feature must pass Core Web Vitals >90
+
+## Municipal Portal Patterns
+- All forms require workflow approval system
+- Directory content types: Vereine, Firmen, Gastgewerbe
+- Guest editor permissions with admin approval
+- Multi-site theming with municipal customization
+- WYSIWYG editor with media integration mandatory
+
+## Component Architecture Rules
+- SDC (Single Directory Components) only
+- Storybook documentation required for all components
+- Tailwind v4 utility classes preferred over custom CSS
+- Alpine.js for interactivity, avoid jQuery
+- Mobile-first responsive design
+
+## Accessibility Implementation
+- WCAG 2.1 AA: Color contrast >4.5:1, font size >16px
+- Keyboard navigation and screen reader support mandatory
+- Touch targets: Minimum 44px for mobile
+- Form validation: Clear error messages
+
+## Content Standards
+- Alt-text required for all uploaded images
+- Search functionality with good relevance
+- Error handling for all service failures
+
+## Testing Requirements
+- Unit tests for all custom modules and functions
+- Integration tests for forms and workflows
+- Visual regression tests with Backstop.js
+- Performance tests with Lighthouse CI
+- Accessibility tests with axe-core
+- Cross-browser testing: Chrome, Firefox, Safari, Edge
+
+## Performance Rules
+- Images: WebP format, max 1MB, lazy loading
+- CSS: Purge unused classes, critical CSS inlined
+- JavaScript: ES6+ modules, tree shaking enabled
+- Caching: Redis for objects, Varnish for pages
+- Database: Optimize queries, use indexes
+
+## Never Compromise On
+- Accessibility standards
+- Performance targets
+- Multi-municipal scalability
+- Security best practices

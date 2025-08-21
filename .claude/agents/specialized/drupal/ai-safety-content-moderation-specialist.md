@@ -1,5 +1,7 @@
 ---
 name: ai-safety-content-moderation-specialist
+color: red
+model: sonnet
 description: |
   AI safety and content moderation specialist for enterprise CMS with multi-provider AI integration. Expert in AI risk mitigation, content safety validation, bias detection, and automated moderation workflows across Claude, GPT-4o, and Groq providers.
   

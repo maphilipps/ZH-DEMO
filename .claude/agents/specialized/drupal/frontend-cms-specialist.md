@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use frontend-cms-specialist to create real-time preview functionality that shows component changes as editors modify content fields."
     <commentary>Selected for CMS UX and preview functionality expertise</commentary>
   </example>
+color: green
+model: sonnet
 ---
 
 # Frontend CMS Specialist

@@ -1,0 +1,16 @@
+{
+  "id": "bug_demo_20250820_113746",
+  "timestamp": "2025-08-20T11:37:46+02:00",
+  "type": "bug",
+  "description": "Demo test failure - testing compounding system",
+  "component": "demo",
+  "severity": "high",
+  "status": "analyzed",
+  "prevention_steps": [
+    "Add unit tests for component",
+    "Add integration tests",
+    "Add error monitoring"
+  ],
+  "tests_created": [],
+  "knowledge_extracted": false
+}

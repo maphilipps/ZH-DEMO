@@ -40,6 +40,8 @@ description: |
     Target: api-architect or [framework]-api-architect
     Handoff: "Need API specifications to document: [endpoints]"
   </delegation>
+color: purple
+model: sonnet
 ---
 
 # Documentation Specialist

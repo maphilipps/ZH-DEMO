@@ -58,33 +58,6 @@
   {% elseif node.hasField('field_description') and node.field_description.value %}
     {% set page_description = node.field_description.value %}
   {% endif %}
-
-  {# Try to get background image from various fields #}
-  {% if node.hasField('field_header_image') and node.field_header_image.entity and node.field_header_image.entity.fileuri %}
-    {% set header_background_image = file_url(node.field_header_image.entity.fileuri) %}
-    {% set header_background_alt = node.field_header_image.alt|default('') %}
-  {% elseif node.hasField('field_featured_image') and node.field_featured_image.entity %}
-    {# field_featured_image is a media reference #}
-    {% if node.field_featured_image.entity.field_media_image.entity and node.field_featured_image.entity.field_media_image.entity.fileuri %}
-      {% set header_background_image = file_url(node.field_featured_image.entity.field_media_image.entity.fileuri) %}
-      {% set header_background_alt = node.field_featured_image.entity.field_media_image.alt|default('') %}
-    {% endif %}
-  {% elseif node.hasField('field_media') and node.field_media.entity and node.field_media.entity.bundle == 'image' %}
-    {% if node.field_media.entity.field_media_image.entity and node.field_media.entity.field_media_image.entity.fileuri %}
-      {% set header_background_image = file_url(node.field_media.entity.field_media_image.entity.fileuri) %}
-      {% set header_background_alt = node.field_media.entity.field_media_image.alt|default('') %}
-    {% endif %}
-  {% endif %}
-
-
-  {% include 'adesso_cms_theme:page-header' with {
-    variant: 'default',
-    title: page_title,
-    description: page_description,
-    background_image: header_background_image,
-    alt_text: header_background_alt
-  } %}
-
   <div class="container mx-auto px-6 lg:px-8">
     
     {{ title_prefix }}

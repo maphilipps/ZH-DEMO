@@ -1,0 +1,23 @@
+{#
+/**
+ * Field "Kosteneinsparung" for content type "Praxisbeispiel"
+ * To be displayed as one of several items in a tiles-info module
+ *
+ * @file
+ * Theme override for a field.
+ */
+#}
+{%  set title %}
+ {{ include('@components/h4.html.twig', {
+   level: 4,
+   attributes: create_attribute(),
+   content: label,
+ }) }}
+{% endset %}
+
+{% for item in items %}
+  {{ include('@module/tiles-info-item.html.twig', {
+    headline: title,
+    text: item.content,
+  }) }}
+{% endfor %}

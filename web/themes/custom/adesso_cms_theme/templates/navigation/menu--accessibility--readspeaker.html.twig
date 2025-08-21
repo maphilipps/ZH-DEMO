@@ -1,0 +1,14 @@
+{{ attach_library('eab_2024/readspeaker') }}
+<li>
+  <a
+      href="//app-eu.readspeaker.com/cgi-bin/rsent?customerid=5867&amp;lang=de_de&amp;readid=main&amp;url={{ url('<current>') }}"
+      class="flex items-center font-medium focus-within:outline-dotted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-black"
+      aria-label="{{ title }}"
+      id="readSpeakerLink"
+      rel="nofollow"
+      accesskey="L"
+  >
+    {{ icon }} {{ title }}
+  </a>
+</li>
+<li><span id="rs_controls" class="meta-menu__rscontrols rsbtn_right rsimg rsplay rspart"></span></li>

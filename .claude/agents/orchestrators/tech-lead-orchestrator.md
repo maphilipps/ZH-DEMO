@@ -28,6 +28,7 @@ description: |
     Returns structured analysis of performance issues and remediation steps
     </commentary>
   </example>
+model: opus
 ---
 
 # Tech Lead Orchestrator

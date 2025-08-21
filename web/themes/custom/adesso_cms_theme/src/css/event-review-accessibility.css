@@ -1,0 +1,464 @@
+/**
+ * @file event-review-accessibility.css
+ * WCAG 2.1 AA Accessibility enhancements for Event Review Dashboard
+ * Swiss eCH-0059 compliance features
+ */
+
+/* ========================================
+   High Contrast Mode Support
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .event-review-dashboard,
+  .event-review-vbo-form,
+  .event-review-exposed-form {
+    border: 2px solid !important;
+  }
+  
+  .event-review-dashboard table,
+  .event-review-dashboard .bg-white {
+    border: 2px solid !important;
+  }
+  
+  .event-review-dashboard th,
+  .event-review-dashboard td {
+    border: 1px solid !important;
+  }
+  
+  .status-badge {
+    border: 2px solid !important;
+  }
+  
+  .quick-action-buttons button {
+    border: 2px solid !important;
+  }
+}
+
+/* ========================================
+   Reduced Motion Support
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .event-review-dashboard *,
+  .status-badge,
+  .quick-action-buttons *,
+  .event-review-vbo-form *,
+  .event-review-exposed-form * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Keep essential loading animations but make them less intrusive */
+  .loading-spinner {
+    animation: spin 2s linear infinite !important;
+  }
+}
+
+/* ========================================
+   Focus Management and Keyboard Navigation
+   ======================================== */
+
+/* Enhanced focus rings for all interactive elements */
+.event-review-dashboard input:focus-visible,
+.event-review-dashboard select:focus-visible,
+.event-review-dashboard button:focus-visible,
+.event-review-dashboard a:focus-visible,
+.event-review-dashboard [tabindex]:focus-visible {
+  outline: 3px solid #dc2626 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(220, 38, 38, 0.2) !important;
+}
+
+/* Remove default focus styles to prevent double outlines */
+.event-review-dashboard input:focus,
+.event-review-dashboard select:focus,
+.event-review-dashboard button:focus,
+.event-review-dashboard a:focus,
+.event-review-dashboard [tabindex]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Skip links for keyboard users */
+.event-review-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #dc2626;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.event-review-skip-link:focus {
+  top: 6px;
+}
+
+/* Focus trap for modals */
+.rejection-modal [tabindex="-1"]:focus {
+  outline: none;
+}
+
+.rejection-modal .focus-trap-boundary {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   Touch Target Sizes (eCH-0059)
+   ======================================== */
+
+/* Ensure all interactive elements meet 44px minimum */
+.event-review-dashboard button,
+.event-review-dashboard input,
+.event-review-dashboard select,
+.event-review-dashboard a,
+.event-review-dashboard [role="button"],
+.event-review-dashboard [tabindex="0"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Special handling for checkboxes and radio buttons */
+.event-review-dashboard input[type="checkbox"],
+.event-review-dashboard input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  /* Add larger touch area with transparent padding */
+  padding: 12px;
+  margin: -12px;
+  background-clip: content-box;
+}
+
+/* Status badges need adequate touch targets */
+.status-badge {
+  min-height: 32px;
+  padding: 8px 12px;
+}
+
+/* Table cell touch targets */
+.event-review-dashboard td {
+  min-height: 44px;
+  padding: 12px 16px;
+}
+
+/* ========================================
+   Color Contrast and Visual Hierarchy
+   ======================================== */
+
+/* Ensure text meets WCAG AA standards (4.5:1 ratio) */
+.event-review-dashboard {
+  color: #1f2937; /* Gray-800, 13.64:1 ratio on white */
+}
+
+.event-review-dashboard .text-gray-600 {
+  color: #4b5563; /* Gray-600, 7.23:1 ratio on white */
+}
+
+.event-review-dashboard .text-gray-500 {
+  color: #6b7280; /* Gray-500, 5.74:1 ratio on white */
+}
+
+/* Enhanced contrast for important elements */
+.event-review-dashboard th {
+  color: #111827; /* Gray-900, 18.7:1 ratio */
+  font-weight: 600;
+}
+
+.event-review-dashboard .font-medium {
+  font-weight: 600; /* Stronger weight for better visibility */
+}
+
+/* Status badge contrast improvements */
+.status-badge.bg-yellow-100 {
+  background-color: #fef3c7;
+  color: #92400e; /* Yellow-800, 4.61:1 ratio */
+  border-color: #f59e0b;
+}
+
+.status-badge.bg-green-100 {
+  background-color: #d1fae5;
+  color: #065f46; /* Green-800, 4.52:1 ratio */
+  border-color: #10b981;
+}
+
+.status-badge.bg-red-100 {
+  background-color: #fee2e2;
+  color: #991b1b; /* Red-800, 4.83:1 ratio */
+  border-color: #ef4444;
+}
+
+/* ========================================
+   Screen Reader and Assistive Technology Support
+   ======================================== */
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Show sr-only content when focused (for skip links) */
+.sr-only:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* ARIA live regions for dynamic updates */
+.event-review-live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ========================================
+   Loading and Status Indicators
+   ======================================== */
+
+/* Accessible loading states */
+.event-review-loading {
+  position: relative;
+}
+
+.event-review-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #dc2626;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading text for screen readers */
+.event-review-loading[aria-busy="true"]::before {
+  content: "Lädt...";
+  position: absolute;
+  left: -10000px;
+}
+
+/* Status announcements */
+.event-review-status-announcement {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ========================================
+   Print Accessibility
+   ======================================== */
+
+@media print {
+  .event-review-dashboard {
+    color: black !important;
+    background: white !important;
+  }
+  
+  .status-badge {
+    border: 1px solid black !important;
+    background: white !important;
+    color: black !important;
+  }
+  
+  .status-badge::before {
+    content: "[" attr(data-status) "] ";
+    font-weight: bold;
+  }
+  
+  .quick-action-buttons {
+    display: none !important;
+  }
+  
+  /* Print URLs for links */
+  .event-review-dashboard a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
+
+/* ========================================
+   Font Size and Readability (eCH-0059)
+   ======================================== */
+
+/* Ensure minimum 16px font size */
+.event-review-dashboard {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.event-review-dashboard .text-sm {
+  font-size: 16px !important; /* Override smaller text */
+}
+
+.event-review-dashboard .text-xs {
+  font-size: 14px !important; /* Minimum readable size */
+}
+
+/* Enhanced line spacing for readability */
+.event-review-dashboard p,
+.event-review-dashboard li,
+.event-review-dashboard td {
+  line-height: 1.6;
+}
+
+/* Better letter spacing for headings */
+.event-review-dashboard h1,
+.event-review-dashboard h2,
+.event-review-dashboard h3 {
+  letter-spacing: 0.025em;
+}
+
+/* ========================================
+   Language and Direction Support
+   ======================================== */
+
+/* Swiss German specific improvements */
+.event-review-dashboard[lang="de-CH"] {
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+/* RTL support if needed */
+.event-review-dashboard[dir="rtl"] {
+  text-align: right;
+}
+
+.event-review-dashboard[dir="rtl"] .quick-action-buttons {
+  flex-direction: row-reverse;
+}
+
+.event-review-dashboard[dir="rtl"] .status-badge {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* ========================================
+   Error States and Validation
+   ======================================== */
+
+/* Error message styling */
+.event-review-error {
+  color: #991b1b;
+  background-color: #fee2e2;
+  border: 2px solid #fca5a5;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 8px 0;
+}
+
+.event-review-error::before {
+  content: "⚠ ";
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+/* Required field indicators */
+.event-review-required::after {
+  content: " *";
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* Form validation states */
+.event-review-dashboard input:invalid,
+.event-review-dashboard select:invalid {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px #dc2626;
+}
+
+.event-review-dashboard input:valid,
+.event-review-dashboard select:valid {
+  border-color: #10b981;
+}
+
+/* ========================================
+   Notification and Alert Accessibility
+   ======================================== */
+
+/* Toast notifications */
+.event-review-notification {
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  min-height: 60px;
+  padding: 16px 20px;
+}
+
+.event-review-notification[role="alert"] {
+  border-left: 4px solid #dc2626;
+}
+
+.event-review-notification[role="status"] {
+  border-left: 4px solid #10b981;
+}
+
+/* Ensure notifications are announced */
+.event-review-notification[aria-live] {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* ========================================
+   Mobile Accessibility Enhancements
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* Larger touch targets on mobile */
+  .event-review-dashboard button,
+  .event-review-dashboard input,
+  .event-review-dashboard select {
+    min-height: 48px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Better spacing on mobile */
+  .event-review-dashboard .space-x-2 > * + * {
+    margin-left: 0.75rem;
+  }
+  
+  .event-review-dashboard .space-y-2 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  /* Mobile-specific focus styles */
+  .event-review-dashboard input:focus,
+  .event-review-dashboard select:focus {
+    transform: scale(1.02);
+    transition: transform 0.1s ease;
+  }
+}

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_social_media_linkedin
+    - node.type.company
+  module:
+    - link
+id: node.company.field_social_media_linkedin
+field_name: field_social_media_linkedin
+entity_type: node
+bundle: company
+label: LinkedIn
+description: 'LinkedIn-Profil der Firma'
+required: false
+translatable: true
+default_value: []
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

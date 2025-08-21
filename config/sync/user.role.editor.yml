@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 3
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access content overview'
+  - 'access event review dashboard'
+  - 'create event content'
+  - 'delete own event content'
+  - 'edit own event content'
+  - 'use event_approval transition approve'
+  - 'use event_approval transition reject'
+  - 'view any unpublished content'
+  - 'view own unpublished content'

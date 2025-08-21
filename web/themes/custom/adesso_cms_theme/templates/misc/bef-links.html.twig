@@ -1,0 +1,27 @@
+{%
+  set classes = [
+  'bef-links',
+  is_nested ? 'bef-nested',
+  'flex',
+  'outer-grid',
+  'border-0'
+]
+%}
+{% set is_nested = true %}
+{% for name, value in hiddens %}
+  <input type="hidden" name="{{ name }}" value="{{ value }}" />
+{% endfor %}
+<div{{ attributes.removeClass('form-select').addClass(classes) }}>
+  <div class="container-fluid space-y-3">
+  {% set current_nesting_level = 0 %}
+  {% for child in children %}
+    {% set item = attribute(element, child) %}
+    {% if child in selected %}
+      {% set new_nesting_level = attribute(depth, child) ?? 0 %}
+    {% endif %}
+    {% set new_nesting_level = attribute(depth, child) ?? 0%}
+    {% include '@eab_2024/misc/bef-nested-elements.html.twig' %}
+    {% set current_nesting_level = new_nesting_level %}
+  {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rejection_reason
+    - node.type.event
+  module:
+    - text
+id: node.event.field_rejection_reason
+field_name: field_rejection_reason
+entity_type: node
+bundle: event
+label: 'Ablehnungsgrund'
+description: 'Grund für die Ablehnung der Veranstaltung durch den Editor'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_long

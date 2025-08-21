@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use drupal-media-expert to implement AI-enhanced media processing, automated metadata extraction, and intelligent media categorization workflows."
     <commentary>Selected for AI integration with media workflows and automated processing</commentary>
   </example>
+color: green
+model: sonnet
 ---
 
 # Drupal Media Expert

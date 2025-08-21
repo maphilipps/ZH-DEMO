@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Moderation state field template for Event Review Dashboard
+ * Renders status badges using the status-badge component
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the field wrapper
+ * - label_hidden: Whether to show the field label
+ * - title_attributes: HTML attributes for the label
+ * - label: The label for the field
+ * - content_attributes: HTML attributes for the field content
+ * - items: List of field items
+ * - entity_type: The entity type
+ * - field_name: The field name
+ * - field_type: The field type
+ * - label_display: The display setting for the label
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'moderation-state-field'
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <div{{ title_attributes.addClass('field__label') }}>{{ label }}</div>
+  {% endif %}
+  
+  <div{{ content_attributes.addClass('field__items') }}>
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field__item') }}>
+        {# Get the moderation state value #}
+        {% set state_value = item.content['#markup']|striptags|trim|lower %}
+        
+        {# Map Drupal states to our component states #}
+        {% set state_map = {
+          'draft': 'draft',
+          'entwurf': 'draft',
+          'published': 'published', 
+          'genehmigt': 'published',
+          'veröffentlicht': 'published',
+          'rejected': 'rejected',
+          'abgelehnt': 'rejected'
+        } %}
+        
+        {# Get the mapped state or default to draft #}
+        {% set component_state = state_map[state_value] ? state_map[state_value] : 'draft' %}
+        
+        {# Get the display label #}
+        {% set display_label = item.content['#markup']|striptags|trim %}
+        
+        {# Render the status badge component #}
+        {% include '@adesso_cms_theme/status-badge/status-badge.twig' with {
+          status: component_state,
+          label: display_label,
+          size: 'sm',
+          show_icon: true
+        } %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

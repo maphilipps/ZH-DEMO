@@ -45,6 +45,8 @@ description: |
     Target: accessibility-expert
     Handoff: "UI complete. Need accessibility audit for: [components]"
   </delegation>
+color: green
+model: sonnet
 ---
 
 # Universal Frontend Developer

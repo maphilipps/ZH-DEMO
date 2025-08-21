@@ -45,6 +45,8 @@ description: |
     Target: security-auditor
     Handoff: "Frontend complete. Review needed for: XSS prevention, input validation, auth flow"
   </delegation>
+color: blue
+model: sonnet
 ---
 
 # Tailwind CSS Frontend Expert

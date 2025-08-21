@@ -1,0 +1,149 @@
+{#
+/**
+ * @file
+ * Operations field template for Event Review Dashboard
+ * Renders quick action buttons for event management
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the field wrapper
+ * - label_hidden: Whether to show the field label
+ * - title_attributes: HTML attributes for the label
+ * - label: The label for the field
+ * - content_attributes: HTML attributes for the field content
+ * - items: List of field items (operation links)
+ * - element: The entity being rendered
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'field--name-operations',
+    'field--type-entity-operations',
+    'field--label-' ~ label_display,
+    'operations-field'
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <div{{ title_attributes.addClass('field__label', 'sr-only') }}>{{ label }}</div>
+  {% endif %}
+  
+  <div{{ content_attributes.addClass('field__items') }}>
+    {# Get entity information for quick actions #}
+    {% if element and element['#entity'] %}
+      {% set entity = element['#entity'] %}
+      {% set entity_id = entity.id %}
+      {% set current_status = entity.moderation_state ? entity.moderation_state.value : 'draft' %}
+      
+      {# Render quick action buttons for draft events #}
+      {% if current_status == 'draft' %}
+        <div class="flex items-center space-x-2">
+          {# Standard operations (edit, delete, etc.) #}
+          {% for item in items %}
+            <div class="operation-link">
+              {{ item.content }}
+            </div>
+          {% endfor %}
+          
+          {# Quick action buttons #}
+          {% include '@adesso_cms_theme/quick-action-buttons/quick-action-buttons.twig' with {
+            event_id: entity_id,
+            current_status: current_status,
+            show_approve: true,
+            show_reject: true,
+            compact: true,
+            csrf_token: csrf_token()
+          } %}
+        </div>
+      {% else %}
+        {# For published/rejected events, show standard operations and status #}
+        <div class="flex items-center space-x-2">
+          {% for item in items %}
+            <div class="operation-link">
+              {{ item.content }}
+            </div>
+          {% endfor %}
+          
+          {# Show status indicator for non-draft events #}
+          <div class="status-indicator">
+            {% include '@adesso_cms_theme/quick-action-buttons/quick-action-buttons.twig' with {
+              event_id: entity_id,
+              current_status: current_status,
+              show_approve: false,
+              show_reject: false,
+              compact: true
+            } %}
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      {# Fallback: just render the standard operations #}
+      {% for item in items %}
+        <div{{ item.attributes.addClass('field__item', 'operation-link') }}>
+          {{ item.content }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{# Enhanced CSS for operations field #}
+<style>
+  /* Operations field styling */
+  .operations-field {
+    @apply text-right;
+  }
+  
+  .operations-field .field__items {
+    @apply flex items-center justify-end;
+  }
+  
+  .operations-field .operation-link {
+    @apply inline-flex;
+  }
+  
+  .operations-field .operation-link a {
+    @apply text-sm text-gray-600 hover:text-gray-900 px-2 py-1 rounded-md hover:bg-gray-100 transition-colors;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .operations-field .operation-link a:focus-visible {
+    @apply outline-2 outline-red-600 outline-offset-2;
+  }
+  
+  /* Status indicator styling */
+  .operations-field .status-indicator {
+    @apply ml-2;
+  }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 767px) {
+    .operations-field .field__items {
+      @apply flex-col space-y-2 items-stretch;
+    }
+    
+    .operations-field .operation-link a {
+      @apply w-full justify-center;
+    }
+  }
+  
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .operations-field .operation-link a {
+      border: 1px solid;
+    }
+  }
+  
+  /* Focus ring enhancements */
+  .operations-field .operation-link a:focus,
+  .operations-field .quick-action-buttons button:focus {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+  }
+</style>

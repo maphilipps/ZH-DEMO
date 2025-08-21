@@ -1,61 +1,66 @@
 {#
 /**
  * @file
- * Theme override for a fieldset element and its children.
+ * Theme override for fieldset elements.
  *
  * Available variables:
  * - attributes: HTML attributes for the fieldset element.
- * - errors: (optional) Any errors for this fieldset element, may not be set.
- * - required: Boolean indicating whether the fieldeset element is required.
- * - legend: The legend element containing the following properties:
- *   - title: Title of the fieldset, intended for use as the text of the legend.
- *   - attributes: HTML attributes to apply to the legend.
- * - description: The description element containing the following properties:
- *   - content: The description content of the fieldset.
- *   - attributes: HTML attributes to apply to the description container.
- * - children: The rendered child elements of the fieldset.
- * - prefix: The content to add before the fieldset children.
- * - suffix: The content to add after the fieldset children.
+ * - legend: The legend element.
+ * - description: The description element.
+ * - children: Optional elements to include within the fieldset.
+ * - prefix: The content to display before the fieldset element.
+ * - suffix: The content to display after the fieldset element.
+ * - title_display: Title display mode.
+ * - title_attributes: HTML attributes for the title container.
+ * - required: The required state.
+ * - errors: The error messages.
  *
  * @see template_preprocess_fieldset()
  */
 #}
-{%
-  set classes = [
-    'js-form-item',
-    'form-item',
-    'js-form-wrapper',
-    'form-group',
-    errors ? 'has-error',
-  ]
-%}
-<fieldset{{ attributes.addClass(classes) }}>
+
+<fieldset{{ attributes.addClass([
+  'border',
+  'border-gray-200',
+  'rounded-lg',
+  'p-6',
+  'mb-6',
+  'bg-white',
+  'shadow-sm'
+]) }}>
   {%
     set legend_span_classes = [
       'fieldset-legend',
-      required ? 'js-form-required',
-      required ? 'form-required',
+      'text-lg',
+      'font-semibold',
+      'text-gray-900',
+      'mb-4',
+      'block',
+      required ? 'form-required' : '',
     ]
   %}
-  {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
-  <legend{{ legend.attributes }}>
-    <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
-  </legend>
-  <div class="bg-light p-2 mb-2">
+  {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
+  {% if legend.title %}
+    <legend{{ legend.attributes }}>
+      <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+    </legend>
+  {% endif %}
+  
+  <div class="fieldset-wrapper space-y-4">
     {% if errors %}
-      <div class="alert alert-danger" role="alert">
-        <strong>{{ errors }}</strong>
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
+        {{ errors }}
       </div>
     {% endif %}
     {% if prefix %}
-      <span class="field-prefix">{{ prefix }}</span>
+      <span class="field-prefix text-sm text-gray-600">{{ prefix }}</span>
+    {% endif %}
+    {% if description.content %}
+      <div{{ description.attributes.addClass('description', 'text-sm', 'text-gray-600', 'mb-4') }}>{{ description.content }}</div>
     {% endif %}
     {{ children }}
     {% if suffix %}
-      <span class="field-suffix">{{ suffix }}</span>
-    {% endif %}
-    {% if description.content %}
-      <small{{ description.attributes.addClass('description', 'text-body-secondary') }}>{{ description.content }}</small>
+      <span class="field-suffix text-sm text-gray-600">{{ suffix }}</span>
     {% endif %}
   </div>
 </fieldset>

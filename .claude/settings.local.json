@@ -19,10 +19,41 @@
       "mcp__atlassian__createJiraIssue",
       "mcp__atlassian__editJiraIssue",
       "mcp__atlassian__getJiraIssue",
-      "mcp__atlassian__searchJiraIssuesUsingJql"
+      "mcp__atlassian__searchJiraIssuesUsingJql",
+      "mcp__sequential-thinking__sequentialthinking"
     ]
   },
-  "outputStyle": "Architect",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-agnoster.sh"
+  },
+  "outputStyle": "default",
+  "hooks": {
+    "user-prompt-submit": ".claude/hooks/user-prompt-submit.sh",
+    "task-complete": ".claude/hooks/task-complete.sh",
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "Wenn du merkst, dass ich mti deiner Arbeit unzufrieden bin.  Ergänze bitte die .claude/llms.txt mit den Learnings."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "Bitte prüfe, ob du gegen keine Learnings aus dem .claude/llms.txt verstoßen hast, ansonsten nochmal drüber nachdenken."
+          }
+        ]
+      }
+    ]
+  },
   "mcp-server-drupal": {
     "command": "docker",
     "args": [

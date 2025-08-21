@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a details element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the details element.
+ * - errors: (optional) Any errors for this details element, may not be set.
+ * - title: (optional) The title of the element, may not be set.
+ * - summary_attributes: A list of HTML attributes for the summary element.
+ * - description: (optional) The description of the element, may not be set.
+ * - children: (optional) The children of the element, may not be set.
+ * - value: (optional) The value of the element, may not be set.
+ *
+ * @see template_preprocess_details()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Use native details/summary element instead of filter component #}
+<details{{ attributes.addClass('border border-gray-200 rounded-lg mb-4') }}>
+  {% if title %}
+    <summary{{ summary_attributes.addClass('cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-t-lg flex items-center justify-between font-medium text-gray-900 transition-colors') }}>
+      <span>{{ title }}</span>
+      <svg class="w-5 h-5 transition-transform details-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </summary>
+  {% endif %}
+  
+  <div class="px-4 py-3">
+    {% if errors %}
+      <div class="text-red-600 mb-2">
+        {{ errors }}
+      </div>
+    {% endif %}
+    
+    {% if description %}
+      <div class="text-sm text-gray-600 mb-3">
+        {{ description }}
+      </div>
+    {% endif %}
+    
+    {{ children }}
+    
+    {% if value %}
+      {{ value }}
+    {% endif %}
+  </div>
+</details>
+{#<div{{ attributes.addCLass('filter-dropdown relative inline-flex text-left items-center') }}>#}
+{#  {%#}
+{#    set summary_classes = [#}
+{#      required ? 'js-form-required',#}
+{#      required ? 'form-required',#}
+{#      'mr-3',#}
+
+{#    ]#}
+{#  %}#}
+{#  <div class="relative">#}
+{#    {%- if title -%}#}
+{#      <div#}
+{#        @click.prevent="toggle"#}
+{#        class="filter-button cursor-pointer inline-flex items-center w-full py-2 text-lg font-semibold focus-visible:outline-blue-70 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-offset-0"#}
+{#        data-filter="{{ title }}"#}
+{#      >#}
+{#        <span{{ summary_attributes.addClass(summary_classes) }}>{{ title }}</span>#}
+{#        <span#}
+{#          class="transition-transform transform duration-300"#}
+{#          :class="chevronClasses"#}
+{#        >#}
+{#          {% include "@designsystem/Icons/icon-chevron_down_large.html.twig" with {#}
+{#            'classes': 'shrink-0 max-w-full size-6'#}
+{#          } %}#}
+{#        </span>#}
+{#      </div>#}
+{#    {%- endif -%}#}
+
+{#    {% if errors %}#}
+{#      <div>#}
+{#        {{ errors }}#}
+{#      </div>#}
+{#    {% endif %}#}
+
+{#    {{ description }}#}
+{#    <div class="flex flex-wrap" x-show="expanded" x-collapse>#}
+{#      {{ children }}#}
+{#    </div>#}
+{#    {{ value }}#}
+{#  </div>#}
+{#</div>#}

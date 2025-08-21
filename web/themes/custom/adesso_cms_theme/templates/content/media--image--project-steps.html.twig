@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ * - copyright: Copyright information. field_copyright if exists, as fallaback the media name.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if media.field_media_image.0 %}
+  {% set image_uri = media.field_media_image.0.entity.uri.value %}
+  {% set image_url = image_uri | file_url %}
+  {% set image_alt = media.field_media_image.0.alt %}
+  {% set attributes = attributes.addClass('w-full', 'h-full', 'object-cover', 'object-center').setAttribute('src', image_url).setAttribute('alt', image_alt) %}
+  {{ include('@components/picture.html.twig', {
+    'attributes': attributes
+  }) }}
+{% endif %}

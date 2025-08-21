@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use sdc-component-specialist to create seamless integration between Drupal paragraphs and SDC components with proper field mapping and data flow."
     <commentary>Selected for SDC-Drupal integration expertise</commentary>
   </example>
+color: orange
+model: sonnet
 ---
 
 # SDC Component Specialist

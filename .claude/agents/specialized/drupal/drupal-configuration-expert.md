@@ -22,6 +22,8 @@ description: |
     assistant: "I'll use drupal-configuration-expert to diagnose configuration issues, resolve conflicts, and optimize configuration management workflows."
     <commentary>Selected for configuration troubleshooting and optimization expertise</commentary>
   </example>
+color: orange
+model: sonnet
 ---
 
 # Drupal Configuration Expert

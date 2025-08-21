@@ -1,0 +1,43 @@
+$schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.json
+name: Status Badge
+status: stable
+description: 'Status badge component for Event Review Dashboard with Swiss compliance colors'
+props:
+  type: object
+  properties:
+    status:
+      type: string
+      title: Status
+      description: 'The status value (draft, published, rejected)'
+      examples:
+        - draft
+        - published
+        - rejected
+    label:
+      type: string
+      title: Label
+      description: 'Display label for the status'
+      examples:
+        - Entwurf
+        - Genehmigt
+        - Abgelehnt
+    size:
+      type: string
+      title: Size
+      description: 'Badge size variant'
+      default: md
+      enum:
+        - sm
+        - md
+        - lg
+    show_icon:
+      type: boolean
+      title: Show Icon
+      description: 'Whether to display a status icon'
+      default: true
+libraryOverrides:
+  css:
+    component:
+      status-badge.css: {}
+  js:
+    status-badge.js: {}

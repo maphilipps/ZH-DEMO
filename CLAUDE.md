@@ -1,4 +1,18 @@
-# CLAUDE.md
+# CLAUDE.md - Compounding Engineering Knowledge Base
+
+This file provides guidance to Claude Code and serves as the living memory system for the GPZH project. Every interaction, lesson learned, and architectural decision compounds into permanent system knowledge.
+
+## 🔄 Compounding Engineering Status
+
+**Last Updated**: 2025-08-20
+**Knowledge Iterations**: 2
+**Active Learning Patterns**: Full compounding engineering implementation
+**Current Phase**: Complete system with automated learning
+
+### Three-Lane Development System
+- **Planning Lane**: Strategic analysis and architecture (@drupal-solution-architect + @drupal-technical-pm)
+- **Building Lane**: Implementation and development (@drupal-11-lead-developer + @municipality-portal-specialist)  
+- **Reviewing Lane**: Quality assurance and compliance (@swiss-compliance-specialist + @qa-testing-specialist)
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -14,6 +28,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Demo Municipality: Bruchtal
 For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipality with the tagline "Leben am See" (Life by the Lake).
+
+## 🧠 Compounding Knowledge Sections
+
+### Lessons Learned (Automatic Learning)
+*This section automatically updates as we learn from successes and failures*
+
+#### Architecture Decisions That Worked
+- **Directory System Architecture**: Separate content types (Vereine, Firmen, Gastgewerbe) instead of single bundle for clearer field management
+- **Workflow Choice**: Using core content_moderation module instead of custom workflow for reliability and maintenance
+- **Guest Account Strategy**: Requiring registration for external editors provides better spam control and ownership tracking
+
+#### Implementation Patterns That Succeeded  
+- *[To be populated by Building Lane experiences]*
+
+#### Review Feedback That Prevented Issues
+- **PR #12 package-lock.json deletion** → Caught critical build system failure before merge → Prevented production deployment failure
+- **CI/CD dependency validation** → Essential npm lock files must exist → Automated check prevents broken builds
+
+#### Swiss Compliance Patterns
+- **eCH-0010 Address Format**: Separate street and house number fields for Swiss standard compliance
+- **CH-DSG Implementation**: 30-day soft delete and annual review process for data protection compliance
+- **Swiss German Standards**: No ß character, Sie-Form addressing, DD.MM.YYYY date format
+
+### Failure-to-Knowledge Conversions
+*Every bug becomes permanent prevention knowledge*
+
+#### Known Issues → Tests → Rules
+- **Missing package-lock.json breaks CI/CD** → Always verify package-lock.json exists → Rule: Never delete package-lock.json, always regenerate with `npm install` if changes needed
+- **PR #12 CI/CD failures** → Missing dependency lock file prevents builds → Test: CI must validate package-lock.json presence before build steps
+
+#### Performance Optimizations → Patterns
+- *[To be populated as optimizations are discovered]*
+
+#### Demo Scenarios → Validated Workflows
+- *[To be populated as demo preparations are tested]*
+
+### Code Style Evolution
+*Preferences that have emerged from reviews and become standard*
+
+#### Drupal Patterns
+- *[To be populated by code reviews and successful implementations]*
+
+#### Swiss Municipal Standards
+- *[To be populated by compliance work]*
+
+#### AI Integration Patterns
+- *[To be populated by GPT-4o integration work]*
 
 ## 🔧 Core Development Commands
 
@@ -360,85 +421,44 @@ ddev drush ai:status
 
 Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, Alpine.js, OpenAI GPT-4o, and Swiss compliance requirements.
 
-### 🎯 Parallel Work Streams for Maximum Efficiency
+### 🎯 Three-Lane Specialized Development
 
-#### Stream 1: Presentation & Project Management
-- **Lead Agent**: @drupal-technical-pm
-- **MCP Tools**: mcp__atlassian (Jira tracking), mcp__server-memory (demo coordination)
-- **Responsibilities**:
-  - 35-minute presentation coordination
-  - Demo segment preparation and timing
-  - Stakeholder communication and requirements management
-  - Project milestone tracking and team coordination
+#### Lane 1: Planning & Strategy (Left Terminal)
+- **Lead Agents**: @drupal-solution-architect + @drupal-technical-pm
+- **Role**: Strategic analysis, requirements research, architectural decisions
+- **Memory Focus**: Requirements, patterns, architectural decisions, demo scenarios
+- **Trigger**: Complex planning, architecture, demo preparation, ADR creation
 
-#### Stream 2: Municipal Portal Development  
-- **Lead Agent**: @municipality-portal-specialist
-- **Supporting**: @drupal-solution-architect
-- **MCP Tools**: mcp__mcp-server-drupal (Drupal operations), mcp__server-memory (requirements)
-- **Responsibilities**:
-  - Swiss municipal business process forms (Feedback, Infrastructure damage, Event registration, Room booking)
-  - Multi-site architecture (Bruchtal, Thalwil, Thalheim, Erlenbach)
-  - Citizen service workflows and approval processes
-  - Directory management (Vereine, Firmen, Gastgewerbe)
+#### Lane 2: Implementation & Building (Center Terminal)  
+- **Lead Agents**: @drupal-11-lead-developer + @municipality-portal-specialist
+- **Role**: Feature implementation, code development, testing
+- **Memory Focus**: Code patterns, testing strategies, component architecture, AI integration
+- **Trigger**: Feature development, coding tasks, testing, AI integration
 
-#### Stream 3: Swiss Compliance & Accessibility
-- **Lead Agent**: @swiss-compliance-specialist
-- **Supporting**: @german-market-compliance-specialist
-- **MCP Tools**: mcp__a11y-accessibility (WCAG testing), mcp__browser-tools (accessibility audits)
-- **Responsibilities**:
-  - eCH-0059 accessibility standards compliance
-  - CH-DSG data protection implementation
-  - Multilingual compliance (DE/FR/IT) with Swiss cultural standards
-  - Government service delivery standards
-
-#### Stream 4: AI Integration & Content Workflows
-- **Lead Agent**: @drupal-ai-integration-specialist
-- **Supporting**: @drupal-content-strategist
-- **MCP Tools**: mcp__mcp-server-drupal (AI modules), mcp__server-memory (AI workflows)
-- **Responsibilities**:
-  - OpenAI GPT-4o integration for content suggestions
-  - Automated alt text generation for accessibility
-  - AI-powered search functionality
-  - Content moderation and quality assessment
-
-#### Stream 5: Frontend Performance & Components
-- **Lead Agents**: @drupal-frontend-theming-specialist + @tailwind-v4-expert + @sdc-component-specialist
-- **Supporting**: @drupal-storybook-expert + @alpine-js-frontend-developer
-- **MCP Tools**: mcp__browser-tools (performance audits), mcp__puppeteer (UI testing)
-- **Responsibilities**:
-  - Core Web Vitals >90 performance optimization
-  - 25+ SDC component architecture
-  - Responsive municipality-specific theming (lake theme for Bruchtal)
-  - Vite 6.2.0 build optimization and Storybook documentation
-
-#### Stream 6: Testing & Quality Assurance
-- **Lead Agent**: @qa-testing-specialist
-- **Supporting**: @drupal-performance-specialist
-- **MCP Tools**: mcp__browser-tools (full audits), mcp__puppeteer (automation), mcp__a11y-accessibility
-- **Responsibilities**:
-  - Automated testing suite execution
-  - Visual regression testing with BackstopJS  
-  - Accessibility validation across all features
-  - Demo preparation validation and monitoring
+#### Lane 3: Quality & Compliance (Right Terminal)
+- **Lead Agents**: @swiss-compliance-specialist + @qa-testing-specialist
+- **Role**: Quality assurance, compliance validation, performance optimization
+- **Memory Focus**: Quality standards, Swiss compliance, performance, accessibility
+- **Trigger**: Code review, compliance checking, performance optimization, accessibility validation
 
 ### 🔄 Coordination Strategy
 
 #### Shared Knowledge Management
-- **Primary Tool**: mcp__server-memory for cross-team knowledge sharing
-- **Usage**: All agents document discoveries, test results, and requirements
-- **Benefit**: Prevents duplication and ensures team-wide awareness
+- **Primary Tool**: mcp__server-memory for cross-lane knowledge sharing
+- **Usage**: All lanes document discoveries, test results, and patterns
+- **Benefit**: Prevents duplication and ensures team-wide learning
 
 #### Parallel Execution Patterns
-- **Performance Testing**: Multiple agents can run browser audits simultaneously
-- **Component Development**: Frontend agents work in parallel on different component areas
+- **Performance Testing**: Multiple lanes can run browser audits simultaneously
+- **Component Development**: Lanes work in parallel on different aspects
 - **Compliance Validation**: Swiss compliance runs independently while features develop
 - **Content & AI**: AI integration develops parallel to business process implementation
 
 #### Handoff Protocols
-1. **Requirements** → @drupal-technical-pm captures → mcp__server-memory → All teams access
-2. **Feature Complete** → @qa-testing-specialist validates → Results to mcp__server-memory
-3. **Swiss Compliance** → @swiss-compliance-specialist validates → Documentation via mcp__server-memory
-4. **Demo Ready** → All teams confirm via mcp__server-memory coordination
+1. **Requirements** → Planning Lane captures → mcp__server-memory → All lanes access
+2. **Feature Complete** → Building Lane delivers → Reviewing Lane validates → Results to mcp__server-memory
+3. **Swiss Compliance** → Reviewing Lane validates → Documentation via mcp__server-memory
+4. **Demo Ready** → All lanes confirm via mcp__server-memory coordination
 
 ### 🚀 Recommended Workflows for Common Tasks
 

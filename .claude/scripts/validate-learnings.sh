@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# Learnings Validation Script for GPZH Präqualifikation Demo System
-# Validates compliance with .claude/llms.txt guidelines
+# Compounding Engineering Validation Script
+# Validates responses against compound-engineering.md principles
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$(dirname "$SCRIPT_DIR")"
 PROJECT_DIR="$(dirname "$CLAUDE_DIR")"
+COMPOUND_DOC="$CLAUDE_DIR/docs/compound-engineering.md"
 LLMS_FILE="$CLAUDE_DIR/llms.txt"
+CLAUDE_MD="$PROJECT_DIR/CLAUDE.md"
 LOG_FILE="$CLAUDE_DIR/validation.log"
 
 # Colors for output
@@ -39,29 +41,47 @@ check_learnings_file() {
     return 0
 }
 
-# Function to validate lane-specific behavior
-validate_lane_behavior() {
-    local current_lane="${CLAUDE_LANE:-unknown}"
-    echo -e "${BLUE}🔍 Validating lane behavior for: $current_lane${NC}"
+# Function to check compounding engineering principles
+check_compounding_principles() {
+    echo -e "${BLUE}🔧 Checking Compounding Engineering Principles${NC}"
     
-    case "$current_lane" in
-        "planning")
-            echo -e "${GREEN}✅ Planning Lane: Use @drupal-solution-architect and @drupal-technical-pm${NC}"
-            echo -e "${GREEN}✅ Focus on strategic analysis and Swiss compliance${NC}"
-            ;;
-        "building") 
-            echo -e "${GREEN}✅ Building Lane: Use @drupal-11-lead-developer and @municipality-portal-specialist${NC}"
-            echo -e "${GREEN}✅ Follow Swiss German conventions (ss not ß)${NC}"
-            ;;
-        "reviewing")
-            echo -e "${GREEN}✅ Reviewing Lane: Use @swiss-compliance-specialist and @qa-testing-specialist${NC}"
-            echo -e "${GREEN}✅ Validate WCAG 2.1 AA and eCH-0059 compliance${NC}"
-            ;;
-        *)
-            echo -e "${YELLOW}⚠️  WARNING: Unknown lane '$current_lane' - using general guidelines${NC}"
-            log_validation "WARNING" "Unknown lane: $current_lane"
-            ;;
-    esac
+    local principles_score=0
+    
+    # Check if we're teaching through work
+    echo -e "${BLUE}📚 Are we teaching through work?${NC}"
+    if [[ -f "$CLAUDE_MD" ]] && grep -q "lessons learned\|patterns\|decisions" "$CLAUDE_MD" 2>/dev/null; then
+        echo -e "${GREEN}✅ System knowledge being captured in CLAUDE.md${NC}"
+        principles_score=$((principles_score + 1))
+    else
+        echo -e "${YELLOW}⚠️  Consider capturing decisions and patterns in CLAUDE.md${NC}"
+    fi
+    
+    # Check if we're turning failures into upgrades
+    echo -e "${BLUE}🔄 Are we turning failures into upgrades?${NC}"
+    if [[ -f "$LLMS_FILE" ]] && grep -q "bug\|failure\|error\|lesson" "$LLMS_FILE" 2>/dev/null; then
+        echo -e "${GREEN}✅ Failures being converted to lessons${NC}"
+        principles_score=$((principles_score + 1))
+    else
+        echo -e "${YELLOW}⚠️  Consider documenting failure patterns in llms.txt${NC}"
+    fi
+    
+    # Check three-lane setup
+    echo -e "${BLUE}🛣️  Three-Lane Development Setup${NC}"
+    local ai_processes=0
+    local claude_processes=$(pgrep -f "claude\|mcp" 2>/dev/null | wc -l || echo 0)
+    local tmux_sessions=$(tmux list-sessions 2>/dev/null | wc -l || echo 0)
+    ai_processes=$((ai_processes + claude_processes + tmux_sessions))
+    
+    if [[ $ai_processes -gt 2 ]]; then
+        echo -e "${GREEN}✅ Multi-lane development active ($ai_processes processes)${NC}"
+        echo -e "${GREEN}   Left: Planning | Center: Building | Right: Reviewing${NC}"
+        principles_score=$((principles_score + 1))
+    else
+        echo -e "${YELLOW}💡 Consider three-lane setup for compounding efficiency${NC}"
+    fi
+    
+    log_validation "INFO" "Compounding principles check: $principles_score/3"
+    return $((3 - principles_score))
 }
 
 # Function to validate Swiss compliance requirements
@@ -197,6 +217,23 @@ check_common_violations() {
     return $violations_found
 }
 
+# Function to show compounding engineering reminders
+show_compounding_reminders() {
+    echo -e "${BLUE}🎯 Compounding Engineering Core Principles${NC}"
+    echo -e "${GREEN}   1. Every decision should teach the system${NC}"
+    echo -e "${GREEN}   2. Every bug becomes a permanent lesson${NC}"
+    echo -e "${GREEN}   3. Every code review updates the defaults${NC}"
+    echo -e "${GREEN}   4. Build self-improving development systems${NC}"
+    echo -e "${GREEN}   5. Design systems that design systems${NC}"
+    echo ""
+    echo -e "${BLUE}💡 Key Questions to Ask:${NC}"
+    echo -e "${YELLOW}   - Are we teaching through work, not just solving problems?${NC}"
+    echo -e "${YELLOW}   - Are we turning failures into upgrades?${NC}"
+    echo -e "${YELLOW}   - Are we orchestrating in parallel (three lanes)?${NC}"
+    echo -e "${YELLOW}   - Is our context lean but specific to our needs?${NC}"
+    echo -e "${YELLOW}   - Are we trusting the process but verifying output?${NC}"
+}
+
 # Function to provide improvement suggestions
 suggest_improvements() {
     echo -e "${BLUE}💡 Improvement Suggestions${NC}"
@@ -216,6 +253,8 @@ suggest_improvements() {
         echo -e "${YELLOW}💡 Ensure WCAG 2.1 AA accessibility compliance${NC}"
     fi
     
+    show_compounding_reminders
+    
     log_validation "INFO" "Improvement suggestions provided"
 }
 
@@ -234,7 +273,7 @@ main() {
     check_learnings_file || exit_code=1
     echo ""
     
-    validate_lane_behavior
+    check_compounding_principles || exit_code=$?
     echo ""
     
     validate_swiss_compliance

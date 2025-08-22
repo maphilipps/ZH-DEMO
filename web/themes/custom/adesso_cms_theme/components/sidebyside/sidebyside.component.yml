@@ -5,7 +5,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: Pre-headline text above the main title
     title:
@@ -60,3 +62,7 @@ props:
       enum:
         - light
         - dark
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: attributes
+      description: HTML attributes object for the wrapper element

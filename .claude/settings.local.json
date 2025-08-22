@@ -29,8 +29,6 @@
   },
   "outputStyle": "default",
   "hooks": {
-    "user-prompt-submit": ".claude/hooks/user-prompt-submit.sh",
-    "task-complete": ".claude/hooks/task-complete.sh",
     "UserPromptSubmit": [
       {
         "matcher": "",

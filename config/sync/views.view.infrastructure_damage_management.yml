@@ -1,0 +1,1569 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - user
+    - webform
+third_party_settings: {  }
+id: infrastructure_damage_management
+label: 'Infrastrukturschäden Verwaltung'
+module: views
+description: 'Übersicht und Workflow-Management für alle Infrastrukturschäden-Meldungen'
+tag: 'municipal_administration'
+base_table: webform_submission
+base_field: sid
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Default
+    position: 0
+    display_options:
+      access:
+        type: role
+        options:
+          role:
+            administrator: administrator
+            editor: editor
+            infrastructure_manager: infrastructure_manager
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      exposed_form:
+        type: basic
+        options:
+          submit_button: 'Filter anwenden'
+          reset_button: true
+          reset_button_label: 'Filter zurücksetzen'
+          exposed_sorts_label: 'Sortierung'
+          expose_sort_order: true
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      pager:
+        type: full
+        options:
+          items_per_page: 25
+          offset: 0
+          id: 0
+          total_pages: null
+          expose:
+            items_per_page: true
+            items_per_page_label: 'Einträge pro Seite'
+            items_per_page_options: '10, 25, 50, 100'
+            items_per_page_options_all: true
+            items_per_page_options_all_label: '- Alle -'
+            offset: false
+            offset_label: Offset
+          tags:
+            previous: '‹ Zurück'
+            next: 'Weiter ›'
+            first: '« Erste'
+            last: 'Letzte »'
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: true
+          caption: 'Infrastrukturschäden-Meldungen mit Status und Workflow-Überwachung'
+          summary: ''
+          description: ''
+          columns:
+            sid: sid
+            created: created
+            status: status
+            damage_type: damage_type
+            damage_severity: damage_severity
+            location_description: location_description
+            name: name
+            assigned_to: assigned_to
+            estimated_cost: estimated_cost
+            operations: operations
+          info:
+            sid:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
+              sortable: true
+              default_sort_order: asc
+              align: center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            damage_type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-medium
+            damage_severity:
+              sortable: true
+              default_sort_order: desc
+              align: center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            location_description:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-medium
+            assigned_to:
+              sortable: true
+              default_sort_order: asc
+              align: center
+              separator: ''
+              empty_column: false
+              responsive: priority-medium
+            estimated_cost:
+              sortable: true
+              default_sort_order: desc
+              align: right
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            operations:
+              sortable: false
+              default_sort_order: asc
+              align: center
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: created
+          empty_table: true
+      row:
+        type: fields
+      filters:
+        webform_id:
+          id: webform_id
+          table: webform_submission
+          field: webform_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            infrastruktur_schaden: infrastruktur_schaden
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: bundle
+        status:
+          id: status
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Status Filter'
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: status_op
+            label: 'Bearbeitungsstatus'
+            description: 'Filter nach Bearbeitungsstatus der Meldung'
+            use_operator: false
+            operator: status_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: status
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_field_filter
+          webform_element_name: workflow_status
+        damage_severity:
+          id: damage_severity
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Dringlichkeit Filter'
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: damage_severity_op
+            label: Dringlichkeit
+            description: 'Filter nach Dringlichkeit der Meldung'
+            use_operator: false
+            operator: damage_severity_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: damage_severity
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_field_filter
+          webform_element_name: schweregrad
+        damage_type:
+          id: damage_type
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Schadensart Filter'
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: damage_type_op
+            label: 'Art des Schadens'
+            description: 'Filter nach Art des Schadens'
+            use_operator: false
+            operator: damage_type_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: damage_type
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_field_filter
+          webform_element_name: schadens_art
+        assigned_to:
+          id: assigned_to
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Zugewiesen an Filter'
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: assigned_to_op
+            label: 'Zugewiesen an'
+            description: 'Filter nach zugewiesener Person'
+            use_operator: false
+            operator: assigned_to_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: assigned_to
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_field_filter
+          webform_element_name: assigned_to
+        created:
+          id: created
+          table: webform_submission
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: 'Zeitraum Filter'
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: created_op
+            label: 'Eingereicht zwischen'
+            description: 'Filter nach Eingangsdatum'
+            use_operator: false
+            operator: created_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: created
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              infrastructure_manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: date
+      sorts:
+        created:
+          id: created
+          table: webform_submission
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: 'Eingereicht am'
+        damage_severity_sort:
+          id: damage_severity_sort
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Sort by Severity'
+          order: DESC
+          exposed: true
+          expose:
+            label: Dringlichkeit
+          plugin_id: webform_submission_field_sort
+          webform_element_name: schweregrad
+        status_sort:
+          id: status_sort
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Sort by Status'
+          order: ASC
+          exposed: true
+          expose:
+            label: Status
+          plugin_id: webform_submission_field_sort
+          webform_element_name: workflow_status
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: true
+          content: |
+            <div class="infrastructure-management-header">
+              <div class="stats-summary">
+                <div class="stat-item">
+                  <span class="stat-label">Offene Meldungen:</span>
+                  <span class="stat-value stat-new">[view:total-new]</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">In Bearbeitung:</span>
+                  <span class="stat-value stat-progress">[view:total-progress]</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Hochpriorität:</span>
+                  <span class="stat-value stat-urgent">[view:total-urgent]</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Gesamt:</span>
+                  <span class="stat-value">[view:total-rows]</span>
+                </div>
+              </div>
+              <div class="management-actions">
+                <a href="/admin/structure/webform/manage/infrastruktur_schaden" class="button button--primary">Formular bearbeiten</a>
+                <a href="/admin/structure/webform/manage/infrastruktur_schaden/results/submissions" class="button">Alle Einsendungen</a>
+                <a href="/admin/reports/infrastructure-damage" class="button">Berichte erstellen</a>
+              </div>
+            </div>
+          plugin_id: text_custom
+      footer: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: |
+            <div class="empty-infrastructure-view">
+              <h3>Keine Infrastrukturschäden-Meldungen vorhanden</h3>
+              <p>Es wurden noch keine Infrastrukturschäden gemeldet oder alle entsprechen nicht den aktuellen Filterkriterien.</p>
+              <p><a href="/webform/infrastruktur_schaden" class="button button--primary">Neue Meldung testen</a></p>
+            </div>
+          plugin_id: text_custom
+      relationships: {  }
+      fields:
+        sid:
+          id: sid
+          table: webform_submission
+          field: sid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Meldung #'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: '/admin/structure/webform/manage/infrastruktur_schaden/submission/{{ sid }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: 'submission-link'
+            prefix: '#'
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        created:
+          id: created
+          table: webform_submission
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Eingereicht am'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: custom
+            custom_date_format: 'd.m.Y H:i'
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        status:
+          id: status
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Status Field'
+          label: Status
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="status-badge status-{{ status }}">{{ status }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: true
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<span class="status-badge status-new">Neu</span>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: workflow_status
+        damage_type:
+          id: damage_type
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Damage Type Field'
+          label: 'Art des Schadens'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 30
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: 'Nicht angegeben'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schadens_art
+        damage_severity:
+          id: damage_severity
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Damage Severity Field'
+          label: Dringlichkeit
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="severity-badge severity-{{ damage_severity }}">{{ damage_severity }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: true
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<span class="severity-badge severity-niedrig">Niedrig</span>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schweregrad
+        location_description:
+          id: location_description
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Location Description Field'
+          label: Standort
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 50
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: 'Nicht angegeben'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schadens_ort
+        name:
+          id: name
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Name Field'
+          label: Melder
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 30
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: 'Anonym'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: vorname
+        assigned_to:
+          id: assigned_to
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Assigned To Field'
+          label: 'Zugewiesen an'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 25
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<em>Nicht zugewiesen</em>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: assigned_to
+        estimated_cost:
+          id: estimated_cost
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Estimated Cost Field'
+          label: 'Geschätzte Kosten'
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ estimated_cost }} CHF'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '-'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: "'"
+            decimal_separator: '.'
+            scale: 2
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: estimated_cost
+        operations:
+          id: operations
+          table: webform_submission
+          field: operations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Aktionen
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          destination: true
+          plugin_id: webform_submission_operations
+      arguments: {  }
+      display_extenders: {  }
+      css_class: 'infrastructure-damage-management'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.roles:administrator'
+        - 'user.roles:editor'
+        - 'user.roles:infrastructure_manager'
+      tags:
+        - 'config:views.view.infrastructure_damage_management'
+        - 'webform:infrastruktur_schaden'
+        - 'webform_submission_list'
+  page_1:
+    display_plugin: page
+    id: page_1
+    display_title: 'Infrastruktur-Verwaltung'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: admin/infrastructure/damage-reports
+      menu:
+        type: normal
+        title: 'Infrastrukturschäden'
+        description: 'Verwalten Sie alle Infrastrukturschäden-Meldungen mit Workflow-Überwachung'
+        expanded: false
+        parent: 'system.admin_content'
+        weight: 5
+        context: '0'
+        menu_name: admin
+      display_description: 'Hauptseite für die Verwaltung aller Infrastrukturschäden-Meldungen'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.roles:administrator'
+        - 'user.roles:editor'
+        - 'user.roles:infrastructure_manager'
+      tags:
+        - 'config:views.view.infrastructure_damage_management'
+        - 'webform:infrastruktur_schaden'
+        - 'webform_submission_list'
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: 'Infrastruktur-Dashboard'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: 'damage-report-item'
+          default_row_class: true
+          type: ul
+          wrapper_class: 'damage-reports-list'
+          class: 'infrastructure-dashboard-list'
+      defaults:
+        style: false
+        row: false
+        pager: false
+        fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      pager:
+        type: some
+        options:
+          items_per_page: 10
+          offset: 0
+      fields:
+        sid:
+          id: sid
+          table: webform_submission
+          field: sid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<strong>#{{ sid }}</strong>'
+            make_link: true
+            path: '/admin/structure/webform/manage/infrastruktur_schaden/submission/{{ sid }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: 'submission-link'
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: true
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        damage_type:
+          id: damage_type
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Damage Type Field'
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ' - '
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: 'Unbekannt - '
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schadens_art
+        damage_severity:
+          id: damage_severity
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Damage Severity Field'
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<span class="severity-badge severity-{{ damage_severity }}">{{ damage_severity }}</span>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: true
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<span class="severity-badge severity-niedrig">Niedrig</span>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schweregrad
+        location_description:
+          id: location_description
+          table: webform_submission_data
+          field: value
+          relationship: none
+          group_type: group
+          admin_label: 'Location Description Field'
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: 'bei '
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 40
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: webform_submission_field
+          webform_element_name: schadens_ort
+        created:
+          id: created
+          table: webform_submission
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: '('
+            suffix: ')'
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: custom
+            custom_date_format: 'd.m.Y'
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      block_description: 'Zeigt die neuesten Infrastrukturschäden-Meldungen als Dashboard-Block'
+      block_category: 'GPZH Municipal Services'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.roles:administrator'
+        - 'user.roles:editor'
+        - 'user.roles:infrastructure_manager'
+      tags:
+        - 'config:views.view.infrastructure_damage_management'
+        - 'webform:infrastruktur_schaden'
+        - 'webform_submission_list'

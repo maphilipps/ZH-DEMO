@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: 511NtNxGQGJR6waveoXMyeRmpyRfde_uuNoS9Pu-Or8
+langcode: en
+status: true
+dependencies: {  }
+id: main-services
+title: Services
+description: ''
+menu_name: main
+link:
+  uri: 'internal:/services'
+  title: ''
+  options: {  }
+external: false
+rediscover: false
+weight: -49
+expanded: true
+enabled: true
+parent: ''
+changed: 1640995200

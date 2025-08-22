@@ -17,7 +17,9 @@ props:
       title: body
       description: Stat text
     icon:
-      type: string
+      type: 
+        - string
+        - 'null'
       title: icon
       description: Material icon name
     media:

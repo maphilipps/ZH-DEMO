@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * ZH Demo Editorial Workflow module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function zh_demo_editorial_workflow_entity_insert(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface) {
+    // Log when new content is created
+    $moderation_state = $entity->get('moderation_state')->value ?? 'draft';
+    \Drupal::logger('zh_demo_editorial_workflow')->info(
+      'New @type content "@title" created by user @user with state: @state',
+      [
+        '@type' => $entity->bundle(),
+        '@title' => $entity->getTitle(),
+        '@user' => \Drupal::currentUser()->getDisplayName(),
+        '@state' => $moderation_state,
+      ]
+    );
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function zh_demo_editorial_workflow_entity_update(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface) {
+    $original_state = $entity->original->get('moderation_state')->value ?? 'draft';
+    $new_state = $entity->get('moderation_state')->value ?? 'draft';
+    
+    if ($original_state !== $new_state) {
+      // Log moderation state changes
+      \Drupal::logger('zh_demo_editorial_workflow')->info(
+        'Content "@title" state changed from @old_state to @new_state by user @user',
+        [
+          '@title' => $entity->getTitle(),
+          '@old_state' => $original_state,
+          '@new_state' => $new_state,
+          '@user' => \Drupal::currentUser()->getDisplayName(),
+        ]
+      );
+      
+      // Send notification for review submissions
+      if ($new_state === 'review') {
+        _zh_demo_editorial_workflow_notify_editors($entity);
+      }
+    }
+  }
+}
+
+/**
+ * Send notification to editors when content is submitted for review.
+ */
+function _zh_demo_editorial_workflow_notify_editors(NodeInterface $node) {
+  // This would typically send email notifications to editors
+  // For demo purposes, we just log it
+  \Drupal::logger('zh_demo_editorial_workflow')->notice(
+    'Content "@title" submitted for review and editors have been notified',
+    ['@title' => $node->getTitle()]
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function zh_demo_editorial_workflow_form_alter(&$form, &$form_state, $form_id) {
+  // Add helpful text to moderation state widget
+  if (isset($form['moderation_state'])) {
+    $form['moderation_state']['widget']['#description'] = t('Wählen Sie den Status für diesen Inhalt. "Zur Prüfung einreichen" sendet den Inhalt an die Redaktion.');
+  }
+}

@@ -28,7 +28,7 @@ props:
       type: string
       title: Pre-headline HTML Tag
       description: HTML tag for the pre-headline
-      enum: [h1, h2, h3, h4, h5, h6, span]
+      enum: [h1, h2, h3, h4, h5, h6, span, p, div]
       default: span
     title_visual_level:
       type: string

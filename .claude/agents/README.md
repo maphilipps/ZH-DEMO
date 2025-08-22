@@ -1,5 +1,6 @@
 ---
 name: Agent Configuration README
+description: Central documentation for specialized Claude agents optimized for the adesso CMS Drupal 11 development ecosystem
 ---
 
 # adesso CMS Agent Configuration

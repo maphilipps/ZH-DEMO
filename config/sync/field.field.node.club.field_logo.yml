@@ -1,0 +1,24 @@
+uuid: 63d3b1ec-3190-4fbb-a5d8-0c37c28e3a16
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_logo
+    - media.type.image
+    - node.type.club
+id: node.club.field_logo
+field_name: field_logo
+entity_type: node
+bundle: club
+label: Logo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+field_type: entity_reference

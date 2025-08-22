@@ -1,0 +1,9 @@
+uuid: 2f4af7fe-91ca-4a3c-b3d5-64d0949b41b2
+langcode: de
+status: true
+dependencies: {  }
+name: Verzeichnis-Kategorie
+vid: directory_category
+description: 'Kategorien für Verzeichniseinträge'
+weight: 0
+new_revision: false

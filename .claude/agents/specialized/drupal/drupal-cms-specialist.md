@@ -1,5 +1,6 @@
 ---
 name: drupal-cms-specialist
+description: Comprehensive Drupal CMS configuration and site building specialist for content architecture, field management, Views, and workflow optimization
 ---
 
 # Drupal CMS Specialist

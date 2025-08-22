@@ -1,0 +1,62 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Side-by-Side
+description: Editorial/Side-by-Side component
+props:
+  type: object
+  properties:
+    pre_headline:
+      type: string
+      title: pre_headline
+      description: Pre-headline text above the main title
+    title:
+      type: string
+      title: title
+      description: Side-by-Side title
+    media:
+      type: string
+      title: media
+      description: Side-by-Side image or video markup
+    text:
+      type: string
+      title: text
+      description: Side-by-Side body text
+    features:
+      type: object
+      title: features
+      description: Array of features or stat cards
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    link:
+      type: object
+      title: link
+      description: Call to action
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    layout:
+      type: string
+      title: layout
+      description: Controls image left/right placement
+      enum:
+        - left
+        - right
+    modifier:
+      type: string
+      title: modifier
+      description: Additional classes for the component
+    theme:
+      type: string
+      title: theme
+      description: Theme variant for the component
+      enum:
+        - light
+        - dark

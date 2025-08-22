@@ -1,0 +1,26 @@
+uuid: f6a7b8c9-d012-3456-fa78-bc90de123456
+langcode: de
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_top_spacing
+field_name: field_top_spacing
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    - { value: 'none', label: 'Kein Abstand' }
+    - { value: 'small', label: 'Klein' }
+    - { value: 'medium', label: 'Mittel' }
+    - { value: 'large', label: 'Groß' }
+    - { value: 'extra-large', label: 'Extra groß' }
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

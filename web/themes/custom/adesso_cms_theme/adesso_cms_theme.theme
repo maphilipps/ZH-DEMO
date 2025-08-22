@@ -141,16 +141,17 @@ function adesso_cms_theme_theme_suggestions_input_alter(array &$suggestions, arr
 function adesso_cms_theme_page_attachments_alter(array &$page) {
   // Add preload hints for critical resources.
   $critical_assets = [
-    // Preload critical fonts.
+    // Preload critical fonts only if they're actually used.
     [
       'href' => 'https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.woff2',
       'as' => 'font',
       'type' => 'font/woff2',
       'crossorigin' => 'anonymous',
+      'condition' => _adesso_cms_theme_is_homepage(),
     ],
     // Preload critical CSS
     // Critical JavaScript handled by libraries.yml
-    // Preload hero images (if on homepage)
+    // Preload hero images (only on homepage where they're used)
     [
       'href' => '/themes/custom/adesso_cms_theme/logo.svg',
       'as' => 'image',

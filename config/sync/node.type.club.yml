@@ -1,22 +1,11 @@
-langcode: en
+uuid: 83eb6985-d1fc-4388-980f-fd15b19321ad
+langcode: de
 status: true
-dependencies:
-  module:
-    - content_moderation
-    - menu_ui
-third_party_settings:
-  content_moderation:
-    enabled: true
-    allowed_moderation_states: []
-    default_moderation_state: draft
-  menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+dependencies: {  }
 name: Vereine
 type: club
 description: 'Vereine in der Gemeinde Bruchtal'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

@@ -9,7 +9,9 @@ props:
       title: title
       description: Title for the embed
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: Pre-headline text above the main title
     embed:

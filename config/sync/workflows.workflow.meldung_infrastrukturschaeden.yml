@@ -1,0 +1,102 @@
+uuid: 5007d3f1-1ce2-43c8-b7e3-21132ba1f7dd
+langcode: de
+status: true
+dependencies:
+  module:
+    - webform_workflows_element
+id: meldung_infrastrukturschaeden
+label: 'Meldung Infrastrukturschäden'
+type: webform_workflows_element
+type_settings:
+  initial_state: eingegangen
+  states:
+    eingegangen:
+      label: Eingegangen
+      weight: 0
+    in_pruefung:
+      label: 'In Prüfung'
+      weight: 1
+    zugewiesen:
+      label: Zugewiesen
+      weight: 2
+    in_bearbeitung:
+      label: 'In Bearbeitung'
+      weight: 3
+    wartet_material:
+      label: 'Wartet auf Material'
+      weight: 4
+    abgeschlossen:
+      label: Abgeschlossen
+      weight: 5
+    archiviert:
+      label: Archiviert
+      weight: 6
+  transitions:
+    zur_pruefung:
+      label: 'Zur Prüfung weiterleiten'
+      from:
+        - eingegangen
+      to: in_pruefung
+      weight: 0
+      roles:
+        - editor
+        - content_editor
+        - administrator
+    zuweisen:
+      label: Zuweisen
+      from:
+        - in_pruefung
+      to: zugewiesen
+      weight: 1
+      roles:
+        - editor
+        - administrator
+    bearbeitung_starten:
+      label: 'Bearbeitung starten'
+      from:
+        - zugewiesen
+      to: in_bearbeitung
+      weight: 2
+      roles:
+        - content_editor
+        - editor
+        - administrator
+    material_anfordern:
+      label: 'Material anfordern'
+      from:
+        - in_bearbeitung
+      to: wartet_material
+      weight: 3
+      roles:
+        - content_editor
+        - editor
+        - administrator
+    bearbeitung_fortsetzen:
+      label: 'Bearbeitung fortsetzen'
+      from:
+        - wartet_material
+      to: in_bearbeitung
+      weight: 4
+      roles:
+        - content_editor
+        - editor
+        - administrator
+    abschliessen:
+      label: Abschließen
+      from:
+        - in_bearbeitung
+      to: abgeschlossen
+      weight: 5
+      roles:
+        - content_editor
+        - editor
+        - administrator
+    archivieren:
+      label: Archivieren
+      from:
+        - abgeschlossen
+      to: archiviert
+      weight: 6
+      roles:
+        - editor
+        - administrator

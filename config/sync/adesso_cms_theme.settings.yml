@@ -1,0 +1,45 @@
+_core:
+  default_config_hash: FMPvmSEMThdrrSmb8FIKKUr4WQD3_E7ZXzyYn0WFNWs
+langcode: en
+favicon:
+  use_default: true
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  logo: true
+  name: true
+  node_user_picture: true
+  mega_menu: true
+  search: true
+logo:
+  path: 'public://4615ba9e-3a6f-47cd-9e16-d255ffeec21f-removebg-preview_0.png'
+  url: /themes/custom/adesso_cms_theme/logo.svg
+  use_default: false
+  alt: 'Adesso CMS Logo'
+  width: 40
+  height: 40
+header:
+  background_color: white
+  sticky: true
+  enable_animations: true
+navigation:
+  enable_mega_menu: true
+  mobile_breakpoint: lg
+  dropdown_animation: slide
+search:
+  enable_dropdown: true
+  placeholder: Search...
+  action_url: /search
+  enable_autocomplete: false
+theme_settings:
+  css_optimization: true
+  js_optimization: true
+  enable_flowbite: true
+primary_color: '#3b82f6'
+custom_logo:
+  fid: null
+  url: ''
+  alt: ''
+show_logo: true
+use_block_headers: 1

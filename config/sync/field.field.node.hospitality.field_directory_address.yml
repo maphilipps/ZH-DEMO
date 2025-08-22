@@ -1,0 +1,22 @@
+uuid: 020a83f0-e256-49fa-923a-8a9a91737e96
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_address
+    - node.type.hospitality
+  module:
+    - text
+id: node.hospitality.field_directory_address
+field_name: field_directory_address
+entity_type: node
+bundle: hospitality
+label: Adresse
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,13 @@
+uuid: deb56721-3e4b-416e-a624-07717f89ed2c
+langcode: de
+status: false
+dependencies:
+  config:
+    - simple_sitemap.type.index
+_core:
+  default_config_hash: WffB95XdMvoUEvymTyLFLB-Q_JnCbbjy9Kj7TvlzN9s
+id: index
+label: Sitemap-Index
+description: 'Der Sitemap-Index, der alle anderen Sitemaps auflistet - nützlich, wenn es mindestens zwei andere Sitemaps gibt. In den meisten Fällen sollte diese Sitemap die letzte in der Generierungswarteschlange sein und als Standardsitemap festgelegt werden.'
+type: index
+weight: 1000

@@ -18,7 +18,9 @@ props:
       title: 'Title'
       description: 'The card title text'
     summary:
-      type: string
+      type:
+        - string
+        - 'null'
       title: 'Summary'
       description: 'Brief description or summary for the card'
       default: ''

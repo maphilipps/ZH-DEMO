@@ -1,0 +1,10 @@
+my_content_dashboard:
+  version: 1.x
+  css:
+    theme:
+      css/my-content.css: {}
+  js:
+    js/my-content.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

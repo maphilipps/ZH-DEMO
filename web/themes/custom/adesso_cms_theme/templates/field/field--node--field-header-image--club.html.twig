@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for header image field in club nodes.
+ */
+#}
+{% for item in items %}
+  <img src="{{ file_url(item.content['#item'].entity.uri.value) }}" 
+       alt="{{ item.content['#item'].alt ?: 'Header image' }}"
+       class="h-full w-full object-cover">
+{% endfor %}

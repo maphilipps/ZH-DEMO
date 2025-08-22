@@ -1,0 +1,240 @@
+{#
+/**
+ * @file
+ * Theme override to display a club node in full view mode.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - content: All node items. Use {{ content }} to print them all.
+ * - label: The title of the node.
+ * - view_mode: View mode; for example, "full" or "teaser".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ attach_library('adesso_cms_theme/node') }}
+
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label and page %}
+    <h1{{ title_attributes.addClass('sr-only') }}>
+      {{ label }}
+    </h1>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {# Header mit Titel und Taxonomie Pills #}
+    <div class="bg-white border-b border-gray-200 mb-6">
+      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          
+          {# Taxonomie Pills rechts #}
+          <div class="flex-shrink-0 ml-auto">
+            <div class="flex flex-wrap gap-2 justify-start lg:justify-end">
+              {# Vereinsstatus Pills #}
+              {% if content.field_vereinsstatus %}
+                {% for item in content.field_vereinsstatus['#items'] %}
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                    {{ item.entity.name.value }}
+                  </span>
+                {% endfor %}
+              {% endif %}
+
+              {# Vereinskategorie Pills #}
+              {% if content.field_vereinskategorie %}
+                {% for item in content.field_vereinskategorie['#items'] %}
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    {{ item.entity.name.value }}
+                  </span>
+                {% endfor %}
+              {% endif %}
+
+              {# Mitgliedergrösse Pills #}
+              {% if content.field_mitgliedergroesse %}
+                {% for item in content.field_mitgliedergroesse['#items'] %}
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                    {{ item.entity.name.value }}
+                  </span>
+                {% endfor %}
+              {% endif %}
+
+              {# Zielgruppe Pills #}
+              {% if content.field_zielgruppe %}
+                {% for item in content.field_zielgruppe['#items'] %}
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
+                    {{ item.entity.name.value }}
+                  </span>
+                {% endfor %}
+              {% endif %}
+
+              {# Verifizierungs-Badge #}
+              {% if node.field_verified.value %}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
+                  ✓ Verifiziert
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Weitere Inhalte (Paragraphs) falls vorhanden #}
+    {{ content|without('field_description', 'field_vereinsstatus', 'field_vereinskategorie', 'field_mitgliedergroesse', 'field_zielgruppe', 'field_president', 'field_directory_contact_person', 'field_email', 'field_phone', 'field_website', 'field_directory_address', 'field_opening_hours', 'field_logo', 'field_featured_image', 'field_verified', 'field_last_updated', 'field_contact_person', 'field_directory_category', 'field_directory_contact_email', 'field_directory_owner') }}
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <div class="bg-white">
+        <div class="px-4 sm:px-0">
+          <h2 class="text-base/7 font-semibold text-gray-900">Vereinsinformationen</h2>
+          <p class="mt-1 max-w-2xl text-sm/6 text-gray-500">Detaillierte Informationen über {{ label }}.</p>
+        </div>
+
+        <div class="mt-6">
+          <dl class="grid grid-cols-1 sm:grid-cols-2">
+
+            {# Vereinsstatus #}
+            {% if content.field_vereinsstatus %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dt class="text-sm/6 font-medium text-gray-900">Status</dt>
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_vereinsstatus }}</dd>
+              </div>
+            {% endif %}
+
+            {# Vereinskategorie #}
+            {% if content.field_vereinskategorie %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_vereinskategorie }}</dd>
+              </div>
+            {% endif %}
+
+            {# Mitgliedergrösse #}
+            {% if content.field_mitgliedergroesse %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_mitgliedergroesse }}</dd>
+              </div>
+            {% endif %}
+
+            {# Zielgruppe #}
+            {% if content.field_zielgruppe %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_zielgruppe }}</dd>
+              </div>
+            {% endif %}
+
+            {# Präsident/in #}
+            {% if content.field_president %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_president }}</dd>
+              </div>
+            {% endif %}
+
+            {# Kontaktperson #}
+            {% if content.field_directory_contact_person %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_directory_contact_person }}</dd>
+              </div>
+            {% endif %}
+
+            {# E-Mail #}
+            {% if content.field_email %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_email }}</dd>
+              </div>
+            {% endif %}
+
+            {# Telefon #}
+            {% if content.field_phone %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_phone }}</dd>
+              </div>
+            {% endif %}
+
+            {# Website #}
+            {% if content.field_website %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_website }}</dd>
+              </div>
+            {% endif %}
+
+            {# Adresse #}
+            {% if content.field_directory_address %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_directory_address }}</dd>
+              </div>
+            {% endif %}
+
+            {# Öffnungszeiten #}
+            {% if content.field_opening_hours %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_opening_hours }}</dd>
+              </div>
+            {% endif %}
+
+            {# Beschreibung #}
+            {% if content.field_description %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_description }}</dd>
+              </div>
+            {% endif %}
+
+            {# Logo/Featured Image #}
+            {% if content.field_logo or content.field_featured_image %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
+                <dt class="text-sm/6 font-medium text-gray-900">Bilder</dt>
+                <dd class="mt-2 text-sm text-gray-900">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% if content.field_logo %}
+                      <div>
+                        <h4 class="font-medium text-gray-900 mb-2">Logo</h4>
+                        {{ content.field_logo }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </dd>
+              </div>
+            {% endif %}
+
+            {# Verifizierungsstatus #}
+            {% if content.field_verified %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dt class="text-sm/6 font-medium text-gray-900">Verifiziert</dt>
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">
+                  {% if node.field_verified.value %}
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    ✓ Verifiziert
+                  </span>
+                  {% else %}
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    Nicht verifiziert
+                  </span>
+                  {% endif %}
+                </dd>
+              </div>
+            {% endif %}
+
+            {# Letzte Aktualisierung #}
+            {% if content.field_last_updated %}
+              <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+                <dt class="text-sm/6 font-medium text-gray-900">Zuletzt aktualisiert</dt>
+                <dd class="mt-1 text-sm/6 text-gray-700 sm:mt-2">{{ content.field_last_updated }}</dd>
+              </div>
+            {% endif %}
+
+          </dl>
+        </div>
+      </div>
+      {{ content }}
+    </div>
+  </div>
+</article>

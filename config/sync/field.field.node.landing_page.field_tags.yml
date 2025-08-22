@@ -1,3 +1,4 @@
+uuid: 9c5ee9f3-ae87-4f72-aa05-2d41b448afb8
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.node.field_tags
     - node.type.landing_page
     - taxonomy.vocabulary.tags
+_core:
+  default_config_hash: FU0COPcpS4fB1edsQIslVuPoQPQPE65mULPm-AWfPac
 id: node.landing_page.field_tags
 field_name: field_tags
 entity_type: node

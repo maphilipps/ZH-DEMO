@@ -1,0 +1,10 @@
+uuid: 941115d0-399d-4edb-b8ad-224a4a44f824
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ofeOi2MnPSa2d59ptIjMKADs7nvxSZ5TCRCagm8hw9Y
+id: welcome
+label: Welcome
+description: 'Things users can do when they start using Drupal CMS.'
+locked: false

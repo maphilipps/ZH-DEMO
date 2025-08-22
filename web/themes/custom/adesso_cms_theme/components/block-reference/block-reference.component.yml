@@ -3,7 +3,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: Pre-headline
       description: 'The pre-headline text'
     title:

@@ -1,22 +1,11 @@
-langcode: en
+uuid: 4212cdb3-4ba3-41dc-af60-7d7cc4b5c20d
+langcode: de
 status: true
-dependencies:
-  module:
-    - content_moderation
-    - menu_ui
-third_party_settings:
-  content_moderation:
-    enabled: true
-    allowed_moderation_states: []
-    default_moderation_state: draft
-  menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+dependencies: {  }
 name: Gastgewerbe
 type: hospitality
 description: 'Gastgewerbe in der Gemeinde Bruchtal'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

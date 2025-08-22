@@ -1,4 +1,5 @@
-langcode: en
+uuid: 9c810440-f2c4-4d11-9254-8d91f7c74db5
+langcode: de
 status: true
 dependencies:
   module:
@@ -14,6 +15,6 @@ module: datetime
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

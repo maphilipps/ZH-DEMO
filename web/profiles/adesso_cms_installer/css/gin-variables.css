@@ -273,3 +273,7 @@
   --accordion-bg-color: transparent;
   --accordion-border-color: var(--gin-border-color);
 }
+
+.admin-toolbar__logo {
+  border: 1px solid var(--gin-border-color);
+}

@@ -1,0 +1,22 @@
+uuid: c9d0e1f2-3456-789a-cd01-ef23ab456789
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_width
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - options
+id: paragraph.layout_container.field_width
+field_name: field_width
+entity_type: paragraph
+bundle: layout_container
+label: 'Breite'
+description: 'Breite des Containers.'
+required: false
+translatable: false
+default_value:
+  - value: 'content-width'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

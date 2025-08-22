@@ -1,0 +1,10 @@
+name: 'ZH Demo Content Filter'
+type: module
+description: 'Filters content and media views to show only own content for authenticated users'
+core_version_requirement: ^11
+package: 'ZH Demo'
+dependencies:
+  - drupal:user
+  - drupal:node
+  - drupal:media
+  - drupal:views

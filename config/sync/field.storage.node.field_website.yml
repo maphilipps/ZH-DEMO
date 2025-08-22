@@ -1,4 +1,5 @@
-langcode: en
+uuid: 52efa058-e28b-412e-9138-51fbf526a0c2
+langcode: de
 status: true
 dependencies:
   module:
@@ -8,11 +9,11 @@ id: node.field_website
 field_name: field_website
 entity_type: node
 type: link
-settings: {}
+settings: {  }
 module: link
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

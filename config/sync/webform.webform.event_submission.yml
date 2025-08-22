@@ -1,3 +1,4 @@
+uuid: 85cae25f-79fb-422f-aaf9-609f142bd8d6
 langcode: de
 status: open
 dependencies: {  }
@@ -42,7 +43,7 @@ elements: |
       '#format': basic_html
       '#required': false
       '#rows': 10
-  
+
   datum_und_zeit:
     '#type': fieldset
     '#title': 'Datum und Zeit'
@@ -57,7 +58,7 @@ elements: |
       '#date_time_format': 'H:i'
       '#date_time_element': 'time'
       '#date_time_placeholder': 'HH:MM'
-  
+
   veranstaltungsort:
     '#type': fieldset
     '#title': 'Veranstaltungsort'
@@ -105,7 +106,7 @@ elements: |
         '#required': true
         '#default_value': 'Bruchtal'
         '#maxlength': 255
-  
+
   zusatzinformationen:
     '#type': fieldset
     '#title': 'Zusätzliche Informationen'
@@ -159,7 +160,7 @@ elements: |
         senioren: 'Senioren'
         jugend: 'Jugend'
       '#required': false
-  
+
   kontaktdaten:
     '#type': fieldset
     '#title': 'Kontaktinformationen'
@@ -186,7 +187,7 @@ elements: |
       '#required': false
       '#pattern': '(\+41|0)([0-9]{2})([0-9]{3})([0-9]{2})([0-9]{2})'
       '#placeholder': '079 123 45 67'
-  
+
   datenschutz:
     '#type': fieldset
     '#title': 'Datenschutz und Einverständnis'
@@ -201,7 +202,6 @@ elements: |
       '#type': checkbox
       '#title': 'Ich bin damit einverstanden, dass die Veranstaltung nach Prüfung auf der Gemeindewebseite veröffentlicht wird.'
       '#required': true
-
 css: ''
 javascript: ''
 settings:
@@ -211,9 +211,9 @@ settings:
   ajax_effect: ''
   ajax_speed: null
   page: true
-  page_submit_path: '/veranstaltung-einreichen'
-  page_confirm_path: '/veranstaltung-eingereicht'
-  page_admin_theme: false
+  page_submit_path: /veranstaltung-einreichen
+  page_confirm_path: /veranstaltung-eingereicht
+  page_theme_name: ''
   form_title: both
   form_submit_once: true
   form_open_message: ''
@@ -246,14 +246,12 @@ settings:
   form_attributes: {  }
   form_method: ''
   form_action: ''
-  
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
-  
-  submission_label: 'Veranstaltungseinreichung'
+  submission_label: Veranstaltungseinreichung
   submission_exception_message: ''
   submission_locked_message: ''
   submission_log: true
@@ -268,14 +266,11 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  
   previous_submission_message: ''
   previous_submissions_message: ''
-  
   autofill: false
   autofill_message: ''
   autofill_excluded_elements: {  }
-  
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
@@ -296,7 +291,6 @@ settings:
   wizard_toggle_hide_label: ''
   wizard_page_type: container
   wizard_page_title_tag: h2
-  
   preview: 0
   preview_label: ''
   preview_title: ''
@@ -305,7 +299,6 @@ settings:
   preview_excluded_elements: {  }
   preview_exclude_empty: true
   preview_exclude_empty_checkbox: false
-  
   draft: authenticated
   draft_multiple: false
   draft_auto_save: true
@@ -313,7 +306,6 @@ settings:
   draft_loaded_message: 'Entwurf geladen.'
   draft_pending_single_message: 'Sie haben einen ausstehenden Entwurf für dieses Formular.'
   draft_pending_multiple_message: 'Sie haben ausstehende Entwürfe für dieses Formular.'
-  
   confirmation_type: page
   confirmation_url: ''
   confirmation_title: 'Veranstaltung erfolgreich eingereicht'
@@ -329,7 +321,6 @@ settings:
   confirmation_exclude_query: false
   confirmation_exclude_token: false
   confirmation_update: false
-  
   limit_total: null
   limit_total_interval: null
   limit_total_message: ''
@@ -338,24 +329,19 @@ settings:
   limit_user_interval: 3600
   limit_user_message: 'Sie können maximal 5 Veranstaltungen pro Stunde einreichen.'
   limit_user_unique: false
-  
   entity_limit_total: null
   entity_limit_total_interval: null
   entity_limit_user: null
   entity_limit_user_interval: null
-  
   purge: none
   purge_days: null
-  
   results_disabled: false
   results_disabled_ignore: false
   results_customize: false
   token_view: false
   token_update: false
   token_delete: false
-  
   serial_disabled: false
-  
 access:
   create:
     roles:
@@ -414,10 +400,9 @@ access:
       - administrator
     users: {  }
     permissions: {  }
-
 handlers:
   create_event_node:
-    id: entity:node
+    id: 'entity:node'
     handler_id: create_event_node
     label: 'Veranstaltung als Node erstellen'
     notes: 'Erstellt eine neue Veranstaltung im Content-Type Event'
@@ -453,7 +438,6 @@ handlers:
       entity_revision: false
       states:
         - completed
-  
   email_confirmation:
     id: email
     handler_id: email_confirmation
@@ -481,17 +465,17 @@ handlers:
       subject: 'Ihre Veranstaltung wurde eingereicht: [webform_submission:values:title]'
       body: |
         Grüezi [webform_submission:values:contact_name],
-        
+
         Vielen Dank für Ihre Veranstaltungseinreichung!
-        
+
         Veranstaltung: [webform_submission:values:title]
         Datum: [webform_submission:values:event_date]
         Ort: [webform_submission:values:location_name]
-        
+
         Ihre Veranstaltung wird nun von unserem Team geprüft. Sie erhalten eine weitere Nachricht, sobald die Veranstaltung freigegeben wurde.
-        
+
         Bei Fragen wenden Sie sich bitte an veranstaltungen@bruchtal.ch
-        
+
         Mit freundlichen Grüssen
         Gemeinde Bruchtal
       excluded_elements: {  }
@@ -505,7 +489,6 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
-  
   email_notification:
     id: email
     handler_id: email_notification
@@ -525,7 +508,7 @@ handlers:
       cc_options: {  }
       from_mail: noreply@bruchtal.ch
       from_options: {  }
-      from_name: 'Veranstaltungsformular'
+      from_name: Veranstaltungsformular
       reply_to: '[webform_submission:values:contact_email]'
       return_path: ''
       sender_mail: ''
@@ -533,13 +516,13 @@ handlers:
       subject: 'Neue Veranstaltung zur Prüfung: [webform_submission:values:title]'
       body: |
         Eine neue Veranstaltung wurde eingereicht und wartet auf Prüfung.
-        
+
         Veranstaltung: [webform_submission:values:title]
         Datum: [webform_submission:values:event_date]
         Ort: [webform_submission:values:location_name]
-        
+
         Eingereicht von: [webform_submission:values:contact_name] ([webform_submission:values:contact_email])
-        
+
         Zur Prüfung: [site:url]/admin/content/moderated
       excluded_elements: {  }
       ignore_access: false
@@ -552,7 +535,4 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
-
 variants: {  }
-libraries: {  }
-third_party_settings: {  }

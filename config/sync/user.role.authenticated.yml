@@ -1,0 +1,81 @@
+uuid: 9e1c60ce-a01e-4901-8880-1a196746d631
+langcode: de
+status: true
+dependencies:
+  config:
+    - dashboard.dashboard.user
+    - filter.format.basic_html
+    - filter.format.webform_default
+    - node.type.club
+    - node.type.company
+    - node.type.event
+    - node.type.hospitality
+    - node.type.landing_page
+    - node.type.news
+    - node.type.page
+    - node.type.person
+    - node.type.project
+    - workflows.workflow.basic_editorial
+  module:
+    - ai_ckeditor
+    - captcha
+    - coffee
+    - content_moderation
+    - dashboard
+    - dropzonejs
+    - file
+    - filter
+    - honeypot
+    - klaro
+    - media
+    - node
+    - shortcut
+    - sitemap
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Angemeldeter Benutzer'
+weight: 1
+is_admin: false
+permissions:
+  - 'access coffee'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access sitemap'
+  - 'bypass honeypot protection'
+  - 'delete own club content'
+  - 'delete own company content'
+  - 'delete own event content'
+  - 'delete own files'
+  - 'delete own hospitality content'
+  - 'delete own landing_page content'
+  - 'delete own news content'
+  - 'delete own page content'
+  - 'delete own person content'
+  - 'delete own project content'
+  - 'dropzone upload files'
+  - 'edit own club content'
+  - 'edit own company content'
+  - 'edit own event content'
+  - 'edit own hospitality content'
+  - 'edit own news content'
+  - 'edit own page content'
+  - 'revert club revisions'
+  - 'revert company revisions'
+  - 'revert event revisions'
+  - 'revert hospitality revisions'
+  - 'skip CAPTCHA'
+  - 'use ai ckeditor'
+  - 'use basic_editorial transition create_new_draft'
+  - 'use klaro'
+  - 'use text format basic_html'
+  - 'use text format webform_default'
+  - 'view club revisions'
+  - 'view company revisions'
+  - 'view event revisions'
+  - 'view hospitality revisions'
+  - 'view latest version'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view user dashboard'

@@ -1,4 +1,5 @@
-langcode: en
+uuid: e696d349-bf83-4723-b75b-7859cc566d1b
+langcode: de
 status: true
 dependencies:
   config:
@@ -9,10 +10,10 @@ field_name: field_email
 entity_type: node
 bundle: hospitality
 label: E-Mail
-description: 'Haupt-E-Mail-Adresse des Gastgewerbebetriebs'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: email

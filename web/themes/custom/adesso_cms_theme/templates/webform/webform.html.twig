@@ -1,32 +1,16 @@
 {#
 /**
  * @file
- * Theme override for webform.
+ * Default theme implementation for a webform.
  *
  * Available variables:
  * - element: The webform element.
- * - title: The webform title.
- * - description: The webform description.
- * - form: The webform form.
- *
- * @see template_preprocess_webform()
+ * - webform: The webform entity.
  */
 #}
 
-<div class="webform-wrapper container mx-auto px-4 py-8">
-  <div class="max-w-3xl mx-auto">
-    {% if title %}
-      <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ title }}</h1>
-    {% endif %}
-    
-    {% if description %}
-      <div class="text-gray-600 mb-8 prose prose-lg">
-        {{ description }}
-      </div>
-    {% endif %}
-    
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-      {{ form }}
-    </div>
+<div class="webform-container mx-auto container px-6 lg:px-8 py-12">
+  <div class="webform-content space-y-6">
+    {{ element }}
   </div>
 </div>

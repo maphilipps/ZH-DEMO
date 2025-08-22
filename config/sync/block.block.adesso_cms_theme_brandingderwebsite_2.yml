@@ -1,0 +1,23 @@
+uuid: aa05699a-ca03-48d5-adc1-6fc7377623c5
+langcode: de
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - adesso_cms_theme
+id: adesso_cms_theme_brandingderwebsite_2
+theme: adesso_cms_theme
+region: footer_top
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Branding der Website'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

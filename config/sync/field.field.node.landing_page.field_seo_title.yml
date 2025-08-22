@@ -1,10 +1,12 @@
-uuid: 66dffe93-1b2a-49a2-8ba4-fb96d507520e
+uuid: 10b14519-7504-420c-ab15-118569fd9517
 langcode: de
 status: true
 dependencies:
   config:
     - field.storage.node.field_seo_title
     - node.type.landing_page
+_core:
+  default_config_hash: O0aoOsuOlQwcp30lHlxiiovl_TVkEEKb6dUvh6N7sHM
 id: node.landing_page.field_seo_title
 field_name: field_seo_title
 entity_type: node

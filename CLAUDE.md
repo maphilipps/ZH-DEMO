@@ -198,12 +198,14 @@ Demo Testing:
   - Check navigation paths
 ```
 
-#### Puppeteer Automation (mcp__puppeteer)
+#### Playwright Automation (Playwright statt Puppeteer)
 ```yaml
 Demo Preparation:
-  - mcp__puppeteer__puppeteer_navigate: Test navigation flows
-  - mcp__puppeteer__puppeteer_fill: Test form submissions
-  - mcp__puppeteer__puppeteer_screenshot: Capture demo states
+  - Playwright verwenden für alle Browser-Automatisierungen
+  - Test navigation flows
+  - Test form submissions  
+  - Capture demo states
+  - Visual regression testing
 ```
 
 #### Memory & Documentation (mcp__server-memory)
@@ -501,7 +503,7 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 
 #### Frontend & Performance
 - **mcp__browser-tools**: Performance audits, Core Web Vitals monitoring, responsive testing
-- **mcp__puppeteer**: UI automation, form testing, navigation validation
+- **Playwright**: UI automation, form testing, navigation validation (nicht Puppeteer!)
 - **mcp__server-memory**: Component documentation and performance metrics
 
 #### Swiss Compliance & Accessibility
@@ -515,7 +517,7 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 
 #### Testing & Quality Assurance
 - **mcp__browser-tools**: Comprehensive audits (performance, accessibility, SEO, best practices)
-- **mcp__puppeteer**: Automated testing, demo scenario validation, form submission testing
+- **Playwright**: Automated testing, demo scenario validation, form submission testing (nicht Puppeteer!)
 - **mcp__a11y-accessibility**: Specialized accessibility testing and validation
 - **mcp__server-memory**: Test results and quality metrics documentation
 
@@ -572,3 +574,25 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 - Coordinated handoffs between specialized agents
 
 Your specialized AI development team is configured for maximum parallel efficiency while ensuring Swiss compliance, accessibility, and demo readiness. Each agent has clear responsibilities and appropriate MCP tools to deliver exceptional results for the GPZH Präqualifikation presentation.
+
+## 🎭 Wichtige Tool-Änderung: Playwright statt Puppeteer
+
+**WICHTIG**: Für alle Browser-Automatisierung und E2E-Testing verwenden wir **Playwright** anstatt Puppeteer!
+
+### Gründe für Playwright:
+- Bessere Cross-Browser-Unterstützung (Chrome, Firefox, Safari, Edge)
+- Robustere Selektoren und Auto-Waiting
+- Eingebaute Visual Regression Testing Capabilities
+- Bessere Performance und Stabilität
+- Native TypeScript-Unterstützung
+
+### Anwendungsbereiche:
+- E2E Testing der Demo-Szenarien
+- Form Testing und Validierung
+- Visual Regression Tests
+- Navigation Flow Testing
+- Screenshot-Erstellung für Dokumentation
+- Performance Testing in verschiedenen Browsern
+- es gibt bruchtal.zh-demo.ddev.site nicht. Einfach nur zh-demo.ddev.site
+- Immer TailwindCSS schreiben, nur im Notfall komplett custom.css
+- Nutze, wenn du Änderungen an Drupal machst. IMMER das DRUPAL MCP. WENN das nicht funktionierst, musst du sämtliche Änderungen mir absprecehen. Ich möchte nicht, dass du solche Änderungen direkt über die Datenbank machst.

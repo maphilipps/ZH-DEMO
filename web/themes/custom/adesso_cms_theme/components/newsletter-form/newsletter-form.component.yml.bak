@@ -1,0 +1,22 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Newsletter
+description: Editorial/Newsletter component
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title of the newsletter
+    pre_headline:
+      type: string
+      title: pre_headline
+      description: Pre-headline text above the main title
+    summary:
+      type: string
+      title: summary
+      description: Summary text of the newsletter
+    modifier:
+      type: string
+      title: modifier
+      description: Modifier class for the newsletter container

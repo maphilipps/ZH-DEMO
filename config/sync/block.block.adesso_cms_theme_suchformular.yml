@@ -1,0 +1,21 @@
+uuid: a2887333-1ae0-4f97-a86d-88b8fde61bdb
+langcode: de
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - adesso_cms_theme
+id: adesso_cms_theme_suchformular
+theme: adesso_cms_theme
+region: secondary_menu
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Suchformular
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

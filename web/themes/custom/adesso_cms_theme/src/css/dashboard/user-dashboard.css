@@ -1,0 +1,300 @@
+/**
+ * User Dashboard Styles
+ * GPZH Municipal Portal - User Content Management
+ */
+
+/* Dashboard Container */
+.dashboard-user {
+  @apply p-6 bg-gray-50 min-h-screen;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  @apply mb-8;
+}
+
+.dashboard-header h1 {
+  @apply text-3xl font-bold text-gray-900 mb-2;
+}
+
+.dashboard-header .dashboard-description {
+  @apply text-gray-600;
+}
+
+/* Dashboard Statistics Bar */
+.dashboard-statistics {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8;
+}
+
+.dashboard-stat-card {
+  @apply bg-white rounded-lg shadow-sm p-4 border border-gray-200;
+}
+
+.dashboard-stat-card .stat-label {
+  @apply text-sm text-gray-500 font-medium uppercase tracking-wider;
+}
+
+.dashboard-stat-card .stat-value {
+  @apply text-2xl font-bold text-gray-900 mt-1;
+}
+
+.dashboard-stat-card .stat-change {
+  @apply text-sm text-green-600 mt-1;
+}
+
+.dashboard-stat-card .stat-change.negative {
+  @apply text-red-600;
+}
+
+/* Dashboard Sections */
+.dashboard-sections {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.dashboard-section {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200;
+}
+
+/* Dashboard Block */
+.dashboard-block {
+  @apply p-6;
+}
+
+.dashboard-block h2,
+.dashboard-block h3 {
+  @apply text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200;
+}
+
+/* Dashboard Tables */
+.dashboard-block table {
+  @apply w-full;
+}
+
+.dashboard-block thead {
+  @apply bg-gray-50;
+}
+
+.dashboard-block thead th {
+  @apply px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.dashboard-block tbody {
+  @apply bg-white divide-y divide-gray-200;
+}
+
+.dashboard-block tbody td {
+  @apply px-4 py-3 text-sm text-gray-900 whitespace-nowrap;
+}
+
+.dashboard-block tbody tr:hover {
+  @apply bg-gray-50 transition-colors duration-150;
+}
+
+/* Status Badges */
+.dashboard-block .badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.dashboard-block .badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.dashboard-block .badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.dashboard-block .badge-secondary {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.dashboard-block .badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.dashboard-block .badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Empty State */
+.dashboard-empty-state {
+  @apply text-center py-8;
+}
+
+.dashboard-empty-state p {
+  @apply text-gray-500 mb-4;
+}
+
+.dashboard-empty-state .btn {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.dashboard-empty-state .btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.dashboard-empty-state .btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+/* Quick Actions Bar */
+.dashboard-quick-actions {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6;
+}
+
+.dashboard-quick-actions h3 {
+  @apply text-sm font-medium text-gray-700 mb-3;
+}
+
+.dashboard-quick-actions .action-buttons {
+  @apply flex flex-wrap gap-2;
+}
+
+.dashboard-quick-actions .action-btn {
+  @apply inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.dashboard-quick-actions .action-btn svg {
+  @apply -ml-0.5 mr-2 h-4 w-4;
+}
+
+/* Operations Dropdown */
+.dashboard-block .dropbutton-wrapper {
+  @apply relative inline-block text-left;
+}
+
+.dashboard-block .dropbutton {
+  @apply bg-white border border-gray-300 rounded-md shadow-sm;
+}
+
+.dashboard-block .dropbutton-action a {
+  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard-sections {
+    @apply grid-cols-1;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-statistics {
+    @apply grid-cols-1;
+  }
+  
+  .dashboard-block {
+    @apply p-4;
+  }
+  
+  .dashboard-block table {
+    @apply text-xs;
+  }
+  
+  .dashboard-block thead th,
+  .dashboard-block tbody td {
+    @apply px-2 py-2;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .dashboard-user {
+    @apply bg-gray-900;
+  }
+  
+  .dashboard-section,
+  .dashboard-stat-card,
+  .dashboard-quick-actions {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .dashboard-header h1,
+  .dashboard-stat-card .stat-value,
+  .dashboard-block h2,
+  .dashboard-block h3 {
+    @apply text-gray-100;
+  }
+  
+  .dashboard-header .dashboard-description,
+  .dashboard-stat-card .stat-label,
+  .dashboard-block tbody td {
+    @apply text-gray-400;
+  }
+  
+  .dashboard-block thead {
+    @apply bg-gray-700;
+  }
+  
+  .dashboard-block tbody {
+    @apply bg-gray-800;
+  }
+  
+  .dashboard-block tbody tr:hover {
+    @apply bg-gray-700;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-quick-actions,
+  .dashboard-block .dropbutton-wrapper {
+    @apply hidden;
+  }
+  
+  .dashboard-sections {
+    @apply grid-cols-1;
+  }
+  
+  .dashboard-section {
+    @apply shadow-none border-0 mb-8;
+    page-break-inside: avoid;
+  }
+}
+
+/* Loading State */
+.dashboard-loading {
+  @apply opacity-50 pointer-events-none;
+}
+
+.dashboard-loading::after {
+  content: '';
+  @apply fixed inset-0 bg-white/75 flex items-center justify-center z-50;
+}
+
+/* Municipality Branding */
+.municipality-bruchtal .dashboard-header h1 {
+  @apply text-cyan-900;
+}
+
+.municipality-bruchtal .dashboard-quick-actions .action-btn:hover {
+  @apply bg-cyan-50 border-cyan-300;
+}
+
+.municipality-bruchtal .badge-success {
+  @apply bg-cyan-100 text-cyan-800;
+}
+
+/* Animations */
+.dashboard-section {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chart Container (for future statistics) */
+.dashboard-chart-container {
+  @apply p-4 bg-white rounded-lg shadow-sm border border-gray-200 mb-6;
+}
+
+.dashboard-chart-container canvas {
+  @apply max-h-64;
+}

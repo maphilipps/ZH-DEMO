@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * ZH Demo Login Redirect module.
+ */
+
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_user_login().
+ */
+function zh_demo_login_redirect_user_login($account) {
+  // Check if user has permission to view their own unpublished content
+  // (this indicates they can access the user dashboard)
+  if ($account->hasPermission('view own unpublished content')) {
+    // Get the current request
+    $request = \Drupal::request();
+    
+    // Only redirect if this is not an admin login and not already on dashboard
+    $current_path = \Drupal::service('path.current')->getPath();
+    
+    // Skip redirect if already on dashboard or admin pages
+    if (strpos($current_path, '/admin') === 0 || 
+        strpos($current_path, '/dashboard') === 0) {
+      return;
+    }
+    
+    // Skip redirect if there's a destination parameter
+    if ($request->query->has('destination')) {
+      return;
+    }
+    
+    // Redirect to my content page
+    $my_content_url = Url::fromRoute('zh_demo_login_redirect.my_content');
+    $response = new RedirectResponse($my_content_url->toString());
+    $response->send();
+  }
+}

@@ -1,4 +1,5 @@
-langcode: en
+uuid: 7c18913c-9fdf-434e-8734-2ff7dbfbdaad
+langcode: de
 status: true
 dependencies:
   module:
@@ -8,11 +9,11 @@ id: node.field_opening_hours
 field_name: field_opening_hours
 entity_type: node
 type: text_long
-settings: {}
+settings: {  }
 module: text
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

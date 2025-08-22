@@ -1,0 +1,21 @@
+uuid: 737548b3-f16c-44b3-ba45-291afab717cb
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_verified
+    - node.type.club
+id: node.club.field_verified
+field_name: field_verified
+entity_type: node
+bundle: club
+label: Verifiziert
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: An
+  off_label: Aus
+field_type: boolean

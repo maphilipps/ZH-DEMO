@@ -1,4 +1,5 @@
-langcode: en
+uuid: 19685cdb-54e8-484c-aebb-d9c4009a811e
+langcode: de
 status: true
 dependencies:
   config:
@@ -9,10 +10,10 @@ field_name: field_email
 entity_type: node
 bundle: company
 label: E-Mail
-description: 'Haupt-E-Mail-Adresse der Firma'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: email

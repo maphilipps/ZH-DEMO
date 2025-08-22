@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * ZH Demo Content Filter module - filters admin views for authenticated users.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function zh_demo_content_filter_views_query_alter(ViewExecutable $view, $query) {
+  $account = \Drupal::currentUser();
+  
+  // Only filter for authenticated non-admin users
+  if ($account->isAnonymous() || $account->hasPermission('administer nodes')) {
+    return;
+  }
+  
+  // Filter media overview to show only own media
+  if ($view->id() === 'media' && $view->current_display === 'media_page_list') {
+    $query->addWhere(1, 'media_field_data.uid', $account->id(), '=');
+  }
+}
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function zh_demo_content_filter_toolbar_alter(&$items) {
+  $account = \Drupal::currentUser();
+  
+  // Remove configuration from toolbar for authenticated non-admin users
+  if (!$account->isAnonymous() && 
+      !$account->hasPermission('administer site configuration') && 
+      !$account->hasPermission('administer modules')) {
+    
+    // Remove administration menu entirely
+    if (isset($items['administration'])) {
+      unset($items['administration']);
+    }
+    
+    // Remove other admin items
+    $remove_items = ['manage'];
+    foreach ($remove_items as $item_key) {
+      if (isset($items[$item_key])) {
+        unset($items[$item_key]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_actions_alter().
+ */
+function zh_demo_content_filter_menu_local_actions_alter(&$local_actions) {
+  // Keep local actions for content creation
+}
+
+/**
+ * Implements hook_preprocess_toolbar().
+ */
+function zh_demo_content_filter_preprocess_toolbar(&$variables) {
+  $account = \Drupal::currentUser();
+  
+  // Filter toolbar tabs for non-admin users
+  if (!$account->isAnonymous() && 
+      !$account->hasPermission('administer site configuration')) {
+    
+    foreach ($variables['tabs'] as $key => $tab) {
+      // Remove configuration-related tabs
+      if (strpos($key, 'admin') !== FALSE && 
+          $key !== 'admin_toolbar_tools.admin_content' && 
+          $key !== 'admin_toolbar_tools.admin_media') {
+        unset($variables['tabs'][$key]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function zh_demo_content_filter_node_presave($entity) {
+  $account = \Drupal::currentUser();
+  
+  // Set default moderation state for authenticated non-admin users
+  if (!$account->isAnonymous() && 
+      !$account->hasPermission('administer nodes')) {
+    
+    // If no moderation state is set, set to draft
+    if ($entity->hasField('moderation_state') && $entity->get('moderation_state')->isEmpty()) {
+      $entity->set('moderation_state', 'draft');
+    }
+  }
+}

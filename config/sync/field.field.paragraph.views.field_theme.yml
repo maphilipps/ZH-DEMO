@@ -1,0 +1,23 @@
+uuid: 76c65d12-ed41-4d7d-9d55-437f573bbdb6
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.views
+  module:
+    - options
+id: paragraph.views.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: views
+label: Theme
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,42 @@
+.my-content-list {
+  margin: 20px 0;
+}
+
+.content-item {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.content-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #0073aa;
+}
+
+.content-title:hover {
+  text-decoration: underline;
+}
+
+.content-status {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  padding: 3px 8px;
+  background: #28a745;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.content-status.draft {
+  background: #ffc107;
+  color: #212529;
+}
+
+.content-date {
+  color: #666;
+  font-size: 14px;
+}

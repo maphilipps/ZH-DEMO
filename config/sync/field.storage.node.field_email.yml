@@ -1,4 +1,5 @@
-langcode: en
+uuid: 1fd67449-cc38-4c90-bfa7-7a3fd83e9efb
+langcode: de
 status: true
 dependencies:
   module:
@@ -7,11 +8,11 @@ id: node.field_email
 field_name: field_email
 entity_type: node
 type: email
-settings: {}
+settings: {  }
 module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

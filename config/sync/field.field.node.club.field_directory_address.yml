@@ -1,0 +1,22 @@
+uuid: 30a33f3d-3b6c-4d26-b122-a005d501cad0
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_address
+    - node.type.club
+  module:
+    - text
+id: node.club.field_directory_address
+field_name: field_directory_address
+entity_type: node
+bundle: club
+label: Adresse
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -105,13 +105,14 @@
     </div>
 
     {% set icon %}
-      {{ include("@designsystem/icon-arrow_right.html.twig", {size: 'h-6 w-6 mr-2', classes: 'text-black'}) }}
+      <svg class="h-6 w-6 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
     {% endset %}
-    {{ include('@designsystem/button-tertiary.html.twig', {
-      'attributes': create_attribute({href: url}).addClass('mt-2'),
-      'text': 'Zur Seite',
-      'icon': icon,
-    }) }}
+    <a href="{{ url }}" class="mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-50 focus:ring-4 focus:outline-none focus:ring-blue-300">
+      {{ icon }}
+      Zur Seite
+    </a>
   </div>
 
   <div class="w-1/4 p-2">

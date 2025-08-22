@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for address field in club nodes.
+ */
+#}
+{% for item in items %}
+  <address class="not-italic space-y-1">
+    {% if item.content['#address'].given_name or item.content['#address'].family_name %}
+      <div class="font-medium">
+        {{ item.content['#address'].given_name }} {{ item.content['#address'].family_name }}
+      </div>
+    {% endif %}
+    {% if item.content['#address'].organization %}
+      <div>{{ item.content['#address'].organization }}</div>
+    {% endif %}
+    {% if item.content['#address'].address_line1 %}
+      <div>{{ item.content['#address'].address_line1 }}</div>
+    {% endif %}
+    {% if item.content['#address'].address_line2 %}
+      <div>{{ item.content['#address'].address_line2 }}</div>
+    {% endif %}
+    {% if item.content['#address'].postal_code or item.content['#address'].locality %}
+      <div>
+        {{ item.content['#address'].postal_code }} {{ item.content['#address'].locality }}
+      </div>
+    {% endif %}
+    {% if item.content['#address'].country_code %}
+      <div>{{ item.content['#address'].country_code|upper }}</div>
+    {% endif %}
+  </address>
+{% endfor %}

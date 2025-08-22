@@ -1,0 +1,130 @@
+{#
+/**
+ * @file
+ * Template for a layout container paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity.
+ * - content: All paragraph fields.
+ * - attributes: HTML attributes for the container.
+ * - view_mode: The view mode.
+ * - logged_in: Flag for authenticated user status.
+ * - is_admin: Flag for admin user status.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph--id--' ~ paragraph.id(),
+    'layout-container',
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{# Theme classes #}
+{% set theme_class = '' %}
+{# Check if parent node is landing page to set default theme #}
+{% set parent_node = paragraph.getParentEntity() %}
+{% if parent_node and parent_node.bundle() == 'landing_page' %}
+  {% set default_theme = 'dark' %}
+{% else %}
+  {% set default_theme = 'light' %}
+{% endif %}
+
+{% if content.field_theme[0] %}
+  {% set theme_value = content.field_theme[0]['#markup'] %}
+{% else %}
+  {% set theme_value = default_theme %}
+{% endif %}
+  {% if theme_value == 'light' %}
+    {% set theme_class = 'bg-gray-50' %}
+  {% elseif theme_value == 'dark' %}
+    {% set theme_class = 'bg-gray-900 text-white' %}
+  {% elseif theme_value == 'highlighted' %}
+    {% set theme_class = 'bg-primary-50' %}
+  {% endif %}
+{% endif %}
+
+{# Top spacing classes #}
+{% set top_spacing_class = 'pt-8' %}
+{% if content.field_top_spacing[0] %}
+  {% set spacing_value = content.field_top_spacing[0]['#markup'] %}
+  {% if spacing_value == 'none' %}
+    {% set top_spacing_class = '' %}
+  {% elseif spacing_value == 'small' %}
+    {% set top_spacing_class = 'pt-4 md:pt-6' %}
+  {% elseif spacing_value == 'medium' %}
+    {% set top_spacing_class = 'pt-8 md:pt-12' %}
+  {% elseif spacing_value == 'large' %}
+    {% set top_spacing_class = 'pt-12 md:pt-16' %}
+  {% elseif spacing_value == 'extra-large' %}
+    {% set top_spacing_class = 'pt-16 md:pt-24' %}
+  {% endif %}
+{% endif %}
+
+{# Bottom spacing classes #}
+{% set bottom_spacing_class = 'pb-8' %}
+{% if content.field_bottom_spacing[0] %}
+  {% set spacing_value = content.field_bottom_spacing[0]['#markup'] %}
+  {% if spacing_value == 'none' %}
+    {% set bottom_spacing_class = '' %}
+  {% elseif spacing_value == 'small' %}
+    {% set bottom_spacing_class = 'pb-4 md:pb-6' %}
+  {% elseif spacing_value == 'medium' %}
+    {% set bottom_spacing_class = 'pb-8 md:pb-12' %}
+  {% elseif spacing_value == 'large' %}
+    {% set bottom_spacing_class = 'pb-12 md:pb-16' %}
+  {% elseif spacing_value == 'extra-large' %}
+    {% set bottom_spacing_class = 'pb-16 md:pb-24' %}
+  {% endif %}
+{% endif %}
+
+{# Width classes #}
+{% set width_class = 'max-w-7xl' %}
+{% if content.field_width[0] %}
+  {% set width_value = content.field_width[0]['#markup'] %}
+  {% if width_value == 'full-width' %}
+    {% set width_class = 'max-w-full' %}
+  {% elseif width_value == 'content-width' %}
+    {% set width_class = 'max-w-7xl' %}
+  {% elseif width_value == 'narrow' %}
+    {% set width_class = 'max-w-4xl' %}
+  {% elseif width_value == 'wide' %}
+    {% set width_class = 'max-w-screen-2xl' %}
+  {% endif %}
+{% endif %}
+
+{# Column classes #}
+{% set columns_class = 'grid-cols-1' %}
+{% if content.field_columns[0] %}
+  {% set columns_value = content.field_columns[0]['#markup'] %}
+  {% if columns_value == '1' %}
+    {% set columns_class = 'grid-cols-1' %}
+  {% elseif columns_value == '2' %}
+    {% set columns_class = 'grid-cols-1 md:grid-cols-2' %}
+  {% elseif columns_value == '3' %}
+    {% set columns_class = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' %}
+  {% elseif columns_value == '4' %}
+    {% set columns_class = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' %}
+  {% endif %}
+{% endif %}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes).addClass(theme_class).addClass(top_spacing_class).addClass(bottom_spacing_class) }}>
+    <div class="container mx-auto px-4 {{ width_class }}">
+      {% block content %}
+        {% if content.field_content_items|render %}
+          <div class="grid {{ columns_class }} gap-6 md:gap-8">
+            {{ content.field_content_items }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock paragraph %}

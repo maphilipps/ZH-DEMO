@@ -1,0 +1,21 @@
+uuid: 2992fae4-8e15-4768-8375-0b1b5fce23aa
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_owner
+    - node.type.club
+id: node.club.field_directory_owner
+field_name: field_directory_owner
+entity_type: node
+bundle: club
+label: Inhaber
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

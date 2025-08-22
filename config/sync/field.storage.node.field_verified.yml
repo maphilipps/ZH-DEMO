@@ -1,4 +1,5 @@
-langcode: en
+uuid: a781f4de-e83b-46d1-94c1-f558a50f19a3
+langcode: de
 status: true
 dependencies:
   module:
@@ -7,13 +8,11 @@ id: node.field_verified
 field_name: field_verified
 entity_type: node
 type: boolean
-settings:
-  on_label: 'Verifiziert'
-  off_label: 'Nicht verifiziert'
+settings: {  }
 module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

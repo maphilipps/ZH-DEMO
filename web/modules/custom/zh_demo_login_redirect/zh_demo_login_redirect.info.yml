@@ -1,0 +1,7 @@
+name: 'ZH Demo Login Redirect'
+type: module
+description: 'Redirects users to their dashboard after login'
+core_version_requirement: ^11
+package: 'ZH Demo'
+dependencies:
+  - drupal:user

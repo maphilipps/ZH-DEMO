@@ -1,0 +1,12 @@
+uuid: e7aafd67-85d7-49cf-957c-f7adc295c4f4
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: JRu_2iIoy2O4yukMWayLz69xeWxXrf2KQIuuFPeRuBs
+id: download
+label: Download
+icon_uuid: null
+icon_default: null
+description: 'A download section with headline, pre-headline, and multiple download items.'
+behavior_plugins: {  }

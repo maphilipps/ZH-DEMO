@@ -1,0 +1,10 @@
+uuid: e5a8c9f3-3b72-4d8f-9e5a-8c7b2a1f4d3e
+langcode: de
+status: true
+dependencies: {  }
+id: layout_container
+label: 'Layout Container'
+icon_uuid: null
+icon_default: null
+description: 'Ein flexibler Container für Layout-Zwecke mit einstellbaren Spalten, Abständen und Breite.'
+behavior_plugins: {  }

@@ -1,0 +1,23 @@
+langcode: de
+status: true
+dependencies: {  }
+id: user
+label: 'Benutzer Dashboard'
+description: 'Dashboard für Benutzer mit ihren eigenen Inhalten'
+access: 'view own unpublished content'
+layout:
+  first:
+    weight: 0
+    label: 'Hauptbereich'
+    columns: 2
+    blocks:
+      user_welcome_text:
+        id: 'system_powered_by_block'
+        label: 'Willkommen zum User Dashboard'
+        label_display: visible
+        provider: system
+        weight: 0
+        region: first
+        settings:
+          label: 'Willkommen zum User Dashboard'
+          label_display: visible

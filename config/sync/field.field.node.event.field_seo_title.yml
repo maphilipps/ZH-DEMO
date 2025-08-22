@@ -1,0 +1,19 @@
+uuid: 2703414e-cfee-4c94-90bc-4c1d7391bcaf
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_title
+    - node.type.event
+id: node.event.field_seo_title
+field_name: field_seo_title
+entity_type: node
+bundle: event
+label: 'SEO title'
+description: 'Use this field to overwrite the default HTML page title for SEO.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

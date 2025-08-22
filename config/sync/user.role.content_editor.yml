@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies: {}
+id: content_editor
+label: 'Content Editor'
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access content overview'
+  - 'edit any webform submission'
+  - 'view any webform submission'
+  - 'use meldung_infrastrukturschaeden transition bearbeitung_starten'
+  - 'use meldung_infrastrukturschaeden transition bearbeitung_fortsetzen'
+  - 'use meldung_infrastrukturschaeden transition material_anfordern'
+  - 'use meldung_infrastrukturschaeden transition abschliessen'
+  - 'access webform overview'
+  - 'access webform help'

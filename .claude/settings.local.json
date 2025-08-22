@@ -29,24 +29,24 @@
   },
   "outputStyle": "default",
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "Wenn du merkst, dass ich mti deiner Arbeit unzufrieden bin.  Ergänze bitte die .claude/llms.txt mit den Learnings."
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "Bitte prüfe, ob du gegen keine Learnings aus dem .claude/llms.txt verstoßen hast, ansonsten nochmal drüber nachdenken."
+            "command": ".claude/hooks/validate-learnings.sh"
+          }
+        ]
+      }
+    ],
+    "Start": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/github-issue-created.sh check"
           }
         ]
       }

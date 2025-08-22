@@ -1,11 +1,2 @@
-2025-08-22T10:20:40+02:00 - Starting learnings validation
-[2025-08-22T10:20:40+02:00] [INFO] Learnings file validated
-[2025-08-22T10:20:40+02:00] [WARNING] Unknown lane: unknown
-[2025-08-22T10:20:40+02:00] [INFO] Swiss compliance standards validated
-[2025-08-22T10:20:40+02:00] [INFO] Municipal requirements validated
-[2025-08-22T10:20:40+02:00] [INFO] Code patterns validated
-[2025-08-22T10:20:40+02:00] [INFO] Testing requirements validated
-[2025-08-22T10:20:40+02:00] [INFO] Demo preparation requirements validated
-[2025-08-22T10:20:40+02:00] [INFO] Common violations check completed: 0 found
-[2025-08-22T10:20:40+02:00] [INFO] Improvement suggestions provided
-[2025-08-22T10:20:40+02:00] [SUCCESS] All validations passed
+2025-08-22T17:16:43+02:00 - Starting learnings validation
+[2025-08-22T17:16:43+02:00] [INFO] Learnings file validated

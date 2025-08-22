@@ -80,3 +80,7 @@ node_modules/
 install-state.gz
 storybook-static/
 
+# Include DDEV database snapshots for deployment
+!.ddev/db_snapshots/
+.ddev/db_snapshots/*.gz
+

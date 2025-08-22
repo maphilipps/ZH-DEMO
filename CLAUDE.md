@@ -55,7 +55,7 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 - *[To be populated by Building Lane experiences]*
 
 #### Review Feedback That Prevented Issues
-- *[To be populated by Reviewing Lane experiences]*
+- **Issue #8 Review Failure Detection (2025-08-21)**: Reviewing Lane discovered "ready-for-review" issue with zero implementation - only specification existed. Prevented demo day disaster by catching missing Webform, Views, and test data early.
 
 #### Swiss Compliance Patterns
 - **eCH-0010 Address Format**: Separate street and house number fields for Swiss standard compliance
@@ -66,7 +66,7 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 *Every bug becomes permanent prevention knowledge*
 
 #### Known Issues → Tests → Rules
-- *[To be populated as issues are discovered and resolved]*
+- **Issue #8 Infrastructure Damage Form (2025-08-21)**: PR #10 merged with only WIP spec, no actual implementation. Lesson: Always verify implementation exists before marking issue as complete. Check for actual config files, not just documentation.
 
 #### Performance Optimizations → Patterns
 - *[To be populated as optimizations are discovered]*

@@ -1,0 +1,120 @@
+# DDEV Production Configuration for zh.adessocms.de
+# GPZH Präqualifikation Demo System
+# Issue #17: Production Deployment
+
+# IMPORTANT: This config is for production deployment only
+# Uses hardened images and Let's Encrypt for SSL
+
+name: zh-demo
+type: drupal11
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+xdebug_enabled: false
+
+# Production domains
+additional_hostnames:
+  - zh.adessocms.de
+  - www.zh.adessocms.de
+  - bruchtal.zh.adessocms.de
+  - thalwil.zh.adessocms.de
+  - thalheim.zh.adessocms.de
+  - erlenbach.zh.adessocms.de
+
+# Production database
+database:
+  type: mariadb
+  version: "10.11"
+
+# Production performance settings
+performance_mode: none  # Required for production
+use_hardened_images: true  # Security hardening
+router_bind_all_interfaces: true  # Allow external access
+omit_containers: [ddev-ssh-agent]  # Remove unnecessary containers
+
+# Timezone for Switzerland
+timezone: Europe/Zurich
+
+# Production environment variables
+web_environment:
+  - ENVIRONMENT=production
+  - DRUPAL_ENV=production
+  - NODE_ENV=production
+  - GPZH_DEMO_MODE=production
+  - DDEV_PRIMARY_URL=https://zh.adessocms.de
+  # Swiss compliance
+  - LOCALE=de_CH.UTF-8
+  - LANG=de_CH.UTF-8
+  - LC_ALL=de_CH.UTF-8
+  # Performance
+  - PHP_MEMORY_LIMIT=512M
+  - PHP_MAX_EXECUTION_TIME=60
+  - PHP_UPLOAD_MAX_FILESIZE=50M
+  - PHP_POST_MAX_SIZE=50M
+
+# Node.js for build tools
+nodejs_version: "20"
+corepack_enable: true
+
+# Extended timeouts for production
+default_container_timeout: "300"
+
+# No development ports in production
+web_extra_exposed_ports: []
+
+# Remove development daemons
+web_extra_daemons: []
+
+# Production packages
+webimage_extra_packages: 
+  - xdg-utils
+  - pkg-config
+  - libpixman-1-dev
+  - libcairo2-dev
+  - libpango1.0-dev
+  - make
+  - vim-tiny  # For emergency edits
+  - htop      # For monitoring
+
+# Production hooks
+hooks:
+  post-start:
+    - exec: |
+        echo "================================================================================="
+        echo "                    ZH-DEMO PRODUCTION - GPZH PRÄQUALIFIKATION"
+        echo "================================================================================="
+        echo "Environment: PRODUCTION"
+        echo "Primary URL: https://zh.adessocms.de"
+        echo "Swiss Compliance: Active"
+        echo "================================================================================="
+    - exec: |
+        # Ensure production settings
+        if [ ! -f /var/www/html/web/sites/default/settings.production.php ]; then
+          echo "<?php" > /var/www/html/web/sites/default/settings.production.php
+          echo "// Production settings for zh.adessocms.de" >> /var/www/html/web/sites/default/settings.production.php
+          echo "\$settings['trusted_host_patterns'] = [" >> /var/www/html/web/sites/default/settings.production.php
+          echo "  '^zh\.adessocms\.de$'," >> /var/www/html/web/sites/default/settings.production.php
+          echo "  '^www\.zh\.adessocms\.de$'," >> /var/www/html/web/sites/default/settings.production.php
+          echo "  '^.*\.zh\.adessocms\.de$'," >> /var/www/html/web/sites/default/settings.production.php
+          echo "];" >> /var/www/html/web/sites/default/settings.production.php
+          echo "\$config['system.performance']['css']['preprocess'] = TRUE;" >> /var/www/html/web/sites/default/settings.production.php
+          echo "\$config['system.performance']['js']['preprocess'] = TRUE;" >> /var/www/html/web/sites/default/settings.production.php
+          echo "\$settings['file_private_path'] = '/var/www/private';" >> /var/www/html/web/sites/default/settings.production.php
+        fi
+    - exec: drush cache:rebuild
+
+# Disable settings management in production
+disable_settings_management: false
+
+# Use DNS for production domains
+use_dns_when_possible: true
+
+# Composer settings
+composer_version: "2"
+composer_root: .
+
+# Let's Encrypt email (to be configured during deployment)
+# letsencrypt_email: admin@adessocms.de
+
+# Automatic restart for reliability
+auto_restart_containers: true

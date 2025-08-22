@@ -12,16 +12,25 @@ $sites = [
   // Thalwil - Moderne Stadtgemeinde
   'thalwil.zh-demo.ddev.site' => 'thalwil',
   'thalwil.adesso-cms.ddev.site' => 'thalwil',
+  'thalwil.zh.adessocms.de' => 'thalwil',
   
   // Thalheim - Kleine Landgemeinde im Weinland
   'thalheim.zh-demo.ddev.site' => 'thalheim',
   'thalheim.adesso-cms.ddev.site' => 'thalheim',
+  'thalheim.zh.adessocms.de' => 'thalheim',
   
   // Erlenbach - Seegemeinde an der Goldküste
   'erlenbach.zh-demo.ddev.site' => 'erlenbach',
   'erlenbach.adesso-cms.ddev.site' => 'erlenbach',
+  'erlenbach.zh.adessocms.de' => 'erlenbach',
   
-  // Default bleibt für Admin-Zugriff
+  // Bruchtal - Demo-Hauptgemeinde (Leben am See)
+  'bruchtal.zh-demo.ddev.site' => 'default',
+  'bruchtal.zh.adessocms.de' => 'default',
+  
+  // Default für Admin-Zugriff
   'zh-demo.ddev.site' => 'default',
   'adesso-cms.ddev.site' => 'default',
+  'zh.adessocms.de' => 'default',
+  'www.zh.adessocms.de' => 'default',
 ];

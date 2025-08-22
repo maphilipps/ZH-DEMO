@@ -68,8 +68,21 @@ check_compounding_principles() {
     # Check three-lane setup
     echo -e "${BLUE}🛣️  Three-Lane Development Setup${NC}"
     local ai_processes=0
-    local claude_processes=$(pgrep -f "claude\|mcp" 2>/dev/null | wc -l || echo 0)
-    local tmux_sessions=$(tmux list-sessions 2>/dev/null | wc -l || echo 0)
+    
+    # Get process counts with proper error handling
+    local claude_processes=0
+    local tmux_sessions=0
+    
+    # Count Claude/MCP processes
+    if pgrep -f "claude\|mcp" >/dev/null 2>&1; then
+        claude_processes=$(pgrep -f "claude\|mcp" | wc -l | tr -d ' ')
+    fi
+    
+    # Count tmux sessions
+    if tmux list-sessions >/dev/null 2>&1; then
+        tmux_sessions=$(tmux list-sessions | wc -l | tr -d ' ')
+    fi
+    
     ai_processes=$((ai_processes + claude_processes + tmux_sessions))
     
     if [[ $ai_processes -gt 2 ]]; then

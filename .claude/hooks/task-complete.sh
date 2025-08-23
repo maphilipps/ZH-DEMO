@@ -1,5 +1,6 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 # Compounding Engineering Hook: task-complete
 # Captures learning from completed tasks and suggests next actions
 
@@ -147,4 +148,63 @@ echo "LAST_TASK_COMPLETED=$TASK_DESCRIPTION" >> "$PROJECT_DIR/.claude/context.en
 echo "LAST_TASK_STATUS=$TASK_STATUS" >> "$PROJECT_DIR/.claude/context.env"
 echo "TASK_COMPLETION_TIMESTAMP=$(date -Iseconds)" >> "$PROJECT_DIR/.claude/context.env"
 
+=======
+# Task completion hook for Claude Code
+# Usage: task-complete.sh "$TASK_DESCRIPTION" "$TASK_STATUS"
+
+set -euo pipefail
+
+TASK_DESCRIPTION="${1:-Unknown task}"
+TASK_STATUS="${2:-completed}"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Set up logging
+HOOK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$HOOK_DIR/../logs/task-complete.log"
+mkdir -p "$(dirname "$LOG_FILE")"
+
+echo -e "\033[0;36m📋 Task Completion Hook\033[0m"
+
+# Log the task completion
+echo "[$TIMESTAMP] Task: $TASK_DESCRIPTION | Status: $TASK_STATUS" >> "$LOG_FILE"
+
+# Check if we're in a git repository for context
+if git rev-parse --git-dir > /dev/null 2>&1; then
+    CURRENT_BRANCH=$(git branch --show-current)
+    echo "[$TIMESTAMP] Branch: $CURRENT_BRANCH" >> "$LOG_FILE"
+    
+    # Count modified files
+    MODIFIED_FILES=$(git diff --name-only | wc -l)
+    if [ "$MODIFIED_FILES" -gt 0 ]; then
+        echo "[$TIMESTAMP] Modified files: $MODIFIED_FILES" >> "$LOG_FILE"
+        git diff --name-only >> "$LOG_FILE"
+    fi
+fi
+
+# Task completion analysis
+if [ "$TASK_STATUS" = "completed" ]; then
+    echo -e "\033[0;32m✅ Task completed: $TASK_DESCRIPTION\033[0m"
+    
+    # Trigger any completion-specific actions
+    if [[ "$TASK_DESCRIPTION" =~ "test" ]]; then
+        echo "🧪 Test-related task completed - consider running full test suite"
+    elif [[ "$TASK_DESCRIPTION" =~ "theme" ]]; then
+        echo "🎨 Theme-related task completed - consider clearing Drupal caches"
+    elif [[ "$TASK_DESCRIPTION" =~ "feature" ]]; then
+        echo "🚀 Feature-related task completed - ready for review/PR"
+    fi
+    
+elif [ "$TASK_STATUS" = "failed" ]; then
+    echo -e "\033[0;31m❌ Task failed: $TASK_DESCRIPTION\033[0m"
+    echo "🔍 Consider debugging or documentation review"
+    
+elif [ "$TASK_STATUS" = "in_progress" ]; then
+    echo -e "\033[0;33m⏳ Task in progress: $TASK_DESCRIPTION\033[0m"
+    echo "📝 Tracking progress..."
+fi
+
+echo -e "\033[0;32m✓ Task completion logged\033[0m"
+
+# Non-blocking exit
+>>>>>>> dcd4777b (feat: Complete theme customization with color palette and Google Fonts (Issue #36))
 exit 0

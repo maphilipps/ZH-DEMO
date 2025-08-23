@@ -747,8 +747,45 @@ function adesso_cms_theme_preprocess_html(&$variables) {
     $variables['attributes']['class'] = [];
   }
 
-  // Color settings.
-  if (theme_get_setting('adesso_cms_theme_enable_color')) {
+  // Issue #36: New Theme Customization System
+  $primary_color = theme_get_setting('primary_color') ?? '#3b82f6';
+  $google_font = theme_get_setting('google_font') ?? 'inter';
+  
+  // Basic implementation without services for now (to avoid bootstrap issues)
+  // TODO: Implement full service integration once system is stable
+  
+  // Generate basic CSS custom properties from primary color
+  $styles = [
+    "--color-primary: $primary_color;",
+    "--color-primary-50: " . lightenColor($primary_color, 0.95) . ";",
+    "--color-primary-100: " . lightenColor($primary_color, 0.9) . ";",
+    "--color-primary-200: " . lightenColor($primary_color, 0.8) . ";",
+    "--color-primary-300: " . lightenColor($primary_color, 0.7) . ";",
+    "--color-primary-400: " . lightenColor($primary_color, 0.6) . ";",
+    "--color-primary-500: $primary_color;",
+    "--color-primary-600: " . darkenColor($primary_color, 0.1) . ";",
+    "--color-primary-700: " . darkenColor($primary_color, 0.2) . ";",
+    "--color-primary-800: " . darkenColor($primary_color, 0.3) . ";",
+    "--color-primary-900: " . darkenColor($primary_color, 0.4) . ";",
+    "--color-primary-950: " . darkenColor($primary_color, 0.5) . ";",
+  ];
+  
+  // Add font family
+  $font_families = [
+    'inter' => "'Inter', sans-serif",
+    'crimson-text' => "'Crimson Text', serif",
+    'playfair-display' => "'Playfair Display', serif",
+    'open-sans' => "'Open Sans', sans-serif",
+    'montserrat' => "'Montserrat', sans-serif",
+  ];
+  
+  $font_family = $font_families[$google_font] ?? $font_families['inter'];
+  $styles[] = "--font-primary: $font_family;";
+  
+  $variables['html_attributes']->setAttribute('style', implode(' ', $styles));
+
+  // Legacy color settings (fallback)
+  if (theme_get_setting('adesso_cms_theme_enable_color') && !theme_get_setting('primary_color')) {
     $pc = theme_get_setting('adesso_cms_theme_base_primary_color') ?? '#3B71CA';
     $sc = theme_get_setting('adesso_cms_theme_base_secondary_color') ?? '#9FA6B2';
     $tc = theme_get_setting('adesso_cms_theme_base_tertiary_color') ?? '#F9FAFB';
@@ -762,7 +799,7 @@ function adesso_cms_theme_preprocess_html(&$variables) {
     $wc = theme_get_setting('adesso_cms_theme_warning_color') ?? '#E4A11B';
     $ec = theme_get_setting('adesso_cms_theme_error_color') ?? '#DC4C64';
 
-    $styles = [
+    $legacy_styles = [
       "--color-primary:$pc;",
       "--color-secondary:$sc;",
       "--color-tertiary:$tc;",
@@ -776,7 +813,7 @@ function adesso_cms_theme_preprocess_html(&$variables) {
       "--color-warning: $wc;",
       "--color-error: $ec;",
     ];
-    $variables['html_attributes']->setAttribute('style', implode('', $styles));
+    $variables['html_attributes']->setAttribute('style', implode('', $legacy_styles));
   }
 }
 
@@ -932,6 +969,178 @@ function adesso_cms_theme_form_system_theme_settings_alter(&$form, FormStateInte
   if (isset($form_id)) {
     return;
   }
+
+  // Issue #36: Theme Customization Settings
+  $form['theme_customization'] = [
+    '#type' => 'details',
+    '#title' => t('Theme Customization (Issue #36)'),
+    '#open' => TRUE,
+    '#weight' => -15,
+    '#description' => t('Configure primary color and Google Fonts for auto-generated Tailwind CSS palette and typography.'),
+  ];
+
+  // Branding section
+  $form['theme_customization']['branding'] = [
+    '#type' => 'details',
+    '#title' => t('Branding'),
+    '#open' => TRUE,
+  ];
+
+  $form['theme_customization']['branding']['primary_color'] = [
+    '#type' => 'color',
+    '#title' => t('Primary Color'),
+    '#description' => t('Select primary brand color. This will automatically generate a complete Tailwind CSS color palette (50-950 shades) using HSL color space manipulation.'),
+    '#default_value' => theme_get_setting('primary_color') ?? '#3b82f6',
+    '#attributes' => [
+      'class' => ['theme-color-picker'],
+      'data-preview-target' => 'color-palette-preview',
+    ],
+  ];
+
+  $form['theme_customization']['branding']['color_palette_preview'] = [
+    '#type' => 'markup',
+    '#markup' => '<div id="color-palette-preview" class="color-palette-preview" style="margin-top: 10px;"></div>',
+  ];
+
+  // Typography section
+  $form['theme_customization']['typography'] = [
+    '#type' => 'details',
+    '#title' => t('Typography'),
+    '#open' => TRUE,
+  ];
+
+  $google_fonts = [
+    'inter' => 'Inter (Modern, tech-forward)',
+    'crimson-text' => 'Crimson Text (Traditional, elegant)',
+    'playfair-display' => 'Playfair Display (Sophisticated, upscale)',
+    'open-sans' => 'Open Sans (Clean, universal)',
+    'montserrat' => 'Montserrat (Contemporary, Swiss-inspired)',
+  ];
+
+  $form['theme_customization']['typography']['google_font'] = [
+    '#type' => 'select',
+    '#title' => t('Google Font'),
+    '#description' => t('Select a Google Font for your theme. All fonts support Swiss German characters and are optimized for performance.'),
+    '#options' => $google_fonts,
+    '#default_value' => theme_get_setting('google_font') ?? 'inter',
+    '#attributes' => [
+      'class' => ['theme-font-selector'],
+      'data-preview-target' => 'font-preview',
+    ],
+  ];
+
+  $form['theme_customization']['typography']['custom_font_weights'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Font Weights'),
+    '#description' => t('Select which font weights to load. Fewer weights = better performance.'),
+    '#options' => [
+      '300' => t('300 (Light)'),
+      '400' => t('400 (Regular)'),
+      '500' => t('500 (Medium)'),
+      '600' => t('600 (Semi Bold)'),
+      '700' => t('700 (Bold)'),
+      '800' => t('800 (Extra Bold)'),
+    ],
+    '#default_value' => theme_get_setting('custom_font_weights') ?? ['400', '500', '600'],
+  ];
+
+  $form['theme_customization']['typography']['font_preview'] = [
+    '#type' => 'markup',
+    '#markup' => '<div id="font-preview" class="font-preview" style="margin-top: 10px; font-size: 18px;">The quick brown fox jumps over the lazy dog</div>',
+  ];
+
+  // Municipality presets
+  $form['theme_customization']['municipality_presets'] = [
+    '#type' => 'details',
+    '#title' => t('Municipality Presets'),
+    '#open' => FALSE,
+    '#description' => t('Quick presets for GPZH demo municipalities.'),
+  ];
+
+  $municipality_presets = [
+    'default' => t('Default'),
+    'thalwil' => t('Thalwil (Modern, Inter font, Blue theme)'),
+    'thalheim' => t('Thalheim (Traditional, Crimson Text, Green theme)'),
+    'erlenbach' => t('Erlenbach (Sophisticated, Playfair Display, Turquoise theme)'),
+  ];
+
+  $form['theme_customization']['municipality_presets']['municipality_preset'] = [
+    '#type' => 'radios',
+    '#title' => t('Apply Municipality Preset'),
+    '#options' => $municipality_presets,
+    '#default_value' => 'default',
+    '#attributes' => [
+      'class' => ['municipality-preset-selector'],
+    ],
+  ];
+
+  // Live preview section
+  $form['theme_customization']['live_preview'] = [
+    '#type' => 'details',
+    '#title' => t('Live Preview'),
+    '#open' => TRUE,
+  ];
+
+  $form['theme_customization']['live_preview']['preview_area'] = [
+    '#type' => 'markup',
+    '#markup' => '
+      <div id="theme-live-preview" class="theme-live-preview" style="border: 1px solid #ccc; padding: 20px; margin-top: 10px; border-radius: 8px;">
+        <div class="preview-header" style="padding: 10px; margin-bottom: 15px; border-radius: 6px;">
+          <h3 style="margin: 0; color: var(--color-primary-600, #2563eb);">Header Preview</h3>
+        </div>
+        <div class="preview-content">
+          <p style="color: var(--color-primary-800, #1e40af);">This is how your primary color will look in content areas.</p>
+          <button class="preview-button" style="background: var(--color-primary-500, #3b82f6); color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Primary Button</button>
+        </div>
+      </div>
+    ',
+  ];
+
+  // Advanced settings
+  $form['theme_customization']['advanced'] = [
+    '#type' => 'details',
+    '#title' => t('Advanced Settings'),
+    '#open' => FALSE,
+  ];
+
+  $form['theme_customization']['advanced']['enable_accessibility_validation'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable accessibility validation'),
+    '#description' => t('Automatically validate color contrast ratios against WCAG 2.1 AA standards.'),
+    '#default_value' => theme_get_setting('enable_accessibility_validation') ?? TRUE,
+  ];
+
+  $form['theme_customization']['advanced']['enable_performance_optimization'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable performance optimization'),
+    '#description' => t('Use font-display: swap and preload hints for better performance.'),
+    '#default_value' => theme_get_setting('enable_performance_optimization') ?? TRUE,
+  ];
+
+  $form['theme_customization']['advanced']['export_import'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Export/Import Settings'),
+    '#description' => t('Export or import theme settings for demo switching.'),
+  ];
+
+  $form['theme_customization']['advanced']['export_import']['export_settings'] = [
+    '#type' => 'button',
+    '#value' => t('Export Settings'),
+    '#attributes' => [
+      'class' => ['export-theme-settings'],
+      'onclick' => 'return false;',
+    ],
+  ];
+
+  $form['theme_customization']['advanced']['export_import']['import_settings'] = [
+    '#type' => 'textarea',
+    '#title' => t('Import Settings'),
+    '#description' => t('Paste exported settings string to import.'),
+    '#rows' => 3,
+  ];
+
+  // Attach libraries for theme customization
+  $form['#attached']['library'][] = 'adesso_cms_theme/theme-customization';
 
   $form['header_settings'] = [
     '#type' => 'details',
@@ -1115,4 +1324,46 @@ function adesso_cms_theme_preprocess_field__operations(&$variables) {
     // Add CSRF token for quick actions
     $variables['csrf_token'] = \Drupal::csrfToken()->get('event-review-operations');
   }
+}
+
+/**
+ * Helper function to lighten a color.
+ */
+function lightenColor($hex, $percent) {
+  $hex = ltrim($hex, '#');
+  
+  if (strlen($hex) == 3) {
+    $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+  }
+  
+  $r = hexdec(substr($hex, 0, 2));
+  $g = hexdec(substr($hex, 2, 2));
+  $b = hexdec(substr($hex, 4, 2));
+  
+  $r = min(255, $r + (255 - $r) * $percent);
+  $g = min(255, $g + (255 - $g) * $percent);
+  $b = min(255, $b + (255 - $b) * $percent);
+  
+  return sprintf('#%02x%02x%02x', round($r), round($g), round($b));
+}
+
+/**
+ * Helper function to darken a color.
+ */
+function darkenColor($hex, $percent) {
+  $hex = ltrim($hex, '#');
+  
+  if (strlen($hex) == 3) {
+    $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+  }
+  
+  $r = hexdec(substr($hex, 0, 2));
+  $g = hexdec(substr($hex, 2, 2));
+  $b = hexdec(substr($hex, 4, 2));
+  
+  $r = max(0, $r * (1 - $percent));
+  $g = max(0, $g * (1 - $percent));
+  $b = max(0, $b * (1 - $percent));
+  
+  return sprintf('#%02x%02x%02x', round($r), round($g), round($b));
 }

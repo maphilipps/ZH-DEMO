@@ -1,0 +1,212 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    zh-demo-selenium-chrome-7900-http:
+      entrypoints:
+        - http-7910
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-selenium-chrome-7900"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-web-80-http:
+      entrypoints:
+        - http-80
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-8025"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-web-6006-http:
+      entrypoints:
+        - http-6007
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-6006"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-web-5173-http:
+      entrypoints:
+        - http-5172
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-5173"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-xhgui-80-http:
+      entrypoints:
+        - http-8143
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-xhgui-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    zh-demo-attu-3000-http:
+      entrypoints:
+        - http-8521
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-attu-3000"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
+    
+    
+    zh-demo-selenium-chrome-7900-https:
+      entrypoints:
+        - http-7900
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-selenium-chrome-7900"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    
+    
+    
+    zh-demo-web-80-https:
+      entrypoints:
+        - http-443
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    zh-demo-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-8025"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    zh-demo-web-6006-https:
+      entrypoints:
+        - http-6006
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-6006"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    zh-demo-web-5173-https:
+      entrypoints:
+        - http-5173
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-web-5173"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    zh-demo-xhgui-80-https:
+      entrypoints:
+        - http-8142
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-xhgui-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    zh-demo-attu-3000-https:
+      entrypoints:
+        - http-8521
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-attu-3000"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+
+  middlewares:
+    zh-demo-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    zh-demo-selenium-chrome-7900:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-selenium-chrome:7900
+        
+    
+    zh-demo-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-web:80
+        
+    zh-demo-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-web:8025
+        
+    zh-demo-web-6006:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-web:6006
+        
+    zh-demo-web-5173:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-web:5173
+        
+    
+    
+    
+    
+    zh-demo-xhgui-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-xhgui:80
+        
+    
+    zh-demo-attu-3000:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-attu:3000
+        
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/zh-demo.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/zh-demo.key

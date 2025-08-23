@@ -57,6 +57,9 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 #### Known Issues → Tests → Rules
 - **Missing package-lock.json breaks CI/CD** → Always verify package-lock.json exists → Rule: Never delete package-lock.json, always regenerate with `npm install` if changes needed
 - **PR #12 CI/CD failures** → Missing dependency lock file prevents builds → Test: CI must validate package-lock.json presence before build steps
+- **Frustration detector bash array errors** → Empty arrays fail with `set -u` → Rule: Always check array length before accessing with `${array[@]}`
+- **German text breaks JSON parsing** → Apostrophes cause invalid escapes → Rule: Use `jq -Rs` for proper JSON string escaping
+- **mapfile not portable to macOS** → Command not found errors → Rule: Use `while IFS= read -r` loop instead of mapfile for portability
 
 #### Performance Optimizations → Patterns
 - *[To be populated as optimizations are discovered]*

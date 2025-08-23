@@ -20,15 +20,101 @@
       "mcp__atlassian__editJiraIssue",
       "mcp__atlassian__getJiraIssue",
       "mcp__atlassian__searchJiraIssuesUsingJql",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue comment:*)"
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline-agnoster.sh"
-  },
-  "outputStyle": "default",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/github-issue-created.sh check"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/session-learning.sh retrieve all planning"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/automated-learning.sh status"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/frustration-detector.sh detect \"$USER_PROMPT\" \"general\""
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/learning-system.sh capture_feedback \"$USER_PROMPT\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/task-complete.sh \"$TASK_DESCRIPTION\" \"$TASK_STATUS\" \"$TASK_COMPONENT\""
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/planning-to-github.sh process"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/git-learning.sh \"$COMMIT_MSG\" \"$FILES_CHANGED\""
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/automated-learning.sh learn-pr \"$COMMIT_MSG\" \"$COMMIT_DESCRIPTION\" \"auto-captured\" \"committed\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-response.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/failure-to-knowledge.sh build \"Build failed: $BUILD_ERROR\" \"build-system\" high"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/failure-to-knowledge.sh error \"$ERROR_MESSAGE\" \"$ERROR_COMPONENT\" \"$ERROR_SEVERITY\""
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
@@ -36,22 +122,28 @@
           {
             "type": "command",
             "command": ".claude/hooks/validate-learnings.sh"
-          }
-        ]
-      }
-    ],
-    "Start": [
-      {
-        "matcher": "",
-        "hooks": [
+          },
           {
             "type": "command",
-            "command": ".claude/hooks/github-issue-created.sh check"
+            "command": ".claude/scripts/session-learning.sh store all \"Session learnings\" \"Full session context\""
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/automated-learning.sh export-knowledge"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/automated-learning.sh generate-insights"
           }
         ]
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-agnoster.sh"
+  },
+  "outputStyle": "default",
   "mcp-server-drupal": {
     "command": "docker",
     "args": [

@@ -40,14 +40,16 @@ usage() {
 
 # Initialize pattern arrays
 init_patterns() {
-    # Frustration detection patterns
-    FRUSTRATION_PATTERNS_repeated_errors="(error|fail|broken|not work|doesn't work|keep getting|again|still|repeatedly)"
-    FRUSTRATION_PATTERNS_time_pressure="(urgent|deadline|quickly|asap|need now|running out|time)"
-    FRUSTRATION_PATTERNS_confusion="(don't understand|confused|unclear|how do|what does|why)"
-    FRUSTRATION_PATTERNS_complexity="(too complex|complicated|overwhelming|too much|hard to)"
-    FRUSTRATION_PATTERNS_documentation="(no documentation|unclear docs|missing info|can't find)"
-    FRUSTRATION_PATTERNS_performance="(slow|timeout|hanging|frozen|takes forever|performance)"
-    FRUSTRATION_PATTERNS_gpzh_specific="(demo|presentation|bruchtal|forms|swiss|compliance|35 minute)"
+    # Frustration detection patterns (English and German)
+    FRUSTRATION_PATTERNS_repeated_errors="(error|fail|broken|not work|doesn't work|keep getting|again|still|repeatedly|fehler|kaputt|funktioniert nicht|geht nicht|immer wieder|schon wieder|immernoch)"
+    FRUSTRATION_PATTERNS_time_pressure="(urgent|deadline|quickly|asap|need now|running out|time|dringend|schnell|sofort|jetzt|eilig|zeitdruck)"
+    FRUSTRATION_PATTERNS_confusion="(don't understand|confused|unclear|how do|what does|why|versteh.* nicht|unklar|verwirrend|wie soll|was bedeutet|warum|kapier.* nicht)"
+    FRUSTRATION_PATTERNS_complexity="(too complex|complicated|overwhelming|too much|hard to|zu komplex|kompliziert|überwältigend|zu viel|schwierig)"
+    FRUSTRATION_PATTERNS_documentation="(no documentation|unclear docs|missing info|can't find|keine doku|unklare doku|fehlt info|finde nicht)"
+    FRUSTRATION_PATTERNS_performance="(slow|timeout|hanging|frozen|takes forever|performance|langsam|hängt|eingefroren|dauert ewig|performance)"
+    FRUSTRATION_PATTERNS_gpzh_specific="(demo|presentation|bruchtal|forms|swiss|compliance|35 minute|präsentation|formular|schweiz)"
+    # German-specific frustration expressions
+    FRUSTRATION_PATTERNS_german_expressions="(oh man|echt|verdammt|mist|scheisse|blöd|nervig|ätzend|hast.* nicht verstanden|check.* nicht|raff.* nicht|verstehst.* nicht|oder\?$)"
 
     # GPZH-specific solution patterns
     GPZH_SOLUTIONS_demo_prep="Use: ./claude/gpzh-workflows.sh demo for automated 35-minute demo preparation"
@@ -91,8 +93,8 @@ detect_frustration() {
     local detected_patterns=()
     local frustration_score=0
     
-    # Check each pattern type
-    for pattern_name in repeated_errors time_pressure confusion complexity documentation performance gpzh_specific; do
+    # Check each pattern type (including German expressions)
+    for pattern_name in repeated_errors time_pressure confusion complexity documentation performance gpzh_specific german_expressions; do
         local pattern=$(get_frustration_pattern "$pattern_name")
         if [ -n "$pattern" ] && echo "$message_lower" | grep -qiE "$pattern"; then
             detected_patterns+=("$pattern_name")
@@ -117,15 +119,25 @@ detect_frustration() {
         frustration_level="medium"
     fi
     
-    # Create frustration record
+    # Create frustration record (handle empty array case)
     local frustration_file="$FRUSTRATION_DIR/sessions/${frustration_id}.json"
+    
+    # Safely handle empty detected_patterns array
+    local patterns_json="[]"
+    if [ ${#detected_patterns[@]} -gt 0 ]; then
+        patterns_json=$(printf '"%s"\n' "${detected_patterns[@]}" | jq -R . | jq -s .)
+    fi
+    
+    # Properly escape the message for JSON
+    local escaped_message=$(echo "$message" | jq -Rs .)
+    
     cat > "$frustration_file" << EOF
 {
   "id": "$frustration_id",
   "timestamp": "$(date -Iseconds)",
-  "message": "$message",
+  "message": $escaped_message,
   "context": "$context",
-  "detected_patterns": $(printf '"%s"\n' "${detected_patterns[@]}" | jq -R . | jq -s .),
+  "detected_patterns": $patterns_json,
   "gpzh_context": "$gpzh_context",
   "frustration_score": $frustration_score,
   "frustration_level": "$frustration_level",
@@ -150,7 +162,11 @@ EOF
         
         echo -e "  ID: $frustration_id"
         echo -e "  Score: $frustration_score"
-        echo -e "  Patterns: ${detected_patterns[*]}"
+        if [ ${#detected_patterns[@]} -gt 0 ]; then
+            echo -e "  Patterns: ${detected_patterns[*]}"
+        else
+            echo -e "  Patterns: (none explicitly detected)"
+        fi
         
         # Auto-suggest solutions for high/critical frustrations
         if [ "$frustration_level" = "high" ] || [ "$frustration_level" = "critical" ]; then
@@ -185,8 +201,13 @@ suggest_solution() {
     
     echo -e "${BLUE}💡 Generating solutions for:${NC} $frustration_id"
     
-    # Extract frustration info
-    local patterns=($(jq -r '.detected_patterns[]' "$frustration_file" 2>/dev/null))
+    # Extract frustration info (handle empty patterns array)
+    local patterns=()
+    if jq -e '.detected_patterns | length > 0' "$frustration_file" >/dev/null 2>&1; then
+        while IFS= read -r pattern; do
+            patterns+=("$pattern")
+        done < <(jq -r '.detected_patterns[]' "$frustration_file" 2>/dev/null)
+    fi
     local gpzh_context=$(jq -r '.gpzh_context' "$frustration_file")
     local context=$(jq -r '.context' "$frustration_file")
     
@@ -224,8 +245,9 @@ suggest_solution() {
         fi
     fi
     
-    # Pattern-based solutions
-    for pattern in "${patterns[@]}"; do
+    # Pattern-based solutions (only if patterns exist)
+    if [ ${#patterns[@]} -gt 0 ]; then
+        for pattern in "${patterns[@]}"; do
         case "$pattern" in
             "repeated_errors")
                 solutions+=("Use .claude/scripts/failure-to-knowledge.sh to convert errors into prevention patterns")
@@ -243,6 +265,11 @@ suggest_solution() {
                 solutions+=("Break down into smaller tasks using TodoWrite tool")
                 solutions+=("Use three-lane development for parallel work")
                 ;;
+            "german_expressions")
+                solutions+=("Taking a deep breath and approaching the problem systematically")
+                solutions+=("Let's break this down step by step in German if that helps")
+                solutions+=("Ich verstehe deine Frustration - lass uns das Problem strukturiert angehen")
+                ;;
             "documentation")
                 solutions+=("Search codebase: use Grep tool for examples")
                 solutions+=("Check Drupal.org documentation")
@@ -252,7 +279,8 @@ suggest_solution() {
                 solutions+=("Check Core Web Vitals: ./claude/gpzh-workflows.sh performance")
                 ;;
         esac
-    done
+        done
+    fi
     
     # Context-specific solutions
     case "$context" in
@@ -275,18 +303,43 @@ suggest_solution() {
     solutions+=("Restart environment: ddev restart")
     solutions+=("Check system status: ddev status")
     
+    # Remove duplicates while preserving solutions as complete strings
+    local unique_solutions=()
+    local seen_solutions=()
+    for solution in "${solutions[@]}"; do
+        local is_duplicate=0
+        if [ ${#seen_solutions[@]} -gt 0 ]; then
+            for seen in "${seen_solutions[@]}"; do
+                if [ "$solution" = "$seen" ]; then
+                    is_duplicate=1
+                    break
+                fi
+            done
+        fi
+        if [ $is_duplicate -eq 0 ]; then
+            unique_solutions+=("$solution")
+            seen_solutions+=("$solution")
+        fi
+    done
+    
     # Update frustration record with solutions
-    local unique_solutions=($(printf '%s\n' "${solutions[@]}" | sort -u))
     local temp_file=$(mktemp)
-    jq --argjson sols "$(printf '%s\n' "${unique_solutions[@]}" | jq -R . | jq -s .)" \
-       '.suggested_solutions = $sols' \
-       "$frustration_file" > "$temp_file" && mv "$temp_file" "$frustration_file"
+    if [ ${#unique_solutions[@]} -gt 0 ]; then
+        local sols_json=$(printf '%s\n' "${unique_solutions[@]}" | jq -R . | jq -s .)
+        jq --argjson sols "$sols_json" '.suggested_solutions = $sols' "$frustration_file" > "$temp_file" && mv "$temp_file" "$frustration_file"
+    else
+        jq '.suggested_solutions = []' "$frustration_file" > "$temp_file" && mv "$temp_file" "$frustration_file"
+    fi
     
     # Display solutions
-    echo -e "${GREEN}Suggested solutions:${NC}"
-    for i in "${!unique_solutions[@]}"; do
-        echo "  $((i+1)). ${unique_solutions[$i]}"
-    done
+    if [ ${#unique_solutions[@]} -gt 0 ]; then
+        echo -e "${GREEN}Suggested solutions:${NC}"
+        for i in "${!unique_solutions[@]}"; do
+            echo "  $((i+1)). ${unique_solutions[$i]}"
+        done
+    else
+        echo -e "${YELLOW}No specific solutions available${NC}"
+    fi
 }
 
 analyze_conversation() {
@@ -300,17 +353,19 @@ analyze_conversation() {
     echo -e "${BLUE}📖 Analyzing conversation for frustration patterns...${NC}"
     
     # Count frustration indicators
-    local error_count=$(grep -ciE "(error|fail|broken|not work)" "$conversation_file" 2>/dev/null || echo "0")
-    local confusion_count=$(grep -ciE "(don't understand|confused|unclear|how do|what does)" "$conversation_file" 2>/dev/null || echo "0")
-    local urgency_count=$(grep -ciE "(urgent|quickly|asap|deadline)" "$conversation_file" 2>/dev/null || echo "0")
-    local gpzh_count=$(grep -ciE "(demo|bruchtal|forms|swiss|compliance)" "$conversation_file" 2>/dev/null || echo "0")
+    local error_count=$(grep -ciE "(error|fail|broken|not work|fehler|kaputt|funktioniert nicht|geht nicht)" "$conversation_file" 2>/dev/null || echo "0")
+    local confusion_count=$(grep -ciE "(don't understand|confused|unclear|how do|what does|versteh.* nicht|unklar|verwirrend|kapier.* nicht)" "$conversation_file" 2>/dev/null || echo "0")
+    local urgency_count=$(grep -ciE "(urgent|quickly|asap|deadline|dringend|schnell|sofort|eilig)" "$conversation_file" 2>/dev/null || echo "0")
+    local gpzh_count=$(grep -ciE "(demo|bruchtal|forms|swiss|compliance|präsentation|formular|schweiz)" "$conversation_file" 2>/dev/null || echo "0")
+    local german_frustration=$(grep -ciE "(oh man|echt|verdammt|mist|hast.* nicht verstanden|oder\?)" "$conversation_file" 2>/dev/null || echo "0")
     
-    local total_frustration=$((error_count + confusion_count + urgency_count))
+    local total_frustration=$((error_count + confusion_count + urgency_count + german_frustration))
     
     echo -e "${YELLOW}Conversation Analysis:${NC}"
     echo "  Error/failure mentions: $error_count"
     echo "  Confusion indicators: $confusion_count"  
     echo "  Urgency indicators: $urgency_count"
+    echo "  German frustration expressions: $german_frustration"
     echo "  GPZH context mentions: $gpzh_count"
     echo "  Total frustration score: $total_frustration"
     

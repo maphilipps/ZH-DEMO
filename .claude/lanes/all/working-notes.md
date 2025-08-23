@@ -133,3 +133,42 @@ Full session context
 ## Sat Aug 23 13:06:39 CEST 2025: Session learnings
 Full session context
 
+## Sat Aug 23 16:49:13 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 16:55:59 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:03:49 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:07:44 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:10:42 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:11:07 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:14:54 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:16:14 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:19:48 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:23:21 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 17:27:23 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 18:35:33 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 18:42:48 CEST 2025: Session learnings
+Full session context
+

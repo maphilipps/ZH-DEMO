@@ -1,14 +1,14 @@
 export default {
-  site: 'https://web',
+  site: 'https://zh-demo.ddev.site',
   
   scanner: {
-    samples: 0,        // Scan everything by default
-    device: 'both',    // Mobile + Desktop by default
+    samples: 0,        // Scan everything for comprehensive analysis
+    device: 'both',    // Mobile + Desktop as required by Issue #18
     throttle: false,   // Fast scanning for development
     skipJavascript: false,
     crawler: true,
     maxRoutes: 100,    // Reasonable limit for comprehensive scanning
-    robotsTxt: false,
+    robotsTxt: false,  // Ignore robots.txt for complete scanning
     include: [
       '/',
       '/admin',
@@ -25,33 +25,44 @@ export default {
   },
   
   server: {
-    port: 5678,
+    port: 5678,        // Issue #18 requirement: Port 5678
     host: '0.0.0.0'
   },
   
   lighthouseOptions: {
-    // Swiss compliance and accessibility focus
+    // Swiss compliance and accessibility focus (Issue #18)
     onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
     // Swiss Government Standards (eCH-0059) requirements
     configContext: {
-      // Minimum accessibility score for Swiss compliance
       throttlingMethod: 'simulate',
       screenEmulation: {
         mobile: {
-          width: 375,
+          width: 375,     // Issue #18 spec: 375x667
           height: 667,
           deviceScaleFactor: 2,
         },
         desktop: {
-          width: 1200,
-          height: 900,
+          width: 1920,    // Issue #18 spec: 1920x1080
+          height: 1080,
           deviceScaleFactor: 1,
         }
       }
+    },
+    // Docker environment requirements with SSL certificate handling
+    puppeteerOptions: {
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--ignore-certificate-errors',
+        '--ignore-ssl-errors',
+        '--ignore-certificate-errors-spki-list',
+        '--disable-web-security',
+        '--allow-running-insecure-content'
+      ]
     }
   },
   
-  // CI/CD integration
+  // Issue #18 CI/CD integration requirements
   ci: {
     budget: {
       performance: 90,      // Required for government sites
@@ -65,6 +76,8 @@ export default {
     }
   },
   
+  outputPath: './reports/unlighthouse',
+  
   hooks: {
     // Custom validation hooks for Swiss compliance
     'lighthouse:before-audit': async (page) => {
@@ -76,8 +89,8 @@ export default {
     'lighthouse:after-audit': async (page, { report }) => {
       // Log Swiss compliance specific metrics
       console.log('Swiss Compliance Check:', {
-        accessibility: report.lhr.categories.accessibility.score * 100,
-        performance: report.lhr.categories.performance.score * 100,
+        accessibility: Math.round(report.lhr.categories.accessibility.score * 100),
+        performance: Math.round(report.lhr.categories.performance.score * 100),
         url: report.lhr.finalUrl
       })
     }

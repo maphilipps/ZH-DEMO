@@ -1,42 +1,39 @@
----
-description: "Create GitHub issues with automatic project assignment and compounding knowledge integration"
-allowed-tools: ["Bash"]
----
+You are an AI assistant tasked with creating well-structured GitHub issues for feature requests, bug reports, or improvement ideas. Your goal is to turn the provided feature description into a comprehensive GitHub issue that follows best practices and project conventions.
 
-Create a GitHub issue with title "$ARGUMENTS[0]" and description "$ARGUMENTS[1]" using labels "${ARGUMENTS[2]:-enhancement,planning-lane}".
+First, you will be given a feature description and a repository URL. Here they are:
 
-Automatically:
-1. Assign to @claude (maphilipps)
-2. Add to GitHub Project "GZ Demo" 
-3. Set status to Ready (Planning Lane)
-4. Include Swiss compliance checklist (eCH-0059, GDPR/CH-DSG, multi-language)
-5. Add compounding engineering template for TDD and knowledge capture
+<feature_description> #$ARGUMENTS </feature_description>
 
-Use comprehensive issue template with implementation requirements and success criteria.
+Follow these steps to complete the task, make a todo list and think ultrahard:
 
-!gh issue create --title "$ARGUMENTS[0]" --body "## Description
+Research the repository:
 
-$ARGUMENTS[1]
+Visit the provided repo_url and examine the repository's structure, existing issues, and documentation.
+Look for any CONTRIBUTING.md, ISSUE_TEMPLATE.md, or similar files that might contain guidelines for creating issues.
+Note the project's coding style, naming conventions, and any specific requirements for submitting issues.
+Research best practices:
 
-## Compounding Engineering Integration
-**Created via**: /issue command  
-**Project**: GZ Demo (Planning Lane - Ready)  
-**Swiss Compliance**: eCH-0059, GDPR/CH-DSG required
+Search for current best practices in writing GitHub issues, focusing on clarity, completeness, and actionability.
+Look for examples of well-written issues in popular open-source projects for inspiration.
+Search the web for best practices on the topics handles
+Use context7 mcp to get the latest information about the project and the user request.
+Present a plan:
 
-## Implementation Requirements
-- [ ] Follow TDD approach (RED-GREEN-REFACTOR)
-- [ ] Document architectural decisions in ADRs
-- [ ] Update CLAUDE.md with learned patterns
-- [ ] Swiss accessibility testing (eCH-0059)
-- [ ] Multi-language support (DE/FR/IT)
+Based on your research, outline a plan for creating the GitHub issue.
+Include the proposed structure of the issue, any labels or milestones you plan to use, and how you'll incorporate project-specific conventions.
+Present this plan in tags.
+Inlcude the reference link to faeturebase or any opther link that has the source of the user request
+Please ensure any references to local files with line numbers or GitHub repositories are included at the bottom of the GitHub issue for future reference.
+Create the GitHub issue:
 
----
-🤖 Generated with Compounding Engineering /issue" --label "${ARGUMENTS[2]:-enhancement,planning-lane}" --assignee "maphilipps"
+Once the plan is approved, draft the GitHub issue content.
+Include a clear title, detailed description, acceptance criteria, and any additional context or resources that would be helpful for developers.
+Use appropriate formatting (e.g., Markdown) to enhance readability.
+Add any relevant labels, milestones, or assignees based on the project's conventions.
+Final output:
 
-!ISSUE_NUMBER=$(gh issue list --assignee "@me" --state open --limit 1 --json number --jq '.[0].number') && gh project item-add 2 --owner maphilipps --url "https://github.com/maphilipps/zh-demo/issues/${ISSUE_NUMBER}"
+Present the complete GitHub issue content in <github_issue> tags.
+Do not include any explanations or notes outside of these tags in your final output.
+Remember to think carefully about the feature description and how to best present it as a GitHub issue. Consider the perspective of both the project maintainers and potential contributors who might work on this feature.
 
-# Document the issue creation pattern
-!COMMAND_AGENT="$(dirname "$(dirname "${BASH_SOURCE[0]}")")/.claude/agents/command-documentation-agent.sh"
-!if [ -x "$COMMAND_AGENT" ]; then "$COMMAND_AGENT" issue-created "$ISSUE_NUMBER" "$ARGUMENTS[0]" || true; fi
-
-Issue created and added to GitHub Project! Use `/work ${ISSUE_NUMBER}` to start TDD development.
+Your final output should consist of only the content within the <github_issue> tags, ready to be copied and pasted directly into GitHub. Make sure to use the GitHub CLI gh issue create to create the actual issue after you generate. Assign either the label bug or enhancement based on the nature of the issue.

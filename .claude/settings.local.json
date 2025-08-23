@@ -34,15 +34,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/github-issue-created.sh check"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/session-learning.sh retrieve all planning"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/automated-learning.sh status"
+            "command": ".claude/hooks/session-start.sh"
           }
         ]
       }
@@ -53,15 +45,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/user-prompt-submit.sh"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/frustration-detector.sh detect \"$USER_PROMPT\" \"general\""
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/learning-system.sh capture_feedback \"$USER_PROMPT\""
+            "command": ".claude/hooks/user-prompt-submit.sh \"$USER_PROMPT\""
           }
         ]
       }
@@ -72,19 +56,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/task-complete.sh \"$TASK_DESCRIPTION\" \"$TASK_STATUS\" \"$TASK_COMPONENT\""
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/planning-to-github.sh process"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/git-learning.sh \"$COMMIT_MSG\" \"$FILES_CHANGED\""
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/automated-learning.sh learn-pr \"$COMMIT_MSG\" \"$COMMIT_DESCRIPTION\" \"auto-captured\" \"committed\""
+            "command": ".claude/hooks/task-complete.sh \"$TASK_DESCRIPTION\" \"$TASK_STATUS\""
           }
         ]
       }
@@ -106,11 +78,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/scripts/failure-to-knowledge.sh build \"Build failed: $BUILD_ERROR\" \"build-system\" high"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/failure-to-knowledge.sh error \"$ERROR_MESSAGE\" \"$ERROR_COMPONENT\" \"$ERROR_SEVERITY\""
+            "command": "echo '@error-analyzer: Analyze notification: $ERROR_MESSAGE'"
           }
         ]
       }
@@ -122,18 +90,6 @@
           {
             "type": "command",
             "command": ".claude/hooks/validate-learnings.sh"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/session-learning.sh store all \"Session learnings\" \"Full session context\""
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/automated-learning.sh export-knowledge"
-          },
-          {
-            "type": "command",
-            "command": ".claude/scripts/automated-learning.sh generate-insights"
           }
         ]
       }

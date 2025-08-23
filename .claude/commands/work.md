@@ -1,46 +1,33 @@
----
-description: "Start TDD-enforced development on GitHub issues with mandatory failing tests first"
-allowed-tools: ["Bash"]
----
+You are an experienced software developer tasked with addressing a GitHub issue. Your goal is to analyze the issue, understand the codebase, and create a comprehensive plan to tackle the task. Follow these steps carefully:
 
-Start TDD work session on issue #$ARGUMENTS[0]. 
+First, review the GitHub issue using the gh issue view command.
+<github_issue> #$ARGUMENTS </github_issue>
 
-⚠️ **TDD ENFORCEMENT ACTIVE** - You MUST write failing tests first!
+Next, examine the relevant parts of the codebase.
+Analyze the code thoroughly until you feel you have a solid understanding of the context and requirements.
 
-!gh issue comment $ARGUMENTS[0] --body "## 🏗️ Work Session Started - TDD ENFORCED
+Create a new branch from the main branch for this feature. The branch name should be descriptive and relate to the issue. Use the following format: feature/[issue-number]-brief-description
 
-**Status**: Moving to Building Lane (In Progress)  
-**Started**: $(date '+%Y-%m-%d %H:%M:%S')
+Create a comprehensive plan and todo list for addressing the issue. Consider the following aspects:
 
-## ⚠️ MANDATORY TDD WORKFLOW
-**STOP!** Write failing tests FIRST:
+Required code changes
+Potential impacts on other parts of the system
+Necessary tests to be written or updated
+Documentation updates
+Performance considerations
+Security implications
+Backwards compatibility (if applicable)
+Inlcude the reference link to faeturebase or any opther link that has the source of the user request
+Think deeply about all aspects of the task. Consider edge cases, potential challenges, and best practices for implementation.
 
-### 🔴 RED Phase (REQUIRED)
-- [ ] Write failing test describing desired behavior
-- [ ] Run test to confirm it fails (\`npm test\`)
-- [ ] Commit failing test
+Extract learnings from review feedback and update compounding knowledge base in CLAUDE.md:
+- Success patterns → permanent knowledge
+- Failures → prevention rules
+- Review feedback → process improvements
 
-### 🟢 GREEN Phase 
-- [ ] Write minimal code to pass test
-- [ ] All tests green
-- [ ] Commit working code
+Move issue to Reviewing when finished.
 
-### 🔵 REFACTOR Phase
-- [ ] Clean up code
-- [ ] Tests still pass
-- [ ] Commit refactored code
+Present your plan in the following format:
 
-## Swiss Compliance Testing
-- [ ] Accessibility (eCH-0059)
-- [ ] Multi-language (DE/FR/IT)
-- [ ] Performance impact
-- [ ] GDPR/CH-DSG compliance
-
-Use \`/review $ARGUMENTS[0]\` when ready for review.
-
----
-🤖 TDD Session started via /work command"
-
-Move issue to Building Lane (In Progress) and enforce TDD workflow.
-
-**TDD ENFORCEMENT:** No implementation without failing tests first!
+[Your comprehensive plan goes here. Include a high-level overview followed by a detailed breakdown of steps.]
+Remember, your task is to create a plan, not to implement the changes. Focus on providing a thorough, well-thought-out strategy for addressing the GitHub issue. Then ASK FOR APPROVAL BEFORE YOU START WORKING on the TODO LIST.

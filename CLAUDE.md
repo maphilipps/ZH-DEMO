@@ -46,6 +46,14 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 - **PR #12 package-lock.json deletion** → Caught critical build system failure before merge → Prevented production deployment failure
 - **CI/CD dependency validation** → Essential npm lock files must exist → Automated check prevents broken builds
 
+#### Failure-to-Knowledge Conversions
+*Every bug becomes permanent prevention knowledge*
+
+- **Missing GitHub Projects status check** → Issue #18 worked on without being in Ready column → Rule: `/work` command must check GitHub Projects status before allowing work
+- **Documentation Learning Violation** → Stored learnings in mcp__server-memory instead of CLAUDE.md → Rule: Always update CLAUDE.md for learnings as documented in llms.txt line 17-18
+- **TDD Inappropriate for Infrastructure** → Applied TDD to DDEV/infrastructure setup → Rule: TDD for business logic, direct implementation + validation for infrastructure
+- **Over-engineering Simple Tasks** → Created separate issue/branch for simple documentation review → Rule: Documentation reviews = direct comments, not separate issues
+
 #### Swiss Compliance Patterns
 - **eCH-0010 Address Format**: Separate street and house number fields for Swiss standard compliance
 - **CH-DSG Implementation**: 30-day soft delete and annual review process for data protection compliance

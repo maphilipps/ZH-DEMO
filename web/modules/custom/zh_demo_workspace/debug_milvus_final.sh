@@ -1,1 +1,0 @@
-../../../../debug_milvus_final.sh

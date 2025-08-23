@@ -1,32 +1,38 @@
-version: '3.6'
-
+#ddev-generated
 services:
   unlighthouse:
     container_name: ddev-${DDEV_SITENAME}-unlighthouse
-    image: node:20-alpine
+    build:
+      context: './unlighthouseBuild'
+      args:
+        BASE_IMAGE: ghcr.io/metadrop/aljibe-tools/unlighthouse:${UNLIGHTHOUSE_VERSION:-0.16.2}
+        username: $USER
+        uid: $DDEV_UID
+        gid: $DDEV_GID
+    image: ghcr.io/metadrop/aljibe-tools/unlighthouse:${UNLIGHTHOUSE_VERSION:-0.16.2}-${DDEV_SITENAME}-built
+    user:  '$DDEV_UID:$DDEV_GID'
     restart: "no"
-    tty: true
-    working_dir: /app
-    volumes:
-      - ./unlighthouse.config.ts:/app/unlighthouse.config.ts:ro
-      - ./reports:/app/.unlighthouse
-    ports:
-      - "5678:5678"
-    environment:
-      - DDEV_SITENAME=${DDEV_SITENAME}
-      - DDEV_PRIMARY_URL=${DDEV_PRIMARY_URL}
-    command: >
-      sh -c "
-        npm install -g unlighthouse @unlighthouse/cli &&
-        echo 'Unlighthouse ready - Run: ddev unlighthouse' &&
-        tail -f /dev/null
-      "
+    shm_size: ${UNLIGHTHOUSE_SHM_SIZE:-1gb}
+    cap_add:
+      - SYS_ADMIN
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT
-    networks:
-      - ddev_default
-
-networks:
-  ddev_default:
-    external: true
+    expose:
+      - 5678
+    environment:
+      - DDEV_HOSTNAME=$DDEV_HOSTNAME
+      - NODE_EXTRA_CA_CERTS=/mnt/ddev-global-cache/mkcert/rootCA.pem
+      - HTTP_EXPOSE=5678:5678
+    entrypoint: [ "/entrypoint.sh" ]
+    volumes:
+      - ../reports/unlighthouse:/home/$USER/reports/export
+      - ../tests/unlighthouse:/home/$USER/reports/config
+      - .:/mnt/ddev_config:ro
+      - ddev-global-cache:/mnt/ddev-global-cache
+    networks: [default, ddev_default]
+    external_links:
+      - ddev-router:${DDEV_SITENAME}.${DDEV_TLD}
+  web:
+    links:
+      - unlighthouse

@@ -1,0 +1,11 @@
+name: unlighthouse
+repository: Metadrop/ddev-unlighthouse
+version: v1.6.0
+install_date: "2025-08-23T12:54:34+02:00"
+project_files:
+    - docker-compose.unlighthouse.yaml
+    - unlighthouseBuild
+    - unlighthouse
+    - commands
+global_files: []
+removal_actions: []

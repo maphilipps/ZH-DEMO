@@ -49,3 +49,87 @@ Full session context
 ## Sat Aug 23 09:02:10 CEST 2025: Session learnings
 Full session context
 
+## Sat Aug 23 10:09:45 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:10:21 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:10:36 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:11:43 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:14:24 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:20:09 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:20:39 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:26:55 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:44:59 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 10:52:49 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:02:51 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:13:09 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:14:13 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:21:24 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:31:22 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:40:10 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 11:55:10 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:06:44 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:12:59 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:21:44 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:22:18 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:27:44 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:29:35 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:36:38 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:53:41 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 12:55:12 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 13:00:20 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 13:06:39 CEST 2025: Session learnings
+Full session context
+

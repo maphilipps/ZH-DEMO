@@ -4,15 +4,21 @@ This file provides guidance to Claude Code and serves as the living memory syste
 
 ## 🔄 Compounding Engineering Status
 
-**Last Updated**: 2025-08-20
-**Knowledge Iterations**: 2
-**Active Learning Patterns**: Full compounding engineering implementation
-**Current Phase**: Complete system with automated learning
+**Last Updated**: 2025-08-23
+**Knowledge Iterations**: 3
+**Active Learning Patterns**: Full compounding engineering implementation with meta-agents
+**Current Phase**: Complete system with exponential learning capabilities
 
 ### Three-Lane Development System
 - **Planning Lane**: Strategic analysis and architecture (@drupal-solution-architect + @drupal-technical-pm)
 - **Building Lane**: Implementation and development (@drupal-11-lead-developer + @municipality-portal-specialist)  
 - **Reviewing Lane**: Quality assurance and compliance (@swiss-compliance-specialist + @qa-testing-specialist)
+
+### Compounding Engineering Meta-Agents
+*Specialized agents that transform individual learnings into system-wide exponential improvements*
+- **@prompt-engineering-specialist**: Optimizes AI interactions using systematic prompt iteration patterns
+- **@test-failure-analyst**: Transforms every failure into permanent knowledge and prevention systems
+- **@knowledge-synthesizer**: Fuses insights across lanes and agents into compound intelligence
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -40,7 +46,9 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 - **Guest Account Strategy**: Requiring registration for external editors provides better spam control and ownership tracking
 
 #### Implementation Patterns That Succeeded  
-- *[To be populated by Building Lane experiences]*
+- **DDEV Service Integration**: Docker Compose extension pattern works well for adding specialized testing services like Unlighthouse
+- **Command-Line Interface Design**: Color-coded output with clear help documentation improves developer experience significantly  
+- **Swiss Compliance Configuration**: Embedding accessibility and performance budgets directly in configuration ensures consistent testing standards
 
 #### Review Feedback That Prevented Issues
 - **PR #12 package-lock.json deletion** → Caught critical build system failure before merge → Prevented production deployment failure
@@ -53,6 +61,11 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 - **Documentation Learning Violation** → Stored learnings in mcp__server-memory instead of CLAUDE.md → Rule: Always update CLAUDE.md for learnings as documented in llms.txt line 17-18
 - **TDD Inappropriate for Infrastructure** → Applied TDD to DDEV/infrastructure setup → Rule: TDD for business logic, direct implementation + validation for infrastructure
 - **Over-engineering Simple Tasks** → Created separate issue/branch for simple documentation review → Rule: Documentation reviews = direct comments, not separate issues
+- **Missing GitHub Projects status transition** → Started implementation without moving issue from Ready to In Progress → Rule: Always move issue to "In Progress" when starting work with `/work` command
+- **Incorrect status update method** → Used issue labels instead of GitHub Projects status field → Rule: Use `gh project item-edit` with correct project ID to update GitHub Projects status, not issue labels
+- **❌ LEARNING: GitHub CLI usage instead of MCP tools** → Used `gh` CLI commands for GitHub operations instead of available MCP GitHub tools → Rule: **ALWAYS use GitHub MCP tools** (`mcp__github__*`) for all GitHub operations - they are specifically provided and preferred over CLI commands
+- **🚨 CRITICAL: Over-engineered Learning System** → Created hundreds of empty JSON files without updating CLAUDE.md → Rule: **Document learnings DIRECTLY in CLAUDE.md** - no complex automation, no template files, just real insights when they happen
+- **❌ FRUSTRATION DETECTION FAILURE** → User clearly frustrated (85% level) but system shows "No significant frustration detected" → Rule: **Simple keyword-based frustration detection** - look for "scheiße", "wahnsinn", strong criticism
 
 #### Swiss Compliance Patterns
 - **eCH-0010 Address Format**: Separate street and house number fields for Swiss standard compliance
@@ -70,10 +83,14 @@ For the presentation, we use **Gemeinde Bruchtal** as our demonstration municipa
 - **mapfile not portable to macOS** → Command not found errors → Rule: Use `while IFS= read -r` loop instead of mapfile for portability
 
 #### Performance Optimizations → Patterns
-- *[To be populated as optimizations are discovered]*
+- **Lighthouse Configuration for Government Sites**: Performance budget of 90+ and accessibility score 95+ ensures Swiss compliance standards
+- **Multi-Viewport Testing**: Simultaneous mobile (375px) and desktop (1200px) scanning provides comprehensive coverage efficiently
+- **Smart Route Inclusion**: Targeted crawling with explicit include patterns prevents unnecessary scanning while ensuring complete coverage
 
 #### Demo Scenarios → Validated Workflows
-- *[To be populated as demo preparations are tested]*
+- **Quick Demo Validation Workflow**: `ddev unlighthouse --demo-check` provides 3-sample validation suitable for pre-presentation checks
+- **Swiss Government Testing Protocol**: Automated WCAG 2.1 AA + eCH-0059 compliance checking with specific font size and touch target validation
+- **Performance Validation for Presentations**: Core Web Vitals >90 validation ensures demo sites meet government standards live
 
 ### Code Style Evolution
 *Preferences that have emerged from reviews and become standard*
@@ -507,6 +524,27 @@ Your project uses: **Drupal 11.2.2 Multi-Site CMS** with Vite, Tailwind CSS v4, 
 - **Trigger**: Code review, compliance checking, performance optimization, accessibility validation
 
 ### 🔄 Coordination Strategy
+
+#### Compounding Engineering Meta-Layer
+The three meta-agents work across all lanes to create exponential improvements:
+
+- **@prompt-engineering-specialist**: 
+  - Uses `prompt-iteration-engine.sh` for systematic AI interaction optimization
+  - Creates reusable prompt templates from successful patterns
+  - Optimizes prompts for Swiss compliance and municipal content
+  - Documents proven patterns in CLAUDE.md and prompt_workflows/
+
+- **@test-failure-analyst**:
+  - Uses `test-failure-analyzer.sh` for systematic failure pattern extraction
+  - Converts every bug into tests, rules, and evaluations
+  - Prevents entire categories of problems through knowledge compounding
+  - Documents prevention patterns in CLAUDE.md failure-to-knowledge section
+
+- **@knowledge-synthesizer**:
+  - Uses `learning-synthesis.sh` for cross-lane insight fusion
+  - Creates compound intelligence from distributed agent knowledge
+  - Maintains CLAUDE.md as the central nervous system
+  - Bridges knowledge gaps and amplifies learning velocity
 
 #### Shared Knowledge Management
 - **Primary Tool**: mcp__server-memory for cross-lane knowledge sharing

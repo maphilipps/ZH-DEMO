@@ -35,4 +35,8 @@ $ARGUMENTS[1]
 
 !ISSUE_NUMBER=$(gh issue list --assignee "@me" --state open --limit 1 --json number --jq '.[0].number') && gh project item-add 2 --owner maphilipps --url "https://github.com/maphilipps/zh-demo/issues/${ISSUE_NUMBER}"
 
+# Document the issue creation pattern
+!COMMAND_AGENT="$(dirname "$(dirname "${BASH_SOURCE[0]}")")/.claude/agents/command-documentation-agent.sh"
+!if [ -x "$COMMAND_AGENT" ]; then "$COMMAND_AGENT" issue-created "$ISSUE_NUMBER" "$ARGUMENTS[0]" || true; fi
+
 Issue created and added to GitHub Project! Use `/work ${ISSUE_NUMBER}` to start TDD development.

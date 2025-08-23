@@ -16,6 +16,10 @@ use Drupal\Core\Form\FormStateInterface;
  */
 function adesso_cms_theme_preprocess(&$variables) {
   $variables['use_block_headers'] = theme_get_setting('use_block_headers') ?? TRUE;
+
+  $bundle = \Drupal::request()->attributes->get('node')?->bundle();
+  $variables['bundle'] = $bundle;
+
 }
 
 /**

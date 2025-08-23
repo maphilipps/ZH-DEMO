@@ -45,11 +45,12 @@
 %}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 {# Check if current node is a landing page to determine theme #}
-{% if node and node.bundle == 'landing_page' %}
+{% if bundle == 'landing_page' %}
   {% set theme = 'dark' %}
 {% else %}
   {% set theme = 'light' %}
 {% endif %}
+
 
 <div data-theme="{{ theme }}" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
   <button popovertarget="{{ heading_id }}" class="inline-flex items-center gap-x-1 text-lg/6 font-semibold dark:text-white text-black">

@@ -43,3 +43,9 @@ Full session context
 ## Sat Aug 23 08:10:28 CEST 2025: Session learnings
 Full session context
 
+## Sat Aug 23 08:34:33 CEST 2025: Session learnings
+Full session context
+
+## Sat Aug 23 09:02:10 CEST 2025: Session learnings
+Full session context
+

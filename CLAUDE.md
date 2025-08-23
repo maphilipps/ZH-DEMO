@@ -123,6 +123,58 @@ ddev export-contents        # Export demo content
 ddev import-content         # Import demo content
 ```
 
+## 🚀 Revolutionary Compounding Engineering Commands
+
+The compounding engineering workflow is implemented through three custom slash commands:
+
+### `/issue` - Intelligent Issue Creation
+Creates GitHub issues with automatic project assignment, compounding knowledge integration, and proper lane setup.
+
+**Usage:**
+```
+/issue "Title" "Description" [labels]
+```
+
+**Features:**
+- Automatic GitHub issue creation with comprehensive templates
+- Auto-assignment to @claude and GitHub Projects integration
+- Swiss compliance checklist inclusion
+- Knowledge base integration for compounding learning
+- Planning Lane setup (Ready status)
+
+### `/work` - TDD-Enforced Development  
+Enforces Test-Driven Development with strict RED-GREEN-REFACTOR cycle.
+
+**Usage:**
+```
+/work [issue_number]
+```
+
+**TDD Enforcement:**
+- 🔴 **RED Phase**: Must write failing tests FIRST (mandatory)
+- 🟢 **GREEN Phase**: Minimal implementation to pass tests
+- 🔵 **REFACTOR Phase**: Clean up while keeping tests green
+- Blocks all progress until failing tests exist
+- Swiss compliance testing integration
+
+### `/review` - Learning-Driven Code Review
+Extracts learnings from GitHub PR reviews and compounds knowledge.
+
+**Usage:**
+```
+/review [issue_number] [pr_number]
+```
+
+**Learning Extraction:**
+- Analyzes GitHub PR comments and review feedback
+- Moves issues through Reviewing Lane
+- Automatically updates knowledge base with patterns
+- Documents failures for prevention
+- Creates reusable Swiss compliance patterns
+
+All commands are implemented as executable slash commands in `.claude/commands/` and integrate with the three-lane GitHub Projects workflow.
+
+
 ## 📊 GPZH Demo Preparation Workflow
 
 ### 1. Pre-Presentation Checklist

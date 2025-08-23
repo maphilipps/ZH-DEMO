@@ -1,0 +1,32 @@
+version: '3.6'
+
+services:
+  unlighthouse:
+    container_name: ddev-${DDEV_SITENAME}-unlighthouse
+    image: node:20-alpine
+    restart: "no"
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./unlighthouse.config.ts:/app/unlighthouse.config.ts:ro
+      - ./reports:/app/.unlighthouse
+    ports:
+      - "5678:5678"
+    environment:
+      - DDEV_SITENAME=${DDEV_SITENAME}
+      - DDEV_PRIMARY_URL=${DDEV_PRIMARY_URL}
+    command: >
+      sh -c "
+        npm install -g unlighthouse @unlighthouse/cli &&
+        echo 'Unlighthouse ready - Run: ddev unlighthouse' &&
+        tail -f /dev/null
+      "
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    networks:
+      - ddev_default
+
+networks:
+  ddev_default:
+    external: true

@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override for Landing Page content type in search_result view mode.
+ */
+#}
+
+<article{{ attributes.addClass('search-result-card', 'search-result-card--landing-page') }}
+         itemscope
+         itemtype="https://schema.org/SearchResult"
+         role="article"
+         aria-label="Search result: {{ label }}">
+
+  {# Content Type Badge and Relevance Score #}
+  <div class="search-result-header">
+    <div class="content-type-badge badge badge--landing-page" aria-label="Content type: Landing Page">
+      Startseite
+    </div>
+    
+    {# AI Relevance Score placeholder #}
+    <div class="relevance-score"
+         role="meter"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         aria-valuenow="94"
+         aria-label="AI relevance score: 94 percent match">
+      94% Match
+    </div>
+  </div>
+
+  {# Title with link #}
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes.addClass('search-result-title') }}>
+      <a href="{{ url }}" class="search-result-link" rel="bookmark" aria-describedby="excerpt-{{ node.id }}">
+        {{ label }}
+      </a>
+    </h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  {# Body excerpt #}
+  {% if content.body %}
+    <div class="search-result-excerpt" id="excerpt-{{ node.id }}">
+      {{ content.body }}
+    </div>
+  {% endif %}
+
+  {# Municipal verification badge #}
+  <div class="search-result-footer">
+    <div class="municipal-badge verified" aria-label="Verified by municipality">
+      <span class="sr-only">Verified by</span>
+      Gemeinde Bruchtal
+    </div>
+  </div>
+
+</article>

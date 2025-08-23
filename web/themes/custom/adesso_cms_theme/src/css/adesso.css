@@ -12,6 +12,7 @@
 @import './webform-wizard.css';
 @import './views/infrastructure-damage-management.css';
 @import './dashboard/user-dashboard.css';
+@import './components/search-results.css';
 
 /* Alpine.js x-cloak support */
 [x-cloak] {

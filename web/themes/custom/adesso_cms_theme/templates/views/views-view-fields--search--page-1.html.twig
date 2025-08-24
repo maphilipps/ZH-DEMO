@@ -28,7 +28,7 @@
       <div class="flex-1">
         {%- if title_raw %}
           <h3 class="text-xl font-semibold text-gray-900 mb-2 leading-tight">
-            {{ title_raw|raw }}
+            {{ title_raw }}
           </h3>
         {%- endif %}
       </div>
@@ -54,7 +54,7 @@
   <main class="search-result-content mb-4">
     {%- if excerpt %}
       <div class="search-result-excerpt text-gray-700 leading-relaxed">
-        {{ excerpt|raw }}
+        {{ excerpt }}
       </div>
     {%- endif %}
     

@@ -14,6 +14,20 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                // Add gray colors to fix theme() function warnings
+                gray: {
+                    50: '#f9fafb',
+                    100: '#f3f4f6',
+                    200: '#e5e7eb',
+                    300: '#d1d5db',
+                    400: '#9ca3af',
+                    500: '#6b7280',
+                    600: '#4b5563',
+                    700: '#374151',
+                    800: '#1f2937',
+                    900: '#111827',
+                    950: '#030712',
+                },
                 // Issue #36: Dynamic color palette using CSS custom properties
                 primary: {
                     50: 'var(--color-primary-50, #f0f9ff)',

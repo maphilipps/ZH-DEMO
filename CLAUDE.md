@@ -171,6 +171,104 @@ window.updateThemePreview = function(selectedTheme) {
 **Application**: Code review comments become permanent institutional knowledge  
 **Process**: Review Comment → Root Cause Analysis → Prevention Rule → Pattern Documentation
 
+### CSS Rule #1: Proper Tailwind CSS Usage - CRITICAL LEARNING
+**Context**: Font configuration not applying to menu and components  
+**Critical User Feedback**: "Du darfst niemals die Utility Klassen von Tailwind überschreiben" (Never override Tailwind utility classes)  
+**Root Cause**: Attempting to override Tailwind utility classes (.font-semibold, .font-bold) instead of setting theme definitions  
+**Prevention Rule**: NEVER override Tailwind utility classes - only set theme variable definitions in @theme block  
+**Solution**: Define font families and colors in @theme, let Tailwind generate utilities automatically  
+**Application**: All Tailwind CSS configuration must follow this pattern  
+**Anti-Pattern** (FORBIDDEN):
+```css
+/* WRONG - Never override utility classes */
+.font-semibold {
+  font-family: "Inter", sans-serif !important;
+}
+.bg-primary {
+  background-color: red !important;
+}
+```
+**Correct Pattern**:
+```css
+/* CORRECT - Only set theme definitions */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-primary-600: #dc2626;
+  --color-primary: var(--color-primary-600);
+}
+```
+**Tool Requirement**: Always verify theme variables generate proper utilities (bg-primary, font-sans, etc.)  
+**Enforcement**: Pre-commit hook should reject any utility class overrides
+
+## 🚨 PR #39 Resolution Learnings (2025-08-24)
+
+### Security Rule #3: Progressive XSS Vulnerability Elimination
+**Context**: PR #39 review identified 17 additional `|raw` filters across 12 templates beyond the initial fix  
+**Root Cause**: XSS vulnerabilities can accumulate across components as templates are reused and extended  
+**Prevention Rule**: Conduct systematic audit of ALL `|raw` usage, not just reported instances  
+**Solution**: Fixed critical user-content XSS risks in search results, file descriptions, and content titles  
+**Application**: Prioritize user-generated content over static template content for XSS fixes  
+**Learning**: Even after fixing primary XSS issue, secondary instances require systematic elimination  
+**Code Pattern**:
+```bash
+# Find all |raw usage systematically  
+grep -r "|raw" --include="*.twig" .
+# Fix user-content first: titles, excerpts, descriptions
+# Leave trusted static content (SVG paths, template HTML) for later review
+```
+
+### Documentation Rule #3: Unauthorized File Proliferation Prevention
+**Context**: PR #39 still contained 6+ unauthorized .md files after multiple reviews  
+**Root Cause**: Documentation files accumulate during development cycles without systematic removal  
+**Prevention Rule**: Regular audits for unauthorized documentation, not just at PR review time  
+**Solution**: Removed .serena/ memories, TRASH/ docs, and theme testing files systematically  
+**Application**: Implement automated detection and removal of unauthorized documentation files  
+**Pattern**: Documentation creates value through consolidation, not proliferation
+
+### Code Review Resolution Rule #1: Systematic Issue Resolution
+**Context**: Multiple Claude code reviews with incremental improvements over 4 review cycles  
+**Success Pattern**: Each review built upon previous fixes, showing measurable improvement (D→C+→B→B+)  
+**Prevention Rule**: Address ALL issues from a review in one resolution cycle, not incrementally  
+**Solution**: Use TodoWrite to track ALL review comments systematically and resolve comprehensively  
+**Application**: Create resolution plans that address entire review feedback, not just highlights  
+**Learning**: Systematic resolution prevents reviewer fatigue and shows learning from feedback
+
+### Security Pattern Recognition Rule #1: Multi-Layer Validation Success 
+**Context**: File upload component already implemented excellent security (MIME + extension + sanitization)  
+**Success Finding**: Security Rule #2 was already properly implemented in file-upload-preview.behavior.js:113-126  
+**Pattern Recognition**: Well-implemented security follows the documented learning rules consistently  
+**Validation**: 
+- ✅ MIME type validation: Lines 114-121 map extensions to allowed MIME types
+- ✅ Extension validation: Lines 107-111 check file extensions  
+- ✅ Filename sanitization: Lines 135-136 prevent path traversal
+- ✅ Size validation: Lines 128-133 enforce file size limits
+**Learning**: When security rules are properly documented and followed, they prevent vulnerabilities proactively
+
+### Infrastructure Rule #2: Systematic Unauthorized File Removal
+**Context**: Successful removal of .serena/, TRASH/, and theme testing documentation  
+**Success Pattern**: Clean removal without breaking functionality or losing valuable information  
+**Prevention Rule**: Use systematic file discovery commands to find ALL unauthorized files  
+**Solution**: Used find commands to locate specific file patterns mentioned in reviews  
+**Tool Pattern**:
+```bash
+# Find unauthorized .md files systematically
+find . -name "*.md" -not -path "./.git/*" -not -name "CLAUDE.md" 
+# Target specific directories from review feedback
+find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
+```
+**Learning**: Repository hygiene requires both prevention (gitignore) and systematic cleanup
+
+### Testing Rule #2: Proactive Security Validation
+**Context**: Fixed user-content XSS risks while preserving trusted static content  
+**Balanced Approach**: Not all `|raw` filters are vulnerabilities - context matters  
+**Prevention Rule**: Distinguish between user-generated content and static template content  
+**Solution**: Fixed search results, titles, excerpts (user content) but left SVG paths, icons (static)  
+**Application**: Security fixes should be proportional to actual risk, not blanket removals  
+**Risk Assessment**:
+- 🔴 High Risk: `{{ title|raw }}`, `{{ excerpt|raw }}` (search results from user content)
+- 🟡 Medium Risk: `{{ file_description|raw }}` (user-uploaded file descriptions)  
+- 🟢 Low Risk: `{{ icons[type]|raw }}` (hardcoded SVG paths in templates)
+
 ## 🔒 Enforcement & Automation Systems
 
 ### Automated Learning Enforcement

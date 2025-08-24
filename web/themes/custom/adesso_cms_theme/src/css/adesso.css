@@ -234,6 +234,45 @@
     /* font-family: var(--font-serif); */
     /* font-family: var(--font-mono); */
   }
+
+  /* Override Tailwind font utilities to use our custom fonts */
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Ensure all font-semibold, font-bold etc. inherit our custom font */
+  .font-semibold {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  .font-bold {
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+
+  .font-medium {
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+
+  .font-normal {
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  .font-light {
+    font-family: var(--font-sans);
+    font-weight: 300;
+  }
 }
 
 

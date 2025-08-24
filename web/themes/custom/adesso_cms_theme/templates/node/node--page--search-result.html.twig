@@ -17,15 +17,18 @@
       Seite
     </div>
     
-    {# AI Relevance Score placeholder #}
+    {# AI Relevance Score - TODO: Implement dynamic scoring #}
+    {# Remove placeholder scores until proper AI relevance scoring is implemented #}
+    {#
     <div class="relevance-score"
          role="meter"
          aria-valuemin="0"
          aria-valuemax="100"
-         aria-valuenow="89"
-         aria-label="AI relevance score: 89 percent match">
-      89% Match
+         aria-valuenow="{{ relevance_score|default(0) }}"
+         aria-label="AI relevance score: {{ relevance_score|default(0) }} percent match">
+      {{ relevance_score|default(0) }}% Match
     </div>
+    #}
   </div>
 
   {# Title with link #}

@@ -291,6 +291,11 @@ function adesso_cms_theme_preprocess_views_view(&$variables) {
     $variables['attributes']['class'][] = 'directory-listing';
     $variables['attributes']['class'][] = 'directory-listing--' . $view_id;
   }
+  
+  // Attach search-results library for search view
+  if ($view_id === 'search') {
+    $variables['#attached']['library'][] = 'adesso_cms_theme/search-results';
+  }
 }
 
 /**

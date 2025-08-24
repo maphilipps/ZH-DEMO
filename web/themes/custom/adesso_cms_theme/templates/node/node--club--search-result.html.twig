@@ -46,15 +46,18 @@
       Verein
     </div>
     
-    {# AI Relevance Score placeholder - will be enhanced later #}
+    {# AI Relevance Score - TODO: Implement dynamic scoring #}
+    {# Remove placeholder scores until proper AI relevance scoring is implemented #}
+    {#
     <div class="relevance-score"
          role="meter"
          aria-valuemin="0"
          aria-valuemax="100"
-         aria-valuenow="95"
-         aria-label="AI relevance score: 95 percent match">
-      95% Match
+         aria-valuenow="{{ relevance_score|default(0) }}"
+         aria-label="AI relevance score: {{ relevance_score|default(0) }} percent match">
+      {{ relevance_score|default(0) }}% Match
     </div>
+    #}
   </div>
 
   {# Title with link #}

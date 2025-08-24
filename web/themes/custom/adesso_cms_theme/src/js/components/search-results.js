@@ -285,19 +285,30 @@
      * Generic event tracking
      */
     trackEvent(eventName, properties = {}) {
-      // Prepare for Google Analytics, Matomo, or other analytics systems
-      if (typeof gtag !== 'undefined') {
-        gtag('event', eventName, properties);
-      }
-      
-      // Also support custom Drupal analytics
-      if (Drupal.behaviors.analytics && typeof Drupal.behaviors.analytics.track === 'function') {
-        Drupal.behaviors.analytics.track(eventName, properties);
-      }
-      
-      // Console log for development
-      if (drupalSettings.municipalSearch?.debug) {
-        console.log('Municipal Search Event:', eventName, properties);
+      // Add error handling for analytics tracking to prevent failures from breaking search functionality
+      try {
+        // Prepare for Google Analytics, Matomo, or other analytics systems
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, properties);
+        }
+        
+        // Also support custom Drupal analytics
+        if (Drupal.behaviors.analytics && typeof Drupal.behaviors.analytics.track === 'function') {
+          Drupal.behaviors.analytics.track(eventName, properties);
+        }
+        
+        // Console log for development
+        if (drupalSettings.municipalSearch?.debug) {
+          console.log('Municipal Search Event:', eventName, properties);
+        }
+      } catch (error) {
+        // Silently handle analytics failures - don't break search functionality
+        console.warn('Analytics tracking failed for event:', eventName, error);
+        
+        // Still log to console in debug mode for troubleshooting
+        if (drupalSettings.municipalSearch?.debug) {
+          console.error('Analytics Error Details:', error);
+        }
       }
     }
 
@@ -327,20 +338,27 @@
     }
 
     /**
-     * Update results dynamically (for AJAX search)
+     * Update results dynamically (for AJAX search) - optimized with DocumentFragment
      */
     updateResults(newResults) {
-      // Clear existing results
-      this.resultCards.forEach(card => card.remove());
+      // Batch DOM operations for better performance
+      // Clear existing results in a single operation
+      const resultsContainer = this.container;
+      while (resultsContainer.firstChild) {
+        resultsContainer.removeChild(resultsContainer.firstChild);
+      }
       
-      // Add new results
+      // Add new results using DocumentFragment for batched DOM updates
       if (newResults && newResults.length > 0) {
+        const fragment = document.createDocumentFragment();
         newResults.forEach(result => {
-          this.container.appendChild(result);
+          fragment.appendChild(result);
         });
+        // Single DOM insertion instead of multiple appendChild calls
+        resultsContainer.appendChild(fragment);
         
         // Reinitialize with new cards
-        this.resultCards = this.container.querySelectorAll('.search-result-card');
+        this.resultCards = resultsContainer.querySelectorAll('.search-result-card');
         this.init();
       } else {
         this.showEmptyState();
@@ -389,18 +407,39 @@
    */
   Drupal.municipalSearch = {
     /**
-     * Highlight search terms in results
+     * Highlight search terms in results with XSS protection
      */
     highlightTerms: function(content, terms) {
       if (!terms || terms.length === 0) return content;
       
-      let highlightedContent = content;
+      // Sanitize input content first - escape HTML entities
+      const sanitizedContent = this.escapeHtml(content);
+      
+      let highlightedContent = sanitizedContent;
       terms.forEach(term => {
-        const regex = new RegExp(`(${term})`, 'gi');
+        // Escape search term to prevent regex injection
+        const escapedTerm = this.escapeRegExp(this.escapeHtml(term));
+        const regex = new RegExp(`(${escapedTerm})`, 'gi');
         highlightedContent = highlightedContent.replace(regex, '<mark>$1</mark>');
       });
       
       return highlightedContent;
+    },
+
+    /**
+     * Escape HTML entities for XSS protection
+     */
+    escapeHtml: function(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    },
+
+    /**
+     * Escape special RegExp characters
+     */
+    escapeRegExp: function(text) {
+      return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     },
 
     /**

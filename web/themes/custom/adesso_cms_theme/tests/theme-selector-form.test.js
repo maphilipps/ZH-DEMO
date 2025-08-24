@@ -26,7 +26,7 @@ function createMockThemeSelector(selectedValue = 'light') {
             <label for="edit-field-content-element-theme-0-value" class="form-label">Content Element Theme</label>
           </div>
           <div class="relative">
-            <select name="field_theme[0][value]" id="edit-field-content-element-theme-0-value" class="form-select block w-full rounded-md py-2 px-3 text-base font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 cursor-pointer bg-white transition-colors duration-200" onchange="updateThemePreview(this.value)">
+            <select name="field_theme[0][value]" id="edit-field-content-element-theme-0-value" class="form-select block w-full rounded-md py-2 px-3 text-base font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 cursor-pointer bg-white transition-colors duration-200">
               <option value="light" ${selectedValue === 'light' ? 'selected="selected"' : ''} data-theme="light">🌟 Light - Standard white background</option>
               <option value="highlighted" ${selectedValue === 'highlighted' ? 'selected="selected"' : ''} data-theme="highlighted">🎯 Highlighted - Light gray background for emphasis</option>
               <option value="dark" ${selectedValue === 'dark' ? 'selected="selected"' : ''} data-theme="dark">🌙 Dark - Dark background with light text</option>
@@ -90,15 +90,6 @@ function createMockThemeSelector(selectedValue = 'light') {
 
 // Mock JavaScript functions that are embedded in the template
 function setupThemeSelectorJavaScript() {
-  window.selectTheme = function(themeValue) {
-    const themeSelect = document.querySelector('select[name*="field_theme"]');
-    if (themeSelect) {
-      themeSelect.value = themeValue;
-      themeSelect.dispatchEvent(new Event('change'));
-    }
-    updateThemePreview(themeValue);
-  };
-  
   window.updateThemePreview = function(selectedTheme) {
     const previewCards = document.querySelectorAll('.theme-preview-card');
     previewCards.forEach(card => {
@@ -109,6 +100,15 @@ function setupThemeSelectorJavaScript() {
     });
   };
   
+  window.selectTheme = function(themeValue) {
+    const themeSelect = document.querySelector('select[name*="field_theme"]');
+    if (themeSelect) {
+      themeSelect.value = themeValue;
+      themeSelect.dispatchEvent(new Event('change'));
+    }
+    updateThemePreview(themeValue);
+  };
+  
   // Add keyboard support for preview cards
   document.addEventListener('keydown', function(e) {
     if (e.target.classList.contains('theme-preview-card') && (e.key === 'Enter' || e.key === ' ')) {
@@ -116,6 +116,22 @@ function setupThemeSelectorJavaScript() {
       e.target.click();
     }
   });
+}
+
+// Function to set up event listeners after DOM is ready
+function attachThemeSelectorEventListeners() {
+  const themeSelect = document.querySelector('select[name*="field_theme"]');
+  if (themeSelect) {
+    themeSelect.addEventListener('change', function(e) {
+      updateThemePreview(e.target.value);
+    });
+  }
+}
+
+// Helper function to set HTML and attach event listeners
+function setThemeSelectorHTML(container, html) {
+  container.innerHTML = html;
+  attachThemeSelectorEventListeners();
 }
 
 describe('Theme Selector Form Functionality', () => {
@@ -139,7 +155,7 @@ describe('Theme Selector Form Functionality', () => {
   describe('Form Element Rendering', () => {
     it('should render theme selector with all required elements', () => {
       const themeSelectorHtml = createMockThemeSelector();
-      container.innerHTML = themeSelectorHtml;
+      setThemeSelectorHTML(container, themeSelectorHtml);
       
       // Check main container
       const formItem = container.querySelector('.form-item-field-content-element-theme-0-value');
@@ -224,7 +240,7 @@ describe('Theme Selector Form Functionality', () => {
   describe('Interactive Functionality', () => {
     beforeEach(() => {
       const themeSelectorHtml = createMockThemeSelector();
-      container.innerHTML = themeSelectorHtml;
+      setThemeSelectorHTML(container, themeSelectorHtml);
     });
 
     it('should update select field when preview card is clicked', () => {

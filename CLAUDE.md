@@ -40,12 +40,13 @@ This file serves as the living memory and learning system for the GPZH project, 
 
 ## 🐛 Bug Prevention Rules
 
-### Rule #1: Paragraphs Frontend Editing Fix
+### Rule #1: Paragraphs Frontend Editing Fix ✅ APPLIED
 **Context**: Paragraphs_ee module not showing "Add Paragraph" button on empty fields  
-**Root Cause**: "Add in between" functionality disabled by default  
+**Root Cause**: "Add in between" functionality disabled by default (`add_above: '0'`)  
 **Prevention Rule**: Always enable "Add in between" functionality (`add_above: add_above`) when configuring paragraph fields  
-**Application**: Apply to all content types with paragraph fields (page, landing_page)  
-**Tool Requirement**: Use Drupal MCP exclusively for configuration changes
+**Application**: Apply to all content types with paragraph fields (page, landing_page, accordion, carousel, pricing, slider)  
+**Tool Requirement**: Use Drupal MCP exclusively for configuration changes  
+**SUCCESS**: Applied in Issue #38 - Fixed 6 paragraph configurations using Drupal MCP (2025-08-24)
 
 ### Rule #2: Tool Selection Standards
 **Context**: Browser automation and testing requirements  

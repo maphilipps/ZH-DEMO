@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Theme override for the search results page.
+ * Template for views-view--search--page-1.html.twig
+ * Issue #35 - AI-Semantic Search Results Display
+ */
+#}
+
+{%- set classes = [
+  'view',
+  'view-' ~ id|clean_class,
+  'view-id-' ~ id,
+  'view-display-id-' ~ display_id,
+  'js-view-dom-id-' ~ dom_id,
+  'gpzh-search-results'
+] -%}
+
+<div{{ attributes.addClass(classes) }}>
+  {%- if title %}
+    {{ title_prefix }}
+    <h1{{ title_attributes.addClass('page-title', 'text-3xl', 'font-bold', 'mb-8') }}>{{ title }}</h1>
+    {{ title_suffix }}
+  {%- endif %}
+
+  {%- if header %}
+    <div class="view-header gpzh-search-header mb-6">
+      {{ header }}
+    </div>
+  {%- endif %}
+
+  {%- if exposed %}
+    <div class="view-filters gpzh-search-filters bg-gray-50 p-4 rounded-lg mb-8">
+      {{ exposed }}
+    </div>
+  {%- endif %}
+
+  {%- if attachment_before %}
+    <div class="attachment attachment-before">
+      {{ attachment_before }}
+    </div>
+  {%- endif %}
+
+  {%- if rows -%}
+    <div class="view-content gpzh-search-results-list">
+      {%- if empty or rows is empty %}
+        <div class="search-no-results bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+          <svg class="mx-auto h-16 w-16 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <h3 class="text-xl font-semibold text-blue-900 mb-2">Keine Suchergebnisse gefunden</h3>
+          <p class="text-blue-700">
+            Versuchen Sie andere Suchbegriffe oder durchsuchen Sie unsere 
+            <a href="/vereine-0" class="font-semibold underline hover:text-blue-800">Vereinsverzeichnis</a>.
+          </p>
+        </div>
+      {%- else %}
+        <div class="search-results-count mb-4">
+          <p class="text-sm text-gray-600">
+            {% trans %}Search results{% endtrans %}
+          </p>
+        </div>
+        <div class="grid gap-6">
+          {{ rows }}
+        </div>
+      {%- endif %}
+    </div>
+  {%- endif %}
+
+  {%- if attachment_after %}
+    <div class="attachment attachment-after">
+      {{ attachment_after }}
+    </div>
+  {%- endif %}
+
+  {%- if more %}
+    <div class="more-results mt-8 text-center">
+      {{ more }}
+    </div>
+  {%- endif %}
+
+  {%- if footer %}
+    <div class="view-footer gpzh-search-footer mt-8">
+      {{ footer }}
+    </div>
+  {%- endif %}
+
+  {%- if pager %}
+    <div class="view-pager gpzh-search-pager mt-8">
+      {{ pager }}
+    </div>
+  {%- endif %}
+
+</div>

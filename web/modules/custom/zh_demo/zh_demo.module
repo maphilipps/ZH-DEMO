@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * ZH Demo module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_help().
+ */
+function zh_demo_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.zh_demo':
+      return '<p>' . t('ZH Demo module provides core functionality for the ZH Demo site.') . '</p>';
+  }
+}

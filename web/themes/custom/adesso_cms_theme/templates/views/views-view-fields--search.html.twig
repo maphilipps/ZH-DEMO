@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Enhanced search results for Gemeinde Bruchtal municipal portal
+ * Issue #35 - AI-Semantic Search Results Display
+ * 
+ * Available variables:
+ * - view: View object.
+ * - fields: An array of field objects.
+ * - row: Raw row data from the View query.
+ * - attributes: HTML attributes for the container element.
+ * 
+ * Expected field machine names in the view:
+ * - title: Node title
+ * - type: Content type
+ * - search_api_relevance: Relevance score from Search API
+ * - search_api_excerpt: Highlighted excerpt
+ * - field_directory_category: Directory category taxonomy
+ * - field_zielgruppe: Target group taxonomy
+ * - field_municipal_verified: Municipal verification field
+ */
+#}
+
+{% set content_type_raw = fields.type.content|render|striptags|trim %}
+{% set relevance_score = fields.search_api_relevance.content ? (fields.search_api_relevance.content|render|striptags|trim|number_format(2)) : 0.5 %}
+{% set result_index = loop.index0 is defined ? loop.index0 : 0 %}
+
+{# Process title and URL from the title field render array #}
+{% set title_content = fields.title.content %}
+{% set result_title = title_content|render|striptags|trim %}
+{% set result_url = '#' %}
+
+{# Extract URL from title field if it's a link #}
+{% if title_content['#url'] is defined %}
+  {% set result_url = title_content['#url'] %}
+{% elseif title_content[0] and title_content[0]['#url'] is defined %}
+  {% set result_url = title_content[0]['#url'] %}
+{% endif %}
+
+{# Process categories if available #}
+{% set categories = [] %}
+{% if fields.field_directory_category.content %}
+  {% set category_content = fields.field_directory_category.content %}
+  {% if category_content['#items'] is defined %}
+    {% for item in category_content['#items'] %}
+      {% set category_term = item.entity %}
+      {% if category_term %}
+        {% set categories = categories|merge([{
+          'id': category_term.id(),
+          'title': category_term.label(),
+          'url': '/taxonomy/term/' ~ category_term.id()
+        }]) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{# Process target groups if available #}
+{% set target_groups = [] %}
+{% if fields.field_zielgruppe.content %}
+  {% set target_group_content = fields.field_zielgruppe.content %}
+  {% if target_group_content['#items'] is defined %}
+    {% for item in target_group_content['#items'] %}
+      {% set target_group_term = item.entity %}
+      {% if target_group_term %}
+        {% set target_groups = target_groups|merge([{
+          'id': target_group_term.id(),
+          'title': target_group_term.label(),
+          'url': '/taxonomy/term/' ~ target_group_term.id()
+        }]) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{# Municipal verification status #}
+{% set municipal_verified = false %}
+{% if fields.field_municipal_verified.content %}
+  {% set verification_content = fields.field_municipal_verified.content|render|striptags|trim %}
+  {% set municipal_verified = verification_content == '1' or verification_content|lower == 'on' %}
+{% endif %}
+
+{# Render the search result card component #}
+{{ include('@adesso_cms_theme/search-result-card/search-result-card.twig', {
+  'title': result_title,
+  'url': result_url,
+  'excerpt': fields.search_api_excerpt.content ? fields.search_api_excerpt.content|render : null,
+  'content_type': content_type_raw,
+  'relevance_score': relevance_score,
+  'categories': categories,
+  'target_groups': target_groups,
+  'municipal_verified': municipal_verified,
+  'result_index': result_index
+}) }}

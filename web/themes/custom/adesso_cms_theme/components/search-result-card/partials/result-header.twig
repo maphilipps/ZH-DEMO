@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Search result card header with content type and relevance score
+ * Variables:
+ * - content_type: Content type string
+ * - relevance_percentage: Relevance as percentage
+ */
+#}
+
+<header class="result-header" role="banner">
+  <div class="content-type-badge badge--{{ content_type|clean_class }}"
+       aria-label="Content type: {{ content_type }}">
+    <span class="badge-text">{{ content_type|title }}</span>
+  </div>
+  
+  <div class="relevance-score" 
+       aria-label="Relevance score: {{ relevance_percentage }} percent match"
+       role="meter"
+       aria-valuemin="0" 
+       aria-valuemax="100" 
+       aria-valuenow="{{ relevance_percentage }}">
+    <div class="score-indicator">
+      <div class="score-fill" style="width: {{ relevance_percentage }}%"></div>
+    </div>
+    <span class="score-value">{{ relevance_percentage }}%</span>
+    <span class="score-label visually-hidden">Match</span>
+  </div>
+</header>

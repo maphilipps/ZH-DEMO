@@ -1,0 +1,12 @@
+name: ZH Demo
+description: 'Core module for ZH Demo functionality and configurations'
+type: module
+core_version_requirement: ^11
+package: ZH Demo
+dependencies:
+  - drupal:field
+  - drupal:node
+  - drupal:text
+  - drupal:views
+  - search_api:search_api
+  - paragraphs:paragraphs

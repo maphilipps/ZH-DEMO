@@ -83,6 +83,86 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Application**: Any git operation that fails with lock error should be followed by lock cleanup  
 **Tool Requirement**: Check for lock files before retrying git operations
 
+## 🚨 Code Review Learnings (PR #39 - Issue #36)
+
+### Security Rule #1: XSS Prevention in Twig Templates
+**Code Review Finding**: `{{ current_priority.icon|raw }}` in damage-report-card.twig:115  
+**Critical Issue**: Raw filter allows XSS attacks through unescaped content  
+**Prevention Rule**: NEVER use `|raw` filter unless content is 100% trusted and sanitized  
+**Solution**: Remove `|raw` filter and let Drupal's auto-escaping protect against XSS  
+**Application**: Review all Twig templates for `|raw` usage before deployment  
+**Tool Requirement**: Automated XSS scanning in CI/CD pipeline
+
+### Security Rule #2: File Upload Validation Enhancement
+**Code Review Finding**: File uploads only validated by extension, missing MIME type checks  
+**Security Risk**: File extension spoofing attacks possible  
+**Prevention Rule**: ALWAYS validate both file extension AND MIME type for uploads  
+**Solution**: Implement multi-layer validation (extension + MIME + size + sanitization)  
+**Application**: All file upload components must have comprehensive validation  
+**Code Pattern**:
+```javascript
+// Multi-layer file validation
+const allowedMimeTypes = {
+  'jpg': ['image/jpeg'],
+  'pdf': ['application/pdf'],
+  // etc.
+};
+// + filename sanitization + size limits
+```
+
+### Documentation Rule #1: CLAUDE.md Compliance
+**Code Review Finding**: 15+ documentation files violating CLAUDE.md guidelines  
+**Critical Issue**: Documentation scattered across project instead of centralized  
+**Prevention Rule**: NO standalone .md files except CLAUDE.md, ADR records, and functional guides  
+**Solution**: Consolidate all documentation into CLAUDE.md or remove redundant files  
+**Application**: Before creating any .md file, check if content belongs in CLAUDE.md  
+**Tool Requirement**: Pre-commit hook to validate documentation structure
+
+### Infrastructure Rule #1: Version Control Hygiene  
+**Code Review Finding**: Infrastructure files (Milvus volumes, certificates) committed to git  
+**Performance Issue**: Large binary files bloating repository  
+**Prevention Rule**: NEVER commit infrastructure/runtime files to version control  
+**Solution**: Add infrastructure patterns to .gitignore immediately  
+**Application**: Regular .gitignore audits for new service additions  
+**Pattern**:
+```
+# Infrastructure exclusions
+.ddev/*/volumes/
+.ddev/*/certs/
+*.log
+*.pid
+```
+
+### Testing Rule #1: Comprehensive Test Verification
+**Code Review Finding**: Tests reported as "passing" while actually containing failures  
+**Critical Issue**: False confidence in code quality due to unanalyzed test output  
+**Prevention Rule**: ALWAYS read complete test output, not just exit codes  
+**Solution**: Analyze every test failure, fix issues, then document learnings  
+**Application**: No commit until ALL tests genuinely pass with zero failures  
+**Tool Requirement**: CI/CD must fail on ANY test failure, not just process failures
+
+### Code Quality Rule #1: Function Scope Management
+**Code Review Finding**: JavaScript functions not properly scoped causing "undefined" errors  
+**Root Cause**: Global function dependencies not properly managed in test environment  
+**Prevention Rule**: Always define functions in proper scope (window.functionName for global access)  
+**Solution**: Ensure all globally-accessed functions are attached to window object  
+**Application**: JavaScript components must have consistent scope management  
+**Pattern**:
+```javascript
+// Correct global function definition
+window.updateThemePreview = function(selectedTheme) {
+  // Implementation
+};
+```
+
+### Documentation Rule #2: Learning Documentation Mandate
+**Code Review Insight**: Every code review comment represents a learning opportunity  
+**Missed Opportunity**: Not systematically capturing review feedback for future prevention  
+**Prevention Rule**: EVERY code review comment must generate a documented learning  
+**Solution**: Transform each review point into specific prevention rules in CLAUDE.md  
+**Application**: Code review comments become permanent institutional knowledge  
+**Process**: Review Comment → Root Cause Analysis → Prevention Rule → Pattern Documentation
+
 ## 🎯 Successful Patterns
 
 ### Pattern #1: Component-Based Content Architecture

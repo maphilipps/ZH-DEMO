@@ -84,3 +84,9 @@ storybook-static/
 !.ddev/db_snapshots/
 .ddev/db_snapshots/*.gz
 
+# Ignore DDEV service volumes and infrastructure files
+.ddev/milvus/volumes/
+.ddev/traefik/certs/
+.ddev/*/volumes/
+.ddev/etcd/
+

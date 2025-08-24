@@ -20,7 +20,7 @@ the landing header to eliminate the white gap between them.
 #}
 {% set margin_classes = has_admin_toolbar ? '-mt-[138px]' : '-mt-[138px]' %}
 
-<div class="relative isolate overflow-hidden bg-gray-900 pt-32 pb-24 sm:pb-32 {{ margin_classes }}">
+<div class="relative isolate overflow-hidden bg-gray-900 pt-24 pb-12 {{ margin_classes }}">
   {# Background Image #}
   {% if background_image %}
     <img src="{{ background_image }}"
@@ -38,13 +38,13 @@ the landing header to eliminate the white gap between them.
   <div class="mx-auto container px-6 lg:px-8 pt-48">
     <div class="mx-auto max-w-5xl lg:mx-0">
       {% if title %}
-        <h1 class="text-6xl font-bold tracking-tight text-white sm:text-8xl lg:text-9xl text-primary text-shadow-lg/40">
+        <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
           {{ title }}
         </h1>
       {% endif %}
 
       {% if description %}
-        <p class="ml-6 font-medium text-pretty text-primary sm:text-2xl/relaxed lg:text-9xl/relaxed font-dancing text-primary text-shadow-lg/30">
+        <p class="mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8">
           {{ description }}
         </p>
       {% endif %}

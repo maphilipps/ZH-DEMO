@@ -322,7 +322,7 @@ function adesso_cms_theme_preprocess_block(array &$variables) {
     $block_id = $variables['elements']['#id'] ?? '';
     
     // Default to 'default' variant.
-    $logo_variant = 'default';
+    $logo_variant = 'inverted';
     
     // Check if this is the header branding block (not footer).
     if ($block_id == 'adesso_cms_theme_brandingderwebsite') {

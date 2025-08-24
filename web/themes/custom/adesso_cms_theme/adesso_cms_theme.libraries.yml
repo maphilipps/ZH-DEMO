@@ -130,6 +130,19 @@ quick-action-buttons:
     - core/once
     - adesso_cms_theme/navigation  # For Alpine.js modal functionality
 
+# Municipal Portal Search Results
+search-results:
+  version: 1.x
+  css:
+    component:
+      src/css/components/search-results.css: {}
+  js:
+    src/js/components/search-results.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - adesso_cms_theme/global  # Base theme styles
+
 # Theme Customization (Issue #36)
 theme-customization:
   version: 1.x

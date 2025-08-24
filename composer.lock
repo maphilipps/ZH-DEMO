@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac0d37710148c6f05065be8d9b7d536a",
+    "content-hash": "37095cba5b0115f4e7f122363eecb14f",
     "packages": [
         {
             "name": "adesso/adesso_cms_theme",
-            "version": "dev-main",
+            "version": "dev-feature/35-enhanced-ai-semantic-search-results-display",
             "dist": {
                 "type": "path",
                 "url": "web/themes/custom/adesso_cms_theme",
@@ -4662,6 +4662,129 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/extra_field",
+            "version": "3.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/extra_field.git",
+                "reference": "3.0.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/extra_field-3.0.0-beta1.zip",
+                "reference": "3.0.0-beta1",
+                "shasum": "9e2af65357b0d99dcdf7affd782d77615f7ba151"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "conflict": {
+                "drush/drush": "<12"
+            },
+            "require-dev": {
+                "chi-teck/drupal-code-generator": "^4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-beta1",
+                    "datestamp": "1743695271",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": ">=10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
+                },
+                {
+                    "name": "sutharsan",
+                    "homepage": "https://www.drupal.org/user/73854"
+                }
+            ],
+            "description": "Provides a plugin type for extra fields that look like real fields, but do not store data.",
+            "homepage": "https://www.drupal.org/project/extra_field",
+            "support": {
+                "source": "https://www.drupal.org/project/extra_field",
+                "issues": "https://www.drupal.org/project/issues/extra_field"
+            }
+        },
+        {
+            "name": "drupal/extra_field_plus",
+            "version": "3.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/extra_field_plus.git",
+                "reference": "3.0.0-beta5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/extra_field_plus-3.0.0-beta5.zip",
+                "reference": "3.0.0-beta5",
+                "shasum": "8e63b31e7421fe55feb5065a95279e6dfdbfdf6a"
+            },
+            "require": {
+                "drupal/core": "^10.3 || ^11",
+                "drupal/extra_field": "^1.0 || ^2.0 || ^3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-beta5",
+                    "datestamp": "1745411797",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Tsiupiakh",
+                    "homepage": "https://www.drupal.org/user/3302731",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/u/anybody",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                }
+            ],
+            "description": "Provides an interface and the extra field base plugins with editable display settings.",
+            "homepage": "https://www.drupal.org/project/extra_field_plus",
+            "keywords": [
+                "Drupal",
+                "Extra field",
+                "Extra field settings provider",
+                "Fields",
+                "Pseudo field"
+            ],
+            "support": {
+                "source": "https://www.drupal.org/project/extra_field_plus",
+                "issues": "https://www.drupal.org/project/issues/extra_field_plus"
             }
         },
         {
@@ -21811,6 +21934,8 @@
         "drupal/ai_vdb_provider_milvus": 10,
         "drupal/all_entity_preview": 15,
         "drupal/default_content": 15,
+        "drupal/extra_field": 10,
+        "drupal/extra_field_plus": 10,
         "drupal/node_revision_delete": 5,
         "drupal/viewfield": 10,
         "drupal/webp": 5,

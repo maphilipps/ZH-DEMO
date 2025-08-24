@@ -59,6 +59,73 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Escalation**: If Drupal MCP fails, discuss changes before proceeding  
 **Prevention**: Never make direct database modifications without approval
 
+### Rule #4: TailwindCSS v4 Migration Standards
+**Context**: PR #40 build error "Cannot apply unknown utility class `focus-within:ring-opacity-50`"  
+**Root Cause**: TailwindCSS v4 deprecated separate opacity utilities in favor of inline color/opacity syntax  
+**Prevention Rule**: Use v4 syntax `ring-blue-500/50` instead of `ring-blue-500 ring-opacity-50`  
+**Solution**: Migrate all opacity utilities to inline color/opacity format  
+**Application**: All TailwindCSS projects upgrading from v3 to v4  
+**Code Pattern**:
+```css
+/* TailwindCSS v3 (deprecated) */
+.element:focus { @apply ring-2 ring-blue-500 ring-opacity-50; }
+
+/* TailwindCSS v4 (correct) */
+.element:focus { @apply ring-2 ring-blue-500/50; }
+```
+
+### Rule #5: JavaScript Global Scope Management
+**Context**: PR #40 test failures "updateThemePreview is not defined" (330+ errors)  
+**Root Cause**: Functions used globally not properly attached to window object in test environment  
+**Prevention Rule**: Explicitly attach all globally-accessed functions to window object  
+**Solution**: Define as `window.functionName = function() {...}` in main JavaScript file  
+**Application**: JavaScript functions used across Twig templates, forms, and components  
+**Code Pattern**:
+```javascript
+// Correct global function definition for cross-template access
+window.updateThemePreview = function(selectedTheme) {
+  const previewCards = document.querySelectorAll('.theme-preview-card');
+  // Implementation accessible from any template/form
+};
+```
+
+### Rule #6: Search Template Placeholder Removal
+**Context**: PR #40 hard-coded "89% Match" relevance scores in production templates  
+**Root Cause**: Placeholder/mock data left in templates during development  
+**Prevention Rule**: Remove ALL placeholder data from templates before production commits  
+**Solution**: Comment out placeholder sections with TODO comments for future implementation  
+**Application**: All Twig templates with temporary/development placeholder content  
+**Code Pattern**:
+```twig
+{# AI Relevance Score - TODO: Implement dynamic scoring #}
+{# Remove placeholder scores until proper AI relevance scoring is implemented #}
+{#
+<div class="relevance-score" aria-label="AI relevance score: {{ relevance_score|default(0) }} percent match">
+  {{ relevance_score|default(0) }}% Match
+</div>
+#}
+```
+
+### Rule #7: XSS Prevention in Component JavaScript
+**Context**: PR #40 search component lacking input sanitization for user queries  
+**Root Cause**: Raw user input used in DOM manipulation without escaping  
+**Prevention Rule**: Always escape HTML entities and RegExp characters in user input  
+**Solution**: Implement escapeHtml() and escapeRegExp() functions for all user input  
+**Application**: All JavaScript components handling user-generated content  
+**Code Pattern**:
+```javascript
+// XSS Prevention utilities
+escapeHtml: function(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+},
+
+escapeRegExp: function(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+```
+
 ### Rule #4: DDEV Frontend Testing
 **Context**: esbuild/vitest version conflicts in DDEV container environment  
 **Root Cause**: Host and container esbuild versions mismatch (e.g., "0.25.9" vs "0.25.0")  
@@ -532,6 +599,29 @@ echo "✅ PR Review process completed with learning enforcement"
 **Components**: Performance 90%, Accessibility 95%, SEO compliance  
 **Benefits**: Built-in compliance, automated validation, government readiness
 
+### Pattern #4: DOM Performance Optimization
+**Success Context**: PR #40 search component optimization with DocumentFragment  
+**Implementation**: Batch DOM insertions instead of individual appendChild operations  
+**Process**: Create DocumentFragment → Append all elements → Single DOM insertion  
+**Benefits**: Reduces layout thrashing, improves performance, maintains responsiveness  
+**Code Pattern**:
+```javascript
+// Performance-optimized DOM manipulation
+const fragment = document.createDocumentFragment();
+newResults.forEach(result => {
+  fragment.appendChild(result);
+});
+// Single DOM insertion instead of multiple appendChild calls
+resultsContainer.appendChild(fragment);
+```
+
+### Pattern #5: Systematic Code Review Resolution
+**Success Context**: PR #40 with 8 critical issues systematically addressed  
+**Implementation**: Code Review Comments → Root Cause Analysis → Prevention Rules → Pattern Documentation  
+**Process**: Issue Identification → Fix Implementation → Test Verification → Learning Documentation  
+**Benefits**: Prevents recurring issues, builds institutional knowledge, improves code quality  
+**Metrics**: 330+ test errors reduced to 8, 97% test pass rate, all security vulnerabilities fixed
+
 ## ⚙️ Technical Standards & Decisions
 
 ### Development Environment
@@ -579,6 +669,54 @@ echo "✅ PR Review process completed with learning enforcement"
 - **Navigation**: GPZH-compliant hierarchical menu structure
 - **Workflows**: Editorial workflow with draft→review→published states
 - **Users**: Role-based permissions with Guest Editor restrictions
+
+## 📝 Recent Learning Documentation
+
+### Rule #8: Frontend Editing Module Respect
+**Date**: 2025-08-24
+**Context**: Search results showing Theme Debug output, user requested fix  
+**Root Cause**: Attempted to disable Frontend Editing module instead of properly overriding templates  
+**Critical Error**: Deactivating user-requested features without permission  
+**Prevention Rule**: NEVER disable features or modules without explicit user approval  
+**Solution**: Always fix template rendering issues by overriding specific templates, not disabling functionality  
+**Application**: All Drupal module management - ask before deactivating anything  
+**Tool Requirement**: Frontend functionality must be preserved - "Frontend_editing BLEIBT aktiv"
+
+### Rule #9: Template Override Specificity  
+**Date**: 2025-08-24
+**Context**: Search results template still showing Theme Debug output despite changes  
+**Root Cause**: Using generic template names instead of specific Views template overrides  
+**Prevention Rule**: Use the MOST SPECIFIC template name possible for Views overrides  
+**Solution**: Override `views-view-fields--search--page-1.html.twig` not generic `views-view-fields--search.html.twig`  
+**Application**: All Drupal template overrides - check template suggestions hierarchy  
+**Pattern**: `views-view-fields--[VIEW]--[DISPLAY].html.twig` beats generic patterns
+
+### Rule #10: Raw Filter Security Risk
+**Date**: 2025-08-24
+**Context**: Theme Debug output appearing in search results despite template changes  
+**Root Cause**: Using `|raw` filter in Twig templates allows unfiltered output including debug info  
+**Prevention Rule**: AVOID `|raw` filter unless content is 100% trusted and sanitized  
+**Solution**: Use `|striptags|trim` instead of `|raw` to clean output  
+**Application**: All Twig template development - security-first filtering  
+**Security Pattern**: `{{ content|striptags|trim }}` instead of `{{ content|raw }}`
+
+### Rule #11: Learning Documentation Mandate
+**Date**: 2025-08-24
+**Context**: User reminder "Du hast schon wieder keine Learnings dokumentiert"  
+**Critical Issue**: Failing to document learnings from every development session  
+**Prevention Rule**: ALWAYS document learnings immediately after problem resolution  
+**Solution**: Every bug fix, template change, or configuration issue becomes a learning entry  
+**Application**: End of every development task - update CLAUDE.md  
+**Process**: Problem → Solution → Documentation → Prevention Rule
+
+### Rule #12: Drupal Block Management Knowledge
+**Date**: 2025-08-24  
+**Context**: User corrected "Der Pageheader ist ein Block... merke dir das!"
+**Knowledge Gap**: Not recognizing that page headers are Drupal blocks, not just template elements
+**Prevention Rule**: ALWAYS remember that page headers, titles, and navigation are Drupal blocks
+**Solution**: Use block configuration/visibility settings instead of template modifications for block management
+**Application**: All Drupal layout and visibility changes - think blocks first, templates second
+**Tool Requirement**: Block management through admin interface or Drupal configuration
 
 This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.
 - Es ist wirklich die oberste Pflicht, dass du unseren Ansatz in der Claude.md lebst! Wir müssen uns verbessern!

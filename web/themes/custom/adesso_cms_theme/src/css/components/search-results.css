@@ -60,7 +60,7 @@
   @apply bg-white rounded-lg shadow-md border border-gray-200;
   @apply p-6 mb-6 transition-all duration-200 ease-in-out;
   @apply hover:shadow-lg hover:border-blue-300;
-  @apply focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50;
+  @apply focus-within:ring-2 focus-within:ring-blue-500/50;
   
   /* Municipal portal spacing */
   @apply last:mb-0 w-full;
@@ -191,7 +191,7 @@
   @apply text-blue-700 hover:text-blue-800;
   @apply underline decoration-transparent hover:decoration-blue-700;
   @apply transition-all duration-200;
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50;
   @apply focus:rounded-sm;
   color: var(--link-color);
 }
@@ -240,7 +240,7 @@
   @apply bg-gray-100 text-gray-700 border border-gray-200;
   @apply hover:bg-gray-200 hover:text-gray-800;
   @apply transition-colors duration-200;
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50;
   @apply cursor-pointer;
 }
 
@@ -320,13 +320,13 @@
 
 /* Focus Indicators for Keyboard Navigation */
 .search-result-card *:focus {
-  @apply outline-none ring-2 ring-blue-500 ring-opacity-50 rounded-sm;
+  @apply outline-none ring-2 ring-blue-500/50 rounded-sm;
 }
 
 /* High contrast focus for better visibility */
 @media (prefers-contrast: high) {
   .search-result-card *:focus {
-    @apply ring-4 ring-blue-600 ring-opacity-100;
+    @apply ring-4 ring-blue-600;
   }
   
   .search-result-card {

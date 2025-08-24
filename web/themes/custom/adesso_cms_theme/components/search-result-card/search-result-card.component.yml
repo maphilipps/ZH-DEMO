@@ -1,0 +1,104 @@
+'$schema': https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/modules/sdc/src/metadata.schema.json
+name: 'Search Result Card'
+status: stable
+description: 'Reusable search result card component for Gemeinde Bruchtal municipal portal with accessibility compliance'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: 'Result Title'
+      description: 'The title of the search result'
+      examples:
+        - 'Gemeinderat Sitzung September 2024'
+        - 'FC Bruchtal - Vereinsregister'
+    url:
+      type: string
+      title: 'Result URL'
+      description: 'The URL to the full content'
+      examples:
+        - '/node/123'
+        - '/vereinsregister/fc-bruchtal'
+    excerpt:
+      type: string
+      title: 'Search Excerpt'
+      description: 'Highlighted search excerpt from the content'
+      examples:
+        - 'Der <strong>Gemeinderat</strong> tagt am dritten Montag...'
+    content_type:
+      type: string
+      title: 'Content Type'
+      description: 'The type of content (club, business, restaurant, etc.)'
+      examples:
+        - 'club'
+        - 'business'
+        - 'restaurant'
+        - 'page'
+    relevance_score:
+      type: number
+      title: 'AI Relevance Score'
+      description: 'AI-generated relevance score between 0 and 1'
+      minimum: 0
+      maximum: 1
+      examples:
+        - 0.85
+        - 0.67
+    categories:
+      type: array
+      title: 'Content Categories'
+      description: 'Array of directory category terms'
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+          url:
+            type: string
+      examples:
+        - - id: '12'
+            title: 'Vereine & Sport'
+            url: '/kategorie/vereine-sport'
+    target_groups:
+      type: array
+      title: 'Target Groups'
+      description: 'Array of target group taxonomy terms'
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+          url:
+            type: string
+      examples:
+        - - id: '5'
+            title: 'Familien'
+            url: '/zielgruppe/familien'
+          - id: '8'
+            title: 'Senioren'
+            url: '/zielgruppe/senioren'
+    municipal_verified:
+      type: boolean
+      title: 'Municipal Verification'
+      description: 'Whether this content is officially verified by Gemeinde Bruchtal'
+      examples:
+        - true
+        - false
+    result_index:
+      type: number
+      title: 'Result Index'
+      description: 'Zero-based index of this result for accessibility IDs'
+      examples:
+        - 0
+        - 1
+        - 2
+  required:
+    - title
+    - url
+    - content_type
+    - relevance_score
+libraryDependencies:
+  - adesso_cms_theme/search-result-card

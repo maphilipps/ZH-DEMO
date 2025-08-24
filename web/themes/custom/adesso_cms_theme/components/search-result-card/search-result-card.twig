@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Reusable search result card component for Gemeinde Bruchtal
+ * Issue #35 - AI-Semantic Search Results Display
+ * 
+ * Variables:
+ * - title: Result title
+ * - url: Result URL
+ * - excerpt: Result excerpt with highlighting
+ * - content_type: Type of content (club, business, restaurant)
+ * - relevance_score: AI relevance score (0-1)
+ * - categories: Array of category terms
+ * - target_groups: Array of target group terms
+ * - municipal_verified: Boolean for official verification
+ * - result_index: Zero-based index for accessibility IDs
+ */
+#}
+
+{% set component_attributes = create_attribute() %}
+{% set content_type_class = 'result-card--' ~ content_type|clean_class %}
+{% set relevance_percentage = (relevance_score * 100)|round %}
+{% set result_id = result_index is defined ? result_index : 0 %}
+
+<article {{ component_attributes
+  .addClass('search-result-card', content_type_class)
+  .setAttribute('itemscope', '')
+  .setAttribute('itemtype', 'https://schema.org/SearchResult')
+  .setAttribute('role', 'article')
+  .setAttribute('aria-label', 'Search result: ' ~ title|striptags)
+}}>
+
+  {# Result Header with Municipal Standards #}
+  {% include '@adesso_cms_theme/search-result-card/partials/result-header.twig' with {
+    'content_type': content_type,
+    'relevance_percentage': relevance_percentage
+  } %}
+
+  {# Main Content Area #}
+  {% include '@adesso_cms_theme/search-result-card/partials/result-content.twig' with {
+    'title': title,
+    'url': url,
+    'excerpt': excerpt,
+    'categories': categories,
+    'target_groups': target_groups,
+    'result_id': result_id
+  } %}
+
+  {# Municipal Portal Actions #}
+  {% include '@adesso_cms_theme/search-result-card/partials/result-footer.twig' with {
+    'url': url,
+    'title': title,
+    'municipal_verified': municipal_verified
+  } %}
+
+</article>

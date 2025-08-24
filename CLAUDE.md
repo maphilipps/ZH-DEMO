@@ -217,4 +217,52 @@ resultsContainer.appendChild(fragment);
 - **Workflows**: Editorial workflow with draft→review→published states
 - **Users**: Role-based permissions with Guest Editor restrictions
 
+## 📝 Recent Learning Documentation
+
+### Rule #8: Frontend Editing Module Respect
+**Date**: 2025-08-24
+**Context**: Search results showing Theme Debug output, user requested fix  
+**Root Cause**: Attempted to disable Frontend Editing module instead of properly overriding templates  
+**Critical Error**: Deactivating user-requested features without permission  
+**Prevention Rule**: NEVER disable features or modules without explicit user approval  
+**Solution**: Always fix template rendering issues by overriding specific templates, not disabling functionality  
+**Application**: All Drupal module management - ask before deactivating anything  
+**Tool Requirement**: Frontend functionality must be preserved - "Frontend_editing BLEIBT aktiv"
+
+### Rule #9: Template Override Specificity  
+**Date**: 2025-08-24
+**Context**: Search results template still showing Theme Debug output despite changes  
+**Root Cause**: Using generic template names instead of specific Views template overrides  
+**Prevention Rule**: Use the MOST SPECIFIC template name possible for Views overrides  
+**Solution**: Override `views-view-fields--search--page-1.html.twig` not generic `views-view-fields--search.html.twig`  
+**Application**: All Drupal template overrides - check template suggestions hierarchy  
+**Pattern**: `views-view-fields--[VIEW]--[DISPLAY].html.twig` beats generic patterns
+
+### Rule #10: Raw Filter Security Risk
+**Date**: 2025-08-24
+**Context**: Theme Debug output appearing in search results despite template changes  
+**Root Cause**: Using `|raw` filter in Twig templates allows unfiltered output including debug info  
+**Prevention Rule**: AVOID `|raw` filter unless content is 100% trusted and sanitized  
+**Solution**: Use `|striptags|trim` instead of `|raw` to clean output  
+**Application**: All Twig template development - security-first filtering  
+**Security Pattern**: `{{ content|striptags|trim }}` instead of `{{ content|raw }}`
+
+### Rule #11: Learning Documentation Mandate
+**Date**: 2025-08-24
+**Context**: User reminder "Du hast schon wieder keine Learnings dokumentiert"  
+**Critical Issue**: Failing to document learnings from every development session  
+**Prevention Rule**: ALWAYS document learnings immediately after problem resolution  
+**Solution**: Every bug fix, template change, or configuration issue becomes a learning entry  
+**Application**: End of every development task - update CLAUDE.md  
+**Process**: Problem → Solution → Documentation → Prevention Rule
+
+### Rule #12: Drupal Block Management Knowledge
+**Date**: 2025-08-24  
+**Context**: User corrected "Der Pageheader ist ein Block... merke dir das!"
+**Knowledge Gap**: Not recognizing that page headers are Drupal blocks, not just template elements
+**Prevention Rule**: ALWAYS remember that page headers, titles, and navigation are Drupal blocks
+**Solution**: Use block configuration/visibility settings instead of template modifications for block management
+**Application**: All Drupal layout and visibility changes - think blocks first, templates second
+**Tool Requirement**: Block management through admin interface or Drupal configuration
+
 This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.

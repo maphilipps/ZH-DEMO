@@ -1,94 +1,51 @@
 {#
 /**
  * @file
- * Enhanced search results for Gemeinde Bruchtal municipal portal
- * Issue #35 - AI-Semantic Search Results Display
- * 
- * Available variables:
- * - view: View object.
- * - fields: An array of field objects.
- * - row: Raw row data from the View query.
- * - attributes: HTML attributes for the container element.
- * 
- * Expected field machine names in the view:
- * - title: Node title
- * - type: Content type
- * - search_api_relevance: Relevance score from Search API
- * - search_api_excerpt: Highlighted excerpt
- * - field_directory_category: Directory category taxonomy
- * - field_zielgruppe: Target group taxonomy
- * - field_municipal_verified: Municipal verification field
+ * Clean search results template - override all theme suggestions
  */
 #}
-
-{% set content_type_raw = fields.type.content|render|striptags|trim %}
-{% set relevance_score = fields.search_api_relevance.content ? (fields.search_api_relevance.content|render|striptags|trim|number_format(2)) : 0.5 %}
-{% set result_index = loop.index0 is defined ? loop.index0 : 0 %}
-
-{# Process title and URL from the title field render array #}
-{% set title_content = fields.title.content %}
-{% set result_title = title_content|render|striptags|trim %}
-{% set result_url = '#' %}
-
-{# Extract URL from title field if it's a link #}
-{% if title_content['#url'] is defined %}
-  {% set result_url = title_content['#url'] %}
-{% elseif title_content[0] and title_content[0]['#url'] is defined %}
-  {% set result_url = title_content[0]['#url'] %}
-{% endif %}
-
-{# Process categories if available #}
-{% set categories = [] %}
-{% if fields.field_directory_category.content %}
-  {% set category_content = fields.field_directory_category.content %}
-  {% if category_content['#items'] is defined %}
-    {% for item in category_content['#items'] %}
-      {% set category_term = item.entity %}
-      {% if category_term %}
-        {% set categories = categories|merge([{
-          'id': category_term.id(),
-          'title': category_term.label(),
-          'url': '/taxonomy/term/' ~ category_term.id()
-        }]) %}
-      {% endif %}
-    {% endfor %}
+{% set hide_debug = true %}
+{# Completely clean rendering without any theme debug output #}
+<article class="search-result-card bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 mb-4">
+  
+  {# Content type badge #}
+  {% if fields.type is defined and fields.type.content %}
+    <div class="mb-3">
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+        {{ fields.type.content|striptags|trim }}
+      </span>
+    </div>
   {% endif %}
-{% endif %}
 
-{# Process target groups if available #}
-{% set target_groups = [] %}
-{% if fields.field_zielgruppe.content %}
-  {% set target_group_content = fields.field_zielgruppe.content %}
-  {% if target_group_content['#items'] is defined %}
-    {% for item in target_group_content['#items'] %}
-      {% set target_group_term = item.entity %}
-      {% if target_group_term %}
-        {% set target_groups = target_groups|merge([{
-          'id': target_group_term.id(),
-          'title': target_group_term.label(),
-          'url': '/taxonomy/term/' ~ target_group_term.id()
-        }]) %}
-      {% endif %}
-    {% endfor %}
+  {# Title with link #}
+  {% if fields.title is defined and fields.title.content %}
+    <h3 class="text-xl font-semibold text-gray-900 mb-3">
+      {{ fields.title.content|striptags }}
+    </h3>
   {% endif %}
-{% endif %}
 
-{# Municipal verification status #}
-{% set municipal_verified = false %}
-{% if fields.field_municipal_verified.content %}
-  {% set verification_content = fields.field_municipal_verified.content|render|striptags|trim %}
-  {% set municipal_verified = verification_content == '1' or verification_content|lower == 'on' %}
-{% endif %}
+  {# Excerpt #}
+  {% if fields.search_api_excerpt is defined and fields.search_api_excerpt.content %}
+    <div class="text-gray-700 mb-4">
+      {{ fields.search_api_excerpt.content|striptags }}
+    </div>
+  {% endif %}
 
-{# Render the search result card component #}
-{{ include('@adesso_cms_theme/search-result-card/search-result-card.twig', {
-  'title': result_title,
-  'url': result_url,
-  'excerpt': fields.search_api_excerpt.content ? fields.search_api_excerpt.content|render : null,
-  'content_type': content_type_raw,
-  'relevance_score': relevance_score,
-  'categories': categories,
-  'target_groups': target_groups,
-  'municipal_verified': municipal_verified,
-  'result_index': result_index
-}) }}
+  {# Categories #}
+  {% if fields.field_directory_category is defined and fields.field_directory_category.content %}
+    <div class="flex flex-wrap gap-2 mb-3">
+      {{ fields.field_directory_category.content|striptags }}
+    </div>
+  {% endif %}
+
+  {# Municipal verification #}
+  <div class="text-sm text-gray-500">
+    <span class="inline-flex items-center">
+      <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>
+      Verified by Gemeinde Bruchtal
+    </span>
+  </div>
+
+</article>

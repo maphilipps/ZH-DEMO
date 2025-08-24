@@ -59,6 +59,30 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Escalation**: If Drupal MCP fails, discuss changes before proceeding  
 **Prevention**: Never make direct database modifications without approval
 
+### Rule #4: DDEV Frontend Testing
+**Context**: esbuild/vitest version conflicts in DDEV container environment  
+**Root Cause**: Host and container esbuild versions mismatch (e.g., "0.25.9" vs "0.25.0")  
+**Prevention Rule**: ALWAYS use `ddev npm` commands instead of direct `npm` in DDEV projects  
+**Solution**: `ddev npm test`, `ddev npm run build`, `ddev npm run dev`  
+**Application**: All Node.js/npm operations in DDEV containerized development  
+**Tool Requirement**: Prefix all npm commands with `ddev` when working in DDEV environment
+
+### Rule #5: Test Failure Analysis & Documentation
+**Context**: Test failures with undefined functions (e.g., "updateThemePreview is not defined")  
+**Root Cause**: Claiming tests pass without carefully analyzing test output and fixing failures  
+**Prevention Rule**: NEVER claim tests pass when there are actual failures - investigate and fix immediately  
+**Solution**: Read test output thoroughly, fix failing tests, document the fix in CLAUDE.md  
+**Application**: Every test run must be verified for actual success, not just completion  
+**Tool Requirement**: Always fix test failures before proceeding to commit
+
+### Rule #6: Git Lock File Resolution
+**Context**: Git lock file preventing commits ("Unable to create '.git/index.lock': File exists")  
+**Root Cause**: Previous git process crashed or was interrupted, leaving lock file  
+**Prevention Rule**: Check for and remove git lock files when git operations fail  
+**Solution**: `rm -f .git/index.lock` to remove stale lock file  
+**Application**: Any git operation that fails with lock error should be followed by lock cleanup  
+**Tool Requirement**: Check for lock files before retrying git operations
+
 ## 🎯 Successful Patterns
 
 ### Pattern #1: Component-Based Content Architecture
@@ -128,3 +152,4 @@ This file serves as the living memory and learning system for the GPZH project, 
 - **Users**: Role-based permissions with Guest Editor restrictions
 
 This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.
+- Es ist wirklich die oberste Pflicht, dass du unseren Ansatz in der Claude.md lebst! Wir müssen uns verbessern!

@@ -103,17 +103,43 @@
             },
 
             processFile(file) {
-              // Validate file type
+              // Validate file type (extension + MIME type)
               const extension = file.name.split('.').pop().toLowerCase();
               if (!this.allowedTypes.includes(extension)) {
                 this.validationError = `Dateityp .${extension} ist nicht erlaubt. Erlaubte Typen: ${this.allowedTypes.join(', ')}`;
                 return;
               }
 
+              // Validate MIME type for security
+              const allowedMimeTypes = {
+                'jpg': ['image/jpeg'],
+                'jpeg': ['image/jpeg'],
+                'png': ['image/png'],
+                'pdf': ['application/pdf'],
+                'doc': ['application/msword'],
+                'docx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+              };
+
+              if (allowedMimeTypes[extension] && !allowedMimeTypes[extension].includes(file.type)) {
+                this.validationError = `Dateityp stimmt nicht überein. Erwarteter MIME-Type für .${extension}: ${allowedMimeTypes[extension].join(', ')}, erhalten: ${file.type}`;
+                return;
+              }
+
+              // Validate file size (client-side check, server-side validation required)
+              const maxSize = this.parseFileSize(this.maxFileSize);
+              if (file.size > maxSize) {
+                this.validationError = `Datei ist zu groß (${this.formatFileSize(file.size)}). Maximal erlaubt: ${this.maxFileSize}`;
+                return;
+              }
+
+              // Sanitize filename to prevent path traversal
+              const sanitizedName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+
               // Create file object
               const fileObj = {
                 id: Date.now() + Math.random(),
-                name: file.name,
+                name: sanitizedName,
+                originalName: file.name,
                 size: this.formatFileSize(file.size),
                 type: file.type,
                 preview_url: '',
@@ -169,6 +195,20 @@
               const sizes = ['Bytes', 'KB', 'MB', 'GB'];
               const i = Math.floor(Math.log(bytes) / Math.log(k));
               return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+            },
+
+            parseFileSize(sizeString) {
+              const units = {
+                'B': 1,
+                'KB': 1024,
+                'MB': 1024 * 1024,
+                'GB': 1024 * 1024 * 1024
+              };
+              const match = sizeString.match(/^(\d+(?:\.\d+)?)\s*(B|KB|MB|GB)$/i);
+              if (match) {
+                return parseFloat(match[1]) * units[match[2].toUpperCase()];
+              }
+              return 0;
             }
           }));
         });

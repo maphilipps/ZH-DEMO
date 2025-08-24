@@ -6,7 +6,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: 'Pre-headline'
       description: 'Small text above the main title'
     title:

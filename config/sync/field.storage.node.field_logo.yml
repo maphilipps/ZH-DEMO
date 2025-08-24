@@ -1,4 +1,5 @@
-langcode: en
+uuid: 40846cb1-e1ce-4395-8846-1cc28a3aa06c
+langcode: de
 status: true
 dependencies:
   module:
@@ -14,6 +15,6 @@ module: core
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

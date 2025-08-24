@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Theme override for the search result fields.
+ * Template for views-view-fields--search--page-1.html.twig
+ * Issue #35 - AI-Semantic Search Results Display
+ */
+#}
+
+{# Extract field values using the proper field structure #}
+{%- set title_raw = fields.title.content -%}
+{%- set content_type = fields.type.content -%}
+{%- set excerpt = fields.search_api_excerpt.content -%}
+{%- set relevance_raw = fields.search_api_relevance.content -%}
+{%- set relevance_percent = (relevance_raw * 100)|round -%}
+{%- set category = fields.field_directory_category.content -%}
+{%- set target_group = fields.field_zielgruppe.content -%}
+
+{# Manual search result card rendering with proper GPZH styling #}
+<article class="search-result-card bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 mb-4" 
+         itemscope itemtype="https://schema.org/SearchResult" 
+         role="article" 
+         aria-label="Suchergebnis {{ loop.index0 + 1 }}">
+  
+  {# Header with relevance score #}
+  <header class="search-result-header mb-4">
+    <div class="flex justify-between items-start">
+      <div class="flex-1">
+        {%- if title_raw %}
+          <h3 class="text-xl font-semibold text-gray-900 mb-2 leading-tight">
+            {{ title_raw|raw }}
+          </h3>
+        {%- endif %}
+      </div>
+      <div class="ml-4 flex-shrink-0">
+        <meter class="relevance-meter sr-only" 
+               value="{{ relevance_percent }}" 
+               min="0" 
+               max="100" 
+               title="Relevanz: {{ relevance_percent }}% Übereinstimmung"
+               role="meter"
+               aria-label="Relevance score: {{ relevance_percent }} percent match">
+        </meter>
+        <div class="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+          <span class="sr-only">Relevanz:</span>
+          <span aria-hidden="true">{{ relevance_percent }}%</span>
+          <span class="ml-1 text-xs">Match</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {# Content with excerpt #}
+  <main class="search-result-content mb-4">
+    {%- if excerpt %}
+      <div class="search-result-excerpt text-gray-700 leading-relaxed">
+        {{ excerpt|raw }}
+      </div>
+    {%- endif %}
+    
+    {# Content categories as badges #}
+    {%- if content_type or category or target_group %}
+      <div class="search-result-badges mt-3 flex flex-wrap gap-2" role="group" aria-label="Content categories">
+        {%- if content_type %}
+          <span class="badge bg-municipal-primary text-white px-2 py-1 rounded text-xs font-medium" aria-label="Content type: {{ content_type }}">
+            {{ content_type }}
+          </span>
+        {%- endif %}
+        {%- if category %}
+          <span class="badge bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs font-medium" aria-label="Category: {{ category }}">
+            {{ category }}
+          </span>
+        {%- endif %}
+        {%- if target_group %}
+          <span class="badge bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium" aria-label="Target group: {{ target_group }}">
+            {{ target_group }}
+          </span>
+        {%- endif %}
+      </div>
+    {%- endif %}
+  </main>
+
+  {# Footer with action link #}
+  <footer class="search-result-footer">
+    <a href="#" 
+       class="inline-flex items-center text-municipal-primary hover:text-municipal-dark transition-colors duration-200 font-medium text-sm group"
+       aria-label="View full details for {{ title_raw|striptags }}">
+      <span>Details anzeigen</span>
+      <span class="ml-2 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">→</span>
+    </a>
+  </footer>
+</article>

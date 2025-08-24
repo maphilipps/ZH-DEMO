@@ -39,20 +39,43 @@
     'menu--' ~ derivative_plugin_id|clean_class,
     'ml-auto',
     'lg:ml-0',
+  'text-white',
+  'z-50'
   ]
 %}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
-  {# Label. If not displayed, we still provide it for screen readers. #}
-  {% if not configuration.label_display %}
-    {% set title_attributes = title_attributes.addClass('visually-hidden') %}
-  {% endif %}
-  {{ title_prefix }}
-  <h2{{ title_attributes.setAttribute('id', heading_id) }}>{{ configuration.label }}</h2>
-  {{ title_suffix }}
+{# Check if current node is a landing page to determine theme #}
+{% if bundle == 'landing_page' %}
+  {% set theme = 'dark' %}
+{% else %}
+  {% set theme = 'light' %}
+{% endif %}
 
-  {# Menu. #}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</nav>
+
+<div data-theme="{{ theme }}" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
+  <button popovertarget="{{ heading_id }}" class="inline-flex items-center gap-x-1 text-lg/6 font-semibold dark:text-white text-black">
+    <span>Konto</span>
+    <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+      <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </svg>
+  </button>
+
+  <el-popover id="{{ heading_id }}" anchor="bottom" popover class="w-screen max-w-min overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
+    <div class="w-56 shrink rounded-xl bg-white p-4 text-sm/6 font-semibold text-gray-900 shadow-lg outline-1 outline-gray-900/5">
+      <nav role="navigation">
+        {# Label. If not displayed, we still provide it for screen readers. #}
+        {% if not configuration.label_display %}
+          {% set title_attributes = title_attributes.addClass('visually-hidden') %}
+        {% endif %}
+        {{ title_prefix }}
+        <h2{{ title_attributes.setAttribute('id', heading_id) }}>{{ configuration.label }}</h2>
+        {{ title_suffix }}
+
+        {# Menu. #}
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+      </nav>
+    </div>
+  </el-popover>
+</div>

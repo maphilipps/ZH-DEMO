@@ -1,0 +1,26 @@
+uuid: e1f2a3b4-5678-9abc-ef23-ab45cd678901
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_items
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - entity_reference_revisions
+id: paragraph.layout_container.field_content_items
+field_name: field_content_items
+entity_type: paragraph
+bundle: layout_container
+label: 'Inhaltselemente'
+description: 'Die Inhaltselemente, die in diesem Container angezeigt werden.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop: {  }
+field_type: entity_reference_revisions

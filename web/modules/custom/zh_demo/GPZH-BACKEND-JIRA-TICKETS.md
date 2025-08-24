@@ -1,1 +1,0 @@
-../../../../GPZH-BACKEND-JIRA-TICKETS.md

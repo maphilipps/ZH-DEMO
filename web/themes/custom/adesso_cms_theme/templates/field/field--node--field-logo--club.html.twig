@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for logo field in club nodes.
+ */
+#}
+{% for item in items %}
+  <img src="{{ file_url(item.content['#item'].entity.uri.value) }}" 
+       alt="{{ item.content['#item'].alt ?: label ~ ' Logo' }}"
+       class="h-full w-full object-contain">
+{% endfor %}

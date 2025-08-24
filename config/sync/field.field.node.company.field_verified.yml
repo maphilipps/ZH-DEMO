@@ -1,4 +1,5 @@
-langcode: en
+uuid: bebb9aaf-2c85-46f7-9711-7752487f7252
+langcode: de
 status: true
 dependencies:
   config:
@@ -9,13 +10,12 @@ field_name: field_verified
 entity_type: node
 bundle: company
 label: Verifiziert
-description: 'Kennzeichnung für verifizierte Firmeneinträge'
+description: ''
 required: false
 translatable: true
-default_value:
-  - value: 0
+default_value: {  }
 default_value_callback: ''
 settings:
-  on_label: Verifiziert
-  off_label: 'Nicht verifiziert'
+  on_label: An
+  off_label: Aus
 field_type: boolean

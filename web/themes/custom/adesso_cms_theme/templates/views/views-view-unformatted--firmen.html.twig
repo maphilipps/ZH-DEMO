@@ -9,11 +9,11 @@
   <h3>{{ title }}</h3>
 {% endif %}
 
-{# Grid using Tailwind CSS with enhanced card dimensions for directory content #}
-<div class="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
+{# Compact list layout for directory content #}
+<div class="space-y-6">
   {% for row in rows %}
     {% set row_classes = [
-      'relative isolate flex flex-col overflow-hidden rounded-2xl bg-gray-900 min-h-[600px]',
+      'bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow',
       default_row_class ? 'views-row',
     ] %}
     <article{{ row.attributes.addClass(row_classes) }}>

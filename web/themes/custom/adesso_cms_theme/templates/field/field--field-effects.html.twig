@@ -48,9 +48,12 @@
 {% if label_hidden %}
   {% if multiple %}
     {% set headline %}
-      {{ include('@components/h3.html.twig', {
-        content: 'Vorteile',
-        attributes: title_attributes.addClass(title_classes),
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Vorteile',
+          as: 'h3',
+          visual_level: '3'
+        }
       }) }}
     {% endset %}
 
@@ -67,9 +70,12 @@
       }) }}
   {% else %}
     {% set headline %}
-      {{ include('@components/h3.html.twig', {
-        content: 'Vorteile',
-        attributes: title_attributes.addClass(title_classes),
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Vorteile',
+          as: 'h3',
+          visual_level: '3'
+        }
       }) }}
     {% endset %}
 
@@ -87,10 +93,13 @@
   {% endif %}
 {% else %}
   {% set headline %}
-    {{ include('@components/h3.html.twig', {
-      content: 'Vorteile',
-      attributes: title_attributes.addClass(title_classes),
-    }) }}
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Vorteile',
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
   {% endset %}
 
   {% set effects %}

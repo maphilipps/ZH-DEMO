@@ -37,10 +37,13 @@
  * @see template_preprocess_field()
  */
 #}
-{{ include('@components/h3.html.twig', {
-  content: label,
-  attributes: create_attribute(),
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
 
 {% for item in items %}
     <p>

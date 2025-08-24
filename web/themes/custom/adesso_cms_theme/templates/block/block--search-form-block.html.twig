@@ -5,8 +5,13 @@
  */
 #}
 {%- set attributes = attributes.addClass('search-block-wrapper relative inline-block z-50') -%}
+{% if bundle == 'landing_page' %}
+  {% set theme = 'dark' %}
+{% else %}
+  {% set theme = 'light' %}
+{% endif %}
 
-<div{{ attributes }}>
+<div{{ attributes.setAttribute('data-theme', theme) }}>
   {# Search trigger button with magnifying glass icon #}
   <button 
     popovertarget="search-popover"

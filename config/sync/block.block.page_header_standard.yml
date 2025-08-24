@@ -1,0 +1,32 @@
+uuid: null
+langcode: en
+status: true
+dependencies:
+  module:
+    - adesso_cms_blocks
+  theme:
+    - adesso_cms_theme
+id: page_header_standard
+theme: adesso_cms_theme
+region: content
+weight: -100
+provider: null
+plugin: adesso_cms_page_header
+settings:
+  id: adesso_cms_page_header
+  label: 'Page Header'
+  label_display: '0'
+  provider: adesso_cms_blocks
+  header_variant: auto
+  title_source: auto
+  title_custom: ''
+  description_source: auto
+  description_custom: ''
+  background_image_source: auto
+  background_image_custom: ''
+  background_image_alt: ''
+  include_navigation: 1
+  navigation_variant: transparent
+  custom_css_classes: ''
+  override_admin_toolbar_margins: 0
+visibility: {  }

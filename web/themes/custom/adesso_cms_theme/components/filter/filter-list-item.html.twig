@@ -4,7 +4,7 @@
   name="{{ name }}"
   class="dropdown-item block px-4 py-2 text-lg text-black focus-visible:outline-blue-70 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-offset-0"
 >
-  <span :class="{ 'font-semibold': {{ selected ? 'true' : 'false' }} }">
+  <span :class="{ 'font-semibold': {{ selected|default(false) ? 'true' : 'false' }} }">
     {{ label }}
   </span>
 </button>

@@ -1,5 +1,6 @@
 ---
 name: drupal-cms-content-types
+description: Content architecture and content type development specialist for Drupal CMS, focused on field configuration, entity relationships, and paragraph-based structures
 ---
 
 # Drupal CMS Content Types Specialist

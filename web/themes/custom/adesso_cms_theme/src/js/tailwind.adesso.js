@@ -1,6 +1,5 @@
 import plugin from 'tailwindcss/plugin'
-const defaultTheme = require('tailwindcss/defaultTheme')
-import '@tailwindplus/elements';
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

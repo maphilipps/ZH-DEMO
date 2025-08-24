@@ -79,6 +79,7 @@
 %}
 {{ attach_library('adesso_cms_theme/node') }}
 <article{{ attributes.addClass(classes) }}>
+  {{ content.frontend_editing }}
 
   {{ title_prefix }}
   {% if label and not page %}
@@ -101,7 +102,7 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
-    {{ content }}
+    {{ content | without('frontend_editing') }}
   </div>
 
 </article>

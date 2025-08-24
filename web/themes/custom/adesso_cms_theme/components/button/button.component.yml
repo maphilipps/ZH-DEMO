@@ -13,7 +13,9 @@ props:
       title: text
       description: The text inside the button
     icon:
-      type: string
+      type:
+        - string
+        - 'null'
       title: icon
       description: The icon to display inside the button
     variant:

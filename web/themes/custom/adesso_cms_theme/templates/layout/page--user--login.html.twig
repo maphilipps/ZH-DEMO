@@ -1,0 +1,105 @@
+{#
+/**
+ * @file
+ * Theme override to display a login page.
+ *
+ * This template provides a consistent layout for the login page that matches
+ * the rest of the site, with a full-width page header and container-width content.
+ */
+#}
+
+{# Skip Links - WCAG Compliance #}
+<nav aria-label="{{ 'Skip navigation'|t }}" class="skip-links">
+  <a href="#main-content" class="skip-link">
+    {{ 'Skip to main content'|t }}
+  </a>
+  {% if page.header_left or page.header_right %}
+    <a href="#site-navigation" class="skip-link">
+      {{ 'Skip to navigation'|t }}
+    </a>
+  {% endif %}
+</nav>
+
+<div class="min-h-dvh flex flex-col">
+  {# Header with integrated navigation - full width #}
+  {% if page.header or page.primary_menu or page.secondary_menu %}
+    <header id="site-navigation"
+            class="site-header bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700" role="banner">
+      <div class="mx-auto container px-4 lg:px-6 py-8">
+        <div class="flex items-center space-x-12">
+
+          {# Left side: Logo and branding #}
+          <div class="flex items-center">
+            {% if page.header %}
+              {{ page.header }}
+            {% endif %}
+          </div>
+
+          {# Right side: Navigation and utilities #}
+            {% if page.primary_menu %}
+              {{ page.primary_menu }}
+            {% endif %}
+
+          <div class="flex items-center ml-auto flex flex-row space-x-2">
+            {% if page.secondary_menu %}
+              {{ page.secondary_menu }}
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </header>
+  {% endif %}
+
+  {# Live region for navigation state announcements #}
+  <div id="nav-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  {# Hero region (full width) - using landing page header component #}
+  {% if page.hero %}
+    <div class="hero-region">
+      {{ page.hero }}
+    </div>
+  {% else %}
+    {# Default page header for login - full width #}
+    <div class="relative isolate overflow-hidden bg-gray-900 pt-32 pb-24 sm:pb-32 -mt-[138px]">
+      {# Fallback gradient background #}
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-gray-800 via-gray-900 to-black"></div>
+      
+      {# Page header content #}
+      <div class="mx-auto container px-6 lg:px-8 pt-48">
+        <div class="mx-auto max-w-5xl lg:mx-0">
+          <h1 class="text-6xl font-bold tracking-tight text-white sm:text-8xl lg:text-9xl text-primary text-shadow-lg/40">
+            {{ 'Anmeldung'|t }}
+          </h1>
+          <p class="ml-6 font-medium text-pretty text-primary sm:text-2xl/relaxed lg:text-9xl/relaxed font-dancing text-primary text-shadow-lg/30">
+            {{ 'Zugang zu Ihrem Konto'|t }}
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Main Content - container width #}
+  <main role="main" id="main-content" class="flex-1" tabindex="-1">
+    <div class="mx-auto container px-6 lg:px-8 py-12">
+      <div class="max-w-md mx-auto">
+        {{ page.content }}
+      </div>
+    </div>
+  </main>
+
+  {# Footer Regions #}
+  <div class="container px-6 py-12 md:flex md:items-center md:justify-between">
+    {% if page.footer_top %}
+      <div class="footer-top-region">
+        {{ page.footer_top }}
+      </div>
+    {% endif %}
+    {% if page.footer_bottom %}
+      <div class="footer-bottom-region">
+        {{ page.footer_bottom }}
+      </div>
+    {% endif %}
+  </div>
+
+</div>{# /.layout-container #}

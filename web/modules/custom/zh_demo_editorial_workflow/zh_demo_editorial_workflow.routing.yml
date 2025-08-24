@@ -1,0 +1,15 @@
+zh_demo_editorial_workflow.content_review:
+  path: '/admin/content/review'
+  defaults:
+    _controller: '\Drupal\zh_demo_editorial_workflow\Controller\ContentReviewController::overview'
+    _title: 'Inhalte zur Prüfung'
+  requirements:
+    _permission: 'view any unpublished content'
+
+zh_demo_editorial_workflow.editor_dashboard:
+  path: '/admin/dashboard/editor'
+  defaults:
+    _controller: '\Drupal\zh_demo_editorial_workflow\Controller\EditorDashboardController::build'
+    _title: 'Redakteur Dashboard'
+  requirements:
+    _permission: 'view any unpublished content'

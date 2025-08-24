@@ -1,4 +1,5 @@
-langcode: en
+uuid: 3f87f1c5-b593-4610-8f0b-1e81d58bbaa4
+langcode: de
 status: true
 dependencies:
   config:
@@ -11,10 +12,10 @@ field_name: field_phone
 entity_type: node
 bundle: hospitality
 label: Telefon
-description: 'Haupttelefonnummer des Gastgewerbebetriebs (z.B. +41 44 123 45 67)'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: telephone

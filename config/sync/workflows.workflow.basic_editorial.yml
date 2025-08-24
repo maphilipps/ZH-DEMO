@@ -1,0 +1,94 @@
+uuid: 319735d0-f202-4257-837d-455260aa4425
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.club
+    - node.type.company
+    - node.type.event
+    - node.type.hospitality
+    - node.type.landing_page
+    - node.type.news
+    - node.type.page
+  module:
+    - content_moderation
+_core:
+  default_config_hash: cTcLoeCkGY_boimnlZKzLdtKZmR7FXc6AirGUwq_Lts
+id: basic_editorial
+label: Basic
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      label: Archiviert
+      weight: 3
+    draft:
+      label: Draft
+      weight: -1
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+    review:
+      label: 'In Prüfung'
+      weight: 2
+    unpublished:
+      label: Unpublished
+      weight: 1
+      published: false
+      default_revision: true
+  transitions:
+    archive:
+      label: Archivieren
+      from:
+        - published
+      to: archived
+      weight: 2
+    create_new_draft:
+      label: 'Create new draft'
+      from:
+        - unpublished
+        - draft
+        - published
+      to: draft
+      weight: -1
+    publish:
+      label: Publish
+      from:
+        - draft
+        - published
+        - unpublished
+        - review
+      to: published
+      weight: 0
+    restore_from_archive:
+      label: 'Aus Archiv wiederherstellen'
+      from:
+        - archived
+      to: draft
+      weight: 3
+    submit_for_review:
+      label: 'Zur Prüfung einreichen'
+      from:
+        - draft
+      to: review
+      weight: 1
+    unpublish:
+      label: Unpublish
+      from:
+        - published
+      to: unpublished
+      weight: 1
+  entity_types:
+    node:
+      - club
+      - company
+      - event
+      - hospitality
+      - landing_page
+      - news
+      - page
+  default_moderation_state: draft

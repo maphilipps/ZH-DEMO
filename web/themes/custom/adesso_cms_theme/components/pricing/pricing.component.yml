@@ -5,7 +5,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: Text displayed above the main title
       default: Choose Your Plan
@@ -15,7 +17,9 @@ props:
       description: Main heading for the pricing section
       default: Compare Our Options
     summary:
-      type: string
+      type:
+        - string
+        - 'null'
       title: summary
       description: Summary text below the title
       default: Select the best option for your needs

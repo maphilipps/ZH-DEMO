@@ -40,8 +40,12 @@
 
 
 {%- for item in items -%}
-    {{ include('@components/headline/h3.html.twig', {
-        'content': item.content,
-        'attributes': attributes.setAttribute('id', item.content['#text']|eab_clean_id)
+    {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: item.content,
+          as: 'h3',
+          visual_level: '3',
+          id: item.content['#text']|default('')|clean_id
+        }
     }) }}
 {%- endfor -%}

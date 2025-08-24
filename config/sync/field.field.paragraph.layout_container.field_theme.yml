@@ -1,0 +1,22 @@
+uuid: c3d4e5f6-a7b8-9012-cd34-ef56ab789012
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - options
+id: paragraph.layout_container.field_theme
+field_name: field_theme
+entity_type: paragraph
+bundle: layout_container
+label: 'Theme'
+description: 'Visuelles Theme für den Container.'
+required: false
+translatable: false
+default_value:
+  - value: 'default'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

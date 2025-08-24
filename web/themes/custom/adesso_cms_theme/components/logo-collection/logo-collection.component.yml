@@ -5,7 +5,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type: 
+        - string
+        - 'null'
       title: pre_headline
       description: Pre-headline text for the logo collection section
     title:

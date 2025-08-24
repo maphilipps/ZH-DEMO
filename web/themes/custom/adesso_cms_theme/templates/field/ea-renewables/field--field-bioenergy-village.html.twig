@@ -37,7 +37,10 @@
  * @see template_preprocess_field()
  */
 #}
-{{ include('@components/h4.html.twig', {
-  content: label,
-  attributes: create_attribute(),
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: label,
+          as: 'h4',
+          visual_level: '4'
+        }
+      }) }}

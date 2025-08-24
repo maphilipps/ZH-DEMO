@@ -1,0 +1,22 @@
+uuid: a1b2c3d4-e5f6-7890-ab12-cd34ef567890
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - options
+id: paragraph.layout_container.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: layout_container
+label: 'Spalten'
+description: 'Anzahl der Spalten für den Container.'
+required: false
+translatable: false
+default_value:
+  - value: '2'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

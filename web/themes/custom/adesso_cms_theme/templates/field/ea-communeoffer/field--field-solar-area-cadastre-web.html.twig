@@ -38,10 +38,13 @@
  */
 #}
 <p>
-  {{ include('@components/h3.html.twig', {
-    content: 'Solarflächenkataster',
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Solarflächenkataster',
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
   {% for item in items %}
     {{ include('@designsystem/button-primary.html.twig', {
       text: label,

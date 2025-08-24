@@ -1,4 +1,5 @@
-langcode: en
+uuid: fd1c92e2-3157-49f2-86b7-c2d2ddcae52b
+langcode: de
 status: true
 dependencies:
   config:
@@ -10,11 +11,11 @@ id: node.hospitality.field_last_updated
 field_name: field_last_updated
 entity_type: node
 bundle: hospitality
-label: 'Letzte Aktualisierung'
-description: 'Datum der letzten Aktualisierung der Gastgewerbe-Daten'
+label: 'Zuletzt aktualisiert'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: datetime

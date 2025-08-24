@@ -1,0 +1,57 @@
+uuid: a58316cb-f362-4784-a253-2b7e564740f9
+langcode: de
+status: true
+dependencies:
+  config:
+    - node.type.club
+    - node.type.company
+    - node.type.event
+    - node.type.hospitality
+  module:
+    - content_moderation
+id: directory_approval
+label: 'Directory Approval'
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      label: Entwurf
+      weight: 0
+      published: false
+      default_revision: false
+    published:
+      label: Veröffentlicht
+      weight: 2
+      published: true
+      default_revision: true
+    review:
+      label: 'In Prüfung'
+      weight: 1
+      published: false
+      default_revision: false
+  transitions:
+    publish:
+      label: Veröffentlichen
+      from:
+        - review
+      to: published
+      weight: 1
+    reject:
+      label: Ablehnen
+      from:
+        - review
+      to: draft
+      weight: 2
+    submit_for_review:
+      label: 'Zur Prüfung einreichen'
+      from:
+        - draft
+      to: review
+      weight: 0
+  entity_types:
+    node:
+      - club
+      - company
+      - event
+      - hospitality
+  default_moderation_state: draft

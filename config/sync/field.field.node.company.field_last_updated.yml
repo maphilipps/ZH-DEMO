@@ -1,4 +1,5 @@
-langcode: en
+uuid: 340745ca-492e-43c3-818a-7b90e60c25b9
+langcode: de
 status: true
 dependencies:
   config:
@@ -10,11 +11,11 @@ id: node.company.field_last_updated
 field_name: field_last_updated
 entity_type: node
 bundle: company
-label: 'Letzte Aktualisierung'
-description: 'Datum der letzten Aktualisierung der Firmendaten'
+label: 'Zuletzt aktualisiert'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: datetime

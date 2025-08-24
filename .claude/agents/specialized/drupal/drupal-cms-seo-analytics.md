@@ -1,5 +1,6 @@
 ---
 name: drupal-cms-seo-analytics
+description: SEO optimization and analytics implementation specialist for Drupal CMS projects, focused on Core Web Vitals, structured data, and multi-language SEO strategies
 ---
 
 # Drupal CMS SEO & Analytics Specialist

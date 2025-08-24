@@ -19,13 +19,15 @@ global:
       }
   js:
     src/js/adesso.js: {}
+    src/js/gin-sidebar-fix.js: { weight: -100 }
   dependencies:
     - "adesso_cms_theme/fonts"
     - "adesso_cms_theme/navigation"
-    - "adesso_cms_theme/elements"
     - "adesso_cms_theme/flowbite"
     - "adesso_cms_theme/icons"
-    -  "adesso_cms_theme/swiper"
+    - "adesso_cms_theme/swiper"
+    - "core/drupal"
+    - "core/once"
 
 icons:
   version: 1.x
@@ -63,20 +65,6 @@ flowbite:
   version: 1.x
   js:
     //cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js: {
-      type: external,
-      minified: true,
-      attributes: {
-        defer: true,
-        crossorigin: anonymous,
-        referrerpolicy: no-referrer
-      }
-    }
-  dependencies:
-    - core/drupal
-
-elements:
-  js:
-    //cdn.jsdelivr.net/npm/@tailwindplus/elements@1: {
       type: external,
       minified: true,
       attributes: {

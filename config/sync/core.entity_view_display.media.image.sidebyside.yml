@@ -1,0 +1,38 @@
+uuid: a2783bc3-4bc2-4ba4-86df-ff60720c885c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.sidebyside
+    - field.field.media.image.field_image
+    - field.field.media.image.field_media_image
+    - image.style.16_9_1312x738_focal_point_webp
+    - media.type.image
+  module:
+    - svg_image
+_core:
+  default_config_hash: y4n-yxA97qKs-stMcwoI8fgt9vg_aoIDUfxKbSsUENw
+id: media.image.sidebyside
+targetEntityType: media
+bundle: image
+mode: sidebyside
+content:
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: 16_9_1312x738_focal_point_webp
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_image: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

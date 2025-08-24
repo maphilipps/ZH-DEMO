@@ -9,7 +9,9 @@ props:
       title: eyebrow
       description: Optional eyebrow text displayed above the title (legacy)
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: Optional pre-headline text displayed above the title
     title:

@@ -20,6 +20,14 @@
         "DRUPAL_AUTH_USER": "admin",
         "DRUPAL_AUTH_PASSWORD": "secret"
       }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--ignore-https-errors",
+        "--isolated"
+      ]
     }
   }
 }

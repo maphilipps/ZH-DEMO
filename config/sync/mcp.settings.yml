@@ -1,0 +1,27 @@
+enable_auth: true
+auth_settings:
+  enable_token_auth: false
+  token_key: ''
+  enable_basic_auth: true
+  token_user: ''
+plugins:
+  aif:
+    enabled: true
+    config: {  }
+  drush:
+    enabled: true
+    config:
+      allowed_commands: {  }
+  general:
+    enabled: true
+    config: {  }
+  content:
+    enabled: true
+    config:
+      content_types:
+        event: 1
+        landing_page: 1
+        news: 1
+        page: 1
+        person: 1
+        project: 1

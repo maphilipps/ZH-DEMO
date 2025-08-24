@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a webform element label.
+ *
+ * Available variables:
+ * - element: An associative array containing the properties of the element.
+ * - title: The label's text.
+ * - required: An indicator for whether the associated form element is required.
+ * - title_display: Title display setting.
+ */
+#}
+{%- set classes = [
+  title_display == 'after' ? 'option',
+  title_display == 'invisible' ? 'visually-hidden',
+  required ? 'js-form-required',
+  required ? 'form-required',
+] -%}
+
+{% if title is not empty or required -%}
+  <label{{ attributes.addClass(classes).addClass('block text-sm font-medium text-gray-900 mb-2') }}>
+    {%- if title is not empty -%}
+      {{- title -}}
+    {%- endif -%}
+    {%- if required -%}
+      <span class="text-red-600 ml-1">*</span>
+    {%- endif -%}
+  </label>
+{%- endif -%}

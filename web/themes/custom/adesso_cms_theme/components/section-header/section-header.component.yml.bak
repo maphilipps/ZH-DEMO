@@ -1,0 +1,47 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Section Header
+description: Flexible section header with optional pre-headline and configurable alignment
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Main Title
+      description: The main heading text
+    pre_headline:
+      type: ['string', 'null']
+      title: Pre-headline
+      description: Optional subtitle or pre-headline text
+    alignment:
+      type: string
+      title: Text Alignment
+      description: Text alignment for both headings
+      enum: [left, center, right]
+      default: center
+    title_tag:
+      type: string
+      title: Main Title HTML Tag
+      description: HTML tag for the main title
+      enum: [h1, h2, h3, h4, h5, h6]
+      default: h2
+    pre_headline_tag:
+      type: string
+      title: Pre-headline HTML Tag
+      description: HTML tag for the pre-headline
+      enum: [h1, h2, h3, h4, h5, h6, span]
+      default: span
+    title_visual_level:
+      type: string
+      title: Main Title Visual Level
+      description: Visual styling level for main title
+      enum: ['1', '2', '3', '4', '5', '6']
+    pre_headline_visual_level:
+      type: string
+      title: Pre-headline Visual Level
+      description: Visual styling level for pre-headline
+      enum: ['1', '2', '3', '4', '5', '6']
+      default: '3'
+    additional_classes:
+      type: string
+      title: Additional CSS Classes
+      description: Additional CSS classes for the container

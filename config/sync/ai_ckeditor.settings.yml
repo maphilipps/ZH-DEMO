@@ -1,0 +1,27 @@
+_core:
+  default_config_hash: Dy0eQlnGPF7PYN3XkrnJyk2bh4L195ZSzCbWLTV-HS4
+langcode: de
+prompts:
+  complete: 'Vervollständige den folgenden Text:'
+  modify_prompt: 'Bearbeite den Text gemäss folgenden Anweisungen. Gib nur den bearbeiteten Text zurück ohne Erklärungen.\nAnweisungen: {{ modify_prompt }}\nZu bearbeitender Text:\n'
+  reformat: 'Formatiere diesen Text mit semantischem HTML (nur Listen, Überschriften oder Absatz-Tags):\n'
+  spellfix: 'Korrigiere Rechtschreibung und Interpunktion im folgenden Text (Schweizer Deutsch: ss statt ß). Gib nur den korrigierten Text zurück:\n'
+  summarise: 'Fasse den folgenden Text in derselben Sprache zusammen:\n'
+  tone: 'Ändere den Ton des folgenden Textes zu {{ tone }} in derselben Sprache:\n'
+  translate: 'Übersetze den folgenden Text nach {{ lang }}:\n'
+  swiss_german: 'Korrigiere für Schweizer Hochdeutsch (verwende ss statt ß, Sie-Form, schweizerische Ausdrücke wie Velo statt Fahrrad, Parkplatz statt Parkhaus):\n'
+  swiss_formal: 'Formuliere formell für Schweizer Behördenkommunikation (Sie-Form, respektvoll, präzise):\n'
+  swiss_citizen: 'Formuliere bürgerfreundlich und verständlich für Gemeindemitteilungen:\n'
+  simplify: 'Vereinfache diesen Text für bessere Verständlichkeit (einfache Sprache, kurze Sätze):\n'
+  expand: 'Erweitere diesen Text mit relevanten Details und Beispielen:\n'
+  structure: 'Strukturiere diesen Text mit Überschriften und Absätzen für bessere Lesbarkeit:\n'
+  event_description: 'Optimiere diese Veranstaltungsbeschreibung (attraktiv, informativ, mit allen wichtigen Details):\n'
+  news_article: 'Formuliere als professionelle Gemeindenachricht:\n'
+  announcement: 'Formuliere als offizielle Bekanntmachung der Gemeinde:\n'
+  seo_optimize: 'Optimiere diesen Text für Suchmaschinen (klare Struktur, relevante Keywords, Meta-Description):\n'
+  alt_text: 'Erstelle einen beschreibenden Alt-Text für dieses Bild (präzise, informativ, barrierefrei):\n'
+  translate_de_fr: 'Übersetze von Deutsch nach Französisch (Schweizer Französisch):\n'
+  translate_de_it: 'Übersetze von Deutsch nach Italienisch:\n'
+  translate_de_en: 'Übersetze von Deutsch nach Englisch:\n'
+enable_for_all_formats: true
+show_in_frontend: true

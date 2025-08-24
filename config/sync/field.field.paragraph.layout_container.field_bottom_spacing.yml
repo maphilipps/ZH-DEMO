@@ -1,0 +1,22 @@
+uuid: a7b8c9d0-e123-4567-ab89-cd01ef234567
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_bottom_spacing
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - options
+id: paragraph.layout_container.field_bottom_spacing
+field_name: field_bottom_spacing
+entity_type: paragraph
+bundle: layout_container
+label: 'Abstand unten'
+description: 'Abstand unterhalb des Containers.'
+required: false
+translatable: false
+default_value:
+  - value: 'small'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

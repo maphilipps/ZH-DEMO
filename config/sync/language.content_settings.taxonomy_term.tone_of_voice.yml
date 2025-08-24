@@ -1,0 +1,11 @@
+uuid: 65201cc5-7735-4729-b037-ad0ca9358569
+langcode: de
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tone_of_voice
+id: taxonomy_term.tone_of_voice
+target_entity_type_id: taxonomy_term
+target_bundle: tone_of_voice
+default_langcode: site_default
+language_alterable: false

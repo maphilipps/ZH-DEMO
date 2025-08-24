@@ -20,7 +20,10 @@
  * @ingroup themeable
  */
 #}
-{{ include('@components/h2.html.twig', {
-  attributes: create_attribute(),
-  content: output,
-}) }}
+{{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: output,
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}

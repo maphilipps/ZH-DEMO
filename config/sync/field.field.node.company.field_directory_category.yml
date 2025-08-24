@@ -1,0 +1,24 @@
+uuid: 354d9aee-de13-41d7-b5bc-d1f6fb917fb3
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_category
+    - node.type.company
+    - taxonomy.vocabulary.directory_category
+id: node.company.field_directory_category
+field_name: field_directory_category
+entity_type: node
+bundle: company
+label: Kategorie
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      directory_category: directory_category
+field_type: entity_reference

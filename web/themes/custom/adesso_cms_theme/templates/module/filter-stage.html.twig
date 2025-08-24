@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Filter stage module template - simplified placeholder.
+ *
+ * Variables:
+ * - headline: Headline content
+ * - description: Description content
+ * - searchLayer: Search/filter content
+ */
+#}
+<div class="filter-stage-module py-8">
+  <div class="container mx-auto px-6 lg:px-8">
+    {% if headline %}
+      <div class="filter-stage-module__headline mb-4">
+        {{ headline }}
+      </div>
+    {% endif %}
+    
+    {% if description %}
+      <div class="filter-stage-module__description mb-6">
+        {{ description }}
+      </div>
+    {% endif %}
+    
+    {% if searchLayer %}
+      <div class="filter-stage-module__search">
+        {{ searchLayer }}
+      </div>
+    {% endif %}
+  </div>
+</div>

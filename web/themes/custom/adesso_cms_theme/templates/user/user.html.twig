@@ -17,7 +17,48 @@
  */
 #}
 <article{{ attributes.addClass('profile') }}>
-  {% if content %}
-    {{- content -}}
-  {% endif %}
+  <div class="container mx-auto px-6 py-8">
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      
+      {# User header #}
+      <div class="border-b border-gray-200 pb-6 mb-6">
+        <div class="flex items-center space-x-4">
+          {# User avatar placeholder #}
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-semibold">
+            {{ user.getAccountName|first|upper }}
+          </div>
+          
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900">{{ user.getDisplayName }}</h1>
+            <p class="text-gray-600">{{ 'Mitglied seit'|t }} {{ user.getCreatedTime|format_date('custom', 'd.m.Y') }}</p>
+            {% if user.getLastAccessedTime %}
+              <p class="text-sm text-gray-500">{{ 'Letzter Login'|t }}: {{ user.getLastAccessedTime|format_date('custom', 'd.m.Y H:i') }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {# User content fields #}
+      {% if content %}
+        <div class="user-content">
+          {{- content -}}
+        </div>
+      {% else %}
+        <div class="text-center py-8 text-gray-500">
+          <p>{{ 'Dieses Benutzerprofil wurde noch nicht vollständig ausgefüllt.'|t }}</p>
+        </div>
+      {% endif %}
+      
+      {# Contact section for authenticated users #}
+      {% if user.id != 0 and user.hasPermission('access user profiles') %}
+        <div class="mt-6 pt-6 border-t border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ 'Kontakt'|t }}</h3>
+          <div class="text-sm text-gray-600">
+            <p>{{ 'Für weitere Informationen oder Fragen können Sie sich direkt an'|t }} {{ user.getDisplayName }} {{ 'wenden.'|t }}</p>
+          </div>
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
 </article>

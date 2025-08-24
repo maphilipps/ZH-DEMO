@@ -1,20 +1,19 @@
-langcode: en
+uuid: ebcd191b-9c03-4e79-82c2-cb8d3840e862
+langcode: de
 status: true
 dependencies:
   config:
     - field.storage.node.field_description
     - node.type.hospitality
-  module:
-    - text
 id: node.hospitality.field_description
 field_name: field_description
 entity_type: node
 bundle: hospitality
 label: Beschreibung
-description: 'Ausführliche Beschreibung des Gastgewerbebetriebs'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
-field_type: text_long
+settings: {  }
+field_type: string_long

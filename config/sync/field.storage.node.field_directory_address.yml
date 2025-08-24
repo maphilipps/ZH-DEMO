@@ -1,18 +1,16 @@
-langcode: en
+uuid: 9515f5f1-becd-40c4-a249-6bcaa2f66a85
+langcode: de
 status: true
 dependencies:
   module:
-    - address
     - node
+    - text
 id: node.field_directory_address
 field_name: field_directory_address
 entity_type: node
-type: address
-settings:
-  field_overrides: {  }
-  fields: {  }
-  langcode_override: ''
-module: address
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

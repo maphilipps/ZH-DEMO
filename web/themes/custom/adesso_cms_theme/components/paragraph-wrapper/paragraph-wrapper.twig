@@ -44,15 +44,9 @@
 {# Add theme data attribute - always set for CSS variables to work #}
 {% set attributes = attributes.setAttribute('data-theme', wrapper_theme) %}
 
-{# Add ID if specified #}
-{% if wrapper_id %}
-  {% set attributes = attributes.setAttribute('id', wrapper_id) %}
-{% endif %}
-
-
 {# Render the wrapper element with block slots #}
-<{{ wrapper_tag }}{{ attributes }}>
+<div{{ attributes }}>
 {{ content.frontend_editing }}
   {% block prefix %}{% endblock %}
   {% block content %}{% endblock %}
-</{{ wrapper_tag }}>
+</div>

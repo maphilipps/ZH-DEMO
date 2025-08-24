@@ -1,4 +1,5 @@
-langcode: en
+uuid: dbdb81d0-58b9-4a4b-9775-a7b7b021405d
+langcode: de
 status: true
 dependencies:
   config:
@@ -8,11 +9,11 @@ id: node.hospitality.field_directory_contact_email
 field_name: field_directory_contact_email
 entity_type: node
 bundle: hospitality
-label: 'Kontaktperson E-Mail'
-description: 'E-Mail-Adresse der Kontaktperson'
+label: 'Kontakt E-Mail'
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
-settings: {}
+settings: {  }
 field_type: email

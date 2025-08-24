@@ -1,0 +1,22 @@
+uuid: e5f6a7b8-c901-2345-ef67-ab89cd012345
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_top_spacing
+    - paragraphs.paragraphs_type.layout_container
+  module:
+    - options
+id: paragraph.layout_container.field_top_spacing
+field_name: field_top_spacing
+entity_type: paragraph
+bundle: layout_container
+label: 'Abstand oben'
+description: 'Abstand oberhalb des Containers.'
+required: false
+translatable: false
+default_value:
+  - value: 'small'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

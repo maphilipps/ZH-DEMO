@@ -1,4 +1,5 @@
-langcode: en
+uuid: f8b1dc6c-80b7-44f9-893c-021577158a5c
+langcode: de
 status: true
 dependencies:
   module:
@@ -8,11 +9,11 @@ id: node.field_phone
 field_name: field_phone
 entity_type: node
 type: telephone
-settings: {}
+settings: {  }
 module: telephone
 locked: false
 cardinality: 1
 translatable: true
-indexes: {}
+indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

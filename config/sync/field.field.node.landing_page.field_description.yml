@@ -1,15 +1,18 @@
+uuid: e9343c0b-0954-4b76-9b28-2fb0916b1786
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_description
     - node.type.landing_page
+_core:
+  default_config_hash: rw9XMIk4QQT2odX6_jqPyshUzINx_-dOSYvnre4_k7A
 id: node.landing_page.field_description
 field_name: field_description
 entity_type: node
 bundle: landing_page
 label: Description
-description: 'Describe the landing page content. This appears as the description in search engine results.'
+description: 'Describe the page content. This appears as the description in search engine results.'
 required: true
 translatable: true
 default_value: {  }

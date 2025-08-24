@@ -1,0 +1,6 @@
+index_id: content
+indexing_options:
+  rendered_item:
+    field_name: rendered_item
+    indexing_option: content
+    max: 2000

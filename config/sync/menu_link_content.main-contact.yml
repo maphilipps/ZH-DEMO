@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: nY4ywSbcOrS1DU-LCBdF0Odna3o5rgukQJJ2pYA5mdo
+langcode: en
+status: true
+dependencies: {  }
+id: main-contact
+title: Contact
+description: ''
+menu_name: main
+link:
+  uri: 'internal:/contact'
+  title: ''
+  options: {  }
+external: false
+rediscover: false
+weight: -45
+expanded: false
+enabled: true
+parent: ''
+changed: 1640995200

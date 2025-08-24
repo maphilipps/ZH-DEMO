@@ -38,8 +38,11 @@
  */
 #}
 {% for item in items %}
-  {{ include('@components/h4.html.twig', {
-    content: item.content,
-    attributes: create_attribute(),
-  }) }}
+  {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: item.content,
+          as: 'h4',
+          visual_level: '4'
+        }
+      }) }}
 {% endfor %}

@@ -1,4 +1,4 @@
-uuid: 55590d07-df22-4c79-a8da-d44f3129a777
+uuid: 9a9e092c-3142-4f08-8451-f71ab1f95b42
 langcode: de
 status: true
 dependencies:
@@ -6,12 +6,14 @@ dependencies:
     - field.storage.node.field_seo_image
     - media.type.image
     - node.type.landing_page
+_core:
+  default_config_hash: SZihLMrik9br0gqHiiS5sE7wKTiYmE2rLFBUauUJeZw
 id: node.landing_page.field_seo_image
 field_name: field_seo_image
 entity_type: node
 bundle: landing_page
 label: 'SEO image'
-description: 'Upload an image to be used when the landing page is shared on social media sites.'
+description: 'Upload an image to be used when the page is shared on social media sites.'
 required: false
 translatable: true
 default_value: {  }

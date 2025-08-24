@@ -5,7 +5,9 @@ props:
   type: object
   properties:
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: The pre-headline of the gallery lightbox component
     section_title:

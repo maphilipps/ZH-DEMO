@@ -36,6 +36,21 @@
   }
 
   /**
+   * Pill styles for filter tags
+   */
+  .pill {
+    @apply rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .pill--interactive {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors;
+  }
+
+  .pill--active {
+    @apply bg-primary text-white;
+  }
+
+  /**
    * Action Links
    * Drupal action links styling
    */

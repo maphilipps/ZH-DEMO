@@ -1,0 +1,24 @@
+uuid: 2a436f60-c018-49c2-b1bf-178b09192ed8
+langcode: de
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - klaro
+    - media
+    - sitemap
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: Gast
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access sitemap'
+  - 'use klaro'
+  - 'use text format restricted_html'
+  - 'view media'

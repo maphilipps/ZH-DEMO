@@ -1,0 +1,33 @@
+langcode: de
+status: true
+dependencies: {  }
+id: editor
+label: 'Redakteur Dashboard'
+description: 'Dashboard für Redakteure zur Inhaltsprüfung und -freigabe'
+access: 'view any unpublished content'
+layout:
+  main:
+    weight: 0
+    label: 'Hauptbereich'
+    columns: 1
+    blocks:
+      content_in_review:
+        id: 'views_block:content-block_2'
+        label: 'Inhalte zur Prüfung'
+        label_display: visible
+        provider: views
+        weight: 0
+        region: main
+        settings:
+          label: 'Inhalte zur Prüfung'
+          label_display: visible
+      recent_content:
+        id: 'views_block:content-block_1' 
+        label: 'Kürzlich bearbeitete Inhalte'
+        label_display: visible
+        provider: views
+        weight: 1
+        region: main
+        settings:
+          label: 'Kürzlich bearbeitete Inhalte'
+          label_display: visible

@@ -1,0 +1,22 @@
+uuid: 0ffe52fd-5c3b-4651-9f44-cc930edd8727
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_directory_address
+    - node.type.company
+  module:
+    - text
+id: node.company.field_directory_address
+field_name: field_directory_address
+entity_type: node
+bundle: company
+label: Adresse
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -9,7 +9,9 @@ props:
       title: title
       description: Title for the accordion group
     pre_headline:
-      type: string
+      type: 
+        - string
+        - 'null'
       title: pre_headline
       description: Pre headline for the accordion group
     accordion_items:

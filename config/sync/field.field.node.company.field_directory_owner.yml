@@ -1,4 +1,5 @@
-langcode: en
+uuid: d49e4182-86f6-464b-9564-12b8eb47be60
+langcode: de
 status: true
 dependencies:
   config:
@@ -8,21 +9,13 @@ id: node.company.field_directory_owner
 field_name: field_directory_owner
 entity_type: node
 bundle: company
-label: 'Verzeichnis-Eigentümer'
-description: 'Benutzer, der für die Pflege dieses Firmeneintrags verantwortlich ist'
+label: Inhaber
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:user'
-  handler_settings:
-    include_anonymous: false
-    filter:
-      type: _none
-    target_bundles: null
-    sort:
-      field: _none
-      direction: ASC
-    auto_create: false
+  handler_settings: {  }
 field_type: entity_reference

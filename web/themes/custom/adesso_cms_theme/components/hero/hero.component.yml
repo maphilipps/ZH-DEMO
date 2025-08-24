@@ -21,7 +21,9 @@ props:
       title: text
       description: Hero description text
     pre_headline:
-      type: string
+      type:
+        - string
+        - 'null'
       title: pre_headline
       description: Pre-headline text above the main heading
     hero_layout:

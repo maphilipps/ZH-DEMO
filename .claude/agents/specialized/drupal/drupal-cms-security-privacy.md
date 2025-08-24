@@ -1,5 +1,6 @@
 ---
 name: drupal-cms-security-privacy
+description: Security hardening and privacy compliance specialist for Drupal CMS projects, focused on GDPR/CH-DSG compliance, access control, and security module configuration
 ---
 
 # Drupal CMS Security & Privacy Specialist

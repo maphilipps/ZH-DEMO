@@ -53,7 +53,7 @@
 
 
 
-          <div class="flex items-center ml-auto">
+          <div class="flex items-center ml-auto flex flex-row space-x-2">
             {% if page.secondary_menu %}
               {{ page.secondary_menu }}
             {% endif %}
@@ -98,22 +98,22 @@
 
   {# Main Content #}
   <main role="main" id="main-content" class="flex-1" tabindex="-1">
-    <div class="layout-content">
-      {% if page.sidebar %}
-        <div class="layout-container">
-          <div id="content" class="layout-main">
+    {% if page.sidebar %}
+      <div class="mx-auto container px-6 lg:px-8 py-12">
+        <div class="flex gap-8">
+          <div id="content" class="flex-1">
             {{ page.content }}
           </div>
-          <aside class="layout-sidebar">
+          <aside class="w-64 lg:w-80">
             {{ page.sidebar }}
           </aside>
         </div>
-      {% else %}
-        <div id="content">
-          {{ page.content }}
-        </div>
-      {% endif %}
-    </div>
+      </div>
+    {% else %}
+      <div id="content">
+        {{ page.content }}
+      </div>
+    {% endif %}
   </main>
 
   {# Content Below region #}

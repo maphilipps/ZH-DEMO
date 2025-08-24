@@ -1,0 +1,7 @@
+zh_demo_login_redirect.my_content:
+  path: '/my-content'
+  defaults:
+    _controller: '\Drupal\zh_demo_login_redirect\Controller\MyContentController::myContent'
+    _title: 'Meine Inhalte'
+  requirements:
+    _permission: 'view own unpublished content'

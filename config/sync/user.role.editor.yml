@@ -1,18 +1,108 @@
-langcode: en
+uuid: f63f5377-c695-439a-a22a-9dc8db33dd9f
+langcode: de
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.full_html
+    - media.type.document
+    - media.type.image
+    - node.type.club
+    - node.type.company
+    - node.type.event
+    - node.type.hospitality
+    - node.type.landing_page
+    - node.type.news
+    - node.type.page
+    - workflows.workflow.basic_editorial
+  module:
+    - ai_ckeditor
+    - ai_content_suggestions
+    - ai_image_alt_text
+    - content_moderation
+    - contextual
+    - filter
+    - frontend_editing
+    - media
+    - navigation
+    - node
+    - path
+    - scheduler
+    - system
 id: editor
-label: Editor
-weight: 3
+label: Redakteur
+weight: 2
 is_admin: false
 permissions:
-  - 'access content'
+  - 'access administration pages'
+  - 'access ai content suggestion tools'
   - 'access content overview'
-  - 'access event review dashboard'
+  - 'access contextual links'
+  - 'access frontend editing'
+  - 'access media overview'
+  - 'access navigation'
+  - 'administer menu'
+  - 'administer url aliases'
+  - 'create club content'
+  - 'create company content'
+  - 'create document media'
   - 'create event content'
-  - 'delete own event content'
-  - 'edit own event content'
-  - 'use event_approval transition approve'
-  - 'use event_approval transition reject'
+  - 'create hospitality content'
+  - 'create image media'
+  - 'create landing_page content'
+  - 'create news content'
+  - 'create page content'
+  - 'create url aliases'
+  - 'delete any club content'
+  - 'delete any company content'
+  - 'delete any document media'
+  - 'delete any event content'
+  - 'delete any hospitality content'
+  - 'delete any image media'
+  - 'delete any landing_page content'
+  - 'delete any news content'
+  - 'delete any page content'
+  - 'delete club revisions'
+  - 'delete company revisions'
+  - 'delete event revisions'
+  - 'delete hospitality revisions'
+  - 'delete landing_page revisions'
+  - 'delete news revisions'
+  - 'delete page revisions'
+  - 'edit any club content'
+  - 'edit any company content'
+  - 'edit any document media'
+  - 'edit any event content'
+  - 'edit any hospitality content'
+  - 'edit any image media'
+  - 'edit any landing_page content'
+  - 'edit any news content'
+  - 'edit any page content'
+  - 'generate ai alt tags'
+  - 'revert club revisions'
+  - 'revert company revisions'
+  - 'revert event revisions'
+  - 'revert hospitality revisions'
+  - 'revert landing_page revisions'
+  - 'revert news revisions'
+  - 'revert page revisions'
+  - 'schedule publishing of nodes'
+  - 'use ai ckeditor'
+  - 'use basic_editorial transition archive'
+  - 'use basic_editorial transition create_new_draft'
+  - 'use basic_editorial transition publish'
+  - 'use basic_editorial transition unpublish'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'view all revisions'
   - 'view any unpublished content'
+  - 'view club revisions'
+  - 'view company revisions'
+  - 'view event revisions'
+  - 'view hospitality revisions'
+  - 'view landing_page revisions'
+  - 'view latest version'
+  - 'view news revisions'
   - 'view own unpublished content'
+  - 'view page revisions'
+  - 'view the administration theme'

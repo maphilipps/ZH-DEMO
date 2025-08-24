@@ -1,0 +1,9 @@
+name: 'ZH Demo Editorial Workflow'
+type: module
+description: 'Editorial workflow system for GPZH demo with guest editors and content moderation'
+core_version_requirement: ^11
+package: 'ZH Demo'
+dependencies:
+  - drupal:content_moderation
+  - drupal:workflows
+  - drupal:views

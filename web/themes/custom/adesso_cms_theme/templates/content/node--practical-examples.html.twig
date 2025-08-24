@@ -111,10 +111,12 @@
 
     {% set title %}
       {{ title_prefix }}
-      {{ include('@components/h2.html.twig', {
-        content: content.field_promoter_company,
-        as: 'h1',
-        attributes: create_attribute(),
+      {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: content.field_promoter_company,
+          as: 'h1',
+          visual_level: '2'
+        }
       }) }}
       {{ title_suffix }}
     {% endset %}
@@ -155,10 +157,13 @@
         <div class="outer-grid">
           <div class="col-span-full">
             {{ include('@components/anchor.html.twig', {text: 'auf_einen_blick'}) }}
-            {{ include('@components/h2.html.twig', {
-              content: 'Auf einen Blick',
-              attributes: create_attribute(),
-            }) }}
+            {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Auf einen Blick',
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}
 
             {% set savings = [] %}
             {% if content.field_cost_saving[0]['#context'].value %}
@@ -204,10 +209,13 @@
       {% set slides %}
         {% if content.field_cost_saving[0] is not empty %}
         {% set title %}
-          {{ include('@components/h3.html.twig', {
-            content: content.field_cost_saving[0]['#context'].value,
-            attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
-          }) }}
+          {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: content.field_cost_saving[0]['#context'].value,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
         {% endset %}
         {{ include('@components/teaser-data-facts.html.twig', {
           title: title,
@@ -216,10 +224,13 @@
         {% endif %}
         {% if content.field_energy_saving[0] is not empty %}
           {% set title %}
-            {{ include('@components/h3.html.twig', {
-              content: content.field_energy_saving[0]['#context'].value,
-              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
-            }) }}
+            {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: content.field_energy_saving[0]['#context'].value,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
           {% endset %}
           {{ include('@components/teaser-data-facts.html.twig', {
             title: title,
@@ -228,10 +239,13 @@
         {% endif %}
         {% if content.field_co2_saving[0] is not empty %}
           {% set title %}
-            {{ include('@components/h3.html.twig', {
-              content: content.field_co2_saving[0]['#context'].value,
-              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
-            }) }}
+            {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: content.field_co2_saving[0]['#context'].value,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
           {% endset %}
           {{ include('@components/teaser-data-facts.html.twig', {
             title: title,
@@ -240,10 +254,13 @@
         {% endif %}
         {% if content.field_total_costs[0] is not empty %}
           {% set title %}
-            {{ include('@components/h3.html.twig', {
-              content: content.field_total_costs[0]['#context'].value,
-              attributes: create_attribute().addClass('mb-2', 'text-4xl', 'text-blue-40', 'font-semibold', 'lg:text-7xl', 'leading-10'),
-            }) }}
+            {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: content.field_total_costs[0]['#context'].value,
+          as: 'h3',
+          visual_level: '3'
+        }
+      }) }}
           {% endset %}
           {{ include('@components/teaser-data-facts.html.twig', {
             title: title,
@@ -270,10 +287,13 @@
       <div class="fluid-container">
         <div class="outer-grid !pb-0">
           <div class="size-lg">
-            {{ include('@components/h2.html.twig', {
-              content: 'Was haben wir daraus gelernt',
-              attributes: create_attribute(),
-            }) }}
+            {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Was haben wir daraus gelernt',
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}
           </div>
         </div>
       </div>
@@ -297,10 +317,13 @@
         <div class="fluid-container">
           <div class="outer-grid">
             <div class="size-lg">
-              {{ include('@components/h2.html.twig', {
-                content: 'Auszeichnungen',
-                attributes: create_attribute(),
-              }) }}
+              {{ include('@adesso_cms_theme/heading/heading.twig', {
+        heading: {
+          title: 'Auszeichnungen',
+          as: 'h2',
+          visual_level: '2'
+        }
+      }) }}
             </div>
           </div>
         </div>

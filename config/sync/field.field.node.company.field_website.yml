@@ -1,4 +1,5 @@
-langcode: en
+uuid: 267a5d1e-4bd7-46c0-9729-bf8023e02816
+langcode: de
 status: true
 dependencies:
   config:
@@ -10,13 +11,13 @@ id: node.company.field_website
 field_name: field_website
 entity_type: node
 bundle: company
-label: Website
-description: 'Website URL der Firma'
+label: Webseite
+description: ''
 required: false
 translatable: true
-default_value: []
+default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 17
   title: 1
+  link_type: 17
 field_type: link

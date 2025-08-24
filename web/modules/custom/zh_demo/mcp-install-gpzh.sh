@@ -1,1 +1,0 @@
-../../../../mcp-install-gpzh.sh

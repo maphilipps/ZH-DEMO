@@ -1,1 +1,0 @@
-../../../../adjust_guest_editor_permissions.php

@@ -1,1 +1,0 @@
-../../../../fix-heading-components.sh

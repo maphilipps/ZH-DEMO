@@ -1,1 +1,0 @@
-../../../../simple-fix-components.php

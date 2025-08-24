@@ -1,1 +1,0 @@
-../../../../create_guest_editor_demo_content.php

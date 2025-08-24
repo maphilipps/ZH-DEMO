@@ -1,63 +1,50 @@
-{# Set variant-specific classes and configuration #}
-{% set variant = variant|default('default') %}
-{% set variant_classes = {
-  'default': {
-    'wrapper': 'py-24 sm:py-32',
-    'margin': '',
-    'content_wrapper': '',
-    'content_container': '',
-    'text_align': '',
-    'title_classes': 'text-5xl font-semibold tracking-tight text-white sm:text-7xl',
-    'description_classes': 'mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8',
-    'gradient_style': 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
-  },
-  'landing': {
-    'wrapper': 'pt-32 pb-24 sm:pb-32',
-    'margin': '-mt-20 sm:-mt-24 lg:-mt-28',
-    'content_wrapper': 'pt-48',
-    'content_container': 'mx-auto max-w-5xl lg:mx-0 text-left',
-    'text_align': 'text-left',
-    'title_classes': 'text-6xl font-bold tracking-tight text-white sm:text-8xl lg:text-9xl',
-    'description_classes': 'mt-12 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed lg:text-3xl/relaxed',
-    'gradient_style': 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.8) 100%)'
-  },
-  'hero': {
-    'wrapper': 'py-32 sm:py-48 md:py-64',
-    'margin': '',
-    'content_wrapper': 'pt-24 sm:pt-32',
-    'content_container': 'mx-auto max-w-6xl lg:mx-0 text-center',
-    'text_align': 'text-center',
-    'title_classes': 'text-6xl font-bold tracking-tight text-white sm:text-8xl',
-    'description_classes': 'mt-10 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed',
-    'gradient_style': 'bg-gradient-to-b from-black/90 via-black/50 to-black/90'
-  }
-} %}
+{#
+/**
+ * @file
+ * Landing page header component that combines navigation with hero.
+ *
+ * This component provides a unified header for landing pages that includes:
+ * - Transparent navigation overlay
+ * - Hero section with background image and content
+ * - Proper positioning and styling
+ */
+#}
 
-{% set current_variant = variant_classes[variant] %}
+{#
+Adjust margins to handle:
+1. Admin toolbar presence (when logged in)
+2. Site header offset (always present above landing page)
 
-<div class="page-header-wrapper {{ modifier|default('') }} relative isolate overflow-hidden {{ background_image ? 'bg-gray-900' : 'bg-primary' }} {{ current_variant.wrapper }} {{ current_variant.margin }}">
+The site header adds ~138px height, so we need negative margin to pull up
+the landing header to eliminate the white gap between them.
+#}
+{% set margin_classes = has_admin_toolbar ? '-mt-[138px]' : '-mt-[138px]' %}
+
+<div class="relative isolate overflow-hidden bg-gray-900 pt-24 pb-12 {{ margin_classes }}">
+  {# Background Image #}
   {% if background_image %}
-    <img src="{{ background_image }}" 
-         alt="{{ alt_text|default('') }}" 
+    <img src="{{ background_image }}"
+         alt="{{ alt_text|default('') }}"
          class="absolute inset-0 -z-10 size-full object-cover" />
-    {# Variant-specific gradient overlay #}
-    {% if variant == 'landing' %}
-      <div class="absolute inset-0 -z-5" style="background: {{ current_variant.gradient_style }};"></div>
-    {% else %}
-      <div class="absolute inset-0 -z-5 {{ current_variant.gradient_style }}"></div>
-    {% endif %}
+    {# Landing page specific gradient overlay #}
+    <div class="absolute inset-0 -z-5"
+         style="background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.8) 100%);"></div>
+  {% else %}
+    {# Fallback gradient background #}
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-gray-800 via-gray-900 to-black"></div>
   {% endif %}
-  
-  <div class="mx-auto container px-6 lg:px-8 {{ current_variant.content_wrapper }}">
-    <div class="{{ current_variant.content_container }}">
-      {% if title|default('') %}
-        <h1 class="{{ current_variant.title_classes }}">
+
+  {# Hero Content Section #}
+  <div class="mx-auto container px-6 lg:px-8 pt-48">
+    <div class="mx-auto max-w-5xl lg:mx-0">
+      {% if title %}
+        <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
           {{ title }}
         </h1>
       {% endif %}
-      
-      {% if description|default('') %}
-        <p class="{{ current_variant.description_classes }}">
+
+      {% if description %}
+        <p class="mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8">
           {{ description }}
         </p>
       {% endif %}

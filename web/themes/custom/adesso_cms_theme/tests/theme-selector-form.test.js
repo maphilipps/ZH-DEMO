@@ -90,6 +90,7 @@ function createMockThemeSelector(selectedValue = 'light') {
 
 // Mock JavaScript functions that are embedded in the template
 function setupThemeSelectorJavaScript() {
+  // Define updateThemePreview globally first
   window.updateThemePreview = function(selectedTheme) {
     const previewCards = document.querySelectorAll('.theme-preview-card');
     previewCards.forEach(card => {
@@ -106,9 +107,18 @@ function setupThemeSelectorJavaScript() {
       themeSelect.value = themeValue;
       themeSelect.dispatchEvent(new Event('change'));
     }
+    window.updateThemePreview(themeValue);
+  };
+
+  window.selectTheme = function(themeValue) {
+    const themeSelect = document.querySelector('select[name*="field_theme"]');
+    if (themeSelect) {
+      themeSelect.value = themeValue;
+      themeSelect.dispatchEvent(new Event('change'));
+    }
     updateThemePreview(themeValue);
   };
-  
+
   // Add keyboard support for preview cards
   document.addEventListener('keydown', function(e) {
     if (e.target.classList.contains('theme-preview-card') && (e.key === 'Enter' || e.key === ' ')) {

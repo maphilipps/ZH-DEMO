@@ -142,3 +142,16 @@ search-results:
     - core/drupal
     - core/once
     - adesso_cms_theme/global  # Base theme styles
+
+# Theme Customization (Issue #36)
+theme-customization:
+  version: 1.x
+  css:
+    theme:
+      src/css/theme-customization-admin.css: {}
+  js:
+    src/js/theme-customization.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings

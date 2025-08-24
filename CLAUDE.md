@@ -83,6 +83,14 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Application**: Any git operation that fails with lock error should be followed by lock cleanup  
 **Tool Requirement**: Check for lock files before retrying git operations
 
+### Rule #7: Infrastructure Hygiene
+**Context**: DDEV service volumes being tracked in git repository  
+**Root Cause**: Infrastructure files (database data, service volumes, logs) accidentally tracked in git  
+**Prevention Rule**: ALWAYS exclude infrastructure volumes and service data from git tracking  
+**Solution**: Add comprehensive .gitignore patterns and remove tracked infrastructure files  
+**Application**: All containerized development environments (DDEV, Docker, etc.)  
+**Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
+
 ## 🚨 Code Review Learnings (PR #39 - Issue #36)
 
 ### Security Rule #1: XSS Prevention in Twig Templates

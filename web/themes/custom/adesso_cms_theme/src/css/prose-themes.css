@@ -19,25 +19,16 @@
   --color-neutral-800: var(--color-slate-800);
   --color-neutral-900: var(--color-slate-900);
   
-  --color-primary: #dc2626;
-  --color-primary-100: #fee2e2;
-  --color-primary-200: #fecaca;
-  --color-primary-300: #fca5a5;
-  --color-primary-400: #f87171;
-  --color-primary-500: #ef4444;
-  --color-primary-600: #dc2626;
-  --color-primary-700: #b91c1c;
-  --color-primary-800: #991b1b;
-  --color-primary-900: #7f1d1d;
+  /* Primary colors are set dynamically by theme system - no override needed */
 }
 
 /* Light Theme - Primary tinted background */
 [data-theme="light"] {
   /* Override Tailwind color variables */
   --color-neutral: var(--color-slate-800);
-  --color-neutral-50: rgba(220, 38, 38, 0.05); /* primary/5 */
-  --color-neutral-100: rgba(220, 38, 38, 0.1); /* primary/10 */
-  --color-neutral-200: rgba(220, 38, 38, 0.15);
+  --color-neutral-50: color-mix(in srgb, var(--color-primary) 5%, white);
+  --color-neutral-100: color-mix(in srgb, var(--color-primary) 10%, white);
+  --color-neutral-200: color-mix(in srgb, var(--color-primary) 15%, white);
   --color-neutral-300: var(--color-primary-200);
   --color-neutral-400: var(--color-slate-400);
   --color-neutral-500: var(--color-slate-500);
@@ -46,16 +37,7 @@
   --color-neutral-800: var(--color-slate-800);
   --color-neutral-900: var(--color-slate-900);
   
-  --color-primary: #b91c1c;
-  --color-primary-100: #fee2e2;
-  --color-primary-200: #fecaca;
-  --color-primary-300: #fca5a5;
-  --color-primary-400: #f87171;
-  --color-primary-500: #ef4444;
-  --color-primary-600: #dc2626;
-  --color-primary-700: #b91c1c;
-  --color-primary-800: #991b1b;
-  --color-primary-900: #7f1d1d;
+  /* Primary colors are set dynamically by theme system - no override needed */
 }
 
 /* Dark Theme - Dark background */
@@ -73,16 +55,8 @@
   --color-neutral-800: var(--color-slate-50);
   --color-neutral-900: var(--color-white);
   
-  --color-primary: #f87171;
-  --color-primary-100: #7f1d1d;
-  --color-primary-200: #991b1b;
-  --color-primary-300: #b91c1c;
-  --color-primary-400: #dc2626;
-  --color-primary-500: #ef4444;
-  --color-primary-600: #f87171;
-  --color-primary-700: #fca5a5;
-  --color-primary-800: #fecaca;
-  --color-primary-900: #fee2e2;
+  /* Primary colors are set dynamically by theme system - no override needed */
+  /* Dark theme uses inverted primary scale automatically */
 }
 
 /* Apply theme variables to prose elements */

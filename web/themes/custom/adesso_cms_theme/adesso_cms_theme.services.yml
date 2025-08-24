@@ -20,3 +20,10 @@ services:
     arguments: ['@adesso_cms_theme.page_header_context', '@current_route_match']
     tags:
       - { name: twig.extension }
+
+  # Theme Customization Service (Issue #36)
+  adesso_cms_theme.theme_customization:
+    class: Drupal\adesso_cms_theme\Service\ThemeCustomizationService
+    arguments: ['@cache.default']
+    tags:
+      - { name: service }

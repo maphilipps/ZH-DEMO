@@ -19,7 +19,7 @@
        itemprop="url"
        class="result-link"
        aria-describedby="excerpt-{{ result_id }}">
-      {{ title|raw }}
+      {{ title }}
     </a>
   </h3>
 
@@ -58,7 +58,7 @@
     <div class="result-excerpt" 
          itemprop="description"
          id="excerpt-{{ result_id }}">
-      {{ excerpt|raw }}
+      {{ excerpt }}
     </div>
   {% endif %}
 </div>

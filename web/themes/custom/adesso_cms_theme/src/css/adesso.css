@@ -23,44 +23,42 @@
 
 @source '../../components';
 @theme {
+  /* Tailwind CSS font family definitions - use theme-configured --font-primary */
+  --font-sans: var(--font-primary, "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  --font-serif: var(--font-primary, "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-dancing: "Dancing Script", cursive;
-  --color-primary: #dc2626;
-  --color-primary-50: #fef2f2;
-  --color-primary-100: #fee2e2;
-  --color-primary-200: #fecaca;
-  --color-primary-300: #fca5a5;
-  --color-primary-400: #f87171;
-  --color-primary-500: #ef4444;
-  --color-primary-600: var(--color-primary);
-  --color-primary-700: #b91c1c;
-  --color-primary-800: #991b1b;
-  --color-primary-900: #7f1d1d;
-  --color-primary-950: #450a0a;
+  
+  /* Tailwind CSS color definitions - fallbacks for build time, runtime overridden by theme system */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+  --color-primary: var(--color-primary-500);
+  
   --color-secondary: oklch(76.75% 0.16089370062474417 102.29484006182389);
   --color-secondary-foreground: #ffffff;
   --color-primary-foreground: #ffffff;
-  --color-neutral: var(--color-slate-800);
-  --color-neutral-50: var(--color-slate-50);
-  --color-neutral-100: var(--color-slate-100);
-  --color-neutral-200: var(--color-slate-200);
-  --color-neutral-300: var(--color-slate-300);
-  --color-neutral-400: var(--color-slate-400);
-  --color-neutral-500: var(--color-slate-500);
-  --color-neutral-600: var(--color-slate-600);
-  --color-neutral-700: var(--color-slate-700);
-  --color-neutral-800: var(--color-slate-800);
-  --color-neutral-900: var(--color-slate-900);
-  --color-neutral-950: var(--color-slate-950);
-  --font-display: 'Inter', serif;
-  --font-weight-hairline: 100;
-  /* --font-weight-thin: 200; */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  /* --font-weight-medium: 500; */
-  /* --font-weight-semibold: 600; */
-  --font-weight-bold: 700;
-  /* --font-weight-extrabold: 800; */
-  /* --font-weight-black: 900; */
+  
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
+  --color-neutral: var(--color-neutral-800);
 }
 
 /* Paragraph Theme Data Attributes - Tailwind v4 Modern Approach */
@@ -225,11 +223,9 @@
 
   html {
     color: var(--color-neutral);
-    /* Set sans, serif or mono stack with optional custom font as default. */
-    font-family: var(--font-sans);
+    /* Tailwind will use --font-sans definition from @theme automatically */
+    font-family: theme('fontFamily.sans');
     font-size: 20px;
-    /* font-family: var(--font-serif); */
-    /* font-family: var(--font-mono); */
   }
 }
 

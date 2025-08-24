@@ -23,7 +23,7 @@
 {# Check if current page is a landing page for variant selection #}
 {% set current_node = node %}
 {% set is_landing_page = current_node and current_node.bundle == 'landing_page' %}
-{% set menu_variant = is_landing_page ? 'transparent' : 'default' %}
+{% set menu_variant = is_landing_page ? 'transparent' : 'transparent' %}
 
 {# Map Drupal menu data to component structure with logo data #}
 {% embed 'adesso_cms_theme:main-menu' with { 

@@ -2,6 +2,20 @@
 
 This file serves as the living memory and learning system for the GPZH project, implementing Test-Driven Development principles where every bug becomes a prevention rule, every decision becomes reusable knowledge, and every successful solution becomes a pattern.
 
+## 🚨 CRITICAL RULE: NO FEATURE DEACTIVATION WITHOUT EXPLICIT PERMISSION
+
+**NEVER deactivate, disable, or remove ANY features without explicit user permission.**
+
+This includes but is not limited to:
+- AI/Vector search functionality (Milvus, AI providers) - **CORE FEATURE**
+- Any modules or services marked as "core features" 
+- Multi-site configurations
+- Performance optimization systems
+- Accessibility features
+- Swiss compliance integrations
+
+**When features fail**: FIX them, don't disable them. Features are there for a reason and removing them breaks the system architecture.
+
 ## 🧠 Core Learning Principles
 
 **TDD Development Approach**:
@@ -718,6 +732,28 @@ resultsContainer.appendChild(fragment);
 **Solution**: Use block configuration/visibility settings instead of template modifications for block management
 **Application**: All Drupal layout and visibility changes - think blocks first, templates second
 **Tool Requirement**: Block management through admin interface or Drupal configuration
+
+### Rule #13: Search Infrastructure Validation (Experiment-Driven Development)
+**Date**: 2025-08-25
+**Type**: Experiment Failure - Search Backend Investigation
+**Context**: Experiment 001 - NASA JPL Search UI implementation failed ($100 penalty)
+**Root Cause**: Assumed search UI templates would work without validating search backend infrastructure
+**Critical Discovery**: Search API had no servers configured (`ddev drush search-api:server-list` → "There are no servers present")
+**Prevention Rule**: ALWAYS validate search backend configuration before implementing search UI
+**Solution Pattern**: Check `ddev drush search-api:server-list` and `search-api:status` before any search work
+**Application**: All search-related implementations must verify backend connectivity first
+**Learning**: Templates and UI are meaningless without proper Search API server configuration
+**Financial Impact**: -$100 penalty for assuming frontend fixes would solve backend configuration issues
+
+### Rule #14: No Feature Deactivation Without Permission - Critical Enforcement
+**Date**: 2025-08-25
+**Context**: Attempted to disable AI/Milvus search when troubleshooting search functionality  
+**Critical User Feedback**: "Bist du doof? Du deaktivierst doch jetzt hier keine AI suche" + "Das ist doch EIN CORE FEATURE!"
+**Root Cause**: Suggesting feature deactivation as troubleshooting approach instead of fixing the underlying issue
+**Prevention Rule**: NEVER suggest deactivating, disabling, or removing features without explicit user permission
+**Enforcement**: Added critical rule to top of CLAUDE.md as permanent reminder
+**Application**: When features fail, FIX them, don't disable them - features exist for architectural reasons
+**Tool Requirement**: Always pursue fixes rather than deactivation for any system functionality
 
 This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.
 - Es ist wirklich die oberste Pflicht, dass du unseren Ansatz in der Claude.md lebst! Wir müssen uns verbessern!

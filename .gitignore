@@ -85,8 +85,11 @@ storybook-static/
 .ddev/db_snapshots/*.gz
 
 # Ignore DDEV service volumes and infrastructure files
-.ddev/milvus/volumes/
-.ddev/traefik/certs/
+.ddev/milvus/
 .ddev/*/volumes/
+.ddev/traefik/certs/
 .ddev/etcd/
+
+# Ignore symbolic link directories that cause git issues
+web/modules/custom/zh_demo_workspace/
 

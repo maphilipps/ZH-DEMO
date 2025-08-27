@@ -22,7 +22,7 @@ dependencies:
 third_party_settings:
   layout_builder:
     enabled: false
-    allow_custom: true
+    allow_custom: false
     sections:
       -
         layout_id: layout_onecol
@@ -92,6 +92,26 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 4
             additional: {  }
+          a1b2c3d4-e5f6-7890-abcd-1234567890ef:
+            uuid: a1b2c3d4-e5f6-7890-abcd-1234567890ef
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_paragraphs'
+              label: Inhaltselemente
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
         third_party_settings: {  }
 _core:
   default_config_hash: rVDjFcG7a9eUsRsMS1vdA6OQgJ77pZjEPmk1fIuADao
@@ -124,7 +144,6 @@ content:
     region: content
 hidden:
   field_description: true
-  field_paragraphs: null
   field_seo_analysis: true
   field_seo_description: true
   field_seo_image: true

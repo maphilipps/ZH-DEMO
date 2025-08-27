@@ -1,6 +1,6 @@
-name: ZH Erlenbach
+name: Erlenbach
 type: theme
-description: 'Subtheme für Gemeinde Erlenbach - Elegant, Zürichsee-Flair, hochwertig (Goldküste)'
+description: 'Subtheme für die Gemeinde Erlenbach mit spezifischen Anpassungen.'
 package: 'GPZH Municipalities'
 core_version_requirement: ^11
 base theme: adesso_cms_theme

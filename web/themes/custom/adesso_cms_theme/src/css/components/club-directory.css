@@ -1,0 +1,191 @@
+/* Club Directory View Styling */
+
+/* Main container */
+.club-directory-view {
+  @apply gap-4 md:gap-6;
+}
+
+/* Individual club items */
+.club-directory-item {
+  @apply bg-white border border-neutral-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* Club logo styling */
+.club-logo {
+  @apply text-center mb-3;
+}
+
+.club-logo img {
+  @apply mx-auto max-w-20 max-h-20 object-contain rounded-md;
+}
+
+/* Club title */
+.club-title {
+  @apply text-lg font-semibold text-neutral-900 mb-2 line-clamp-2;
+  min-height: 3.5rem; /* Ensure consistent height for titles */
+}
+
+.club-title a {
+  @apply no-underline text-inherit hover:text-primary-600 transition-colors duration-200;
+}
+
+/* Club description */
+.club-description {
+  @apply text-sm text-neutral-600 mb-3 line-clamp-3;
+  min-height: 4rem; /* Ensure consistent height for descriptions */
+}
+
+/* Club category badge */
+.club-category {
+  @apply inline-block px-2 py-1 text-xs font-medium bg-secondary text-white rounded-full mb-3;
+}
+
+/* Contact info container */
+.club-contact-info {
+  @apply flex flex-wrap gap-2 mt-auto;
+}
+
+/* Contact buttons */
+.club-contact-info .btn {
+  @apply text-xs px-3 py-1.5 no-underline transition-colors duration-200;
+}
+
+.club-contact-info .btn-outline-primary {
+  @apply border border-primary-600 text-primary-600 bg-transparent hover:bg-primary-600 hover:text-white;
+}
+
+.club-contact-info .btn-primary {
+  @apply bg-primary-600 text-white hover:bg-primary-700 border-0;
+}
+
+/* Empty state styling */
+.club-directory-view .alert {
+  @apply bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-lg mb-4;
+  grid-column: 1 / -1; /* Span full width in grid */
+}
+
+.club-directory-view .alert a {
+  @apply text-blue-600 underline hover:text-blue-800;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .club-directory-item {
+    @apply p-3;
+  }
+  
+  .club-title {
+    @apply text-base;
+    min-height: 3rem;
+  }
+  
+  .club-description {
+    min-height: 3.5rem;
+  }
+  
+  .club-contact-info {
+    @apply flex-col gap-1;
+  }
+  
+  .club-contact-info .btn {
+    @apply w-full text-center;
+  }
+}
+
+/* Exposed filter styling */
+.club-directory-view + .views-exposed-form {
+  @apply mb-6 p-4 bg-neutral-50 rounded-lg;
+}
+
+.club-directory-view + .views-exposed-form .form-item {
+  @apply mb-3;
+}
+
+.club-directory-view + .views-exposed-form label {
+  @apply block text-sm font-medium text-neutral-700 mb-1;
+}
+
+.club-directory-view + .views-exposed-form select {
+  @apply w-full px-3 py-2 border border-neutral-300 rounded-md focus:ring-primary-500 focus:border-primary-500;
+}
+
+.club-directory-view + .views-exposed-form .form-actions {
+  @apply flex gap-2 mt-4;
+}
+
+.club-directory-view + .views-exposed-form .button {
+  @apply px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+}
+
+.club-directory-view + .views-exposed-form .button--primary {
+  @apply bg-primary-600 text-white hover:bg-primary-700;
+}
+
+.club-directory-view + .views-exposed-form .button[type="submit"] {
+  @apply bg-primary-600 text-white hover:bg-primary-700;
+}
+
+/* Pager styling */
+.club-directory-view + .pager {
+  @apply mt-8 flex justify-center;
+}
+
+.club-directory-view + .pager .pager__items {
+  @apply flex gap-1;
+}
+
+.club-directory-view + .pager .pager__item {
+  @apply list-none;
+}
+
+.club-directory-view + .pager .pager__link {
+  @apply px-3 py-2 text-sm border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 rounded;
+}
+
+.club-directory-view + .pager .pager__item--current .pager__link {
+  @apply bg-primary-600 text-white border-primary-600;
+}
+
+/* Block display specific styling */
+.block--views-club-directory .club-directory-view {
+  @apply gap-3 md:gap-4;
+}
+
+.block--views-club-directory .club-directory-item {
+  @apply p-3;
+}
+
+.block--views-club-directory .club-title {
+  @apply text-base;
+  min-height: 2.5rem;
+}
+
+.block--views-club-directory .club-description {
+  @apply text-xs;
+  min-height: 3rem;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .club-directory-item {
+  @apply bg-neutral-800 border-neutral-700 text-white;
+}
+
+[data-theme="dark"] .club-title {
+  @apply text-white;
+}
+
+[data-theme="dark"] .club-title a {
+  @apply text-white hover:text-primary-400;
+}
+
+[data-theme="dark"] .club-description {
+  @apply text-neutral-300;
+}
+
+[data-theme="dark"] .club-contact-info .btn-outline-primary {
+  @apply border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-neutral-900;
+}
+
+[data-theme="dark"] .club-contact-info .btn-primary {
+  @apply bg-primary-600 hover:bg-primary-500;
+}

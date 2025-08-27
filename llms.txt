@@ -1,7 +1,7 @@
 # GPZH ZH-Demo Codebase - LLM Context Guide
 
 ## PROJECT OVERVIEW
-ZH-Demo: Drupal 11.2.2 municipal portal demonstration system for GPZH (Gemeindeportale Zürich) prequalification. Showcases enterprise CMS capabilities for Canton Zurich municipal websites with AI integration, component-based architecture, and Swiss compliance features.
+ZH-Demo: Drupal 11.2.2 municipal portal demonstration system for GPZH (Gemeindeportale Zürich) prequalification. Showcases enterprise CMS capabilities for Canton Zurich municipal websites with AI integration, component-based architecture.
 
 **Demo Municipality**: Gemeinde Bruchtal ("Leben am See")  
 **Architecture**: Multi-site CMS with three-lane development (Planning/Building/Reviewing)  
@@ -34,7 +34,7 @@ ZH-Demo: Drupal 11.2.2 municipal portal demonstration system for GPZH (Gemeindep
 **Base URL**: https://adesso-cms.ddev.site (DDEV development)
 
 ### unlighthouse.config.ts - Performance Auditing  
-**Purpose**: Swiss government compliance testing (eCH-0059)
+**Purpose**:  government compliance testing
 **Thresholds**: Performance 90%, Accessibility 95%, SEO/Best Practices
 **Multi-device**: Mobile + Desktop scanning with custom hooks
 
@@ -199,7 +199,6 @@ ZH-Demo: Drupal 11.2.2 municipal portal demonstration system for GPZH (Gemeindep
 - **Components**: Single Directory Components (SDC) with YAML schema
 - **Media**: Responsive images with focal point, SVG support
 - **Search**: Milvus vector database for semantic search
-- **Compliance**: Swiss eCH-0059 government standards
 
 ### Development Workflow
 - **Environment**: DDEV containerized development
@@ -215,7 +214,6 @@ This codebase demonstrates enterprise-grade Drupal architecture with:
 - Comprehensive testing strategy across multiple dimensions
 - Modern frontend toolchain integration
 - AI-first development approach with compounding learning
-- Swiss government compliance built-in from ground up
 - Maintenance-first approach with automated repair scripts
 
 The system successfully bridges traditional CMS architecture with modern AI-assisted development, creating a maintainable and scalable municipal portal solution.

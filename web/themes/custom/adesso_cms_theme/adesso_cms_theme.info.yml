@@ -1,6 +1,6 @@
-name: adesso UI
+name: Gemeindeportal Zürich Base Theme
 type: theme
-description: ''
+description: 'Base Theme für das Gemeindeportal Zürich'
 package: Other
 core_version_requirement: ^11
 'base theme': false

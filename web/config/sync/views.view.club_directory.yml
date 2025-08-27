@@ -1,0 +1,825 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - field.storage.node.field_directory_category
+    - field.storage.node.field_directory_contact_email
+    - field.storage.node.field_directory_contact_person
+    - field.storage.node.field_email
+    - field.storage.node.field_logo
+    - field.storage.node.field_website
+    - image.style.medium
+    - node.type.club
+  module:
+    - image
+    - link
+    - node
+    - user
+id: club_directory
+label: 'Club Directory'
+module: views
+description: 'A responsive directory of clubs with logos, descriptions, and contact information'
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Club Directory'
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: h3
+          element_class: 'club-title text-lg font-semibold mb-2'
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_logo:
+          id: field_logo
+          table: node__field_logo
+          field: field_logo
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_logo
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-logo mb-4'
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_view
+          settings:
+            view_mode: medium
+          group_column: target_id
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_description:
+          id: field_description
+          table: node__field_description
+          field: field_description
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_description
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 200
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-description text-gray-600 mb-4'
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {}
+          group_column: value
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_email:
+          id: field_email
+          table: node__field_email
+          field: field_email
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_email
+          plugin_id: field
+          label: 'E-Mail'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-email text-sm text-blue-600'
+          element_label_type: span
+          element_label_class: 'font-medium text-gray-700 mr-2'
+          element_label_colon: true
+          element_wrapper_type: div
+          element_wrapper_class: 'contact-item mb-2'
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: email_mailto
+          settings: {}
+          group_column: value
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_website:
+          id: field_website
+          table: node__field_website
+          field: field_website
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_website
+          plugin_id: field
+          label: Website
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-website text-sm text-blue-600'
+          element_label_type: span
+          element_label_class: 'font-medium text-gray-700 mr-2'
+          element_label_colon: true
+          element_wrapper_type: div
+          element_wrapper_class: 'contact-item mb-2'
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: _blank
+          group_column: ''
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_directory_contact_person:
+          id: field_directory_contact_person
+          table: node__field_directory_contact_person
+          field: field_directory_contact_person
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_directory_contact_person
+          plugin_id: field
+          label: Kontaktperson
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-contact-person text-sm'
+          element_label_type: span
+          element_label_class: 'font-medium text-gray-700 mr-2'
+          element_label_colon: true
+          element_wrapper_type: div
+          element_wrapper_class: 'contact-item mb-2'
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_directory_contact_email:
+          id: field_directory_contact_email
+          table: node__field_directory_contact_email
+          field: field_directory_contact_email
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_directory_contact_email
+          plugin_id: field
+          label: 'Kontakt E-Mail'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: 'club-contact-email text-sm text-blue-600'
+          element_label_type: span
+          element_label_class: 'font-medium text-gray-700 mr-2'
+          element_label_colon: true
+          element_wrapper_type: div
+          element_wrapper_class: 'contact-item mb-2'
+          element_default_classes: false
+          empty: ''
+          hide_empty: true
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: email_mailto
+          settings: {}
+          group_column: value
+          group_columns: {}
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
+        options:
+          offset: 0
+          pagination_heading_level: h4
+          items_per_page: 20
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Weiter ›'
+            previous: '‹ Zurück'
+            first: '« Anfang'
+            last: 'Ende »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options: '10, 20, 40, 60'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Alle -'
+            offset: false
+            offset_label: Versatz
+          quantity: 9
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Anwenden
+          reset_button: true
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: Sortierung
+          expose_sort_order: true
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {}
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<div class="empty-clubs-directory text-center py-8"><p class="text-gray-600">Derzeit sind keine Vereine im Verzeichnis verfügbar.</p></div>'
+          tokenize: false
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+      arguments: {}
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {}
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {}
+            group_items: {}
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            club: club
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {}
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {}
+            group_items: {}
+        field_directory_category_target_id:
+          id: field_directory_category_target_id
+          table: node__field_directory_category
+          field: field_directory_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: field_directory_category
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {}
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_directory_category_target_id_op
+            label: Kategorie
+            description: ''
+            use_operator: false
+            operator: field_directory_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {}
+            identifier: category
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+              guest_editor: '0'
+              content_moderator: '0'
+              test_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {}
+            group_items: {}
+          reduce_duplicates: false
+          vid: directory_category
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping: {}
+          row_class: 'club-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-6 mb-6'
+          default_row_class: false
+          uses_fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {}
+          separator: ''
+          hide_empty: false
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {}
+      relationships: {}
+      header: {}
+      footer: {}
+      display_extenders: {}
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_description'
+        - 'config:field.storage.node.field_directory_category'
+        - 'config:field.storage.node.field_directory_contact_email'
+        - 'config:field.storage.node.field_directory_contact_person'
+        - 'config:field.storage.node.field_email'
+        - 'config:field.storage.node.field_logo'
+        - 'config:field.storage.node.field_website'
+        - 'config:image.style.medium'
+        - 'config:node.type.club'
+  block_1:
+    id: block_1
+    display_title: 'Club Directory Block'
+    display_plugin: block
+    position: 1
+    display_options:
+      display_description: 'A responsive block displaying clubs in a card layout for use in paragraph views'
+      style:
+        type: default
+        options:
+          grouping: {}
+          row_class: 'club-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-6 mb-6 sm:mb-4 lg:mb-6'
+          default_row_class: false
+          uses_fields: false
+      defaults:
+        style: false
+        row: false
+        css_class: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+      css_class: 'club-directory-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
+      use_more: true
+      use_more_always: false
+      use_more_text: 'Alle Vereine anzeigen'
+      display_extenders: {}
+      block_description: 'Club Directory'
+      block_category: 'Views (Club Directory)'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_description'
+        - 'config:field.storage.node.field_directory_category'
+        - 'config:field.storage.node.field_directory_contact_email'
+        - 'config:field.storage.node.field_directory_contact_person'
+        - 'config:field.storage.node.field_email'
+        - 'config:field.storage.node.field_logo'
+        - 'config:field.storage.node.field_website'
+        - 'config:image.style.medium'
+        - 'config:node.type.club'
+  page_1:
+    id: page_1
+    display_title: 'Club Directory Page'
+    display_plugin: page
+    position: 2
+    display_options:
+      display_description: 'A full page display of the club directory'
+      path: vereine
+      menu:
+        type: normal
+        title: Vereine
+        description: 'Durchsuchen Sie unser Vereinsverzeichnis'
+        weight: 0
+        menu_name: main
+        context: '0'
+      display_extenders: {}
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_description'
+        - 'config:field.storage.node.field_directory_category'
+        - 'config:field.storage.node.field_directory_contact_email'
+        - 'config:field.storage.node.field_directory_contact_person'
+        - 'config:field.storage.node.field_email'
+        - 'config:field.storage.node.field_logo'
+        - 'config:field.storage.node.field_website'
+        - 'config:image.style.medium'
+        - 'config:node.type.club'

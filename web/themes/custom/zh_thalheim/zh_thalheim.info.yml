@@ -1,6 +1,6 @@
-name: ZH Thalheim
+name: Thalheim
 type: theme
-description: 'Subtheme für Gemeinde Thalheim - Ländlich, traditionell, persönlich (Weinland)'
+description: 'Subtheme für die Gemeinde Thalheim mit spezifischen Anpassungen.'
 package: 'GPZH Municipalities'
 core_version_requirement: ^11
 base theme: adesso_cms_theme

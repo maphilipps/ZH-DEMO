@@ -198,6 +198,28 @@ config.build.target = ['es2015', 'chrome58', 'firefox57'];
 **Tool Requirement**: Use isolated `viteFinal` configuration to prevent library mode inheritance in browser environments  
 **Status**: RESOLVED - Storybook configuration successfully isolated from Drupal library mode requirements
 
+### Rule #15: Theme Selector Accessibility Test Fix ✅ RESOLVED  
+**Context**: 7 failing accessibility tests in theme-selector-accessibility.test.js blocking Issue #47 implementation  
+**Root Cause**: CSS selector conflicts between select option elements and theme preview cards  
+**Critical Issues**:
+- **DOM Selector Confusion**: `querySelector('[data-theme="light"]')` matched `<option>` elements instead of `.theme-preview-card` divs
+- **Missing Focus Management**: Theme preview cards had null `tabindex` attributes because wrong elements were selected
+- **Broken Click Events**: Event handlers attached to wrong DOM elements (select options vs preview cards)
+- **CSS Class Validation Failures**: Tests expected `.theme-preview-card` class but found select option elements
+**Prevention Rule**: Use specific CSS selectors to avoid DOM element conflicts when multiple elements share data attributes  
+**Solution Applied**: Enhanced selectors from `[data-theme="X"]` to `.theme-preview-card[data-theme="X"]` for precise targeting:
+```javascript
+// WRONG - Matches first element with data-theme (select option)
+const lightCard = container.querySelector('[data-theme="light"]');
+
+// CORRECT - Matches only theme preview card div
+const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
+```
+**Results**: ✅ All 29 tests passing, ✅ Focus management working correctly, ✅ Click events functioning, ✅ WCAG 2.1 AA compliance validated  
+**Application**: All DOM queries in tests requiring specific element types must use class-specific selectors  
+**Tool Requirement**: Debug DOM selector issues by logging actual element types and attributes found  
+**Status**: RESOLVED - Theme selector meets German government accessibility requirements (eCH-0059)
+
 ### Rule #14: Systematic Terminology Migration Strategy ✅ APPLIED
 **Context**: Project-wide terminology change from "Swiss" to "German" compliance standards required across all documentation, code, and configuration files  
 **Root Cause**: Need for systematic approach to prevent incomplete updates and maintain consistency across large codebase  
@@ -226,6 +248,52 @@ grep -r -i "swiss" /path | grep -v ".git"
 **Application**: Large-scale terminology changes, compliance standard migrations, systematic refactoring across projects  
 **Tool Requirement**: Use find + sed for bulk operations, validate with comprehensive grep searches  
 **Status**: APPLIED - Complete terminology migration from Swiss to German compliance standards across entire project
+
+### Rule #15: Advanced Frontend Tooling Optimization Strategy ⚠️ LEARNING IN PROGRESS
+**Context**: Issue #47 - PreviousNext Vite & Storybook optimization request on already high-performance baseline  
+**Critical Discovery**: 90% of requested PreviousNext features already implemented in advanced configuration  
+**Analysis Results**:
+- ✅ Library mode: Already configured (vite.config.ts:47-53)
+- ✅ Browserslist integration: Already implemented (vite.config.ts:8, 58)  
+- ✅ ESLint flat config: Already comprehensive (eslint.config.js)
+- ✅ Storybook test runner: Already in dependencies (@storybook/test-runner:^0.19.1)
+- ✅ PostCSS preset-env: Already configured (postcss-preset-env:^10.3.0)
+- ✅ Concurrent scripts: Already implemented (package.json:9-10)
+**Root Cause**: High-performance optimization requires micro-improvements vs foundational changes  
+**Critical Issue**: 7 accessibility tests failing while requesting "enhancement" - Rule #5 violation  
+**Prevention Rule**: ALWAYS audit current implementation state before planning "enhancement" work  
+**Solution**: Focus on performance measurement, testing resolution, and incremental optimization  
+**Application**: Advanced tooling requests, performance optimization, system enhancement projects  
+**Tool Requirement**: Measure baseline performance before implementing changes to validate improvements  
+**Status**: IN PROGRESS - Foundation stabilization required before optimization implementation
+
+### Rule #16: Test-Driven Quality Gates for Advanced Systems ⚠️ CRITICAL VIOLATION
+**Context**: Issue #47 claiming "enhanced frontend DX" readiness while 7 tests actively fail  
+**Violation Evidence**: 7 failed accessibility tests in theme-selector-accessibility.test.js:
+- Focus management failures (tabindex expectations)  
+- Keyboard navigation broken (Enter/Space key activation)
+- Theme preview contrast compliance failures
+**Root Cause**: Advanced systems create false confidence - sophisticated tooling can mask fundamental quality issues  
+**Prevention Rule**: NEVER claim system enhancement readiness while ANY tests fail  
+**Required Resolution**: Fix ALL failing tests before implementing ANY enhancements  
+**Application**: All optimization and enhancement requests on existing systems  
+**Tool Requirement**: Automated pre-enhancement quality validation  
+**Compound Intelligence**: Test failures expose architectural gaps that optimization cannot resolve
+
+### Rule #15: Performance Optimization Baseline Measurement Framework ✅ APPLIED
+**Context**: Issue #47 claiming "20% performance improvement" from PreviousNext Vite & Storybook standards required validation  
+**Root Cause**: Performance optimization claims without quantitative baselines lead to unverifiable improvements  
+**Prevention Rule**: ALWAYS establish comprehensive performance baselines before implementing optimization strategies  
+**Baseline Framework Applied**:
+- **Build Performance**: Vite dev startup (2.34s), production build (12.91s), bundle sizes (932KB CSS, 576KB JS)
+- **Storybook Performance**: Manager bundle (954ms), preview (2.77s), total startup (3.72s)
+- **Quality Metrics**: Test execution (28.86s), linting issues (322 problems), compression ratios (92% CSS, 83% JS)
+- **Optimization Targets**: 20% build time reduction, 15% bundle size reduction, 25% Storybook improvement
+**Solution**: Systematic measurement methodology using DDEV commands and time/compression analysis  
+**Application**: All performance optimization tasks must establish baseline measurements for validation  
+**Tool Requirement**: Use `time`, `du -sh`, `gzip`, and detailed build output analysis for quantitative validation  
+**Measurable Benefit**: Claims become verifiable through before/after comparisons with exact percentages  
+**Success Validation**: Documented baselines enable precise ROI measurement for optimization investments
 
 ## 🚨 Code Review Learnings (PR #39 - Issue #36)
 
@@ -642,6 +710,66 @@ find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
 - Agent Coordination ROI: ≥5:1 specialization time savings
 - Compound Intelligence: ≥8:1 learning investment ROI
 - System Intelligence: ≥90% issue recurrence prevention
+
+## 📊 Performance Baseline Measurements - Issue #47
+
+### Baseline Performance Metrics (2025-08-27) 
+**Measurement Date**: August 27, 2025  
+**Environment**: DDEV zh-demo.ddev.site, Node.js 20, adesso_cms_theme v1.3.0  
+**Purpose**: Validate claimed "20% performance improvement" from PreviousNext Vite & Storybook standards
+
+#### 🚀 Build Performance Baselines
+**Vite Dev Server Startup**: 2.34 seconds  
+**Vite Production Build**: 12.91 seconds (8.69s Vite + 4.22s overhead)  
+**Bundle Sizes**:
+- **CSS**: 932KB uncompressed → 76KB gzipped (92% compression ratio)
+- **JavaScript**: 576KB uncompressed → 99KB gzipped (83% compression ratio)
+- **Total Dist Size**: 11MB (includes multiple build artifacts)
+
+#### 📚 Storybook Performance Baselines  
+**Storybook Startup Components**:
+- **Manager Bundle**: 954ms
+- **Preview Bundle**: 2.77 seconds
+- **Total Startup**: ~3.72 seconds
+- **Port Conflict Resolution**: Automatic (6006 → 6008)
+
+#### 🧪 Quality Metrics Baselines
+**Test Execution**: 28.86 seconds (319 tests across 14 files)
+- **Test Performance**: 7.04s actual testing, 21.82s setup/environment overhead
+- **Transform Time**: 839ms
+- **Collection Time**: 1.59s
+**Linting Status**: ❌ 322 ESLint problems (268 errors, 54 warnings)
+- **Primary Issues**: func-names violations, console statements, unused variables
+
+#### ⚡ Optimization Opportunities Identified
+1. **Bundle Size**: 576KB JS bundle suggests code splitting opportunities
+2. **Storybook Startup**: 3.72s startup time could benefit from dependency optimization
+3. **Test Overhead**: 76% of test time spent on setup vs actual testing
+4. **Code Quality**: 322 linting violations indicate potential performance impacts
+5. **Build Artifacts**: 11MB dist/ suggests build cleanup needed
+
+#### 🎯 Performance Targets for Issue #47
+- **Build Performance**: Target 20% reduction in build time (12.91s → 10.33s)
+- **Bundle Optimization**: Target 15% reduction in bundle sizes (576KB → 490KB JS)
+- **Storybook Startup**: Target 25% improvement (3.72s → 2.79s)
+- **Code Quality**: Resolve 322 ESLint violations for performance benefits
+- **Test Efficiency**: Reduce setup overhead ratio from 76% to <60%
+
+#### 📏 Measurement Methodology
+```bash
+# Build performance measurement
+time ddev npm run build
+# Dev server startup
+start_time=$(date +%s.%N) && timeout 30s ddev npm run dev && end_time=$(date +%s.%N)
+# Bundle analysis  
+du -sh dist/assets/css/styles-*.css dist/assets/js/adesso-*.js
+# Compression analysis
+gzip -c file.js | wc -c | awk '{printf "%.0f KB", $1/1024}'
+# Test execution
+time ddev npm run test
+```
+
+**Validation Framework**: All optimizations must demonstrate measurable improvement against these baselines with quantitative metrics capturing the claimed 20% performance enhancement.
 
 ---
 

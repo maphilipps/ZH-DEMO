@@ -39,7 +39,7 @@ const config = {
     storyStoreV7: true
   },
 
-  // Storybook-specific Vite configuration - isolate from main Vite config
+  // Enhanced Storybook-specific Vite configuration for optimal performance
   viteFinal: async (config) => {
     // CRITICAL: Override library mode from main vite.config.ts for browser compatibility
     config.build = config.build || {};
@@ -47,15 +47,31 @@ const config = {
     config.build.rollupOptions = config.build.rollupOptions || {};
     config.build.rollupOptions.external = undefined; // Include all dependencies for browser
 
-    // CRITICAL: Ensure all dependencies are bundled for browser execution
+    // Advanced performance optimizations for Storybook builds
+    config.build.chunkSizeWarningLimit = 600; // Higher limit for Storybook complexity
+    config.build.minify = 'esbuild'; // Faster minification for dev builds
+    config.build.assetsInlineLimit = 8192; // Inline larger assets in Storybook
+
+    // CRITICAL: Ensure all dependencies are bundled for browser execution with optimizations
     config.optimizeDeps = config.optimizeDeps || {};
     config.optimizeDeps.include = [
       'alpinejs',
       'swiper/bundle', 
       'lucide',
+      'glob',
+      'path',
       ...(config.optimizeDeps.include || [])
     ];
-    config.optimizeDeps.exclude = config.optimizeDeps.exclude || [];
+    config.optimizeDeps.exclude = [
+      '@tailwindcss/vite',
+      ...(config.optimizeDeps.exclude || [])
+    ];
+
+    // Enhanced esbuild optimization for Storybook
+    config.esbuild = config.esbuild || {};
+    config.esbuild.target = 'es2020'; // Modern target for faster builds
+    config.esbuild.keepNames = true; // Keep function names for debugging
+    config.esbuild.minifyIdentifiers = false; // Preserve readability in dev
 
     // Fix Node.js polyfills for browser environment
     config.define = config.define || {};
@@ -88,8 +104,28 @@ const config = {
     // Disable host checking for development
     config.server.disableHostCheck = true;
 
-    // Browser-compatible build target
-    config.build.target = ['es2015', 'chrome58', 'firefox57'];
+    // Browser-compatible build target with better caching
+    config.build.target = ['es2020', 'chrome80', 'firefox75'];
+
+    // Enhanced caching for Storybook preview builds
+    config.cacheDir = '.storybook/.vite-cache';
+    
+    // Optimized file watching for better HMR performance
+    config.server = config.server || {};
+    config.server.watch = {
+      ignored: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/.git/**',
+        '**/storybook-static/**',
+        '**/.storybook/.vite-cache/**'
+      ],
+      usePolling: false, // Disable polling for better performance
+    };
+
+    // Basic CSS configuration for Storybook compatibility
+    config.css = config.css || {};
+    config.css.devSourcemap = true;
 
     return config;
   }

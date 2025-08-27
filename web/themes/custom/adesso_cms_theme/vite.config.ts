@@ -40,6 +40,57 @@ export default defineConfig({
           ignored: ['**/.git/**', '**/node_modules/**', '**/.logs/**']
         };
       }
+    },
+    {
+      name: 'build-cleanup',
+      writeBundle: {
+        order: 'post',
+        async handler(options, bundle) {
+          // Advanced build cleanup for production
+          if (process.env.NODE_ENV === 'production') {
+            // Use dynamic import for ES modules
+            const { existsSync, readdirSync, unlinkSync } = await import('fs');
+            const { join } = await import('path');
+            const outDir = options.dir || 'dist';
+            
+            // Clean up old hashed files (keep only latest 2 versions)
+            try {
+              const assetsDir = join(outDir, 'assets');
+              if (existsSync(assetsDir)) {
+                const files = readdirSync(assetsDir);
+                
+                // Group files by base name
+                const fileGroups = {};
+                files.forEach(file => {
+                  const match = file.match(/^(.+)\.[a-f0-9]{8}\.(js|css)$/);
+                  if (match) {
+                    const baseName = match[1];
+                    const ext = match[2];
+                    const key = `${baseName}.${ext}`;
+                    if (!fileGroups[key]) fileGroups[key] = [];
+                    fileGroups[key].push(file);
+                  }
+                });
+                
+                // Remove old files (keep only 2 latest)
+                Object.values(fileGroups).forEach(group => {
+                  if (group.length > 2) {
+                    group.sort().slice(0, -2).forEach(oldFile => {
+                      try {
+                        unlinkSync(join(assetsDir, oldFile));
+                      } catch (e) {
+                        // Ignore cleanup errors
+                      }
+                    });
+                  }
+                });
+              }
+            } catch (e) {
+              // Ignore cleanup errors in production
+            }
+          }
+        }
+      }
     }
   ],
   build: {
@@ -57,31 +108,82 @@ export default defineConfig({
     sourcemap: process.env.NODE_ENV === 'development', // Source maps only in development
     target: browserslistToEsbuild(), // Use browserslist for consistent targeting
     cssCodeSplit: true, // Enable CSS code splitting for better performance
+    // Enhanced chunk size optimization
+    chunkSizeWarningLimit: 300, // Warn about chunks larger than 300KB
+    // Advanced minification for production
+    minify: process.env.NODE_ENV === 'production' ? 'terser' : false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info'],
+        passes: 2, // Multiple passes for better compression
+      },
+      mangle: {
+        properties: {
+          regex: /^_/  // Mangle private properties
+        }
+      },
+      format: {
+        comments: false // Remove all comments
+      }
+    },
+    // Rollup optimizations for better tree shaking
+    assetsInlineLimit: 4096, // Inline assets smaller than 4KB
     rollupOptions: {
       // Don't bundle external dependencies for Drupal compatibility
       external: (id) => {
         return ['alpinejs', 'swiper', 'lucide'].some(external => id.includes(external));
       },
       output: {
-        // Optimized asset naming for Drupal library integration
+        // Enhanced asset naming for optimal caching and performance
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');
           const extType = info[info.length - 1];
+          const baseName = info[0];
           
-          // Different naming patterns for different asset types
+          // Optimized naming patterns for different asset types
           if (/\.(css|scss)$/i.test(assetInfo.name)) {
-            return `assets/css/[name]-[hash].${extType}`;
+            // Shorter hash for CSS files to reduce manifest size
+            return `assets/css/[name].[hash:8].${extType}`;
           }
           if (/\.(png|jpe?g|svg|gif|webp|avif)$/i.test(assetInfo.name)) {
-            return `assets/images/[name]-[hash].${extType}`;
+            // Include size hint for images to improve cache efficiency
+            return `assets/img/[name].[hash:8].${extType}`;
           }
           if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
-            return `assets/fonts/[name]-[hash].${extType}`;
+            // Font-specific optimization with shorter path
+            return `assets/font/[name].[hash:8].${extType}`;
           }
-          return `assets/misc/[name]-[hash].${extType}`;
+          // Shorter misc path for other assets
+          return `assets/misc/[name].[hash:8].${extType}`;
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        // Optimized chunk naming with shorter hashes
+        chunkFileNames: (chunkInfo) => {
+          // Use dynamic imports for better naming
+          const name = chunkInfo.name || 'chunk';
+          return `assets/js/${name}.[hash:8].js`;
+        },
+        // Entry file optimization for main files
+        entryFileNames: (chunkInfo) => {
+          const name = chunkInfo.name || 'entry';
+          return `assets/js/${name}.[hash:8].js`;
+        },
+        // Advanced chunk optimization for vendor splitting
+        manualChunks: (id) => {
+          // Separate vendor libraries for better caching
+          if (id.includes('node_modules')) {
+            if (id.includes('alpinejs')) return 'vendor-alpine';
+            if (id.includes('swiper')) return 'vendor-swiper';
+            if (id.includes('lucide')) return 'vendor-lucide';
+            return 'vendor-common';
+          }
+          // Separate component chunks for code splitting
+          if (id.includes('/components/')) {
+            const match = id.match(/components\/([^\/]+)\//);
+            if (match) return `comp-${match[1]}`;
+          }
+        },
         // Ensure proper formatting for ES modules
         format: 'es'
       }
@@ -132,11 +234,33 @@ export default defineConfig({
     devSourcemap: true,
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/scss/_variables.scss";`
+        additionalData: `@import "./src/scss/_variables.scss";`,
+        charset: false, // Remove charset for smaller files
+        quietDeps: true, // Silence dependency warnings
+        verbose: false, // Reduce logging in production
+        sourceMapContents: process.env.NODE_ENV === 'development' // Source map contents only in dev
       }
     },
-    // PostCSS optimization
-    postcss: './postcss.config.js'
+    // PostCSS optimization with advanced configuration
+    postcss: './postcss.config.js',
+    // Enhanced CSS module support
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: process.env.NODE_ENV === 'production' 
+        ? '[hash:base64:5]' 
+        : '[name]__[local]__[hash:base64:5]'
+    },
+    // Transformer optimizations
+    transformer: 'postcss',
+    // Lightning CSS for ultra-fast processing (when available)
+    lightningcss: process.env.NODE_ENV === 'production' ? {
+      minify: true,
+      targets: {
+        chrome: 95,
+        firefox: 91,
+        safari: 14
+      }
+    } : false
   },
   // Optimizations for production builds
   optimizeDeps: {

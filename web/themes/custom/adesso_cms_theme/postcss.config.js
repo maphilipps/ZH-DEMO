@@ -6,9 +6,22 @@ export default {
         'nesting-rules': true,
         'custom-properties': true,
         'custom-media-queries': true,
-        'media-query-ranges': true
-      }
+        'media-query-ranges': true,
+        'logical-properties-and-values': true,
+        'color-functional-notation': true
+      },
+      // Enhanced browser support with automatic polyfills
+      // browsers: 'browserslist', // Remove to use default browserslist config
+      preserve: false, // Remove original code after transformation
     },
-    autoprefixer: {}
+    autoprefixer: {
+      // Use browserslist configuration
+      cascade: false, // Disable visual cascade for smaller files
+      remove: true, // Remove outdated prefixes
+    },
+    // Basic CSS optimization for production
+    ...(process.env.NODE_ENV === 'production' && {
+      'cssnano': {}
+    })
   },
 };

@@ -46,9 +46,9 @@
    * @return {void}
    */
   function initializeCTAButtons(ctaButtons, heroElement) {
-    ctaButtons.forEach(function(button, index) {
+    ctaButtons.forEach(function (button, index) {
       // Enhanced click tracking
-      button.addEventListener('click', function(e) {
+      button.addEventListener('click', function (e) {
         const ctaData = {
           position: index + 1,
           text: button.textContent.trim(),
@@ -61,7 +61,7 @@
 
         // Add visual feedback
         button.classList.add('animate-pulse');
-        setTimeout(function() {
+        setTimeout(function () {
           button.classList.remove('animate-pulse');
         }, 200);
 
@@ -79,7 +79,7 @@
       });
 
       // Enhanced keyboard interaction
-      button.addEventListener('keydown', function(e) {
+      button.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           button.click();
@@ -87,11 +87,11 @@
       });
 
       // Add focus management
-      button.addEventListener('focus', function() {
+      button.addEventListener('focus', function () {
         button.classList.add('ring-2', 'ring-blue-500', 'ring-opacity-50');
       });
 
-      button.addEventListener('blur', function() {
+      button.addEventListener('blur', function () {
         button.classList.remove('ring-2', 'ring-blue-500', 'ring-opacity-50');
       });
     });
@@ -142,7 +142,7 @@
     window.addEventListener('resize', requestParallaxUpdate, { passive: true });
 
     // Store cleanup function
-    heroElement.parallaxCleanup = function() {
+    heroElement.parallaxCleanup = function () {
       window.removeEventListener('scroll', requestParallaxUpdate);
       window.removeEventListener('resize', requestParallaxUpdate);
     };
@@ -157,16 +157,16 @@
   function initializeScrollAnimations(heroElement, heroContent) {
     if (!heroContent) return;
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           // Hero is visible - trigger entry animations
           heroContent.classList.add('animate-fade-in-up');
           
           // Stagger animation for child elements
           const animatableElements = heroContent.querySelectorAll('h1, h2, p, .cta-button');
-          animatableElements.forEach(function(element, index) {
-            setTimeout(function() {
+          animatableElements.forEach(function (element, index) {
+            setTimeout(function () {
               element.classList.add('animate-fade-in');
             }, index * 100);
           });
@@ -199,7 +199,7 @@
     playPauseButton.innerHTML = '⏸️';
     playPauseButton.setAttribute('aria-label', 'Pause background video');
     
-    playPauseButton.addEventListener('click', function() {
+    playPauseButton.addEventListener('click', function () {
       if (videoElement.paused) {
         videoElement.play();
         playPauseButton.innerHTML = '⏸️';
@@ -215,7 +215,7 @@
     videoElement.parentNode.appendChild(playPauseButton);
     
     // Handle video load errors gracefully
-    videoElement.addEventListener('error', function() {
+    videoElement.addEventListener('error', function () {
       console.warn('[adesso-hero] Video background failed to load');
       videoElement.style.display = 'none';
     });
@@ -290,7 +290,7 @@
 
       console.log('[adesso-hero] Found', heroElements.length, 'hero section(s)');
 
-      heroElements.forEach(function(heroElement) {
+      heroElements.forEach(function (heroElement) {
         initializeHero(heroElement);
       });
     },
@@ -300,7 +300,7 @@
         // Clean up observers and event listeners
         const heroes = context.querySelectorAll('.hero, [data-hero], .hero-section, .hero-banner');
         
-        heroes.forEach(function(hero) {
+        heroes.forEach(function (hero) {
           // Clean up parallax
           if (hero.parallaxCleanup) {
             hero.parallaxCleanup();
@@ -321,7 +321,7 @@
           
           // Remove video controls
           const videoControls = hero.querySelectorAll('.video-control');
-          videoControls.forEach(function(control) {
+          videoControls.forEach(function (control) {
             control.remove();
           });
         });

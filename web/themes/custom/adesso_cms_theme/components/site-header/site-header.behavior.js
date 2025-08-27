@@ -105,7 +105,7 @@
    * @returns {void}
    */
   function initializeMobileMenuWithElements(mobileToggle, mobileMenu) {
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
 
       if (isExpanded) {
@@ -123,7 +123,7 @@
     });
 
     // Handle keyboard navigation in mobile menu
-    mobileMenu.addEventListener('keydown', function(e) {
+    mobileMenu.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -150,7 +150,7 @@
     // Handle focus management for dropdowns
     const dropdownTriggers = header.querySelectorAll('[data-dropdown-toggle]');
     dropdownTriggers.forEach(trigger => {
-      trigger.addEventListener('focus', function() {
+      trigger.addEventListener('focus', function () {
         // Announce available actions to screen readers
         const hasSubmenu = trigger.getAttribute('aria-haspopup') === 'true';
         if (hasSubmenu) {
@@ -186,7 +186,7 @@
     );
 
     focusableElements.forEach((element) => {
-      element.addEventListener('keydown', function(e) {
+      element.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
           // Handle tab navigation within dropdowns
           const openDropdown = header.querySelector(
@@ -252,7 +252,7 @@
       return;
     }
 
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
 
       if (isExpanded) {
@@ -270,7 +270,7 @@
     });
 
     // Handle keyboard navigation in mobile menu
-    mobileMenu.addEventListener('keydown', function(e) {
+    mobileMenu.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -295,7 +295,7 @@
     }
 
     // Focus search input when dropdown opens
-    searchToggle.addEventListener('click', function() {
+    searchToggle.addEventListener('click', function () {
       setTimeout(() => {
         if (!searchDropdown.classList.contains('hidden')) {
           searchInput.focus();
@@ -304,7 +304,7 @@
     });
 
     // Handle search input keyboard events
-    searchInput.addEventListener('keydown', function(e) {
+    searchInput.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeDropdown(searchToggle, searchDropdown);
         searchToggle.focus();
@@ -314,7 +314,7 @@
     // Handle search form submission
     const searchForm = searchDropdown.querySelector('form');
     if (searchForm) {
-      searchForm.addEventListener('submit', function(e) {
+      searchForm.addEventListener('submit', function (e) {
         const query = searchInput.value.trim();
         if (!query) {
           e.preventDefault();
@@ -345,13 +345,13 @@
       }
 
       // Handle click events
-      trigger.addEventListener('click', function(e) {
+      trigger.addEventListener('click', function (e) {
         e.preventDefault();
         toggleDropdown(trigger, dropdown);
       });
 
       // Handle keyboard events
-      trigger.addEventListener('keydown', function(e) {
+      trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           toggleDropdown(trigger, dropdown);
@@ -362,7 +362,7 @@
       });
 
       // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
           closeDropdown(trigger, dropdown);
         }

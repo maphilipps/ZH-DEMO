@@ -37,7 +37,7 @@
     /**
      * Initialize Alpine.js component data for file upload preview.
      */
-    initializeAlpineComponent: function() {
+    initializeAlpineComponent: function () {
       if (typeof Alpine !== 'undefined' && typeof document !== 'undefined') {
         document.addEventListener('alpine:init', () => {
           Alpine.data('fileUploadPreview', () => ({

@@ -1,0 +1,18 @@
+# Swiss government compliance browser support
+# Modern browsers for optimal performance while maintaining broad compatibility
+
+> 1%
+last 2 versions
+not dead
+not ie 11
+not op_mini all
+
+# Specific browser versions for Swiss municipal requirements
+Chrome >= 90
+Firefox >= 88
+Safari >= 14
+Edge >= 90
+
+# Mobile support for municipal services
+iOS >= 14
+Android >= 5

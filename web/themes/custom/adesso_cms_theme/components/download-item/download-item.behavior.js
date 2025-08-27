@@ -24,7 +24,7 @@
     }
 
     // Add enhanced download tracking
-    downloadLink.addEventListener('click', function(e) {
+    downloadLink.addEventListener('click', function (e) {
       const url = downloadLink.href;
       const isExternalDownload = !url.startsWith(window.location.origin);
       
@@ -51,7 +51,7 @@
     });
 
     // Enhanced keyboard interaction
-    downloadLink.addEventListener('keydown', function(e) {
+    downloadLink.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         downloadLink.click();
@@ -91,7 +91,7 @@
 
     // Simulate progress for demonstration (in real app, use actual progress)
     let progress = 0;
-    const progressInterval = setInterval(function() {
+    const progressInterval = setInterval(function () {
       progress += Math.random() * 15;
       
       if (progress >= 100) {
@@ -105,7 +105,7 @@
         }
         
         // Hide progress after delay
-        setTimeout(function() {
+        setTimeout(function () {
           progressBar.style.display = 'none';
           if (statusText) {
             statusText.textContent = '';
@@ -235,7 +235,7 @@
       
       // Add visual feedback
       countElement.classList.add('animate-pulse');
-      setTimeout(function() {
+      setTimeout(function () {
         countElement.classList.remove('animate-pulse');
       }, 1000);
     }
@@ -281,7 +281,7 @@
 
       console.log('[adesso-download-item] Found', downloadElements.length, 'download item(s)');
 
-      downloadElements.forEach(function(downloadElement) {
+      downloadElements.forEach(function (downloadElement) {
         initializeDownloadItem(downloadElement);
       });
     },
@@ -291,7 +291,7 @@
         // Clean up progress bars and reset states
         const downloadItems = context.querySelectorAll('.download-item, [data-download-item], .file-download');
         
-        downloadItems.forEach(function(item) {
+        downloadItems.forEach(function (item) {
           const progressBar = item.querySelector('.download-progress');
           const statusText = item.querySelector('.download-status');
           

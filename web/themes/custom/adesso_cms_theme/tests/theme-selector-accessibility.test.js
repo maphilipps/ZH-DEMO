@@ -67,7 +67,7 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
           <div class="grid grid-cols-3 gap-3 text-xs" role="radiogroup" aria-labelledby="theme-preview-description">
             <div class="theme-preview-card bg-white border border-gray-200 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                  data-theme="light" 
-                 onclick="selectTheme('light')"
+                 data-select-theme="light"
                  role="radio"
                  aria-checked="${selectedValue === 'light' ? 'true' : 'false'}"
                  tabindex="${selectedValue === 'light' ? '0' : '-1'}"

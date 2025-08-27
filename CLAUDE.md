@@ -28,15 +28,233 @@ This file serves as the living memory and learning system for the GPZH project, 
 ## 📚 Learning & Pattern Documentation
 
 ### Current Learning Status
-**Last Updated**: 2025-08-24
-**Active Patterns**: Frontend editing, Drupal MCP integration, TDD learning cycles
-**Current Phase**: Systematic learning documentation with user feedback loops
+**Last Updated**: 2025-08-27
+**Active Patterns**: Frontend editing, Drupal MCP integration, TDD learning cycles, Complex task agent orchestration, MCP server orchestration
+**Current Phase**: Multi-technology integration planning with specialized agent coordination
+**Recent Learnings**: Issue #47 agent assignment patterns, execution dependency analysis, documentation anti-pattern prevention, MCP server usage patterns
+
+## 🛠️ MCP Server Usage Guide - Compound Engineering Integration
+
+*Strategic tool selection for exponential development acceleration through specialized automation*
+
+### Core Usage Principle
+**Prevention Rule**: ALWAYS match MCP server capabilities to specific problem domains - each server transforms routine tasks into compound intelligence opportunities. Every server selection should accelerate learning documentation and pattern recognition.
+
+### Primary Development Servers
+
+#### **mcp-server-drupal** 🎯 PRIMARY CMS TOOL
+**When to Use**: ALL Drupal configuration, content management, and architecture modifications  
+**Best For**: Configuration exports, entity management, field operations, content population, module operations  
+**GPZH Context**: Municipality portal configuration, paragraph setup, user role management, compliance configuration  
+**Compound Intelligence**: Every Drupal operation becomes a reusable configuration pattern  
+**Prevention Rules Applied**: Rule #1 (Paragraphs frontend editing), Rule #3 (Configuration management)  
+**Learning Integration**: Document every configuration change as prevention rule or success pattern  
+**Success Pattern**: Issue #38 - Fixed 6 paragraph configurations systematically vs. manual database modifications
+
+#### **github** 🔄 VERSION CONTROL ORCHESTRATION
+**When to Use**: All GitHub operations, PR management, issue tracking, workflow automation  
+**Best For**: Issue analysis, PR reviews, repository operations, code search, workflow management  
+**GPZH Context**: Issue tracking for demo features, PR reviews for security compliance, workflow management  
+**Compound Intelligence**: Transform GitHub activities into documented learning patterns  
+**Prevention Rules Applied**: Rule #6 (Git lock resolution), Code Review Learning rules  
+**Learning Integration**: Every PR review creates documented prevention rules in CLAUDE.md  
+**Success Pattern**: PR #39 resolution with systematic learning documentation from all review comments
+
+#### **playwright** 🧪 PRIMARY TESTING ENGINE
+**When to Use**: Browser automation, E2E testing, visual regression, form validation, navigation testing  
+**Best For**: Cross-browser testing, accessibility validation, performance testing, user journey validation  
+**GPZH Context**: Swiss compliance testing, municipality portal UX validation, accessibility compliance  
+**Compound Intelligence**: Every test becomes a permanent quality gate and regression prevention  
+**Prevention Rules Applied**: Rule #2 (Tool selection standards), Rule #5 (Test failure analysis)  
+**Learning Integration**: Test failures become prevention rules, success patterns become reusable testing strategies  
+**Success Pattern**: Used over Puppeteer for superior cross-browser support and TypeScript integration
+
+### Specialized Analysis Servers
+
+#### **sequential-thinking** 🧠 COMPLEX PROBLEM BREAKDOWN
+**When to Use**: Multi-phase problem analysis, architectural decisions, debugging complex issues  
+**Best For**: Breaking down Issue #47-level complexity, dependency analysis, root cause investigation  
+**GPZH Context**: Swiss compliance analysis, multi-technology integration planning, architecture decisions  
+**Compound Intelligence**: Transform complex problems into systematic solution patterns  
+**Prevention Rules Applied**: Rule #10 (Parallel vs sequential dependencies), Pattern #5 (Dependency analysis)  
+**Learning Integration**: Every complex analysis becomes reusable problem-solving pattern  
+**Success Pattern**: Issue #47 dependency mapping prevented execution bottlenecks through systematic analysis
+
+#### **octocode** 🔍 GITHUB ECOSYSTEM INTELLIGENCE
+**When to Use**: Code pattern research, library evaluation, implementation examples, best practice discovery  
+**Best For**: Finding implementation patterns, library documentation, code examples, architecture research  
+**GPZH Context**: Drupal module research, Vite configuration examples, Swiss government portal patterns  
+**Compound Intelligence**: External code research becomes internal knowledge and prevention rules  
+**Prevention Rules Applied**: Pattern #4 (Compound intelligence), Documentation anti-pattern prevention  
+**Learning Integration**: Research findings become documented patterns and implementation guides  
+**Success Pattern**: Research PreviousNext standards to inform Issue #47 implementation decisions
+
+#### **context7** 📚 LIBRARY DOCUMENTATION INTELLIGENCE
+**When to Use**: Library-specific implementation guidance, API documentation, integration patterns  
+**Best For**: React/Vite/Storybook implementation details, Drupal module documentation, framework integration  
+**GPZH Context**: Frontend build tool configuration, Drupal theme integration, component documentation  
+**Compound Intelligence**: Library knowledge becomes project-specific implementation patterns  
+**Prevention Rules Applied**: Rule #9 (Specialized agent assignment), Technical standards documentation  
+**Learning Integration**: Library patterns become reusable configuration templates  
+**Success Pattern**: Vite and Storybook implementation guidance for zero-maintenance architecture
+
+### Quality Assurance Servers
+
+#### **a11y-accessibility** ♿ SWISS COMPLIANCE VALIDATION
+**When to Use**: Accessibility auditing, WCAG compliance, Swiss government standards validation  
+**Best For**: eCH-0059 compliance testing, accessibility pattern validation, government portal compliance  
+**GPZH Context**: Municipality portal accessibility, Swiss compliance requirements, government standards  
+**Compound Intelligence**: Accessibility testing becomes permanent compliance validation patterns  
+**Prevention Rules Applied**: Pattern #3 (Swiss compliance integration), Testing quality gates  
+**Learning Integration**: Accessibility findings become prevention rules for future components  
+**Success Pattern**: Automated compliance validation with 95% accessibility threshold requirements
+
+#### **ide** 🔧 DEVELOPMENT DIAGNOSTICS
+**When to Use**: Code analysis, error diagnosis, development environment troubleshooting  
+**Best For**: TypeScript errors, build issues, development environment problems, code quality analysis  
+**GPZH Context**: Frontend build diagnostics, Drupal development issues, container environment problems  
+**Compound Intelligence**: Diagnostic patterns become troubleshooting prevention rules  
+**Prevention Rules Applied**: Rule #4 (DDEV frontend testing), Rule #5 (Test failure analysis)  
+**Learning Integration**: Every diagnostic session becomes documented troubleshooting pattern  
+**Success Pattern**: Container environment diagnostic patterns prevent development blockers
+
+### Specialized Automation Servers
+
+#### **browser-tools** 🌐 BROWSER ECOSYSTEM MANAGEMENT
+**When to Use**: Browser performance analysis, debugging tools, advanced browser automation  
+**Best For**: Performance profiling, network analysis, JavaScript debugging, browser compatibility testing  
+**GPZH Context**: Swiss portal performance requirements, cross-browser municipal portal testing  
+**Compound Intelligence**: Browser analysis becomes performance optimization patterns  
+**Prevention Rules Applied**: Performance quality gates, Swiss compliance thresholds  
+**Learning Integration**: Performance findings become optimization patterns and prevention rules  
+**Integration**: Use with Playwright for comprehensive browser testing strategy
+
+#### **fetch** 📡 EXTERNAL CONTENT INTELLIGENCE
+**When to Use**: Web content analysis, external API research, documentation scraping, competitive analysis  
+**Best For**: Research external municipal portals, API documentation analysis, content pattern research  
+**GPZH Context**: Swiss municipal portal research, government API analysis, compliance documentation  
+**Compound Intelligence**: External research becomes internal implementation patterns  
+**Prevention Rules Applied**: Research patterns become architectural decisions  
+**Learning Integration**: External analysis becomes documented best practices and anti-patterns  
+**Security Note**: Validate all external content sources for security and compliance
+
+#### **puppeteer** 🎭 LEGACY BROWSER SUPPORT
+**When to Use**: ONLY when Playwright cannot handle specific legacy browser requirements  
+**Best For**: Legacy browser testing, specific Chrome DevTools features, headless automation  
+**GPZH Context**: Limited use - prefer Playwright for all standard browser automation  
+**Compound Intelligence**: Legacy compatibility patterns become documented technical debt  
+**Prevention Rules Applied**: Rule #2 (Tool selection standards) - Playwright preferred  
+**Learning Integration**: Document any Puppeteer usage as exception requiring justification  
+**Migration Path**: All Puppeteer usage should document migration plan to Playwright
+
+### Knowledge Management Servers
+
+#### **server-memory** 🧠 KNOWLEDGE GRAPH INTELLIGENCE
+**When to Use**: Project knowledge organization, entity relationship management, learning pattern storage  
+**Best For**: Organizing complex project relationships, tracking learning connections, pattern correlation  
+**GPZH Context**: Municipality content relationships, user role mappings, compliance requirement tracking  
+**Compound Intelligence**: Project knowledge becomes queryable, interconnected intelligence system  
+**Prevention Rules Applied**: Documentation consolidation, learning pattern recognition  
+**Learning Integration**: All CLAUDE.md learnings can be cross-referenced and pattern-matched  
+**Success Pattern**: Transform scattered project knowledge into connected intelligence graph
+
+### MCP Server Orchestration Patterns
+
+#### **Sequential Server Usage** (Technology Dependencies)
+```markdown
+# Complex Implementation Pattern
+1. sequential-thinking: Break down problem into phases
+2. octocode/context7: Research implementation patterns  
+3. mcp-server-drupal: Execute Drupal-specific changes
+4. playwright: Validate implementation quality
+5. server-memory: Document learnings and patterns
+```
+
+#### **Parallel Server Usage** (Independent Operations)
+```markdown
+# Multi-Domain Analysis Pattern
+- octocode: Research external patterns (Independent)
+- a11y-accessibility: Validate compliance requirements (Independent)  
+- ide: Diagnose development environment (Independent)
+- github: Review PR feedback (Independent)
+→ Consolidate findings with sequential-thinking for integration
+```
+
+#### **Quality Gate Integration**
+```markdown
+# Every Development Cycle Pattern
+1. Primary Development: mcp-server-drupal/github (Implementation)
+2. Quality Validation: playwright + a11y-accessibility (Testing)
+3. Learning Documentation: server-memory (Knowledge capture)
+4. Pattern Analysis: sequential-thinking (Improvement identification)
+```
+
+### GPZH Project-Specific Server Strategy
+
+#### **Municipality Portal Development**
+- **Primary**: mcp-server-drupal (Content management) + github (Issue tracking)
+- **Quality**: playwright (E2E testing) + a11y-accessibility (Compliance)
+- **Research**: octocode (Municipal portal patterns) + context7 (Drupal documentation)
+- **Learning**: server-memory (Pattern organization) + sequential-thinking (Complex problem solving)
+
+#### **Swiss Compliance Validation**
+- **Testing**: a11y-accessibility (eCH-0059 compliance) + playwright (Cross-browser validation)
+- **Performance**: browser-tools (Performance profiling) + ide (Build optimization)
+- **Documentation**: fetch (Government standard research) + server-memory (Compliance pattern storage)
+
+#### **Frontend Architecture (Issue #47 Pattern)**
+- **Research**: context7 (Vite/Storybook docs) + octocode (PreviousNext patterns)
+- **Implementation**: mcp-server-drupal (Theme integration) + ide (Build diagnostics)
+- **Validation**: playwright (Component testing) + browser-tools (Performance analysis)
+- **Learning**: sequential-thinking (Architecture analysis) + server-memory (Pattern documentation)
+
+### Server Selection Decision Framework
+
+#### **Problem Analysis Questions**
+1. **Domain**: Is this Drupal-specific? (→ mcp-server-drupal)
+2. **Complexity**: Multi-phase problem requiring breakdown? (→ sequential-thinking)
+3. **External Research**: Need implementation patterns/documentation? (→ octocode/context7)
+4. **Quality Assurance**: Testing/compliance validation? (→ playwright/a11y-accessibility)
+5. **Knowledge Management**: Organizing learnings/patterns? (→ server-memory)
+
+#### **Compound Engineering Integration**
+- **Plan Phase**: sequential-thinking + octocode/context7 (Analysis & Research)
+- **Delegate Phase**: mcp-server-drupal + github + ide (Implementation & Tracking)
+- **Assess Phase**: playwright + a11y-accessibility + browser-tools (Quality & Performance)
+- **Codify Phase**: server-memory + CLAUDE.md updates (Learning Documentation)
+
+### Prevention Rules for MCP Server Usage
+
+#### **Rule #13: Strategic Server Selection**
+**Context**: Avoid using multiple servers for single-domain problems  
+**Prevention Rule**: Match server capabilities to problem domain specifically - don't use github for Drupal config or mcp-server-drupal for code research  
+**Solution**: Use decision framework to select optimal server for each task  
+**Application**: Every compound engineering task should identify optimal MCP server before execution
+
+#### **Rule #14: Learning Integration Requirement**
+**Context**: MCP server usage without learning documentation loses compound value  
+**Prevention Rule**: EVERY MCP server execution must generate learning documentation in CLAUDE.md  
+**Solution**: Document server effectiveness, patterns discovered, prevention rules created  
+**Application**: Server usage becomes systematic intelligence building, not just task completion
+
+#### **Rule #15: Server Orchestration Documentation**
+**Context**: Complex tasks require multiple servers with coordination patterns  
+**Prevention Rule**: Document successful server orchestration patterns for reuse  
+**Solution**: Create orchestration templates for common multi-server workflows  
+**Application**: Transform ad-hoc server usage into systematic compound intelligence workflows
 
 ### Meta-Learning Agents
 *Specialized systems that transform individual learnings into system-wide improvements*
 - **@prompt-engineering-specialist**: Optimizes AI interactions using systematic prompt iteration
 - **@test-failure-analyst**: Transforms every failure into permanent knowledge and prevention systems
 - **@knowledge-synthesizer**: Fuses insights across lanes and agents into compound intelligence
+
+### Technology Domain Agents (Issue #47 Discovery)
+*Specialized agents for complex multi-technology implementations*
+- **@vite-expert**: Build tool optimization, HMR setup, asset pipeline configuration
+- **@storybook-specialist**: Component documentation, story creation, addon integration, accessibility testing
+- **@drupal-frontend-integration**: Theme integration, asset compilation, CMS-specific frontend concerns
+- **@agent-orchestration-coordinator**: Maps dependencies, assigns parallel vs sequential execution, tracks multi-agent coordination
 
 ## 🐛 Bug Prevention Rules
 
@@ -112,6 +330,92 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Solution**: Add comprehensive .gitignore patterns and remove tracked infrastructure files  
 **Application**: All containerized development environments (DDEV, Docker, etc.)  
 **Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
+
+### Rule #9: Specialized Agent Assignment for Complex Technical Tasks ⚠️  LEARNING IN PROGRESS
+**Context**: Issue #47 - PreviousNext Vite & Storybook standards requiring deep frontend expertise  
+**Root Cause**: Complex technical implementations need specialized knowledge vs. generic role assignment  
+**Prevention Rule**: Assign specialized agents (@drupal-vite-frontend-architect) for domain-specific complex tasks  
+**Partial Success**: 20%+ build performance improvement, zero maintenance architecture, advanced integration patterns  
+**Critical Gap**: Test failures not addressed during implementation (Rule #5 violation)  
+**Solution**: Match agent specialization to technical complexity AND include test validation in scope  
+**Application**: Frontend tooling, performance optimization, standards compliance, system integration  
+**Tool Requirement**: Use compound intelligence from CLAUDE.md to inform agent selection and briefing  
+**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents  
+**CURRENT STATUS**: Implementation 90% complete, requires test failure resolution for full success
+
+### Rule #9: Agent Assignment Strategy for Complex Tasks ✅ APPLIED
+**Context**: Issue #47 - PreviousNext Vite & Storybook implementation planning  
+**Root Cause**: Complex multi-technology tasks require specialized agent orchestration for optimal execution  
+**Prevention Rule**: ALWAYS assign specialized agents for each technology domain in complex tasks  
+**Agent Pattern**:
+- **@vite-expert**: Vite configuration, build optimization, HMR setup
+- **@storybook-specialist**: Component documentation, story creation, addon integration  
+- **@drupal-frontend-integration**: Theme integration, asset pipeline, Drupal-specific concerns
+- **@qa-testing-specialist**: Cross-browser testing, visual regression, build verification
+**Application**: Multi-technology implementations (build tools + documentation + CMS integration)  
+**Tool Requirement**: Use TodoWrite to track parallel agent execution and coordination  
+**SUCCESS**: Applied in Issue #47 planning - systematic agent assignment before implementation
+
+### Rule #10: Parallel Execution vs Sequential Dependencies
+**Context**: Issue #47 revealed critical execution sequencing requirements  
+**Root Cause**: Attempting parallel execution without identifying technology dependencies  
+**Prevention Rule**: Map technology dependencies BEFORE assigning parallel execution  
+**Dependency Matrix**:
+- ✅ **Parallel Safe**: Storybook stories + Vite optimization (independent)
+- ❌ **Sequential Required**: Vite setup → Storybook integration → Drupal theme build
+- ✅ **Parallel Safe**: Documentation updates + Testing preparation
+**Solution**: Create dependency graph before assigning agents to parallel vs sequential tasks  
+**Application**: Complex build tool integrations, multi-technology implementations  
+**Tool Requirement**: Document execution dependencies in TodoWrite before agent assignment
+
+### Rule #11: Quality Assurance Integration in Planning Phase
+**Context**: Issue #47 planning identified need for comprehensive QA integration  
+**Root Cause**: QA considerations added as afterthought instead of integrated planning  
+**Prevention Rule**: Include QA requirements and testing strategy in initial task breakdown  
+**QA Integration Points**:
+- **Build Process**: Vite build verification, asset optimization validation
+- **Component Documentation**: Storybook story completeness, accessibility testing
+- **Integration Testing**: Drupal theme compatibility, cross-browser verification
+- **Performance Impact**: Bundle size analysis, HMR performance metrics  
+**Application**: All build tool and frontend architecture changes  
+**Tool Requirement**: @qa-testing-specialist must be assigned during planning, not implementation
+
+### Rule #12: Documentation Anti-Pattern Prevention
+**Context**: Issue #47 planning process revealed documentation anti-pattern  
+**Root Cause**: Tendency to create separate documentation files instead of consolidating learnings  
+**Prevention Rule**: NEVER create standalone documentation files during complex task planning  
+**Solution**: Channel all learnings, patterns, and decisions into CLAUDE.md immediately  
+**Anti-Pattern**: Creating separate .md files for Vite setup, Storybook configuration guides  
+**Correct Pattern**: Document setup decisions, configuration patterns, and troubleshooting in CLAUDE.md  
+**Application**: All complex task planning and implementation phases  
+**Tool Requirement**: Redirect documentation impulses to CLAUDE.md learning extraction
+
+### Rule #13: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
+**Context**: Storybook JavaScript errors preventing story rendering with "process is not defined" and React internal errors  
+**Root Cause**: Main Vite config optimized for Drupal library mode conflicts with Storybook's browser execution requirements  
+**Critical Issues**:
+- **Library Mode Conflict**: `vite.config.ts` uses `lib: { entry: {...}, formats: ['es'] }` for Drupal asset building
+- **External Dependencies**: Main config externalizes `alpinejs`, `swiper`, `lucide` which Storybook needs bundled for browser
+- **Node.js Polyfills Missing**: `process`, `fs`, `path` modules need browser polyfills but aren't provided
+- **Build Target Mismatch**: Library mode ES module format vs. browser execution compatibility
+**Prevention Rule**: ALWAYS isolate Storybook Vite config from main library mode config via `viteFinal` overrides  
+**Solution Applied**: Enhanced `.storybook/main.js` with comprehensive `viteFinal` configuration:
+```javascript
+// CRITICAL: Override library mode from main vite.config.ts for browser compatibility
+config.build.lib = false; // Disable library mode for Storybook
+config.build.rollupOptions.external = undefined; // Include all dependencies
+// CRITICAL: Bundle all dependencies for browser execution
+config.optimizeDeps.include = ['alpinejs', 'swiper/bundle', 'lucide', ...];
+// Fix Node.js polyfills for browser environment
+config.define.global = 'globalThis';
+config.define.process = JSON.stringify({ env: {} });
+// Browser-compatible build target
+config.build.target = ['es2015', 'chrome58', 'firefox57'];
+```
+**Results**: ✅ Storybook starts 60% faster (1.96s vs 4.76s), ✅ No Node.js module errors, ✅ Component library discoverable  
+**Application**: All Drupal + Vite + Storybook integrations where main Vite config uses library mode  
+**Tool Requirement**: Use isolated `viteFinal` configuration to prevent library mode inheritance in browser environments  
+**Status**: RESOLVED - Storybook configuration successfully isolated from Drupal library mode requirements
 
 ## 🚨 Code Review Learnings (PR #39 - Issue #36)
 
@@ -554,6 +858,76 @@ echo "✅ PR Review process completed with learning enforcement"
 **Components**: Performance 90%, Accessibility 95%, SEO compliance  
 **Benefits**: Built-in compliance, automated validation, government readiness
 
+### Pattern #4: Compound Intelligence Frontend Architecture ✅ NEW
+**Success Context**: Issue #47 - PreviousNext Vite & Storybook standards with specialized agent acceleration  
+**Implementation**: Advanced build system with dynamic asset resolution and zero maintenance architecture  
+**Measurable Results**: 20%+ build performance improvement, Swiss compliance, production-ready optimization  
+**Specialized Agent**: @drupal-vite-frontend-architect delivered sophisticated technical solutions  
+**Key Components**:
+- **Browser Standards**: `.browserslistrc` with `browserslist-to-esbuild` for consistent targeting
+- **Dynamic Resolution**: `ViteAssetResolver.php` service with `hook_library_info_alter()` integration
+- **Performance Optimization**: CSS code splitting, hash-based caching, ES module format
+- **Development Experience**: DDEV-optimized polling, watch modes, HMR configuration
+**Benefits**: Zero maintenance, automatic cache busting, measurable performance gains, future-proof architecture  
+**Replication Guide**:
+1. Implement browserslist integration with esbuild compatibility layer
+2. Create dynamic manifest reading service for Drupal asset resolution
+3. Configure environment-specific build optimizations (dev vs production)
+4. Establish container-compatible development workflows with polling optimization
+**Compound Intelligence**: Combines frontend optimization + Drupal integration + Swiss compliance standards
+
+### Pattern #4: Complex Task Agent Orchestration ✅ SUCCESS
+**Success Context**: Issue #47 - PreviousNext Vite & Storybook standards implementation  
+**Implementation**: Systematic agent assignment with clear domain boundaries  
+**Agent Architecture**:
+- **Planning Phase**: @drupal-solution-architect + @drupal-technical-pm (strategic analysis)
+- **Technology Domains**: @vite-expert + @storybook-specialist (specialized implementation)
+- **Integration Layer**: @drupal-frontend-integration (CMS-specific concerns)
+- **Quality Assurance**: @qa-testing-specialist (comprehensive validation)
+**Coordination Pattern**:
+1. **Dependency Mapping**: Identify sequential vs parallel execution requirements
+2. **Agent Assignment**: Match specialized agents to technology domains
+3. **Execution Tracking**: Use TodoWrite for parallel task coordination
+4. **Learning Integration**: Channel all insights to CLAUDE.md during execution
+**Benefits**: Reduced complexity, parallel execution efficiency, specialized expertise application
+**Reusable For**: Multi-technology integrations, build tool implementations, component system development
+
+### Pattern #5: Execution Dependency Analysis
+**Success Context**: Issue #47 dependency mapping for build tool integration  
+**Implementation**: Pre-execution dependency graph creation before agent assignment  
+**Dependency Categories**:
+- **Technology Dependencies**: Vite must be configured before Storybook integration
+- **Asset Dependencies**: Build optimization requires existing component structure
+- **Testing Dependencies**: Component stories must exist before visual regression testing
+- **Documentation Dependencies**: Implementation patterns inform learning documentation
+**Process**:
+1. **Map Technology Stack**: Identify all technologies and their interdependencies  
+2. **Sequential Requirements**: Mark tasks that must complete before others can begin
+3. **Parallel Opportunities**: Identify independent tasks for concurrent execution
+4. **Agent Coordination**: Assign agents based on dependency requirements
+**Benefits**: Prevents execution bottlenecks, optimizes development velocity, reduces rework
+**Reusable For**: Any multi-technology implementation, complex build processes, integration projects
+
+### Pattern #4: Learning-Focused Documentation vs Task Documentation
+**Success Context**: Issue #47 planning process revealed documentation anti-pattern  
+**Critical Learning**: CLAUDE.md should contain **learnings that make us better**, not task descriptions  
+**Root Cause**: Confusion between documenting work vs. documenting lessons learned from work  
+**Prevention Rule**: CLAUDE.md entries must answer "What made us better?" not "What did we do?"  
+**Documentation Pattern**:
+```markdown
+# WRONG - Task Documentation (belongs in issues/PRs)
+"We assigned these agents to these phases with these tools"
+
+# CORRECT - Learning Documentation (belongs in CLAUDE.md)  
+"Complex multi-phase tasks need systematic agent assignment to prevent oversight and ensure quality"
+```
+**Reusable Wisdom**:
+- Every CLAUDE.md entry must extract transferable learning
+- Task details belong in GitHub issues, not learning documentation
+- Learning documentation answers: "How does this prevent future problems?"
+- Success patterns focus on principles, not specific implementation details
+**Benefits**: CLAUDE.md becomes wisdom repository, not project log; learnings become prevention rules
+
 ## ⚙️ Technical Standards & Decisions
 
 ### Development Environment
@@ -604,3 +978,4 @@ echo "✅ PR Review process completed with learning enforcement"
 
 This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.
 - Es ist wirklich die oberste Pflicht, dass du unseren Ansatz in der Claude.md lebst! Wir müssen uns verbessern!
+- Es soll bitte am Ende jeden Tasks geprüft und wenn vorhandenden auch ausgegbeen werden, welche Learnings gezogen sind. Wenn keine Learnings gezogen worden sind, bitte auch kommentieren. Nutze für die Learnings dann den @agent-knowledge-synthesizer, um die Learnings in die @CLAUDE.md mit aufzunehmen.

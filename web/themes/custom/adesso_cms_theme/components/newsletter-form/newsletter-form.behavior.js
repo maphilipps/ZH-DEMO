@@ -59,23 +59,23 @@
     }
 
     // Real-time validation on input
-    emailInput.addEventListener('input', function(e) {
+    emailInput.addEventListener('input', function (e) {
       clearTimeout(validationTimeout);
       
       // Debounce validation for better UX
-      validationTimeout = setTimeout(function() {
+      validationTimeout = setTimeout(function () {
         validateEmail(emailInput, validationMessage);
       }, 500);
     });
 
     // Immediate validation on blur
-    emailInput.addEventListener('blur', function(e) {
+    emailInput.addEventListener('blur', function (e) {
       clearTimeout(validationTimeout);
       validateEmail(emailInput, validationMessage);
     });
 
     // Clear validation on focus
-    emailInput.addEventListener('focus', function(e) {
+    emailInput.addEventListener('focus', function (e) {
       clearValidationState(emailInput, validationMessage);
     });
   }
@@ -126,7 +126,7 @@
    * @return {void}
    */
   function initializeFormSubmission(formElement, emailInput, submitButton, messageContainer) {
-    formElement.addEventListener('submit', function(e) {
+    formElement.addEventListener('submit', function (e) {
       e.preventDefault();
       
       // Validate before submission
@@ -179,26 +179,26 @@
         'X-Requested-With': 'XMLHttpRequest'
       }
     })
-    .then(function(response) {
-      return response.json().then(function(data) {
-        return { status: response.status, data: data };
-      });
-    })
-    .then(function(result) {
-      if (result.status >= 200 && result.status < 300) {
+      .then(function (response) {
+        return response.json().then(function (data) {
+          return { status: response.status, data: data };
+        });
+      })
+      .then(function (result) {
+        if (result.status >= 200 && result.status < 300) {
         // Success
-        handleSubmissionSuccess(formElement, emailInput, submitButton, messageContainer, result.data);
-      } else {
+          handleSubmissionSuccess(formElement, emailInput, submitButton, messageContainer, result.data);
+        } else {
         // Server error
-        handleSubmissionError(formElement, submitButton, messageContainer, result.data);
-      }
-    })
-    .catch(function(error) {
-      console.error('[adesso-newsletter-form] Submission error:', error);
-      handleSubmissionError(formElement, submitButton, messageContainer, {
-        message: 'Network error. Please try again later.'
+          handleSubmissionError(formElement, submitButton, messageContainer, result.data);
+        }
+      })
+      .catch(function (error) {
+        console.error('[adesso-newsletter-form] Submission error:', error);
+        handleSubmissionError(formElement, submitButton, messageContainer, {
+          message: 'Network error. Please try again later.'
+        });
       });
-    });
   }
 
   /**
@@ -227,7 +227,7 @@
     });
     
     // Reset button state after delay
-    setTimeout(function() {
+    setTimeout(function () {
       setSubmissionState(submitButton, 'default');
     }, 3000);
   }
@@ -253,7 +253,7 @@
     });
     
     // Reset button state after delay
-    setTimeout(function() {
+    setTimeout(function () {
       setSubmissionState(submitButton, 'default');
     }, 3000);
   }
@@ -326,30 +326,30 @@
     submitButton.classList.remove('loading', 'success', 'error');
     
     switch (state) {
-      case 'loading':
-        submitButton.classList.add('loading');
-        submitButton.disabled = true;
-        submitButton.setAttribute('aria-busy', 'true');
-        submitButton.textContent = 'Subscribing...';
-        break;
+    case 'loading':
+      submitButton.classList.add('loading');
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.textContent = 'Subscribing...';
+      break;
         
-      case 'success':
-        submitButton.classList.add('success');
-        submitButton.textContent = 'Subscribed!';
-        break;
+    case 'success':
+      submitButton.classList.add('success');
+      submitButton.textContent = 'Subscribed!';
+      break;
         
-      case 'error':
-        submitButton.classList.add('error');
-        submitButton.textContent = 'Try Again';
-        submitButton.disabled = false;
-        submitButton.setAttribute('aria-busy', 'false');
-        break;
+    case 'error':
+      submitButton.classList.add('error');
+      submitButton.textContent = 'Try Again';
+      submitButton.disabled = false;
+      submitButton.setAttribute('aria-busy', 'false');
+      break;
         
-      default:
-        submitButton.disabled = false;
-        submitButton.setAttribute('aria-busy', 'false');
-        submitButton.textContent = 'Subscribe';
-        break;
+    default:
+      submitButton.disabled = false;
+      submitButton.setAttribute('aria-busy', 'false');
+      submitButton.textContent = 'Subscribe';
+      break;
     }
   }
 
@@ -529,7 +529,7 @@
 
       console.log('[adesso-newsletter-form] Found', formElements.length, 'newsletter form(s)');
 
-      formElements.forEach(function(formElement) {
+      formElements.forEach(function (formElement) {
         initializeNewsletterForm(formElement);
       });
     },
@@ -539,7 +539,7 @@
         // Clean up and reset form states
         const forms = context.querySelectorAll('.newsletter-form, [data-newsletter-form], form[action*="newsletter"]');
         
-        forms.forEach(function(form) {
+        forms.forEach(function (form) {
           const submitButton = form.querySelector('button[type="submit"], [data-submit]');
           const emailInput = form.querySelector('input[type="email"]');
           const messageContainer = form.querySelector('.form-message');

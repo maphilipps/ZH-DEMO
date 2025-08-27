@@ -5,6 +5,7 @@ import { globSync } from 'glob';
 import { resolve } from 'path';
 import twig from 'vite-plugin-twig-drupal';
 import sdcPlugin from './.storybook/sdc-plugin.js';
+import browserslistToEsbuild from 'browserslist-to-esbuild';
 
 const componentDir = resolve(import.meta.dirname, './components');
 
@@ -42,20 +43,47 @@ export default defineConfig({
     }
   ],
   build: {
+    // Library mode configuration for Drupal asset building
+    lib: {
+      entry: {
+        adesso: './src/js/adesso.js',
+        styles: './src/css/adesso.css'
+      },
+      formats: ['es']
+    },
     manifest: true,
     outDir: 'dist',
     emptyOutDir: false, // Keep compiled SCSS files
-    sourcemap: true, // Enable source maps for better debugging and testing
+    sourcemap: process.env.NODE_ENV === 'development', // Source maps only in development
+    target: browserslistToEsbuild(), // Use browserslist for consistent targeting
+    cssCodeSplit: true, // Enable CSS code splitting for better performance
     rollupOptions: {
-      input: [
-        ...globSync('./src/js/adesso.js'),
-        ...globSync('./src/css/adesso.css')
-      ],
+      // Don't bundle external dependencies for Drupal compatibility
+      external: (id) => {
+        return ['alpinejs', 'swiper', 'lucide'].some(external => id.includes(external));
+      },
       output: {
-        assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: 'assets/[name].js',
-        entryFileNames: 'assets/[name].js',
-        sourcemap: true // Enable source maps in output
+        // Optimized asset naming for Drupal library integration
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const extType = info[info.length - 1];
+          
+          // Different naming patterns for different asset types
+          if (/\.(css|scss)$/i.test(assetInfo.name)) {
+            return `assets/css/[name]-[hash].${extType}`;
+          }
+          if (/\.(png|jpe?g|svg|gif|webp|avif)$/i.test(assetInfo.name)) {
+            return `assets/images/[name]-[hash].${extType}`;
+          }
+          if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
+            return `assets/fonts/[name]-[hash].${extType}`;
+          }
+          return `assets/misc/[name]-[hash].${extType}`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        // Ensure proper formatting for ES modules
+        format: 'es'
       }
     }
   },
@@ -72,13 +100,32 @@ export default defineConfig({
     origin: origin,
     cors: {
       origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
+      credentials: true
     },
-    // Watch additional file types for better HMR
+    // Optimized watch configuration for DDEV container performance
     watch: {
-      ignored: ['**/node_modules/**', '**/vendor/**', '**/.git/**'],
-      include: ['src/**/*', 'components/**/*.{js,scss,css,twig}'],
-      usePolling: false, // Better performance in container environments
-      interval: 100 // Polling interval for file changes
+      ignored: [
+        '**/node_modules/**',
+        '**/vendor/**', 
+        '**/.git/**',
+        '**/dist/**',
+        '**/.ddev/**',
+        '**/core/**',
+        '**/contrib/**'
+      ],
+      include: [
+        'src/**/*',
+        'components/**/*.{js,scss,css,twig}',
+        '*.config.{js,ts,mjs}',
+        'package.json'
+      ],
+      usePolling: isDDEV, // Use polling in DDEV for reliable file watching
+      interval: isDDEV ? 300 : 100 // Slower polling in container environments
+    },
+    // Improved HMR for container environments
+    hmr: {
+      port: isDDEV ? 5174 : undefined,
+      host: isDDEV ? '0.0.0.0' : 'localhost'
     }
   },
   css: {
@@ -87,6 +134,25 @@ export default defineConfig({
       scss: {
         additionalData: `@import "./src/scss/_variables.scss";`
       }
-    }
+    },
+    // PostCSS optimization
+    postcss: './postcss.config.js'
+  },
+  // Optimizations for production builds
+  optimizeDeps: {
+    include: [
+      'alpinejs',
+      'swiper/bundle',
+      'lucide'
+    ],
+    exclude: [
+      '@tailwindcss/vite'
+    ]
+  },
+  // Enhanced esbuild configuration using browserslist
+  esbuild: {
+    target: browserslistToEsbuild(),
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
+    legalComments: 'none'
   }
 });

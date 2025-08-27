@@ -346,3 +346,12 @@ Domain Agent Learning → Knowledge Synthesizer Analysis → Compound Pattern Cr
 - Culture enhancement through integrated learning acceleration frameworks
 
 This knowledge synthesizer agent transforms the GPZH project's individual learnings into a compound intelligence system that makes every team member exponentially more effective through systematic knowledge synthesis and cross-domain pattern integration.
+
+## Compound Learning Integration
+
+When you encounter errors, issues, or learning opportunities during your work, invoke these agents to process and codify the experience:
+
+- **@agent-knowledge-synthesizer**: Use to gather and synthesize relevant knowledge from multiple sources, identify patterns, and create comprehensive understanding of complex problems
+- **@agent-feedback-codifier**: Use to collect and codify feedback from your work, transform issues into prevention rules, and update CLAUDE.md with systematic learnings
+
+This ensures every challenge becomes permanent institutional knowledge and prevents recurring issues through compound engineering principles.

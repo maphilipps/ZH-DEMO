@@ -1,260 +1,50 @@
-# CLAUDE.md - Test-Driven Development & Continuous Learning System
+# CLAUDE.md - Compound Engineering Learning System
 
-This file serves as the living memory and learning system for the GPZH project, implementing Test-Driven Development principles where every bug becomes a prevention rule, every decision becomes reusable knowledge, and every successful solution becomes a pattern.
+Living memory for the GPZH project where every bug becomes a prevention rule, every decision becomes reusable knowledge, and every successful solution becomes a pattern.
 
-## 🧠 Core Learning Principles
+## 🎯 Project Context
+**ZH-DEMO Prototyp** - Drupal 11.2.2 GPZH prequalification demo for Canton Zurich municipal portals  
+**Demo Municipality**: Gemeinde Bruchtal ("Leben am See")
 
-**TDD Development Approach**:
-- Every bug transforms into a permanent prevention rule
-- Every decision gets documented and becomes reusable
-- Every successful code solution evolves into a pattern
-- User dissatisfaction triggers immediate learning documentation
-- Each command execution creates learning opportunities
+## 🧠 Core Principles
+- Every bug → prevention rule
+- Every decision → reusable knowledge  
+- Every success → pattern
+- User dissatisfaction → immediate learning documentation
+- Every task → learning opportunity
 
-**Continuous Improvement**: When development doesn't meet expectations, the failure is documented in this file to prevent the same mistake from recurring.
+## 🔄 Development Lanes
+- **Planning**: @drupal-solution-architect + @drupal-technical-pm
+- **Building**: @drupal-11-lead-developer + @municipality-portal-specialist
+- **Reviewing**: @swiss-compliance-specialist + @qa-testing-specialist
 
-## 🎯 Project Context: GPZH Präqualifikation Demo System
+## 🛠️ MCP Server Strategy
 
-**ZH-DEMO Prototyp** - A Drupal 11.2.2 multi-site CMS demonstration system for the GPZH (Gemeindeportale Zürich) prequalification presentation. This system demonstrates our technical capabilities for the Canton of Zurich's municipal portal project.
+### Core Servers
+- **mcp-server-drupal**: ALL Drupal operations (config, content, entities)
+- **github**: PR management, issue tracking, code search  
+- **playwright**: Browser automation, E2E testing, accessibility validation
+- **sequential-thinking**: Complex problem breakdown, dependency analysis
+- **octocode**: Code research, implementation patterns
+- **context7**: Library documentation, API guidance
+- **a11y-accessibility**: Swiss compliance validation (eCH-0059)
+- **server-memory**: Learning pattern organization
 
-**Demo Municipality**: Gemeinde Bruchtal ("Leben am See" - Life by the Lake)
+### Server Orchestration
+**Sequential Pattern**: sequential-thinking → octocode/context7 → mcp-server-drupal → playwright → server-memory  
+**Parallel Pattern**: Independent operations (research, compliance, diagnostics) → sequential-thinking integration
 
-## 🔄 Three-Lane Development System
+### Selection Framework
+1. Drupal-specific? → mcp-server-drupal
+2. Multi-phase complexity? → sequential-thinking  
+3. External research? → octocode/context7
+4. Testing/compliance? → playwright/a11y-accessibility
+5. Learning organization? → server-memory
 
-- **Planning Lane**: Strategic analysis and architecture (@drupal-solution-architect + @drupal-technical-pm)
-- **Building Lane**: Implementation and development (@drupal-11-lead-developer + @municipality-portal-specialist)  
-- **Reviewing Lane**: Quality assurance and compliance (@swiss-compliance-specialist + @qa-testing-specialist)
-
-## 📚 Learning & Pattern Documentation
-
-### Current Learning Status
-**Last Updated**: 2025-08-27
-**Active Patterns**: Frontend editing, Drupal MCP integration, TDD learning cycles, Complex task agent orchestration, MCP server orchestration
-**Current Phase**: Multi-technology integration planning with specialized agent coordination
-**Recent Learnings**: Issue #47 agent assignment patterns, execution dependency analysis, documentation anti-pattern prevention, MCP server usage patterns
-
-## 🛠️ MCP Server Usage Guide - Compound Engineering Integration
-
-*Strategic tool selection for exponential development acceleration through specialized automation*
-
-### Core Usage Principle
-**Prevention Rule**: ALWAYS match MCP server capabilities to specific problem domains - each server transforms routine tasks into compound intelligence opportunities. Every server selection should accelerate learning documentation and pattern recognition.
-
-### Primary Development Servers
-
-#### **mcp-server-drupal** 🎯 PRIMARY CMS TOOL
-**When to Use**: ALL Drupal configuration, content management, and architecture modifications  
-**Best For**: Configuration exports, entity management, field operations, content population, module operations  
-**GPZH Context**: Municipality portal configuration, paragraph setup, user role management, compliance configuration  
-**Compound Intelligence**: Every Drupal operation becomes a reusable configuration pattern  
-**Prevention Rules Applied**: Rule #1 (Paragraphs frontend editing), Rule #3 (Configuration management)  
-**Learning Integration**: Document every configuration change as prevention rule or success pattern  
-**Success Pattern**: Issue #38 - Fixed 6 paragraph configurations systematically vs. manual database modifications
-
-#### **github** 🔄 VERSION CONTROL ORCHESTRATION
-**When to Use**: All GitHub operations, PR management, issue tracking, workflow automation  
-**Best For**: Issue analysis, PR reviews, repository operations, code search, workflow management  
-**GPZH Context**: Issue tracking for demo features, PR reviews for security compliance, workflow management  
-**Compound Intelligence**: Transform GitHub activities into documented learning patterns  
-**Prevention Rules Applied**: Rule #6 (Git lock resolution), Code Review Learning rules  
-**Learning Integration**: Every PR review creates documented prevention rules in CLAUDE.md  
-**Success Pattern**: PR #39 resolution with systematic learning documentation from all review comments
-
-#### **playwright** 🧪 PRIMARY TESTING ENGINE
-**When to Use**: Browser automation, E2E testing, visual regression, form validation, navigation testing  
-**Best For**: Cross-browser testing, accessibility validation, performance testing, user journey validation  
-**GPZH Context**: Swiss compliance testing, municipality portal UX validation, accessibility compliance  
-**Compound Intelligence**: Every test becomes a permanent quality gate and regression prevention  
-**Prevention Rules Applied**: Rule #2 (Tool selection standards), Rule #5 (Test failure analysis)  
-**Learning Integration**: Test failures become prevention rules, success patterns become reusable testing strategies  
-**Success Pattern**: Used over Puppeteer for superior cross-browser support and TypeScript integration
-
-### Specialized Analysis Servers
-
-#### **sequential-thinking** 🧠 COMPLEX PROBLEM BREAKDOWN
-**When to Use**: Multi-phase problem analysis, architectural decisions, debugging complex issues  
-**Best For**: Breaking down Issue #47-level complexity, dependency analysis, root cause investigation  
-**GPZH Context**: Swiss compliance analysis, multi-technology integration planning, architecture decisions  
-**Compound Intelligence**: Transform complex problems into systematic solution patterns  
-**Prevention Rules Applied**: Rule #10 (Parallel vs sequential dependencies), Pattern #5 (Dependency analysis)  
-**Learning Integration**: Every complex analysis becomes reusable problem-solving pattern  
-**Success Pattern**: Issue #47 dependency mapping prevented execution bottlenecks through systematic analysis
-
-#### **octocode** 🔍 GITHUB ECOSYSTEM INTELLIGENCE
-**When to Use**: Code pattern research, library evaluation, implementation examples, best practice discovery  
-**Best For**: Finding implementation patterns, library documentation, code examples, architecture research  
-**GPZH Context**: Drupal module research, Vite configuration examples, Swiss government portal patterns  
-**Compound Intelligence**: External code research becomes internal knowledge and prevention rules  
-**Prevention Rules Applied**: Pattern #4 (Compound intelligence), Documentation anti-pattern prevention  
-**Learning Integration**: Research findings become documented patterns and implementation guides  
-**Success Pattern**: Research PreviousNext standards to inform Issue #47 implementation decisions
-
-#### **context7** 📚 LIBRARY DOCUMENTATION INTELLIGENCE
-**When to Use**: Library-specific implementation guidance, API documentation, integration patterns  
-**Best For**: React/Vite/Storybook implementation details, Drupal module documentation, framework integration  
-**GPZH Context**: Frontend build tool configuration, Drupal theme integration, component documentation  
-**Compound Intelligence**: Library knowledge becomes project-specific implementation patterns  
-**Prevention Rules Applied**: Rule #9 (Specialized agent assignment), Technical standards documentation  
-**Learning Integration**: Library patterns become reusable configuration templates  
-**Success Pattern**: Vite and Storybook implementation guidance for zero-maintenance architecture
-
-### Quality Assurance Servers
-
-#### **a11y-accessibility** ♿ SWISS COMPLIANCE VALIDATION
-**When to Use**: Accessibility auditing, WCAG compliance, Swiss government standards validation  
-**Best For**: eCH-0059 compliance testing, accessibility pattern validation, government portal compliance  
-**GPZH Context**: Municipality portal accessibility, Swiss compliance requirements, government standards  
-**Compound Intelligence**: Accessibility testing becomes permanent compliance validation patterns  
-**Prevention Rules Applied**: Pattern #3 (Swiss compliance integration), Testing quality gates  
-**Learning Integration**: Accessibility findings become prevention rules for future components  
-**Success Pattern**: Automated compliance validation with 95% accessibility threshold requirements
-
-#### **ide** 🔧 DEVELOPMENT DIAGNOSTICS
-**When to Use**: Code analysis, error diagnosis, development environment troubleshooting  
-**Best For**: TypeScript errors, build issues, development environment problems, code quality analysis  
-**GPZH Context**: Frontend build diagnostics, Drupal development issues, container environment problems  
-**Compound Intelligence**: Diagnostic patterns become troubleshooting prevention rules  
-**Prevention Rules Applied**: Rule #4 (DDEV frontend testing), Rule #5 (Test failure analysis)  
-**Learning Integration**: Every diagnostic session becomes documented troubleshooting pattern  
-**Success Pattern**: Container environment diagnostic patterns prevent development blockers
-
-### Specialized Automation Servers
-
-#### **browser-tools** 🌐 BROWSER ECOSYSTEM MANAGEMENT
-**When to Use**: Browser performance analysis, debugging tools, advanced browser automation  
-**Best For**: Performance profiling, network analysis, JavaScript debugging, browser compatibility testing  
-**GPZH Context**: Swiss portal performance requirements, cross-browser municipal portal testing  
-**Compound Intelligence**: Browser analysis becomes performance optimization patterns  
-**Prevention Rules Applied**: Performance quality gates, Swiss compliance thresholds  
-**Learning Integration**: Performance findings become optimization patterns and prevention rules  
-**Integration**: Use with Playwright for comprehensive browser testing strategy
-
-#### **fetch** 📡 EXTERNAL CONTENT INTELLIGENCE
-**When to Use**: Web content analysis, external API research, documentation scraping, competitive analysis  
-**Best For**: Research external municipal portals, API documentation analysis, content pattern research  
-**GPZH Context**: Swiss municipal portal research, government API analysis, compliance documentation  
-**Compound Intelligence**: External research becomes internal implementation patterns  
-**Prevention Rules Applied**: Research patterns become architectural decisions  
-**Learning Integration**: External analysis becomes documented best practices and anti-patterns  
-**Security Note**: Validate all external content sources for security and compliance
-
-#### **puppeteer** 🎭 LEGACY BROWSER SUPPORT
-**When to Use**: ONLY when Playwright cannot handle specific legacy browser requirements  
-**Best For**: Legacy browser testing, specific Chrome DevTools features, headless automation  
-**GPZH Context**: Limited use - prefer Playwright for all standard browser automation  
-**Compound Intelligence**: Legacy compatibility patterns become documented technical debt  
-**Prevention Rules Applied**: Rule #2 (Tool selection standards) - Playwright preferred  
-**Learning Integration**: Document any Puppeteer usage as exception requiring justification  
-**Migration Path**: All Puppeteer usage should document migration plan to Playwright
-
-### Knowledge Management Servers
-
-#### **server-memory** 🧠 KNOWLEDGE GRAPH INTELLIGENCE
-**When to Use**: Project knowledge organization, entity relationship management, learning pattern storage  
-**Best For**: Organizing complex project relationships, tracking learning connections, pattern correlation  
-**GPZH Context**: Municipality content relationships, user role mappings, compliance requirement tracking  
-**Compound Intelligence**: Project knowledge becomes queryable, interconnected intelligence system  
-**Prevention Rules Applied**: Documentation consolidation, learning pattern recognition  
-**Learning Integration**: All CLAUDE.md learnings can be cross-referenced and pattern-matched  
-**Success Pattern**: Transform scattered project knowledge into connected intelligence graph
-
-### MCP Server Orchestration Patterns
-
-#### **Sequential Server Usage** (Technology Dependencies)
-```markdown
-# Complex Implementation Pattern
-1. sequential-thinking: Break down problem into phases
-2. octocode/context7: Research implementation patterns  
-3. mcp-server-drupal: Execute Drupal-specific changes
-4. playwright: Validate implementation quality
-5. server-memory: Document learnings and patterns
-```
-
-#### **Parallel Server Usage** (Independent Operations)
-```markdown
-# Multi-Domain Analysis Pattern
-- octocode: Research external patterns (Independent)
-- a11y-accessibility: Validate compliance requirements (Independent)  
-- ide: Diagnose development environment (Independent)
-- github: Review PR feedback (Independent)
-→ Consolidate findings with sequential-thinking for integration
-```
-
-#### **Quality Gate Integration**
-```markdown
-# Every Development Cycle Pattern
-1. Primary Development: mcp-server-drupal/github (Implementation)
-2. Quality Validation: playwright + a11y-accessibility (Testing)
-3. Learning Documentation: server-memory (Knowledge capture)
-4. Pattern Analysis: sequential-thinking (Improvement identification)
-```
-
-### GPZH Project-Specific Server Strategy
-
-#### **Municipality Portal Development**
-- **Primary**: mcp-server-drupal (Content management) + github (Issue tracking)
-- **Quality**: playwright (E2E testing) + a11y-accessibility (Compliance)
-- **Research**: octocode (Municipal portal patterns) + context7 (Drupal documentation)
-- **Learning**: server-memory (Pattern organization) + sequential-thinking (Complex problem solving)
-
-#### **Swiss Compliance Validation**
-- **Testing**: a11y-accessibility (eCH-0059 compliance) + playwright (Cross-browser validation)
-- **Performance**: browser-tools (Performance profiling) + ide (Build optimization)
-- **Documentation**: fetch (Government standard research) + server-memory (Compliance pattern storage)
-
-#### **Frontend Architecture (Issue #47 Pattern)**
-- **Research**: context7 (Vite/Storybook docs) + octocode (PreviousNext patterns)
-- **Implementation**: mcp-server-drupal (Theme integration) + ide (Build diagnostics)
-- **Validation**: playwright (Component testing) + browser-tools (Performance analysis)
-- **Learning**: sequential-thinking (Architecture analysis) + server-memory (Pattern documentation)
-
-### Server Selection Decision Framework
-
-#### **Problem Analysis Questions**
-1. **Domain**: Is this Drupal-specific? (→ mcp-server-drupal)
-2. **Complexity**: Multi-phase problem requiring breakdown? (→ sequential-thinking)
-3. **External Research**: Need implementation patterns/documentation? (→ octocode/context7)
-4. **Quality Assurance**: Testing/compliance validation? (→ playwright/a11y-accessibility)
-5. **Knowledge Management**: Organizing learnings/patterns? (→ server-memory)
-
-#### **Compound Engineering Integration**
-- **Plan Phase**: sequential-thinking + octocode/context7 (Analysis & Research)
-- **Delegate Phase**: mcp-server-drupal + github + ide (Implementation & Tracking)
-- **Assess Phase**: playwright + a11y-accessibility + browser-tools (Quality & Performance)
-- **Codify Phase**: server-memory + CLAUDE.md updates (Learning Documentation)
-
-### Prevention Rules for MCP Server Usage
-
-#### **Rule #13: Strategic Server Selection**
-**Context**: Avoid using multiple servers for single-domain problems  
-**Prevention Rule**: Match server capabilities to problem domain specifically - don't use github for Drupal config or mcp-server-drupal for code research  
-**Solution**: Use decision framework to select optimal server for each task  
-**Application**: Every compound engineering task should identify optimal MCP server before execution
-
-#### **Rule #14: Learning Integration Requirement**
-**Context**: MCP server usage without learning documentation loses compound value  
-**Prevention Rule**: EVERY MCP server execution must generate learning documentation in CLAUDE.md  
-**Solution**: Document server effectiveness, patterns discovered, prevention rules created  
-**Application**: Server usage becomes systematic intelligence building, not just task completion
-
-#### **Rule #15: Server Orchestration Documentation**
-**Context**: Complex tasks require multiple servers with coordination patterns  
-**Prevention Rule**: Document successful server orchestration patterns for reuse  
-**Solution**: Create orchestration templates for common multi-server workflows  
-**Application**: Transform ad-hoc server usage into systematic compound intelligence workflows
-
-### Meta-Learning Agents
-*Specialized systems that transform individual learnings into system-wide improvements*
-- **@prompt-engineering-specialist**: Optimizes AI interactions using systematic prompt iteration
-- **@test-failure-analyst**: Transforms every failure into permanent knowledge and prevention systems
-- **@knowledge-synthesizer**: Fuses insights across lanes and agents into compound intelligence
-
-### Technology Domain Agents (Issue #47 Discovery)
-*Specialized agents for complex multi-technology implementations*
-- **@vite-expert**: Build tool optimization, HMR setup, asset pipeline configuration
-- **@storybook-specialist**: Component documentation, story creation, addon integration, accessibility testing
-- **@drupal-frontend-integration**: Theme integration, asset compilation, CMS-specific frontend concerns
-- **@agent-orchestration-coordinator**: Maps dependencies, assigns parallel vs sequential execution, tracks multi-agent coordination
+### Key Prevention Rules
+- **Rule #13**: Match server to problem domain specifically
+- **Rule #14**: Every MCP execution must generate CLAUDE.md learning  
+- **Rule #15**: Document successful orchestration patterns for reuse
 
 ## 🐛 Bug Prevention Rules
 
@@ -595,387 +385,59 @@ find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
 - 🟡 Medium Risk: `{{ file_description|raw }}` (user-uploaded file descriptions)  
 - 🟢 Low Risk: `{{ icons[type]|raw }}` (hardcoded SVG paths in templates)
 
-## 🔒 Enforcement & Automation Systems
-
-### Automated Learning Enforcement
-
-#### **Pre-Commit Hooks**
-```bash
-#!/bin/bash
-# .ddev/commands/git-pre-commit
-# Enforce CLAUDE.md compliance before commits
-
-echo "🔍 CLAUDE.md Compliance Check..."
-
-# 1. Check for unauthorized .md files
-UNAUTHORIZED_MD=$(find . -name "*.md" -not -path "./.git/*" -not -name "CLAUDE.md" -not -path "./docs/adr/*" -not -name "README.md" -not -name "CHANGELOG.md")
-if [ ! -z "$UNAUTHORIZED_MD" ]; then
-    echo "❌ Unauthorized .md files found. Consolidate into CLAUDE.md:"
-    echo "$UNAUTHORIZED_MD"
-    exit 1
-fi
-
-# 2. Check for |raw filters in Twig templates
-RAW_FILTERS=$(find . -name "*.twig" -exec grep -l "|raw" {} \; 2>/dev/null)
-if [ ! -z "$RAW_FILTERS" ]; then
-    echo "❌ Security Risk: |raw filters found in Twig templates:"
-    echo "$RAW_FILTERS"
-    echo "Review for XSS vulnerabilities or document as trusted content"
-    exit 1
-fi
-
-# 3. Check for infrastructure files
-INFRA_FILES=$(git diff --cached --name-only | grep -E "\.(log|pid|lock)$|volumes/|certs/")
-if [ ! -z "$INFRA_FILES" ]; then
-    echo "❌ Infrastructure files should not be committed:"
-    echo "$INFRA_FILES"
-    echo "Add to .gitignore and unstage these files"
-    exit 1
-fi
-
-echo "✅ CLAUDE.md compliance verified"
-```
-
-#### **GitHub Actions Workflow**
-```yaml
-# .github/workflows/claude-learning-enforcement.yml
-name: CLAUDE.md Learning Enforcement
-
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-  pull_request_review:
-    types: [submitted]
-
-jobs:
-  enforce-learning:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Check for Code Review Learnings
-        if: github.event.review.state == 'changes_requested' || github.event.review.state == 'commented'
-        run: |
-          echo "📝 Code Review detected - Learning documentation required"
-          
-          # Check if CLAUDE.md was updated in this PR
-          CLAUDE_UPDATED=$(git diff origin/main..HEAD --name-only | grep "CLAUDE.md" || echo "")
-          
-          if [ -z "$CLAUDE_UPDATED" ]; then
-            echo "❌ Code Review comments found but CLAUDE.md not updated"
-            echo "Every code review comment must generate documented learning"
-            echo "Please update CLAUDE.md with new prevention rules"
-            exit 1
-          fi
-          
-          echo "✅ CLAUDE.md updated with learnings"
-
-      - name: Validate Security Patterns
-        run: |
-          # Check for security anti-patterns
-          echo "🔒 Security Pattern Validation..."
-          
-          # XSS Prevention Check
-          if grep -r "|raw" --include="*.twig" .; then
-            echo "❌ XSS Risk: |raw filters detected"
-            exit 1
-          fi
-          
-          # File Upload Security Check
-          if grep -r "file\.name\." --include="*.js" . && ! grep -r "sanitizedName\|allowedMimeTypes" --include="*.js" .; then
-            echo "❌ File Upload Security: Missing validation patterns"
-            exit 1
-          fi
-          
-          echo "✅ Security patterns validated"
-
-      - name: Test Quality Gate
-        run: |
-          echo "🧪 Test Quality Validation..."
-          
-          # Ensure tests actually pass
-          cd web/themes/custom/adesso_cms_theme
-          if ! ddev npm test 2>&1 | tee test_output.log; then
-            echo "❌ Tests failed - fix before proceeding"
-            cat test_output.log
-            exit 1
-          fi
-          
-          # Check for actual failures in output
-          if grep -i "failed\|error\|undefined" test_output.log; then
-            echo "❌ Test failures detected in output"
-            echo "Rule #5: Fix all test failures before claiming tests pass"
-            exit 1
-          fi
-          
-          echo "✅ All tests genuinely pass"
-```
-
-#### **Claude Code Integration**
-```markdown
-# .claude/commands/enforce-learning.md
-# Learning Enforcement Command
-
-**Trigger**: After every PR review or issue resolution
-**Purpose**: Ensure systematic learning documentation
-
-## Auto-Execution
-- Triggered when code review comments are detected
-- Runs after issue resolution commands
-- Validates CLAUDE.md updates
-
-## Process
-1. Analyze PR/issue for learning opportunities
-2. Generate prevention rules from problems found
-3. Update CLAUDE.md with new learnings
-4. Validate compliance with existing rules
-5. Create enforcement patterns for future
-
-## Example Usage
-```bash
-claude enforce-learning --pr=39 --issue=36
-```
-
-## Validation Checklist
-- [ ] Each code review comment documented
-- [ ] Root cause analysis completed
-- [ ] Prevention rule created
-- [ ] Code pattern documented
-- [ ] Tool requirements specified
-```
-
-#### **Development Workflow Integration**
-```bash
-# .ddev/commands/web/pr-review
-#!/bin/bash
-# Integrated PR review process with learning enforcement
-
-echo "🔄 Starting PR Review with Learning Integration..."
-
-# 1. Gather PR context
-PR_NUMBER="$1"
-echo "📋 Analyzing PR #$PR_NUMBER..."
-
-# 2. Run automated checks
-echo "🔍 Running automated compliance checks..."
-.ddev/commands/git-pre-commit
-
-# 3. Execute tests with failure analysis
-echo "🧪 Running comprehensive test suite..."
-cd web/themes/custom/adesso_cms_theme
-if ! ddev npm test > test_results.log 2>&1; then
-    echo "❌ Tests failed - analyzing for learnings..."
-    
-    # Extract test failures for learning documentation
-    grep -A 5 -B 5 "Error:\|Failed:\|undefined" test_results.log > test_failures.log
-    
-    echo "📝 Test failures detected - creating learning entries..."
-    echo "Please update CLAUDE.md with test failure analysis"
-    cat test_failures.log
-    exit 1
-fi
-
-# 4. Check for learning documentation
-echo "📚 Validating learning documentation..."
-if [ ! -z "$(git diff origin/main..HEAD --name-only | grep CLAUDE.md)" ]; then
-    echo "✅ CLAUDE.md updated with learnings"
-else
-    echo "⚠️  No CLAUDE.md updates found"
-    echo "If this PR addresses issues or has review comments, document learnings"
-fi
-
-# 5. Security validation
-echo "🔒 Running security checks..."
-find . -name "*.twig" -exec grep -l "|raw" {} \; | while read file; do
-    echo "⚠️  Review |raw usage in: $file"
-done
-
-echo "✅ PR Review process completed with learning enforcement"
-```
-
-### Process Integration Points
-
-#### **1. Development Phase**
-- **Pre-commit**: Automated compliance validation
-- **Testing**: Failure analysis with mandatory documentation
-- **Code Review**: Learning extraction requirement
-
-#### **2. Review Phase**  
-- **GitHub Actions**: Automatic learning validation
-- **PR Templates**: Learning documentation checklist
-- **Review Guidelines**: Mandatory learning documentation
-
-#### **3. Post-Merge Phase**
-- **Success Patterns**: Extract reusable solutions
-- **Failure Analysis**: Convert problems to prevention rules
-- **Knowledge Synthesis**: Continuous CLAUDE.md evolution
-
-### Compliance Monitoring
-
-#### **Dashboard Metrics**
-- Learning Rules Added per Sprint
-- Code Review Comments Documented (%)  
-- Prevention Rules Applied Successfully
-- Repeat Issues Eliminated
-
-#### **Quality Gates**
-- No merge without learning documentation
-- No deploy with unauthorized .md files
-- No commit with security anti-patterns
-- No PR approval without test verification
-
-### Human Process Integration
-
-#### **Team Training**
-- CLAUDE.md principles in onboarding
-- Learning documentation workshops  
-- Code review learning sessions
-- Continuous improvement retrospectives
-
-#### **Accountability Systems**
-- Learning documentation assigned in sprint planning
-- Code review learning validation in definition of done
-- Technical debt reduction through systematic learning
-- Knowledge transfer through documented patterns
+## 🔒 Enforcement
+- Pre-commit: Check unauthorized .md files, |raw filters, infrastructure files
+- GitHub Actions: Validate CLAUDE.md updates on PR reviews, security patterns, test quality
+- Quality Gates: No merge without learning documentation, no commits with security anti-patterns
 
 ## 🎯 Successful Patterns
 
 ### Pattern #1: Component-Based Content Architecture
-**Success Context**: GPZH demo content creation with paragraph components  
-**Implementation**: 15 paragraph types with nested relationships and media integration  
-**Reusable Elements**: Card groups, accordions, heroes, galleries, forms  
-**Benefits**: Flexible content editing, consistent design system, maintainable structure
+**Context**: GPZH demo content creation  
+**Implementation**: 15 paragraph types with nested relationships  
+**Benefits**: Flexible editing, consistent design, maintainable structure
 
-### Pattern #2: TDD Learning Documentation
-**Success Context**: Transforming user feedback into prevention systems  
-**Implementation**: Structured learning sections with specific rules and patterns  
+### Pattern #2: TDD Learning Documentation  
 **Process**: Dissatisfaction → Documentation → Rule Creation → Pattern Recognition  
 **Benefits**: Prevents recurring issues, builds institutional knowledge
 
 ### Pattern #3: Swiss Compliance Integration
-**Success Context**: eCH-0059 government standards implementation  
-**Implementation**: Unlighthouse auditing with custom thresholds and validation  
-**Components**: Performance 90%, Accessibility 95%, SEO compliance  
-**Benefits**: Built-in compliance, automated validation, government readiness
+**Implementation**: Unlighthouse auditing (Performance 90%, Accessibility 95%)  
+**Benefits**: Built-in government compliance, automated validation
 
-### Pattern #4: Compound Intelligence Frontend Architecture ✅ NEW
-**Success Context**: Issue #47 - PreviousNext Vite & Storybook standards with specialized agent acceleration  
-**Implementation**: Advanced build system with dynamic asset resolution and zero maintenance architecture  
-**Measurable Results**: 20%+ build performance improvement, Swiss compliance, production-ready optimization  
-**Specialized Agent**: @drupal-vite-frontend-architect delivered sophisticated technical solutions  
-**Key Components**:
-- **Browser Standards**: `.browserslistrc` with `browserslist-to-esbuild` for consistent targeting
-- **Dynamic Resolution**: `ViteAssetResolver.php` service with `hook_library_info_alter()` integration
-- **Performance Optimization**: CSS code splitting, hash-based caching, ES module format
-- **Development Experience**: DDEV-optimized polling, watch modes, HMR configuration
-**Benefits**: Zero maintenance, automatic cache busting, measurable performance gains, future-proof architecture  
-**Replication Guide**:
-1. Implement browserslist integration with esbuild compatibility layer
-2. Create dynamic manifest reading service for Drupal asset resolution
-3. Configure environment-specific build optimizations (dev vs production)
-4. Establish container-compatible development workflows with polling optimization
-**Compound Intelligence**: Combines frontend optimization + Drupal integration + Swiss compliance standards
+### Pattern #4: Complex Task Agent Orchestration
+**Success**: Issue #47 - Specialized agent assignment prevents oversight  
+**Coordination**: Dependency mapping → Agent assignment → Execution tracking → Learning integration  
+**Benefits**: Reduced complexity, parallel execution efficiency
 
-### Pattern #4: Complex Task Agent Orchestration ✅ SUCCESS
-**Success Context**: Issue #47 - PreviousNext Vite & Storybook standards implementation  
-**Implementation**: Systematic agent assignment with clear domain boundaries  
-**Agent Architecture**:
-- **Planning Phase**: @drupal-solution-architect + @drupal-technical-pm (strategic analysis)
-- **Technology Domains**: @vite-expert + @storybook-specialist (specialized implementation)
-- **Integration Layer**: @drupal-frontend-integration (CMS-specific concerns)
-- **Quality Assurance**: @qa-testing-specialist (comprehensive validation)
-**Coordination Pattern**:
-1. **Dependency Mapping**: Identify sequential vs parallel execution requirements
-2. **Agent Assignment**: Match specialized agents to technology domains
-3. **Execution Tracking**: Use TodoWrite for parallel task coordination
-4. **Learning Integration**: Channel all insights to CLAUDE.md during execution
-**Benefits**: Reduced complexity, parallel execution efficiency, specialized expertise application
-**Reusable For**: Multi-technology integrations, build tool implementations, component system development
+### Pattern #5: Learning vs Task Documentation Anti-Pattern
+**Critical Rule**: CLAUDE.md contains learnings that make us better, not task descriptions  
+**Wrong**: "We assigned these agents..." → **Correct**: "Complex tasks need systematic agent assignment"  
+**Benefits**: Wisdom repository vs project log
 
-### Pattern #5: Execution Dependency Analysis
-**Success Context**: Issue #47 dependency mapping for build tool integration  
-**Implementation**: Pre-execution dependency graph creation before agent assignment  
-**Dependency Categories**:
-- **Technology Dependencies**: Vite must be configured before Storybook integration
-- **Asset Dependencies**: Build optimization requires existing component structure
-- **Testing Dependencies**: Component stories must exist before visual regression testing
-- **Documentation Dependencies**: Implementation patterns inform learning documentation
-**Process**:
-1. **Map Technology Stack**: Identify all technologies and their interdependencies  
-2. **Sequential Requirements**: Mark tasks that must complete before others can begin
-3. **Parallel Opportunities**: Identify independent tasks for concurrent execution
-4. **Agent Coordination**: Assign agents based on dependency requirements
-**Benefits**: Prevents execution bottlenecks, optimizes development velocity, reduces rework
-**Reusable For**: Any multi-technology implementation, complex build processes, integration projects
+## ⚙️ Technical Standards
+- **Environment**: zh-demo.ddev.site, DDEV (PHP 8.3, MariaDB 10.11, Node.js 20)
+- **CSS**: TailwindCSS only, custom CSS as last resort  
+- **Testing**: Playwright (not Puppeteer), PHPStan level 6
+- **Quality**: Unlighthouse Swiss compliance, BackstopJS 0.1% tolerance
 
-### Pattern #4: Learning-Focused Documentation vs Task Documentation
-**Success Context**: Issue #47 planning process revealed documentation anti-pattern  
-**Critical Learning**: CLAUDE.md should contain **learnings that make us better**, not task descriptions  
-**Root Cause**: Confusion between documenting work vs. documenting lessons learned from work  
-**Prevention Rule**: CLAUDE.md entries must answer "What made us better?" not "What did we do?"  
-**Documentation Pattern**:
+## 📈 Learning Framework
+
+### Trigger Points
+1. User dissatisfaction → immediate documentation
+2. Bug discovery → prevention rule
+3. Success → reusable pattern  
+4. Decision → reasoning documentation
+5. Performance issue → optimization pattern
+
+### Template
 ```markdown
-# WRONG - Task Documentation (belongs in issues/PRs)
-"We assigned these agents to these phases with these tools"
-
-# CORRECT - Learning Documentation (belongs in CLAUDE.md)  
-"Complex multi-phase tasks need systematic agent assignment to prevent oversight and ensure quality"
-```
-**Reusable Wisdom**:
-- Every CLAUDE.md entry must extract transferable learning
-- Task details belong in GitHub issues, not learning documentation
-- Learning documentation answers: "How does this prevent future problems?"
-- Success patterns focus on principles, not specific implementation details
-**Benefits**: CLAUDE.md becomes wisdom repository, not project log; learnings become prevention rules
-
-## ⚙️ Technical Standards & Decisions
-
-### Development Environment
-- **Base URL**: zh-demo.ddev.site (not bruchtal.zh-demo.ddev.site)
-- **CSS Framework**: Always use TailwindCSS, custom CSS only as last resort
-- **Testing**: Playwright for all browser automation and E2E testing
-- **AI Integration**: MCP servers for development assistance (Atlassian, GitHub, Playwright)
-
-### Quality Assurance
-- **Static Analysis**: PHPStan level 6 for enterprise-grade code quality
-- **Visual Testing**: BackstopJS with 0.1% mismatch tolerance
-- **Performance**: Unlighthouse with Swiss compliance thresholds
-- **Browser Support**: Chrome, Firefox, Safari, Mobile (Pixel 5, iPhone 12)
-
-## 📈 Command Learning Framework
-
-### Learning Trigger Points
-1. **User Dissatisfaction**: Immediate documentation in this file
-2. **Bug Discovery**: Transform into prevention rule
-3. **Successful Solution**: Extract reusable pattern
-4. **Decision Points**: Document reasoning for future reference
-5. **Performance Issues**: Create optimization patterns
-
-### Documentation Template for New Learnings
-```markdown
-### Learning #X: [Context/Issue]
-**Date**: [YYYY-MM-DD]
-**Type**: [Bug Fix/Decision/Pattern/Dissatisfaction]
-**Context**: [What happened]
+### Learning #X: [Context]
 **Root Cause**: [Why it happened]
-**Solution**: [How it was resolved]
-**Prevention Rule**: [How to avoid in future]
-**Pattern**: [Reusable elements for similar situations]
+**Prevention Rule**: [How to avoid]  
+**Pattern**: [Reusable elements]
 ```
 
-## 🔧 Infrastructure & Deployment
+---
 
-### Container Strategy
-- **Development**: DDEV with PHP 8.3, MariaDB 10.11, Node.js 20
-- **Production**: Multi-stage Docker builds with optimized layers
-- **AI Integration**: MCP server stack for Claude development assistance
-
-### Content Management
-- **Demo Content**: Automated creation via PHP scripts with entity factories
-- **Navigation**: GPZH-compliant hierarchical menu structure
-- **Workflows**: Editorial workflow with draft→review→published states
-- **Users**: Role-based permissions with Guest Editor restrictions
-
-This living document evolves with each command execution, ensuring continuous learning and improvement in development practices.
-- Es ist wirklich die oberste Pflicht, dass du unseren Ansatz in der Claude.md lebst! Wir müssen uns verbessern!
-- Es soll bitte am Ende jeden Tasks geprüft und wenn vorhandenden auch ausgegbeen werden, welche Learnings gezogen sind. Wenn keine Learnings gezogen worden sind, bitte auch kommentieren. Nutze für die Learnings dann den @agent-knowledge-synthesizer, um die Learnings in die @CLAUDE.md mit aufzunehmen.
+**Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.

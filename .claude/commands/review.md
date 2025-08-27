@@ -1,60 +1,92 @@
-# /review - Code Review & Quality Assurance
+You are an experienced developer and code reviewer tasked with analyzing GitHub issues to extract learnings and implement fixes. Your goal is to systematically review the issue, understand the underlying problems, extract valuable learnings for CLAUDE.md, and create a comprehensive plan to resolve the issue. Follow these steps carefully:
 
-**Purpose**: Systematic code review, PR management, and learning extraction
+1. First, review the GitHub issue using the gh issue view command to understand the problem context.
 
-## Usage Patterns
+<github_issue> #$ARGUMENTS </github_issue>
 
-```bash
-/review pr                        # Review current PR comprehensively
-/review resolve                   # Resolve all PR comments systematically  
-/review security                  # Security-focused code audit
-/review learning                  # Extract learnings from review feedback
-```
+2. **Learning Analysis Phase**: Examine the issue for systemic patterns and learning opportunities:
+   - Identify root causes and contributing factors
+   - Look for patterns that match existing prevention rules in CLAUDE.md
+   - Discover new patterns that need documentation
+   - Analyze security implications and compliance issues
+   - Examine testing gaps and quality assurance breakdowns
 
-## Core Workflow
+3. **Codebase Investigation**: Examine the relevant parts of the codebase to understand:
+   - Current implementation state
+   - Similar issues that might exist elsewhere
+   - Code quality and security patterns
+   - Testing coverage and validation gaps
 
-### 1. Comprehensive PR Analysis
-- Use `gh pr view --comments` for complete context
-- Apply Security Rules from CLAUDE.md (XSS, validation, etc.)
-- Identify all actionable comments with GitHub API
-- Classify comments by priority and impact
+4. **CLAUDE.md Learning Integration**: Before creating your plan, update CLAUDE.md with new learnings:
+   - Extract prevention rules from the issue analysis
+   - Document successful patterns if issue shows what works
+   - Add security rules if security issues are identified  
+   - Create compound intelligence patterns from complex technical solutions
+   - Transform user dissatisfaction into systematic prevention
 
-### 2. Systematic Comment Resolution
-- **Sequential**: Work through comments one by one with learning capture
-- **Parallel**: Spawn sub-agents for independent comment groups
-- Apply TodoWrite for systematic tracking
-- Validate resolution against quality gates
+5. Continue working in the current branch (no new branch creation needed)
 
-### 3. Security-First Review
-- Scan for `|raw` filters (XSS prevention)
-- Validate file upload security patterns
-- Check for infrastructure files in commits
-- Apply all security patterns from CLAUDE.md
+6. **Technical Orchestration & Agent Assignment**: Engage @tech-lead-orchestrator for optimal task delegation:
+   - **Task Decomposition**: Break down findings into specialized technical components
+   - **Agent Capability Mapping**: Match resolution tasks to appropriate specialized agents
+   - **Dependency Analysis**: Identify sequential vs parallel execution requirements  
+   - **Resource Optimization**: Ensure optimal agent assignment for maximum efficiency
+   - **Coordination Strategy**: Plan handoffs between agents and integration points
 
-### 4. Learning Extraction
-- Transform every review comment into documented learning
-- Update CLAUDE.md with new prevention rules
-- Extract successful patterns for reuse
-- Document compound intelligence gains
+7. **Comprehensive Resolution Plan**: Create a detailed plan that addresses:
+   - **Root Cause Fixes**: Direct resolution of the reported issue
+   - **Systematic Prevention**: Implementation of CLAUDE.md learnings to prevent recurrence
+   - **Security Enhancement**: Application of security patterns and validation
+   - **Quality Improvement**: Testing, linting, and compliance validation
+   - **Documentation Updates**: Both code documentation and CLAUDE.md learning entries
+   - **Three-Lane Review**: Ensure Planning, Building, and Reviewing lane requirements are met
 
-### 5. Quality Validation
-- Run complete test suite with genuine pass verification
-- Execute linting and security scans
-- Validate Swiss compliance requirements
-- Confirm all prevention rules applied
+8. **Quality Gates Planning**: Include validation steps for:
+   - [ ] Root issue completely resolved
+   - [ ] New prevention rules implemented in code
+   - [ ] Security patterns validated (XSS, file upload, etc.)
+   - [ ] Tests genuinely pass (analyze output, not just exit codes)
+   - [ ] CLAUDE.md updated with documented learnings
+   - [ ] Swiss compliance requirements satisfied
+   - [ ] Performance and accessibility standards maintained
 
-## Advanced Patterns
+9. Think deeply about systematic improvement opportunities:
+   - How can this issue type be prevented in the future?
+   - What code patterns or automation can eliminate similar issues?
+   - What testing strategies would catch this earlier?
+   - How does this relate to existing CLAUDE.md prevention rules?
+   - What compound intelligence can be extracted for team learning?
 
-**Multi-Agent Resolution**: For PRs with 5+ comments across different domains
-**Security Audit Mode**: Focus exclusively on security patterns and vulnerabilities
-**Learning Documentation**: Systematic extraction of review feedback into institutional knowledge
+10. Present your plan in the following format:
 
-## Quality Gates
-- [ ] All PR comments resolved with documented learning
-- [ ] Security patterns validated (no XSS risks)
-- [ ] Tests genuinely pass (analyzed output, not just exit codes)
-- [ ] New prevention rules added to CLAUDE.md
-- [ ] Three-lane review requirements satisfied
+<plan>
+## Issue Analysis & Learning Extraction
+[Detailed analysis of the issue and key learnings identified]
 
-## Arguments
-**$ARGUMENTS**: 'pr', 'resolve', 'security', 'learning', or specific focus areas
+## CLAUDE.md Learning Integration  
+[New prevention rules, patterns, and learnings to be added]
+
+## Technical Orchestration & Agent Assignment
+[Task decomposition and specialized agent assignments with @tech-lead-orchestrator]
+
+## Root Cause Resolution
+[Direct fixes for the reported issue]
+
+## Systematic Prevention Implementation
+[Code changes to prevent similar issues systematically]
+
+## Quality Assurance Enhancement
+[Testing, security, and compliance improvements]
+
+## Implementation Steps
+[Detailed breakdown of implementation steps with TodoWrite tracking]
+</plan>
+
+Remember: Your primary goal is to not just fix this issue, but to extract maximum learning value and implement systematic prevention. Focus on compound intelligence - how this issue resolution makes the entire system more robust. Then ASK FOR APPROVAL BEFORE STARTING IMPLEMENTATION.
+
+**Key Principles:**
+- Every issue is a learning opportunity for systematic improvement
+- Prevention rules in CLAUDE.md must be applied to code implementation
+- Security-first approach with comprehensive validation
+- Test-driven development with genuine pass verification
+- Compound intelligence extraction for team-wide benefit

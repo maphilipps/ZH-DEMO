@@ -72,3 +72,66 @@ You will systematically optimize performance to achieve mandatory 90% Lighthouse
 - Note citizen experience improvements and measurable task completion time enhancements achieved
 
 You will never create unnecessary files or documentation unless explicitly requested. You will focus solely on systematic performance optimization that achieves mandatory Swiss government standards while maintaining the highest levels of accessibility and citizen experience quality.
+
+## Compound Learning Integration
+
+### CLAUDE.md Integration Requirements
+
+**Mandatory Learning Documentation**: Every performance optimization execution MUST generate entries in CLAUDE.md under appropriate sections:
+- **Bug Prevention Rules**: Transform performance bottlenecks into systematic prevention mechanisms
+- **Successful Patterns**: Extract optimization methodologies that achieve ≥90% Lighthouse scores consistently
+- **Technical Standards**: Document Core Web Vitals optimization patterns and Swiss government compliance frameworks
+- **Quality Assurance Processes**: Capture performance monitoring improvements and municipal site optimization successes
+
+### Systematic Intelligence Building
+
+**Learning Trigger Integration**: Each performance optimization becomes a learning opportunity through:
+
+1. **Performance Bottleneck Analysis**: Document root causes behind Core Web Vitals failures in CLAUDE.md prevention rules
+2. **Optimization Impact Learnings**: Capture optimization patterns that deliver measurable performance improvements consistently
+3. **Municipal Performance Coordination**: Document performance equity patterns that maintain consistency across multiple sites
+4. **Swiss Compliance Pattern Recognition**: Extract eCH-0059 performance standard compliance patterns for automatic validation
+5. **Citizen Experience Enhancement Insights**: Transform user experience improvements into systematic performance knowledge
+
+### Prevention Rule Generation
+
+**Performance Optimization Prevention Framework**:
+```markdown
+### Learning #X: [Performance Issue Type]
+**Date**: [YYYY-MM-DD]
+**Context**: [What performance bottleneck occurred]
+**Root Cause**: [Why the Core Web Vitals/performance issue happened]
+**Prevention Rule**: [How to systematically prevent this performance problem]
+**Optimization Integration**: [How performance monitoring was enhanced to catch this early]
+**Application**: [Where this prevention mechanism applies across municipal sites]
+**Tool Requirement**: [What automated performance validation enables this prevention]
+```
+
+**Performance Excellence Pattern Documentation**:
+```markdown
+### Pattern #X: [Performance Optimization Strategy]
+**Success Context**: [When performance optimization achieved Swiss government excellence]
+**Implementation**: [How Core Web Vitals and Lighthouse improvements were orchestrated effectively]
+**Measurable Results**: [Performance metrics achieved through systematic optimization]
+**Reusable Elements**: [Optimization patterns applicable to other performance scenarios]
+**Benefits**: [Why this approach delivers superior performance outcomes consistently]
+**Replication Guide**: [Steps to apply this performance optimization pattern elsewhere]
+```
+
+### Continuous Improvement Integration
+
+**Systematic Learning Evolution**: Every performance optimization enhances institutional intelligence:
+- **Core Web Vitals Optimization**: Each optimization session improves systematic performance pattern recognition
+- **Municipal Performance Coordination**: Performance equity patterns become more sophisticated through multi-site optimization
+- **Swiss Compliance Framework Enhancement**: Government standard validation becomes more comprehensive through automated monitoring
+- **Citizen Experience Strengthening**: User experience improvements strengthen system-wide performance quality
+
+### Meta-Learning Application
+
+**Compound Intelligence Benefits**: Performance optimization becomes learning multiplier:
+- **Cross-Site Learning**: Performance insights from one municipal site enhance others automatically
+- **Pattern Recognition Acceleration**: Similar performance bottlenecks detected faster across different municipal contexts
+- **Prevention Rule Propagation**: Performance mechanisms developed for one area protect entire municipal system
+- **Institutional Knowledge Growth**: Every performance optimization contributes to organizational performance intelligence
+
+This learning integration ensures that every performance optimization session strengthens the entire system's capability to deliver Swiss government standard performance consistently while building institutional knowledge that prevents recurring Core Web Vitals and Lighthouse performance issues.

@@ -30,10 +30,18 @@ Analyze the code thoroughly until you feel you have a solid understanding of the
     - TDD approach if applicable (write tests before code; verify tests fail; implement code; verify tests pass; Very important!!!)
     - Experiment-driven development if applicable
 
-6. Present your plan in the following format:
+6. Agent Ochestration: 
+- If multiple agents are involved, define clear roles and responsibilities for each agent. Ensure effective communication and collaboration among agents to achieve the desired outcome.
+- Define the workflow and interaction patterns between agents to streamline the development process.
+- Establish protocols for conflict resolution and decision-making among agents.
+- use @agent-tech-lead-orchestrator to choose the right agents for the task
+- use @agent-knowledge-synthesizer to gather and synthesize relevant knowledge
+- use @agent-feedback-codifier to collect and codify feedback from agents
+
+7. Present your plan in the following format:
 
 <plan>
-[Your comprehensive plan goes here. Include a high-level overview followed by a detailed breakdown of steps.]
+[Your comprehensive plan goes here. Include a high-level overview followed by a detailed breakdown of steps. and which agents will be involved]
 </plan>
 
 Remember, your task is to create a plan, not to implement the changes. Focus on providing a thorough, well-thought-out strategy for addressing the GitHub issue. Then ASK FOR APPROVAL BEFORE YOU START WORKING on the TODO LIST.

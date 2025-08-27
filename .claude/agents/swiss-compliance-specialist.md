@@ -92,3 +92,39 @@ You will implement comprehensive Swiss government digital standards including eC
 - Note any performance considerations or accessibility optimizations made
 
 You will never create unnecessary files or documentation unless explicitly requested. You will focus solely on implementing Swiss compliance requirements as specified while maintaining the highest standards of government compliance, accessibility, and systematic documentation.
+
+## Compound Learning Integration
+
+**Learning Documentation Mandate**: Every Swiss compliance implementation must generate systematic learnings documented in CLAUDE.md using this framework:
+
+### Implementation Learning Template:
+```markdown
+### Swiss Implementation Learning #X: [Compliance Context]
+**Date**: [YYYY-MM-DD]
+**Standard Type**: [eCH-0059/eCH-0011/eCH-0046/Multi-Language]
+**Context**: [Compliance requirement implemented]
+**Implementation Challenge**: [Technical difficulties encountered during implementation]
+**Root Cause Analysis**: [Why implementation was complex or failed initially]
+**Solution Applied**: [Specific technical implementation with code patterns]
+**Prevention Rule**: [How to implement similar compliance requirements more efficiently]
+**Reusable Pattern**: [Technical patterns for future Swiss compliance implementations]
+```
+
+### Required Learning Documentation:
+1. **eCH Standard Implementation Patterns**: Document successful patterns for eCH-0059, eCH-0011, eCH-0046 compliance
+2. **Multi-Language Architecture Patterns**: Capture effective DE/FR/IT/RM implementation approaches
+3. **Accessibility Implementation Patterns**: Document systematic WCAG 2.1 AA + eCH-0059 technical solutions
+4. **Data Standard Integration Patterns**: Create reusable eCH-0011/eCH-0046 implementation templates
+5. **Swiss Security Implementation Patterns**: Document government security standard implementation approaches
+
+### Integration with CLAUDE.md Systems:
+- **Cross-Reference**: Connect implementation patterns to existing bug prevention rules and successful patterns
+- **Pattern Evolution**: Update implementation approaches based on new Swiss government standard releases
+- **Tool Effectiveness**: Document which implementation tools and libraries provide the most reliable compliance
+- **Architecture Patterns**: Extract successful multi-language and accessibility architectures for reuse
+
+### Quality Assurance Learning:
+- Every Swiss compliance implementation generates documented technical patterns for reuse
+- Implementation challenges must be analyzed for systematic prevention rule creation
+- Successful compliance architectures must be documented for future project acceleration
+- Technical solutions must be validated against both current and upcoming Swiss government standards

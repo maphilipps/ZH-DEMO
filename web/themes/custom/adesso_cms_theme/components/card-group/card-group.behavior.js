@@ -28,14 +28,14 @@
 
     // Initialize filter functionality
     if (filterButtons.length > 0) {
-      filterButtons.forEach(function(button) {
-        button.addEventListener('click', function(e) {
+      filterButtons.forEach(function (button) {
+        button.addEventListener('click', function (e) {
           e.preventDefault();
           
           const filterValue = button.getAttribute('data-filter');
           
           // Update active filter button
-          filterButtons.forEach(function(btn) {
+          filterButtons.forEach(function (btn) {
             btn.classList.remove('active', 'bg-blue-600', 'text-white');
             btn.classList.add('bg-gray-200', 'text-gray-700');
             btn.setAttribute('aria-pressed', 'false');
@@ -56,14 +56,14 @@
 
     // Initialize sort functionality
     if (sortButtons.length > 0) {
-      sortButtons.forEach(function(button) {
-        button.addEventListener('click', function(e) {
+      sortButtons.forEach(function (button) {
+        button.addEventListener('click', function (e) {
           e.preventDefault();
           
           const sortValue = button.getAttribute('data-sort');
           
           // Update active sort button
-          sortButtons.forEach(function(btn) {
+          sortButtons.forEach(function (btn) {
             btn.classList.remove('active');
             btn.setAttribute('aria-pressed', 'false');
           });
@@ -84,11 +84,11 @@
     if (searchInput) {
       let searchTimeout;
       
-      searchInput.addEventListener('input', function(e) {
+      searchInput.addEventListener('input', function (e) {
         clearTimeout(searchTimeout);
         
         // Debounce search for better performance
-        searchTimeout = setTimeout(function() {
+        searchTimeout = setTimeout(function () {
           searchTerm = e.target.value.toLowerCase().trim();
           applyFiltersAndSort();
           
@@ -98,7 +98,7 @@
       });
 
       // Clear search on Escape key
-      searchInput.addEventListener('keydown', function(e) {
+      searchInput.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           searchInput.value = '';
           searchTerm = '';
@@ -112,7 +112,7 @@
      * @return {void}
      */
     function applyFiltersAndSort() {
-      const filteredCards = Array.from(cards).filter(function(card) {
+      const filteredCards = Array.from(cards).filter(function (card) {
         // Apply category filter
         if (currentFilter !== 'all') {
           const cardCategories = (card.getAttribute('data-category') || '').split(' ');
@@ -140,31 +140,31 @@
 
       // Sort filtered cards
       if (currentSort !== 'default') {
-        filteredCards.sort(function(a, b) {
+        filteredCards.sort(function (a, b) {
           switch (currentSort) {
-            case 'title':
-              const titleA = (a.getAttribute('data-title') || a.textContent || '').toLowerCase();
-              const titleB = (b.getAttribute('data-title') || b.textContent || '').toLowerCase();
-              return titleA.localeCompare(titleB);
+          case 'title':
+            const titleA = (a.getAttribute('data-title') || a.textContent || '').toLowerCase();
+            const titleB = (b.getAttribute('data-title') || b.textContent || '').toLowerCase();
+            return titleA.localeCompare(titleB);
               
-            case 'date':
-              const dateA = new Date(a.getAttribute('data-date') || '1970-01-01');
-              const dateB = new Date(b.getAttribute('data-date') || '1970-01-01');
-              return dateB - dateA; // Newest first
+          case 'date':
+            const dateA = new Date(a.getAttribute('data-date') || '1970-01-01');
+            const dateB = new Date(b.getAttribute('data-date') || '1970-01-01');
+            return dateB - dateA; // Newest first
               
-            case 'popularity':
-              const popA = parseInt(a.getAttribute('data-popularity') || '0');
-              const popB = parseInt(b.getAttribute('data-popularity') || '0');
-              return popB - popA; // Highest first
+          case 'popularity':
+            const popA = parseInt(a.getAttribute('data-popularity') || '0');
+            const popB = parseInt(b.getAttribute('data-popularity') || '0');
+            return popB - popA; // Highest first
               
-            default:
-              return 0;
+          default:
+            return 0;
           }
         });
       }
 
       // Apply visibility with animation
-      cards.forEach(function(card, index) {
+      cards.forEach(function (card, index) {
         const shouldShow = filteredCards.includes(card);
         
         if (shouldShow) {
@@ -172,7 +172,7 @@
           card.classList.remove('hidden');
           
           // Stagger animation for better UX
-          setTimeout(function() {
+          setTimeout(function () {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
           }, index * 50);
@@ -180,7 +180,7 @@
           card.style.opacity = '0';
           card.style.transform = 'translateY(20px)';
           
-          setTimeout(function() {
+          setTimeout(function () {
             card.style.display = 'none';
             card.classList.add('hidden');
           }, 300);
@@ -190,7 +190,7 @@
       // Update the DOM order for sorted results
       if (currentSort !== 'default' && filteredCards.length > 0) {
         const container = filteredCards[0].parentNode;
-        filteredCards.forEach(function(card) {
+        filteredCards.forEach(function (card) {
           container.appendChild(card);
         });
       }
@@ -201,7 +201,7 @@
      * @return {number} Number of visible cards
      */
     function getVisibleCardCount() {
-      return Array.from(cards).filter(function(card) {
+      return Array.from(cards).filter(function (card) {
         return card.style.display !== 'none' && !card.classList.contains('hidden');
       }).length;
     }
@@ -236,7 +236,7 @@
     function announceSearchResults(term, count) {
       const message = term 
         ? `Search for "${term}" found ${count} result${count !== 1 ? 's' : ''}.`
-        : `Search cleared. Showing all cards.`;
+        : 'Search cleared. Showing all cards.';
       announceToScreenReader(message);
     }
 
@@ -259,7 +259,7 @@
     }
 
     // Add CSS transitions for smooth animations
-    cards.forEach(function(card) {
+    cards.forEach(function (card) {
       card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     });
 
@@ -281,7 +281,7 @@
 
       console.log('[adesso-card-group] Found', cardGroupElements.length, 'card group(s)');
 
-      cardGroupElements.forEach(function(cardGroupElement) {
+      cardGroupElements.forEach(function (cardGroupElement) {
         initializeCardGroup(cardGroupElement);
       });
     },
@@ -291,10 +291,10 @@
         // Clean up and reset states
         const cardGroups = context.querySelectorAll('.card-group, [data-card-group], .cards-container');
         
-        cardGroups.forEach(function(cardGroup) {
+        cardGroups.forEach(function (cardGroup) {
           const cards = cardGroup.querySelectorAll('.card-item, [data-card]');
           
-          cards.forEach(function(card) {
+          cards.forEach(function (card) {
             // Reset inline styles
             card.style.display = '';
             card.style.opacity = '';

@@ -67,7 +67,7 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
           <div class="grid grid-cols-3 gap-3 text-xs" role="radiogroup" aria-labelledby="theme-preview-description">
             <div class="theme-preview-card bg-white border border-gray-200 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                  data-theme="light" 
-                 onclick="selectTheme('light')"
+                 data-select-theme="light"
                  role="radio"
                  aria-checked="${selectedValue === 'light' ? 'true' : 'false'}"
                  tabindex="${selectedValue === 'light' ? '0' : '-1'}"
@@ -80,7 +80,7 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
             </div>
             <div class="theme-preview-card bg-gray-100 border border-gray-300 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                  data-theme="highlighted" 
-                 onclick="selectTheme('highlighted')"
+                 data-select-theme="highlighted"
                  role="radio"
                  aria-checked="${selectedValue === 'highlighted' ? 'true' : 'false'}"
                  tabindex="${selectedValue === 'highlighted' ? '0' : '-1'}"
@@ -93,7 +93,7 @@ function createAccessibleThemeSelector(selectedValue = 'light') {
             </div>
             <div class="theme-preview-card bg-gray-900 border border-gray-700 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                  data-theme="dark" 
-                 onclick="selectTheme('dark')"
+                 data-select-theme="dark"
                  role="radio"
                  aria-checked="${selectedValue === 'dark' ? 'true' : 'false'}"
                  tabindex="${selectedValue === 'dark' ? '0' : '-1'}"
@@ -154,6 +154,17 @@ function setupAccessibleThemeSelectorJS() {
       radioGroup.setAttribute('aria-activedescendant', `theme-card-${selectedTheme}`);
     }
   };
+  
+  // Add click event listeners to theme cards
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('theme-preview-card') || e.target.closest('.theme-preview-card')) {
+      const card = e.target.classList.contains('theme-preview-card') ? e.target : e.target.closest('.theme-preview-card');
+      const theme = card.dataset.selectTheme || card.dataset.theme;
+      if (theme && typeof window.selectTheme === 'function') {
+        window.selectTheme(theme);
+      }
+    }
+  });
   
   // Enhanced keyboard support
   document.addEventListener('keydown', function(e) {
@@ -259,8 +270,8 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should manage focus correctly', () => {
-      const lightCard = container.querySelector('[data-theme="light"]');
-      const highlightedCard = container.querySelector('[data-theme="highlighted"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
+      const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
       
       if (lightCard && highlightedCard) {
         // Initially, only the selected card should be focusable
@@ -287,7 +298,7 @@ describe('Theme Selector Accessibility Tests', () => {
 
     it('should support Tab navigation', () => {
       const select = container.querySelector('select');
-      const lightCard = container.querySelector('[data-theme="light"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
       
       if (select && lightCard) {
         select.focus();
@@ -303,7 +314,7 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should support Enter key activation', () => {
-      const highlightedCard = container.querySelector('[data-theme="highlighted"]');
+      const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
       const select = container.querySelector('select');
       
       if (highlightedCard && select) {
@@ -320,7 +331,7 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should support Space key activation', () => {
-      const darkCard = container.querySelector('[data-theme="dark"]');
+      const darkCard = container.querySelector('.theme-preview-card[data-theme="dark"]');
       const select = container.querySelector('select');
       
       if (darkCard && select) {
@@ -337,8 +348,8 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should support Arrow key navigation', () => {
-      const lightCard = container.querySelector('[data-theme="light"]');
-      const highlightedCard = container.querySelector('[data-theme="highlighted"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
+      const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
       
       if (lightCard && highlightedCard) {
         lightCard.focus();
@@ -356,8 +367,8 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should wrap around with arrow navigation', () => {
-      const darkCard = container.querySelector('[data-theme="dark"]');
-      const lightCard = container.querySelector('[data-theme="light"]');
+      const darkCard = container.querySelector('.theme-preview-card[data-theme="dark"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
       
       if (darkCard && lightCard) {
         darkCard.focus();
@@ -382,9 +393,9 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should have descriptive labels for screen readers', () => {
-      const lightCard = container.querySelector('[data-theme="light"]');
-      const highlightedCard = container.querySelector('[data-theme="highlighted"]');
-      const darkCard = container.querySelector('[data-theme="dark"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
+      const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
+      const darkCard = container.querySelector('.theme-preview-card[data-theme="dark"]');
       
       if (lightCard && lightCard.getAttribute('aria-label')) {
         expect(lightCard.getAttribute('aria-label')).toContain('Select Light Theme');
@@ -440,7 +451,7 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should have sufficient contrast for light theme preview', () => {
-      const lightCard = container.querySelector('[data-theme="light"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
       const lightCardText = lightCard?.querySelector('.text-gray-600');
       
       // Validate presence of theme preview card
@@ -451,7 +462,7 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should have sufficient contrast for highlighted theme preview', () => {
-      const highlightedCard = container.querySelector('[data-theme="highlighted"]');
+      const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
       
       // Validate presence of highlighted theme preview card
       expect(highlightedCard).toBeInTheDocument();
@@ -461,7 +472,7 @@ describe('Theme Selector Accessibility Tests', () => {
     });
 
     it('should have sufficient contrast for dark theme preview', () => {
-      const darkCard = container.querySelector('[data-theme="dark"]');
+      const darkCard = container.querySelector('.theme-preview-card[data-theme="dark"]');
       
       // Validate presence of dark theme preview card
       expect(darkCard).toBeInTheDocument();
@@ -613,7 +624,7 @@ describe('Theme Selector Accessibility Tests', () => {
       expect(label.textContent).toContain('Content Element Theme');
       
       // ARIA labels should be in proper language
-      const lightCard = container.querySelector('[data-theme="light"]');
+      const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
       const ariaLabel = lightCard?.getAttribute('aria-label');
       if (ariaLabel) {
         expect(ariaLabel).toMatch(/Select Light Theme/);

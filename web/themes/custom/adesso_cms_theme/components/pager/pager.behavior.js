@@ -55,7 +55,7 @@
    * @return {void}
    */
   function initializePagerLinks(pagerLinks, pagerElement, contentContainer, enableAjax, updateHistory) {
-    pagerLinks.forEach(function(link) {
+    pagerLinks.forEach(function (link) {
       // Skip if link is disabled or current page
       if (link.classList.contains('disabled') || link.classList.contains('current')) {
         link.setAttribute('aria-disabled', 'true');
@@ -65,7 +65,7 @@
         return;
       }
 
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         if (enableAjax && contentContainer) {
           e.preventDefault();
           loadPageContent(link, pagerElement, contentContainer, updateHistory);
@@ -109,66 +109,66 @@
         'Content-Type': 'application/json'
       }
     })
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      return response.text();
-    })
-    .then(function(html) {
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then(function (html) {
       // Parse response
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
       
-      // Extract new content and pager
-      const newContent = doc.querySelector(contentContainer.className ? `.${contentContainer.className}` : contentContainer.tagName);
-      const newPager = doc.querySelector(pagerElement.className ? `.${pagerElement.className}` : pagerElement.tagName);
+        // Extract new content and pager
+        const newContent = doc.querySelector(contentContainer.className ? `.${contentContainer.className}` : contentContainer.tagName);
+        const newPager = doc.querySelector(pagerElement.className ? `.${pagerElement.className}` : pagerElement.tagName);
       
-      if (newContent) {
+        if (newContent) {
         // Update content with fade transition
-        updateContentWithTransition(contentContainer, newContent.innerHTML);
-      }
+          updateContentWithTransition(contentContainer, newContent.innerHTML);
+        }
       
-      if (newPager) {
+        if (newPager) {
         // Update pager
-        updatePagerWithTransition(pagerElement, newPager.innerHTML);
-      }
+          updatePagerWithTransition(pagerElement, newPager.innerHTML);
+        }
       
-      // Update browser history
-      if (updateHistory) {
-        updateBrowserHistory(url, pageNumber);
-      }
+        // Update browser history
+        if (updateHistory) {
+          updateBrowserHistory(url, pageNumber);
+        }
       
-      // Scroll to content top
-      scrollToContent(contentContainer);
+        // Scroll to content top
+        scrollToContent(contentContainer);
       
-      // Track successful navigation
-      trackPagerNavigation(link, 'ajax_success', { 
-        pageNumber: pageNumber,
-        url: url 
+        // Track successful navigation
+        trackPagerNavigation(link, 'ajax_success', { 
+          pageNumber: pageNumber,
+          url: url 
+        });
+      
+        // Re-initialize pager behaviors on new content
+        Drupal.behaviors.adessoPager.attach(document);
+      })
+      .catch(function (error) {
+        console.error('[adesso-pager] AJAX loading failed:', error);
+      
+        // Track error
+        trackPagerNavigation(link, 'ajax_error', { 
+          error: error.message,
+          pageNumber: pageNumber 
+        });
+      
+        // Fallback to standard navigation
+        showErrorMessage(pagerElement, 'Failed to load content. Redirecting...');
+        setTimeout(function () {
+          window.location.href = url;
+        }, 1500);
+      })
+      .finally(function () {
+        setLoadingState(pagerElement, contentContainer, false);
       });
-      
-      // Re-initialize pager behaviors on new content
-      Drupal.behaviors.adessoPager.attach(document);
-    })
-    .catch(function(error) {
-      console.error('[adesso-pager] AJAX loading failed:', error);
-      
-      // Track error
-      trackPagerNavigation(link, 'ajax_error', { 
-        error: error.message,
-        pageNumber: pageNumber 
-      });
-      
-      // Fallback to standard navigation
-      showErrorMessage(pagerElement, 'Failed to load content. Redirecting...');
-      setTimeout(function() {
-        window.location.href = url;
-      }, 1500);
-    })
-    .finally(function() {
-      setLoadingState(pagerElement, contentContainer, false);
-    });
   }
 
   /**
@@ -182,46 +182,46 @@
       !link.classList.contains('disabled') && !link.classList.contains('current')
     );
     
-    pagerElement.addEventListener('keydown', function(e) {
+    pagerElement.addEventListener('keydown', function (e) {
       const currentIndex = activeLinks.indexOf(document.activeElement);
       let targetIndex;
       
       switch (e.key) {
-        case 'ArrowLeft':
-          e.preventDefault();
-          if (currentIndex > 0) {
-            activeLinks[currentIndex - 1].focus();
-          } else {
-            activeLinks[activeLinks.length - 1].focus();
-          }
-          break;
-          
-        case 'ArrowRight':
-          e.preventDefault();
-          if (currentIndex < activeLinks.length - 1) {
-            activeLinks[currentIndex + 1].focus();
-          } else {
-            activeLinks[0].focus();
-          }
-          break;
-          
-        case 'Home':
-          e.preventDefault();
-          activeLinks[0].focus();
-          break;
-          
-        case 'End':
-          e.preventDefault();
+      case 'ArrowLeft':
+        e.preventDefault();
+        if (currentIndex > 0) {
+          activeLinks[currentIndex - 1].focus();
+        } else {
           activeLinks[activeLinks.length - 1].focus();
-          break;
+        }
+        break;
           
-        case 'Enter':
-        case ' ':
-          if (activeLinks.includes(document.activeElement)) {
-            e.preventDefault();
-            document.activeElement.click();
-          }
-          break;
+      case 'ArrowRight':
+        e.preventDefault();
+        if (currentIndex < activeLinks.length - 1) {
+          activeLinks[currentIndex + 1].focus();
+        } else {
+          activeLinks[0].focus();
+        }
+        break;
+          
+      case 'Home':
+        e.preventDefault();
+        activeLinks[0].focus();
+        break;
+          
+      case 'End':
+        e.preventDefault();
+        activeLinks[activeLinks.length - 1].focus();
+        break;
+          
+      case 'Enter':
+      case ' ':
+        if (activeLinks.includes(document.activeElement)) {
+          e.preventDefault();
+          document.activeElement.click();
+        }
+        break;
       }
     });
   }
@@ -249,8 +249,8 @@
     loadingTrigger.style.height = '10px';
     contentContainer.appendChild(loadingTrigger);
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting && !pagerElement.classList.contains('loading')) {
           const currentNextLink = pagerElement.querySelector('.pager-next, [data-page-next]');
           if (currentNextLink && !currentNextLink.classList.contains('disabled')) {
@@ -266,7 +266,7 @@
     observer.observe(loadingTrigger);
     
     // Store cleanup function
-    pagerElement.infiniteScrollCleanup = function() {
+    pagerElement.infiniteScrollCleanup = function () {
       observer.disconnect();
       if (loadingTrigger.parentNode) {
         loadingTrigger.remove();
@@ -292,49 +292,49 @@
         'X-Requested-With': 'XMLHttpRequest'
       }
     })
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(html) {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
       
-      // Extract new content items
-      const newContentItems = doc.querySelectorAll(contentContainer.children[0]?.tagName || '.content-item');
-      const newPager = doc.querySelector(pagerElement.className ? `.${pagerElement.className}` : pagerElement.tagName);
+        // Extract new content items
+        const newContentItems = doc.querySelectorAll(contentContainer.children[0]?.tagName || '.content-item');
+        const newPager = doc.querySelector(pagerElement.className ? `.${pagerElement.className}` : pagerElement.tagName);
       
-      // Append new content items
-      newContentItems.forEach(function(item, index) {
-        setTimeout(function() {
-          contentContainer.appendChild(item.cloneNode(true));
-        }, index * 100); // Stagger for better UX
-      });
+        // Append new content items
+        newContentItems.forEach(function (item, index) {
+          setTimeout(function () {
+            contentContainer.appendChild(item.cloneNode(true));
+          }, index * 100); // Stagger for better UX
+        });
       
-      // Update pager
-      if (newPager) {
-        pagerElement.innerHTML = newPager.innerHTML;
+        // Update pager
+        if (newPager) {
+          pagerElement.innerHTML = newPager.innerHTML;
         
-        // Re-initialize infinite scroll for new pager
-        const newInfiniteScroll = pagerElement.getAttribute('data-infinite-scroll') === 'true';
-        if (newInfiniteScroll) {
-          setTimeout(function() {
-            initializeInfiniteScroll(pagerElement, contentContainer);
-          }, 500);
+          // Re-initialize infinite scroll for new pager
+          const newInfiniteScroll = pagerElement.getAttribute('data-infinite-scroll') === 'true';
+          if (newInfiniteScroll) {
+            setTimeout(function () {
+              initializeInfiniteScroll(pagerElement, contentContainer);
+            }, 500);
+          }
         }
-      }
       
-      // Track infinite scroll load
-      trackPagerNavigation(nextLink, 'infinite_scroll', {
-        itemsLoaded: newContentItems.length
+        // Track infinite scroll load
+        trackPagerNavigation(nextLink, 'infinite_scroll', {
+          itemsLoaded: newContentItems.length
+        });
+      })
+      .catch(function (error) {
+        console.error('[adesso-pager] Infinite scroll failed:', error);
+        showErrorMessage(pagerElement, 'Failed to load more content.');
+      })
+      .finally(function () {
+        setLoadingState(pagerElement, contentContainer, false);
       });
-    })
-    .catch(function(error) {
-      console.error('[adesso-pager] Infinite scroll failed:', error);
-      showErrorMessage(pagerElement, 'Failed to load more content.');
-    })
-    .finally(function() {
-      setLoadingState(pagerElement, contentContainer, false);
-    });
   }
 
   /**
@@ -343,7 +343,7 @@
    * @return {void}
    */
   function initializeHistoryManagement(pagerElement) {
-    window.addEventListener('popstate', function(e) {
+    window.addEventListener('popstate', function (e) {
       if (e.state && e.state.page) {
         // Handle browser back/forward navigation
         const currentPage = e.state.page;
@@ -419,12 +419,12 @@
     container.style.opacity = '0';
     container.style.transition = 'opacity 0.3s ease';
     
-    setTimeout(function() {
+    setTimeout(function () {
       container.innerHTML = newContent;
       container.style.opacity = '1';
       
       // Clean up transition after animation
-      setTimeout(function() {
+      setTimeout(function () {
         container.style.transition = '';
       }, 300);
     }, 150);
@@ -440,11 +440,11 @@
     pagerElement.style.opacity = '0.5';
     pagerElement.style.transition = 'opacity 0.2s ease';
     
-    setTimeout(function() {
+    setTimeout(function () {
       pagerElement.innerHTML = newPagerHTML;
       pagerElement.style.opacity = '1';
       
-      setTimeout(function() {
+      setTimeout(function () {
         pagerElement.style.transition = '';
       }, 200);
     }, 100);
@@ -499,7 +499,7 @@
     errorDiv.textContent = message;
     
     // Auto-hide after 5 seconds
-    setTimeout(function() {
+    setTimeout(function () {
       if (errorDiv.parentNode) {
         errorDiv.remove();
       }
@@ -556,7 +556,7 @@
 
       console.log('[adesso-pager] Found', pagerElements.length, 'pager(s)');
 
-      pagerElements.forEach(function(pagerElement) {
+      pagerElements.forEach(function (pagerElement) {
         initializePager(pagerElement);
       });
     },
@@ -566,7 +566,7 @@
         // Clean up and reset states
         const pagers = context.querySelectorAll('.pager, [data-pager], .pagination');
         
-        pagers.forEach(function(pager) {
+        pagers.forEach(function (pager) {
           // Clean up infinite scroll
           if (pager.infiniteScrollCleanup) {
             pager.infiniteScrollCleanup();

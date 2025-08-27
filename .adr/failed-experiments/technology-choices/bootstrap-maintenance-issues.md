@@ -54,11 +54,11 @@ We initially attempted to use **Bootstrap 5.3** as the CSS framework for the GPZ
 - Total CSS payload exceeded performance budgets significantly
 
 #### 3. Component Inflexibility
-**Problem**: Swiss compliance requirements conflicted with Bootstrap patterns
+**Problem**: German compliance requirements conflicted with Bootstrap patterns
 - Bootstrap components required extensive modification for eCH-0059 compliance
 - Accessibility improvements fought against Bootstrap's default behavior
-- Swiss typography requirements (no ß, specific spacing) difficult to implement
-- Form components needed complete rebuilds for Swiss government standards
+- German typography requirements (no ß, specific spacing) difficult to implement
+- Form components needed complete rebuilds for German government standards
 
 #### 4. Development Workflow Issues
 **Problem**: Team productivity declined
@@ -108,12 +108,12 @@ Benchmark Results (Average across 10 test pages):
 2. **Scale Considerations**: Solutions that work for 1-5 sites don't necessarily scale to 160+ variations
 3. **Performance First**: CSS framework choice has direct impact on Core Web Vitals performance
 4. **Customization vs Convention**: When customization requirements exceed framework conventions, framework becomes hindrance
-5. **Swiss Compliance**: Generic frameworks often conflict with specific compliance requirements
+5. **German Compliance**: Generic frameworks often conflict with specific compliance requirements
 
 ### Key Insights
 - **Municipal Scale Different**: 160+ municipalities require fundamentally different approach than typical multi-tenant systems
-- **Performance Non-Negotiable**: Swiss government sites must meet strict performance requirements
-- **Compliance First**: Accessibility and Swiss standards must be architectural foundation, not afterthought
+- **Performance Non-Negotiable**: German government sites must meet strict performance requirements
+- **Compliance First**: Accessibility and German standards must be architectural foundation, not afterthought
 - **Build Process Impact**: Framework choice dramatically affects development workflow efficiency
 
 ### Anti-Patterns Identified
@@ -185,21 +185,21 @@ Tailwind CSS v4 Results:
 - **Week 1-2**: Initial implementation promising
 - **Week 3-4**: Municipal customization complexity becomes apparent
 - **Week 5-6**: Performance issues surface during testing
-- **Week 7-8**: Swiss compliance conflicts discovered
+- **Week 7-8**: German compliance conflicts discovered
 - **Week 9-10**: Team productivity decline evident
 - **Week 11**: Decision made to abandon Bootstrap approach
 
 ### Team Impact
 - 2.5 weeks of development time lost
 - Team confidence in framework selection process improved through lesson
-- Better understanding of Swiss municipal requirements gained
+- Better understanding of German municipal requirements gained
 - Performance-first mindset established for future decisions
 
 ### Future Reference
 This failed experiment serves as critical reference for:
 - Future CSS framework evaluation criteria
 - Performance impact validation processes
-- Swiss compliance requirement analysis
+- German compliance requirement analysis
 - Large-scale customization complexity assessment
 
 ---

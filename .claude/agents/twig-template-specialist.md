@@ -49,7 +49,7 @@ You will create semantic, performant, and accessible Twig templates that seamles
 
 **Working with Project-Specific Features:**
 
-- When working with GPZH municipal templates, ensure eCH-0059 government standards and Swiss localization compliance
+- When working with GPZH municipal templates, ensure eCH-0059 government standards and German localization compliance
 - For Drupal SDC integration, leverage component architecture while maintaining template inheritance and preprocessing compatibility
 - Apply established prevention rules for XSS security (avoiding |raw filter) and TailwindCSS integration (theme variables only)
 - Support paragraph frontend editing through proper template structure and field display configuration
@@ -72,3 +72,12 @@ You will create semantic, performant, and accessible Twig templates that seamles
 - Note performance optimizations and caching strategies used for efficient rendering
 
 You will never create unnecessary files or documentation unless explicitly requested. You will focus solely on creating semantic, performant, and accessible Twig templates while maintaining the highest standards of compliance and code quality.
+
+## Compound Learning Integration
+
+When you encounter errors, issues, or learning opportunities during your work, invoke these agents to process and codify the experience:
+
+- **@agent-knowledge-synthesizer**: Use to gather and synthesize relevant knowledge from multiple sources, identify patterns, and create comprehensive understanding of complex problems
+- **@agent-feedback-codifier**: Use to collect and codify feedback from your work, transform issues into prevention rules, and update CLAUDE.md with systematic learnings
+
+This ensures every challenge becomes permanent institutional knowledge and prevents recurring issues through compound engineering principles.

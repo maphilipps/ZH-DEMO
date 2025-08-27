@@ -20,7 +20,7 @@
     }
 
     // Enhanced keyboard navigation for accordion
-    accordionItems.forEach(function(trigger) {
+    accordionItems.forEach(function (trigger) {
       // ARIA improvements
       const targetId = trigger.getAttribute('data-accordion-target');
       const targetPanel = document.querySelector(targetId);
@@ -31,43 +31,43 @@
         targetPanel.setAttribute('role', 'region');
         
         // Add focus management
-        trigger.addEventListener('keydown', function(e) {
+        trigger.addEventListener('keydown', function (e) {
           const currentIndex = Array.from(accordionItems).indexOf(trigger);
           let nextIndex;
           
           switch (e.key) {
-            case 'ArrowDown':
-              e.preventDefault();
-              nextIndex = (currentIndex + 1) % accordionItems.length;
-              accordionItems[nextIndex].focus();
-              break;
+          case 'ArrowDown':
+            e.preventDefault();
+            nextIndex = (currentIndex + 1) % accordionItems.length;
+            accordionItems[nextIndex].focus();
+            break;
               
-            case 'ArrowUp':
-              e.preventDefault();
-              nextIndex = currentIndex === 0 ? accordionItems.length - 1 : currentIndex - 1;
-              accordionItems[nextIndex].focus();
-              break;
+          case 'ArrowUp':
+            e.preventDefault();
+            nextIndex = currentIndex === 0 ? accordionItems.length - 1 : currentIndex - 1;
+            accordionItems[nextIndex].focus();
+            break;
               
-            case 'Home':
-              e.preventDefault();
-              accordionItems[0].focus();
-              break;
+          case 'Home':
+            e.preventDefault();
+            accordionItems[0].focus();
+            break;
               
-            case 'End':
-              e.preventDefault();
-              accordionItems[accordionItems.length - 1].focus();
-              break;
+          case 'End':
+            e.preventDefault();
+            accordionItems[accordionItems.length - 1].focus();
+            break;
               
-            case 'Enter':
-            case ' ':
-              e.preventDefault();
-              trigger.click();
-              break;
+          case 'Enter':
+          case ' ':
+            e.preventDefault();
+            trigger.click();
+            break;
           }
         });
 
         // Enhanced click handling with animation support
-        trigger.addEventListener('click', function(e) {
+        trigger.addEventListener('click', function (e) {
           e.preventDefault();
           
           const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
@@ -81,7 +81,7 @@
           if (isExpanded) {
             // Collapse
             targetPanel.style.maxHeight = targetPanel.scrollHeight + 'px';
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
               targetPanel.style.maxHeight = '0px';
               targetPanel.style.opacity = '0';
             });
@@ -108,7 +108,7 @@
           }
           
           // Clean up maxHeight after animation
-          setTimeout(function() {
+          setTimeout(function () {
             if (!isExpanded) {
               targetPanel.style.maxHeight = 'none';
             }
@@ -118,7 +118,7 @@
     });
 
     // Set up proper initial state
-    accordionItems.forEach(function(trigger, index) {
+    accordionItems.forEach(function (trigger, index) {
       const targetId = trigger.getAttribute('data-accordion-target');
       const targetPanel = document.querySelector(targetId);
       const isInitiallyExpanded = trigger.getAttribute('aria-expanded') === 'true';
@@ -153,7 +153,7 @@
 
       console.log('[adesso-accordion] Found', accordionElements.length, 'accordion(s)');
 
-      accordionElements.forEach(function(accordionElement) {
+      accordionElements.forEach(function (accordionElement) {
         initializeAccordion(accordionElement);
       });
     },
@@ -163,9 +163,9 @@
         // Clean up event listeners and styles
         const accordions = context.querySelectorAll('[data-accordion="collapse"]');
         
-        accordions.forEach(function(accordion) {
+        accordions.forEach(function (accordion) {
           const items = accordion.querySelectorAll('[data-accordion-target]');
-          items.forEach(function(item) {
+          items.forEach(function (item) {
             // Reset inline styles
             const targetId = item.getAttribute('data-accordion-target');
             const targetPanel = document.querySelector(targetId);

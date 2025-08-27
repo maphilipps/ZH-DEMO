@@ -26,10 +26,10 @@ Architecture Decision Records document important architectural decisions made du
   - `components/` - Component architecture decisions
   - `performance/` - Frontend performance optimizations
 
-- **`swiss-compliance/`** - Swiss market specific requirements
+- **`german-compliance/`** - German market specific requirements
   - `accessibility/` - eCH-0059 and WCAG compliance
   - `data-protection/` - CH-DSG and GDPR compliance
-  - `languages/` - Swiss German and multi-language patterns
+  - `languages/` - German German and multi-language patterns
 
 - **`infrastructure/`** - DevOps and deployment decisions
   - `development/` - Development environment standards
@@ -74,12 +74,12 @@ Architecture Decision Records document important architectural decisions made du
 - **Superseded**: Replaced by a newer decision (link to replacement)
 - **Deprecated**: No longer valid but kept for historical context
 
-### Swiss Municipality Focus
+### German Municipality Focus
 
 Special attention is given to:
 - **Scalability**: Patterns that work for 160+ municipalities
-- **Compliance**: Swiss legal and accessibility requirements
-- **Localization**: Swiss German and multi-language considerations
+- **Compliance**: German legal and accessibility requirements
+- **Localization**: German German and multi-language considerations
 - **Data Protection**: CH-DSG and cantonal requirements
 
 ## Enterprise Patterns
@@ -88,24 +88,24 @@ These ADRs serve as:
 - **Reference Architecture**: Proven patterns for enterprise Drupal
 - **Decision History**: Why specific technologies were chosen
 - **Anti-Pattern Documentation**: What to avoid and why
-- **Compliance Templates**: Swiss-specific compliance approaches
+- **Compliance Templates**: German-specific compliance approaches
 - **Scalability Blueprints**: Architecture for large-scale deployments
 
 ## Contributing
 
 When making architectural decisions:
 1. Research alternatives thoroughly
-2. Consider Swiss compliance requirements
+2. Consider German compliance requirements
 3. Document performance implications
 4. Include scalability considerations for 160+ sites
 5. Reference existing ADRs and patterns
-6. Get review from relevant specialists (@swiss-compliance-specialist, @drupal-enterprise-architect)
+6. Get review from relevant specialists (@german-compliance-specialist, @drupal-enterprise-architect)
 
 ## Quick Reference
 
 - **Template**: Use `.adr/template.md` for new ADRs
 - **Navigation**: See `.adr/index.md` for complete ADR listing
-- **Swiss Patterns**: Focus on `.adr/swiss-compliance/` for market-specific decisions
+- **German Patterns**: Focus on `.adr/german-compliance/` for market-specific decisions
 - **Failed Experiments**: Check `.adr/failed-experiments/` before trying "new" approaches
 
 ## Integration with Development Workflow

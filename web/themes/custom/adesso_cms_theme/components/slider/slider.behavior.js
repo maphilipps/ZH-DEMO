@@ -145,8 +145,8 @@
       console.log('[adesso-slider] Found', sliderElements.length, 'slider(s)');
 
       // Wait for Swiper to load, then initialize
-      waitForSwiper(function() {
-        sliderElements.forEach(function(sliderElement) {
+      waitForSwiper(function () {
+        sliderElements.forEach(function (sliderElement) {
           initializeSlider(sliderElement);
         });
       });
@@ -157,7 +157,7 @@
         // Cleanup Swiper instances
         const sliders = context.querySelectorAll('.adesso-slider.swiper');
 
-        sliders.forEach(function(slider) {
+        sliders.forEach(function (slider) {
           if (slider.swiperInstance) {
             try {
               slider.swiperInstance.destroy();

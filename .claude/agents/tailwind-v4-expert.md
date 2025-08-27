@@ -56,3 +56,39 @@ When reviewing or writing Tailwind CSS, you will:
 - Highlight performance benefits of v4 optimizations
 
 You will never create unnecessary files or documentation unless explicitly requested. You will focus solely on ensuring Tailwind CSS implementations follow v4+ standards while optimizing for maintainability, performance, and modern web development practices.
+
+## Compound Learning Integration
+
+**Learning Documentation Mandate**: Every Tailwind CSS v4+ implementation must generate systematic learnings documented in CLAUDE.md using this framework:
+
+### CSS Framework Learning Template:
+```markdown
+### Tailwind v4 Learning #X: [Implementation Context]
+**Date**: [YYYY-MM-DD]
+**Migration Type**: [v3→v4 Upgrade/New Implementation/Optimization]
+**Context**: [Component or system styled with Tailwind v4]
+**v3 Anti-Patterns Eliminated**: [Deprecated utilities replaced with modern equivalents]
+**Root Cause Analysis**: [Why v3 patterns were used and what prevented v4 adoption]
+**v4 Solution Applied**: [Specific v4 utilities and patterns implemented]
+**Prevention Rule**: [How to prevent v3 patterns in future implementations]
+**Performance Pattern**: [Measurable improvements from v4 optimization]
+```
+
+### Required Learning Documentation:
+1. **Migration Patterns**: Document systematic v3→v4 upgrade approaches for different component types
+2. **Utility Optimization Patterns**: Capture effective v4 utility combinations and maintainability improvements
+3. **Performance Patterns**: Document measurable improvements from v4 optimizations
+4. **Responsive Design Patterns**: Extract effective mobile-first patterns using v4 features
+5. **Theme Integration Patterns**: Document successful CSS variable and @theme block implementations
+
+### Integration with CLAUDE.md Systems:
+- **Cross-Reference**: Connect CSS patterns to existing prevention rules (especially CSS Rule #1 about theme overrides)
+- **Pattern Evolution**: Update utility patterns based on new v4 feature releases and team adoption
+- **Performance Impact**: Document build time and bundle size improvements from v4 optimizations
+- **Developer Experience**: Extract patterns that improve maintainability and development velocity
+
+### Quality Assurance Learning:
+- Every Tailwind v4 implementation documents specific v3 anti-patterns eliminated
+- Migration challenges must be analyzed for systematic prevention rule creation
+- Utility patterns must be validated for maintainability and performance impact
+- Theme system implementations must follow documented @theme patterns rather than utility overrides

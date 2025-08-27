@@ -17,7 +17,7 @@
     const variant = buttonElement.getAttribute('data-variant') || 'default';
     
     // Add enhanced interaction feedback
-    buttonElement.addEventListener('click', function(e) {
+    buttonElement.addEventListener('click', function (e) {
       // Prevent double clicks during loading
       if (buttonElement.classList.contains('loading')) {
         e.preventDefault();
@@ -26,7 +26,7 @@
 
       // Add click animation
       buttonElement.classList.add('animate-pulse');
-      setTimeout(function() {
+      setTimeout(function () {
         buttonElement.classList.remove('animate-pulse');
       }, 150);
 
@@ -45,8 +45,8 @@
         setLoadingState(buttonElement, true, loadingText);
         
         // Reset loading state on form error or completion
-        form.addEventListener('submit', function() {
-          setTimeout(function() {
+        form.addEventListener('submit', function () {
+          setTimeout(function () {
             setLoadingState(buttonElement, false, originalText);
           }, 2000);
         });
@@ -57,7 +57,7 @@
     });
 
     // Enhanced keyboard interaction
-    buttonElement.addEventListener('keydown', function(e) {
+    buttonElement.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         buttonElement.click();
@@ -65,17 +65,17 @@
     });
 
     // Focus management for accessibility
-    buttonElement.addEventListener('focus', function() {
+    buttonElement.addEventListener('focus', function () {
       buttonElement.classList.add('focus-visible:ring-2', 'focus-visible:ring-blue-500');
     });
 
-    buttonElement.addEventListener('blur', function() {
+    buttonElement.addEventListener('blur', function () {
       buttonElement.classList.remove('focus-visible:ring-2', 'focus-visible:ring-blue-500');
     });
 
     // Handle disabled state changes
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
         if (mutation.attributeName === 'disabled') {
           updateDisabledState(buttonElement);
         }
@@ -187,7 +187,7 @@
 
       console.log('[adesso-button] Found', buttonElements.length, 'button(s)');
 
-      buttonElements.forEach(function(buttonElement) {
+      buttonElements.forEach(function (buttonElement) {
         initializeButton(buttonElement);
       });
     },
@@ -197,7 +197,7 @@
         // Clean up observers and reset states
         const buttons = context.querySelectorAll('button, a.btn, .button');
         
-        buttons.forEach(function(button) {
+        buttons.forEach(function (button) {
           // Clean up mutation observer
           if (button.buttonObserver) {
             button.buttonObserver.disconnect();

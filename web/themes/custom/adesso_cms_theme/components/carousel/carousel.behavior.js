@@ -43,7 +43,7 @@
           // Basic navigation with dynamic selectors
           navigation: {
             nextEl: nextButton,
-            prevEl: prevButton,
+            prevEl: prevButton
           },
 
           // Pagination with clickable dots
@@ -51,7 +51,7 @@
             el: '.swiper-pagination',
             clickable: true,
             bulletActiveClass: 'swiper-pagination-bullet-active',
-            bulletClass: 'swiper-pagination-bullet',
+            bulletClass: 'swiper-pagination-bullet'
           },
 
           // Loop configuration
@@ -62,39 +62,39 @@
           breakpoints: {
             320: {
               slidesPerView: 1,
-              spaceBetween: 16,
+              spaceBetween: 16
             },
             480: {
               slidesPerView: 1,
               spaceBetween: 16,
               navigation: {
-                enabled: false,
-              },
+                enabled: false
+              }
             },
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 20
             },
             768: {
               slidesPerView: 2,
               spaceBetween: 20,
               navigation: {
-                enabled: true,
-              },
+                enabled: true
+              }
             },
             1024: {
               slidesPerView: cardsPerView,
               spaceBetween: 24,
               navigation: {
-                enabled: true,
-              },
-            },
+                enabled: true
+              }
+            }
           },
           // Autoplay configuration
           autoplay: autoplay ? {
             delay: interval,
             disableOnInteraction: false,
-            pauseOnMouseEnter: pauseOnHover,
+            pauseOnMouseEnter: pauseOnHover
           } : false,
 
           // Accessibility settings
@@ -102,13 +102,13 @@
             enabled: true,
             prevSlideMessage: 'Previous slide',
             nextSlideMessage: 'Next slide',
-            paginationBulletMessage: 'Go to slide {{index}}',
+            paginationBulletMessage: 'Go to slide {{index}}'
           },
 
           // Keyboard navigation
           keyboard: {
             enabled: true,
-            onlyInViewport: true,
+            onlyInViewport: true
           },
 
           // Animation settings
@@ -174,8 +174,8 @@
               if (this.navigation && this.navigation.$prevEl) {
                 this.navigation.$prevEl[0].setAttribute('aria-label', 'Previous slide');
               }
-            },
-          },
+            }
+          }
         };
 
         // Initialize Swiper instance
@@ -189,20 +189,20 @@
         // Enhanced keyboard navigation
         carousel.addEventListener('keydown', function (e) {
           switch (e.key) {
-            case 'Home':
-              e.preventDefault();
-              if (!swiper || !swiper.slides) {
-                return;
-              }
-              swiper.slideTo(0);
-              break;
-            case 'End':
-              e.preventDefault();
-              if (!swiper || !swiper.slides) {
-                return;
-              }
-              swiper.slideTo(swiper.slides.length - 1);
-              break;
+          case 'Home':
+            e.preventDefault();
+            if (!swiper || !swiper.slides) {
+              return;
+            }
+            swiper.slideTo(0);
+            break;
+          case 'End':
+            e.preventDefault();
+            if (!swiper || !swiper.slides) {
+              return;
+            }
+            swiper.slideTo(swiper.slides.length - 1);
+            break;
           }
         });
 

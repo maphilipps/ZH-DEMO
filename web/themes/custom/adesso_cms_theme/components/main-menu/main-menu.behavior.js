@@ -42,12 +42,12 @@
    * @return {void}
    */
   function initializeDropdowns(dropdownToggles, menuElement) {
-    dropdownToggles.forEach(function(toggle) {
+    dropdownToggles.forEach(function (toggle) {
       const dropdownId = toggle.getAttribute('data-dropdown-toggle') || 
                         toggle.getAttribute('aria-controls');
       const dropdown = dropdownId ? 
-                      document.getElementById(dropdownId) : 
-                      toggle.nextElementSibling;
+        document.getElementById(dropdownId) : 
+        toggle.nextElementSibling;
 
       if (!dropdown) {
         console.warn('[adesso-main-menu] Dropdown not found for toggle');
@@ -61,7 +61,7 @@
       dropdown.setAttribute('aria-hidden', 'true');
 
       // Click handler for dropdown toggle
-      toggle.addEventListener('click', function(e) {
+      toggle.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         
@@ -80,7 +80,7 @@
       if (parentItem) {
         let hoverTimeout;
 
-        parentItem.addEventListener('mouseenter', function() {
+        parentItem.addEventListener('mouseenter', function () {
           clearTimeout(hoverTimeout);
           
           // Only open on hover for desktop
@@ -89,9 +89,9 @@
           }
         });
 
-        parentItem.addEventListener('mouseleave', function() {
+        parentItem.addEventListener('mouseleave', function () {
           clearTimeout(hoverTimeout);
-          hoverTimeout = setTimeout(function() {
+          hoverTimeout = setTimeout(function () {
             if (window.innerWidth >= 768) {
               closeDropdown(toggle, dropdown);
             }
@@ -101,11 +101,11 @@
 
       // Handle clicks on dropdown items
       const dropdownItems = dropdown.querySelectorAll('a, button');
-      dropdownItems.forEach(function(item, index) {
+      dropdownItems.forEach(function (item, index) {
         item.setAttribute('role', 'menuitem');
         item.setAttribute('tabindex', '-1');
         
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           // Close dropdown after selection
           closeDropdown(toggle, dropdown);
           
@@ -116,7 +116,7 @@
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!menuElement.contains(e.target)) {
         closeAllDropdowns(menuElement);
       }
@@ -130,7 +130,7 @@
    * @return {void}
    */
   function initializeMobileMenu(menuToggles, menuElement) {
-    menuToggles.forEach(function(toggle) {
+    menuToggles.forEach(function (toggle) {
       const targetId = toggle.getAttribute('data-menu-toggle') ||
                       toggle.getAttribute('aria-controls');
       const mobileMenu = targetId ? document.getElementById(targetId) : menuElement;
@@ -141,7 +141,7 @@
         toggle.setAttribute('aria-controls', targetId);
       }
 
-      toggle.addEventListener('click', function(e) {
+      toggle.addEventListener('click', function (e) {
         e.preventDefault();
         
         const isOpen = toggle.getAttribute('aria-expanded') === 'true';
@@ -155,9 +155,9 @@
     });
 
     // Close mobile menu on escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        menuToggles.forEach(function(toggle) {
+        menuToggles.forEach(function (toggle) {
           const targetId = toggle.getAttribute('data-menu-toggle') ||
                           toggle.getAttribute('aria-controls');
           const mobileMenu = targetId ? document.getElementById(targetId) : menuElement;
@@ -176,79 +176,79 @@
   function initializeKeyboardNavigation(menuItems, menuElement) {
     const focusableItems = menuElement.querySelectorAll('a, button, [tabindex="0"]');
     
-    focusableItems.forEach(function(item, index) {
-      item.addEventListener('keydown', function(e) {
+    focusableItems.forEach(function (item, index) {
+      item.addEventListener('keydown', function (e) {
         let targetIndex;
         
         switch (e.key) {
-          case 'ArrowRight':
-            e.preventDefault();
-            targetIndex = (index + 1) % focusableItems.length;
-            focusableItems[targetIndex].focus();
-            break;
+        case 'ArrowRight':
+          e.preventDefault();
+          targetIndex = (index + 1) % focusableItems.length;
+          focusableItems[targetIndex].focus();
+          break;
             
-          case 'ArrowLeft':
-            e.preventDefault();
-            targetIndex = index === 0 ? focusableItems.length - 1 : index - 1;
-            focusableItems[targetIndex].focus();
-            break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          targetIndex = index === 0 ? focusableItems.length - 1 : index - 1;
+          focusableItems[targetIndex].focus();
+          break;
             
-          case 'ArrowDown':
-            e.preventDefault();
-            // Handle dropdown navigation
-            const dropdown = item.getAttribute('aria-controls');
-            if (dropdown) {
-              const dropdownElement = document.getElementById(dropdown);
-              if (dropdownElement && item.getAttribute('aria-expanded') === 'true') {
-                const firstDropdownItem = dropdownElement.querySelector('a, button');
-                if (firstDropdownItem) {
-                  firstDropdownItem.focus();
-                }
+        case 'ArrowDown':
+          e.preventDefault();
+          // Handle dropdown navigation
+          const dropdown = item.getAttribute('aria-controls');
+          if (dropdown) {
+            const dropdownElement = document.getElementById(dropdown);
+            if (dropdownElement && item.getAttribute('aria-expanded') === 'true') {
+              const firstDropdownItem = dropdownElement.querySelector('a, button');
+              if (firstDropdownItem) {
+                firstDropdownItem.focus();
               }
             }
-            break;
+          }
+          break;
             
-          case 'ArrowUp':
-            e.preventDefault();
-            // Navigate up in dropdown or close dropdown
-            const parentDropdown = item.closest('[role="menu"]');
-            if (parentDropdown) {
-              const toggle = menuElement.querySelector(`[aria-controls="${parentDropdown.id}"]`);
-              if (toggle) {
-                toggle.focus();
-                closeDropdown(toggle, parentDropdown);
-              }
+        case 'ArrowUp':
+          e.preventDefault();
+          // Navigate up in dropdown or close dropdown
+          const parentDropdown = item.closest('[role="menu"]');
+          if (parentDropdown) {
+            const toggle = menuElement.querySelector(`[aria-controls="${parentDropdown.id}"]`);
+            if (toggle) {
+              toggle.focus();
+              closeDropdown(toggle, parentDropdown);
             }
-            break;
+          }
+          break;
             
-          case 'Escape':
-            e.preventDefault();
-            // Close any open dropdowns and return focus
-            const openDropdown = item.closest('[role="menu"]');
-            if (openDropdown) {
-              const toggle = menuElement.querySelector(`[aria-controls="${openDropdown.id}"]`);
-              if (toggle) {
-                closeDropdown(toggle, openDropdown);
-                toggle.focus();
-              }
-            } else {
-              // Close mobile menu if open
-              const mobileMenuToggle = menuElement.querySelector('[data-menu-toggle]');
-              if (mobileMenuToggle && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
-                closeMobileMenu(mobileMenuToggle, menuElement);
-              }
+        case 'Escape':
+          e.preventDefault();
+          // Close any open dropdowns and return focus
+          const openDropdown = item.closest('[role="menu"]');
+          if (openDropdown) {
+            const toggle = menuElement.querySelector(`[aria-controls="${openDropdown.id}"]`);
+            if (toggle) {
+              closeDropdown(toggle, openDropdown);
+              toggle.focus();
             }
-            break;
+          } else {
+            // Close mobile menu if open
+            const mobileMenuToggle = menuElement.querySelector('[data-menu-toggle]');
+            if (mobileMenuToggle && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
+              closeMobileMenu(mobileMenuToggle, menuElement);
+            }
+          }
+          break;
             
-          case 'Home':
-            e.preventDefault();
-            focusableItems[0].focus();
-            break;
+        case 'Home':
+          e.preventDefault();
+          focusableItems[0].focus();
+          break;
             
-          case 'End':
-            e.preventDefault();
-            focusableItems[focusableItems.length - 1].focus();
-            break;
+        case 'End':
+          e.preventDefault();
+          focusableItems[focusableItems.length - 1].focus();
+          break;
         }
       });
     });
@@ -264,7 +264,7 @@
     
     function handleResize() {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(function() {
+      resizeTimeout = setTimeout(function () {
         // Close all dropdowns on resize
         closeAllDropdowns(menuElement);
         
@@ -281,7 +281,7 @@
     window.addEventListener('resize', handleResize);
     
     // Store cleanup function
-    menuElement.resizeCleanup = function() {
+    menuElement.resizeCleanup = function () {
       window.removeEventListener('resize', handleResize);
     };
   }
@@ -319,7 +319,7 @@
     
     // Reset tabindex for dropdown items
     const items = dropdown.querySelectorAll('a, button');
-    items.forEach(function(item) {
+    items.forEach(function (item) {
       item.setAttribute('tabindex', '-1');
     });
   }
@@ -333,7 +333,7 @@
   function closeAllDropdowns(menuElement, exceptToggle) {
     const dropdownToggles = menuElement.querySelectorAll('[aria-expanded="true"]');
     
-    dropdownToggles.forEach(function(toggle) {
+    dropdownToggles.forEach(function (toggle) {
       if (toggle !== exceptToggle) {
         const dropdownId = toggle.getAttribute('aria-controls');
         const dropdown = dropdownId ? document.getElementById(dropdownId) : toggle.nextElementSibling;
@@ -399,7 +399,7 @@
 
       console.log('[adesso-main-menu] Found', menuElements.length, 'main menu(s)');
 
-      menuElements.forEach(function(menuElement) {
+      menuElements.forEach(function (menuElement) {
         initializeMainMenu(menuElement);
       });
     },
@@ -409,7 +409,7 @@
         // Clean up event listeners and reset states
         const menus = context.querySelectorAll('.main-menu, [data-main-menu], .primary-menu, .navbar');
         
-        menus.forEach(function(menu) {
+        menus.forEach(function (menu) {
           // Clean up resize listener
           if (menu.resizeCleanup) {
             menu.resizeCleanup();

@@ -48,7 +48,7 @@
    * @return {void}
    */
   function initializePricingCards(pricingCards, pricingElement) {
-    pricingCards.forEach(function(card, index) {
+    pricingCards.forEach(function (card, index) {
       const selectButton = card.querySelector('.select-plan, [data-select-plan]');
       const featuresToggle = card.querySelector('.features-toggle, [data-features-toggle]');
       const featuresContent = card.querySelector('.features-content, [data-features-content]');
@@ -86,7 +86,7 @@
                      card.querySelector('.plan-price, [data-price]')?.textContent?.trim();
     const planBilling = card.getAttribute('data-billing-period') || 'monthly';
 
-    selectButton.addEventListener('click', function(e) {
+    selectButton.addEventListener('click', function (e) {
       // Prevent default if it's a form button
       if (selectButton.type === 'button') {
         e.preventDefault();
@@ -94,7 +94,7 @@
 
       // Add visual feedback
       selectButton.classList.add('animate-pulse');
-      setTimeout(function() {
+      setTimeout(function () {
         selectButton.classList.remove('animate-pulse');
       }, 200);
 
@@ -109,18 +109,18 @@
       // Handle different selection types
       const selectionAction = selectButton.getAttribute('data-action');
       switch (selectionAction) {
-        case 'modal':
-          openPlanModal(planName, card);
-          break;
-        case 'checkout':
-          redirectToCheckout(planName, planPrice, planBilling);
-          break;
-        case 'contact':
-          openContactForm(planName);
-          break;
-        default:
-          // Default behavior (form submission or link navigation)
-          break;
+      case 'modal':
+        openPlanModal(planName, card);
+        break;
+      case 'checkout':
+        redirectToCheckout(planName, planPrice, planBilling);
+        break;
+      case 'contact':
+        openContactForm(planName);
+        break;
+      default:
+        // Default behavior (form submission or link navigation)
+        break;
       }
     });
 
@@ -159,7 +159,7 @@
     content.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
     content.style.opacity = '0';
 
-    toggle.addEventListener('click', function(e) {
+    toggle.addEventListener('click', function (e) {
       e.preventDefault();
       
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -186,7 +186,7 @@
         toggle.textContent = toggle.getAttribute('data-hide-text') || 'Hide Features';
         
         // Clean up maxHeight after animation
-        setTimeout(function() {
+        setTimeout(function () {
           content.style.maxHeight = 'none';
         }, 300);
       }
@@ -201,8 +201,8 @@
    * @return {void}
    */
   function initializeBillingToggle(toggleButtons, pricingCards, pricingElement) {
-    toggleButtons.forEach(function(toggle) {
-      toggle.addEventListener('click', function(e) {
+    toggleButtons.forEach(function (toggle) {
+      toggle.addEventListener('click', function (e) {
         const isYearly = toggle.getAttribute('data-billing') === 'yearly' ||
                         toggle.classList.contains('billing-yearly');
         
@@ -219,7 +219,7 @@
         
         // Add visual feedback
         pricingElement.classList.add('prices-updating');
-        setTimeout(function() {
+        setTimeout(function () {
           pricingElement.classList.remove('prices-updating');
         }, 500);
       });
@@ -237,12 +237,12 @@
     let selectedPlans = [];
     
     // Add selection checkboxes to cards
-    pricingCards.forEach(function(card, index) {
+    pricingCards.forEach(function (card, index) {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.className = 'plan-compare-checkbox absolute top-4 right-4';
-      checkbox.setAttribute('aria-label', `Compare this plan`);
-      checkbox.addEventListener('change', function() {
+      checkbox.setAttribute('aria-label', 'Compare this plan');
+      checkbox.addEventListener('change', function () {
         updateSelectedPlans(checkbox, card, index);
       });
       
@@ -252,7 +252,7 @@
 
     function updateSelectedPlans(checkbox, card, index) {
       if (checkbox.checked) {
-        selectedPlans.push({index: index, card: card});
+        selectedPlans.push({ index: index, card: card });
         card.classList.add('selected-for-comparison');
       } else {
         selectedPlans = selectedPlans.filter(plan => plan.index !== index);
@@ -262,11 +262,11 @@
       // Update compare button state
       compareButton.disabled = selectedPlans.length < 2;
       compareButton.textContent = selectedPlans.length === 0 ? 'Select Plans to Compare' :
-                                  selectedPlans.length === 1 ? 'Select Another Plan' :
-                                  `Compare ${selectedPlans.length} Plans`;
+        selectedPlans.length === 1 ? 'Select Another Plan' :
+          `Compare ${selectedPlans.length} Plans`;
     }
 
-    compareButton.addEventListener('click', function(e) {
+    compareButton.addEventListener('click', function (e) {
       e.preventDefault();
       
       if (selectedPlans.length < 2) {
@@ -292,13 +292,13 @@
    */
   function initializePricingAnimations(pricingElement, pricingCards) {
     // Intersection observer for scroll animations
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           // Stagger card animations
           const cards = entry.target.querySelectorAll('.pricing-card, [data-pricing-card]');
-          cards.forEach(function(card, index) {
-            setTimeout(function() {
+          cards.forEach(function (card, index) {
+            setTimeout(function () {
               card.classList.add('animate-fade-in-up');
             }, index * 100);
           });
@@ -326,7 +326,7 @@
   function initializeCardHoverEffects(card) {
     // Only apply hover effects on non-touch devices
     if (!('ontouchstart' in window)) {
-      card.addEventListener('mouseenter', function() {
+      card.addEventListener('mouseenter', function () {
         card.classList.add('transform', 'scale-105', 'shadow-xl');
         
         // Highlight the card
@@ -336,7 +336,7 @@
         }
       });
 
-      card.addEventListener('mouseleave', function() {
+      card.addEventListener('mouseleave', function () {
         card.classList.remove('transform', 'scale-105', 'shadow-xl');
         
         const selectButton = card.querySelector('.select-plan, [data-select-plan]');
@@ -358,28 +358,28 @@
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'article');
     
-    card.addEventListener('keydown', function(e) {
+    card.addEventListener('keydown', function (e) {
       switch (e.key) {
-        case 'ArrowLeft':
-          e.preventDefault();
-          const prevIndex = index === 0 ? allCards.length - 1 : index - 1;
-          allCards[prevIndex].focus();
-          break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        const prevIndex = index === 0 ? allCards.length - 1 : index - 1;
+        allCards[prevIndex].focus();
+        break;
           
-        case 'ArrowRight':
-          e.preventDefault();
-          const nextIndex = (index + 1) % allCards.length;
-          allCards[nextIndex].focus();
-          break;
+      case 'ArrowRight':
+        e.preventDefault();
+        const nextIndex = (index + 1) % allCards.length;
+        allCards[nextIndex].focus();
+        break;
           
-        case 'Enter':
-        case ' ':
-          e.preventDefault();
-          const selectButton = card.querySelector('.select-plan, [data-select-plan]');
-          if (selectButton) {
-            selectButton.click();
-          }
-          break;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        const selectButton = card.querySelector('.select-plan, [data-select-plan]');
+        if (selectButton) {
+          selectButton.click();
+        }
+        break;
       }
     });
   }
@@ -393,7 +393,7 @@
    * @return {void}
    */
   function updateToggleStates(toggleButtons, activeToggle) {
-    toggleButtons.forEach(function(toggle) {
+    toggleButtons.forEach(function (toggle) {
       toggle.classList.remove('active');
       toggle.setAttribute('aria-pressed', 'false');
     });
@@ -409,7 +409,7 @@
    * @return {void}
    */
   function updatePricingDisplay(pricingCards, isYearly) {
-    pricingCards.forEach(function(card) {
+    pricingCards.forEach(function (card) {
       const monthlyPrice = card.querySelector('.monthly-price, [data-monthly-price]');
       const yearlyPrice = card.querySelector('.yearly-price, [data-yearly-price]');
       const billingPeriod = card.querySelector('.billing-period, [data-billing-period]');
@@ -442,7 +442,7 @@
   function animatePriceCounters(pricingElement) {
     const priceElements = pricingElement.querySelectorAll('.price-amount, [data-price-amount]');
     
-    priceElements.forEach(function(priceElement) {
+    priceElements.forEach(function (priceElement) {
       const finalPrice = parseInt(priceElement.textContent.replace(/[^\d]/g, ''));
       if (isNaN(finalPrice)) return;
       
@@ -520,7 +520,7 @@
     messageElement.textContent = message;
     
     // Auto-hide after 5 seconds
-    setTimeout(function() {
+    setTimeout(function () {
       if (messageElement.parentNode) {
         messageElement.remove();
       }
@@ -597,7 +597,7 @@
 
       console.log('[adesso-pricing] Found', pricingElements.length, 'pricing section(s)');
 
-      pricingElements.forEach(function(pricingElement) {
+      pricingElements.forEach(function (pricingElement) {
         initializePricing(pricingElement);
       });
     },
@@ -607,7 +607,7 @@
         // Clean up observers and reset states
         const pricingSections = context.querySelectorAll('.pricing, [data-pricing], .pricing-section, .pricing-table');
         
-        pricingSections.forEach(function(section) {
+        pricingSections.forEach(function (section) {
           // Clean up intersection observer
           if (section.pricingObserver) {
             section.pricingObserver.disconnect();
@@ -616,7 +616,7 @@
           
           // Reset card states
           const cards = section.querySelectorAll('.pricing-card, [data-pricing-card]');
-          cards.forEach(function(card) {
+          cards.forEach(function (card) {
             card.classList.remove('transform', 'scale-105', 'shadow-xl', 'animate-fade-in-up', 'selected-for-comparison');
             
             // Remove comparison checkboxes

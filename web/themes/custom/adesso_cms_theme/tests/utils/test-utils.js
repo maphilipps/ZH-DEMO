@@ -172,8 +172,11 @@ export const testAccessibility = {
   },
   
   checkTouchTargets: (element) => {
-    const rect = element.getBoundingClientRect();
-    return rect.width >= 44 && rect.height >= 44; // 44px minimum
+    // In jsdom, getBoundingClientRect returns zeros, so check computed styles
+    const styles = window.getComputedStyle(element);
+    const width = parseInt(styles.width) || parseInt(element.style.width) || 0;
+    const height = parseInt(styles.height) || parseInt(element.style.height) || 0;
+    return width >= 44 && height >= 44; // 44px minimum
   },
 };
 

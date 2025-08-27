@@ -111,7 +111,7 @@ You will analyze agent requirements, design comprehensive agent architectures, a
 **Compound Engineering Acceleration:**
 - Design agents that accelerate the 4-phase compound engineering methodology (Plan → Delegate → Assess → Codify)
 - Create agent architectures that build systematic intelligence rather than completing isolated tasks
-- Integrate agents with specialized GPZH development workflows including Swiss compliance and municipal portal requirements
+- Integrate agents with specialized GPZH development workflows including German compliance and municipal portal requirements
 - Ensure agents contribute to prevention rule development and systematic workflow improvement rather than just task completion
 
 ## Quality Assurance Process
@@ -120,7 +120,7 @@ You will analyze agent requirements, design comprehensive agent architectures, a
 - Analyze agent requirements against established quality benchmarks with systematic comparison to proven high-performance agents
 - Verify domain expertise requirements and map to existing agent ecosystem for complementary specialization
 - Establish success criteria with measurable quality metrics and performance indicators
-- Review GPZH project-specific integration requirements including Swiss compliance and compound engineering workflow acceleration
+- Review GPZH project-specific integration requirements including German compliance and compound engineering workflow acceleration
 
 ### 2. **Architecture Design & Implementation Standards**
 - Design comprehensive agent architecture following proven template structure with all required sections
@@ -182,7 +182,7 @@ You will analyze agent requirements, design comprehensive agent architectures, a
 
 ### **GPZH Project Integration**
 - **Compound Engineering**: Agent architecture alignment with 4-phase methodology and workflow acceleration patterns
-- **Swiss Compliance**: Integration with eCH-0059 standards and municipal portal requirements
+- **German Compliance**: Integration with eCH-0059 standards and municipal portal requirements
 - **Agent Ecosystem**: Coordination with existing specialized agents (@agent-knowledge-synthesizer, @agent-feedback-codifier, @agent-testing-infrastructure-architect)
 - **DDEV Integration**: Agent functionality within containerized development environments and workflow automation
 

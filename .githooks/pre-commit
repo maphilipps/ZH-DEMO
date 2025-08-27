@@ -1,0 +1,194 @@
+#!/bin/bash
+# Pre-commit hook for Compound Intelligence Measurement System
+# Tracks prevention rule applications and learning documentation quality
+
+set -e
+
+echo "🧠 Compound Intelligence Pre-Commit Analysis..."
+
+# Prevention Rule Application Tracking
+check_prevention_rules() {
+    local violations=0
+    
+    echo "🎯 Checking Prevention Rule Applications..."
+    
+    # Rule #1: Paragraphs Frontend Editing
+    if git diff --cached --name-only | grep -q "\.yml$"; then
+        paragraph_configs=$(git diff --cached | grep -c "field_paragraphs" || true)
+        if [ $paragraph_configs -gt 0 ]; then
+            echo "✅ Rule #1 (Paragraphs): $paragraph_configs paragraph field configurations detected"
+            # Check if add_above is properly configured
+            if git diff --cached | grep -q "field_paragraphs" && ! git diff --cached | grep -q "add_above.*add_above"; then
+                echo "⚠️  Rule #1 WARNING: Paragraph field detected but add_above configuration not verified"
+            fi
+        fi
+    fi
+    
+    # Rule #4: DDEV Frontend Testing  
+    if git diff --cached | grep -q "npm "; then
+        if ! git diff --cached | grep -q "ddev npm"; then
+            echo "❌ Rule #4 VIOLATION: Plain 'npm' commands detected. Use 'ddev npm' in DDEV environment"
+            violations=$((violations + 1))
+        else
+            echo "✅ Rule #4 (DDEV npm): Proper 'ddev npm' usage detected"
+        fi
+    fi
+    
+    # Rule #5: Test Failure Analysis
+    if git diff --cached --name-only | grep -E "\.(test\.|spec\.)" > /dev/null; then
+        echo "🧪 Rule #5: Test files modified - ensure test failures are analyzed and fixed"
+        if git diff --cached | grep -q "expect.*to.*fail\|failing.*test\|broken.*test"; then
+            echo "❌ Rule #5 VIOLATION: Failing tests detected. Must fix before commit"
+            violations=$((violations + 1))
+        fi
+    fi
+    
+    # Security Rule #1: XSS Prevention
+    if git diff --cached | grep -q "|raw"; then
+        raw_count=$(git diff --cached | grep -c "|raw" || true)
+        echo "🔒 Security Rule #1: $raw_count |raw filters detected"
+        if git diff --cached | grep -q "title.*|raw\|excerpt.*|raw\|description.*|raw"; then
+            echo "❌ Security Rule #1 VIOLATION: High-risk |raw filter on user content detected"
+            violations=$((violations + 1))
+        fi
+    fi
+    
+    return $violations
+}
+
+# Learning Documentation Quality Check
+check_learning_documentation() {
+    local violations=0
+    
+    echo "📚 Checking Learning Documentation Quality..."
+    
+    # Check if CLAUDE.md is updated when rules are applied
+    if git diff --cached --name-only | grep -v "CLAUDE.md" | grep -q "\.(php\|js\|twig\|yml\)$"; then
+        significant_changes=$(git diff --cached --name-only | grep -E "\.(php\|js\|twig\|yml\)$" | wc -l)
+        if [ $significant_changes -gt 2 ] && ! git diff --cached --name-only | grep -q "CLAUDE.md"; then
+            echo "⚠️  Learning Documentation: Significant changes ($significant_changes files) without CLAUDE.md update"
+            echo "   Consider documenting learnings, patterns, or prevention rules"
+        fi
+    fi
+    
+    # Prevent unauthorized documentation files
+    unauthorized_docs=$(git diff --cached --name-only | grep "\.md$" | grep -v "CLAUDE.md" || true)
+    if [ -n "$unauthorized_docs" ]; then
+        echo "❌ Documentation Rule #1 VIOLATION: Unauthorized .md files detected:"
+        echo "$unauthorized_docs"
+        echo "   Consolidate documentation into CLAUDE.md instead"
+        violations=$((violations + 1))
+    fi
+    
+    # Check for infrastructure files
+    infrastructure_files=$(git diff --cached --name-only | grep -E "\.(log\|pid\|lock)$|volumes/|certs/" || true)
+    if [ -n "$infrastructure_files" ]; then
+        echo "❌ Infrastructure Rule #1 VIOLATION: Infrastructure files detected:"
+        echo "$infrastructure_files"
+        echo "   Add to .gitignore and remove from tracking"
+        violations=$((violations + 1))
+    fi
+    
+    return $violations
+}
+
+# Pattern Reuse Detection
+detect_pattern_opportunities() {
+    echo "🔄 Detecting Pattern Reuse Opportunities..."
+    
+    # Check for repetitive code patterns that could be extracted
+    if git diff --cached | grep -E "(TODO|FIXME|BUG)" > /dev/null; then
+        todo_count=$(git diff --cached | grep -c -E "(TODO|FIXME|BUG)" || true)
+        echo "💡 Pattern Opportunity: $todo_count TODO/FIXME/BUG comments detected"
+        echo "   Consider creating prevention rules for recurring issues"
+    fi
+    
+    # Check for similar function/method patterns
+    if git diff --cached | grep -E "function|def |class " > /dev/null; then
+        echo "🔍 Pattern Check: New functions/classes added - review for reusable patterns"
+    fi
+    
+    # Check for configuration patterns
+    if git diff --cached --name-only | grep -E "\.yml$|\.json$" > /dev/null; then
+        echo "⚙️  Configuration Pattern: Config files changed - document successful patterns"
+    fi
+}
+
+# Agent Coordination Tracking
+track_agent_coordination() {
+    # Check commit message for agent assignments
+    if git diff --cached --name-only | wc -l | awk '$1 > 5'; then
+        echo "🤝 Complex Change Detected: $(git diff --cached --name-only | wc -l) files modified"
+        echo "   Consider specialized agent coordination for complex tasks"
+    fi
+}
+
+# Generate compound intelligence metrics
+generate_metrics() {
+    local rule_violations=$1
+    local doc_violations=$2
+    
+    echo ""
+    echo "📊 Compound Intelligence Metrics:"
+    echo "   Prevention Rule Compliance: $((100 - rule_violations * 20))%"
+    echo "   Learning Documentation Quality: $((100 - doc_violations * 25))%"
+    
+    # Track successful applications
+    if [ $rule_violations -eq 0 ]; then
+        echo "✅ All prevention rules properly applied"
+    fi
+    
+    if [ $doc_violations -eq 0 ]; then
+        echo "✅ Documentation standards maintained"
+    fi
+    
+    # Calculate compound intelligence contribution
+    files_changed=$(git diff --cached --name-only | wc -l)
+    learning_potential=$((files_changed * 10))  # Rough estimate
+    echo "   Learning Potential: $learning_potential points (based on $files_changed files changed)"
+    
+    return $(( rule_violations + doc_violations ))
+}
+
+# Main execution
+main() {
+    echo "========================================"
+    echo "🧠 COMPOUND INTELLIGENCE PRE-COMMIT CHECK"
+    echo "========================================"
+    
+    # Run all checks
+    check_prevention_rules
+    rule_violations=$?
+    
+    check_learning_documentation  
+    doc_violations=$?
+    
+    detect_pattern_opportunities
+    track_agent_coordination
+    
+    # Generate final metrics
+    generate_metrics $rule_violations $doc_violations
+    total_violations=$?
+    
+    echo "========================================"
+    
+    if [ $total_violations -gt 0 ]; then
+        echo "❌ COMMIT BLOCKED: $total_violations violations detected"
+        echo ""
+        echo "💡 Compound Intelligence Guidance:"
+        echo "   - Fix prevention rule violations to maintain system intelligence"
+        echo "   - Document learnings in CLAUDE.md for compound knowledge growth"  
+        echo "   - Follow established patterns for accelerated development"
+        echo ""
+        echo "Run 'git diff --cached' to review changes"
+        exit 1
+    else
+        echo "✅ COMPOUND INTELLIGENCE CHECK PASSED"
+        echo "   Contributing to system-wide learning acceleration!"
+        echo ""
+        exit 0
+    fi
+}
+
+# Execute main function
+main "$@"

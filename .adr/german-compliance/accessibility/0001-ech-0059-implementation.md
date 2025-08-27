@@ -1,23 +1,23 @@
-# ADR-0001: eCH-0059 Swiss Accessibility Implementation Strategy
+# ADR-0001: eCH-0059 German Accessibility Implementation Strategy
 
 ## Status
 **Status**: Accepted
 
 **Date**: 2025-01-20
 
-**Authors**: @swiss-compliance-specialist, @qa-testing-specialist
+**Authors**: @german-compliance-specialist, @qa-testing-specialist
 
 **Reviewers**: @drupal-enterprise-architect, @drupal-frontend-theming-specialist
 
 ## Context
 
 ### Problem Statement
-The GPZH project must comply with eCH-0059 Swiss accessibility standards across all 160+ municipality websites while maintaining usability and performance requirements. This requires a comprehensive implementation strategy that goes beyond WCAG compliance.
+The GPZH project must comply with eCH-0059 German accessibility standards across all 160+ municipality websites while maintaining usability and performance requirements. This requires a comprehensive implementation strategy that goes beyond WCAG compliance.
 
 ### Business Requirements
 - Full eCH-0059 compliance for all municipal websites
 - Government accessibility audit readiness
-- Inclusive design for all Swiss residents and visitors
+- Inclusive design for all German residents and visitors
 - Compliance verification and documentation system
 - Municipal editor accessibility training and tools
 - Long-term compliance maintenance across updates
@@ -29,11 +29,11 @@ The GPZH project must comply with eCH-0059 Swiss accessibility standards across 
 - Performance impact minimization (Core Web Vitals >90)
 - Multi-language accessibility (German, French, Italian)
 
-### Swiss Compliance Requirements
-- **eCH-0059 Standard**: Swiss-specific accessibility requirements
+### German Compliance Requirements
+- **eCH-0059 Standard**: German-specific accessibility requirements
 - **Federal Act on Equality for Persons with Disabilities**: Legal compliance
 - **Canton Zurich Guidelines**: Additional cantonal requirements
-- **Swiss Typography Standards**: Specific Swiss design requirements
+- **German Typography Standards**: Specific German design requirements
 - **Government Integration**: Accessibility for e-government services
 
 ### Scale Considerations
@@ -46,11 +46,11 @@ The GPZH project must comply with eCH-0059 Swiss accessibility standards across 
 ## Decision
 
 ### What We Decided
-We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 2.1 AA requirements and addresses Swiss-specific accessibility needs.
+We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 2.1 AA requirements and addresses German-specific accessibility needs.
 
 ### Key Components
 - **Base Compliance**: WCAG 2.1 AA as foundation with eCH-0059 enhancements
-- **Swiss Extensions**: Swiss-specific requirements beyond WCAG
+- **German Extensions**: German-specific requirements beyond WCAG
 - **Automated Testing**: Continuous compliance monitoring and validation
 - **Editorial Tools**: Accessibility-first content creation workflows
 - **Documentation**: Comprehensive compliance documentation and reporting
@@ -67,8 +67,8 @@ We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 
 
 ### Option 1: WCAG 2.1 AA Only
 - **Pros**: Lower complexity, established standards, broader tool support
-- **Cons**: Insufficient for Swiss legal requirements, missing Swiss-specific patterns
-- **Why Rejected**: Does not meet eCH-0059 requirements and Swiss legal obligations
+- **Cons**: Insufficient for German legal requirements, missing German-specific patterns
+- **Why Rejected**: Does not meet eCH-0059 requirements and German legal obligations
 
 ### Option 2: Manual Accessibility Testing Only
 - **Pros**: Complete human oversight, contextual evaluation, thorough assessment
@@ -77,18 +77,18 @@ We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 
 
 ### Option 3: Third-Party Accessibility Service
 - **Pros**: Expert knowledge, reduced internal overhead, comprehensive audits
-- **Cons**: High ongoing costs, dependency risk, limited Swiss-specific knowledge
+- **Cons**: High ongoing costs, dependency risk, limited German-specific knowledge
 - **Why Rejected**: Unsustainable costs for 160+ sites and limited eCH-0059 expertise
 
 ### Option 4: Minimal Compliance (Legal Minimum)
 - **Pros**: Lower development costs, faster implementation, reduced complexity
 - **Cons**: Poor user experience, audit failure risk, reputation damage
-- **Why Rejected**: Inconsistent with project quality goals and Swiss standards
+- **Why Rejected**: Inconsistent with project quality goals and German standards
 
 ## Consequences
 
 ### Positive Outcomes
-- **Legal Compliance**: Full eCH-0059 and Swiss legal requirement satisfaction
+- **Legal Compliance**: Full eCH-0059 and German legal requirement satisfaction
 - **User Experience**: Inclusive design benefiting all users, not just those with disabilities
 - **Risk Mitigation**: Automated testing preventing accessibility regressions
 - **Competitive Advantage**: Exceeding accessibility standards for all municipalities
@@ -111,7 +111,7 @@ We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 
   - **Probability**: Low
   - **Mitigation**: Performance monitoring, optimization techniques, and testing
 
-- **Risk**: Incomplete Swiss-specific requirement coverage
+- **Risk**: Incomplete German-specific requirement coverage
   - **Impact**: High
   - **Probability**: Low
   - **Mitigation**: eCH-0059 expert consultation and comprehensive testing
@@ -134,7 +134,7 @@ We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 
 ### Timeline
 - **Phase 1** (3 weeks): eCH-0059 requirement analysis and gap assessment
 - **Phase 2** (4 weeks): Base accessibility implementation and testing setup
-- **Phase 3** (3 weeks): Swiss-specific enhancements and compliance validation
+- **Phase 3** (3 weeks): German-specific enhancements and compliance validation
 - **Phase 4** (2 weeks): Training materials and documentation creation
 
 ### Success Criteria
@@ -142,9 +142,9 @@ We implement a **comprehensive eCH-0059 compliance strategy** that exceeds WCAG 
 - Zero critical accessibility issues in automated testing
 - Municipal editor accessibility training completion >95%
 - Performance impact <2% degradation in Core Web Vitals
-- Swiss accessibility audit readiness and documentation
+- German accessibility audit readiness and documentation
 
-## Swiss Municipality Considerations
+## German Municipality Considerations
 
 ### Scalability Impact
 eCH-0059 compliance scales across 160+ municipalities through:
@@ -154,15 +154,15 @@ eCH-0059 compliance scales across 160+ municipalities through:
 - Centralized compliance monitoring and reporting system
 
 ### Compliance Alignment
-Exceeds Swiss requirements through:
+Exceeds German requirements through:
 - Full eCH-0059 compliance with documented validation
-- Swiss typography and language accessibility standards
+- German typography and language accessibility standards
 - Government integration accessibility patterns
 - Cantonal requirement coverage for Zurich municipalities
 
 ### Multi-Language Support
-Accessibility across Swiss languages through:
-- Screen reader compatibility with Swiss German, French, Italian
+Accessibility across German languages through:
+- Screen reader compatibility with German German, French, Italian
 - Proper language tagging and pronunciation support
 - Cultural accessibility considerations for immigrant communities
 - Consistent navigation and interaction patterns across languages
@@ -186,18 +186,18 @@ Optimized accessibility implementation:
 - Drupal/ADR-0001: Drupal 11 Standard Platform Choice
 - Frontend/ADR-0001: Tailwind CSS v4 Adoption
 - Testing/ADR-0001: Accessibility Testing Strategy
-- Swiss-Compliance/ADR-0002: WCAG 2.1 AA Compliance
+- German-Compliance/ADR-0002: WCAG 2.1 AA Compliance
 
 ### References
 - [eCH-0059 Standard Documentation](https://www.ech.ch/de/ech/ech-0059/2.0)
-- [Swiss Federal Act on Equality](https://www.admin.ch/opc/de/classified-compilation/19950025/index.html)
+- [German Federal Act on Equality](https://www.admin.ch/opc/de/classified-compilation/19950025/index.html)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [Drupal Accessibility Standards](https://www.drupal.org/about/features/accessibility)
 
 ## Notes
 
 ### Implementation Notes
-- Prioritize Swiss-specific requirements that exceed WCAG standards
+- Prioritize German-specific requirements that exceed WCAG standards
 - Implement automated testing early to catch issues during development
 - Create accessibility-first component development patterns
 - Document all accessibility decisions for audit trail
@@ -216,9 +216,9 @@ Optimized accessibility implementation:
 ---
 
 ## ADR Metadata
-- **Category**: swiss-compliance/accessibility
+- **Category**: german-compliance/accessibility
 - **Subcategory**: ech-0059-implementation
 - **Impact Level**: High - Legal requirement and user experience critical
 - **Complexity**: High - Comprehensive accessibility implementation
-- **Swiss Compliance**: Required - Legal and regulatory obligation
+- **German Compliance**: Required - Legal and regulatory obligation
 - **Multi-Site Impact**: Critical - Must be consistent across all 160+ municipalities

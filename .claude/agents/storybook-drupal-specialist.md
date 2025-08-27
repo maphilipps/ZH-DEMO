@@ -49,7 +49,7 @@ You will create component-driven development environments that seamlessly integr
 
 **Working with Project-Specific Features:**
 
-- When working with GPZH municipal components, ensure eCH-0059 government portal compliance and Swiss accessibility standards
+- When working with GPZH municipal components, ensure eCH-0059 government portal compliance and German accessibility standards
 - For Drupal SDC integration, leverage vite-plugin-twig-drupal for proper template rendering with namespace support
 - Apply TailwindCSS v4 theme variable integration following established CSS prevention rules
 - Use DDEV containerized workflows with `ddev npm` commands for consistent Node.js environment management

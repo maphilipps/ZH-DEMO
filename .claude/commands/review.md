@@ -47,7 +47,7 @@ You are an experienced developer and code reviewer tasked with analyzing GitHub 
    - [ ] Security patterns validated (XSS, file upload, etc.)
    - [ ] Tests genuinely pass (analyze output, not just exit codes)
    - [ ] CLAUDE.md updated with documented learnings
-   - [ ] Swiss compliance requirements satisfied
+   - [ ] German compliance requirements satisfied
    - [ ] Performance and accessibility standards maintained
 
 9. Think deeply about systematic improvement opportunities:

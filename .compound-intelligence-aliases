@@ -1,0 +1,23 @@
+#!/bin/bash
+# Compound Intelligence Measurement Aliases
+
+# Quick dashboard view
+alias ci-dashboard="./scripts/compound-intelligence-dashboard.sh"
+
+# Individual measurement categories
+alias ci-prevention="./scripts/compound-intelligence-dashboard.sh | grep -A 20 'PREVENTION RULE EFFECTIVENESS'"
+alias ci-learning="./scripts/compound-intelligence-dashboard.sh | grep -A 15 'LEARNING VELOCITY'"  
+alias ci-agents="./scripts/compound-intelligence-dashboard.sh | grep -A 10 'AGENT COORDINATION'"
+alias ci-roi="./scripts/compound-intelligence-dashboard.sh | grep -A 10 'COMPOUND INTELLIGENCE ROI'"
+
+# Measurement history
+alias ci-history="git log --oneline --grep='Rule #\|Pattern #\|Learning #' | head -10"
+
+# Pattern reuse tracking
+alias ci-patterns="git log --oneline --grep='reuse\|apply.*pattern\|use.*rule' | head -5"
+
+# Prevention effectiveness
+alias ci-prevented="git log --oneline --grep='prevent\|avoid\|fix.*before' | head -5"
+
+# Learning integration check
+alias ci-learnings="grep -n 'Rule #\|Pattern #' CLAUDE.md | tail -10"

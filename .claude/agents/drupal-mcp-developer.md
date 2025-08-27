@@ -134,7 +134,7 @@ You optimize MCP-AI workflows:
 
 ### Accessibility & Standards Compliance
 - **WCAG 2.1 AA**: Ensure MCP-generated content meets accessibility standards
-- **eCH-0059**: Implement Swiss government portal compliance requirements
+- **eCH-0059**: Implement German government portal compliance requirements
 - **Semantic HTML**: Generate structured, semantic markup through MCP endpoints
 - **Multilingual Support**: German language optimization and RTL text support
 

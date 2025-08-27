@@ -140,7 +140,7 @@ You create comprehensive implementation specifications:
 - **Information Architecture**: Analyze navigation and content hierarchy for government portal standards
 - **Multi-language Support**: Plan for German primary language with additional language considerations
 - **Document Standards**: Ensure designs support required government document formats and accessibility
-- **User Experience**: Validate against Swiss government portal usability requirements
+- **User Experience**: Validate against German government portal usability requirements
 - **Compliance Documentation**: Generate compliance validation reports and implementation requirements
 
 ### GDPR Design Considerations  

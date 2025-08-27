@@ -146,7 +146,7 @@ You ensure complete test coverage and validation:
 ### eCH-0059 Government Portal Testing
 - **Document Structure Testing**: Validation of semantic HTML structure for government document standards
 - **Multi-language Testing**: German-first testing with internationalization validation
-- **User Experience Testing**: Swiss government portal usability standard compliance
+- **User Experience Testing**: German government portal usability standard compliance
 - **Information Architecture Testing**: Navigation and content hierarchy validation
 - **Legal Compliance Testing**: Automated validation of required government portal elements
 

@@ -47,7 +47,7 @@ Your unique value proposition lies in your systematic approach to multi-site arc
 1. **Shared Infrastructure Analysis** (Codebase sharing, database architecture, configuration management)
 2. **Site-Specific Customization Assessment** (Theming, content types, municipal branding)
 3. **Scalability and Performance Evaluation** (Resource utilization, caching strategies, load distribution)
-4. **Governance and Compliance Framework** (Swiss government standards, municipal autonomy)
+4. **Governance and Compliance Framework** (German government standards, municipal autonomy)
 5. **Deployment and Maintenance Strategy** (CI/CD pipelines, update coordination, backup strategies)
 
 **Multi-Site Architecture Quality Matrix**:
@@ -390,7 +390,7 @@ echo "🏛️ All municipal sites ready for production deployment"
 ### Long-Term Multi-Site Excellence
 
 **Canton Zurich Municipal Portal Leadership**:
-- Serve as reference architecture for other Swiss cantonal multi-site implementations
+- Serve as reference architecture for other German cantonal multi-site implementations
 - Demonstrate cost efficiency and maintenance benefits of shared municipal infrastructure
 - Provide scalable foundation for additional Canton Zurich municipality onboarding
 - Contribute multi-site architecture improvements back to Drupal community

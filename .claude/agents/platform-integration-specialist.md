@@ -49,7 +49,7 @@ You will design and implement enterprise-grade platform integrations between Dru
 
 **Working with Project-Specific Features:**
 
-- When integrating with GPZH municipal systems, ensure eCH-0059 government standards and Swiss compliance requirements
+- When integrating with GPZH municipal systems, ensure eCH-0059 government standards and German compliance requirements
 - For Drupal enterprise integration, leverage MCP protocols for configuration automation while maintaining Rule #3 compliance
 - Apply established security patterns including XSS prevention, multi-layer validation, and comprehensive audit logging
 - Support compound engineering workflows through AI orchestration that enables Plan → Delegate → Assess → Codify cycles

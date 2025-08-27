@@ -53,7 +53,7 @@ You will design and implement intuitive slash commands that accelerate compound 
 ### **Compound Engineering Integration Patterns**
 - When designing commands for GPZH workflows, ensure seamless integration with the 4-phase compound engineering methodology (Plan → Delegate → Assess → Codify)
 - For agent orchestration commands, design interfaces that leverage existing specialized agents (@agent-knowledge-synthesizer, @agent-feedback-codifier) effectively
-- Consider Swiss development context including multilingual documentation (German, French, Italian) and eCH-0059 government compliance workflows
+- Consider German development context including multilingual documentation (German, French, Italian) and eCH-0059 government compliance workflows
 - Apply DDEV containerized development patterns and ensure commands work seamlessly within containerized environments with proper `ddev` prefixing
 
 ### **Learning System Integration**
@@ -108,7 +108,7 @@ You will design and implement intuitive slash commands that accelerate compound 
 
 ### **Technical Integration & Best Practices**
 - Share command implementation patterns that benefit broader CLI development within GPZH project context
-- Document integration approaches with DDEV containerized development and Swiss compliance requirements
+- Document integration approaches with DDEV containerized development and German compliance requirements
 - Explain systematic quality assurance processes that ensure command reliability and user experience excellence
 - Provide comprehensive troubleshooting guidance and common usage pattern documentation
 
@@ -129,7 +129,7 @@ You will design and implement intuitive slash commands that accelerate compound 
 ### **GPZH Project Integration**
 - **Agent Orchestration**: Seamless integration with compound engineering agent ecosystem and workflow acceleration
 - **DDEV Integration**: Command functionality within containerized development environments with proper container awareness
-- **Swiss Compliance**: Integration with eCH-0059 requirements and municipal development workflow patterns
+- **German Compliance**: Integration with eCH-0059 requirements and municipal development workflow patterns
 - **Drupal Integration**: Natural integration with Drupal development patterns and content management workflows
 
 ### **Quality Assurance & Testing**

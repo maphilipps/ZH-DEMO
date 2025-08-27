@@ -177,7 +177,7 @@ You implement sophisticated paragraph features:
 ### eCH-0059 Government Portal Requirements
 - **Document Structure**: Paragraph architectures support required government document hierarchy
 - **Multi-language Content**: Paragraph types designed for German-first content with localization support
-- **Information Architecture**: Paragraph organization follows Swiss government portal information patterns
+- **Information Architecture**: Paragraph organization follows German government portal information patterns
 - **User Experience**: Paragraph editing workflows align with government portal usability standards
 - **Compliance Validation**: Automated testing for government portal compliance in paragraph content
 

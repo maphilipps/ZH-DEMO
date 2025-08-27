@@ -45,19 +45,19 @@ This index provides navigation to all architectural decisions for the GPZH proje
 
 ---
 
-## Swiss Compliance Decisions
+## German Compliance Decisions
 
-### Accessibility (`swiss-compliance/accessibility/`)
-- [ADR-0001: eCH-0059 Implementation Strategy](swiss-compliance/accessibility/0001-ech-0059-implementation.md) - Swiss accessibility compliance
-- [ADR-0002: WCAG 2.1 AA Compliance](swiss-compliance/accessibility/0002-wcag-compliance.md) *(Planned)*
+### Accessibility (`german-compliance/accessibility/`)
+- [ADR-0001: eCH-0059 Implementation Strategy](german-compliance/accessibility/0001-ech-0059-implementation.md) - German accessibility compliance
+- [ADR-0002: WCAG 2.1 AA Compliance](german-compliance/accessibility/0002-wcag-compliance.md) *(Planned)*
 
-### Data Protection (`swiss-compliance/data-protection/`)
-- [ADR-0001: CH-DSG Compliance Strategy](swiss-compliance/data-protection/0001-ch-dsg-compliance.md) *(Planned)*
-- [ADR-0002: Data Retention Policies](swiss-compliance/data-protection/0002-data-retention.md) *(Planned)*
+### Data Protection (`german-compliance/data-protection/`)
+- [ADR-0001: CH-DSG Compliance Strategy](german-compliance/data-protection/0001-ch-dsg-compliance.md) *(Planned)*
+- [ADR-0002: Data Retention Policies](german-compliance/data-protection/0002-data-retention.md) *(Planned)*
 
-### Languages (`swiss-compliance/languages/`)
-- [ADR-0001: Swiss German Standards](swiss-compliance/languages/0001-swiss-german-standards.md) *(Planned)*
-- [ADR-0002: Multi-Language Architecture](swiss-compliance/languages/0002-multi-language-strategy.md) *(Planned)*
+### Languages (`german-compliance/languages/`)
+- [ADR-0001: German German Standards](german-compliance/languages/0001-german-german-standards.md) *(Planned)*
+- [ADR-0002: Multi-Language Architecture](german-compliance/languages/0002-multi-language-strategy.md) *(Planned)*
 
 ---
 
@@ -68,7 +68,7 @@ This index provides navigation to all architectural decisions for the GPZH proje
 - [ADR-0002: Docker Configuration](infrastructure/development/0002-docker-config.md) *(Planned)*
 
 ### Hosting & Deployment (`infrastructure/hosting/`)
-- [ADR-0001: Swiss Hosting Requirements](infrastructure/hosting/0001-swiss-hosting.md) *(Planned)*
+- [ADR-0001: German Hosting Requirements](infrastructure/hosting/0001-german-hosting.md) *(Planned)*
 - [ADR-0002: CDN Strategy](infrastructure/hosting/0002-cdn-strategy.md) *(Planned)*
 
 ### Monitoring (`infrastructure/monitoring/`)
@@ -144,7 +144,7 @@ This index provides navigation to all architectural decisions for the GPZH proje
 ### By Category
 - **Drupal**: 9 ADRs
 - **Frontend**: 7 ADRs  
-- **Swiss Compliance**: 6 ADRs
+- **German Compliance**: 6 ADRs
 - **Infrastructure**: 6 ADRs
 - **Testing**: 6 ADRs
 - **Performance**: 4 ADRs
@@ -161,21 +161,21 @@ This index provides navigation to all architectural decisions for the GPZH proje
 ## Quick Navigation
 
 ### By Development Phase
-- **Planning Phase**: [Drupal Architecture](#drupal-architecture-decisions), [Swiss Compliance](#swiss-compliance-decisions)
+- **Planning Phase**: [Drupal Architecture](#drupal-architecture-decisions), [German Compliance](#german-compliance-decisions)
 - **Implementation Phase**: [Frontend](#frontend-technology-decisions), [Testing](#testing-strategy-decisions)
 - **Deployment Phase**: [Infrastructure](#infrastructure-decisions), [Performance](#performance-optimization-decisions)
-- **Security Review**: [Security](#security-decisions), [Compliance](#swiss-compliance-decisions)
+- **Security Review**: [Security](#security-decisions), [Compliance](#german-compliance-decisions)
 
-### By Swiss Municipality Focus
+### By German Municipality Focus
 - **Scalability**: Multi-site, Performance, Infrastructure
-- **Compliance**: Swiss Compliance, Security, Testing
+- **Compliance**: German Compliance, Security, Testing
 - **User Experience**: Frontend, Accessibility, Performance
 - **Lessons Learned**: Failed Experiments
 
 ### Emergency Reference
 - **Critical Decisions**: All High Impact ADRs
 - **What Not to Do**: [Failed Experiments](#failed-experiments--lessons-learned)
-- **Quick Compliance**: [Swiss Compliance](#swiss-compliance-decisions)
+- **Quick Compliance**: [German Compliance](#german-compliance-decisions)
 - **Performance Issues**: [Performance](#performance-optimization-decisions)
 
 ---
@@ -186,6 +186,6 @@ This index is maintained automatically as new ADRs are added. Last updated: 2025
 
 For questions about ADRs, consult with:
 - **Architecture**: @drupal-enterprise-architect
-- **Swiss Compliance**: @swiss-compliance-specialist  
+- **German Compliance**: @german-compliance-specialist  
 - **Performance**: @drupal-performance-specialist
 - **Security**: @security-specialist

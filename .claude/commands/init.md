@@ -71,6 +71,16 @@
 - Learning documentation automation
 - Quality gate enforcement with AI validation
 
+### 6. Demo Mode Integration
+**Purpose**: Show compound engineering initialization for demonstration
+**Features**:
+- Create demo llms.txt with comprehensive project context
+- Generate demo CLAUDE.md with learning system architecture
+- Display compound intelligence bootstrap process
+- Demonstrate integration points and quality gates
+
+**Usage**: `/init demo <project-name>` creates temporary demonstration files
+
 ## Compound Engineering Templates
 
 **Universal Foundation**: Base compound engineering system (llms.txt + CLAUDE.md)

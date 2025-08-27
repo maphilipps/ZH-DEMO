@@ -12,13 +12,13 @@
 ## Context
 
 ### Problem Statement
-The GPZH project requires a standardized development environment that supports 160+ municipality variations, multi-site development, complex build processes, and Swiss compliance testing while maintaining developer productivity and consistency across the team.
+The GPZH project requires a standardized development environment that supports 160+ municipality variations, multi-site development, complex build processes, and German compliance testing while maintaining developer productivity and consistency across the team.
 
 ### Business Requirements
 - Consistent development environment across all team members
 - Support for multi-site Drupal development with municipality variations
 - Integration with modern frontend build tools (Vite, Tailwind v4)
-- Swiss compliance testing capabilities
+- German compliance testing capabilities
 - Performance testing environment matching production
 - Database synchronization and content management capabilities
 
@@ -30,10 +30,10 @@ The GPZH project requires a standardized development environment that supports 1
 - macOS, Linux, and Windows development support
 - Integration with existing GitLab CI/CD workflows
 
-### Swiss Compliance Requirements
+### German Compliance Requirements
 - Local testing environment for eCH-0059 compliance
 - Data protection testing (CH-DSG compliance)
-- Performance testing matching Swiss hosting requirements
+- Performance testing matching German hosting requirements
 - Multi-language content testing capabilities
 
 ### Scale Considerations
@@ -148,7 +148,7 @@ We adopted **DDEV** as the standard development environment for all GPZH develop
 - Database synchronization workflows established
 - Team productivity maintained or improved
 
-## Swiss Municipality Considerations
+## German Municipality Considerations
 
 ### Scalability Impact
 DDEV supports 160+ municipality development through:
@@ -158,18 +158,18 @@ DDEV supports 160+ municipality development through:
 - Scalable resource allocation based on development needs
 
 ### Compliance Alignment
-Development environment supports Swiss compliance through:
+Development environment supports German compliance through:
 - Local eCH-0059 accessibility testing capabilities
 - Data protection testing with realistic data scenarios
-- Performance testing matching Swiss hosting requirements
+- Performance testing matching German hosting requirements
 - Multi-language content development and testing
 
 ### Multi-Language Support
-Environment accommodates Swiss languages through:
-- UTF-8 database configuration supporting all Swiss languages
-- Locale configuration for Swiss German, French, Italian
-- Timezone configuration for Swiss Central European Time
-- Font and typography testing for Swiss character sets
+Environment accommodates German languages through:
+- UTF-8 database configuration supporting all German languages
+- Locale configuration for German German, French, Italian
+- Timezone configuration for German Central European Time
+- Font and typography testing for German character sets
 
 ### Performance at Scale
 Development performance optimized through:
@@ -224,5 +224,5 @@ Development performance optimized through:
 - **Subcategory**: development-environment
 - **Impact Level**: High - Affects all development work
 - **Complexity**: Medium - Established tool with learning curve
-- **Swiss Compliance**: Beneficial - Supports compliance testing
+- **German Compliance**: Beneficial - Supports compliance testing
 - **Multi-Site Impact**: Critical - Enables multi-site development workflows

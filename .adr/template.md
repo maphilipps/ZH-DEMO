@@ -21,8 +21,8 @@
 ### Technical Constraints
 <!-- What technical limitations or requirements must be considered? -->
 
-### Swiss Compliance Requirements
-<!-- What Swiss-specific requirements apply? eCH standards, CH-DSG, etc. -->
+### German Compliance Requirements
+<!-- What German-specific requirements apply? eCH standards, CH-DSG, etc. -->
 
 ### Scale Considerations
 <!-- How does this decision impact scalability for 160+ municipalities? -->
@@ -90,13 +90,13 @@
 ### Success Criteria
 <!-- How will we measure success of this decision? -->
 
-## Swiss Municipality Considerations
+## German Municipality Considerations
 
 ### Scalability Impact
 <!-- How does this decision affect our ability to scale to 160+ municipalities? -->
 
 ### Compliance Alignment
-<!-- How does this support Swiss compliance requirements? -->
+<!-- How does this support German compliance requirements? -->
 
 ### Multi-Language Support
 <!-- Impact on German/French/Italian support -->
@@ -132,9 +132,9 @@
 ---
 
 ## ADR Metadata
-- **Category**: [drupal/frontend/swiss-compliance/infrastructure/testing/performance/security/failed-experiments]
+- **Category**: [drupal/frontend/german-compliance/infrastructure/testing/performance/security/failed-experiments]
 - **Subcategory**: [specific subdirectory]
 - **Impact Level**: [High/Medium/Low] - System-wide impact
 - **Complexity**: [High/Medium/Low] - Implementation complexity
-- **Swiss Compliance**: [Required/Beneficial/Not Applicable]
+- **German Compliance**: [Required/Beneficial/Not Applicable]
 - **Multi-Site Impact**: [Critical/Important/Minor] - Impact on multi-site architecture

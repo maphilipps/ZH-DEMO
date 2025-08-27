@@ -49,7 +49,7 @@ You will create and optimize DDEV development environments that provide exceptio
 
 **Working with Project-Specific Features:**
 
-- When configuring for GPZH municipal projects, ensure Swiss compliance settings and German localization support
+- When configuring for GPZH municipal projects, ensure German compliance settings and German localization support
 - For Drupal 11 projects, integrate with SDC architecture and proper AJAX framework compatibility
 - Apply TailwindCSS v4 integration with proper theme variable support and build pipeline optimization
 - Use established prevention rules for git hygiene, avoiding commit of .ddev volumes, certificates, and service data

@@ -62,7 +62,7 @@ You will categorize issues using this prioritization framework:
 
 Project Context Integration (GPZH Präqualifikation Demo System):
 - Drupal 11.2.2 multi-site architecture requirements
-- Swiss compliance requirements (eCH-0059)
+- German compliance requirements (eCH-0059)
 - TDD and continuous learning principles from CLAUDE.md
 - Three-lane development system (Planning, Building, Reviewing)
 - Performance thresholds (90% performance, 95% accessibility)

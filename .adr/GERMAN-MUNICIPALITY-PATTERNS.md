@@ -1,10 +1,10 @@
-# Swiss Municipality Scalability Patterns
+# German Municipality Scalability Patterns
 
-This document captures architectural patterns specifically designed for Swiss municipal portal systems that must scale to 160+ municipalities while maintaining compliance, performance, and usability standards.
+This document captures architectural patterns specifically designed for German municipal portal systems that must scale to 160+ municipalities while maintaining compliance, performance, and usability standards.
 
 ## Overview
 
-These patterns emerged from the GPZH (Gemeindeportale Zürich) project and provide reusable architectural solutions for large-scale Swiss municipal implementations.
+These patterns emerged from the GPZH (Gemeindeportale Zürich) project and provide reusable architectural solutions for large-scale German municipal implementations.
 
 ## Core Scalability Challenges
 
@@ -13,7 +13,7 @@ These patterns emerged from the GPZH (Gemeindeportale Zürich) project and provi
 - **Pattern**: Configuration-over-customization with inheritance hierarchies
 - **Implementation**: Recipe-based architecture with municipal configuration layers
 
-### 2. Swiss Compliance at Scale
+### 2. German Compliance at Scale
 - **Challenge**: eCH-0059, CH-DSG, and cantonal requirements across all sites
 - **Pattern**: Compliance-first architecture with automated validation
 - **Implementation**: Baseline compliance with municipality-specific enhancements
@@ -39,7 +39,7 @@ Traditional multi-site Drupal requires significant custom development for each m
 ```yaml
 Base Recipe (Canton/Federal Level):
   - Core Drupal 11 configuration
-  - Swiss compliance modules (eCH-0059, CH-DSG)
+  - German compliance modules (eCH-0059, CH-DSG)
   - Base accessibility features
   - Standard content types and workflows
 
@@ -77,16 +77,16 @@ Municipal Recipe (Individual Level):
 ```scss
 // Federal Level (Base Design Tokens)
 :root {
-  --swiss-base-font-size: 16px;
-  --swiss-min-contrast-ratio: 4.5;
-  --swiss-min-touch-target: 44px;
-  --swiss-accessibility-focus-width: 3px;
+  --german-base-font-size: 16px;
+  --german-min-contrast-ratio: 4.5;
+  --german-min-touch-target: 44px;
+  --german-accessibility-focus-width: 3px;
 }
 
 // Cantonal Level (Zurich Canton)
 :root {
   --canton-primary-hue: 210;
-  --canton-font-family: 'Swiss-Font', system-ui;
+  --canton-font-family: 'German-Font', system-ui;
   --canton-border-radius: 4px;
 }
 
@@ -154,7 +154,7 @@ Expert Mode (Admin Approval):
 ### Pattern 4: Compliance-First Architecture
 
 #### Problem
-Swiss compliance requirements (eCH-0059, CH-DSG) must be maintained across all municipalities without limiting functionality.
+German compliance requirements (eCH-0059, CH-DSG) must be maintained across all municipalities without limiting functionality.
 
 #### Solution
 ```yaml
@@ -162,7 +162,7 @@ Compliance Layer Architecture:
   Foundation Layer:
     - Base accessibility configuration (eCH-0059)
     - Data protection framework (CH-DSG)
-    - Swiss typography standards
+    - German typography standards
     - Performance baseline enforcement
 
   Validation Layer:
@@ -195,7 +195,7 @@ Compliance Layer Architecture:
 ### Pattern 1: Municipal Performance Budgets
 
 #### Problem
-Municipal customizations can degrade performance below Swiss government standards.
+Municipal customizations can degrade performance below German government standards.
 
 #### Solution
 ```yaml
@@ -280,12 +280,12 @@ Content Template Hierarchy:
 ### Pattern 2: AI-Assisted Content Compliance
 
 #### Problem
-Ensuring content meets Swiss standards across thousands of editors and content pieces.
+Ensuring content meets German standards across thousands of editors and content pieces.
 
 #### Solution
-- AI-powered content analysis for Swiss compliance
+- AI-powered content analysis for German compliance
 - Automated accessibility checking during content creation
-- Swiss German language validation and suggestions
+- German German language validation and suggestions
 - Content quality scoring and improvement recommendations
 
 #### Benefits
@@ -296,10 +296,10 @@ Ensuring content meets Swiss standards across thousands of editors and content p
 
 ## Integration Patterns
 
-### Pattern 1: Swiss Government Service Integration
+### Pattern 1: German Government Service Integration
 
 #### Problem
-Municipal portals must integrate with various Swiss government systems and standards.
+Municipal portals must integrate with various German government systems and standards.
 
 #### Solution
 ```yaml
@@ -311,7 +311,7 @@ Integration Architecture:
     - eCH-0039: Statistical data exchange
 
   Government API Integration:
-    - Swiss Post API for address validation
+    - German Post API for address validation
     - Canton databases for official data
     - Federal register integrations
     - Municipal system connections
@@ -344,14 +344,14 @@ Integration Architecture:
 
 #### Benefits
 - Complete data protection between municipalities
-- Compliance with Swiss data protection laws
+- Compliance with German data protection laws
 - Scalable security management
 - Clear audit and accountability
 
 ### Pattern 2: CH-DSG Compliance Automation
 
 #### Problem
-Swiss data protection regulations require specific handling across all municipal sites.
+German data protection regulations require specific handling across all municipal sites.
 
 #### Solution
 ```yaml
@@ -439,7 +439,7 @@ Maintaining compliance evidence and reporting across all municipalities for audi
 3. **Performance Neglect**: Not monitoring performance impact of scaling decisions
 4. **User Experience Compromise**: Focusing on technical scalability over usability
 
-These patterns provide a foundation for building scalable Swiss municipal portal systems. They should be adapted based on specific requirements while maintaining the core principles of compliance-first architecture, performance accountability, and user-centered design.
+These patterns provide a foundation for building scalable German municipal portal systems. They should be adapted based on specific requirements while maintaining the core principles of compliance-first architecture, performance accountability, and user-centered design.
 
 ---
 

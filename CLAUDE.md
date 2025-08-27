@@ -40,12 +40,34 @@ This file serves as the living memory and learning system for the GPZH project, 
 
 ## 🐛 Bug Prevention Rules
 
-### Rule #1: Paragraphs Frontend Editing Fix
+### Rule #1: Paragraphs Frontend Editing Fix ✅ APPLIED
 **Context**: Paragraphs_ee module not showing "Add Paragraph" button on empty fields  
-**Root Cause**: "Add in between" functionality disabled by default  
+**Root Cause**: "Add in between" functionality disabled by default (`add_above: '0'`)  
 **Prevention Rule**: Always enable "Add in between" functionality (`add_above: add_above`) when configuring paragraph fields  
-**Application**: Apply to all content types with paragraph fields (page, landing_page)  
-**Tool Requirement**: Use Drupal MCP exclusively for configuration changes
+**Application**: Apply to all content types with paragraph fields (page, landing_page, accordion, carousel, pricing, slider)  
+**Tool Requirement**: Use Drupal MCP exclusively for configuration changes  
+**SUCCESS**: Applied in Issue #38 - Fixed 6 paragraph configurations using Drupal MCP (2025-08-24)
+
+### Rule #8: Critical Paragraph Rendering Failure - Root Cause Still Unknown ❌ CRITICAL
+**Context**: Issue #45 - Paragraph content exists in admin/database but completely fails to render on frontend  
+**Root Cause**: UNKNOWN - Multiple configuration fixes attempted without success  
+**Attempted Fixes** (All Failed):
+- ✅ Fixed field_paragraphs in both content and hidden sections (removed from hidden)  
+- ✅ Added field_paragraphs to Layout Builder components with proper formatter configuration  
+- ✅ Disabled Layout Builder entirely (enabled=false, allow_custom=false)  
+- ✅ Multiple cache clears and configuration imports  
+- ❌ Frontend still shows empty article element - NO paragraph rendering  
+**Current Evidence**:
+- ✅ Paragraph content loads perfectly in admin edit form with full "Leben am See" content  
+- ✅ Both Text and Side-by-side paragraphs exist with proper field values  
+- ✅ Content shows as "Published" status in admin  
+- ❌ Frontend renders only page title in empty article element  
+- ❌ Zero paragraph content displays on frontend  
+**Critical Impact**: Complete blocker for Issue #45 - cannot populate any remaining 31 nodes until resolved  
+**Next Investigation**: Database query to verify paragraph entity relationships and theme template analysis  
+**Prevention Rule**: Unknown until root cause identified - this is blocking all progress  
+**Tool Requirement**: Need deeper Drupal rendering pipeline investigation  
+**Status**: CRITICAL PRIORITY - must resolve before continuing any paragraph population work
 
 ### Rule #2: Tool Selection Standards
 **Context**: Browser automation and testing requirements  

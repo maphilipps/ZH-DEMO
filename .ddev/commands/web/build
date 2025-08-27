@@ -95,8 +95,13 @@ fi
 if [[ "$IMPORT_DUMP" == true ]]; then
     echo "💾 Setting up database with dump import..."
     
-    # Check if we have a database dump available
-    DUMP_FILE=$(find . -name "*.sql" -o -name "*.sql.gz" | head -1)
+    # Check if we have a database dump available - prioritize init dump
+    INIT_DUMP="scripts/zh-demo-init.sql.gz"
+    if [[ -f "$INIT_DUMP" ]]; then
+        DUMP_FILE="$INIT_DUMP"
+    else
+        DUMP_FILE=$(find . -name "*.sql" -o -name "*.sql.gz" | head -1)
+    fi
     CONTENT_DIR="../recipes/adesso_cms_starter/content"
     
     if [[ -f "$DUMP_FILE" ]]; then

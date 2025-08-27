@@ -90,3 +90,8 @@ storybook-static/
 .ddev/*/volumes/
 .ddev/etcd/
 
+# Ignore API keys and sensitive credentials
+keys/
+*.key
+.env
+

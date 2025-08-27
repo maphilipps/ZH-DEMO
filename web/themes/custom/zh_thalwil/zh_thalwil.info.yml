@@ -1,6 +1,6 @@
-name: ZH Thalwil
+name: Thalwil
 type: theme
-description: 'Subtheme für Gemeinde Thalwil - Modern, urban, professionell'
+description: 'Subtheme für die Gemeinde Thalwil mit spezifischen Anpassungen.'
 package: 'GPZH Municipalities'
 core_version_requirement: ^11
 base theme: adesso_cms_theme

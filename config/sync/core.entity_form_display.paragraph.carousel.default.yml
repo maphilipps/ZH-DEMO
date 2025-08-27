@@ -33,7 +33,7 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
       features:
-        add_above: '0'
+        add_above: add_above
         collapse_edit_all: '0'
         duplicate: '0'
     third_party_settings:

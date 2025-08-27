@@ -93,7 +93,6 @@
     </div>
 
     {# Weitere Inhalte (Paragraphs) falls vorhanden #}
-    {{ content|without('field_description', 'field_vereinsstatus', 'field_vereinskategorie', 'field_mitgliedergroesse', 'field_zielgruppe', 'field_president', 'field_directory_contact_person', 'field_email', 'field_phone', 'field_website', 'field_directory_address', 'field_opening_hours', 'field_logo', 'field_featured_image', 'field_verified', 'field_last_updated', 'field_contact_person', 'field_directory_category', 'field_directory_contact_email', 'field_directory_owner') }}
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div class="bg-white">
         <div class="px-4 sm:px-0">
@@ -235,7 +234,8 @@
           </dl>
         </div>
       </div>
-      {{ content }}
     </div>
+    {{ content.field_paragraphs }}
+
   </div>
 </article>

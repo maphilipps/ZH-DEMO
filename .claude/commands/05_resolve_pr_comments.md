@@ -1,5 +1,7 @@
 # PR Comment Resolution Command
 
+Can you do this in parallel, spinning up sub-agents to analyze every single comment? We want to learn from the style. Also, please review "CLAUDE.md" and update it with best practices so we avoid these mistakes in the future, and it's clear for you to follow.
+
 ## 📚 Learning Integration
 **Learning Trigger**: Systematic PR comment resolution for faster merge cycles
 **Knowledge Goal**: Develop efficient patterns for handling code review feedback

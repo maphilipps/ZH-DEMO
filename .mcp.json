@@ -21,13 +21,10 @@
         "DRUPAL_AUTH_PASSWORD": "secret"
       }
     },
-    "playwright": {
+    "puppeteer": {
       "command": "npx",
-      "args": [
-        "@playwright/mcp@latest",
-        "--ignore-https-errors",
-        "--isolated"
-      ]
+      "args": ["-y", "puppeteer-mcp-server"],
+      "env": {}
     }
   }
 }

@@ -1,5 +1,19 @@
 {
+  "name": "zh-demo-gpzh-unlighthouse",
+  "version": "1.0.0",
+  "description": "Unlighthouse configuration for ZH-DEMO GPZH Präqualifikation System",
+  "scripts": {
+    "unlighthouse": "unlighthouse --config-file unlighthouse.config.ts",
+    "unlighthouse:ci": "unlighthouse-ci --config-file unlighthouse.config.ts",
+    "audit:full": "unlighthouse --build-static --config-file unlighthouse.config.ts",
+    "audit:swiss-compliance": "unlighthouse --budget --config-file unlighthouse.config.ts",
+    "audit:gpzh-demo": "unlighthouse --site https://zh-demo.ddev.site --samples 3 --budget"
+  },
   "dependencies": {
     "playwright": "^1.55.0"
+  },
+  "devDependencies": {
+    "@unlighthouse/cli": "^0.12.3",
+    "unlighthouse": "^0.12.3"
   }
 }

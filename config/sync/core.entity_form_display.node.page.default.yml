@@ -96,7 +96,7 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
       features:
-        add_above: '0'
+        add_above: add_above
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
       autocollapse_default: all

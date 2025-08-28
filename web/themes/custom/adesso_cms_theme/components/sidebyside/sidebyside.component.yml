@@ -1,5 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Side-by-Side
+status: stable
+group: Organisms
+libraryDependencies: ["adesso_cms_theme/global"]
 description: Editorial/Side-by-Side component
 props:
   type: object

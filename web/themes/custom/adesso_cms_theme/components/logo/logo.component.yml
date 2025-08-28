@@ -1,6 +1,9 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Logo
 description: General/Logo component with variant support
+status: stable
+group: Atoms
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

@@ -1,7 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Main Menu
 description: Main Menu Component with el-popover and el-dialog support and variant styling
 status: stable
+group: Organisms
 libraryOverrides:
   dependencies:
     - adesso_cms_theme/elements
@@ -69,3 +70,5 @@ props:
             title: Sub-menu Items
             items:
               $ref: "#/props" # Recursively refer to the same schema
+libraryDependencies:
+  - adesso_cms_theme/global

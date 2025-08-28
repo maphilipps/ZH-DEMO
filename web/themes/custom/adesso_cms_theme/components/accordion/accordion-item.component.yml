@@ -1,6 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Accordion Item
 status: stable
+group: Molecules
+libraryDependencies: ["adesso_cms_theme/global"]
 description: 'A single accordion item component with collapsible content.'
 props:
   type: object

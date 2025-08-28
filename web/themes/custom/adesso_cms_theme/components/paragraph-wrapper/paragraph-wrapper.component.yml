@@ -1,6 +1,9 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Paragraph Wrapper
 description: A reusable wrapper component for paragraph content with theme support and semantic HTML structure
+status: stable
+group: Templates
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

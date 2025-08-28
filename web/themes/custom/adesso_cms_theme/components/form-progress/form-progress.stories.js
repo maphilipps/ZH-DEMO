@@ -82,9 +82,9 @@ The component visualizes the Swiss municipal workflow:
 4. **Abgelehnt**: Rejected with explanation
 
 The progress bar uses gradient colors and animations to provide clear visual feedback to municipal staff and citizens.
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -226,7 +226,8 @@ export const AllStages = {
   parameters: {
     docs: {
       description: {
-        story: 'Visual progression through all workflow stages with gradient progress bar and checkmark indicators.',
+        story:
+          'Visual progression through all workflow stages with gradient progress bar and checkmark indicators.',
       },
     },
   },
@@ -242,7 +243,8 @@ export const RejectedStatus = {
   parameters: {
     docs: {
       description: {
-        story: 'Rejected status shows special red styling and explanatory message.',
+        story:
+          'Rejected status shows special red styling and explanatory message.',
       },
     },
   },
@@ -286,7 +288,8 @@ export const CompactMode = {
   parameters: {
     docs: {
       description: {
-        story: 'Compact version for dashboard tables and mobile views with smaller indicators.',
+        story:
+          'Compact version for dashboard tables and mobile views with smaller indicators.',
       },
     },
   },

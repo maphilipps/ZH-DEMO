@@ -6,7 +6,7 @@ const meta = {
   title: 'Organisms/Main Menu',
   component: Component,
   decorators: [
-    (Story) => {
+    Story => {
       // Add custom CSS for theme-specific classes and Tailwind overrides
       if (typeof document !== 'undefined') {
         const existingStyle = document.getElementById('main-menu-theme-styles');
@@ -37,14 +37,14 @@ const meta = {
           document.head.appendChild(style);
         }
       }
-      
+
       // Load both Alpine.js and @tailwindplus/elements
       if (typeof window !== 'undefined') {
         const promises = [];
-        
+
         // Load Alpine.js
         if (!window.Alpine) {
-          const alpinePromise = new Promise((resolve) => {
+          const alpinePromise = new Promise(resolve => {
             const script = document.createElement('script');
             script.src = 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js';
             script.defer = true;
@@ -53,26 +53,27 @@ const meta = {
           });
           promises.push(alpinePromise);
         }
-        
+
         // Load @tailwindplus/elements
         if (!document.querySelector('script[src*="@tailwindplus/elements"]')) {
-          const elementsPromise = new Promise((resolve) => {
+          const elementsPromise = new Promise(resolve => {
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1';
+            script.src =
+              'https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1';
             script.type = 'module';
             script.onload = resolve;
             document.head.appendChild(script);
           });
           promises.push(elementsPromise);
         }
-        
+
         if (promises.length > 0) {
           return Promise.all(promises).then(() => {
             setTimeout(() => Story(), 100);
           });
         }
       }
-      
+
       return Story();
     },
   ],
@@ -307,9 +308,9 @@ This component follows atomic design principles:
 - **url**: Link destination URL (use '<nolink>' for dropdown-only items)
 - **target**: Link target (_self, _blank)
 - **children**: Array of nested menu items (recursive structure)
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };

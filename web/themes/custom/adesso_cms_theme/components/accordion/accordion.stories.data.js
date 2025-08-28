@@ -1,7 +1,7 @@
 /**
  * @file
  * Sample data for Accordion component stories.
- * 
+ *
  * This file contains realistic business and technology content
  * for demonstrating the Accordion component in various contexts.
  */

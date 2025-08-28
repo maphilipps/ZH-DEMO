@@ -19,7 +19,17 @@ const meta = {
       name: 'Variant',
       description: 'Badge color variant',
       control: { type: 'select' },
-      options: ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'],
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
+      ],
       table: {
         type: { summary: 'enum' },
         defaultValue: { summary: 'default' },
@@ -108,9 +118,9 @@ Badge component for displaying labels, status indicators, and interactive tags.
   removable: true
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -202,7 +212,8 @@ export const WithModifier = {
   args: {
     text: 'Custom',
     variant: 'default',
-    modifier: 'border-2 border-dashed border-purple-300 bg-purple-50 text-purple-700',
+    modifier:
+      'border-2 border-dashed border-purple-300 bg-purple-50 text-purple-700',
   },
 };
 

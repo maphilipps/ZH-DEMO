@@ -15,7 +15,11 @@
     attach: function (context) {
       // Flowbite handles data-collapse-toggle automatically
       // This is just for any additional custom functionality
-      const toggleButtons = once('mobile-menu-toggle', '[data-collapse-toggle]', context);
+      const toggleButtons = once(
+        'mobile-menu-toggle',
+        '[data-collapse-toggle]',
+        context
+      );
 
       toggleButtons.forEach(function (button) {
         const targetId = button.getAttribute('data-collapse-toggle');
@@ -29,9 +33,9 @@
             if (announcement) {
               setTimeout(() => {
                 const isExpanded = !targetMenu.classList.contains('hidden');
-                announcement.textContent = isExpanded ?
-                  Drupal.t('Menu expanded') :
-                  Drupal.t('Menu collapsed');
+                announcement.textContent = isExpanded
+                  ? Drupal.t('Menu expanded')
+                  : Drupal.t('Menu collapsed');
               }, 100);
             }
           });
@@ -46,7 +50,11 @@
   Drupal.behaviors.searchDropdownToggle = {
     attach: function (context) {
       // Find all search dropdown toggle buttons
-      const searchButtons = once('search-dropdown-toggle', '[data-dropdown-toggle="search-dropdown"]', context);
+      const searchButtons = once(
+        'search-dropdown-toggle',
+        '[data-dropdown-toggle="search-dropdown"]',
+        context
+      );
 
       searchButtons.forEach(function (button) {
         const dropdown = document.getElementById('search-dropdown');
@@ -91,5 +99,4 @@
       });
     }
   };
-
 })(Drupal, once);

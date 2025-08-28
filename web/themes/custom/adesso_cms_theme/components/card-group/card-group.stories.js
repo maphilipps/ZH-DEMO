@@ -92,9 +92,9 @@ Card group component for displaying collections of cards in flexible grid layout
   card_items: feature_cards
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -122,7 +122,8 @@ export const Default = {
           title: 'Web Development',
           level: 'h3',
         },
-        summary_text: 'Modern web applications built with cutting-edge technologies and best practices.',
+        summary_text:
+          'Modern web applications built with cutting-edge technologies and best practices.',
         link: {
           url: '/services/web-development',
           title: 'Learn More',
@@ -158,7 +159,8 @@ export const Default = {
           title: 'Performance Optimization',
           level: 'h3',
         },
-        summary_text: 'Speed up your applications with our comprehensive optimization services.',
+        summary_text:
+          'Speed up your applications with our comprehensive optimization services.',
         link: {
           url: '/services/optimization',
           title: 'Get Started',
@@ -299,7 +301,8 @@ export const TwoColumn = {
           title: 'Free Plan',
           level: 'h3',
         },
-        summary_text: 'Perfect for individuals and small projects with essential features.',
+        summary_text:
+          'Perfect for individuals and small projects with essential features.',
         link: {
           url: '/pricing/free',
           title: 'Get Started',
@@ -320,7 +323,8 @@ export const TwoColumn = {
           title: 'Pro Plan',
           level: 'h3',
         },
-        summary_text: 'Advanced features for teams and businesses that need more power.',
+        summary_text:
+          'Advanced features for teams and businesses that need more power.',
         link: {
           url: '/pricing/pro',
           title: 'Upgrade Now',
@@ -356,7 +360,8 @@ export const TeamShowcase = {
           title: 'Sarah Johnson',
           level: 'h3',
         },
-        summary_text: 'CEO and Founder with 15+ years of experience in technology and business strategy.',
+        summary_text:
+          'CEO and Founder with 15+ years of experience in technology and business strategy.',
         link: {
           url: '/team/sarah-johnson',
           title: 'View Profile',
@@ -381,7 +386,8 @@ export const TeamShowcase = {
           title: 'Michael Chen',
           level: 'h3',
         },
-        summary_text: 'CTO and Lead Developer specializing in scalable architecture and system design.',
+        summary_text:
+          'CTO and Lead Developer specializing in scalable architecture and system design.',
         link: {
           url: '/team/michael-chen',
           title: 'View Profile',
@@ -406,7 +412,8 @@ export const TeamShowcase = {
           title: 'Emma Rodriguez',
           level: 'h3',
         },
-        summary_text: 'Head of Design with expertise in user experience and interface design.',
+        summary_text:
+          'Head of Design with expertise in user experience and interface design.',
         link: {
           url: '/team/emma-rodriguez',
           title: 'View Profile',
@@ -434,14 +441,13 @@ export const Playground = {
           title: 'Test Card',
           level: 'h3',
         },
-        summary_text: 'This is a test card for experimenting with different configurations.',
+        summary_text:
+          'This is a test card for experimenting with different configurations.',
         link: {
           url: '#',
           title: 'Test Link',
         },
-        tags: [
-          { name: 'Test', color: 'gray' },
-        ],
+        tags: [{ name: 'Test', color: 'gray' }],
       },
       {
         type: 'stat',

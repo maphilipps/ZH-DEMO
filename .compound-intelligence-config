@@ -1,0 +1,21 @@
+# Compound Intelligence Feedback Configuration
+
+# Fast Feedback Loop (Daily)
+FAST_FEEDBACK_ENABLED=true
+FAST_FEEDBACK_TRIGGERS="pre-commit"
+FAST_FEEDBACK_METRICS="prevention_rules,pattern_reuse"
+
+# Medium Feedback Loop (Weekly) 
+MEDIUM_FEEDBACK_ENABLED=true
+MEDIUM_FEEDBACK_TRIGGERS="weekly_report"
+MEDIUM_FEEDBACK_METRICS="learning_velocity,agent_coordination"
+
+# Slow Feedback Loop (Monthly)
+SLOW_FEEDBACK_ENABLED=true
+SLOW_FEEDBACK_TRIGGERS="monthly_assessment"
+SLOW_FEEDBACK_METRICS="compound_intelligence_roi,system_growth"
+
+# Automation Settings
+AUTOMATED_MEASUREMENT_COLLECTION=true
+AUTOMATED_IMPROVEMENT_SUGGESTIONS=true
+AUTOMATED_PATTERN_DETECTION=true

@@ -1,14 +1,10 @@
+{# Set variant-specific classes #} {% set variant = variant|default('default') %} {% set variant_classes = { 'default':
+'block max-h-full w-auto', 'inverted': 'block max-h-full w-auto filter brightness-0 invert' } %} {% set
+current_variant_classes = variant_classes[variant] %}
 
-{# Set variant-specific classes #}
-{% set variant = variant|default('default') %}
-{% set variant_classes = {
-  'default': 'block max-h-full w-auto',
-  'inverted': 'block max-h-full w-auto  filter brightness-0 invert'
-} %}
-
-{% set current_variant_classes = variant_classes[variant] %}
-
-<img src="{{ site_logo|default('') }}" 
-     class="{{ current_variant_classes }} {{ modifier|default('') }}" 
-     alt="{{ site_name|default('') ? (site_name ~ ' logo') : 'Site logo' }}" 
-     loading="lazy" />
+<img
+  src="{{ site_logo|default('') }}"
+  class="{{ current_variant_classes }} {{ modifier|default('') }}"
+  alt="{{ site_name|default('') ? (site_name ~ ' logo') : 'Site logo' }}"
+  loading="lazy"
+/>

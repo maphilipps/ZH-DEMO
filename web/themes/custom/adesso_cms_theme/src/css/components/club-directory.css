@@ -73,20 +73,20 @@
   .club-directory-item {
     @apply p-3;
   }
-  
+
   .club-title {
     @apply text-base;
     min-height: 3rem;
   }
-  
+
   .club-description {
     min-height: 3.5rem;
   }
-  
+
   .club-contact-info {
     @apply flex-col gap-1;
   }
-  
+
   .club-contact-info .btn {
     @apply w-full text-center;
   }

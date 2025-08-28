@@ -1,33 +1,36 @@
-You are an experienced software developer tasked with addressing a GitHub issue. Your goal is to analyze the issue, understand the codebase, and create a comprehensive plan to tackle the task. Follow these steps carefully:
+# /work - Issue Analysis & Resolution
 
-First, review the GitHub issue using the gh issue view command.
-<github_issue> #$ARGUMENTS </github_issue>
+**Purpose**: Analyze GitHub issues and implement systematic solutions using compound engineering methodology.
 
-Next, examine the relevant parts of the codebase.
-Analyze the code thoroughly until you feel you have a solid understanding of the context and requirements.
+## Workflow
 
-Create a new branch from the main branch for this feature. The branch name should be descriptive and relate to the issue. Use the following format: feature/[issue-number]-brief-description
+1. **Issue Analysis**
+   ```bash
+   gh issue view #$ARGUMENTS
+   ```
 
-Create a comprehensive plan and todo list for addressing the issue. Consider the following aspects:
+2. **Codebase Understanding**
+   - Examine relevant code systematically
+   - Apply compound engineering patterns from CLAUDE.md
+   - Leverage prevention rules for similar issues
 
-Required code changes
-Potential impacts on other parts of the system
-Necessary tests to be written or updated
-Documentation updates
-Performance considerations
-Security implications
-Backwards compatibility (if applicable)
-Inlcude the reference link to faeturebase or any opther link that has the source of the user request
-Think deeply about all aspects of the task. Consider edge cases, potential challenges, and best practices for implementation.
+3. **Branch Creation**
+   ```bash
+   feature/[issue-number]-brief-description
+   ```
 
-Extract learnings from review feedback and update compounding knowledge base in CLAUDE.md:
-- Success patterns → permanent knowledge
-- Failures → prevention rules
-- Review feedback → process improvements
+4. **Solution Planning**
+   - Required changes with impact analysis
+   - Testing strategy (TDD approach)
+   - Security and performance implications
+   - Documentation updates
 
-Move issue to Reviewing when finished.
+5. **Agent Orchestration**
+   - Use @agent-tech-lead-orchestrator for agent selection
+   - Apply specialized agents based on domain requirements
+   - Coordinate workflow using 4-phase methodology
 
-Present your plan in the following format:
+## Implementation
 
-[Your comprehensive plan goes here. Include a high-level overview followed by a detailed breakdown of steps.]
-Remember, your task is to create a plan, not to implement the changes. Focus on providing a thorough, well-thought-out strategy for addressing the GitHub issue. Then ASK FOR APPROVAL BEFORE YOU START WORKING on the TODO LIST.
+Present comprehensive plan, then ASK FOR APPROVAL before execution.
+

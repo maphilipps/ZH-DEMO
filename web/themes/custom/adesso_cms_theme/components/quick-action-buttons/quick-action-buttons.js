@@ -4,11 +4,11 @@
  * Handles approve/reject actions with Alpine.js and AJAX
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Initialize quick action functionality
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initializeQuickActions();
   });
 
@@ -16,8 +16,10 @@
    * Initialize quick action buttons
    */
   function initializeQuickActions() {
-    const actionButtons = document.querySelectorAll('.quick-action-buttons button[data-action]');
-    
+    const actionButtons = document.querySelectorAll(
+      '.quick-action-buttons button[data-action]'
+    );
+
     actionButtons.forEach(button => {
       button.addEventListener('click', handleQuickAction);
     });
@@ -70,17 +72,17 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken
+        'X-CSRF-Token': csrfToken,
       },
       body: JSON.stringify({
         event_id: eventId,
-        action: 'approve'
-      })
+        action: 'approve',
+      }),
     });
 
     if (response.ok) {
       const result = await response.json();
-      
+
       if (result.success) {
         showSuccessMessage('Veranstaltung wurde erfolgreich genehmigt.');
         updateRowStatus(eventId, 'published', button);
@@ -200,24 +202,24 @@
     window.Alpine.data('rejectionModal', () => ({
       async submitRejection() {
         this.submitting = true;
-        
+
         try {
           const response = await fetch('/admin/content/events/reject', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken
+              'X-CSRF-Token': csrfToken,
             },
             body: JSON.stringify({
               event_id: eventId,
               action: 'reject',
-              reason: this.reason
-            })
+              reason: this.reason,
+            }),
           });
 
           if (response.ok) {
             const result = await response.json();
-            
+
             if (result.success) {
               showSuccessMessage('Veranstaltung wurde erfolgreich abgelehnt.');
               updateRowStatus(eventId, 'rejected', button);
@@ -230,11 +232,13 @@
           }
         } catch (error) {
           console.error('Rejection failed:', error);
-          showErrorMessage('Ablehnung fehlgeschlagen. Bitte versuchen Sie es erneut.');
+          showErrorMessage(
+            'Ablehnung fehlgeschlagen. Bitte versuchen Sie es erneut.'
+          );
         } finally {
           this.submitting = false;
         }
-      }
+      },
     }));
 
     // Clean up modal when closed
@@ -257,8 +261,14 @@
     const statusCell = row.querySelector('.status-badge');
     if (statusCell) {
       const statusConfig = {
-        published: { text: 'Genehmigt', class: 'bg-green-100 text-green-800 border-green-200' },
-        rejected: { text: 'Abgelehnt', class: 'bg-red-100 text-red-800 border-red-200' }
+        published: {
+          text: 'Genehmigt',
+          class: 'bg-green-100 text-green-800 border-green-200',
+        },
+        rejected: {
+          text: 'Abgelehnt',
+          class: 'bg-red-100 text-red-800 border-red-200',
+        },
       };
 
       const config = statusConfig[newStatus];
@@ -271,10 +281,11 @@
     // Remove action buttons and show status
     const actionButtons = row.querySelector('.quick-action-buttons');
     if (actionButtons) {
-      const statusIcon = newStatus === 'published' 
-        ? '<svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'
-        : '<svg class="w-4 h-4 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
-      
+      const statusIcon =
+        newStatus === 'published'
+          ? '<svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'
+          : '<svg class="w-4 h-4 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+
       actionButtons.innerHTML = `<div class="flex items-center space-x-2">${statusIcon}</div>`;
     }
   }
@@ -303,21 +314,30 @@
       transform transition-all duration-300 ease-in-out translate-x-full
     `;
 
-    const bgColor = type === 'success' ? 'bg-green-50 border-green-200' : 
-                   type === 'error' ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200';
-    const iconColor = type === 'success' ? 'text-green-600' : 
-                     type === 'error' ? 'text-red-600' : 'text-blue-600';
+    const bgColor =
+      type === 'success'
+        ? 'bg-green-50 border-green-200'
+        : type === 'error'
+          ? 'bg-red-50 border-red-200'
+          : 'bg-blue-50 border-blue-200';
+    const iconColor =
+      type === 'success'
+        ? 'text-green-600'
+        : type === 'error'
+          ? 'text-red-600'
+          : 'text-blue-600';
 
     notification.innerHTML = `
       <div class="p-4 ${bgColor} rounded-lg">
         <div class="flex items-start">
           <div class="flex-shrink-0">
             <svg class="h-5 w-5 ${iconColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              ${type === 'success' ? 
-                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>' :
-                type === 'error' ?
-                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>' :
-                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
+              ${
+                type === 'success'
+                  ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>'
+                  : type === 'error'
+                    ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
+                    : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
               }
             </svg>
           </div>
@@ -343,9 +363,11 @@
     });
 
     // Close button functionality
-    notification.querySelector('.close-notification').addEventListener('click', () => {
-      closeNotification(notification);
-    });
+    notification
+      .querySelector('.close-notification')
+      .addEventListener('click', () => {
+        closeNotification(notification);
+      });
 
     // Auto-close after 5 seconds
     setTimeout(() => {
@@ -364,5 +386,4 @@
       }
     }, 300);
   }
-
 })();

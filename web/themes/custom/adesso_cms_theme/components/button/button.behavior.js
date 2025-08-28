@@ -13,11 +13,12 @@
    */
   function initializeButton(buttonElement) {
     const originalText = buttonElement.textContent.trim();
-    const loadingText = buttonElement.getAttribute('data-loading-text') || 'Loading...';
+    const loadingText =
+      buttonElement.getAttribute('data-loading-text') || 'Loading...';
     const variant = buttonElement.getAttribute('data-variant') || 'default';
-    
+
     // Add enhanced interaction feedback
-    buttonElement.addEventListener('click', function(e) {
+    buttonElement.addEventListener('click', function (e) {
       // Prevent double clicks during loading
       if (buttonElement.classList.contains('loading')) {
         e.preventDefault();
@@ -26,7 +27,7 @@
 
       // Add click animation
       buttonElement.classList.add('animate-pulse');
-      setTimeout(function() {
+      setTimeout(function () {
         buttonElement.classList.remove('animate-pulse');
       }, 150);
 
@@ -34,19 +35,22 @@
       if (buttonElement.getAttribute('target') === '_blank') {
         // Add security attributes for external links
         buttonElement.setAttribute('rel', 'noopener noreferrer');
-        
+
         // Track external link clicks
-        console.log('[adesso-button] External link clicked:', buttonElement.href);
+        console.log(
+          '[adesso-button] External link clicked:',
+          buttonElement.href
+        );
       }
 
       // Handle form submissions with loading state
       const form = buttonElement.closest('form');
       if (form && buttonElement.type === 'submit') {
         setLoadingState(buttonElement, true, loadingText);
-        
+
         // Reset loading state on form error or completion
-        form.addEventListener('submit', function() {
-          setTimeout(function() {
+        form.addEventListener('submit', function () {
+          setTimeout(function () {
             setLoadingState(buttonElement, false, originalText);
           }, 2000);
         });
@@ -57,7 +61,7 @@
     });
 
     // Enhanced keyboard interaction
-    buttonElement.addEventListener('keydown', function(e) {
+    buttonElement.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         buttonElement.click();
@@ -65,23 +69,29 @@
     });
 
     // Focus management for accessibility
-    buttonElement.addEventListener('focus', function() {
-      buttonElement.classList.add('focus-visible:ring-2', 'focus-visible:ring-blue-500');
+    buttonElement.addEventListener('focus', function () {
+      buttonElement.classList.add(
+        'focus-visible:ring-2',
+        'focus-visible:ring-blue-500'
+      );
     });
 
-    buttonElement.addEventListener('blur', function() {
-      buttonElement.classList.remove('focus-visible:ring-2', 'focus-visible:ring-blue-500');
+    buttonElement.addEventListener('blur', function () {
+      buttonElement.classList.remove(
+        'focus-visible:ring-2',
+        'focus-visible:ring-blue-500'
+      );
     });
 
     // Handle disabled state changes
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
         if (mutation.attributeName === 'disabled') {
           updateDisabledState(buttonElement);
         }
       });
     });
-    
+
     observer.observe(buttonElement, { attributes: true });
     buttonElement.buttonObserver = observer;
 
@@ -100,17 +110,20 @@
       button.classList.add('loading', 'opacity-75', 'cursor-not-allowed');
       button.setAttribute('aria-busy', 'true');
       button.disabled = true;
-      
+
       // Add loading spinner if not present
       if (!button.querySelector('.loading-spinner')) {
         const spinner = document.createElement('span');
-        spinner.className = 'loading-spinner animate-spin inline-block w-4 h-4 mr-2';
+        spinner.className =
+          'loading-spinner animate-spin inline-block w-4 h-4 mr-2';
         spinner.innerHTML = '⟳';
         button.insertBefore(spinner, button.firstChild);
       }
-      
+
       // Update text content after spinner
-      const textNode = Array.from(button.childNodes).find(node => node.nodeType === 3);
+      const textNode = Array.from(button.childNodes).find(
+        node => node.nodeType === 3
+      );
       if (textNode) {
         textNode.textContent = text;
       }
@@ -118,15 +131,17 @@
       button.classList.remove('loading', 'opacity-75', 'cursor-not-allowed');
       button.setAttribute('aria-busy', 'false');
       button.disabled = false;
-      
+
       // Remove loading spinner
       const spinner = button.querySelector('.loading-spinner');
       if (spinner) {
         spinner.remove();
       }
-      
+
       // Restore original text
-      const textNode = Array.from(button.childNodes).find(node => node.nodeType === 3);
+      const textNode = Array.from(button.childNodes).find(
+        node => node.nodeType === 3
+      );
       if (textNode) {
         textNode.textContent = text;
       }
@@ -176,18 +191,19 @@
   Drupal.behaviors.adessoButton = {
     attach: function (context) {
       // Find button elements (both <button> and <a> with button classes)
-      const buttonElements = once('adesso-button', 
-        'button:not([data-no-behavior]), a.btn:not([data-no-behavior]), .button:not([data-no-behavior])', 
+      const buttonElements = once(
+        'adesso-button',
+        'button:not([data-no-behavior]), a.btn:not([data-no-behavior]), .button:not([data-no-behavior])',
         context
       );
-      
+
       if (buttonElements.length === 0) {
         return;
       }
 
       console.log('[adesso-button] Found', buttonElements.length, 'button(s)');
 
-      buttonElements.forEach(function(buttonElement) {
+      buttonElements.forEach(function (buttonElement) {
         initializeButton(buttonElement);
       });
     },
@@ -196,18 +212,22 @@
       if (trigger === 'unload') {
         // Clean up observers and reset states
         const buttons = context.querySelectorAll('button, a.btn, .button');
-        
-        buttons.forEach(function(button) {
+
+        buttons.forEach(function (button) {
           // Clean up mutation observer
           if (button.buttonObserver) {
             button.buttonObserver.disconnect();
             delete button.buttonObserver;
           }
-          
+
           // Reset loading state
-          button.classList.remove('loading', 'opacity-75', 'cursor-not-allowed');
+          button.classList.remove(
+            'loading',
+            'opacity-75',
+            'cursor-not-allowed'
+          );
           button.setAttribute('aria-busy', 'false');
-          
+
           // Remove loading spinner
           const spinner = button.querySelector('.loading-spinner');
           if (spinner) {
@@ -217,5 +237,4 @@
       }
     }
   };
-
 })(Drupal, once);

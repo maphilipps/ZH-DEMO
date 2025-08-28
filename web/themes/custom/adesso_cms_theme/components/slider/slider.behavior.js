@@ -28,9 +28,7 @@
       }
 
       if (attempts >= maxAttempts) {
-        console.error(
-          '[adesso-slider] Swiper.js failed to load'
-        );
+        console.error('[adesso-slider] Swiper.js failed to load');
         return;
       }
 
@@ -55,12 +53,9 @@
 
     // Get configuration from data attributes
     const autoSlide = sliderElement.getAttribute('data-slider') === 'slide';
-    const interval = parseInt(
-      sliderElement.getAttribute('data-interval'), 10
-    ) || 5000;
-    const speed = parseInt(
-      sliderElement.getAttribute('data-speed'), 10
-    ) || 800;
+    const interval =
+      parseInt(sliderElement.getAttribute('data-interval'), 10) || 5000;
+    const speed = parseInt(sliderElement.getAttribute('data-speed'), 10) || 800;
 
     // Respect reduced motion preference
     const prefersReducedMotion = window.matchMedia(
@@ -77,27 +72,40 @@
       speed: prefersReducedMotion ? 0 : speed,
 
       // Autoplay
-      autoplay: shouldAutoplay ? {
-        delay: interval,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true
-      } : false,
+      autoplay: shouldAutoplay
+        ? {
+          delay: interval,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }
+        : false,
 
       // Navigation
-      navigation: slides.length > 1 ? {
-        nextEl: sliderElement.querySelector('.swiper-button-next'),
-        prevEl: sliderElement.querySelector('.swiper-button-prev')
-      } : false,
+      navigation:
+        slides.length > 1
+          ? {
+            nextEl: sliderElement.querySelector('.swiper-button-next'),
+            prevEl: sliderElement.querySelector('.swiper-button-prev')
+          }
+          : false,
 
       // Pagination
-      pagination: slides.length > 1 ? {
-        el: sliderElement.querySelector('.swiper-pagination'),
-        clickable: true,
-        renderBullet: function (index, className) {
-          return '<span class="' + className +
-            '" aria-label="Go to slide ' + (index + 1) + '"></span>';
-        }
-      } : false,
+      pagination:
+        slides.length > 1
+          ? {
+            el: sliderElement.querySelector('.swiper-pagination'),
+            clickable: true,
+            renderBullet: function (index, className) {
+              return (
+                '<span class="' +
+                  className +
+                  '" aria-label="Go to slide ' +
+                  (index + 1) +
+                  '"></span>'
+              );
+            }
+          }
+          : false,
 
       // Keyboard navigation
       keyboard: {
@@ -124,9 +132,7 @@
 
       console.log('[adesso-slider] Slider initialized successfully');
       return swiperInstance;
-
-    }
-    catch (error) {
+    } catch (error) {
       console.error('[adesso-slider] Failed to initialize:', error);
       return null;
     }
@@ -136,7 +142,11 @@
   Drupal.behaviors.adessoSlider = {
     attach: function (context) {
       // Find slider elements
-      const sliderElements = once('adesso-slider', '.adesso-slider.swiper', context);
+      const sliderElements = once(
+        'adesso-slider',
+        '.adesso-slider.swiper',
+        context
+      );
 
       if (sliderElements.length === 0) {
         return;
@@ -145,8 +155,8 @@
       console.log('[adesso-slider] Found', sliderElements.length, 'slider(s)');
 
       // Wait for Swiper to load, then initialize
-      waitForSwiper(function() {
-        sliderElements.forEach(function(sliderElement) {
+      waitForSwiper(function () {
+        sliderElements.forEach(function (sliderElement) {
           initializeSlider(sliderElement);
         });
       });
@@ -157,19 +167,20 @@
         // Cleanup Swiper instances
         const sliders = context.querySelectorAll('.adesso-slider.swiper');
 
-        sliders.forEach(function(slider) {
+        sliders.forEach(function (slider) {
           if (slider.swiperInstance) {
             try {
               slider.swiperInstance.destroy();
               delete slider.swiperInstance;
-            }
-            catch (error) {
-              console.error('[adesso-slider] Failed to destroy instance:', error);
+            } catch (error) {
+              console.error(
+                '[adesso-slider] Failed to destroy instance:',
+                error
+              );
             }
           }
         });
       }
     }
   };
-
 })(Drupal, once);

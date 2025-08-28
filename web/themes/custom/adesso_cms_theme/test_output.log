@@ -1,0 +1,20 @@
+
+> adesso_cms_theme@1.3.0 test
+> vitest run
+
+✘ [ERROR] Cannot start service: Host version "0.25.9" does not match binary version "0.25.0"
+
+1 error
+failed to load config from /Users/marc.philipps/Sites/zh-demo/web/themes/custom/adesso_cms_theme/vitest.config.js
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: The service was stopped
+    at /Users/marc.philipps/Sites/zh-demo/web/themes/custom/adesso_cms_theme/node_modules/esbuild/lib/main.js:949:34
+    at responseCallbacks.<computed> (/Users/marc.philipps/Sites/zh-demo/web/themes/custom/adesso_cms_theme/node_modules/esbuild/lib/main.js:603:9)
+    at Socket.afterClose (/Users/marc.philipps/Sites/zh-demo/web/themes/custom/adesso_cms_theme/node_modules/esbuild/lib/main.js:594:28)
+    at Socket.emit (node:events:532:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+
+

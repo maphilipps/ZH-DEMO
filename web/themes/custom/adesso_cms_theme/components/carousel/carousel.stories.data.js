@@ -1,7 +1,7 @@
 /**
  * @file
  * Sample data for Carousel component stories.
- * 
+ *
  * This file contains realistic business and technology content
  * for demonstrating the Carousel component in various contexts.
  */
@@ -26,7 +26,8 @@ export default {
           </div>
         `,
         title: 'Digital Transformation Consulting',
-        summary: 'Comprehensive digital strategies that transform businesses and drive competitive advantage through innovative technology solutions and process optimization.',
+        summary:
+          'Comprehensive digital strategies that transform businesses and drive competitive advantage through innovative technology solutions and process optimization.',
         link: {
           url: '/services/digital-transformation',
           title: 'Explore Digital Services',
@@ -46,7 +47,8 @@ export default {
           </div>
         `,
         title: 'Cloud Migration & Infrastructure',
-        summary: 'Seamless cloud adoption with enterprise-grade migration services, infrastructure optimization, and ongoing management for maximum efficiency and cost savings.',
+        summary:
+          'Seamless cloud adoption with enterprise-grade migration services, infrastructure optimization, and ongoing management for maximum efficiency and cost savings.',
         link: {
           url: '/services/cloud-migration',
           title: 'Learn About Cloud Services',
@@ -66,7 +68,8 @@ export default {
           </div>
         `,
         title: 'Advanced Data Analytics',
-        summary: 'Transform raw data into actionable insights with advanced analytics platforms, predictive modeling, and interactive dashboards for data-driven decision making.',
+        summary:
+          'Transform raw data into actionable insights with advanced analytics platforms, predictive modeling, and interactive dashboards for data-driven decision making.',
         link: {
           url: '/services/data-analytics',
           title: 'Discover Analytics Solutions',
@@ -86,7 +89,8 @@ export default {
           </div>
         `,
         title: 'Enterprise Cybersecurity',
-        summary: 'Comprehensive security solutions with threat assessment, vulnerability management, compliance frameworks, and 24/7 monitoring for complete protection.',
+        summary:
+          'Comprehensive security solutions with threat assessment, vulnerability management, compliance frameworks, and 24/7 monitoring for complete protection.',
         link: {
           url: '/services/cybersecurity',
           title: 'Secure Your Business',
@@ -118,7 +122,8 @@ export default {
           </div>
         `,
         title: 'Enterprise CMS Platform',
-        summary: 'Scalable content management system with multi-site architecture, advanced workflows, API-first design, and seamless integration capabilities for enterprise environments.',
+        summary:
+          'Scalable content management system with multi-site architecture, advanced workflows, API-first design, and seamless integration capabilities for enterprise environments.',
         link: {
           url: '/portfolio/enterprise-cms',
           title: 'View CMS Project',
@@ -138,7 +143,8 @@ export default {
           </div>
         `,
         title: 'API Gateway & Management',
-        summary: 'Complete API lifecycle management with security, rate limiting, analytics, monitoring, and developer portal for seamless integration and third-party access.',
+        summary:
+          'Complete API lifecycle management with security, rate limiting, analytics, monitoring, and developer portal for seamless integration and third-party access.',
         link: {
           url: '/portfolio/api-gateway',
           title: 'Explore API Solution',
@@ -158,7 +164,8 @@ export default {
           </div>
         `,
         title: 'Business Intelligence Dashboard',
-        summary: 'Real-time analytics platform with interactive dashboards, automated reporting, predictive modeling, and machine learning integration for intelligent business decisions.',
+        summary:
+          'Real-time analytics platform with interactive dashboards, automated reporting, predictive modeling, and machine learning integration for intelligent business decisions.',
         link: {
           url: '/portfolio/business-intelligence',
           title: 'See BI Dashboard',
@@ -178,7 +185,8 @@ export default {
           </div>
         `,
         title: 'Mobile Application Suite',
-        summary: 'Cross-platform mobile applications with native performance, offline capabilities, push notifications, and seamless cloud synchronization for optimal user experience.',
+        summary:
+          'Cross-platform mobile applications with native performance, offline capabilities, push notifications, and seamless cloud synchronization for optimal user experience.',
         link: {
           url: '/portfolio/mobile-app',
           title: 'Download App',
@@ -213,7 +221,8 @@ export default {
           </div>
         `,
         title: 'Exceptional Digital Transformation',
-        summary: '"The team delivered beyond our expectations. Their digital transformation strategy increased our operational efficiency by 40% and reduced costs significantly. Highly recommended for enterprise-level projects."',
+        summary:
+          '"The team delivered beyond our expectations. Their digital transformation strategy increased our operational efficiency by 40% and reduced costs significantly. Highly recommended for enterprise-level projects."',
         link: {
           url: '/case-studies/techcorp-transformation',
           title: 'Read Full Case Study',
@@ -236,7 +245,8 @@ export default {
           </div>
         `,
         title: 'Outstanding Development Partnership',
-        summary: '"From concept to deployment, they were true partners. The mobile app they built has 500K+ downloads and a 4.8-star rating. Their expertise in React Native is unmatched."',
+        summary:
+          '"From concept to deployment, they were true partners. The mobile app they built has 500K+ downloads and a 4.8-star rating. Their expertise in React Native is unmatched."',
         link: {
           url: '/case-studies/startupflow-app',
           title: 'View App Success Story',
@@ -259,7 +269,8 @@ export default {
           </div>
         `,
         title: 'Secure Healthcare Platform',
-        summary: '"They built our HIPAA-compliant patient management system with zero security incidents. The platform processes 10,000+ patient records daily with 99.9% uptime. Exceptional work."',
+        summary:
+          '"They built our HIPAA-compliant patient management system with zero security incidents. The platform processes 10,000+ patient records daily with 99.9% uptime. Exceptional work."',
         link: {
           url: '/case-studies/medtech-platform',
           title: 'Healthcare Case Study',
@@ -282,7 +293,8 @@ export default {
           </div>
         `,
         title: 'Scalable FinTech Solution',
-        summary: '"Their cloud migration saved us $200K annually while improving performance by 60%. The team handled our complex compliance requirements flawlessly. True cloud experts."',
+        summary:
+          '"Their cloud migration saved us $200K annually while improving performance by 60%. The team handled our complex compliance requirements flawlessly. True cloud experts."',
         link: {
           url: '/case-studies/financeflow-migration',
           title: 'FinTech Success Story',
@@ -316,7 +328,8 @@ export default {
           </div>
         `,
         title: 'Enterprise Pro License',
-        summary: 'Complete enterprise solution with unlimited users, advanced analytics, priority support, custom integrations, and dedicated account management for large organizations.',
+        summary:
+          'Complete enterprise solution with unlimited users, advanced analytics, priority support, custom integrations, and dedicated account management for large organizations.',
         link: {
           url: '/pricing/enterprise-pro',
           title: 'Start Enterprise Trial',
@@ -338,7 +351,8 @@ export default {
           </div>
         `,
         title: 'Business Plus License',
-        summary: 'Perfect for growing businesses with advanced features, team collaboration tools, enhanced security, API access, and standard support for up to 50 users.',
+        summary:
+          'Perfect for growing businesses with advanced features, team collaboration tools, enhanced security, API access, and standard support for up to 50 users.',
         link: {
           url: '/pricing/business-plus',
           title: 'Upgrade to Plus',
@@ -360,7 +374,8 @@ export default {
           </div>
         `,
         title: 'Basic Starter License',
-        summary: 'Ideal for small teams and startups with essential features, basic reporting, email support, and core functionality for up to 10 users getting started.',
+        summary:
+          'Ideal for small teams and startups with essential features, basic reporting, email support, and core functionality for up to 10 users getting started.',
         link: {
           url: '/pricing/basic-starter',
           title: 'Start Free Trial',
@@ -395,7 +410,8 @@ export default {
           </div>
         `,
         title: 'New AI-Powered Analytics Released',
-        summary: 'Our latest platform update includes machine learning-driven insights, automated report generation, and predictive analytics capabilities for enhanced business intelligence.',
+        summary:
+          'Our latest platform update includes machine learning-driven insights, automated report generation, and predictive analytics capabilities for enhanced business intelligence.',
         link: {
           url: '/news/ai-analytics-release',
           title: 'Read Full Update',
@@ -418,7 +434,8 @@ export default {
           </div>
         `,
         title: 'SOC 2 Type II Certification Achieved',
-        summary: 'We\'ve successfully completed our SOC 2 Type II audit, demonstrating our commitment to security, availability, and confidentiality of customer data.',
+        summary:
+          "We've successfully completed our SOC 2 Type II audit, demonstrating our commitment to security, availability, and confidentiality of customer data.",
         link: {
           url: '/news/soc2-certification',
           title: 'Security Details',
@@ -441,7 +458,8 @@ export default {
           </div>
         `,
         title: 'Team Expansion: 25 New Experts Joined',
-        summary: 'We\'re excited to welcome 25 new team members across engineering, design, and customer success to support our growing client base and product development.',
+        summary:
+          "We're excited to welcome 25 new team members across engineering, design, and customer success to support our growing client base and product development.",
         link: {
           url: '/news/team-expansion',
           title: 'Meet the Team',
@@ -464,7 +482,8 @@ export default {
           </div>
         `,
         title: 'European Operations Launch',
-        summary: 'We\'ve officially launched our European operations with offices in London and Berlin, providing localized support and compliance for our EU clients.',
+        summary:
+          "We've officially launched our European operations with offices in London and Berlin, providing localized support and compliance for our EU clients.",
         link: {
           url: '/news/european-expansion',
           title: 'Global Presence',
@@ -495,7 +514,8 @@ export default {
           </div>
         `,
         title: 'Sarah Chen - Chief Technology Officer',
-        summary: 'Leading our technical vision with 15+ years in enterprise software development. Expert in cloud architecture, microservices, and digital transformation strategies.',
+        summary:
+          'Leading our technical vision with 15+ years in enterprise software development. Expert in cloud architecture, microservices, and digital transformation strategies.',
         link: {
           url: '/team/sarah-chen',
           title: 'View Full Profile',
@@ -514,7 +534,8 @@ export default {
           </div>
         `,
         title: 'Marcus Rodriguez - Lead Solutions Architect',
-        summary: 'Specializing in enterprise system integration and cloud infrastructure. Designs scalable solutions for Fortune 500 companies with focus on performance and security.',
+        summary:
+          'Specializing in enterprise system integration and cloud infrastructure. Designs scalable solutions for Fortune 500 companies with focus on performance and security.',
         link: {
           url: '/team/marcus-rodriguez',
           title: 'Connect on LinkedIn',
@@ -533,7 +554,8 @@ export default {
           </div>
         `,
         title: 'Dr. Emily Watson - Data Science Director',
-        summary: 'PhD in Machine Learning with expertise in AI, predictive analytics, and big data processing. Leads our advanced analytics and business intelligence initiatives.',
+        summary:
+          'PhD in Machine Learning with expertise in AI, predictive analytics, and big data processing. Leads our advanced analytics and business intelligence initiatives.',
         link: {
           url: '/team/emily-watson',
           title: 'Research Publications',
@@ -552,49 +574,57 @@ export default {
   largeCarousel: {
     items: [
       {
-        media: '<div class="w-full h-64 bg-blue-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 1</div>',
+        media:
+          '<div class="w-full h-64 bg-blue-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 1</div>',
         title: 'Web Development',
         summary: 'Modern web applications with React, Vue, and Angular.',
         link: { url: '/services/web', title: 'Learn More' },
       },
       {
-        media: '<div class="w-full h-64 bg-green-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 2</div>',
+        media:
+          '<div class="w-full h-64 bg-green-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 2</div>',
         title: 'Mobile Development',
         summary: 'Native and cross-platform mobile applications.',
         link: { url: '/services/mobile', title: 'View Apps' },
       },
       {
-        media: '<div class="w-full h-64 bg-purple-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 3</div>',
+        media:
+          '<div class="w-full h-64 bg-purple-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 3</div>',
         title: 'Cloud Solutions',
         summary: 'Cloud migration and infrastructure services.',
         link: { url: '/services/cloud', title: 'Get Started' },
       },
       {
-        media: '<div class="w-full h-64 bg-orange-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 4</div>',
+        media:
+          '<div class="w-full h-64 bg-orange-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 4</div>',
         title: 'DevOps & Automation',
         summary: 'CI/CD pipelines and infrastructure automation.',
         link: { url: '/services/devops', title: 'Automate Now' },
       },
       {
-        media: '<div class="w-full h-64 bg-red-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 5</div>',
+        media:
+          '<div class="w-full h-64 bg-red-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 5</div>',
         title: 'Security Services',
         summary: 'Cybersecurity audits and compliance management.',
         link: { url: '/services/security', title: 'Secure Business' },
       },
       {
-        media: '<div class="w-full h-64 bg-indigo-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 6</div>',
+        media:
+          '<div class="w-full h-64 bg-indigo-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 6</div>',
         title: 'Data Analytics',
         summary: 'Business intelligence and predictive modeling.',
         link: { url: '/services/analytics', title: 'Analyze Data' },
       },
       {
-        media: '<div class="w-full h-64 bg-pink-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 7</div>',
+        media:
+          '<div class="w-full h-64 bg-pink-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 7</div>',
         title: 'UI/UX Design',
         summary: 'User-centered design and experience optimization.',
         link: { url: '/services/design', title: 'Design Better' },
       },
       {
-        media: '<div class="w-full h-64 bg-teal-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 8</div>',
+        media:
+          '<div class="w-full h-64 bg-teal-500 rounded-lg flex items-center justify-center text-white text-2xl font-bold">Service 8</div>',
         title: 'Consulting',
         summary: 'Strategic technology consulting and planning.',
         link: { url: '/services/consulting', title: 'Get Advice' },
@@ -626,7 +656,8 @@ export default {
           </div>
         `,
         title: 'Screen Reader Optimization',
-        summary: 'Comprehensive accessibility testing and optimization for screen readers including NVDA, JAWS, and VoiceOver with semantic markup and ARIA labels.',
+        summary:
+          'Comprehensive accessibility testing and optimization for screen readers including NVDA, JAWS, and VoiceOver with semantic markup and ARIA labels.',
         link: {
           url: '/accessibility/screen-readers',
           title: 'Learn About Screen Reader Support',
@@ -646,7 +677,8 @@ export default {
           </div>
         `,
         title: 'Full Keyboard Accessibility',
-        summary: 'Complete keyboard navigation support with logical tab order, visible focus indicators, and comprehensive keyboard shortcuts for all interactive elements.',
+        summary:
+          'Complete keyboard navigation support with logical tab order, visible focus indicators, and comprehensive keyboard shortcuts for all interactive elements.',
         link: {
           url: '/accessibility/keyboard-navigation',
           title: 'Keyboard Navigation Guide',
@@ -666,7 +698,8 @@ export default {
           </div>
         `,
         title: 'WCAG 2.1 AA Compliance',
-        summary: 'Color schemes and contrast ratios that exceed accessibility guidelines with support for high contrast mode and color vision deficiencies.',
+        summary:
+          'Color schemes and contrast ratios that exceed accessibility guidelines with support for high contrast mode and color vision deficiencies.',
         link: {
           url: '/accessibility/wcag-compliance',
           title: 'View Compliance Details',

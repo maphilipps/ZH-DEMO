@@ -72,9 +72,9 @@ Collapsible accordion component for organizing content into expandable sections.
   ]
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -116,17 +116,20 @@ export const FAQ = {
     accordion_items: [
       {
         title: 'What services do you offer?',
-        content: 'We offer web development, design services, and digital consulting.',
+        content:
+          'We offer web development, design services, and digital consulting.',
         expanded: false,
       },
       {
         title: 'How long does a project take?',
-        content: 'Most projects are completed within 2-6 months depending on complexity.',
+        content:
+          'Most projects are completed within 2-6 months depending on complexity.',
         expanded: false,
       },
       {
         title: 'What are your rates?',
-        content: 'Our rates vary by project scope. Contact us for a custom quote.',
+        content:
+          'Our rates vary by project scope. Contact us for a custom quote.',
         expanded: false,
       },
     ],
@@ -165,7 +168,8 @@ export const SingleItem = {
     accordion_items: [
       {
         title: 'How do I create an account?',
-        content: 'Click the Sign Up button and follow the registration process.',
+        content:
+          'Click the Sign Up button and follow the registration process.',
         expanded: false,
       },
     ],
@@ -184,7 +188,8 @@ export const WithoutPreHeadline = {
       },
       {
         title: 'Privacy Policy',
-        content: 'Your privacy is important to us. Learn how we protect your data.',
+        content:
+          'Your privacy is important to us. Learn how we protect your data.',
         expanded: false,
       },
     ],

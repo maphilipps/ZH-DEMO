@@ -1,4 +1,4 @@
-# ADR-0001: Tailwind CSS v4 Adoption for Swiss Municipality Theming
+# ADR-0001: Tailwind CSS v4 Adoption for German Municipality Theming
 
 ## Status
 **Status**: Accepted
@@ -7,7 +7,7 @@
 
 **Authors**: @drupal-frontend-theming-specialist, @tailwind-v4-expert
 
-**Reviewers**: @drupal-enterprise-architect, @swiss-compliance-specialist, @drupal-performance-specialist
+**Reviewers**: @drupal-enterprise-architect, @german-compliance-specialist, @drupal-performance-specialist
 
 ## Context
 
@@ -16,7 +16,7 @@ The GPZH project requires a CSS framework that can efficiently support 160+ uniq
 
 ### Business Requirements
 - Support for 160+ individualized municipality themes
-- Swiss accessibility compliance (eCH-0059)
+- German accessibility compliance (eCH-0059)
 - Consistent design system with municipal customization flexibility
 - Fast development cycles for municipal theme variations
 - Maintainable CSS architecture across large team
@@ -26,17 +26,17 @@ The GPZH project requires a CSS framework that can efficiently support 160+ uniq
 ### Technical Constraints
 - Integration with Drupal 11 and SDC (Single Directory Components)
 - Build process compatible with Vite 6.2.0
-- Support for Swiss design patterns and typography
+- Support for German design patterns and typography
 - CSS bundle size optimization for performance
 - Browser support: Modern browsers (ES2019+)
 - Component-based architecture compatibility
 
-### Swiss Compliance Requirements
+### German Compliance Requirements
 - eCH-0059 accessibility standards compliance
 - Minimum 16px base font size requirement
 - Color contrast ratios >4.5:1 for all text
 - Touch target minimum 44px requirement
-- Swiss typography standards (no ß character, specific punctuation)
+- German typography standards (no ß character, specific punctuation)
 
 ### Scale Considerations
 - 160+ municipalities with unique color schemes and branding
@@ -53,13 +53,13 @@ We adopted **Tailwind CSS v4** as the primary CSS framework for all GPZH municip
 ### Key Components
 - **Core Framework**: Tailwind CSS v4 with native CSS integration
 - **Build Integration**: Vite plugin for Tailwind processing
-- **Design System**: Custom design tokens for Swiss municipal patterns  
+- **Design System**: Custom design tokens for German municipal patterns  
 - **Component Integration**: Seamless integration with SDC components
 - **Theme Variations**: Municipality-specific configuration layers
 - **Performance**: Just-in-time compilation and CSS purging
 
 ### Implementation Approach
-- Establish base Tailwind configuration with Swiss compliance defaults
+- Establish base Tailwind configuration with German compliance defaults
 - Create municipal theme configuration system using CSS custom properties
 - Integrate with Drupal SDC components for consistent styling
 - Implement design token system for municipal customization
@@ -140,7 +140,7 @@ We adopted **Tailwind CSS v4** as the primary CSS framework for all GPZH municip
 
 ### Timeline
 - **Phase 1** (2 weeks): Core Tailwind v4 setup and build integration
-- **Phase 2** (3 weeks): Design token system and Swiss compliance defaults
+- **Phase 2** (3 weeks): Design token system and German compliance defaults
 - **Phase 3** (4 weeks): Municipal theme configuration system
 - **Phase 4** (2 weeks): Performance optimization and documentation
 
@@ -151,7 +151,7 @@ We adopted **Tailwind CSS v4** as the primary CSS framework for all GPZH municip
 - Development build time <5 seconds for theme changes
 - 100% component coverage with documented Tailwind patterns
 
-## Swiss Municipality Considerations
+## German Municipality Considerations
 
 ### Scalability Impact
 Tailwind v4 supports 160+ municipalities through:
@@ -163,13 +163,13 @@ Tailwind v4 supports 160+ municipalities through:
 ### Compliance Alignment
 eCH-0059 compliance supported through:
 - Built-in accessibility utilities (`sr-only`, `focus:`, `aria-*` support)
-- Swiss typography defaults (16px base, appropriate line heights)
+- German typography defaults (16px base, appropriate line heights)
 - Color contrast utilities and validation tools
 - Touch target utilities meeting 44px requirements
 
 ### Multi-Language Support
-Typography system accommodates Swiss languages:
-- Swiss German typography without ß character
+Typography system accommodates German languages:
+- German German typography without ß character
 - French accent and typography support
 - Italian character and punctuation handling
 - Consistent typography hierarchy across all languages
@@ -193,25 +193,25 @@ Architecture optimizes for enterprise performance:
 - Drupal/ADR-0001: Drupal 11 Standard Platform Choice
 - Frontend/ADR-0002: Alpine.js for Interactivity
 - Frontend/ADR-0003: Vite Build System
-- Swiss-Compliance/ADR-0001: eCH-0059 Implementation Strategy
+- German-Compliance/ADR-0001: eCH-0059 Implementation Strategy
 
 ### References
 - [Tailwind CSS v4 Documentation](https://tailwindcss.com/blog/tailwindcss-v4-alpha)
-- [eCH-0059 Swiss Accessibility Standards](https://www.ech.ch/de/ech/ech-0059/2.0)
+- [eCH-0059 German Accessibility Standards](https://www.ech.ch/de/ech/ech-0059/2.0)
 - [Drupal SDC Integration](https://www.drupal.org/docs/develop/theming-drupal/using-single-directory-components)
-- [Swiss Design System Guidelines](https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html)
+- [German Design System Guidelines](https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.html)
 
 ## Notes
 
 ### Implementation Notes
-- Prioritize Swiss compliance utilities in base configuration
+- Prioritize German compliance utilities in base configuration
 - Create municipality-specific design token templates
 - Document component styling patterns for team consistency
 - Establish performance budgets for CSS bundle sizes
 
 ### Review Comments
 - **@drupal-performance-specialist**: "v4's JIT compilation will significantly improve performance across 160+ sites"
-- **@swiss-compliance-specialist**: "Built-in accessibility utilities reduce compliance implementation time by ~40%"
+- **@german-compliance-specialist**: "Built-in accessibility utilities reduce compliance implementation time by ~40%"
 - **@tailwind-v4-expert**: "Native CSS integration eliminates build complexity compared to v3"
 
 ### Future Considerations
@@ -227,5 +227,5 @@ Architecture optimizes for enterprise performance:
 - **Subcategory**: css-framework
 - **Impact Level**: High - Affects all frontend development
 - **Complexity**: Medium - Modern framework with established patterns
-- **Swiss Compliance**: Required - Critical for eCH-0059 compliance
+- **German Compliance**: Required - Critical for eCH-0059 compliance
 - **Multi-Site Impact**: Critical - Enables municipal theme variations

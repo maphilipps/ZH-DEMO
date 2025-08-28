@@ -12,22 +12,24 @@
    * @return {void}
    */
   function initializeDownloadItem(downloadElement) {
-    const downloadLink = downloadElement.querySelector('a[download], a[href*="download"], .download-link');
+    const downloadLink = downloadElement.querySelector(
+      'a[download], a[href*="download"], .download-link'
+    );
     const progressBar = downloadElement.querySelector('.download-progress');
     const statusText = downloadElement.querySelector('.download-status');
     const fileSize = downloadElement.getAttribute('data-file-size');
     const fileName = downloadElement.getAttribute('data-file-name');
-    
+
     if (!downloadLink) {
       console.warn('[adesso-download-item] No download link found');
       return;
     }
 
     // Add enhanced download tracking
-    downloadLink.addEventListener('click', function(e) {
+    downloadLink.addEventListener('click', function (e) {
       const url = downloadLink.href;
       const isExternalDownload = !url.startsWith(window.location.origin);
-      
+
       // Track download initiation
       trackDownload('initiated', {
         url: url,
@@ -51,7 +53,7 @@
     });
 
     // Enhanced keyboard interaction
-    downloadLink.addEventListener('keydown', function(e) {
+    downloadLink.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         downloadLink.click();
@@ -66,7 +68,10 @@
       addFileSizeDisplay(downloadElement, fileSize);
     }
 
-    console.log('[adesso-download-item] Download item initialized:', fileName || downloadLink.href);
+    console.log(
+      '[adesso-download-item] Download item initialized:',
+      fileName || downloadLink.href
+    );
   }
 
   /**
@@ -78,40 +83,40 @@
   function showDownloadProgress(downloadElement, url) {
     const progressBar = downloadElement.querySelector('.download-progress');
     const statusText = downloadElement.querySelector('.download-status');
-    
+
     if (!progressBar) return;
 
     // Show progress bar
     progressBar.style.display = 'block';
     progressBar.style.width = '0%';
-    
+
     if (statusText) {
       statusText.textContent = 'Preparing download...';
     }
 
     // Simulate progress for demonstration (in real app, use actual progress)
     let progress = 0;
-    const progressInterval = setInterval(function() {
+    const progressInterval = setInterval(function () {
       progress += Math.random() * 15;
-      
+
       if (progress >= 100) {
         progress = 100;
         clearInterval(progressInterval);
-        
+
         // Complete download
         progressBar.style.width = '100%';
         if (statusText) {
           statusText.textContent = 'Download complete!';
         }
-        
+
         // Hide progress after delay
-        setTimeout(function() {
+        setTimeout(function () {
           progressBar.style.display = 'none';
           if (statusText) {
             statusText.textContent = '';
           }
         }, 2000);
-        
+
         // Track completion
         trackDownload('completed', { url: url });
       } else {
@@ -141,29 +146,29 @@
 
     // Map file extensions to icons
     const iconMap = {
-      'pdf': '📄',
-      'doc': '📝',
-      'docx': '📝',
-      'xls': '📊',
-      'xlsx': '📊',
-      'ppt': '📈',
-      'pptx': '📈',
-      'txt': '📃',
-      'rtf': '📃',
-      'zip': '🗜️',
-      'rar': '🗜️',
+      pdf: '📄',
+      doc: '📝',
+      docx: '📝',
+      xls: '📊',
+      xlsx: '📊',
+      ppt: '📈',
+      pptx: '📈',
+      txt: '📃',
+      rtf: '📃',
+      zip: '🗜️',
+      rar: '🗜️',
       '7z': '🗜️',
-      'jpg': '🖼️',
-      'jpeg': '🖼️',
-      'png': '🖼️',
-      'gif': '🖼️',
-      'svg': '🖼️',
-      'mp4': '🎥',
-      'avi': '🎥',
-      'mov': '🎥',
-      'mp3': '🎵',
-      'wav': '🎵',
-      'ogg': '🎵'
+      jpg: '🖼️',
+      jpeg: '🖼️',
+      png: '🖼️',
+      gif: '🖼️',
+      svg: '🖼️',
+      mp4: '🎥',
+      avi: '🎥',
+      mov: '🎥',
+      mp3: '🎵',
+      wav: '🎵',
+      ogg: '🎵'
     };
 
     if (iconMap[extension]) {
@@ -175,7 +180,7 @@
     iconElement.className = 'file-type-icon ' + iconClass;
     iconElement.textContent = iconText;
     iconElement.setAttribute('aria-hidden', 'true');
-    
+
     // Insert icon at the beginning of the link
     downloadLink.insertBefore(iconElement, downloadLink.firstChild);
   }
@@ -190,7 +195,7 @@
     const sizeElement = document.createElement('span');
     sizeElement.className = 'file-size text-sm text-gray-500 ml-2';
     sizeElement.textContent = `(${formatFileSize(fileSize)})`;
-    
+
     const downloadLink = downloadElement.querySelector('a');
     if (downloadLink) {
       downloadLink.appendChild(sizeElement);
@@ -206,19 +211,19 @@
     if (typeof bytes === 'string' && bytes.includes(' ')) {
       return bytes; // Already formatted
     }
-    
+
     const size = parseInt(bytes);
     if (isNaN(size)) return bytes;
-    
+
     const units = ['B', 'KB', 'MB', 'GB'];
     let unitIndex = 0;
     let fileSize = size;
-    
+
     while (fileSize >= 1024 && unitIndex < units.length - 1) {
       fileSize /= 1024;
       unitIndex++;
     }
-    
+
     return Math.round(fileSize * 10) / 10 + ' ' + units[unitIndex];
   }
 
@@ -232,10 +237,10 @@
     if (countElement) {
       const currentCount = parseInt(countElement.textContent) || 0;
       countElement.textContent = currentCount + 1;
-      
+
       // Add visual feedback
       countElement.classList.add('animate-pulse');
-      setTimeout(function() {
+      setTimeout(function () {
         countElement.classList.remove('animate-pulse');
       }, 1000);
     }
@@ -270,18 +275,23 @@
   Drupal.behaviors.adessoDownloadItem = {
     attach: function (context) {
       // Find download item elements
-      const downloadElements = once('adesso-download-item', 
-        '.download-item, [data-download-item], .file-download', 
+      const downloadElements = once(
+        'adesso-download-item',
+        '.download-item, [data-download-item], .file-download',
         context
       );
-      
+
       if (downloadElements.length === 0) {
         return;
       }
 
-      console.log('[adesso-download-item] Found', downloadElements.length, 'download item(s)');
+      console.log(
+        '[adesso-download-item] Found',
+        downloadElements.length,
+        'download item(s)'
+      );
 
-      downloadElements.forEach(function(downloadElement) {
+      downloadElements.forEach(function (downloadElement) {
         initializeDownloadItem(downloadElement);
       });
     },
@@ -289,17 +299,19 @@
     detach: function (context, settings, trigger) {
       if (trigger === 'unload') {
         // Clean up progress bars and reset states
-        const downloadItems = context.querySelectorAll('.download-item, [data-download-item], .file-download');
-        
-        downloadItems.forEach(function(item) {
+        const downloadItems = context.querySelectorAll(
+          '.download-item, [data-download-item], .file-download'
+        );
+
+        downloadItems.forEach(function (item) {
           const progressBar = item.querySelector('.download-progress');
           const statusText = item.querySelector('.download-status');
-          
+
           if (progressBar) {
             progressBar.style.display = 'none';
             progressBar.style.width = '0%';
           }
-          
+
           if (statusText) {
             statusText.textContent = '';
           }
@@ -307,5 +319,4 @@
       }
     }
   };
-
 })(Drupal, once);

@@ -102,9 +102,9 @@ Pricing component for displaying pricing plans, service packages, or feature com
   cards: service_packages
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -385,7 +385,7 @@ export const ServicePackages = {
       {
         eyebrow: 'Full Development',
         title: 'Custom',
-        monthly_label: 'let\'s discuss your needs',
+        monthly_label: "let's discuss your needs",
         features: [
           'Strategy consultation',
           'Custom development',
@@ -414,11 +414,7 @@ export const Playground = {
         eyebrow: 'Test Plan',
         title: '$10',
         monthly_label: 'per month',
-        features: [
-          'Feature 1',
-          'Feature 2',
-          'Feature 3',
-        ],
+        features: ['Feature 1', 'Feature 2', 'Feature 3'],
         cta_link: {
           url: '#',
           title: 'Test Button',
@@ -429,11 +425,7 @@ export const Playground = {
         eyebrow: 'Another Plan',
         title: '$25',
         monthly_label: 'per month',
-        features: [
-          'More features',
-          'Advanced tools',
-          'Priority support',
-        ],
+        features: ['More features', 'Advanced tools', 'Priority support'],
         cta_link: {
           url: '#',
           title: 'Another Button',

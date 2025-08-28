@@ -18,7 +18,7 @@
   --color-neutral-700: var(--color-slate-700);
   --color-neutral-800: var(--color-slate-800);
   --color-neutral-900: var(--color-slate-900);
-  
+
   /* Primary colors are set dynamically by theme system - no override needed */
 }
 
@@ -36,7 +36,7 @@
   --color-neutral-700: var(--color-slate-700);
   --color-neutral-800: var(--color-slate-800);
   --color-neutral-900: var(--color-slate-900);
-  
+
   /* Primary colors are set dynamically by theme system - no override needed */
 }
 
@@ -54,7 +54,7 @@
   --color-neutral-700: var(--color-slate-100);
   --color-neutral-800: var(--color-slate-50);
   --color-neutral-900: var(--color-white);
-  
+
   /* Primary colors are set dynamically by theme system - no override needed */
   /* Dark theme uses inverted primary scale automatically */
 }

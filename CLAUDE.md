@@ -809,4 +809,6 @@ card.component.yml:
 **Application**: All architectural refactoring projects need problem-focused migration guides
 
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
-- Every Frontend-Task has to been reviewed and confirmed with the help of Puppeteer MCP or Playwright MCP.
+- Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
+- vor dem Stellen eines PRs muss der Zielbranch gemerged werden, damit es keine Konflikte gibt.
+- Bei Commits, die die Drupal-Config verändern, muss immer ein aktuelle config export, sowie ein DB Dump mit abgegeben werden.

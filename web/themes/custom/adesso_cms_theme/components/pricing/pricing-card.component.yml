@@ -41,3 +41,10 @@ props:
           type: string
           title: 'Title'
           description: 'Link text'
+slots:
+  content:
+    title: Content
+    description: Pricing card content area with title, features, and pricing
+  primary_action:
+    title: Primary Action
+    description: Primary call-to-action button/link area for field_link

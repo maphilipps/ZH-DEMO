@@ -66,3 +66,10 @@ props:
       type: Drupal\Core\Template\Attribute
       title: attributes
       description: HTML attributes object for the wrapper element
+slots:
+  content:
+    title: Content
+    description: Side-by-side content area with title, text, and media
+  primary_action:
+    title: Primary Action
+    description: Primary call-to-action button/link area for field_link

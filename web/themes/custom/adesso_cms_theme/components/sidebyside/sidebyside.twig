@@ -19,11 +19,9 @@
       </div>
       {% endif %} {% endfor %}
     </div>
-    {% endif %} {% if link.url|default('') %}
-    <div class="flex">
-      {% include 'adesso_cms_theme:button' with { url: link.url, text: link.title|default('Read more'), modifier:
-      'btn-default' } only %}
-    </div>
     {% endif %}
+    <div class="flex">
+      {% block primary_action %}{% endblock %}
+    </div>
   </div>
 </div>

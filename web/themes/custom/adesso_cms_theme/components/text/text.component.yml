@@ -67,3 +67,13 @@ props:
       type: string
       title: className
       description: Additional CSS classes for the container
+slots:
+  content:
+    title: Content
+    description: Text block content area with title and body
+  primary_action:
+    title: Primary Action
+    description: Primary call-to-action button/link area for field_link
+  secondary_action:
+    title: Secondary Action
+    description: Secondary call-to-action button/link area for field_link2

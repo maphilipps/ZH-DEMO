@@ -57,3 +57,13 @@ props:
           type: string
         icon:
           type: string
+slots:
+  content:
+    title: Content
+    description: Hero content area with heading and text
+  primary_action:
+    title: Primary Action
+    description: Primary call-to-action button/link area for field_link
+  secondary_action:
+    title: Secondary Action
+    description: Secondary call-to-action button/link area for field_link2

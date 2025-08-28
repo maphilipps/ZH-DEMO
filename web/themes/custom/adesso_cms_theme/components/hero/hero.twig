@@ -46,10 +46,8 @@
         <div class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">{{ text|default('') }}</div>
         {% endif %} {# Action Buttons #}
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          {% if link|default({}) and link.url|default('') %} {% include 'adesso_cms_theme:button' with { url: link.url,
-          text: link.title, variant: 'default', size: 'lg' } %} {% endif %} {% if link2|default({}) and
-          link2.url|default('') %} {% include 'adesso_cms_theme:button' with { url: link2.url, text: link2.title,
-          variant: 'outline', size: 'lg' } %} {% endif %}
+          {% block primary_action %}{% endblock %}
+          {% block secondary_action %}{% endblock %}
         </div>
       </div>
     </div>
@@ -81,10 +79,8 @@
     </div>
     {% endif %} {# Action Buttons #}
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-      {% if link.url %} {% include 'adesso_cms_theme:button' with { url: link.url, text: link.title, icon:
-      'arrow-right', variant: 'default', size: 'default' } %} {% endif %} {% if link2.url %} {% include
-      'adesso_cms_theme:button' with { url: link2.url, text: link2.title, variant: 'outline', size: 'default' } %} {%
-      endif %}
+      {% block primary_action %}{% endblock %}
+      {% block secondary_action %}{% endblock %}
     </div>
 
     {% if hero_layout == 'image_bottom' and media %}

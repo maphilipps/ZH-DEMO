@@ -1,27 +1,22 @@
 {#
 /**
  * @file
- * Pricing card paragraph template (child component - no wrapper needed).
+ * Pricing card paragraph template using slot-based field rendering.
  */
 #}
-
-{# Process link field #}
-{% set link = content.field_link[0] ? {
-  url: content.field_link[0]['#url'],
-  title: content.field_link[0]['#title'],
-} : {} %}
 
 {{ title_prefix }}
 {{ title_suffix }}
 
-{% embed '@adesso_cms_theme/pricing/pricing-card.twig' with {
-  "cta_link": link,
-} only %}
+{% embed 'adesso_cms_theme:pricing-card' with {} only %}
   {% block title %}{{ content.field_title }}{% endblock %}
   {% block pre_headline %}{{ content.field_eyebrow }}{% endblock %}
-  {% block features %}
-    {% if content.field_features_text %}
-      {{ content.field_features_text }}
-    {% endif %}
+  {% block content %}
+    {# Use slot-based rendering for features field - maintains proper Drupal rendering pipeline #}
+    {{ content.field_features_text }}
+  {% endblock %}
+  {% block primary_action %}
+    {# Use slot-based rendering for link field - maintains proper Drupal rendering pipeline #}
+    {{ content.field_link }}
   {% endblock %}
 {% endembed %}

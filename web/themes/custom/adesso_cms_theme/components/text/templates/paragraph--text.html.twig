@@ -1,20 +1,51 @@
-{# /** * @file * Text paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Text paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('light') %} {% set wrapper_spacing = 'none'
-%} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~
-paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished()
-? 'paragraph--unpublished' ]|join(' ') %} {# Embed the paragraph-wrapper component using slots #} {% embed
-'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className:
-wrapper_css_class, attributes: attributes } %} {% block content %}
+{#
+/**
+ * @file
+ * Text paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Text paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('light') %}
+{% set wrapper_spacing = 'none' %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block content %}
 <div class="py-8 px-4 mx-auto container lg:py-16">
-  {% embed 'adesso_cms_theme:text' with { 
-    text_layout: paragraph.field_text_layout.value ?? 'left', 
-    is_dark: wrapper_theme == 'dark', 
-    body: content.field_body, 
-    link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url'], text: content.field_link[0]['#title'], } : {}, 
-    link2: content.field_link2[0]['#url'] ? { url: content.field_link2[0]['#url'], text: content.field_link2[0]['#title'], } : {}, 
+  {% embed 'adesso_cms_theme:text' with {
+    text_layout: paragraph.field_text_layout.value ?? 'left',
+    is_dark: wrapper_theme == 'dark',
+    body: content.field_body,
   } only %}
     {% block title %}{{ content.field_title }}{% endblock %}
     {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+    {% block primary_action %}
+      {% if paragraph.field_link.entity %}
+        {{ content.field_link }}
+      {% endif %}
+    {% endblock %}
+    {% block secondary_action %}
+      {% if paragraph.field_link2.entity %}
+        {{ content.field_link2 }}
+      {% endif %}
+    {% endblock %}
   {% endembed %}
 </div>
-{% endblock %} {% endembed %}
+{% endblock %}
+
+{% endembed %}

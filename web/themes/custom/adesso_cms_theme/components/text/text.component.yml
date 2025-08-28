@@ -4,57 +4,6 @@ description: Editorial/Text Block component
 props:
   type: object
   properties:
-    eyebrow:
-      type: string
-      title: eyebrow
-      description: Optional eyebrow text displayed above the title (legacy)
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Optional pre-headline text displayed above the title
-    title:
-      type: string
-      title: title
-      description: Main title of the text block
-    heading:
-      type: object
-      title: heading
-      description: Optional heading object that overrides the title
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
-    body:
-      type: string
-      title: body
-      description: Main content of the text block
-    link:
-      type: object
-      title: link
-      description: Primary button/link configuration
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
-    link2:
-      type: object
-      title: link2
-      description: Secondary button/link configuration
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     text_layout:
       type: string
       title: text_layout
@@ -67,9 +16,19 @@ props:
       type: string
       title: className
       description: Additional CSS classes for the container
+status: stable
+group: molecule
 
 slots:
   content:
-    title: 'Content'
-    description: 'Text content'
+    title: 'Text Content'
+    description: 'Text block content area with title and body'
     required: true
+  primary_action:
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false
+  secondary_action:
+    title: 'Secondary Action'
+    description: 'Secondary call-to-action button/link area for field_link2'
+    required: false

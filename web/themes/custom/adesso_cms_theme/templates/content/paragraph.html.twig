@@ -21,16 +21,10 @@
  */
 #}
 
-{# Default wrapper configuration #}
-{% set wrapper_theme = paragraph.field_theme.value|default('light') %}
-{% set wrapper_spacing = 'medium' %}
-{% set wrapper_tag = 'div' %}
-{% set wrapper_css_class = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
-]|join(' ') %}
+{# Default wrapper configuration - uses light theme by default #}
+{% set default_theme = 'light' %}
+{% set default_tag = 'div' %}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
 
 {# Embed the paragraph-wrapper component using slots #}
 {% embed 'adesso_cms_theme:paragraph-wrapper' with {

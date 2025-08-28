@@ -1,8 +1,12 @@
-{# /** * @file * Embed paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Embed paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set wrapper_spacing =
-paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [
-'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~
-view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %} {# Embed the
+{#
+/**
+ * @file
+ * Embed paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Embed paragraph configuration #}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %} {# Embed the
 paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
 spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix %}
 {{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %} {% include 'adesso_cms_theme:embed' with {

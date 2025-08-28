@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Centralized paragraph configuration mixin
+ * 
+ * Provides standardized theme, spacing, and wrapper configuration
+ * for all paragraph templates to eliminate DRY violations.
+ *
+ * Usage:
+ *   {% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
+ *   
+ * Variables set:
+ *   - wrapper_theme: Theme variant (default: 'default')
+ *   - wrapper_spacing: Spacing configuration (default: 'medium') 
+ *   - wrapper_tag: HTML tag (default: 'section')
+ *   - wrapper_css_class: Complete CSS class string
+ *
+ * Override defaults by setting variables before include:
+ *   {% set default_theme = 'light' %}
+ *   {% set default_spacing = 'none' %}
+ *   {% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
+ */
+#}
+
+{# Allow component-specific default overrides #}
+{% set default_theme = default_theme|default('default') %}
+{% set default_spacing = default_spacing|default('medium') %}
+{% set default_tag = default_tag|default('section') %}
+
+{# Extract configuration from paragraph fields with fallback defaults #}
+{% set wrapper_theme = paragraph.field_theme.value|default(default_theme) %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default(default_spacing) %}
+{% set wrapper_tag = tag|default(default_tag) %}
+
+{# Generate standardized CSS classes #}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}

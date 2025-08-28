@@ -1,8 +1,12 @@
-{# /** * @file * Side by side paragraph template using paragraph-wrapper component with embed pattern. */ #} {#
-Sidebyside paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set
-wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
-wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ?
-'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %}
+{#
+/**
+ * @file
+ * Side by side paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Sidebyside paragraph configuration #}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
 {# Process link field #} {% set link = content.field_link[0] ? { url: content.field_link[0]['#url']|render|striptags,
 title: content.field_link[0]['#title']|render|striptags, } : {} %} {# Process features field #} {% set features = [] %}
 {% if content.field_features %} {% for feature_item in content.field_features['#items'] %} {% set feature_entity =

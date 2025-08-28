@@ -1,0 +1,341 @@
+{#
+/**
+ * @file
+ * Unified Card Component Template
+ *
+ * Flexible card component supporting all card use cases through content_sections.
+ * Replaces: card, stat-card, damage-report-card, pricing-card, recent-card-item
+ *
+ * @param {string} variant - Card visual theme (default|highlighted|dark|bordered|minimal|stat|pricing|damage-report)
+ * @param {string} layout - Layout arrangement (vertical|horizontal|compact|featured|stat-center|stat-left)
+ * @param {string} size - Padding/sizing (sm|md|lg|xl)
+ * @param {boolean} clickable - Whether entire card is clickable
+ * @param {string} url - URL for clickable card wrapper
+ * @param {array} content_sections - Array of content sections to render
+ * @param {string} modifier - Additional CSS classes
+ * @param {object} attributes - Drupal attributes object
+ */
+#}
+
+{# Set default values #}
+{% set card_variant = variant|default('default') %}
+{% set card_layout = layout|default('vertical') %}
+{% set card_size = size|default('md') %}
+{% set card_clickable = clickable|default(false) %}
+{% set card_url = url|default('') %}
+{% set card_modifier = modifier|default('') %}
+{% set card_sections = content_sections|default([]) %}
+
+{# Build card CSS classes based on variant, layout, and size #}
+{% set base_classes = [
+  'unified-card',
+  'bg-card',
+  'text-card-foreground'
+] %}
+
+{# Variant classes #}
+{% set variant_classes = {
+  'default': 'border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow',
+  'highlighted': 'border-2 border-primary rounded-lg shadow-md bg-primary/5',
+  'dark': 'bg-slate-800 text-white border border-slate-700 rounded-lg shadow-lg',
+  'bordered': 'border-2 border-border rounded-lg',
+  'minimal': 'border-0 shadow-none',
+  'stat': 'border border-border rounded-lg shadow text-center',
+  'pricing': 'border border-border rounded-lg shadow-sm hover:shadow-lg transition-shadow',
+  'damage-report': 'border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow'
+} %}
+
+{# Layout classes #}
+{% set layout_classes = {
+  'vertical': 'flex flex-col h-full',
+  'horizontal': 'flex flex-row items-start space-x-4',
+  'compact': 'flex flex-col',
+  'featured': 'flex flex-col h-full',
+  'stat-center': 'flex flex-col text-center',
+  'stat-left': 'flex flex-col text-left'
+} %}
+
+{# Size classes #}
+{% set size_classes = {
+  'sm': 'p-3',
+  'md': 'p-4 sm:p-6',
+  'lg': 'p-6 sm:p-8',
+  'xl': 'p-8 sm:p-10'
+} %}
+
+{# Compile final classes #}
+{% set card_classes = [
+  base_classes|join(' '),
+  variant_classes[card_variant]|default(''),
+  layout_classes[card_layout]|default(''),
+  size_classes[card_size]|default(''),
+  card_modifier
+]|join(' ')|trim %}
+
+{# Priority configuration for damage reports #}
+{% set priority_config = {
+  'niedrig': {
+    'label': 'Niedrig',
+    'classes': 'bg-gray-100 text-gray-700 border border-gray-300',
+    'icon': '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>'
+  },
+  'mittel': {
+    'label': 'Mittel', 
+    'classes': 'bg-yellow-100 text-yellow-800 border border-yellow-300',
+    'icon': '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+  },
+  'hoch': {
+    'label': 'Hoch',
+    'classes': 'bg-orange-100 text-orange-800 border border-orange-300', 
+    'icon': '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>'
+  },
+  'notfall': {
+    'label': 'Notfall',
+    'classes': 'bg-red-100 text-red-800 border border-red-300 animate-pulse',
+    'icon': '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>'
+  }
+} %}
+
+{# Determine wrapper tag #}
+{% set wrapper_tag = card_clickable and card_url ? 'a' : 'div' %}
+
+{# Render card #}
+<{{ wrapper_tag }}{{ attributes ? attributes : '' }}{% if card_clickable and card_url %} href="{{ card_url }}"{% endif %} class="{{ card_classes }}"{% if card_clickable and card_url %} role="link"{% endif %}>
+
+  {# Render content sections in order #}
+  {% for section in card_sections %}
+    {% set section_type = section.type|default('') %}
+    {% set section_content = section.content|default({}) %}
+    {% set section_position = section.position|default('center') %}
+    {% set section_modifier = section.modifier|default('') %}
+
+    {# Media Section #}
+    {% if section_type == 'media' %}
+      <div class="card-media {{ section_modifier }}">
+        {% if section_content.media_link %}
+          <a href="{{ section_content.media_link }}" class="block">
+        {% endif %}
+        
+        {% if section_content.aspect_ratio %}
+          <div style="position: relative; width: 100%; padding-bottom: {{ section_content.aspect_ratio == '16/9' ? '56.25%' : (section_content.aspect_ratio == '1/1' ? '100%' : '66.67%') }};">
+            <div style="position: absolute; inset: 0;">
+              {{ section_content.media|default('') }}
+            </div>
+          </div>
+        {% else %}
+          {% if section_content.media %}
+            {% if card_variant == 'stat' or card_layout starts with 'stat-' %}
+              <div class="stat-icon {{ card_layout == 'stat-left' ? 'mr-auto' : 'mx-auto' }} mb-4 max-w-[120px] sm:max-w-[200px]">
+                {{ section_content.media }}
+              </div>
+            {% else %}
+              <div class="relative">
+                {{ section_content.media }}
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        
+        {% if section_content.media_link %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Header Section #}
+    {% if section_type == 'header' %}
+      <div class="card-header {{ section_modifier }}">
+        {% if section_content.pre_headline %}
+          {% include 'adesso_cms_theme:heading' with {
+            heading: {
+              title: section_content.pre_headline,
+              as: 'p',
+              custom_classes: 'text-sm text-muted-foreground mb-2'
+            }
+          } only %}
+        {% endif %}
+        
+        {% if section_content.title %}
+          {% set title_content = section_content.title_link ? 
+            '<a href="' ~ section_content.title_link ~ '" class="hover:underline">' ~ section_content.title ~ '</a>' : 
+            section_content.title %}
+          
+          {% include 'adesso_cms_theme:heading' with {
+            heading: {
+              title: title_content,
+              as: 'h' ~ (section_content.title_level|default('3')),
+              visual_level: section_content.title_level|default('3'),
+              custom_classes: card_variant == 'pricing' ? 
+                'text-2xl font-bold sm:text-3xl lg:text-4xl' : 
+                'card-title font-semibold tracking-tight text-xl'
+            }
+          } only %}
+        {% endif %}
+        
+        {% if section_content.subtitle %}
+          <p class="text-sm text-muted-foreground mt-1">{{ section_content.subtitle }}</p>
+        {% endif %}
+        
+        {% if section_content.metadata %}
+          <div class="flex items-center space-x-4 mt-2 text-sm text-muted-foreground">
+            {% for meta_item in section_content.metadata %}
+              <div class="flex items-center">
+                {% if meta_item.icon %}
+                  <i data-lucide="{{ meta_item.icon }}" class="w-3 h-3 mr-1"></i>
+                {% endif %}
+                {% if meta_item.label %}
+                  <span>{{ meta_item.label }}:</span>
+                {% endif %}
+                <span>{{ meta_item.value }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Tags Section #}
+    {% if section_type == 'tags' %}
+      <div class="card-tags {{ section_modifier }}">
+        {% if section_content.tags %}
+          <ul class="flex flex-wrap gap-2 mb-4">
+            {% for tag in section_content.tags %}
+              <li class="inline-flex">
+                {% include 'adesso_cms_theme:badge' with {
+                  tag: tag.text,
+                  modifier: tag.variant == 'secondary' ? 
+                    'bg-secondary text-secondary-foreground hover:bg-secondary/80' : 
+                    'bg-primary/10 text-primary hover:bg-primary/20'
+                } only %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Body Section #}
+    {% if section_type == 'body' %}
+      <div class="card-body {{ section_modifier }}">
+        {% if section_content.description %}
+          <p class="text-sm text-muted-foreground {{ card_variant == 'damage-report' ? 'mb-3 line-clamp-2' : '' }}">
+            {{ section_content.description }}
+          </p>
+        {% endif %}
+        {% if section_content.body %}
+          <div class="mt-2">{{ section_content.body }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Features Section (for pricing cards) #}
+    {% if section_type == 'features' %}
+      <div class="card-features {{ section_modifier }}">
+        {% if card_variant == 'pricing' %}
+          <div class="my-4 sm:my-8 h-px w-full bg-border"></div>
+        {% endif %}
+        
+        {% if section_content.features_label %}
+          <p class="text-sm sm:text-base">{{ section_content.features_label }}:</p>
+        {% endif %}
+        
+        {% if section_content.features %}
+          <div class="mb-6 sm:mb-8 mt-3 sm:mt-4 grid grid-cols-1 gap-y-3 sm:gap-y-4 py-2">
+            {% for feature in section_content.features %}
+              <div class="flex self-start">
+                <div class="mr-3 sm:mr-4 flex-none self-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5 sm:size-6">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                </div>
+                <p class="text-sm sm:text-base">{{ feature }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Metadata Section (for damage reports, etc.) #}
+    {% if section_type == 'metadata' %}
+      <div class="card-metadata {{ section_modifier }}">
+        {% if section_content.items %}
+          <div class="flex items-center justify-between text-xs text-gray-500">
+            <div class="flex items-center space-x-4">
+              {% for item in section_content.items %}
+                <div class="flex items-center">
+                  {% if item.icon %}
+                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {{ item.icon }}
+                    </svg>
+                  {% endif %}
+                  <span class="truncate">{{ item.value }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Priority Badge Section #}
+    {% if section_type == 'priority-badge' %}
+      <div class="card-priority-badge {{ section_modifier }}">
+        {% if section_content.priority %}
+          {% set current_priority = priority_config[section_content.priority]|default(priority_config.mittel) %}
+          <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium {{ current_priority.classes }}">
+            {{ current_priority.icon }}
+            <span class="ml-1">{{ current_priority.label }}</span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Status Badge Section #}
+    {% if section_type == 'status-badge' %}
+      <div class="card-status-badge {{ section_modifier }}">
+        {% if section_content.status %}
+          {% include 'adesso_cms_theme:status-badge' with {
+            status: section_content.status,
+            size: section_content.status_size|default('default')
+          } only %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Actions Section #}
+    {% if section_type == 'actions' %}
+      <div class="card-actions {{ section_modifier }}">
+        {% if section_content.actions %}
+          {% if card_variant == 'pricing' %}
+            {# Pricing cards typically have single CTA #}
+            {% for action in section_content.actions %}
+              <a href="{{ action.url }}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground rounded-lg shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">
+                {{ action.text }}
+              </a>
+            {% endfor %}
+          {% else %}
+            {# Regular card actions #}
+            <div class="flex flex-wrap gap-2 mt-6">
+              {% for action in section_content.actions %}
+                {% include 'adesso_cms_theme:button' with {
+                  url: action.url,
+                  text: action.text,
+                  variant: action.variant|default('default'),
+                  size: action.size|default('default'),
+                  icon: action.icon|default('')
+                } only %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+  {% endfor %}
+
+  {# Content slot for additional custom content #}
+  {% block content %}
+  {% endblock %}
+
+</{{ wrapper_tag }}>

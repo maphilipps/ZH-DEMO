@@ -1,0 +1,70 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Menu Item
+description: Atomic menu item component with consistent styling and behavior for navigation systems
+status: stable
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Menu Item Title
+      description: The display text for the menu item
+      required: true
+    url:
+      type: string
+      title: Menu Item URL
+      description: The link destination for the menu item
+      required: true
+    is_active:
+      type: boolean
+      title: Active State
+      description: Whether this menu item is currently active/selected
+      default: false
+    in_active_trail:
+      type: boolean
+      title: In Active Trail
+      description: Whether this menu item is in the active trail (parent of active item)
+      default: false
+    has_children:
+      type: boolean
+      title: Has Children
+      description: Whether this menu item has child menu items
+      default: false
+    level:
+      type: integer
+      title: Menu Level
+      description: The nesting level of this menu item (0 = top level, 1 = first child, etc.)
+      default: 0
+      minimum: 0
+      maximum: 3
+    target:
+      type: string
+      title: Link Target
+      description: The target attribute for the menu item link
+      enum: [_self, _blank, _parent, _top]
+      default: _self
+    aria_label:
+      type: string
+      title: ARIA Label
+      description: Custom ARIA label for accessibility (optional)
+    variant:
+      type: string
+      title: Menu Item Variant
+      description: Visual variant of the menu item
+      enum: [default, desktop, mobile, dropdown]
+      default: default
+    theme:
+      type: string
+      title: Theme Variant
+      description: Color theme for the menu item (must match main-menu themes)
+      enum: [default, transparent]
+      default: default
+slots:
+  icon:
+    title: Menu Item Icon
+    description: Optional icon to display before the menu item text
+    required: false
+  children:
+    title: Child Menu Items
+    description: Child menu items for nested navigation
+    required: false

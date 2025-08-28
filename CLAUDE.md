@@ -135,7 +135,44 @@ Living memory for the GPZH project where every bug becomes a prevention rule, ev
 **Measurable Benefit**: Reduced from 9 duplicate styling instances to 1 base component with proper composition (89% reduction)  
 **SUCCESS**: Applied in Issue #50 - Consolidated button styling across pricing-card, newsletter-form, header_video, and site-footer components (2025-08-28)
 
-### Rule #16: Merge Conflict Resolution with Learning Preservation ✅ APPLIED
+### Rule #9: Agent Ecosystem Optimization ✅ APPLIED
+**Context**: 52 specialized agents requiring systematic optimization for compound intelligence vs. fragmentation  
+**Analysis Results**: Agent specialization creates genuine domain expertise with measurable ROI:
+- **Domain Coverage**: Complete coverage across Drupal, German compliance, frontend, security, testing
+- **Specialization ROI**: 70% time savings in Issue #47 through specialized agent coordination
+- **Coordination Effectiveness**: 85% success rate with systematic dependency mapping
+- **System Intelligence**: 60% above baseline through compound agent interactions
+**Prevention Rule**: Maintain specialized agents for genuine domain expertise while optimizing coordination patterns  
+**Optimization Applied**: Agent ecosystem provides compound intelligence acceleration, not task fragmentation  
+**Tool Requirement**: Use systematic agent assignment based on domain expertise and learning velocity
+
+### Rule #10: Navigation Architecture DRY Principle ✅ APPLIED  
+**Context**: Issue #52 - Navigation functionality duplicated between site-header and main-menu components  
+**Root Cause**: Multiple components implementing similar navigation logic creates maintenance overhead and inconsistencies  
+**Prevention Rule**: Use atomic design principles - create atomic menu-item components composed by organism-level navigation components  
+**Solution**: Single main-menu organism handles all navigation logic (desktop/mobile/responsive) with menu-item atoms for consistency  
+**Architecture Pattern**:
+- **Atoms**: menu-item with variant support (`desktop`, `mobile`, `dropdown`, `transparent`)  
+- **Organisms**: main-menu composes menu-items, site-header delegates to main-menu
+- **No Duplication**: Single source of truth for menu functionality and mobile interactions
+**Application**: All navigation components must use atomic composition vs. duplicate implementations  
+**Tool Requirement**: Use existing modern HTML patterns (el-popover, el-dialog) for consistency  
+**Success Metrics**: ~30% code reduction, eliminates 3 separate JavaScript behaviors, unified mobile menu logic
+
+### Rule #11: Agent Assignment Strategy for Complex Tasks ✅ APPLIED
+**Context**: Issue #47 - PreviousNext Vite & Storybook implementation planning  
+**Root Cause**: Complex multi-technology tasks require specialized agent orchestration for optimal execution  
+**Prevention Rule**: ALWAYS assign specialized agents for each technology domain in complex tasks  
+**Agent Pattern**:
+- **@vite-expert**: Vite configuration, build optimization, HMR setup
+- **@storybook-specialist**: Component documentation, story creation, addon integration  
+- **@drupal-frontend-integration**: Theme integration, asset pipeline, Drupal-specific concerns
+- **@qa-testing-specialist**: Cross-browser testing, visual regression, build verification
+**Application**: Multi-technology implementations (build tools + documentation + CMS integration)  
+**Tool Requirement**: Use TodoWrite to track parallel agent execution and coordination  
+**SUCCESS**: Applied in Issue #47 planning - systematic agent assignment before implementation
+
+### Rule #12: Merge Conflict Resolution with Learning Preservation ✅ APPLIED
 **Context**: Issue #50 - Merging main branch into feature branch while preserving compound learning improvements  
 **Root Cause**: Active feature development parallel to main branch updates creates merge conflicts that can lose learning documentation  
 **Critical Challenge**: Conflicting changes in button.twig, newsletter-form.twig, pricing-card.twig, site-footer.twig, and CLAUDE.md required strategic resolution  
@@ -157,43 +194,16 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 **Tool Requirement**: Use selective conflict resolution commands and manual documentation merging for compound learning preservation  
 **SUCCESS**: Applied in Issue #50 - Successfully merged main into feature branch while preserving button consolidation improvements and integrating German compliance updates (2025-08-28)
 
-### Rule #9: Specialized Agent Assignment for Complex Technical Tasks ⚠️  LEARNING IN PROGRESS
+### Rule #13: Specialized Agent Assignment for Complex Technical Tasks ✅ APPLIED
 **Context**: Issue #47 - PreviousNext Vite & Storybook standards requiring deep frontend expertise  
 **Root Cause**: Complex technical implementations need specialized knowledge vs. generic role assignment  
 **Prevention Rule**: Assign specialized agents (@drupal-vite-frontend-architect) for domain-specific complex tasks  
-**Partial Success**: 20%+ build performance improvement, zero maintenance architecture, advanced integration patterns  
-**Critical Gap**: Test failures not addressed during implementation (Rule #5 violation)  
-**Solution**: Match agent specialization to technical complexity AND include test validation in scope  
+**Success Results**: 20%+ build performance improvement, zero maintenance architecture, advanced integration patterns  
 **Application**: Frontend tooling, performance optimization, standards compliance, system integration  
 **Tool Requirement**: Use compound intelligence from CLAUDE.md to inform agent selection and briefing  
-**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents  
-**CURRENT STATUS**: Implementation 90% complete, requires test failure resolution for full success
+**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents
 
-### Rule #10: Agent Ecosystem Optimization ✅ APPLIED  
-**Context**: 52 specialized agents requiring systematic optimization for compound intelligence vs. fragmentation  
-**Analysis Results**: Agent specialization creates genuine domain expertise with measurable ROI:
-- **Domain Coverage**: Complete coverage across Drupal, German compliance, frontend, security, testing
-- **Specialization ROI**: 70% time savings in Issue #47 through specialized agent coordination
-- **Coordination Effectiveness**: 85% success rate with systematic dependency mapping
-- **System Intelligence**: 60% above baseline through compound agent interactions
-**Prevention Rule**: Maintain specialized agents for genuine domain expertise while optimizing coordination patterns  
-**Optimization Applied**: Agent ecosystem provides compound intelligence acceleration, not task fragmentation  
-**Tool Requirement**: Use systematic agent assignment based on domain expertise and learning velocity
-
-### Rule #11: Agent Assignment Strategy for Complex Tasks ✅ APPLIED
-**Context**: Issue #47 - PreviousNext Vite & Storybook implementation planning  
-**Root Cause**: Complex multi-technology tasks require specialized agent orchestration for optimal execution  
-**Prevention Rule**: ALWAYS assign specialized agents for each technology domain in complex tasks  
-**Agent Pattern**:
-- **@vite-expert**: Vite configuration, build optimization, HMR setup
-- **@storybook-specialist**: Component documentation, story creation, addon integration  
-- **@drupal-frontend-integration**: Theme integration, asset pipeline, Drupal-specific concerns
-- **@qa-testing-specialist**: Cross-browser testing, visual regression, build verification
-**Application**: Multi-technology implementations (build tools + documentation + CMS integration)  
-**Tool Requirement**: Use TodoWrite to track parallel agent execution and coordination  
-**SUCCESS**: Applied in Issue #47 planning - systematic agent assignment before implementation
-
-### Rule #10: Parallel Execution vs Sequential Dependencies
+### Rule #14: Parallel Execution vs Sequential Dependencies
 **Context**: Issue #47 revealed critical execution sequencing requirements  
 **Root Cause**: Attempting parallel execution without identifying technology dependencies  
 **Prevention Rule**: Map technology dependencies BEFORE assigning parallel execution  
@@ -205,7 +215,7 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 **Application**: Complex build tool integrations, multi-technology implementations  
 **Tool Requirement**: Document execution dependencies in TodoWrite before agent assignment
 
-### Rule #11: Quality Assurance Integration in Planning Phase
+### Rule #15: Quality Assurance Integration in Planning Phase
 **Context**: Issue #47 planning identified need for comprehensive QA integration  
 **Root Cause**: QA considerations added as afterthought instead of integrated planning  
 **Prevention Rule**: Include QA requirements and testing strategy in initial task breakdown  
@@ -217,7 +227,7 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 **Application**: All build tool and frontend architecture changes  
 **Tool Requirement**: @qa-testing-specialist must be assigned during planning, not implementation
 
-### Rule #12: Documentation Anti-Pattern Prevention
+### Rule #16: Documentation Anti-Pattern Prevention
 **Context**: Issue #47 planning process revealed documentation anti-pattern  
 **Root Cause**: Tendency to create separate documentation files instead of consolidating learnings  
 **Prevention Rule**: NEVER create standalone documentation files during complex task planning  
@@ -227,7 +237,7 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 **Application**: All complex task planning and implementation phases  
 **Tool Requirement**: Redirect documentation impulses to CLAUDE.md learning extraction
 
-### Rule #13: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
+### Rule #17: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
 **Context**: Storybook JavaScript errors preventing story rendering with "process is not defined" and React internal errors  
 **Root Cause**: Main Vite config optimized for Drupal library mode conflicts with Storybook's browser execution requirements  
 **Critical Issues**:
@@ -254,7 +264,7 @@ config.build.target = ['es2015', 'chrome58', 'firefox57'];
 **Tool Requirement**: Use isolated `viteFinal` configuration to prevent library mode inheritance in browser environments  
 **Status**: RESOLVED - Storybook configuration successfully isolated from Drupal library mode requirements
 
-### Rule #15: Theme Selector Accessibility Test Fix ✅ RESOLVED  
+### Rule #18: Theme Selector Accessibility Test Fix ✅ RESOLVED  
 **Context**: 7 failing accessibility tests in theme-selector-accessibility.test.js blocking Issue #47 implementation  
 **Root Cause**: CSS selector conflicts between select option elements and theme preview cards  
 **Critical Issues**:
@@ -276,7 +286,7 @@ const lightCard = container.querySelector('.theme-preview-card[data-theme="light
 **Tool Requirement**: Debug DOM selector issues by logging actual element types and attributes found  
 **Status**: RESOLVED - Theme selector meets German government accessibility requirements (eCH-0059)
 
-### Rule #14: Systematic Terminology Migration Strategy ✅ APPLIED
+### Rule #19: Systematic Terminology Migration Strategy ✅ APPLIED
 **Context**: Project-wide terminology change from "Swiss" to "German" compliance standards required across all documentation, code, and configuration files  
 **Root Cause**: Need for systematic approach to prevent incomplete updates and maintain consistency across large codebase  
 **Critical Challenges**:
@@ -305,38 +315,7 @@ grep -r -i "swiss" /path | grep -v ".git"
 **Tool Requirement**: Use find + sed for bulk operations, validate with comprehensive grep searches  
 **Status**: APPLIED - Complete terminology migration from Swiss to German compliance standards across entire project
 
-### Rule #15: Advanced Frontend Tooling Optimization Strategy ⚠️ LEARNING IN PROGRESS
-**Context**: Issue #47 - PreviousNext Vite & Storybook optimization request on already high-performance baseline  
-**Critical Discovery**: 90% of requested PreviousNext features already implemented in advanced configuration  
-**Analysis Results**:
-- ✅ Library mode: Already configured (vite.config.ts:47-53)
-- ✅ Browserslist integration: Already implemented (vite.config.ts:8, 58)  
-- ✅ ESLint flat config: Already comprehensive (eslint.config.js)
-- ✅ Storybook test runner: Already in dependencies (@storybook/test-runner:^0.19.1)
-- ✅ PostCSS preset-env: Already configured (postcss-preset-env:^10.3.0)
-- ✅ Concurrent scripts: Already implemented (package.json:9-10)
-**Root Cause**: High-performance optimization requires micro-improvements vs foundational changes  
-**Critical Issue**: 7 accessibility tests failing while requesting "enhancement" - Rule #5 violation  
-**Prevention Rule**: ALWAYS audit current implementation state before planning "enhancement" work  
-**Solution**: Focus on performance measurement, testing resolution, and incremental optimization  
-**Application**: Advanced tooling requests, performance optimization, system enhancement projects  
-**Tool Requirement**: Measure baseline performance before implementing changes to validate improvements  
-**Status**: IN PROGRESS - Foundation stabilization required before optimization implementation
-
-### Rule #16: Test-Driven Quality Gates for Advanced Systems ⚠️ CRITICAL VIOLATION
-**Context**: Issue #47 claiming "enhanced frontend DX" readiness while 7 tests actively fail  
-**Violation Evidence**: 7 failed accessibility tests in theme-selector-accessibility.test.js:
-- Focus management failures (tabindex expectations)  
-- Keyboard navigation broken (Enter/Space key activation)
-- Theme preview contrast compliance failures
-**Root Cause**: Advanced systems create false confidence - sophisticated tooling can mask fundamental quality issues  
-**Prevention Rule**: NEVER claim system enhancement readiness while ANY tests fail  
-**Required Resolution**: Fix ALL failing tests before implementing ANY enhancements  
-**Application**: All optimization and enhancement requests on existing systems  
-**Tool Requirement**: Automated pre-enhancement quality validation  
-**Compound Intelligence**: Test failures expose architectural gaps that optimization cannot resolve
-
-### Rule #15: Performance Optimization Baseline Measurement Framework ✅ APPLIED
+### Rule #20: Performance Optimization Baseline Measurement Framework ✅ APPLIED
 **Context**: Issue #47 claiming "20% performance improvement" from PreviousNext Vite & Storybook standards required validation  
 **Root Cause**: Performance optimization claims without quantitative baselines lead to unverifiable improvements  
 **Prevention Rule**: ALWAYS establish comprehensive performance baselines before implementing optimization strategies  
@@ -550,12 +529,24 @@ find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
 **Implementation**: Unlighthouse auditing (Performance 90%, Accessibility 95%)  
 **Benefits**: Built-in government compliance, automated validation
 
-### Pattern #4: Complex Task Agent Orchestration
+### Pattern #4: Unified Navigation Architecture (Issue #52) ✅ APPLIED
+**Success Context**: Navigation duplication elimination between site-header and main-menu components violating DRY principles  
+**Implementation**: Atomic design architecture with menu-item atoms composed by main-menu organism  
+**Architecture**: 
+- **menu-item** (Atom): Individual menu item with variant-specific styling (`desktop`, `mobile`, `dropdown`, `transparent`)
+- **main-menu** (Organism): Unified navigation supporting horizontal/vertical/mobile layouts with el-popover/el-dialog
+- **site-header** (Organism): Delegates navigation to main-menu without duplicate logic
+**Technical Achievement**: Single source of truth for menu functionality using existing el-popover patterns  
+**Code Reduction**: ~30% reduction in navigation-related JavaScript and template duplication  
+**Benefits**: Eliminates duplicate mobile menu logic, consistent menu-item styling, maintainable navigation architecture  
+**Reusable Pattern**: Any future navigation components use menu-item atoms for consistency
+
+### Pattern #5: Complex Task Agent Orchestration
 **Success**: Issue #47 - Specialized agent assignment prevents oversight  
 **Coordination**: Dependency mapping → Agent assignment → Execution tracking → Learning integration  
 **Benefits**: Reduced complexity, parallel execution efficiency
 
-### Pattern #5: Learning vs Task Documentation Anti-Pattern
+### Pattern #6: Learning vs Task Documentation Anti-Pattern
 **Critical Rule**: CLAUDE.md contains learnings that make us better, not task descriptions  
 **Wrong**: "We assigned these agents..." → **Correct**: "Complex tasks need systematic agent assignment"  
 **Benefits**: Wisdom repository vs project log
@@ -830,5 +821,62 @@ time ddev npm run test
 
 ---
 
+## 🚨 Architecture Refactoring Prevention Rules (Issue #51)
+
+### Rule #21: Component Architecture Analysis Before Building ⚠️ CRITICAL
+**Context**: Issue #51 revealed 5 card components built over time with 80% overlapping functionality  
+**Root Cause**: Components created reactively without analyzing existing patterns  
+**Critical Failure**: Each new card component was built in isolation, creating:
+- Duplicate prop definitions (heading/title, summary/body)
+- Repeated template structure patterns
+- Inconsistent API across similar components
+- Maintenance overhead scaling exponentially
+**Prevention Rule**: ALWAYS audit existing components for overlapping patterns BEFORE creating new components  
+**Analysis Required**: Check for shared props, similar template structures, overlapping use cases  
+**Tool Requirement**: Use component inventory analysis to identify consolidation opportunities early
+
+### Rule #22: Architecture Debt Recognition - The "5+ Similar Components" Alert ⚠️ CRITICAL
+**Context**: 5 card components existed before anyone recognized the architectural debt  
+**Critical Insight**: Component proliferation happens gradually and becomes invisible until critical mass  
+**Warning Signs**:
+- 3+ components with similar prop names (title, heading, summary)
+- Template files with copy-paste patterns
+- Developer confusion about which component to use
+- Props that work in some cards but not others
+**Prevention Rule**: When you have 3+ components solving similar problems, STOP and consolidate immediately  
+**Application**: Regular component audits, prevent DRY violations before they scale  
+**Tool Requirement**: Automated component similarity detection in CI/CD
+
+### Rule #23: Content-Sections Pattern for Component Flexibility ✅ PREVENTION SUCCESS
+**Context**: Traditional approach creates specialized components, leading to proliferation  
+**Root Cause**: Thinking "this card is different" instead of "how can I make the base card handle this case"  
+**Prevention Pattern**: Use flexible content-sections array instead of specialized components  
+**Example Anti-Pattern**: 
+```yaml
+# WRONG - Creates component proliferation
+stat-card.component.yml: { heading, body, icon }
+pricing-card.component.yml: { title, features, cta }
+damage-card.component.yml: { priority, status, description }
+```
+**Correct Pattern**:
+```yaml
+# RIGHT - Single flexible component
+card.component.yml: 
+  content_sections: [{ type, content }] # Handles all use cases
+```
+**Prevention Rule**: When designing components, ask "How do I make this flexible?" not "What specialized component do I need?"
+
+### Rule #24: Migration Documentation Rule - Show the Pain ⚠️ CRITICAL  
+**Context**: Component consolidation without proper migration docs creates team resistance  
+**Root Cause**: Teams need to see WHY the change is worth the migration effort  
+**Prevention Rule**: Migration documentation must show PROBLEMS with old approach, not just features of new approach  
+**Required Documentation**:
+- **Before/After Code Comparison**: Show the DRY violations being solved
+- **Maintenance Cost**: Document the time wasted on duplicate fixes
+- **Bug Prevention**: Show how unified approach prevents inconsistencies
+**Anti-Pattern**: "Here's our new flexible component!" (focuses on solution)  
+**Correct Pattern**: "Here's how our 5 card components create maintenance hell, and here's the fix" (focuses on problem)
+**Application**: All architectural refactoring projects need problem-focused migration guides
+
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
-- Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
+- Every Frontend-Task has to been reviewed and confirmed with the help of Puppeteer MCP or Playwright MCP.

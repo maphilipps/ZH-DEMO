@@ -1,0 +1,44 @@
+{#
+ * @file
+ * Mobile Submenu Partial
+ * 
+ * Renders nested submenu items for mobile navigation
+ #}
+
+{# Mobile Submenu - using menu-item components #}
+{% if children is not empty %}
+  <div class="ml-6 space-y-1">
+    {% for child in children %}
+      {% include 'adesso_cms_theme:menu-item' with {
+        title: child.title,
+        url: child.url,
+        target: child.target,
+        is_active: child.is_active,
+        in_active_trail: child.in_active_trail,
+        has_children: false,
+        variant: 'mobile',
+        theme: theme,
+        level: level + 1
+      } only %}
+
+      {# Mobile nested children (third level) #}
+      {% if child.children is not empty %}
+        <div class="ml-4 space-y-1">
+          {% for grandchild in child.children %}
+            {% include 'adesso_cms_theme:menu-item' with {
+              title: grandchild.title,
+              url: grandchild.url,
+              target: grandchild.target,
+              is_active: grandchild.is_active,
+              in_active_trail: grandchild.in_active_trail,
+              has_children: false,
+              variant: 'mobile',
+              theme: theme,
+              level: level + 2
+            } only %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

@@ -33,3 +33,4 @@ Failed to resolve dependency: alpinejs, present in client 'optimizeDeps.include'
 Failed to resolve dependency: lucide, present in client 'optimizeDeps.include'
 8:55:45 PM [vite] server restarted.
 8:56:03 PM [vite] (client) page reload dist/storybook/index.html
+Sourcemap for "/var/www/html/web/themes/custom/adesso_cms_theme/node_modules/swiper/swiper-bundle.min.js" points to missing source files

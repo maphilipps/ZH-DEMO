@@ -1,20 +1,20 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Menu Item
 description: Atomic menu item component with consistent styling and behavior for navigation systems
 status: stable
 props:
   type: object
+  required: [title, url]
   properties:
     title:
       type: string
       title: Menu Item Title
       description: The display text for the menu item
-      required: true
     url:
       type: string
       title: Menu Item URL
       description: The link destination for the menu item
-      required: true
+  
     is_active:
       type: boolean
       title: Active State
@@ -63,8 +63,6 @@ slots:
   icon:
     title: Menu Item Icon
     description: Optional icon to display before the menu item text
-    required: false
   children:
     title: Child Menu Items
     description: Child menu items for nested navigation
-    required: false

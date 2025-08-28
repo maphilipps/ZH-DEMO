@@ -35,3 +35,4 @@ Failed to resolve dependency: lucide, present in client 'optimizeDeps.include'
 8:56:03 PM [vite] (client) page reload dist/storybook/index.html
 Sourcemap for "/var/www/html/web/themes/custom/adesso_cms_theme/node_modules/swiper/swiper-bundle.min.js" points to missing source files
 1:24:57 PM [vite] (client) page reload dist/storybook/index.html
+[31mFailed to run npm run dev: exit status 137[0m

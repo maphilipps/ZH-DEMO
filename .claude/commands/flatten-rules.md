@@ -1,6 +1,5 @@
 ---
 description: Optimize CLAUDE.md prevention rules through systematic triage and compound intelligence synthesis
-allowed_tools: Edit,MultiEdit,Write,Read,Glob,Grep,LS,Task(feedback-codifier),Task(knowledge-synthesizer)
 ---
 
 # Flatten & Optimize CLAUDE.md Prevention Rules

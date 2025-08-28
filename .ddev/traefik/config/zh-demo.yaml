@@ -5,16 +5,6 @@
 
 http:
   routers:
-    zh-demo-attu-3000-http:
-      entrypoints:
-        - http-8521
-      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
-      
-      service: "zh-demo-attu-3000"
-      ruleSyntax: v3
-      tls: false
-      # middlewares:
-      #   - "zh-demo-redirectHttps"
     zh-demo-web-80-http:
       entrypoints:
         - http-80
@@ -55,6 +45,16 @@ http:
       tls: false
       # middlewares:
       #   - "zh-demo-redirectHttps"
+    zh-demo-attu-3000-http:
+      entrypoints:
+        - http-8521
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-attu-3000"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
     zh-demo-selenium-chrome-7900-http:
       entrypoints:
         - http-7910
@@ -76,17 +76,6 @@ http:
       # middlewares:
       #   - "zh-demo-redirectHttps"
     
-    
-    zh-demo-attu-3000-https:
-      entrypoints:
-        - http-8521
-      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
-      
-      service: "zh-demo-attu-3000"
-      ruleSyntax: v3
-      
-      tls: true
-      
     
     
     
@@ -132,6 +121,17 @@ http:
       tls: true
       
     
+    zh-demo-attu-3000-https:
+      entrypoints:
+        - http-8521
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-attu-3000"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
     zh-demo-selenium-chrome-7900-https:
       entrypoints:
         - http-7900
@@ -162,12 +162,6 @@ http:
         permanent: true
 
   services:
-    zh-demo-attu-3000:
-      loadbalancer:
-        servers:
-          - url: http://ddev-zh-demo-attu:3000
-        
-    
     zh-demo-web-80:
       loadbalancer:
         servers:
@@ -191,6 +185,12 @@ http:
     
     
     
+    
+    zh-demo-attu-3000:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-attu:3000
+        
     
     zh-demo-selenium-chrome-7900:
       loadbalancer:

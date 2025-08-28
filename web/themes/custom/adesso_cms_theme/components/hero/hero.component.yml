@@ -18,7 +18,7 @@ props:
         - image_bottom_split
         - video_background
 status: stable
-group: organism
+group: Organisms
 
 slots:
   pre_headline:

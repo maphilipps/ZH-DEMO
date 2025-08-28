@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: "Site Header: Unified header with navigation and hero variants"
 description: "Consolidated site header component supporting standard pages, landing pages, and hero sections with integrated navigation options"
 status: stable
-group: Layout
+group: Templates
 props:
   type: object
   properties:

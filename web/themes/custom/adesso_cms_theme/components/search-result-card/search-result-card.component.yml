@@ -1,6 +1,7 @@
 '$schema': https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/modules/sdc/src/metadata.schema.json
 name: 'Search Result Card'
 status: stable
+group: Molecules
 description: 'Reusable search result card component for Gemeinde Bruchtal municipal portal with accessibility compliance'
 props:
   type: object

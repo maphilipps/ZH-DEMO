@@ -29,3 +29,8 @@ props:
       description: Additional CSS classes
   required:
     - current_status
+slots:
+  content:
+    title: 'Content'
+    description: 'Component content'
+    required: true

@@ -23,3 +23,9 @@ props:
       type: string
       title: modifier
       description: Additional Tailwind CSS classes for sizing and styling
+
+slots:
+  content:
+    title: 'Logo Content'
+    description: 'Logo image and branding content'
+    required: true

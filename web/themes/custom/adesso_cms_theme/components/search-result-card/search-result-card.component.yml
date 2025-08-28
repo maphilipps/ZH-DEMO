@@ -102,3 +102,21 @@ props:
     - relevance_score
 libraryDependencies:
   - adesso_cms_theme/search-result-card
+
+slots:
+  title:
+    title: 'Result Title'
+    description: 'Search result title and main heading content'
+    required: true
+  content:
+    title: 'Result Content'
+    description: 'Search excerpt and result body content'
+    required: false
+  metadata:
+    title: 'Result Metadata'
+    description: 'Categories, target groups, and verification badges'
+    required: false
+  actions:
+    title: 'Result Actions'
+    description: 'Action buttons and links for the result'
+    required: false

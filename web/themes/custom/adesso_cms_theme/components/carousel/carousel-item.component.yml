@@ -34,8 +34,8 @@ props:
       type: [string, "null"]
       title: 'CSS Classes'
       description: 'Additional CSS classes for the carousel item'
+
 slots:
   media:
     title: 'Carousel Item Media'
     description: 'Media content for the carousel item (field_media)'
-    required: false

@@ -61,8 +61,8 @@ props:
           type: string
         icon:
           type: string
+
 slots:
   background_media:
     title: Hero Background Media
     description: Background media content for the hero component (field_media)
-    required: false

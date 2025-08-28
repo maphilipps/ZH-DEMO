@@ -46,3 +46,8 @@ libraryOverrides:
       quick-action-buttons.css: {}
   js:
     quick-action-buttons.js: {}
+slots:
+  content:
+    title: 'Content'
+    description: 'Component content'
+    required: true

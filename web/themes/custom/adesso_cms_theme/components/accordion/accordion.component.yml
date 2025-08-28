@@ -4,16 +4,14 @@ description: Editorial/Accordion component
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: title
-      description: Title for the accordion group
-    pre_headline:
-      type: 
-        - string
-        - 'null'
-      title: pre_headline
-      description: Pre headline for the accordion group
+    content:
+      type: object
+      title: content
+      description: Content object for accordion rendering
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether to use dark theme styling
     accordion_items:
       type: object
       title: accordion_items
@@ -25,3 +23,13 @@ props:
           type: string
         icon:
           type: string
+slots:
+  title:
+    title: Title
+    description: The main title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title
+  accordion_items:
+    title: Accordion Items
+    description: The accordion items content

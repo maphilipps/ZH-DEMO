@@ -61,8 +61,8 @@ props:
         text:
           type: string
           title: 'Text'
+
 slots:
   media:
     title: 'Card Media'
     description: 'Media content for the card (field_media)'
-    required: false

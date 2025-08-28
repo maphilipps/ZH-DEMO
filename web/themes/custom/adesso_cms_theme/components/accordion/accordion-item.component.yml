@@ -58,3 +58,13 @@ props:
       title: 'Dark Mode'
       description: 'Whether to use dark mode styling'
       default: false
+
+slots:
+  title:
+    title: 'Accordion Item Title'
+    description: 'Accordion item header/title content'
+    required: true
+  content:
+    title: 'Accordion Item Content'
+    description: 'Accordion item body/content area'
+    required: true

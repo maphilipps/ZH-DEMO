@@ -67,3 +67,9 @@ props:
       type: string
       title: className
       description: Additional CSS classes for the container
+
+slots:
+  content:
+    title: 'Content'
+    description: 'Text content'
+    required: true

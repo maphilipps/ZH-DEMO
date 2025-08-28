@@ -4,10 +4,6 @@ description: Editorial/Card Group component
 props:
   type: object
   properties:
-    section_title:
-      type: string
-      title: section_title
-      description: The title of the card list component
     card_items:
       type: object
       title: card_items
@@ -23,3 +19,21 @@ props:
       type: string
       title: columns
       description: Number of columns to render
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether to use dark theme styling
+    content:
+      type: object
+      title: content
+      description: Content object for card group rendering
+slots:
+  section_title:
+    title: Section Title
+    description: The main section title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title
+  card_items:
+    title: Card Items
+    description: The card items content

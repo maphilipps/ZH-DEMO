@@ -1,0 +1,409 @@
+name: SDC Compliance Validation
+
+# Automated validation for slot standardization framework
+# Based on CLAUDE.md Prevention Rule #21: Slot Standardization Framework
+# Issue #56 architectural improvements validation
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'web/themes/custom/adesso_cms_theme/**/*.twig'
+      - 'web/themes/custom/adesso_cms_theme/**/*.component.yml'
+      - 'web/themes/custom/adesso_cms_theme/components/**'
+      - 'web/themes/custom/adesso_cms_theme/templates/**'
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'web/themes/custom/adesso_cms_theme/**'
+  
+  # Allow manual workflow dispatch
+  workflow_dispatch:
+    inputs:
+      validation_level:
+        description: 'Validation Level'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+          - 'quick'
+          - 'comprehensive'
+          - 'performance'
+
+env:
+  THEME_PATH: web/themes/custom/adesso_cms_theme
+  NODE_VERSION: '20'
+  PHP_VERSION: '8.3'
+
+jobs:
+  # Quick validation for PRs and commits
+  quick-validation:
+    name: Quick Slot Standardization Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.validation_level == 'quick')
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.THEME_PATH }}/package-lock.json
+
+      - name: Install theme dependencies
+        working-directory: ${{ env.THEME_PATH }}
+        run: npm ci
+
+      - name: Make validation scripts executable
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          chmod +x scripts/validate-field-patterns.sh
+          chmod +x scripts/validate-component-slots.sh
+          chmod +x scripts/validate-template-patterns.sh
+          chmod +x scripts/validate-sdc-compliance.sh
+
+      - name: Run field pattern validation
+        id: field-validation
+        working-directory: ${{ env.THEME_PATH }}
+        continue-on-error: true
+        run: |
+          echo "::group::Field Pattern Anti-Pattern Detection"
+          ./scripts/validate-field-patterns.sh
+          echo "::endgroup::"
+
+      - name: Run component slot validation
+        id: component-validation
+        working-directory: ${{ env.THEME_PATH }}
+        continue-on-error: true
+        run: |
+          echo "::group::Component Slot Standards Validation"
+          ./scripts/validate-component-slots.sh
+          echo "::endgroup::"
+
+      - name: Run template pattern validation
+        id: template-validation
+        working-directory: ${{ env.THEME_PATH }}
+        continue-on-error: true
+        run: |
+          echo "::group::Template Pattern Compliance Check"
+          ./scripts/validate-template-patterns.sh
+          echo "::endgroup::"
+
+      - name: Check validation results
+        run: |
+          field_result=${{ steps.field-validation.outcome }}
+          component_result=${{ steps.component-validation.outcome }}
+          template_result=${{ steps.template-validation.outcome }}
+          
+          echo "Validation Results:"
+          echo "- Field Patterns: $field_result"
+          echo "- Component Slots: $component_result" 
+          echo "- Template Patterns: $template_result"
+          
+          if [[ "$field_result" != "success" || "$component_result" != "success" || "$template_result" != "success" ]]; then
+            echo "::error::Slot standardization framework violations detected"
+            echo "::error::Review validation output and fix violations before merging"
+            echo "::notice::Reference: CLAUDE.md Prevention Rule #21"
+            exit 1
+          fi
+          
+          echo "::notice::All slot standardization validations passed ✅"
+
+  # Comprehensive validation for main branch and manual triggers
+  comprehensive-validation:
+    name: Comprehensive SDC Compliance Validation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.validation_level == 'comprehensive')
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.THEME_PATH }}/package-lock.json
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          tools: composer:v2
+
+      - name: Install theme dependencies
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          npm ci
+          if [[ -f "composer.json" ]]; then
+            composer install --no-dev --optimize-autoloader
+          fi
+
+      - name: Make validation scripts executable
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          chmod +x scripts/validate-field-patterns.sh
+          chmod +x scripts/validate-component-slots.sh
+          chmod +x scripts/validate-template-patterns.sh
+          chmod +x scripts/validate-sdc-compliance.sh
+
+      - name: Run comprehensive SDC compliance validation
+        id: comprehensive-validation
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Comprehensive SDC Compliance Validation Suite"
+          ./scripts/validate-sdc-compliance.sh
+          echo "::endgroup::"
+
+      - name: Generate architecture report
+        if: always()
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Architecture Analysis Report"
+          
+          # Count components and patterns
+          total_components=$(find components -name "*.component.yml" | wc -l)
+          components_with_slots=$(find components -name "*.component.yml" -exec grep -l "slots:" {} \; 2>/dev/null | wc -l)
+          embed_templates=$(find components/*/templates -name "*.twig" -exec grep -l "{% embed" {} \; 2>/dev/null | wc -l)
+          include_templates=$(find components/*/templates -name "*.twig" -exec grep -l "{% include" {} \; 2>/dev/null | wc -l)
+          
+          echo "📊 Component Architecture Summary:"
+          echo "  - Total Components: $total_components"
+          echo "  - Components with Slots: $components_with_slots ($(( components_with_slots * 100 / total_components ))%)"
+          echo "  - Embed Patterns: $embed_templates templates"
+          echo "  - Include Patterns: $include_templates templates"
+          
+          # Set outputs for badges/metrics
+          echo "total-components=$total_components" >> $GITHUB_OUTPUT
+          echo "slot-coverage=$(( components_with_slots * 100 / total_components ))" >> $GITHUB_OUTPUT
+          echo "embed-patterns=$embed_templates" >> $GITHUB_OUTPUT
+          
+          echo "::endgroup::"
+
+      - name: Run JavaScript tests
+        if: always()
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::JavaScript Test Validation"
+          if [[ -f "vitest.config.js" ]]; then
+            npm test
+            echo "::notice::All JavaScript tests passing ✅"
+          else
+            echo "::notice::No JavaScript tests found"
+          fi
+          echo "::endgroup::"
+
+      - name: Run PHP tests
+        if: always()
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::PHP Test Validation"
+          if [[ -d "tests/src" ]]; then
+            vendor/bin/phpunit tests/
+            echo "::notice::All PHP tests passing ✅"
+          else
+            echo "::notice::No PHP tests found"
+          fi
+          echo "::endgroup::"
+
+  # Performance impact validation
+  performance-validation:
+    name: Performance Impact Assessment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.validation_level == 'performance'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.THEME_PATH }}/package-lock.json
+
+      - name: Install theme dependencies
+        working-directory: ${{ env.THEME_PATH }}
+        run: npm ci
+
+      - name: Build theme assets
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Theme Build Performance"
+          time npm run build
+          echo "::endgroup::"
+
+      - name: Analyze build output
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Build Output Analysis"
+          
+          if [[ -d "dist" ]]; then
+            echo "📦 Build Artifacts:"
+            find dist -type f -name "*.css" -o -name "*.js" | while read file; do
+              size=$(du -h "$file" | cut -f1)
+              gzip_size=$(gzip -c "$file" | wc -c | awk '{printf "%.1fKB", $1/1024}')
+              echo "  - $(basename "$file"): $size (${gzip_size} gzipped)"
+            done
+          fi
+          
+          echo "::endgroup::"
+
+      - name: Validate template performance patterns
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Template Performance Analysis"
+          
+          # Count performance-impacting patterns
+          field_extraction_count=$(find components -name "*.twig" -exec grep -l "\.value\|\.getString\|render|striptags" {} \; 2>/dev/null | wc -l)
+          optimal_patterns=$(find components/*/templates -name "*.twig" -exec grep -l "{% embed\|{% block" {} \; 2>/dev/null | wc -l)
+          
+          echo "⚡ Performance Metrics:"
+          echo "  - Field extraction anti-patterns: $field_extraction_count (performance impact)"
+          echo "  - Optimal template patterns: $optimal_patterns (good performance)"
+          
+          if [[ $field_extraction_count -gt 0 ]]; then
+            echo "::warning::$field_extraction_count templates using performance-impacting field extraction patterns"
+            echo "::warning::Consider migrating to slot-based patterns for better performance"
+          fi
+          
+          echo "::endgroup::"
+
+      - name: Generate performance recommendations
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::Performance Recommendations"
+          
+          echo "🎯 Optimization Opportunities:"
+          echo "1. Migrate field extraction patterns to slot blocks"
+          echo "2. Use {% embed %} instead of {% include %} for component composition"
+          echo "3. Leverage Drupal's render caching with proper slot structure"
+          echo "4. Consider component-level caching for complex organisms"
+          
+          echo "📚 References:"
+          echo "- CLAUDE.md Prevention Rule #21: Slot Standardization Framework"
+          echo "- TEMPLATE_PATTERN_STANDARDS.md: Performance best practices"
+          
+          echo "::endgroup::"
+
+  # Security validation
+  security-validation:
+    name: Security Pattern Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan for XSS vulnerabilities
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::XSS Vulnerability Scan"
+          
+          violations=0
+          
+          # Check for |raw filter usage
+          while IFS= read -r -d '' file; do
+            if grep -n '|raw' "$file"; then
+              echo "⚠️  |raw filter found in $file"
+              echo "   Review for XSS vulnerabilities - ensure content is trusted"
+              violations=$((violations + 1))
+            fi
+          done < <(find . -name "*.twig" -print0)
+          
+          if [[ $violations -gt 0 ]]; then
+            echo "::warning::$violations potential XSS vulnerabilities detected"
+            echo "::notice::Reference: Security Rule #1 - XSS Prevention in Twig Templates"
+          else
+            echo "::notice::No XSS vulnerabilities detected ✅"
+          fi
+          
+          echo "::endgroup::"
+
+      - name: Check for file upload security patterns
+        working-directory: ${{ env.THEME_PATH }}
+        run: |
+          echo "::group::File Upload Security Check"
+          
+          # Look for file upload components
+          if find . -name "*.js" -exec grep -l "file.*upload\|FileList\|FormData" {} \; | head -1 > /dev/null; then
+            echo "📁 File upload functionality detected"
+            
+            # Check for multi-layer validation patterns
+            if grep -r "allowedMimeTypes\|MIME.*validation" . > /dev/null; then
+              echo "✅ MIME type validation found"
+            else
+              echo "⚠️  Consider adding MIME type validation"
+            fi
+            
+            if grep -r "sanitize.*filename\|filename.*sanitiz" . > /dev/null; then
+              echo "✅ Filename sanitization found"
+            else
+              echo "⚠️  Consider adding filename sanitization"
+            fi
+            
+            echo "::notice::Reference: Security Rule #2 - File Upload Validation Enhancement"
+          else
+            echo "::notice::No file upload functionality detected"
+          fi
+          
+          echo "::endgroup::"
+
+# Job summary and status reporting
+  validation-summary:
+    name: Validation Summary
+    runs-on: ubuntu-latest
+    needs: [quick-validation, comprehensive-validation, performance-validation, security-validation]
+    if: always()
+    
+    steps:
+      - name: Generate validation summary
+        run: |
+          echo "# 🚀 SDC Compliance Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check job results
+          quick_result="${{ needs.quick-validation.result }}"
+          comprehensive_result="${{ needs.comprehensive-validation.result }}"
+          performance_result="${{ needs.performance-validation.result }}"
+          security_result="${{ needs.security-validation.result }}"
+          
+          echo "| Validation Type | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Quick Validation | ${quick_result:-skipped} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Comprehensive Validation | ${comprehensive_result:-skipped} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Performance Assessment | ${performance_result:-skipped} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Validation | ${security_result:-skipped} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "## Architecture Standards" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This validation ensures compliance with:" >> $GITHUB_STEP_SUMMARY
+          echo "- **CLAUDE.md Prevention Rule #21**: Slot Standardization Framework" >> $GITHUB_STEP_SUMMARY
+          echo "- **Issue #56**: Architectural improvements for maintainability" >> $GITHUB_STEP_SUMMARY
+          echo "- **Atomic Design**: Component slot requirements by complexity level" >> $GITHUB_STEP_SUMMARY
+          echo "- **Performance Standards**: Template optimization and caching best practices" >> $GITHUB_STEP_SUMMARY
+          echo "- **Security Standards**: XSS prevention and file upload validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "## Documentation References" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- [SLOT_STANDARDIZATION_FRAMEWORK.md](web/themes/custom/adesso_cms_theme/SLOT_STANDARDIZATION_FRAMEWORK.md)" >> $GITHUB_STEP_SUMMARY
+          echo "- [FIELD_TITLE_MIGRATION_GUIDE.md](web/themes/custom/adesso_cms_theme/FIELD_TITLE_MIGRATION_GUIDE.md)" >> $GITHUB_STEP_SUMMARY
+          echo "- [TEMPLATE_PATTERN_STANDARDS.md](web/themes/custom/adesso_cms_theme/TEMPLATE_PATTERN_STANDARDS.md)" >> $GITHUB_STEP_SUMMARY
+          echo "- [COMPONENT_SLOT_STANDARDS.md](web/themes/custom/adesso_cms_theme/COMPONENT_SLOT_STANDARDS.md)" >> $GITHUB_STEP_SUMMARY

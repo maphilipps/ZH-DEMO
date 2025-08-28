@@ -81,3 +81,21 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  pre_headline:
+    title: 'Pre-headline Content'
+    description: 'Eyebrow text above main title'
+    required: false
+  title:
+    title: 'Grid Title'
+    description: 'Main title for the bento grid section'
+    required: false
+  content:
+    title: 'Grid Description'
+    description: 'Description content for the grid section'
+    required: false
+  items:
+    title: 'Grid Items'
+    description: 'Individual grid item content'
+    required: true

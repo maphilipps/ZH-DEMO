@@ -4,16 +4,6 @@ description: Editorial/Embed component
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: title
-      description: Title for the embed
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Pre-headline text above the main title
     embed:
       type: string
       title: embed
@@ -22,3 +12,10 @@ props:
       type: string
       title: modifier
       description: Modifier class for the embed component
+slots:
+  title:
+    title: Title
+    description: The main title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title

@@ -26,3 +26,17 @@ props:
       title: 'URL'
       description: 'Content URL'
       default: ''
+
+slots:
+  title:
+    title: 'Section Title'
+    description: 'Main title for recent cards section'
+    required: false
+  cards:
+    title: 'Card Content'
+    description: 'Recent card items content'
+    required: true
+  actions:
+    title: 'Section Actions'
+    description: 'View all links and section actions'
+    required: false

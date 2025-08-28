@@ -50,3 +50,9 @@ props:
       description: Additional CSS classes
   required:
     - text
+
+slots:
+  content:
+    title: 'Badge Content'
+    description: 'Badge text and icon content'
+    required: true

@@ -38,3 +38,9 @@ props:
         - sm
         - lg
         - icon
+
+slots:
+  content:
+    title: 'Button Content'
+    description: 'Button text and icon content'
+    required: true

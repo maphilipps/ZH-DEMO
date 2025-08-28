@@ -102,3 +102,29 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  logo:
+    title: 'Site Logo'
+    description: 'Site logo and branding content'
+    required: false
+  site_name:
+    title: 'Site Name'
+    description: 'Site name and title content'
+    required: false
+  navigation:
+    title: 'Main Navigation'
+    description: 'Primary navigation menu content'
+    required: false
+  search:
+    title: 'Search Form'
+    description: 'Search form and functionality'
+    required: false
+  user_actions:
+    title: 'User Actions'
+    description: 'Login, register, and user account actions'
+    required: false
+  secondary_nav:
+    title: 'Secondary Navigation'
+    description: 'Secondary navigation elements and utilities'
+    required: false

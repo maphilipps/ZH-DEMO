@@ -808,6 +808,70 @@ card.component.yml:
 **Correct Pattern**: "Here's how our 5 card components create maintenance hell, and here's the fix" (focuses on problem)
 **Application**: All architectural refactoring projects need problem-focused migration guides
 
+## 🧹 Repository Hygiene Prevention Rules (Issue #55)
+
+### Rule #21: SDC Repository Hygiene Maintenance ✅ APPLIED
+**Context**: Issue #55 - Repository accumulates backup files, inconsistent documentation, and file clutter over development cycles  
+**Root Cause**: No systematic approach to prevent file accumulation and documentation proliferation  
+**Critical Issues**:
+- **Backup File Accumulation**: 10 .component.yml.bak files scattered across components creating noise
+- **Documentation Inconsistency**: Mixed README.md patterns (3 files with varying quality/value) 
+- **Directory Pollution**: Risk of non-SDC files accumulating in component directories
+**Prevention Rule**: Implement systematic repository hygiene audits and clear standards for component documentation  
+**Solution Applied**: Comprehensive cleanup with documented standards:
+```bash
+# Systematic backup file removal
+find components/ -name "*.component.yml.bak" -delete
+
+# Documentation standardization
+# KEEP: Complex organisms (paragraph-wrapper, search-result-card) with 100+ lines
+# REMOVE: Simple components with minimal/generic content (main-menu 11 lines)
+
+# Regular audits for non-SDC files
+find components/ -type f ! -name "*.component.yml" ! -name "*.twig" ! -name "*.stories.js" ! -name "*.css" ! -name "*.behavior.js" ! -name "README.md" ! -name "*.test.js" ! -name "*.stories.data.js"
+```
+**Results**: ✅ 10 backup files removed, ✅ Documentation standards established (2 quality READMEs retained), ✅ Repository structure validated for 46 SDC components  
+**Application**: Run monthly repository hygiene audits to prevent accumulation of backup files and unauthorized documentation  
+**Tool Requirement**: Use find commands for systematic discovery and bulk operations for cleanup  
+**Quality Standards**:
+- README.md only for complex organisms (100+ lines, extensive usage patterns)
+- Simple atoms/molecules use component schema + Storybook stories
+- Zero tolerance for .bak files in repository
+- Regular audits prevent accumulation vs reactive cleanup
+**Status**: APPLIED - Repository hygiene standards established with systematic cleanup methodology (2025-08-28)
+
+### Rule #22: SDC Documentation Standards Framework ✅ APPLIED
+**Context**: Issue #55 analysis revealed need for clear component documentation standards  
+**Root Cause**: No framework for determining when README.md files add value vs create maintenance overhead  
+**Prevention Rule**: Establish documentation value framework based on component complexity and usage patterns  
+**Documentation Framework Applied**:
+```yaml
+README.md Required:
+  - Complex organisms (100+ lines documentation)
+  - Municipal-specific implementations (WCAG 2.1 AA, schema integration)
+  - Extensive integration patterns and usage examples
+  - Developer onboarding critical components
+
+README.md Not Required:
+  - Simple atoms and molecules 
+  - Generic components with minimal usage patterns
+  - Components with clear self-documenting schemas
+  - Standard navigation/UI components
+
+Documentation Alternatives:
+  - Component schemas (*.component.yml) for props/slots
+  - Storybook stories for usage examples
+  - Inline Twig comments for complex template logic
+```
+**Evidence-Based Decisions**:
+- **paragraph-wrapper**: 304 lines, complex integration → KEEP
+- **search-result-card**: 169 lines, municipal compliance → KEEP  
+- **main-menu**: 11 lines, generic content → REMOVE
+**Application**: Apply documentation framework to all future SDC components to prevent documentation bloat  
+**Tool Requirement**: Use content-based analysis for documentation value assessment  
+**Benefits**: Improved developer experience, reduced maintenance overhead, focused documentation where it adds genuine value  
+**Status**: APPLIED - Documentation standards framework established with evidence-based retention criteria
+
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
 - Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
 - vor dem Stellen eines PRs muss der Zielbranch gemerged werden, damit es keine Konflikte gibt.

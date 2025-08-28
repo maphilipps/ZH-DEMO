@@ -17,11 +17,11 @@ props:
         title:
           type: [string, "null"]
           title: 'Title'
-          description: 'Carousel item title'
+          description: 'Carousel item title - use direct field access (content.field_title) for optimal performance'
         summary:
           type: [string, "null"]
           title: 'Summary'
-          description: 'Carousel item summary text'
+          description: 'Carousel item summary text - use direct field access (content.field_summary) for optimal performance'
         url:
           type: [string, "null"]
           title: 'URL'

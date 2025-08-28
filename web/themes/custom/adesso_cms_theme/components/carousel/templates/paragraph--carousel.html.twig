@@ -1,26 +1,76 @@
-{# /** * @file * Carousel paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Carousel
-paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('light') %} {% set wrapper_spacing
-= 'none' %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~
-paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished()
-? 'paragraph--unpublished' ]|join(' ') %} {# Embed the paragraph-wrapper component using slots #} {% embed
-'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className:
-wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} {% block content %}
-<div class="py-8 px-4 mx-auto container lg:py-16">
-  <!-- Title section -->
-  {% if content.field_pre_headline or content.field_title %} {% include 'adesso_cms_theme:section-header' with { title:
-  content.field_title, pre_headline: content.field_pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag:
-  'span', title_visual_level: '2', pre_headline_visual_level: '3' } %} {% endif %}
+{#
+/**
+ * @file
+ * Carousel paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
 
-  <!-- Carousel Container -->
-  <div class="max-w-[1536px] mx-auto">
-    {# Build carousel items array with proper data structure #} {% set carousel_items = [] %} {% if
-    content.field_carousel_item %} {% for carousel_item in content.field_carousel_item %} {% if
-    carousel_item['#paragraph'] %} {% set carousel_entity = carousel_item['#paragraph'] %} {% set item_data = { 'media':
-    carousel_entity.field_media|view|render, 'title': carousel_entity.field_title.value|default(''), 'summary':
-    carousel_entity.field_summary.value|default(''), 'link': { 'url': '', 'title': 'Read more' } } %} {% set
-    carousel_items = carousel_items|merge([item_data]) %} {% endif %} {% endfor %} {% endif %} {% include
-    'adesso_cms_theme:carousel' with { items: carousel_items, cards_per_view: '3', autoplay: false, interval: '5000',
-    pause_on_hover: true, class: 'container mx-auto' } only %}
+{# Carousel paragraph configuration #}
+{% set wrapper_theme = content.field_theme[0]['#markup']|default('light') %}
+{% set wrapper_spacing = 'none' %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block prefix %}{% endblock %}
+
+{% block content %}
+  <div class="py-8 px-4 mx-auto container lg:py-16">
+    <!-- Title section -->
+    {% if content.field_pre_headline or content.field_title %}
+      {% include 'adesso_cms_theme:section-header' with {
+        title: content.field_title,
+        pre_headline: content.field_pre_headline,
+        alignment: 'center',
+        title_tag: 'h2',
+        pre_headline_tag: 'span',
+        title_visual_level: '2',
+        pre_headline_visual_level: '3'
+      } %}
+    {% endif %}
+
+    <!-- Carousel Container -->
+    <div class="max-w-[1536px] mx-auto">
+      {# Build carousel items array with proper field rendering #}
+      {% set carousel_items = [] %}
+      {% if content.field_carousel_item %}
+        {% for carousel_item in content.field_carousel_item %}
+          {% if carousel_item['#paragraph'] %}
+            {# Use proper field rendering instead of direct entity access #}
+            {% set item_data = {
+              'media': carousel_item.field_media,
+              'title': carousel_item.field_title.0['#context'].value|default(''),
+              'summary': carousel_item.field_summary.0['#context'].value|default(''),
+              'link': { 'url': '', 'title': 'Read more' }
+            } %}
+            {% set carousel_items = carousel_items|merge([item_data]) %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      
+      {% include 'adesso_cms_theme:carousel' with {
+        items: carousel_items,
+        cards_per_view: '3',
+        autoplay: false,
+        interval: '5000',
+        pause_on_hover: true,
+        class: 'container mx-auto'
+      } only %}
+    </div>
   </div>
-</div>
-{% endblock %} {% endembed %}
+{% endblock %}
+
+{% endembed %}

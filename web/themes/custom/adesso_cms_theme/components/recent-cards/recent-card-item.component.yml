@@ -9,9 +9,11 @@ props:
     - title
   properties:
     media:
-      type: string
+      type: 
+        - object
+        - string
       title: 'Media Content'
-      description: 'The media content (rendered HTML) - typically a thumbnail image'
+      description: 'Drupal field render array for media content (typically thumbnail image) - eliminates double-rendering'
       default: ''
     title:
       type: string
@@ -19,10 +21,11 @@ props:
       description: 'The card title text'
     summary:
       type:
+        - object
         - string
         - 'null'
       title: 'Summary'
-      description: 'Brief description or summary for the card'
+      description: 'Drupal field render array for summary text - eliminates double-rendering'
       default: ''
     url:
       type: string

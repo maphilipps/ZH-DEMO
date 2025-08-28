@@ -12,10 +12,10 @@ props:
       properties:
         field_thumbnail:
           title: 'Thumbnail Field'
-          description: 'Rendered thumbnail field'
+          description: 'Drupal field render array for thumbnail image - eliminates double-rendering'
         field_summary:
           title: 'Summary Field'
-          description: 'Rendered summary field'
+          description: 'Drupal field render array for summary text - eliminates double-rendering'
     label:
       type: string
       title: 'Label'

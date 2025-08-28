@@ -1,7 +1,9 @@
-name: Code Review
+name: Code Review (DISABLED - Use claude-code-review.yml)
 on:
-  pull_request:
-    types: [opened, synchronize]
+  # Disabled to avoid duplicate reviews - use claude-code-review.yml instead
+  # pull_request:
+  #   types: [opened, synchronize]
+  workflow_dispatch: # Only manual trigger
 jobs:
   review:
     permissions:

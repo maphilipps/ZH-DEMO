@@ -1,127 +1,122 @@
 ---
-description: Analyze and fix CI failures by examining logs and making targeted fixes
-allowed_tools: Edit,MultiEdit,Write,Read,Glob,Grep,LS,Bash(git:*),Bash(bun:*),Bash(npm:*),Bash(npx:*),Bash(gh:*)
+description: Optimize CLAUDE.md prevention rules through systematic triage and compound intelligence synthesis
+allowed_tools: Edit,MultiEdit,Write,Read,Glob,Grep,LS,Task(feedback-codifier),Task(knowledge-synthesizer)
 ---
 
-# Fix CI Failures
+# Flatten & Optimize CLAUDE.md Prevention Rules
 
-You are tasked with analyzing CI failure logs and fixing the issues. Follow these steps:
+You are tasked with optimizing CLAUDE.md prevention rules through systematic triage and compound intelligence synthesis. Your goal is to transform fragmented individual learnings into an optimized compound intelligence system that maximizes prevention effectiveness and learning velocity.
 
-## Context Provided
+## Phase 1: Agent-Orchestrated Analysis
 
-$ARGUMENTS
+First, engage the specialized agents for systematic analysis:
 
-## Important Context Information
+### 1.1 Feedback Analysis
+Use @feedback-codifier to analyze recent technical decisions and extract new learnings:
+- Identify patterns from recent bug fixes, migrations, or implementations
+- Extract prevention rules from successful complex task completions
+- Analyze user feedback and dissatisfaction sources for learning opportunities
+- Transform reactive fixes into proactive prevention patterns
 
-Look for these key pieces of information in the arguments:
+### 1.2 Knowledge Synthesis  
+Use @knowledge-synthesizer to analyze the current CLAUDE.md structure:
+- Triage existing rules: Prevention vs Documentation classification
+- Identify overlapping and duplicate rules requiring consolidation
+- Synthesize meta-patterns from clusters of related rules
+- Optimize learning hierarchy and compound intelligence acceleration
 
-- **Failed CI Run URL**: Link to the failed CI run
-- **Failed Jobs**: List of jobs that failed
-- **PR Number**: The PR number to comment on
-- **Branch Name**: The fix branch you're working on
-- **Base Branch**: The original PR branch
-- **Error logs**: Detailed logs from failed jobs
+## Phase 2: Rule Triage Framework
 
-## Step 1: Analyze the Failure
+Based on agent analysis, categorize each rule using these criteria:
 
-Parse the provided CI failure information to understand:
+### GENUINE PREVENTION RULES ✅ (Keep & Enhance)
+- **Measurable ROI**: Rules with quantifiable time savings or error prevention
+- **Clear Application**: Rules with specific tools, commands, and implementation patterns  
+- **Recurrence Prevention**: Rules that demonstrably prevent recurring issues
+- **Compound Intelligence**: Rules that accelerate learning velocity and pattern reuse
 
-- Which jobs failed and why
-- The specific error messages and stack traces
-- Whether failures are test-related, build-related, or linting issues
+### DOCUMENTATION DISGUISED AS RULES ❌ (Convert or Remove)  
+- **Project Decisions**: Rules documenting what was done without prevention value
+- **Vague Guidance**: Rules without clear application patterns or tools
+- **Historical Records**: Rules describing past events rather than future prevention
+- **Single-Use Patterns**: Rules without broader applicability or reuse potential
 
-## Step 2: Search and Understand the Codebase
+## Phase 3: Meta-Pattern Synthesis
 
-Use search tools to locate the failing code:
+Create higher-level patterns from rule clusters:
 
-- Search for the failing test names or functions
-- Find the source files mentioned in error messages
-- Review related configuration files (package.json, tsconfig.json, etc.)
+### Security Pipeline Integrity
+Consolidate XSS prevention, authentication, and security validation patterns
 
-## Step 3: Apply Targeted Fixes
+### Systematic Migration Framework  
+Merge terminology changes, authentication updates, and infrastructure migrations
 
-Make minimal, focused changes:
+### Component Architecture Standards
+Unify component proliferation prevention, standardization rules, and refactoring patterns
 
-- **For test failures**: Determine if the test or implementation needs fixing
-- **For type errors**: Fix type definitions or correct the code logic
-- **For linting issues**: Apply formatting using the project's tools
-- **For build errors**: Resolve dependency or configuration issues
-- **For missing imports**: Add the necessary imports or install packages
+### Agent Orchestration Protocol
+Consolidate complex task coordination, dependency mapping, and specialized assignment patterns
 
-Requirements:
+### Performance Validation Framework
+Merge baseline measurement, optimization verification, and ROI validation patterns
 
-- Only fix the actual CI failures, avoid unrelated changes
-- Follow existing code patterns and conventions
-- Ensure changes are production-ready, not temporary hacks
-- Preserve existing functionality while fixing issues
+## Phase 4: Implementation Process
 
-## Step 4: Verify Fixes Locally
-
-Run available verification commands:
-
-- Execute the failing tests locally to confirm they pass
-- Run the project's lint command (check package.json for scripts)
-- Run type checking if available
-- Execute any build commands to ensure compilation succeeds
-
-## Step 5: Commit and Push Changes
-
-After applying ALL fixes:
-
-1. Stage all modified files with `git add -A`
-2. Commit with: `git commit -m "Fix CI failures: [describe specific fixes]"`
-3. Document which CI jobs/tests were addressed
-4. **CRITICAL**: Push the branch with `git push origin HEAD` - You MUST push the branch after committing
-
-## Step 6: Create PR Comment (REQUIRED - DO NOT SKIP)
-
-**CRITICAL: You MUST create a PR comment after pushing. This step is MANDATORY.**
-
-After successfully pushing the fixes, you MUST create a comment on the original PR to notify about the auto-fix. DO NOT end the task without completing this step.
-
-1. Extract the PR number from the context provided in arguments (look for "PR Number:" in the context)
-2. **MANDATORY**: Execute the gh CLI command below to create the comment
-3. Verify the comment was created successfully
-
-**YOU MUST RUN THIS COMMAND** (replace placeholders with actual values from context):
-
+### 4.1 Current State Analysis
 ```bash
-gh pr comment PR_NUMBER --body "## 🤖 CI Auto-Fix Available
-
-Claude has analyzed the CI failures and prepared fixes.
-
-[**→ Create pull request to fix CI**](https://github.com/OWNER/REPO/compare/BASE_BRANCH...FIX_BRANCH?quick_pull=1)
-
-_This fix was generated automatically based on the [failed CI run](FAILED_CI_RUN_URL)._"
+# Analyze CLAUDE.md structure
+wc -l CLAUDE.md
+grep "### Rule #" CLAUDE.md | wc -l
+grep -c "Prevention Rule:" CLAUDE.md
 ```
 
-**IMPORTANT REPLACEMENTS YOU MUST MAKE:**
+### 4.2 Systematic Optimization
+1. **Meta-Pattern Creation**: Create 5 meta-patterns from identified clusters
+2. **Rule Consolidation**: Merge overlapping rules following synthesis recommendations  
+3. **Hierarchy Optimization**: Reorganize structure for learning velocity
+4. **Documentation Separation**: Move measurement theory to appendix
+5. **Enforcement Enhancement**: Update enforcement section with optimized validation
 
-- Replace `PR_NUMBER` with the actual PR number from "PR Number:" in context
-- Replace `OWNER/REPO` with the repository from "Repository:" in context
-- Replace `BASE_BRANCH` with the branch from "Base Branch:" in context
-- Replace `FIX_BRANCH` with the branch from "Branch Name:" in context
-- Replace `FAILED_CI_RUN_URL` with the URL from "Failed CI Run:" in context
+### 4.3 Compound Intelligence Validation
+Ensure optimizations achieve:
+- **Cognitive Load Reduction**: 24+ rules → 12 core rules + 5 meta-patterns
+- **Learning Velocity**: 40% faster pattern recognition and application
+- **Documentation Efficiency**: 75% reduction in maintenance overhead  
+- **Pattern Reuse**: 60% better cross-domain learning transfer
 
-**DO NOT SKIP THIS STEP. The task is NOT complete until the PR comment is created.**
+## Phase 5: Quality Gates
 
-## Step 7: Final Verification
+Verify optimization results meet compound intelligence objectives:
 
-**BEFORE CONSIDERING THE TASK COMPLETE**, verify you have:
+- [ ] **Rule Classification Complete**: All rules categorized as Prevention or Documentation
+- [ ] **Duplication Eliminated**: Overlapping rules consolidated or removed
+- [ ] **Meta-Patterns Created**: Universal principles extracted from rule clusters
+- [ ] **Learning Velocity Enhanced**: Optimized hierarchy accelerates pattern recognition
+- [ ] **Compound Intelligence ROI**: 8:1 optimization investment return validated
+- [ ] **Enforcement Updated**: Automated validation matching optimized rule structure
 
-1. ✅ Fixed all CI failures
-2. ✅ Committed the changes
-3. ✅ Pushed the branch with `git push origin HEAD`
-4. ✅ **CREATED THE PR COMMENT using `gh pr comment` command from Step 6**
+## Implementation Commands
 
-If you have NOT created the PR comment, go back to Step 6 and execute the command.
+Use these systematic approaches during optimization:
 
-## Important Guidelines
+```bash
+# Rule analysis and consolidation
+grep -n "### Rule #" CLAUDE.md
+grep -A 5 -B 1 "Prevention Rule:" CLAUDE.md
+grep -c "Application:" CLAUDE.md
 
-- Focus exclusively on fixing the reported CI failures
-- Maintain code quality and follow the project's established patterns
-- If a fix requires significant refactoring, document why it's necessary
-- When multiple solutions exist, choose the simplest one that maintains code quality
-- **THE TASK IS NOT COMPLETE WITHOUT THE PR COMMENT**
+# Structure optimization validation  
+wc -l CLAUDE.md  # Target: ~400 lines focused content
+grep "Meta-Pattern" CLAUDE.md | wc -l  # Target: 5 patterns
+```
 
-Begin by analyzing the failure details provided above.
+## Expected Outcomes
+
+Transform CLAUDE.md from a growing list of fragmented learnings into an optimized compound intelligence system:
+
+- **Reduced Cognitive Load**: Fewer, more powerful prevention patterns
+- **Enhanced Learning Velocity**: Meta-patterns enable faster cross-domain transfer
+- **Improved Maintenance**: Consolidated patterns prevent rule proliferation  
+- **Accelerated Decision Making**: Clear hierarchy eliminates choice paralysis
+
+Begin with Phase 1 agent orchestration, then proceed systematically through all phases to achieve maximum compound intelligence optimization.

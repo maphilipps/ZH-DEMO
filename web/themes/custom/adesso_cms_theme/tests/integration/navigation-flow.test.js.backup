@@ -7,7 +7,6 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
 import { JSDOM } from 'jsdom';
 
 // Mock Alpine.js for el-popover and el-dialog functionality

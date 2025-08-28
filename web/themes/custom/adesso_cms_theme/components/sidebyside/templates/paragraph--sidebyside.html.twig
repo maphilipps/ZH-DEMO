@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {# /** * @file * Side by side paragraph template using paragraph-wrapper component with embed pattern. */ #} {#
 Sidebyside paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set
 wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
@@ -29,3 +30,58 @@ wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} 
   {% endblock %}
 {% endembed %}
 {% endblock %} {% endembed %}
+=======
+{#
+/**
+ * @file
+ * Side by side paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Sidebyside paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Features will be handled via slot-based rendering instead of manual processing #}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block prefix %}{% endblock %}
+
+{% block content %}
+  {% embed 'adesso_cms_theme:sidebyside' with {
+    title: paragraph.field_title.value,
+    text: content.field_summary,
+    pre_headline: paragraph.field_pre_headline.value,
+    layout: paragraph.field_sidebyside_layout.value ?? 'left'
+  } only %}
+    {% block media %}
+      {# Use field template rendering instead of direct entity access - maintains proper Drupal rendering pipeline #}
+      {{ content.field_media }}
+    {% endblock %}
+    {% block features %}
+      {# Use slot-based rendering for features field - maintains proper Drupal rendering pipeline #}
+      {{ content.field_features }}
+    {% endblock %}
+    {% block primary_action %}
+      {{ content.field_link }}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% endembed %}
+>>>>>>> origin/main

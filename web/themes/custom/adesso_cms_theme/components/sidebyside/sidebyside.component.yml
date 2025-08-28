@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Side-by-Side
+<<<<<<< HEAD
 description: Editorial/Side-by-Side component with media slot architecture
 group: organisms
 status: stable
@@ -48,6 +49,14 @@ props:
           type: string
         icon:
           type: string
+=======
+status: stable
+group: organism
+description: Editorial/Side-by-Side component
+props:
+  type: object
+  properties:
+>>>>>>> origin/main
     layout:
       type: string
       title: layout
@@ -74,7 +83,30 @@ props:
       title: attributes
       description: HTML attributes object for the wrapper element
 slots:
+<<<<<<< HEAD
   media:
     title: Side-by-Side Media
     description: Media content for the side-by-side component (field_media)
     # removed: required: false (slots are optional by default)
+=======
+  title:
+    title: 'Title'
+    description: 'Side-by-side component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main side-by-side content area with text and media'
+    required: true
+  media:
+    title: 'Media'
+    description: 'Side-by-side media content (images, videos, etc.)'
+    required: false
+  features:
+    title: 'Features'
+    description: 'Features list for side-by-side component (field_features)'
+    required: false
+  primary_action:
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false
+>>>>>>> origin/main

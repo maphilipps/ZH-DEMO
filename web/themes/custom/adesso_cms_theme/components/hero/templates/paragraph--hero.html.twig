@@ -1,29 +1,51 @@
-{# /** * @file * Hero paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Hero paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set wrapper_spacing =
-paragraph.field_spacing.value|default('none') %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [
-'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~
-view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %} {# Embed the
-paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
-spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix
-%}{% endblock %} {% block content %} 
-{% embed 'adesso_cms_theme:hero' with { 
-  hero_layout: paragraph.field_hero_layout.value, 
-  is_dark: wrapper_theme == 'dark', 
-  pre_headline: paragraph.field_pre_headline.value, 
-  heading: paragraph.field_heading.value, 
-  text: content.field_summary, 
-  link: paragraph.field_link.0.title ? { 
-    url: paragraph.field_link.0.uri,
-    title: paragraph.field_link.0.title 
-  } : {}, 
-  link2: paragraph.field_link2.0.title ? { 
-    url: paragraph.field_link2.0.uri, 
-    title: paragraph.field_link2.0.title 
-  } : {} 
-} only %}
-  {% block background_media %}
-    {# Use field template rendering instead of raw field array - RAW FIELD ARRAY FIX #}
-    {{ content.field_media }}
-  {% endblock %}
+{#
+/**
+ * @file
+ * Hero paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Hero paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('none') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block prefix %}{% endblock %}
+
+{% block content %}
+  {% embed 'adesso_cms_theme:hero' with {
+    hero_layout: paragraph.field_hero_layout.value,
+    is_dark: wrapper_theme == 'dark',
+    pre_headline: paragraph.field_pre_headline.value,
+    heading: paragraph.field_heading.value,
+    text: paragraph.field_summary.value,
+  } only %}
+    {% block background_media %}
+      {# Use field template rendering instead of raw field array - maintains proper Drupal rendering pipeline #}
+      {{ content.field_media }}
+    {% endblock %}
+    {% block primary_action %}
+      {{ content.field_link }}
+    {% endblock %}
+    {% block secondary_action %}
+      {{ content.field_link2 }}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
 {% endembed %}
-{% endblock %} {% endembed %}

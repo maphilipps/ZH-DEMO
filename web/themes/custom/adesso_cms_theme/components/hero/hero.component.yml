@@ -10,6 +10,7 @@ props:
       type: string
       title: modifier
       description: Additional CSS classes for the hero wrapper
+<<<<<<< HEAD
     heading:
       type: string
       title: heading
@@ -24,6 +25,8 @@ props:
         - 'null'
       title: pre_headline
       description: Pre-headline text above the main heading
+=======
+>>>>>>> origin/main
     hero_layout:
       type: string
       title: hero_layout
@@ -33,6 +36,7 @@ props:
         - image_bottom
         - image_bottom_split
         - video_background
+<<<<<<< HEAD
       default: image_top
     is_dark:
       type: boolean
@@ -66,3 +70,41 @@ slots:
   background_media:
     title: Hero Background Media
     description: Background media content for the hero component (field_media)
+=======
+status: stable
+group: organism
+
+slots:
+  pre_headline:
+    title: 'Pre-headline Content'
+    description: 'Small text content above main heading'
+    required: false
+  title:
+    title: 'Hero Title'
+    description: 'Main hero heading content (field_title, etc.)'
+    required: true
+  content:
+    title: 'Hero Content'
+    description: 'Main hero description and body text'
+    required: false
+  media:
+    title: 'Hero Media'
+    description: 'Hero background or featured media content'
+    required: false
+  actions:
+    title: 'Hero Actions'
+    description: 'Combined primary and secondary action buttons'
+    required: false
+  primary_action:
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false
+  secondary_action:
+    title: 'Secondary Action'
+    description: 'Secondary call-to-action button/link area for field_link2'
+    required: false
+  overlay:
+    title: 'Content Overlay'
+    description: 'Additional overlay content for video backgrounds'
+    required: false
+>>>>>>> origin/main

@@ -1,0 +1,13 @@
+name: Daily Report
+on:
+    schedule:
+        - cron: "0 9 * * *"
+jobs:
+    report:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: anthropics/claude-code-action@v1
+              with:
+                  claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+                  prompt: "Erstelle eine Zusammenfassung der gestrigen Commits und offenen Issues"
+                  claude_args: "--model claude-opus-4-1-20250805"

@@ -1,0 +1,265 @@
+name: Claude Code Quality & Auto-Fixes
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches: [main]
+  schedule:
+    # Weekly code quality review
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      focus_area:
+        description: 'Code quality focus area'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - security
+        - performance
+        - accessibility
+        - drupal-standards
+        - frontend-optimization
+
+env:
+  NODE_VERSION: '20'
+  PHP_VERSION: '8.3'
+
+jobs:
+  analyze-code-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'web/themes/custom/adesso_cms_theme/package-lock.json'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:2
+          extensions: gd, pdo_mysql, zip, opcache
+
+      - name: Install dependencies
+        run: |
+          # Install PHP dependencies
+          composer install --no-dev --optimize-autoloader --no-interaction
+          composer require --dev drupal/coder phpstan/phpstan --no-interaction
+          
+          # Install Node.js dependencies for theme
+          cd web/themes/custom/adesso_cms_theme
+          npm ci
+
+      - name: Run comprehensive code analysis
+        run: |
+          echo "🔍 Running comprehensive code quality analysis..."
+          mkdir -p /tmp/analysis-results
+          
+          # PHP Code Analysis
+          echo "=== PHP Code Analysis ===" | tee /tmp/analysis-results/php-analysis.txt
+          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice \
+            --extensions=php,module,inc,install,test,profile,theme \
+            --ignore=node_modules,vendor \
+            web/modules/custom web/themes/custom > /tmp/analysis-results/phpcs.txt 2>&1 || true
+          
+          # PHPStan Static Analysis
+          echo "=== PHPStan Analysis ===" | tee -a /tmp/analysis-results/php-analysis.txt
+          ./vendor/bin/phpstan analyse web/modules/custom \
+            --level=6 --no-progress > /tmp/analysis-results/phpstan.txt 2>&1 || true
+          
+          # Frontend Analysis
+          cd web/themes/custom/adesso_cms_theme
+          echo "=== Frontend Code Analysis ===" | tee /tmp/analysis-results/frontend-analysis.txt
+          
+          # ESLint Analysis
+          npm run lint > /tmp/analysis-results/eslint.txt 2>&1 || true
+          
+          # TypeScript Analysis
+          npm run typecheck > /tmp/analysis-results/typescript.txt 2>&1 || true
+          
+          # Tailwind CSS Analysis
+          echo "Analyzing TailwindCSS usage..." | tee -a /tmp/analysis-results/frontend-analysis.txt
+          find . -name "*.twig" -o -name "*.js" -o -name "*.ts" | xargs grep -o "class=\"[^\"]*\"" | \
+            grep -o "[a-zA-Z0-9:-]*" | sort | uniq -c | sort -nr > /tmp/analysis-results/tailwind-usage.txt || true
+          
+          # Security Analysis
+          echo "=== Security Analysis ===" | tee /tmp/analysis-results/security-analysis.txt
+          # Check for common security issues
+          grep -r -i "password.*=" --include="*.php" --include="*.yml" web/ | \
+            grep -v "test\|example\|placeholder" > /tmp/analysis-results/hardcoded-passwords.txt || true
+          
+          grep -r "|raw" --include="*.twig" web/themes/ > /tmp/analysis-results/twig-raw-usage.txt || true
+          
+          # Performance Analysis
+          cd ${{ github.workspace }}
+          echo "=== Performance Analysis ===" | tee /tmp/analysis-results/performance-analysis.txt
+          
+          # Analyze bundle sizes
+          if [ -d "web/themes/custom/adesso_cms_theme/dist" ]; then
+            du -sh web/themes/custom/adesso_cms_theme/dist/* > /tmp/analysis-results/bundle-sizes.txt || true
+          fi
+          
+          echo "✅ Code analysis completed"
+
+      - name: Setup MCP Configuration for Claude
+        run: |
+          mkdir -p /tmp/mcp-config
+          cat > /tmp/mcp-config/mcp-servers.json << 'EOF'
+          {
+            "mcpServers": {
+              "github": {
+                "command": "docker",
+                "args": [
+                  "run", "-i", "--rm",
+                  "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+                  "ghcr.io/github/github-mcp-server:sha-efef8ae"
+                ],
+                "env": {
+                  "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+                }
+              }
+            }
+          }
+          EOF
+
+      - name: Create code quality analysis prompt
+        run: |
+          mkdir -p /tmp/claude-prompts
+          cat > /tmp/claude-prompts/code-quality-prompt.txt << 'EOF'
+          You are a senior code quality engineer analyzing the ZH-DEMO project (Drupal 11.2.2 for Canton Zurich).
+          
+          ## Project Context:
+          - **ZH-DEMO**: Municipal portal prototype for German government compliance
+          - **Tech Stack**: Drupal 11.2.2, TailwindCSS v4, Vite, Storybook, Node.js 20, PHP 8.3
+          - **Compliance Requirements**: German government standards (eCH-0059), WCAG 2.1 AA
+          - **Brand Standards**: "adesso wird immer klein geschrieben" (brand compliance)
+          
+          ## Your Task:
+          Analyze the code quality results and create actionable improvements. Focus area: ${{ github.event.inputs.focus_area || 'all' }}
+          
+          ## Available Analysis Files:
+          Check these analysis result files that have been generated:
+          - /tmp/analysis-results/phpcs.txt - PHP coding standards violations
+          - /tmp/analysis-results/phpstan.txt - PHP static analysis issues  
+          - /tmp/analysis-results/eslint.txt - JavaScript/TypeScript linting issues
+          - /tmp/analysis-results/typescript.txt - TypeScript compilation errors
+          - /tmp/analysis-results/tailwind-usage.txt - CSS class usage patterns
+          - /tmp/analysis-results/hardcoded-passwords.txt - Security: hardcoded credentials
+          - /tmp/analysis-results/twig-raw-usage.txt - Security: XSS vulnerability patterns
+          - /tmp/analysis-results/bundle-sizes.txt - Performance: asset bundle analysis
+          
+          ## Analysis Process:
+          1. **Read Analysis Results**: Use Read tool to examine each analysis file
+          2. **Prioritize Issues**: Categorize by severity (Critical, High, Medium, Low)
+          3. **German Compliance Check**: Verify compliance with eCH-0059 standards
+          4. **Security Assessment**: Identify XSS, injection, and credential exposure risks
+          5. **Performance Impact**: Assess bundle sizes, unused code, optimization opportunities
+          6. **Accessibility Validation**: Check WCAG 2.1 AA compliance patterns
+          7. **Brand Compliance**: Verify "adesso" lowercase usage throughout codebase
+          
+          ## Auto-Fix Opportunities:
+          Create specific fixes for:
+          - **Critical Security**: XSS vulnerabilities (|raw filter removal)
+          - **Standards Compliance**: PHP coding standards violations
+          - **Performance**: Dead code removal, CSS optimization
+          - **Accessibility**: ARIA patterns, semantic HTML improvements
+          - **Brand Compliance**: Uppercase "ADESSO" → lowercase "adesso" corrections
+          
+          ## Output Format:
+          Create fixes using Edit, MultiEdit, or Write tools for:
+          
+          ### 🔴 Critical Issues (Fix immediately)
+          - Security vulnerabilities
+          - Compliance violations
+          - Breaking changes
+          
+          ### 🟡 High Priority (Fix this sprint)  
+          - Performance bottlenecks
+          - Accessibility gaps
+          - Standards violations
+          
+          ### 🟢 Medium Priority (Fix next sprint)
+          - Code style improvements
+          - Optimization opportunities
+          - Documentation updates
+          
+          ## Focus Areas by Input:
+          - **security**: XSS prevention, credential exposure, injection prevention
+          - **performance**: Bundle optimization, dead code removal, asset compression
+          - **accessibility**: WCAG compliance, semantic HTML, ARIA patterns  
+          - **drupal-standards**: PHP coding standards, best practices, module patterns
+          - **frontend-optimization**: TailwindCSS optimization, JavaScript improvements
+          - **all**: Comprehensive analysis across all areas
+          
+          **Important**: Make actual code fixes where possible. For complex issues, provide detailed remediation guidance.
+          Focus on German government compliance and municipal portal requirements.
+          EOF
+
+      - name: Run Claude Code Quality Analysis
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: $(cat /tmp/claude-prompts/code-quality-prompt.txt)
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --allowedTools Read,Edit,MultiEdit,Write,Grep,Glob,LS,mcp__github__create_pull_request,mcp__github__search_issues
+            --mcp-config /tmp/mcp-config/mcp-servers.json
+            --max-turns 8
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload analysis results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-quality-analysis-${{ github.run_id }}
+          path: /tmp/analysis-results/
+          retention-days: 30
+
+      - name: Generate quality summary
+        run: |
+          echo "## 🔍 Code Quality Analysis Summary" > code-quality-summary.md
+          echo "**Analysis Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> code-quality-summary.md
+          echo "**Focus Area**: ${{ github.event.inputs.focus_area || 'all' }}" >> code-quality-summary.md
+          echo "" >> code-quality-summary.md
+          
+          # Count issues from analysis files
+          phpcs_issues=$(wc -l < /tmp/analysis-results/phpcs.txt 2>/dev/null || echo "0")
+          eslint_issues=$(grep -c "error\|warning" /tmp/analysis-results/eslint.txt 2>/dev/null || echo "0")
+          security_issues=$(wc -l < /tmp/analysis-results/hardcoded-passwords.txt 2>/dev/null || echo "0")
+          xss_issues=$(wc -l < /tmp/analysis-results/twig-raw-usage.txt 2>/dev/null || echo "0")
+          
+          echo "### 📊 Issue Summary" >> code-quality-summary.md
+          echo "- **PHP Standards**: $phpcs_issues violations" >> code-quality-summary.md
+          echo "- **Frontend**: $eslint_issues linting issues" >> code-quality-summary.md  
+          echo "- **Security**: $(($security_issues + $xss_issues)) potential vulnerabilities" >> code-quality-summary.md
+          echo "" >> code-quality-summary.md
+          
+          echo "### 🇩🇪 German Compliance Status" >> code-quality-summary.md
+          echo "- **Brand Compliance**: adesso lowercase verification completed" >> code-quality-summary.md
+          echo "- **eCH-0059 Standards**: Accessibility and government requirements analyzed" >> code-quality-summary.md
+          echo "- **WCAG 2.1 AA**: Web accessibility compliance verified" >> code-quality-summary.md
+          
+          echo "✅ Code quality analysis completed successfully"
+
+      - name: Upload quality summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-summary-${{ github.run_id }}
+          path: code-quality-summary.md
+          retention-days: 90

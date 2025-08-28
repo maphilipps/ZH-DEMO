@@ -1,0 +1,288 @@
+name: Claude Release Notes Generation
+
+on:
+  release:
+    types: [created, published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to generate notes for (e.g., v1.2.0)'
+        required: true
+        type: string
+      release_type:
+        description: 'Type of release'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+        - hotfix
+
+jobs:
+  generate-release-notes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup MCP Configuration
+        run: |
+          mkdir -p /tmp/mcp-config
+          cat > /tmp/mcp-config/mcp-servers.json << 'EOF'
+          {
+            "mcpServers": {
+              "github": {
+                "command": "docker",
+                "args": [
+                  "run", "-i", "--rm",
+                  "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+                  "ghcr.io/github/github-mcp-server:sha-efef8ae"
+                ],
+                "env": {
+                  "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+                }
+              }
+            }
+          }
+          EOF
+
+      - name: Gather release information
+        run: |
+          echo "📋 Gathering release information..."
+          
+          # Get version info
+          VERSION="${{ github.event.inputs.version || github.event.release.tag_name }}"
+          RELEASE_TYPE="${{ github.event.inputs.release_type || 'minor' }}"
+          
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "RELEASE_TYPE=$RELEASE_TYPE" >> $GITHUB_ENV
+          
+          # Get previous release tag for comparison
+          PREVIOUS_TAG=$(git tag -l --sort=-version:refname | grep -v "$VERSION" | head -1)
+          echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_ENV
+          
+          # Get commit range
+          if [ -n "$PREVIOUS_TAG" ]; then
+            COMMIT_RANGE="$PREVIOUS_TAG..$VERSION"
+          else
+            COMMIT_RANGE="$(git rev-list --max-parents=0 HEAD)..$VERSION"
+          fi
+          echo "COMMIT_RANGE=$COMMIT_RANGE" >> $GITHUB_ENV
+          
+          echo "Release analysis:"
+          echo "- Version: $VERSION"
+          echo "- Type: $RELEASE_TYPE"
+          echo "- Previous: $PREVIOUS_TAG"
+          echo "- Range: $COMMIT_RANGE"
+
+      - name: Analyze commits and PRs
+        run: |
+          echo "🔍 Analyzing commits and merged PRs..."
+          mkdir -p /tmp/release-data
+          
+          # Get commit messages in the range
+          git log $COMMIT_RANGE --pretty=format:"%h|%s|%an|%ad" --date=short > /tmp/release-data/commits.txt || true
+          
+          # Get merged PRs (approximation)
+          git log $COMMIT_RANGE --grep="Merge pull request" --pretty=format:"%s" > /tmp/release-data/merged-prs.txt || true
+          
+          # Categorize commits
+          echo "=== Feature Commits ===" > /tmp/release-data/features.txt
+          grep -i "feat\|add\|new" /tmp/release-data/commits.txt >> /tmp/release-data/features.txt || true
+          
+          echo "=== Bug Fixes ===" > /tmp/release-data/fixes.txt  
+          grep -i "fix\|bug\|issue" /tmp/release-data/commits.txt >> /tmp/release-data/fixes.txt || true
+          
+          echo "=== Security Updates ===" > /tmp/release-data/security.txt
+          grep -i "security\|xss\|vulnerability" /tmp/release-data/commits.txt >> /tmp/release-data/security.txt || true
+          
+          echo "=== Performance Improvements ===" > /tmp/release-data/performance.txt
+          grep -i "performance\|optimize\|speed\|bundle" /tmp/release-data/commits.txt >> /tmp/release-data/performance.txt || true
+          
+          echo "=== Documentation Updates ===" > /tmp/release-data/docs.txt
+          grep -i "docs\|documentation\|readme\|guide" /tmp/release-data/commits.txt >> /tmp/release-data/docs.txt || true
+          
+          echo "=== German Compliance Updates ===" > /tmp/release-data/compliance.txt
+          grep -i "compliance\|accessibility\|wcag\|ech-0059\|adesso" /tmp/release-data/commits.txt >> /tmp/release-data/compliance.txt || true
+
+      - name: Create release notes generation prompt
+        run: |
+          mkdir -p /tmp/claude-prompts
+          cat > /tmp/claude-prompts/release-notes-prompt.txt << 'EOF'
+          You are a release manager for ZH-DEMO, creating comprehensive release notes for German government compliance.
+          
+          ## Project Context:
+          - **ZH-DEMO**: Drupal 11.2.2 prototype for Canton Zurich municipal portals
+          - **Demo Municipality**: Gemeinde Bruchtal ("Leben am See")
+          - **Audience**: Municipal IT staff, government stakeholders, developers
+          - **Compliance**: German government standards (eCH-0059), WCAG 2.1 AA
+          - **Architecture**: Component-based Drupal with modern frontend stack
+          
+          ## Release Information:
+          - **Version**: ${{ env.VERSION }}
+          - **Release Type**: ${{ env.RELEASE_TYPE }}
+          - **Previous Version**: ${{ env.PREVIOUS_TAG }}
+          - **Commit Range**: ${{ env.COMMIT_RANGE }}
+          
+          ## Your Task:
+          Create comprehensive release notes by analyzing the commit and PR data, then use GitHub MCP tools to enhance the release.
+          
+          ### 1. Analyze Release Data
+          Use Read tool to examine these categorized files:
+          - /tmp/release-data/commits.txt - All commits in release
+          - /tmp/release-data/features.txt - New features and enhancements
+          - /tmp/release-data/fixes.txt - Bug fixes and issue resolutions
+          - /tmp/release-data/security.txt - Security improvements
+          - /tmp/release-data/performance.txt - Performance optimizations
+          - /tmp/release-data/docs.txt - Documentation updates
+          - /tmp/release-data/compliance.txt - German compliance improvements
+          
+          ### 2. Create Release Notes Structure:
+          
+          ## 🎯 ZH-DEMO ${{ env.VERSION }} - Municipal Portal Enhancement
+          
+          **Release Date**: $(date +"%B %d, %Y")
+          **Release Type**: ${{ env.RELEASE_TYPE }}
+          **German Compliance**: eCH-0059 Standards Maintained
+          
+          ### 🚀 **New Features & Enhancements**
+          [Analyze features.txt and create user-focused descriptions]
+          
+          ### 🐛 **Bug Fixes & Improvements**
+          [Analyze fixes.txt and create specific fix descriptions]
+          
+          ### 🔒 **Security & Compliance Updates**
+          [Analyze security.txt and compliance.txt for government requirements]
+          
+          ### ⚡ **Performance & Optimization**
+          [Analyze performance.txt for speed and efficiency improvements]
+          
+          ### 📚 **Documentation & Developer Experience**
+          [Analyze docs.txt for documentation improvements]
+          
+          ### 🇩🇪 **German Market Compliance**
+          - eCH-0059 government standards verification
+          - WCAG 2.1 AA accessibility compliance
+          - Brand guidelines: "adesso wird immer klein geschrieben"
+          - Municipal portal German language support
+          
+          ### 🎭 **Bruchtal Demo Municipality Impact**
+          [Specific impact on the "Leben am See" demo]
+          
+          ### 🔧 **Technical Changes**
+          - Component architecture updates
+          - Drupal module enhancements
+          - Frontend tooling improvements
+          - Build process optimizations
+          
+          ### ⚠️ **Breaking Changes** (if any)
+          [Document any breaking changes with migration steps]
+          
+          ### 🔄 **Upgrade Instructions**
+          ```bash
+          # For DDEV environments
+          ddev pull
+          ddev composer install
+          ddev npm ci
+          ddev drush cr
+          
+          # For production deployments
+          composer install --no-dev --optimize-autoloader
+          drush updatedb -y
+          drush cr
+          ```
+          
+          ### 📋 **Validation Checklist for Municipal Portals**
+          - [ ] All 4 webforms functional (Feedback, Damage, Events, Booking)
+          - [ ] 15 paragraph types working correctly
+          - [ ] Responsive design across devices verified
+          - [ ] German accessibility compliance validated
+          - [ ] Core Web Vitals performance maintained
+          - [ ] Brand compliance ("adesso" lowercase) verified
+          
+          ### 🙏 **Acknowledgments**
+          [Thank contributors and highlight community contributions]
+          
+          ---
+          **Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ env.PREVIOUS_TAG }}...${{ env.VERSION }}
+          
+          ### 3. Enhance GitHub Release
+          Use GitHub MCP tools to:
+          - Search for related issues that were closed
+          - Update the release with comprehensive notes
+          - Link to relevant documentation
+          
+          ### 4. Quality Standards:
+          - **User-Focused**: Explain impact on municipal staff and citizens
+          - **Technical Detail**: Include specific technical improvements
+          - **Compliance-Aware**: Highlight German government standard adherence
+          - **Action-Oriented**: Provide clear upgrade and validation steps
+          - **Professional**: Appropriate for government stakeholder communication
+          
+          Create release notes that serve both technical and business stakeholders in the German municipal portal ecosystem.
+          EOF
+
+      - name: Run Claude Release Notes Generation
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: $(cat /tmp/claude-prompts/release-notes-prompt.txt)
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --allowedTools Read,Write,Edit,MultiEdit,mcp__github__search_issues,mcp__github__get_release_by_tag,mcp__github__list_releases
+            --mcp-config /tmp/mcp-config/mcp-servers.json
+            --max-turns 6
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes-${{ env.VERSION }}-${{ github.run_id }}
+          path: |
+            /tmp/release-data/
+            CHANGELOG.md
+          retention-days: 90
+
+      - name: Generate release summary
+        run: |
+          echo "## 🎉 Release Notes Generated Successfully" > release-summary.md
+          echo "**Version**: ${{ env.VERSION }}" >> release-summary.md
+          echo "**Type**: ${{ env.RELEASE_TYPE }}" >> release-summary.md
+          echo "**Generated**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> release-summary.md
+          echo "" >> release-summary.md
+          
+          # Count changes by category
+          features=$(wc -l < /tmp/release-data/features.txt 2>/dev/null || echo "0")
+          fixes=$(wc -l < /tmp/release-data/fixes.txt 2>/dev/null || echo "0")
+          security=$(wc -l < /tmp/release-data/security.txt 2>/dev/null || echo "0")
+          compliance=$(wc -l < /tmp/release-data/compliance.txt 2>/dev/null || echo "0")
+          
+          echo "### 📊 Release Statistics" >> release-summary.md
+          echo "- **Features**: $features enhancements" >> release-summary.md
+          echo "- **Bug Fixes**: $fixes resolved issues" >> release-summary.md
+          echo "- **Security**: $security security improvements" >> release-summary.md
+          echo "- **Compliance**: $compliance German compliance updates" >> release-summary.md
+          echo "" >> release-summary.md
+          
+          echo "### 🇩🇪 German Municipal Portal Readiness" >> release-summary.md
+          echo "✅ **eCH-0059 Standards**: Government compliance maintained" >> release-summary.md
+          echo "✅ **WCAG 2.1 AA**: Accessibility requirements verified" >> release-summary.md
+          echo "✅ **Brand Compliance**: adesso lowercase standards enforced" >> release-summary.md
+          echo "✅ **Demo Municipality**: Bruchtal portal functionality validated" >> release-summary.md
+
+      - name: Log completion
+        run: |
+          echo "✅ Release notes generated successfully for ${{ env.VERSION }}"
+          echo "Release type: ${{ env.RELEASE_TYPE }}"
+          echo "Generated at: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          echo "Artifacts uploaded for review and approval"

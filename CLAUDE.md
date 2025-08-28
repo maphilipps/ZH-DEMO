@@ -803,5 +803,64 @@ time ddev npm run test
 
 ---
 
+## 🚨 Architecture Refactoring Prevention Rules (Issue #51)
+
+### Rule #17: Component Architecture Analysis Before Building ⚠️ CRITICAL
+**Context**: Issue #51 revealed 5 card components built over time with 80% overlapping functionality  
+**Root Cause**: Components created reactively without analyzing existing patterns  
+**Critical Failure**: Each new card component was built in isolation, creating:
+- Duplicate prop definitions (heading/title, summary/body)
+- Repeated template structure patterns
+- Inconsistent API across similar components
+- Maintenance overhead scaling exponentially
+**Prevention Rule**: ALWAYS audit existing components for overlapping patterns BEFORE creating new components  
+**Analysis Required**: Check for shared props, similar template structures, overlapping use cases  
+**Tool Requirement**: Use component inventory analysis to identify consolidation opportunities early
+
+### Rule #18: Architecture Debt Recognition - The "5+ Similar Components" Alert ⚠️ CRITICAL
+**Context**: 5 card components existed before anyone recognized the architectural debt  
+**Critical Insight**: Component proliferation happens gradually and becomes invisible until critical mass  
+**Warning Signs**:
+- 3+ components with similar prop names (title, heading, summary)
+- Template files with copy-paste patterns
+- Developer confusion about which component to use
+- Props that work in some cards but not others
+**Prevention Rule**: When you have 3+ components solving similar problems, STOP and consolidate immediately  
+**Application**: Regular component audits, prevent DRY violations before they scale  
+**Tool Requirement**: Automated component similarity detection in CI/CD
+
+### Rule #19: Content-Sections Pattern for Component Flexibility ✅ PREVENTION SUCCESS
+**Context**: Traditional approach creates specialized components, leading to proliferation  
+**Root Cause**: Thinking "this card is different" instead of "how can I make the base card handle this case"  
+**Prevention Pattern**: Use flexible content-sections array instead of specialized components  
+**Example Anti-Pattern**: 
+```yaml
+# WRONG - Creates component proliferation
+stat-card.component.yml: { heading, body, icon }
+pricing-card.component.yml: { title, features, cta }
+damage-card.component.yml: { priority, status, description }
+```
+**Correct Pattern**:
+```yaml
+# RIGHT - Single flexible component
+card.component.yml: 
+  content_sections: [{ type, content }] # Handles all use cases
+```
+**Prevention Rule**: When designing components, ask "How do I make this flexible?" not "What specialized component do I need?"
+
+### Rule #20: Migration Documentation Rule - Show the Pain ⚠️ CRITICAL  
+**Context**: Component consolidation without proper migration docs creates team resistance  
+**Root Cause**: Teams need to see WHY the change is worth the migration effort  
+**Prevention Rule**: Migration documentation must show PROBLEMS with old approach, not just features of new approach  
+**Required Documentation**:
+- **Before/After Code Comparison**: Show the DRY violations being solved
+- **Maintenance Cost**: Document the time wasted on duplicate fixes
+- **Bug Prevention**: Show how unified approach prevents inconsistencies
+**Anti-Pattern**: "Here's our new flexible component!" (focuses on solution)  
+**Correct Pattern**: "Here's how our 5 card components create maintenance hell, and here's the fix" (focuses on problem)
+**Application**: All architectural refactoring projects need problem-focused migration guides
+
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
 - Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
+- vor dem Stellen eines PRs muss der Zielbranch gemerged werden, damit es keine Konflikte gibt.
+- Bei Commits, die die Drupal-Config verändern, muss immer ein aktuelle config export, sowie ein DB Dump mit abgegeben werden.

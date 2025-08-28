@@ -164,3 +164,13 @@ libraryOverrides:
   dependencies:
     - core/drupal
     - adesso_cms_theme/responsive-images
+
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

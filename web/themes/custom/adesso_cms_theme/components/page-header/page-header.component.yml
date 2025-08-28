@@ -84,3 +84,29 @@ variants:
     description: "Full-screen hero header with overlay navigation and enhanced visuals"
 libraryDependencies:
   - adesso_cms_theme/global
+
+slots:
+  title:
+    title: 'Page Title Content'
+    description: 'Main page title heading content (from field_title or page title)'
+    required: false
+  description:
+    title: 'Page Description Content'
+    description: 'Page description or subtitle content'
+    required: false
+  breadcrumbs:
+    title: 'Breadcrumb Navigation'
+    description: 'Breadcrumb trail content for navigation'
+    required: false
+  actions:
+    title: 'Page Actions'
+    description: 'Action buttons or controls related to page'
+    required: false
+  navigation:
+    title: 'Header Navigation'
+    description: 'Navigation menu content when includes_navigation is true'
+    required: false
+  background:
+    title: 'Background Content'
+    description: 'Custom background elements or media'
+    required: false

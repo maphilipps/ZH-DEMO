@@ -1,0 +1,211 @@
+{
+  "id": "component-migration-validation",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop", 
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Embed Component - Default State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-embed--default",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='embed-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Embed Component - With Title Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-embed--with-title-slot",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='embed-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Embed Component - With Pre-headline Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-embed--with-pre-headline",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='embed-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Stat Card - Default State", 
+      "url": "http://localhost:6006/iframe.html?args=&id=components-stat-card--default",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='stat-card-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Stat Card - With Heading Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-stat-card--with-heading-slot",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='stat-card-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Stat Card - Icon Variation",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-stat-card--with-icon",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='stat-card-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Newsletter Form - Default State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-newsletter-form--default",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='newsletter-form-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Newsletter Form - With Title Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-newsletter-form--with-title",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='newsletter-form-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Gallery Component - Default State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-gallery--default",
+      "delay": 3000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='gallery-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Gallery Component - With Title Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-gallery--with-title",
+      "delay": 3000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='gallery-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Accordion Component - Default State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-accordion--default",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='accordion-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Accordion Component - Expanded State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-accordion--expanded",
+      "delay": 2000,
+      "clickSelector": ".accordion-trigger:first-child",
+      "postInteractionWait": 500,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='accordion-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Card Group - Default State",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-card-group--default",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='card-group-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Card Group - With Title Slot",
+      "url": "http://localhost:6006/iframe.html?args=&id=components-card-group--with-title",
+      "delay": 2000,
+      "hideSelectors": [],
+      "removeSelectors": [".docs-story", ".sb-show-main"],
+      "selectors": ["[data-testid='card-group-component']", "body"],
+      "selectorExpansion": true,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": false
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "./backstop_data/migration_reference",
+    "bitmaps_test": "./backstop_data/migration_test",
+    "engine_scripts": "./backstop_data/engine_scripts",
+    "html_report": "./backstop_data/migration_html_report",
+    "json_report": "./backstop_data/migration_json_report"
+  },
+  "report": ["browser", "json"],
+  "engine": "playwright",
+  "engineOptions": {
+    "ignoreHTTPSErrors": true,
+    "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-web-security", "--disable-features=VizDisplayCompositor"],
+    "headless": true,
+    "gotoParameters": { 
+      "waitUntil": "networkidle",
+      "timeout": 30000
+    }
+  },
+  "asyncCaptureLimit": 3,
+  "asyncCompareLimit": 10,
+  "debug": false,
+  "debugWindow": false,
+  "resembleOutputOptions": {
+    "errorColor": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "errorType": "movement",
+    "transparency": 0.3,
+    "largeImageThreshold": 1200,
+    "useCrossOrigin": false
+  }
+}

@@ -57,3 +57,29 @@ props:
           type: string
         icon:
           type: string
+
+slots:
+  pre_headline:
+    title: 'Pre-headline Content'
+    description: 'Small text content above main heading'
+    required: false
+  title:
+    title: 'Hero Title'
+    description: 'Main hero heading content (field_title, etc.)'
+    required: true
+  content:
+    title: 'Hero Content'
+    description: 'Main hero description and body text'
+    required: false
+  media:
+    title: 'Hero Media'
+    description: 'Hero background or featured media content'
+    required: false
+  actions:
+    title: 'Hero Actions'
+    description: 'Primary and secondary action buttons'
+    required: false
+  overlay:
+    title: 'Content Overlay'
+    description: 'Additional overlay content for video backgrounds'
+    required: false

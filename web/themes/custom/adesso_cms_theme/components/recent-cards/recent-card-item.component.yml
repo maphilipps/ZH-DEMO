@@ -28,3 +28,13 @@ props:
       type: string
       title: 'URL'
       description: 'Destination URL for the card links'
+
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

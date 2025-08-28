@@ -69,9 +69,9 @@ Recent cards component for displaying a grid of recent content with thumbnails a
   } %}
 {% endfor %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -84,8 +84,10 @@ export const Default = {
   },
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=1" alt="Article thumbnail" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>Discover the latest trends in web development and how they can benefit your business. Our comprehensive guide covers everything you need to know.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=1" alt="Article thumbnail" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>Discover the latest trends in web development and how they can benefit your business. Our comprehensive guide covers everything you need to know.</p>',
     },
     label: 'Latest Web Development Trends',
     url: '/articles/web-development-trends',
@@ -96,8 +98,10 @@ export const Default = {
 export const BlogPost = {
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=2" alt="Blog post" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>Learn how to optimize your website for better performance and user experience with these proven techniques and best practices.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=2" alt="Blog post" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>Learn how to optimize your website for better performance and user experience with these proven techniques and best practices.</p>',
     },
     label: 'Website Optimization Guide',
     url: '/blog/website-optimization-guide',
@@ -108,8 +112,10 @@ export const BlogPost = {
 export const NewsArticle = {
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=3" alt="News article" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>Industry news and updates on the latest developments in technology and digital transformation.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=3" alt="News article" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>Industry news and updates on the latest developments in technology and digital transformation.</p>',
     },
     label: 'Tech Industry Update',
     url: '/news/tech-industry-update',
@@ -120,8 +126,10 @@ export const NewsArticle = {
 export const CaseStudy = {
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=4" alt="Case study" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>How we helped a major retailer increase their online sales by 150% through strategic digital transformation.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=4" alt="Case study" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>How we helped a major retailer increase their online sales by 150% through strategic digital transformation.</p>',
     },
     label: 'E-commerce Success Story',
     url: '/case-studies/ecommerce-success',
@@ -133,7 +141,8 @@ export const NoThumbnail = {
   args: {
     content: {
       field_thumbnail: '',
-      field_summary: '<p>This content card demonstrates how the component works without a thumbnail image. The layout adapts gracefully.</p>'
+      field_summary:
+        '<p>This content card demonstrates how the component works without a thumbnail image. The layout adapts gracefully.</p>',
     },
     label: 'Text-Only Content',
     url: '/articles/text-only-content',
@@ -144,10 +153,13 @@ export const NoThumbnail = {
 export const LongContent = {
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=5" alt="Long content" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>This is an example of how the component handles longer content. The summary can be quite detailed and the title can also be significantly longer than usual. This tests the layout flexibility and ensures proper text wrapping and spacing.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=5" alt="Long content" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>This is an example of how the component handles longer content. The summary can be quite detailed and the title can also be significantly longer than usual. This tests the layout flexibility and ensures proper text wrapping and spacing.</p>',
     },
-    label: 'Complete Guide to Modern Web Development with Advanced Techniques and Best Practices',
+    label:
+      'Complete Guide to Modern Web Development with Advanced Techniques and Best Practices',
     url: '/guides/complete-web-development-guide',
   },
 };
@@ -156,8 +168,10 @@ export const LongContent = {
 export const Playground = {
   args: {
     content: {
-      field_thumbnail: '<img src="https://picsum.photos/400/300?random=1" alt="Test content" class="w-full h-48 object-cover rounded-lg">',
-      field_summary: '<p>Test summary content for the recent cards component.</p>'
+      field_thumbnail:
+        '<img src="https://picsum.photos/400/300?random=1" alt="Test content" class="w-full h-48 object-cover rounded-lg">',
+      field_summary:
+        '<p>Test summary content for the recent cards component.</p>',
     },
     label: 'Test Card Title',
     url: '#',

@@ -11,7 +11,7 @@ export default {
   },
   argTypes: {},
   decorators: [
-    (story) =>
+    story =>
       `<div class="fluid-container"><div class="outer-grid"><div class="col-span-full">${story()}</div></div></div>`,
   ],
 };

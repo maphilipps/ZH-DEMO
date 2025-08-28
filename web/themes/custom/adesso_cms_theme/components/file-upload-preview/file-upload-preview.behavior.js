@@ -16,17 +16,19 @@
     attach: function (context, settings) {
       // Initialize Alpine.js component data
       this.initializeAlpineComponent();
-      
+
       // Initialize Alpine.js components when DOM is ready
       if (typeof Alpine !== 'undefined') {
         // Ensure Alpine.js has access to our file upload components
-        const uploadComponents = context.querySelectorAll('.file-upload-preview');
-        
+        const uploadComponents = context.querySelectorAll(
+          '.file-upload-preview'
+        );
+
         uploadComponents.forEach(component => {
           if (!component.hasAttribute('data-alpine-initialized')) {
             // Mark as initialized to prevent double initialization
             component.setAttribute('data-alpine-initialized', 'true');
-            
+
             // Add drag and drop event listeners
             this.initializeDragAndDrop(component);
           }
@@ -51,7 +53,7 @@
             init() {
               // Safely parse data attributes from the DOM element
               const element = this.$el;
-              
+
               try {
                 // Parse files from data attribute
                 const filesData = element.getAttribute('data-files');
@@ -62,27 +64,28 @@
                 console.warn('Failed to parse files data:', e);
                 this.files = [];
               }
-              
+
               // Parse other data attributes safely
               const maxFiles = element.getAttribute('data-max-files');
               if (maxFiles && !isNaN(parseInt(maxFiles))) {
                 this.maxFiles = parseInt(maxFiles);
               }
-              
+
               const maxFileSize = element.getAttribute('data-max-file-size');
               if (maxFileSize) {
                 this.maxFileSize = maxFileSize;
               }
-              
+
               try {
-                const allowedTypesData = element.getAttribute('data-allowed-types');
+                const allowedTypesData =
+                  element.getAttribute('data-allowed-types');
                 if (allowedTypesData) {
                   this.allowedTypes = JSON.parse(allowedTypesData);
                 }
               } catch (e) {
                 console.warn('Failed to parse allowed types data:', e);
               }
-              
+
               const uploadUrl = element.getAttribute('data-upload-url');
               if (uploadUrl) {
                 this.uploadUrl = uploadUrl;
@@ -91,7 +94,7 @@
 
             handleFileSelect(event) {
               const selectedFiles = Array.from(event.target.files);
-              
+
               // Validate file count
               if (this.files.length + selectedFiles.length > this.maxFiles) {
                 this.validationError = `Maximal ${this.maxFiles} Dateien erlaubt. Sie haben bereits ${this.files.length} Datei(en) hochgeladen.`;
@@ -112,15 +115,20 @@
 
               // Validate MIME type for security
               const allowedMimeTypes = {
-                'jpg': ['image/jpeg'],
-                'jpeg': ['image/jpeg'],
-                'png': ['image/png'],
-                'pdf': ['application/pdf'],
-                'doc': ['application/msword'],
-                'docx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+                jpg: ['image/jpeg'],
+                jpeg: ['image/jpeg'],
+                png: ['image/png'],
+                pdf: ['application/pdf'],
+                doc: ['application/msword'],
+                docx: [
+                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                ]
               };
 
-              if (allowedMimeTypes[extension] && !allowedMimeTypes[extension].includes(file.type)) {
+              if (
+                allowedMimeTypes[extension] &&
+                !allowedMimeTypes[extension].includes(file.type)
+              ) {
                 this.validationError = `Dateityp stimmt nicht überein. Erwarteter MIME-Type für .${extension}: ${allowedMimeTypes[extension].join(', ')}, erhalten: ${file.type}`;
                 return;
               }
@@ -151,7 +159,7 @@
               // Generate preview for images
               if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
-                reader.onload = (e) => {
+                reader.onload = e => {
                   fileObj.preview_url = e.target.result;
                   this.$nextTick(() => this.$forceUpdate());
                 };
@@ -194,17 +202,21 @@
               const k = 1024;
               const sizes = ['Bytes', 'KB', 'MB', 'GB'];
               const i = Math.floor(Math.log(bytes) / Math.log(k));
-              return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+              return (
+                parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i]
+              );
             },
 
             parseFileSize(sizeString) {
               const units = {
-                'B': 1,
-                'KB': 1024,
-                'MB': 1024 * 1024,
-                'GB': 1024 * 1024 * 1024
+                B: 1,
+                KB: 1024,
+                MB: 1024 * 1024,
+                GB: 1024 * 1024 * 1024
               };
-              const match = sizeString.match(/^(\d+(?:\.\d+)?)\s*(B|KB|MB|GB)$/i);
+              const match = sizeString.match(
+                /^(\d+(?:\.\d+)?)\s*(B|KB|MB|GB)$/i
+              );
               if (match) {
                 return parseFloat(match[1]) * units[match[2].toUpperCase()];
               }
@@ -222,12 +234,16 @@
      */
     initializeDragAndDrop: function (component) {
       const uploadArea = component.querySelector('.border-dashed');
-      
+
       if (uploadArea) {
         // Prevent default drag behaviors
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
           uploadArea.addEventListener(eventName, this.preventDefaults, false);
-          document.body.addEventListener(eventName, this.preventDefaults, false);
+          document.body.addEventListener(
+            eventName,
+            this.preventDefaults,
+            false
+          );
         });
 
         // Highlight drop area when item is dragged over it
@@ -295,5 +311,4 @@
       }
     }
   };
-
 })(Drupal, window.Alpine);

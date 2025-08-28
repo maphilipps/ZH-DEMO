@@ -1,58 +1,67 @@
-<div class="filter-dropdown inline-flex text-left items-center mr-3 z-50" x-ref="filter"
-     x-data="{identifier: $id('{{ label|render|striptags|trim|clean_id }}')}">
-    <div class="flex flex-wrap items-center gap-2">
-        {% if prefix %}
-            <span class="text-lg mr-5">{{ prefix }}</span>
-        {% endif %}
-        <div x-data="filterComponent">
-            <div
-                    data-filter="{{ label|render|striptags|trim|clean_id }}"
-                    :class="buttonClasses"
-                    @click.prevent="toggleFilter(identifier)"
-            >
-                <span class="mr-3">{{ label }}</span>
-                <!-- Loading spinner -->
-                <div x-show="isLoading" class="animate-spin mr-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v2m0 16v2m8.485-8.485l-1.414 1.414M4.929 4.929L3.515 3.515m0 16.97l1.414-1.414M19.071 19.071l1.414 1.414M22 12h-2M4 12H2"></path>
-                    </svg>
-                </div>
-                <span
-                        class="transition-transform transform duration-300"
-                        :class="chevronClasses"
-                        x-show="!isLoading"
-                >
-            <div class="transform duration-300 transition" x-bind:class="isFilterActive(identifier) ? 'rotate-180' :''">
-              <svg class="shrink-0 max-w-full size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </div>
-        </span>
-            </div>
-
-            <div x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0 h-0"
-                 x-transition:enter-end="opacity-100 h-auto"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 h-auto"
-                 x-transition:leave-end="opacity-0 h-0"
-                 class="absolute ease-out transform-gpu shadow-lg z-30 cursor-pointer bg-white w-full max-w-screen left-0 right-0"
-                 x-bind:style="{ top: $anchor.y+'px' }"
-                 x-bind:aria-labelledby="identifier"
-                 x-bind:aria-expanded="isFilterActive(identifier)"
-                 x-bind:aria-controls="identifier"
-                 x-bind:aria-hidden="!isFilterActive(identifier)"
-                 x-bind:aria-describedby="identifier"
-                 x-trap="isFilterActive(identifier)"
-                 @keydown.esc="resetFilter()"
-                 x-anchor.no-style="$refs.filter"
-                 x-show="isFilterActive(identifier)">
-                <button @click="resetFilter()" class="sr-only">
-                    Filter-Kategorie {{ label }} schließen
-                </button>
-                {{ tags }}
-            </div>
+<div
+  class="filter-dropdown inline-flex text-left items-center mr-3 z-50"
+  x-ref="filter"
+  x-data="{identifier: $id('{{ label|render|striptags|trim|clean_id }}')}"
+>
+  <div class="flex flex-wrap items-center gap-2">
+    {% if prefix %}
+    <span class="text-lg mr-5">{{ prefix }}</span>
+    {% endif %}
+    <div x-data="filterComponent">
+      <div
+        data-filter="{{ label|render|striptags|trim|clean_id }}"
+        :class="buttonClasses"
+        @click.prevent="toggleFilter(identifier)"
+      >
+        <span class="mr-3">{{ label }}</span>
+        <!-- Loading spinner -->
+        <div x-show="isLoading" class="animate-spin mr-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 2v2m0 16v2m8.485-8.485l-1.414 1.414M4.929 4.929L3.515 3.515m0 16.97l1.414-1.414M19.071 19.071l1.414 1.414M22 12h-2M4 12H2"
+            ></path>
+          </svg>
         </div>
-    </div>
-</div>
+        <span class="transition-transform transform duration-300" :class="chevronClasses" x-show="!isLoading">
+          <div class="transform duration-300 transition" x-bind:class="isFilterActive(identifier) ? 'rotate-180' :''">
+            <svg
+              class="shrink-0 max-w-full size-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </span>
+      </div>
 
+      <div
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 h-0"
+        x-transition:enter-end="opacity-100 h-auto"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 h-auto"
+        x-transition:leave-end="opacity-0 h-0"
+        class="absolute ease-out transform-gpu shadow-lg z-30 cursor-pointer bg-white w-full max-w-screen left-0 right-0"
+        x-bind:style="{ top: $anchor.y+'px' }"
+        x-bind:aria-labelledby="identifier"
+        x-bind:aria-expanded="isFilterActive(identifier)"
+        x-bind:aria-controls="identifier"
+        x-bind:aria-hidden="!isFilterActive(identifier)"
+        x-bind:aria-describedby="identifier"
+        x-trap="isFilterActive(identifier)"
+        @keydown.esc="resetFilter()"
+        x-anchor.no-style="$refs.filter"
+        x-show="isFilterActive(identifier)"
+      >
+        <button @click="resetFilter()" class="sr-only">Filter-Kategorie {{ label }} schließen</button>
+        {{ tags }}
+      </div>
+    </div>
+  </div>
+</div>

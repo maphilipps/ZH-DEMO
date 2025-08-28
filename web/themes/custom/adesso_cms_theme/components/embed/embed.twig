@@ -1,21 +1,9 @@
 <div class="py-4 px-4 mx-auto container lg:py-16 border bg-card text-card-foreground border-none shadow-none">
-
-  {% if pre_headline or title %}
-    {% include 'adesso_cms_theme:section-header' with {
-      title: title,
-      pre_headline: pre_headline,
-      alignment: 'center',
-      title_tag: 'h2',
-      pre_headline_tag: 'span',
-      title_visual_level: '2',
-      pre_headline_visual_level: '3',
-      additional_classes: 'mb-6 md:mb-8'
-    } %}
-  {% endif %}
+  {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
+  pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag: 'span', title_visual_level: '2',
+  pre_headline_visual_level: '3', additional_classes: 'mb-6 md:mb-8' } %} {% endif %}
 
   <div>
-    <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">
-      {{ embed }}
-    </div>
+    <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">{{ embed }}</div>
   </div>
 </div>

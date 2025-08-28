@@ -8,7 +8,8 @@ const meta = {
   argTypes: {
     items: {
       name: 'Items',
-      description: 'Array of carousel items with media, title, summary, and optional link properties',
+      description:
+        'Array of carousel items with media, title, summary, and optional link properties',
       control: { type: 'object' },
       table: {
         type: { summary: 'array' },
@@ -18,15 +19,16 @@ const meta = {
     },
     cards_per_view: {
       name: 'Cards Per View',
-      description: 'Number of cards visible simultaneously (responsive breakpoints applied automatically)',
-      control: { 
+      description:
+        'Number of cards visible simultaneously (responsive breakpoints applied automatically)',
+      control: {
         type: 'select',
         labels: {
-          '1': '1 Card (Hero Style)',
-          '2': '2 Cards (Dual Layout)',
-          '3': '3 Cards (Standard)',
-          '4': '4 Cards (Wide Grid)'
-        }
+          1: '1 Card (Hero Style)',
+          2: '2 Cards (Dual Layout)',
+          3: '3 Cards (Standard)',
+          4: '4 Cards (Wide Grid)',
+        },
       },
       options: ['1', '2', '3', '4'],
       table: {
@@ -37,7 +39,8 @@ const meta = {
     },
     autoplay: {
       name: 'Autoplay',
-      description: 'Enable automatic slide progression with configurable timing',
+      description:
+        'Enable automatic slide progression with configurable timing',
       control: { type: 'boolean' },
       table: {
         type: { summary: 'boolean' },
@@ -48,11 +51,11 @@ const meta = {
     interval: {
       name: 'Autoplay Interval',
       description: 'Time between automatic slide transitions (milliseconds)',
-      control: { 
+      control: {
         type: 'range',
         min: 1000,
         max: 15000,
-        step: 500
+        step: 500,
       },
       if: { arg: 'autoplay', eq: true },
       table: {
@@ -63,7 +66,8 @@ const meta = {
     },
     pause_on_hover: {
       name: 'Pause on Hover',
-      description: 'Pause autoplay when user hovers over the carousel (improves usability)',
+      description:
+        'Pause autoplay when user hovers over the carousel (improves usability)',
       control: { type: 'boolean' },
       if: { arg: 'autoplay', eq: true },
       table: {
@@ -196,8 +200,8 @@ The carousel automatically adjusts based on screen size:
 - **Screen Reader Support**: Live region announcements for slide changes
 - **Focus Management**: Autoplay pauses during keyboard interaction
 - **High Contrast**: Proper color contrast for navigation elements
-        `
-      }
+        `,
+      },
     },
     layout: 'fullscreen',
   },
@@ -209,70 +213,90 @@ export default meta;
 const sampleItems = {
   standard: [
     {
-      media: '<img src="https://picsum.photos/800/600?random=1" alt="Modern workspace" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/800/600?random=1" alt="Modern workspace" class="w-full h-full object-cover" />',
       title: 'Modern Workspace Solutions',
-      summary: 'Transform your office environment with cutting-edge technology and design principles.',
-      link: { url: '/workspace', title: 'Explore Solutions' }
+      summary:
+        'Transform your office environment with cutting-edge technology and design principles.',
+      link: { url: '/workspace', title: 'Explore Solutions' },
     },
     {
-      media: '<img src="https://picsum.photos/800/600?random=2" alt="Team collaboration" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/800/600?random=2" alt="Team collaboration" class="w-full h-full object-cover" />',
       title: 'Enhanced Team Collaboration',
-      summary: 'Streamline communication and boost productivity with integrated collaboration tools.',
-      link: { url: '/collaboration', title: 'Learn More' }
+      summary:
+        'Streamline communication and boost productivity with integrated collaboration tools.',
+      link: { url: '/collaboration', title: 'Learn More' },
     },
     {
-      media: '<img src="https://picsum.photos/800/600?random=3" alt="Innovation" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/800/600?random=3" alt="Innovation" class="w-full h-full object-cover" />',
       title: 'Innovation at Scale',
-      summary: 'Drive growth and innovation across your organization with scalable solutions.',
-      link: { url: '/innovation', title: 'Get Started' }
+      summary:
+        'Drive growth and innovation across your organization with scalable solutions.',
+      link: { url: '/innovation', title: 'Get Started' },
     },
     {
-      media: '<img src="https://picsum.photos/800/600?random=4" alt="Security" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/800/600?random=4" alt="Security" class="w-full h-full object-cover" />',
       title: 'Enterprise Security',
-      summary: 'Protect your business with industry-leading security frameworks and protocols.',
-      link: { url: '/security', title: 'View Details' }
+      summary:
+        'Protect your business with industry-leading security frameworks and protocols.',
+      link: { url: '/security', title: 'View Details' },
     },
     {
-      media: '<img src="https://picsum.photos/800/600?random=5" alt="Analytics" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/800/600?random=5" alt="Analytics" class="w-full h-full object-cover" />',
       title: 'Advanced Analytics',
-      summary: 'Make data-driven decisions with comprehensive analytics and reporting tools.',
-      link: { url: '/analytics', title: 'Discover More' }
-    }
+      summary:
+        'Make data-driven decisions with comprehensive analytics and reporting tools.',
+      link: { url: '/analytics', title: 'Discover More' },
+    },
   ],
   testimonials: [
     {
-      media: '<div class="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center"><div class="w-20 h-20 bg-blue-200 rounded-full flex items-center justify-center text-blue-600 font-bold text-2xl">JS</div></div>',
+      media:
+        '<div class="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center"><div class="w-20 h-20 bg-blue-200 rounded-full flex items-center justify-center text-blue-600 font-bold text-2xl">JS</div></div>',
       title: 'John Smith, CEO',
-      summary: '"This platform has revolutionized how we operate. The ROI was evident within the first quarter."',
-      link: { url: '/case-studies/techcorp', title: 'Read Case Study' }
+      summary:
+        '"This platform has revolutionized how we operate. The ROI was evident within the first quarter."',
+      link: { url: '/case-studies/techcorp', title: 'Read Case Study' },
     },
     {
-      media: '<div class="w-full h-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center"><div class="w-20 h-20 bg-green-200 rounded-full flex items-center justify-center text-green-600 font-bold text-2xl">AM</div></div>',
+      media:
+        '<div class="w-full h-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center"><div class="w-20 h-20 bg-green-200 rounded-full flex items-center justify-center text-green-600 font-bold text-2xl">AM</div></div>',
       title: 'Alice Martinez, CTO',
-      summary: '"Outstanding technical support and robust feature set. Our development team loves the flexibility."',
-      link: { url: '/case-studies/innovate-inc', title: 'View Story' }
+      summary:
+        '"Outstanding technical support and robust feature set. Our development team loves the flexibility."',
+      link: { url: '/case-studies/innovate-inc', title: 'View Story' },
     },
     {
-      media: '<div class="w-full h-full bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center"><div class="w-20 h-20 bg-purple-200 rounded-full flex items-center justify-center text-purple-600 font-bold text-2xl">RW</div></div>',
+      media:
+        '<div class="w-full h-full bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center"><div class="w-20 h-20 bg-purple-200 rounded-full flex items-center justify-center text-purple-600 font-bold text-2xl">RW</div></div>',
       title: 'Robert Wilson, Director',
-      summary: '"Seamless integration and exceptional performance. Exactly what we needed for our digital transformation."',
-      link: { url: '/case-studies/global-solutions', title: 'Learn More' }
-    }
+      summary:
+        '"Seamless integration and exceptional performance. Exactly what we needed for our digital transformation."',
+      link: { url: '/case-studies/global-solutions', title: 'Learn More' },
+    },
   ],
   hero: [
     {
-      media: '<img src="https://picsum.photos/1400/700?random=10" alt="Hero slide 1" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/1400/700?random=10" alt="Hero slide 1" class="w-full h-full object-cover" />',
       title: 'Transform Your Business Today',
-      summary: 'Leverage cutting-edge technology and strategic insights to drive unprecedented growth and innovation in your industry.',
-      link: { url: '/solutions', title: 'Explore Solutions' }
+      summary:
+        'Leverage cutting-edge technology and strategic insights to drive unprecedented growth and innovation in your industry.',
+      link: { url: '/solutions', title: 'Explore Solutions' },
     },
     {
-      media: '<img src="https://picsum.photos/1400/700?random=11" alt="Hero slide 2" class="w-full h-full object-cover" />',
+      media:
+        '<img src="https://picsum.photos/1400/700?random=11" alt="Hero slide 2" class="w-full h-full object-cover" />',
       title: 'Expert Consultation & Support',
-      summary: 'Connect with industry leaders and technical experts who understand your challenges and can guide your success journey.',
-      link: { url: '/consultation', title: 'Book Consultation' }
-    }
-  ]
+      summary:
+        'Connect with industry leaders and technical experts who understand your challenges and can guide your success journey.',
+      link: { url: '/consultation', title: 'Book Consultation' },
+    },
+  ],
 };
 
 // Default story showcasing standard 3-card layout
@@ -280,9 +304,10 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: 'Standard three-card carousel layout with navigation controls and hover effects. This is the most common implementation for showcasing multiple content items.'
-      }
-    }
+        story:
+          'Standard three-card carousel layout with navigation controls and hover effects. This is the most common implementation for showcasing multiple content items.',
+      },
+    },
   },
   args: {
     items: sampleItems.standard.slice(0, 3),
@@ -300,9 +325,10 @@ export const HeroCarousel = {
   parameters: {
     docs: {
       description: {
-        story: 'Full-width hero carousel perfect for homepage banners and featured content. Uses single card view with autoplay for maximum visual impact.'
-      }
-    }
+        story:
+          'Full-width hero carousel perfect for homepage banners and featured content. Uses single card view with autoplay for maximum visual impact.',
+      },
+    },
   },
   args: {
     items: sampleItems.hero,
@@ -320,9 +346,10 @@ export const TestimonialsCarousel = {
   parameters: {
     docs: {
       description: {
-        story: 'Customer testimonials displayed in a three-card layout with custom avatar graphics. Ideal for building trust and social proof.'
-      }
-    }
+        story:
+          'Customer testimonials displayed in a three-card layout with custom avatar graphics. Ideal for building trust and social proof.',
+      },
+    },
   },
   args: {
     items: sampleItems.testimonials,
@@ -340,9 +367,10 @@ export const DualLayout = {
   parameters: {
     docs: {
       description: {
-        story: 'Two-card layout perfect for comparing products, services, or highlighting key features side by side.'
-      }
-    }
+        story:
+          'Two-card layout perfect for comparing products, services, or highlighting key features side by side.',
+      },
+    },
   },
   args: {
     items: sampleItems.standard.slice(0, 4),
@@ -360,9 +388,10 @@ export const QuadLayout = {
   parameters: {
     docs: {
       description: {
-        story: 'Four-card layout optimal for product showcases or service listings on wide screens. Automatically adapts to fewer cards on smaller devices.'
-      }
-    }
+        story:
+          'Four-card layout optimal for product showcases or service listings on wide screens. Automatically adapts to fewer cards on smaller devices.',
+      },
+    },
   },
   args: {
     items: sampleItems.standard,
@@ -380,9 +409,10 @@ export const AutoplayVariants = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates autoplay functionality with custom timing. Notice how the carousel automatically advances and pauses on hover for better usability.'
-      }
-    }
+        story:
+          'Demonstrates autoplay functionality with custom timing. Notice how the carousel automatically advances and pauses on hover for better usability.',
+      },
+    },
   },
   args: {
     items: sampleItems.standard.slice(0, 3),
@@ -412,30 +442,36 @@ This carousel includes comprehensive accessibility support:
 - **Semantic Structure**: Proper heading hierarchy and role attributes
 
 Try navigating with Tab, Space, Enter, and arrow keys to experience the full accessibility features.
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   args: {
     items: [
       {
-        media: '<div class="w-full h-full bg-blue-100 flex items-center justify-center text-blue-800 font-bold text-lg">Slide 1</div>',
+        media:
+          '<div class="w-full h-full bg-blue-100 flex items-center justify-center text-blue-800 font-bold text-lg">Slide 1</div>',
         title: 'Accessibility First',
-        summary: 'Full keyboard navigation with arrow keys, Home, and End key support.',
-        link: { url: '#accessibility', title: 'Learn About Accessibility' }
+        summary:
+          'Full keyboard navigation with arrow keys, Home, and End key support.',
+        link: { url: '#accessibility', title: 'Learn About Accessibility' },
       },
       {
-        media: '<div class="w-full h-full bg-green-100 flex items-center justify-center text-green-800 font-bold text-lg">Slide 2</div>',
+        media:
+          '<div class="w-full h-full bg-green-100 flex items-center justify-center text-green-800 font-bold text-lg">Slide 2</div>',
         title: 'Screen Reader Ready',
-        summary: 'ARIA live regions announce slide changes to assistive technologies.',
-        link: { url: '#screen-reader', title: 'Screen Reader Info' }
+        summary:
+          'ARIA live regions announce slide changes to assistive technologies.',
+        link: { url: '#screen-reader', title: 'Screen Reader Info' },
       },
       {
-        media: '<div class="w-full h-full bg-purple-100 flex items-center justify-center text-purple-800 font-bold text-lg">Slide 3</div>',
+        media:
+          '<div class="w-full h-full bg-purple-100 flex items-center justify-center text-purple-800 font-bold text-lg">Slide 3</div>',
         title: 'Focus Management',
-        summary: 'Autoplay automatically pauses when users focus on interactive elements.',
-        link: { url: '#focus-management', title: 'Focus Guidelines' }
-      }
+        summary:
+          'Autoplay automatically pauses when users focus on interactive elements.',
+        link: { url: '#focus-management', title: 'Focus Guidelines' },
+      },
     ],
     cards_per_view: '3',
     autoplay: true,
@@ -462,9 +498,9 @@ The carousel automatically adjusts based on screen size:
 - **Large screens (1024px+)**: Full cards_per_view with optimized spacing
 
 Try resizing your browser window to see the responsive behavior in action.
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   args: {
     items: sampleItems.standard,
@@ -482,27 +518,34 @@ export const ContentWithoutLinks = {
   parameters: {
     docs: {
       description: {
-        story: 'Carousel items can work without call-to-action links, perfect for image galleries or informational content display.'
-      }
-    }
+        story:
+          'Carousel items can work without call-to-action links, perfect for image galleries or informational content display.',
+      },
+    },
   },
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/800/600?random=20" alt="Gallery image 1" class="w-full h-full object-cover" />',
+        media:
+          '<img src="https://picsum.photos/800/600?random=20" alt="Gallery image 1" class="w-full h-full object-cover" />',
         title: 'Mountain Landscape',
-        summary: 'Breathtaking views from the summit of Mount Everest during golden hour.',
+        summary:
+          'Breathtaking views from the summit of Mount Everest during golden hour.',
       },
       {
-        media: '<img src="https://picsum.photos/800/600?random=21" alt="Gallery image 2" class="w-full h-full object-cover" />',
+        media:
+          '<img src="https://picsum.photos/800/600?random=21" alt="Gallery image 2" class="w-full h-full object-cover" />',
         title: 'Ocean Waves',
-        summary: 'Powerful waves crashing against the rocky coastline at sunset.',
+        summary:
+          'Powerful waves crashing against the rocky coastline at sunset.',
       },
       {
-        media: '<img src="https://picsum.photos/800/600?random=22" alt="Gallery image 3" class="w-full h-full object-cover" />',
+        media:
+          '<img src="https://picsum.photos/800/600?random=22" alt="Gallery image 3" class="w-full h-full object-cover" />',
         title: 'Forest Path',
-        summary: 'A winding trail through ancient redwood trees in northern California.',
-      }
+        summary:
+          'A winding trail through ancient redwood trees in northern California.',
+      },
     ],
     cards_per_view: '3',
     autoplay: true,
@@ -518,9 +561,10 @@ export const EmptyState = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates the fallback behavior when no carousel items are provided. Shows a user-friendly empty state message.'
-      }
-    }
+        story:
+          'Demonstrates the fallback behavior when no carousel items are provided. Shows a user-friendly empty state message.',
+      },
+    },
   },
   args: {
     items: [],
@@ -538,9 +582,10 @@ export const Playground = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive playground for testing all carousel properties. Modify the controls to experiment with different configurations and see real-time results.'
-      }
-    }
+        story:
+          'Interactive playground for testing all carousel properties. Modify the controls to experiment with different configurations and see real-time results.',
+      },
+    },
   },
   args: {
     items: sampleItems.standard.slice(0, 3),

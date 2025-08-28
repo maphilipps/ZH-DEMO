@@ -1,39 +1,19 @@
 {# pricing.twig #}
 <div class="py-8 px-4 mx-auto container lg:py-16">
   <div class="mx-auto max-w-lg text-center mb-8">
-    {% if pre_headline or title %}
-      {% include 'adesso_cms_theme:section-header' with {
-        title: title,
-        pre_headline: pre_headline,
-        alignment: 'center',
-        title_tag: 'h2',
-        pre_headline_tag: 'h3',
-        title_visual_level: '2',
-        pre_headline_visual_level: '3',
-        additional_classes: 'mb-4'
-      } %}
-    {% endif %}
-    {% if summary %}
-      <div class="text-gray-600">{{ summary|render }}</div>
+    {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
+    pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag: 'h3', title_visual_level: '2',
+    pre_headline_visual_level: '3', additional_classes: 'mb-4' } %} {% endif %} {% if summary %}
+    <div class="text-gray-600">{{ summary|render }}</div>
     {% endif %}
   </div>
-  {% set cols = grid_columns|default('3') %}
-  {% if cols not in ['0', '2', '3'] or cols is null %}
-    {% set cols = '3' %}
+  {% set cols = grid_columns|default('3') %} {% if cols not in ['0', '2', '3'] or cols is null %} {% set cols = '3' %}
   {% endif %}
-  <div class="grid grid-cols-1 gap-6 sm:gap-8 {{ cols == '2' ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3' }}">
-    {% block pricing_cards %}
-      {% for card in cards %}
-        {% include 'adesso_cms_theme:pricing-card' with {
-          pre_headline: card.eyebrow,
-          title: card.title,
-          monthly_label: card.monthly_label,
-          features: card.features,
-          cta_text: card.cta_text,
-          cta_link: card.cta_link,
-          includes_label: card.includes_label,
-        } %}
-      {% endfor %}
-    {% endblock %}
+  <div
+    class="grid grid-cols-1 gap-6 sm:gap-8 {{ cols == '2' ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-3' }}"
+  >
+    {% block pricing_cards %} {% for card in cards %} {% include 'adesso_cms_theme:pricing-card' with { pre_headline:
+    card.eyebrow, title: card.title, monthly_label: card.monthly_label, features: card.features, cta_text:
+    card.cta_text, cta_link: card.cta_link, includes_label: card.includes_label, } %} {% endfor %} {% endblock %}
   </div>
 </div>

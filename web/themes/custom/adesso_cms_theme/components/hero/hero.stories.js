@@ -55,7 +55,12 @@ const meta = {
       name: 'Hero Layout',
       description: 'Layout variant for the Hero component',
       control: { type: 'select' },
-      options: ['image_top', 'image_bottom', 'image_bottom_split', 'video_background'],
+      options: [
+        'image_top',
+        'image_bottom',
+        'image_bottom_split',
+        'video_background',
+      ],
       table: {
         type: { summary: 'enum' },
         defaultValue: { summary: 'image_top' },
@@ -120,9 +125,9 @@ Hero component for creating impactful page headers with flexible layouts and med
   }
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -135,7 +140,8 @@ export const Default = {
   },
   args: {
     modifier: '',
-    media: '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
+    media:
+      '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
     heading: 'Welcome to Our Platform',
     text: '<p>Discover innovative solutions for your business needs.</p>',
     pre_headline: 'Innovation',
@@ -229,7 +235,8 @@ export const ImageBottom = {
 export const VideoBackground = {
   args: {
     ...Default.args,
-    media: '<div class="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600"></div>',
+    media:
+      '<div class="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600"></div>',
     heading: 'Immersive Experience',
     text: '<p>Create cinematic impact with video backgrounds.</p>',
     hero_layout: 'video_background',
@@ -289,7 +296,8 @@ export const WithIcons = {
 export const Playground = {
   args: {
     modifier: '',
-    media: '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
+    media:
+      '<img src="https://picsum.photos/1536/864?random=1" alt="Hero image" class="w-full h-full object-cover">',
     heading: 'Your Hero Headline',
     text: '<p>Your description text goes here.</p>',
     pre_headline: 'Pre-headline',

@@ -166,9 +166,9 @@ Flexible text block component for editorial content with support for headings, b
 - **left**: Left-aligned content (default)
 - **centered**: Center-aligned content
 - **buttons-right**: Right-aligned buttons with left-aligned text
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -236,7 +236,7 @@ export const HeadingObject = {
       url: '/case-studies',
       icon: 'star',
     },
-    body: '<p>Read how companies like yours have achieved remarkable results using our platform. From 50% time savings to 300% productivity increases, discover what\'s possible.</p>',
+    body: "<p>Read how companies like yours have achieved remarkable results using our platform. From 50% time savings to 300% productivity increases, discover what's possible.</p>",
     link: {
       url: '/case-studies',
       title: 'Read More Stories',
@@ -251,7 +251,7 @@ export const LegacyEyebrow = {
   args: {
     eyebrow: 'Coming Soon',
     title: 'AI-Powered Automation',
-    body: '<p>We\'re working on intelligent automation features that will revolutionize how you handle repetitive tasks. Stay tuned for exciting announcements.</p>',
+    body: "<p>We're working on intelligent automation features that will revolutionize how you handle repetitive tasks. Stay tuned for exciting announcements.</p>",
     link: {
       url: '/newsletter',
       title: 'Get Updates',
@@ -266,7 +266,7 @@ export const FeatureAnnouncement = {
   args: {
     pre_headline: 'Product Update',
     title: 'Enhanced Security Features',
-    body: '<p>Your data security is our top priority. We\'ve implemented advanced encryption, multi-factor authentication, and real-time threat monitoring to keep your information safe.</p><ul><li>End-to-end encryption</li><li>Multi-factor authentication</li><li>Real-time monitoring</li><li>Compliance certifications</li></ul>',
+    body: "<p>Your data security is our top priority. We've implemented advanced encryption, multi-factor authentication, and real-time threat monitoring to keep your information safe.</p><ul><li>End-to-end encryption</li><li>Multi-factor authentication</li><li>Real-time monitoring</li><li>Compliance certifications</li></ul>",
     link: {
       url: '/security',
       title: 'Learn About Security',
@@ -281,7 +281,7 @@ export const FeatureAnnouncement = {
 export const CallToAction = {
   args: {
     title: 'Transform Your Workflow Today',
-    body: '<p>Don\'t let inefficient processes hold you back. Our platform is designed to streamline operations, reduce manual work, and help your team focus on what matters most.</p>',
+    body: "<p>Don't let inefficient processes hold you back. Our platform is designed to streamline operations, reduce manual work, and help your team focus on what matters most.</p>",
     link: {
       url: '/signup',
       title: 'Start Your Journey',
@@ -302,7 +302,8 @@ export const LayoutLeft = {
   parameters: {
     docs: {
       description: {
-        story: 'Left-aligned layout (default) - standard left-aligned content presentation.',
+        story:
+          'Left-aligned layout (default) - standard left-aligned content presentation.',
       },
     },
   },
@@ -336,7 +337,8 @@ export const LayoutButtonsRight = {
   parameters: {
     docs: {
       description: {
-        story: 'Buttons right layout - right-aligned action buttons with left-aligned text.',
+        story:
+          'Buttons right layout - right-aligned action buttons with left-aligned text.',
       },
     },
   },

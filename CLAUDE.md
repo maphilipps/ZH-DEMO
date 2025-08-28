@@ -831,3 +831,4 @@ card.component.yml:
 **Application**: All architectural refactoring projects need problem-focused migration guides
 
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
+- Every Frontend-Task has to been reviewed and confirmed with the help of Puppeteer MCP or Playwright MCP.

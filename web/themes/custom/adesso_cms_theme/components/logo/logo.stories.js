@@ -57,9 +57,9 @@ Site logo component with customizable sizing and styling options.
   modifier: 'h-10 hover:opacity-80 transition-opacity'
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };

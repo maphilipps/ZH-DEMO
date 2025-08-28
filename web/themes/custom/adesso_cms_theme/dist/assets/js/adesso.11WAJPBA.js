@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
       if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
         mutation.addedNodes.forEach(function(node) {
           if (node.nodeType === 1) {
-            const dropdownTriggers = node.querySelectorAll("[data-dropdown-toggle]");
+            const dropdownTriggers = node.querySelectorAll(
+              "[data-dropdown-toggle]"
+            );
             if (dropdownTriggers.length > 0) {
               initDropdowns();
             }

@@ -1,7 +1,7 @@
 /**
  * Municipal Search Results Enhancement
  * GPZH Gemeinde Bruchtal - Enhanced UX behaviors for search results
- * 
+ *
  * Features:
  * - Progressive enhancement for search result interactions
  * - Accessibility improvements
@@ -18,11 +18,15 @@
   Drupal.behaviors.municipalSearchResults = {
     attach: function (context, settings) {
       // Initialize search results enhancements
-      const searchResults = once('municipal-search-results', '.search-results', context);
+      const searchResults = once(
+        'municipal-search-results',
+        '.search-results',
+        context
+      );
       searchResults.forEach(function (resultsContainer) {
         new MunicipalSearchResults(resultsContainer);
       });
-    }
+    },
   };
 
   /**
@@ -64,7 +68,7 @@
         // Enhanced click handling for analytics
         const resultLink = card.querySelector('.result-link');
         if (resultLink) {
-          resultLink.addEventListener('click', (e) => {
+          resultLink.addEventListener('click', e => {
             this.trackResultClick(e, card, index);
           });
         }
@@ -72,7 +76,7 @@
         // Tag interaction enhancement
         const tags = card.querySelectorAll('.tag[href]');
         tags.forEach(tag => {
-          tag.addEventListener('click', (e) => {
+          tag.addEventListener('click', e => {
             this.trackTagClick(e, tag);
           });
         });
@@ -87,12 +91,15 @@
       if (scoreValue) {
         const score = parseFloat(scoreValue.textContent) || 0;
         const percentage = Math.min(100, Math.max(0, score * 100));
-        
+
         // Set CSS custom property for progress bar
         scoreElement.style.setProperty('--score-percentage', `${percentage}%`);
-        
+
         // Add ARIA attributes for screen readers
-        scoreElement.setAttribute('aria-label', `Relevance score: ${score.toFixed(2)} out of 1.0`);
+        scoreElement.setAttribute(
+          'aria-label',
+          `Relevance score: ${score.toFixed(2)} out of 1.0`
+        );
         scoreElement.setAttribute('role', 'progressbar');
         scoreElement.setAttribute('aria-valuenow', score);
         scoreElement.setAttribute('aria-valuemin', '0');
@@ -105,7 +112,9 @@
      */
     setupAccessibilityEnhancements() {
       // Announce total results count for screen readers
-      const resultsCount = this.container.querySelectorAll('.search-result-card').length;
+      const resultsCount = this.container.querySelectorAll(
+        '.search-result-card'
+      ).length;
       const liveRegion = document.createElement('div');
       liveRegion.setAttribute('aria-live', 'polite');
       liveRegion.setAttribute('aria-atomic', 'true');
@@ -129,7 +138,7 @@
       this.resultCards.forEach((card, index) => {
         const resultLink = card.querySelector('.result-link');
         if (resultLink) {
-          resultLink.addEventListener('keydown', (e) => {
+          resultLink.addEventListener('keydown', e => {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
               e.preventDefault();
               const nextIndex = e.key === 'ArrowDown' ? index + 1 : index - 1;
@@ -181,20 +190,23 @@
      * Lazy loading for images
      */
     setupLazyLoading(images) {
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-            img.classList.add('fade-in');
-            observer.unobserve(img);
-          }
-        });
-      }, {
-        rootMargin: '50px 0px',
-        threshold: 0.1
-      });
+      const imageObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              img.classList.add('fade-in');
+              observer.unobserve(img);
+            }
+          });
+        },
+        {
+          rootMargin: '50px 0px',
+          threshold: 0.1,
+        }
+      );
 
       images.forEach(img => imageObserver.observe(img));
     }
@@ -206,20 +218,26 @@
       if (this.resultCards.length <= 50) return; // Only for large sets
 
       // Implement basic virtual scrolling to improve performance
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const card = entry.target;
-          if (entry.isIntersecting) {
-            card.style.visibility = 'visible';
-          } else if (entry.boundingClientRect.bottom < 0 || entry.boundingClientRect.top > window.innerHeight + 100) {
-            // Hide cards that are far from viewport to improve performance
-            card.style.visibility = 'hidden';
-          }
-        });
-      }, {
-        rootMargin: '200px 0px',
-        threshold: 0
-      });
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            const card = entry.target;
+            if (entry.isIntersecting) {
+              card.style.visibility = 'visible';
+            } else if (
+              entry.boundingClientRect.bottom < 0 ||
+              entry.boundingClientRect.top > window.innerHeight + 100
+            ) {
+              // Hide cards that are far from viewport to improve performance
+              card.style.visibility = 'hidden';
+            }
+          });
+        },
+        {
+          rootMargin: '200px 0px',
+          threshold: 0,
+        }
+      );
 
       this.resultCards.forEach(card => observer.observe(card));
     }
@@ -231,7 +249,7 @@
       // Track search results view
       this.trackEvent('search_results_viewed', {
         results_count: this.resultCards.length,
-        search_query: this.getSearchQuery()
+        search_query: this.getSearchQuery(),
       });
     }
 
@@ -240,13 +258,15 @@
      */
     trackCardInteraction(action, card, index) {
       const title = card.querySelector('.result-title')?.textContent?.trim();
-      const contentType = card.querySelector('.content-type-badge')?.textContent?.trim();
-      
+      const contentType = card
+        .querySelector('.content-type-badge')
+        ?.textContent?.trim();
+
       this.trackEvent('search_result_interaction', {
         action: action,
         position: index + 1,
         title: title,
-        content_type: contentType
+        content_type: contentType,
       });
     }
 
@@ -256,13 +276,15 @@
     trackResultClick(event, card, index) {
       const title = card.querySelector('.result-title')?.textContent?.trim();
       const url = event.target.href;
-      const contentType = card.querySelector('.content-type-badge')?.textContent?.trim();
-      
+      const contentType = card
+        .querySelector('.content-type-badge')
+        ?.textContent?.trim();
+
       this.trackEvent('search_result_clicked', {
         position: index + 1,
         title: title,
         url: url,
-        content_type: contentType
+        content_type: contentType,
       });
     }
 
@@ -271,13 +293,16 @@
      */
     trackTagClick(event, tag) {
       const tagText = tag.textContent?.trim();
-      const tagType = tag.classList.contains('tag--category') ? 'category' : 
-                     tag.classList.contains('tag--target-group') ? 'target-group' : 'other';
-      
+      const tagType = tag.classList.contains('tag--category')
+        ? 'category'
+        : tag.classList.contains('tag--target-group')
+          ? 'target-group'
+          : 'other';
+
       this.trackEvent('search_tag_clicked', {
         tag_text: tagText,
         tag_type: tagType,
-        tag_url: event.target.href
+        tag_url: event.target.href,
       });
     }
 
@@ -289,12 +314,15 @@
       if (typeof gtag !== 'undefined') {
         gtag('event', eventName, properties);
       }
-      
+
       // Also support custom Drupal analytics
-      if (Drupal.behaviors.analytics && typeof Drupal.behaviors.analytics.track === 'function') {
+      if (
+        Drupal.behaviors.analytics &&
+        typeof Drupal.behaviors.analytics.track === 'function'
+      ) {
         Drupal.behaviors.analytics.track(eventName, properties);
       }
-      
+
       // Console log for development
       if (drupalSettings.municipalSearch?.debug) {
         console.log('Municipal Search Event:', eventName, properties);
@@ -307,13 +335,14 @@
     announceResults() {
       const count = this.resultCards.length;
       const liveRegion = this.container.querySelector('.search-status-live');
-      
+
       if (liveRegion) {
         // Delay announcement to ensure proper screen reader handling
         setTimeout(() => {
-          liveRegion.textContent = count === 0 
-            ? 'No search results found'
-            : `${count} search result${count !== 1 ? 's' : ''} found`;
+          liveRegion.textContent =
+            count === 0
+              ? 'No search results found'
+              : `${count} search result${count !== 1 ? 's' : ''} found`;
         }, 100);
       }
     }
@@ -332,20 +361,22 @@
     updateResults(newResults) {
       // Clear existing results
       this.resultCards.forEach(card => card.remove());
-      
+
       // Add new results
       if (newResults && newResults.length > 0) {
         newResults.forEach(result => {
           this.container.appendChild(result);
         });
-        
+
         // Reinitialize with new cards
-        this.resultCards = this.container.querySelectorAll('.search-result-card');
+        this.resultCards = this.container.querySelectorAll(
+          '.search-result-card'
+        );
         this.init();
       } else {
         this.showEmptyState();
       }
-      
+
       // Announce update
       this.announceResults();
     }
@@ -391,41 +422,43 @@
     /**
      * Highlight search terms in results
      */
-    highlightTerms: function(content, terms) {
+    highlightTerms: function (content, terms) {
       if (!terms || terms.length === 0) return content;
-      
+
       let highlightedContent = content;
       terms.forEach(term => {
         const regex = new RegExp(`(${term})`, 'gi');
-        highlightedContent = highlightedContent.replace(regex, '<mark>$1</mark>');
+        highlightedContent = highlightedContent.replace(
+          regex,
+          '<mark>$1</mark>'
+        );
       });
-      
+
       return highlightedContent;
     },
 
     /**
      * Format relevance score
      */
-    formatRelevanceScore: function(score) {
+    formatRelevanceScore: function (score) {
       return (parseFloat(score) || 0).toFixed(2);
     },
 
     /**
      * Get readable content type label
      */
-    getContentTypeLabel: function(contentType) {
+    getContentTypeLabel: function (contentType) {
       const labels = {
-        'club': 'Verein',
-        'business': 'Firma',
-        'restaurant': 'Gastgewerbe',
-        'event': 'Veranstaltung',
-        'news': 'Nachrichten',
-        'service': 'Dienstleistung',
-        'infrastructure': 'Infrastruktur'
+        club: 'Verein',
+        business: 'Firma',
+        restaurant: 'Gastgewerbe',
+        event: 'Veranstaltung',
+        news: 'Nachrichten',
+        service: 'Dienstleistung',
+        infrastructure: 'Infrastruktur',
       };
-      
-      return labels[contentType] || contentType;
-    }
-  };
 
+      return labels[contentType] || contentType;
+    },
+  };
 })(Drupal, drupalSettings, once);

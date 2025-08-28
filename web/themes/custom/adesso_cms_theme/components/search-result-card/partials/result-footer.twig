@@ -1,30 +1,22 @@
-{#
-/**
- * @file
- * Search result card footer with actions and verification
- * Variables:
- * - url: Result URL
- * - title: Result title
- * - municipal_verified: Boolean for official verification
- */
-#}
+{# /** * @file * Search result card footer with actions and verification * Variables: * - url: Result URL * - title:
+Result title * - municipal_verified: Boolean for official verification */ #}
 
 <footer class="result-actions" role="contentinfo">
   <div class="action-buttons">
-    <a href="{{ url }}" 
-       class="btn btn--primary btn--municipal"
-       aria-label="View full details for {{ title|striptags }}">
+    <a
+      href="{{ url }}"
+      class="btn btn--primary btn--municipal"
+      aria-label="View full details for {{ title|striptags }}"
+    >
       <span class="btn-text">Details anzeigen</span>
       <span class="btn-icon" aria-hidden="true">→</span>
     </a>
   </div>
-  
-  {# Municipal Verification Badge #}
-  {% if municipal_verified %}
-    <div class="municipal-badge verified" 
-         aria-label="Verified by Gemeinde Bruchtal">
-      <span class="badge-icon" aria-hidden="true">✓</span>
-      <span class="badge-text">Gemeinde verifiziert</span>
-    </div>
+
+  {# Municipal Verification Badge #} {% if municipal_verified %}
+  <div class="municipal-badge verified" aria-label="Verified by Gemeinde Bruchtal">
+    <span class="badge-icon" aria-hidden="true">✓</span>
+    <span class="badge-text">Gemeinde verifiziert</span>
+  </div>
   {% endif %}
 </footer>

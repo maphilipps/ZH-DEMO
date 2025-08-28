@@ -101,9 +101,9 @@ Flexible media container component for displaying images, videos, audio files, a
 - **Audio**: MP3, WAV with built-in player controls
 - **Embeds**: YouTube, Vimeo, social media content
 - **Documents**: PDF previews and downloadable files
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -164,7 +164,10 @@ export const Media = {
     layout: 'centered',
   },
   args: {
-    media: createImageHtml('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop', 'Business office workspace'),
+    media: createImageHtml(
+      'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop',
+      'Business office workspace'
+    ),
     modifier: 'w-full max-w-2xl',
   },
 };
@@ -172,7 +175,10 @@ export const Media = {
 export const SquareImage = {
   args: {
     ...Media.args,
-    media: createImageHtml('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=600&fit=crop', 'Modern architecture'),
+    media: createImageHtml(
+      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=600&fit=crop',
+      'Modern architecture'
+    ),
     modifier: 'w-80 aspect-square',
   },
 };
@@ -180,7 +186,11 @@ export const SquareImage = {
 export const CircularImage = {
   args: {
     ...Media.args,
-    media: createImageHtml('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face', 'Professional headshot', 'rounded-full'),
+    media: createImageHtml(
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+      'Professional headshot',
+      'rounded-full'
+    ),
     modifier: 'w-32 h-32',
   },
 };
@@ -188,7 +198,10 @@ export const CircularImage = {
 export const VideoContent = {
   args: {
     ...Media.args,
-    media: createVideoHtml('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'),
+    media: createVideoHtml(
+      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
+    ),
     modifier: 'w-full container aspect-video',
   },
 };
@@ -196,7 +209,10 @@ export const VideoContent = {
 export const AudioContent = {
   args: {
     ...Media.args,
-    media: createAudioHtml('https://www.soundjay.com/misc/sounds/bell-ringing-05.wav', 'Sample Audio Track'),
+    media: createAudioHtml(
+      'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+      'Sample Audio Track'
+    ),
     modifier: 'w-full max-w-lg',
   },
 };
@@ -220,7 +236,8 @@ export const DocumentPreview = {
 export const EmptyState = {
   args: {
     ...Media.args,
-    media: '<div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center"><div class="text-center"><svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><p class="text-gray-500">No media content</p></div></div>',
+    media:
+      '<div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center"><div class="text-center"><svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><p class="text-gray-500">No media content</p></div></div>',
     modifier: 'w-full max-w-lg',
   },
 };
@@ -228,7 +245,10 @@ export const EmptyState = {
 // Playground for testing all properties
 export const Playground = {
   args: {
-    media: createImageHtml('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 'Team collaboration'),
+    media: createImageHtml(
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
+      'Team collaboration'
+    ),
     modifier: 'w-full max-w-xl rounded-lg shadow-lg',
   },
 };

@@ -14,7 +14,7 @@ function renderCarousel(props = {}) {
     interval = '5000',
     pause_on_hover = true,
     class: customClass = '',
-    item_class = ''
+    item_class = '',
   } = props;
 
   if (!items || items.length === 0) {
@@ -22,31 +22,30 @@ function renderCarousel(props = {}) {
   }
 
   // Container classes
-  const containerClasses = [
-    'carousel-wrapper',
-    customClass
-  ].filter(Boolean).join(' ');
+  const containerClasses = ['carousel-wrapper', customClass]
+    .filter(Boolean)
+    .join(' ');
 
   // Generate carousel items HTML
-  const itemsHtml = items.map((item, index) => {
-    const {
-      media = '',
-      title = '',
-      summary = '',
-      link = {}
-    } = item;
+  const itemsHtml = items
+    .map((item, index) => {
+      const { media = '', title = '', summary = '', link = {} } = item;
 
-    const itemClasses = ['carousel-item', 'swiper-slide', item_class].filter(Boolean).join(' ');
-    
-    const linkHtml = link.url && link.title ? 
-      `<a href="${link.url}" class="carousel-item-link inline-flex items-center text-blue-600 hover:text-blue-800 font-medium mt-4">
+      const itemClasses = ['carousel-item', 'swiper-slide', item_class]
+        .filter(Boolean)
+        .join(' ');
+
+      const linkHtml =
+        link.url && link.title
+          ? `<a href="${link.url}" class="carousel-item-link inline-flex items-center text-blue-600 hover:text-blue-800 font-medium mt-4">
         ${link.title}
         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
-      </a>` : '';
+      </a>`
+          : '';
 
-    return `
+      return `
       <div class="${itemClasses}" data-carousel-item data-item-index="${index}">
         <div class="carousel-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
           ${media ? `<div class="carousel-media aspect-video overflow-hidden">${media}</div>` : ''}
@@ -58,14 +57,15 @@ function renderCarousel(props = {}) {
         </div>
       </div>
     `;
-  }).join('');
+    })
+    .join('');
 
   // Swiper configuration attributes
   const swiperConfig = {
     'data-cards-per-view': cards_per_view,
     'data-autoplay': autoplay ? 'true' : 'false',
     'data-interval': interval,
-    'data-pause-on-hover': pause_on_hover ? 'true' : 'false'
+    'data-pause-on-hover': pause_on_hover ? 'true' : 'false',
   };
 
   const swiperAttributes = Object.entries(swiperConfig)
@@ -111,11 +111,20 @@ function initCarouselBehavior(container) {
   const prevButton = container.querySelector('[data-carousel-prev]');
   const nextButton = container.querySelector('[data-carousel-next]');
   const pagination = container.querySelector('[data-carousel-pagination]');
-  
-  const cardsPerView = parseInt(container.querySelector('[data-carousel]').getAttribute('data-cards-per-view') || '3');
-  const isAutoplay = container.querySelector('[data-carousel]').getAttribute('data-autoplay') === 'true';
-  const interval = parseInt(container.querySelector('[data-carousel]').getAttribute('data-interval') || '5000');
-  
+
+  const cardsPerView = parseInt(
+    container
+      .querySelector('[data-carousel]')
+      .getAttribute('data-cards-per-view') || '3'
+  );
+  const isAutoplay =
+    container.querySelector('[data-carousel]').getAttribute('data-autoplay') ===
+    'true';
+  const interval = parseInt(
+    container.querySelector('[data-carousel]').getAttribute('data-interval') ||
+      '5000'
+  );
+
   let currentIndex = 0;
   let autoplayTimer = null;
   let maxIndex = Math.max(0, slides.length - cardsPerView);
@@ -123,15 +132,16 @@ function initCarouselBehavior(container) {
   // Update slide positions
   function updateSlides() {
     slides.forEach((slide, index) => {
-      const isVisible = index >= currentIndex && index < currentIndex + cardsPerView;
+      const isVisible =
+        index >= currentIndex && index < currentIndex + cardsPerView;
       slide.style.display = isVisible ? 'block' : 'none';
       slide.classList.toggle('swiper-slide-active', index === currentIndex);
     });
-    
+
     // Update navigation buttons
     prevButton.disabled = currentIndex === 0;
     nextButton.disabled = currentIndex >= maxIndex;
-    
+
     // Update pagination
     updatePagination();
   }
@@ -139,16 +149,18 @@ function initCarouselBehavior(container) {
   // Update pagination dots
   function updatePagination() {
     if (!pagination) return;
-    
+
     const totalPages = Math.ceil(slides.length / cardsPerView);
     const currentPage = Math.floor(currentIndex / cardsPerView);
-    
-    const dots = Array.from({ length: totalPages }, (_, i) => 
-      `<button class="pagination-dot ${i === currentPage ? 'active' : ''}" data-slide-to="${i * cardsPerView}"></button>`
+
+    const dots = Array.from(
+      { length: totalPages },
+      (_, i) =>
+        `<button class="pagination-dot ${i === currentPage ? 'active' : ''}" data-slide-to="${i * cardsPerView}"></button>`
     ).join('');
-    
+
     pagination.innerHTML = dots;
-    
+
     // Add click handlers to dots
     pagination.querySelectorAll('.pagination-dot').forEach(dot => {
       dot.addEventListener('click', () => {
@@ -162,11 +174,13 @@ function initCarouselBehavior(container) {
   function goToSlide(index) {
     currentIndex = Math.max(0, Math.min(index, maxIndex));
     updateSlides();
-    
+
     // Trigger custom event
-    carousel.dispatchEvent(new CustomEvent('slideChange', {
-      detail: { currentIndex, totalSlides: slides.length }
-    }));
+    carousel.dispatchEvent(
+      new CustomEvent('slideChange', {
+        detail: { currentIndex, totalSlides: slides.length },
+      })
+    );
   }
 
   // Navigation handlers
@@ -181,7 +195,7 @@ function initCarouselBehavior(container) {
   // Autoplay functionality
   function startAutoplay() {
     if (!isAutoplay) return;
-    
+
     autoplayTimer = setInterval(() => {
       if (currentIndex >= maxIndex) {
         goToSlide(0); // Loop back to start
@@ -199,14 +213,17 @@ function initCarouselBehavior(container) {
   }
 
   // Pause on hover
-  const pauseOnHover = container.querySelector('[data-carousel]').getAttribute('data-pause-on-hover') === 'true';
+  const pauseOnHover =
+    container
+      .querySelector('[data-carousel]')
+      .getAttribute('data-pause-on-hover') === 'true';
   if (isAutoplay && pauseOnHover) {
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
   }
 
   // Keyboard navigation
-  carousel.addEventListener('keydown', (e) => {
+  carousel.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
       goToSlide(currentIndex - 1);
@@ -234,7 +251,7 @@ function initCarouselBehavior(container) {
     startAutoplay,
     stopAutoplay,
     getCurrentIndex: () => currentIndex,
-    getTotalSlides: () => slides.length
+    getTotalSlides: () => slides.length,
   };
 }
 
@@ -251,25 +268,27 @@ describe('Carousel Component', () => {
     it('should render with carousel items', () => {
       const items = [
         {
-          media: '<img src="slide1.jpg" alt="Slide 1" class="w-full h-full object-cover">',
+          media:
+            '<img src="slide1.jpg" alt="Slide 1" class="w-full h-full object-cover">',
           title: 'First Slide',
           summary: 'Description of first slide',
-          link: { url: '/slide1', title: 'Learn More' }
+          link: { url: '/slide1', title: 'Learn More' },
         },
         {
-          media: '<img src="slide2.jpg" alt="Slide 2" class="w-full h-full object-cover">',
+          media:
+            '<img src="slide2.jpg" alt="Slide 2" class="w-full h-full object-cover">',
           title: 'Second Slide',
           summary: 'Description of second slide',
-          link: { url: '/slide2', title: 'Read More' }
-        }
+          link: { url: '/slide2', title: 'Read More' },
+        },
       ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       const slides = container.querySelectorAll('[data-carousel-item]');
-      
+
       expect(carousel).toBeInTheDocument();
       expect(slides).toHaveLength(2);
     });
@@ -277,7 +296,7 @@ describe('Carousel Component', () => {
     it('should show empty state when no items provided', () => {
       const carouselHtml = renderCarousel({ items: [] });
       container.innerHTML = carouselHtml;
-      
+
       const emptyState = container.querySelector('.carousel-empty');
       expect(emptyState).toBeInTheDocument();
       expect(emptyState.textContent).toBe('No carousel items to display');
@@ -285,12 +304,12 @@ describe('Carousel Component', () => {
 
     it('should apply custom container classes', () => {
       const items = [{ title: 'Test Slide' }];
-      const carouselHtml = renderCarousel({ 
-        items, 
-        class: 'custom-carousel hero-carousel' 
+      const carouselHtml = renderCarousel({
+        items,
+        class: 'custom-carousel hero-carousel',
       });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('.carousel-wrapper');
       expect(carousel.className).toContain('custom-carousel');
       expect(carousel.className).toContain('hero-carousel');
@@ -298,12 +317,12 @@ describe('Carousel Component', () => {
 
     it('should apply custom item classes', () => {
       const items = [{ title: 'Test Slide' }];
-      const carouselHtml = renderCarousel({ 
-        items, 
-        item_class: 'custom-item testimonial-card' 
+      const carouselHtml = renderCarousel({
+        items,
+        item_class: 'custom-item testimonial-card',
       });
       container.innerHTML = carouselHtml;
-      
+
       const slide = container.querySelector('[data-carousel-item]');
       expect(slide.className).toContain('custom-item');
       expect(slide.className).toContain('testimonial-card');
@@ -312,22 +331,25 @@ describe('Carousel Component', () => {
 
   describe('Carousel Items', () => {
     it('should render item with all content elements', () => {
-      const items = [{
-        media: '<img src="test.jpg" alt="Test image" class="w-full h-full object-cover">',
-        title: 'Test Title',
-        summary: 'Test summary content',
-        link: { url: '/test', title: 'Test Link' }
-      }];
+      const items = [
+        {
+          media:
+            '<img src="test.jpg" alt="Test image" class="w-full h-full object-cover">',
+          title: 'Test Title',
+          summary: 'Test summary content',
+          link: { url: '/test', title: 'Test Link' },
+        },
+      ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const slide = container.querySelector('[data-carousel-item]');
       const media = container.querySelector('.carousel-media');
       const title = container.querySelector('.carousel-title');
       const summary = container.querySelector('.carousel-summary');
       const link = container.querySelector('.carousel-item-link');
-      
+
       expect(slide).toBeInTheDocument();
       expect(media).toBeInTheDocument();
       expect(media.innerHTML).toContain('<img src="test.jpg"');
@@ -345,27 +367,33 @@ describe('Carousel Component', () => {
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const slide = container.querySelector('[data-carousel-item]');
       const title = container.querySelector('.carousel-title');
-      
+
       expect(slide).toBeInTheDocument();
       expect(title).toBeInTheDocument();
-      expect(container.querySelector('.carousel-media')).not.toBeInTheDocument();
-      expect(container.querySelector('.carousel-summary')).not.toBeInTheDocument();
-      expect(container.querySelector('.carousel-item-link')).not.toBeInTheDocument();
+      expect(
+        container.querySelector('.carousel-media')
+      ).not.toBeInTheDocument();
+      expect(
+        container.querySelector('.carousel-summary')
+      ).not.toBeInTheDocument();
+      expect(
+        container.querySelector('.carousel-item-link')
+      ).not.toBeInTheDocument();
     });
 
     it('should not render link when incomplete', () => {
       const items = [
         { title: 'No Link', link: {} },
         { title: 'No URL', link: { title: 'Button' } },
-        { title: 'No Title', link: { url: '/test' } }
+        { title: 'No Title', link: { url: '/test' } },
       ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const links = container.querySelectorAll('.carousel-item-link');
       expect(links).toHaveLength(0);
     });
@@ -374,14 +402,14 @@ describe('Carousel Component', () => {
       const items = [
         { title: 'First' },
         { title: 'Second' },
-        { title: 'Third' }
+        { title: 'Third' },
       ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const slides = container.querySelectorAll('[data-carousel-item]');
-      
+
       slides.forEach((slide, index) => {
         expect(slide.getAttribute('data-item-index')).toBe(index.toString());
       });
@@ -393,7 +421,7 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items, cards_per_view: '4' });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       expect(carousel.getAttribute('data-cards-per-view')).toBe('4');
     });
@@ -402,7 +430,7 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items, autoplay: true });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       expect(carousel.getAttribute('data-autoplay')).toBe('true');
     });
@@ -411,7 +439,7 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items, interval: '3000' });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       expect(carousel.getAttribute('data-interval')).toBe('3000');
     });
@@ -420,7 +448,7 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items, pause_on_hover: false });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       expect(carousel.getAttribute('data-pause-on-hover')).toBe('false');
     });
@@ -431,10 +459,10 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test 1' }, { title: 'Test 2' }];
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const prevButton = container.querySelector('[data-carousel-prev]');
       const nextButton = container.querySelector('[data-carousel-next]');
-      
+
       expect(prevButton).toBeInTheDocument();
       expect(nextButton).toBeInTheDocument();
       expect(prevButton.getAttribute('aria-label')).toBe('Previous slide');
@@ -446,24 +474,24 @@ describe('Carousel Component', () => {
         { title: 'Slide 1' },
         { title: 'Slide 2' },
         { title: 'Slide 3' },
-        { title: 'Slide 4' }
+        { title: 'Slide 4' },
       ];
       const carouselHtml = renderCarousel({ items, cards_per_view: '2' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const nextButton = container.querySelector('[data-carousel-next]');
       const prevButton = container.querySelector('[data-carousel-prev]');
-      
+
       // Initially at slide 0
       expect(controller.getCurrentIndex()).toBe(0);
       expect(prevButton.disabled).toBe(true);
-      
+
       // Navigate forward
       nextButton.click();
       expect(controller.getCurrentIndex()).toBe(1);
       expect(prevButton.disabled).toBe(false);
-      
+
       // Navigate backward
       prevButton.click();
       expect(controller.getCurrentIndex()).toBe(0);
@@ -475,16 +503,16 @@ describe('Carousel Component', () => {
         { title: 'Slide 1' },
         { title: 'Slide 2' },
         { title: 'Slide 3' },
-        { title: 'Slide 4' }
+        { title: 'Slide 4' },
       ];
       const carouselHtml = renderCarousel({ items, cards_per_view: '2' });
       container.innerHTML = carouselHtml;
-      
+
       initCarouselBehavior(container);
-      
+
       const pagination = container.querySelector('[data-carousel-pagination]');
       const dots = container.querySelectorAll('.pagination-dot');
-      
+
       expect(pagination).toBeInTheDocument();
       expect(dots).toHaveLength(2); // 4 slides / 2 per view = 2 pages
     });
@@ -494,15 +522,15 @@ describe('Carousel Component', () => {
         { title: 'Slide 1' },
         { title: 'Slide 2' },
         { title: 'Slide 3' },
-        { title: 'Slide 4' }
+        { title: 'Slide 4' },
       ];
       const carouselHtml = renderCarousel({ items, cards_per_view: '2' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
-      
+
       const dots = container.querySelectorAll('.pagination-dot');
-      
+
       // Click second dot
       dots[1].click();
       expect(controller.getCurrentIndex()).toBe(2);
@@ -514,20 +542,24 @@ describe('Carousel Component', () => {
       const items = [
         { title: 'Slide 1' },
         { title: 'Slide 2' },
-        { title: 'Slide 3' }
+        { title: 'Slide 3' },
       ];
       const carouselHtml = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const carousel = container.querySelector('[data-swiper-carousel]');
-      
+
       // Navigate right
-      carousel.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+      carousel.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'ArrowRight' })
+      );
       expect(controller.getCurrentIndex()).toBe(1);
-      
+
       // Navigate left
-      carousel.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+      carousel.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+      );
       expect(controller.getCurrentIndex()).toBe(0);
     });
 
@@ -535,18 +567,18 @@ describe('Carousel Component', () => {
       const items = [
         { title: 'Slide 1' },
         { title: 'Slide 2' },
-        { title: 'Slide 3' }
+        { title: 'Slide 3' },
       ];
       const carouselHtml = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const carousel = container.querySelector('[data-swiper-carousel]');
-      
+
       // Go to end
       carousel.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
       expect(controller.getCurrentIndex()).toBe(2);
-      
+
       // Go to beginning
       carousel.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
       expect(controller.getCurrentIndex()).toBe(0);
@@ -566,86 +598,80 @@ describe('Carousel Component', () => {
       const items = [
         { title: 'Slide 1' },
         { title: 'Slide 2' },
-        { title: 'Slide 3' }
+        { title: 'Slide 3' },
       ];
-      const carouselHtml = renderCarousel({ 
-        items, 
+      const carouselHtml = renderCarousel({
+        items,
         cards_per_view: '1',
         autoplay: true,
-        interval: '1000'
+        interval: '1000',
       });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
-      
+
       // Initially at slide 0
       expect(controller.getCurrentIndex()).toBe(0);
-      
+
       // Advance time by interval
       vi.advanceTimersByTime(1000);
       expect(controller.getCurrentIndex()).toBe(1);
-      
+
       // Advance again
       vi.advanceTimersByTime(1000);
       expect(controller.getCurrentIndex()).toBe(2);
-      
+
       // Should loop back to start
       vi.advanceTimersByTime(1000);
       expect(controller.getCurrentIndex()).toBe(0);
     });
 
     it('should pause autoplay on hover when pause_on_hover is true', () => {
-      const items = [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' }
-      ];
-      const carouselHtml = renderCarousel({ 
-        items, 
+      const items = [{ title: 'Slide 1' }, { title: 'Slide 2' }];
+      const carouselHtml = renderCarousel({
+        items,
         cards_per_view: '1',
         autoplay: true,
         interval: '1000',
-        pause_on_hover: true
+        pause_on_hover: true,
       });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const carousel = container.querySelector('[data-swiper-carousel]');
-      
+
       // Initially at slide 0
       expect(controller.getCurrentIndex()).toBe(0);
-      
+
       // Hover to pause
       carousel.dispatchEvent(new Event('mouseenter'));
-      
+
       // Advance time - should not change slide
       vi.advanceTimersByTime(1000);
       expect(controller.getCurrentIndex()).toBe(0);
-      
+
       // Leave hover to resume
       carousel.dispatchEvent(new Event('mouseleave'));
-      
+
       // Advance time - should now change slide
       vi.advanceTimersByTime(1000);
       expect(controller.getCurrentIndex()).toBe(1);
     });
 
     it('should not autoplay when autoplay is disabled', () => {
-      const items = [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' }
-      ];
-      const carouselHtml = renderCarousel({ 
-        items, 
+      const items = [{ title: 'Slide 1' }, { title: 'Slide 2' }];
+      const carouselHtml = renderCarousel({
+        items,
         cards_per_view: '1',
-        autoplay: false
+        autoplay: false,
       });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
-      
+
       // Initially at slide 0
       expect(controller.getCurrentIndex()).toBe(0);
-      
+
       // Advance time - should not change slide
       vi.advanceTimersByTime(5000);
       expect(controller.getCurrentIndex()).toBe(0);
@@ -658,20 +684,20 @@ describe('Carousel Component', () => {
         { title: 'Slide 1' },
         { title: 'Slide 2' },
         { title: 'Slide 3' },
-        { title: 'Slide 4' }
+        { title: 'Slide 4' },
       ];
 
       // Test with 1 card per view
       const carouselHtml1 = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml1;
-      
+
       let controller = initCarouselBehavior(container);
       expect(controller.getTotalSlides()).toBe(4);
-      
+
       // Test with 2 cards per view
       const carouselHtml2 = renderCarousel({ items, cards_per_view: '2' });
       container.innerHTML = carouselHtml2;
-      
+
       controller = initCarouselBehavior(container);
       expect(controller.getTotalSlides()).toBe(4);
     });
@@ -680,10 +706,10 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test Slide' }];
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const wrapper = container.querySelector('.swiper-wrapper');
       const slide = container.querySelector('.swiper-slide');
-      
+
       expect(wrapper).toBeInTheDocument();
       expect(slide).toBeInTheDocument();
       expect(slide.className).toContain('carousel-item');
@@ -692,27 +718,24 @@ describe('Carousel Component', () => {
 
   describe('Events', () => {
     it('should dispatch slide change events', () => {
-      const items = [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' }
-      ];
+      const items = [{ title: 'Slide 1' }, { title: 'Slide 2' }];
       const carouselHtml = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const carousel = container.querySelector('[data-swiper-carousel]');
-      
+
       let eventFired = false;
       let eventDetail = null;
-      
-      carousel.addEventListener('slideChange', (e) => {
+
+      carousel.addEventListener('slideChange', e => {
         eventFired = true;
         eventDetail = e.detail;
       });
-      
+
       // Navigate to next slide
       controller.goToSlide(1);
-      
+
       expect(eventFired).toBe(true);
       expect(eventDetail.currentIndex).toBe(1);
       expect(eventDetail.totalSlides).toBe(2);
@@ -724,30 +747,27 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const prevButton = container.querySelector('[data-carousel-prev]');
       const nextButton = container.querySelector('[data-carousel-next]');
-      
+
       expect(prevButton.getAttribute('aria-label')).toBe('Previous slide');
       expect(nextButton.getAttribute('aria-label')).toBe('Next slide');
     });
 
     it('should manage button disabled states properly', () => {
-      const items = [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' }
-      ];
+      const items = [{ title: 'Slide 1' }, { title: 'Slide 2' }];
       const carouselHtml = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const prevButton = container.querySelector('[data-carousel-prev]');
       const nextButton = container.querySelector('[data-carousel-next]');
-      
+
       // At start - prev should be disabled
       expect(prevButton.disabled).toBe(true);
       expect(nextButton.disabled).toBe(false);
-      
+
       // Navigate to end
       controller.goToSlide(1);
       expect(prevButton.disabled).toBe(false);
@@ -758,7 +778,7 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Accessible Slide' }];
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const section = container.querySelector('section');
       expect(section).toBeInTheDocument();
       expect(section.className).toContain('carousel-wrapper');
@@ -770,47 +790,53 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Only Slide' }];
       const carouselHtml = renderCarousel({ items, cards_per_view: '1' });
       container.innerHTML = carouselHtml;
-      
+
       const controller = initCarouselBehavior(container);
       const prevButton = container.querySelector('[data-carousel-prev]');
       const nextButton = container.querySelector('[data-carousel-next]');
-      
+
       expect(controller.getTotalSlides()).toBe(1);
       expect(prevButton.disabled).toBe(true);
       expect(nextButton.disabled).toBe(true);
     });
 
     it('should handle HTML content in carousel items', () => {
-      const items = [{
-        media: '<video controls><source src="video.mp4" type="video/mp4"></video>',
-        title: 'Video Slide',
-        summary: 'Slide with <strong>HTML</strong> content and <a href="#">links</a>',
-        link: { url: '/video', title: 'Watch Video' }
-      }];
+      const items = [
+        {
+          media:
+            '<video controls><source src="video.mp4" type="video/mp4"></video>',
+          title: 'Video Slide',
+          summary:
+            'Slide with <strong>HTML</strong> content and <a href="#">links</a>',
+          link: { url: '/video', title: 'Watch Video' },
+        },
+      ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const media = container.querySelector('.carousel-media');
       const summary = container.querySelector('.carousel-summary');
-      
+
       expect(media.innerHTML).toContain('<video');
       expect(summary.innerHTML).toContain('<strong>HTML</strong>');
       expect(summary.innerHTML).toContain('<a href="#">links</a>');
     });
 
     it('should handle special characters in content', () => {
-      const items = [{
-        title: 'Title with "quotes" & <symbols>',
-        summary: 'Summary with "quotes" & <symbols>'
-      }];
+      const items = [
+        {
+          title: 'Title with "quotes" & <symbols>',
+          summary: 'Summary with "quotes" & <symbols>',
+        },
+      ];
 
       const carouselHtml = renderCarousel({ items });
       container.innerHTML = carouselHtml;
-      
+
       const title = container.querySelector('.carousel-title');
       const summary = container.querySelector('.carousel-summary');
-      
+
       // HTML entities are automatically decoded by textContent
       expect(title.textContent).toContain('Title with "quotes" & ');
       expect(summary.textContent).toContain('Summary with "quotes" & ');
@@ -820,10 +846,10 @@ describe('Carousel Component', () => {
       const items = [{ title: 'Test' }];
       const carouselHtml = renderCarousel({ items, cards_per_view: '0' });
       container.innerHTML = carouselHtml;
-      
+
       const carousel = container.querySelector('[data-carousel]');
       expect(carousel.getAttribute('data-cards-per-view')).toBe('0');
-      
+
       // Should still render the carousel structure
       expect(container.querySelector('.swiper')).toBeInTheDocument();
     });

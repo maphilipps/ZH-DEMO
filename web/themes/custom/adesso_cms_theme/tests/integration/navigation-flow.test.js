@@ -6,21 +6,11 @@
  * el-popover/el-dialog functionality, and menu-item atomic composition
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
-import { JSDOM } from 'jsdom';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { setupDOMElement, cleanupDOM } from '../utils/test-utils.js';
 
-// Mock Alpine.js for el-popover and el-dialog functionality
-global.Alpine = {
-  data: vi.fn(),
-  directive: vi.fn(),
-  magic: vi.fn(),
-  start: vi.fn(),
-  store: vi.fn(() => ({}))
-};
-
-// Mock DOM environment for el-popover/el-dialog
-const dom = new JSDOM(`
+// Navigation test HTML template - will be set up for each test
+const navigationHTML = `
   <div id="navigation-test-container">
     <nav class="c-main-menu relative isolate z-50 c-main-menu--horizontal" 
          aria-label="Main navigation" role="navigation">
@@ -102,16 +92,20 @@ const dom = new JSDOM(`
       </el-dialog>
     </nav>
   </div>
-`, { url: 'http://localhost' });
-
-global.document = dom.window.document;
-global.window = dom.window;
+`;
 
 describe('Navigation Integration Tests', () => {
   let container;
   
   beforeEach(() => {
-    container = document.getElementById('navigation-test-container');
+    // Clean any existing DOM
+    cleanupDOM();
+    // Set up the navigation test HTML using project's testing utilities
+    container = setupDOMElement(navigationHTML);
+  });
+
+  afterEach(() => {
+    cleanupDOM();
   });
 
   describe('Unified Navigation Architecture', () => {
@@ -371,13 +365,23 @@ describe('Navigation Integration Tests', () => {
 });
 
 describe('Navigation Performance Tests', () => {
+  let testContainer;
+  
+  beforeEach(() => {
+    cleanupDOM();
+    testContainer = setupDOMElement(navigationHTML);
+  });
+
+  afterEach(() => {
+    cleanupDOM();
+  });
+
   it('should render efficiently with minimal DOM queries', () => {
     const startTime = performance.now();
     
-    // Simulate navigation rendering
-    const container = document.getElementById('navigation-test-container');
-    const menuItems = container.querySelectorAll('.c-menu-item');
-    const navigation = container.querySelector('.c-main-menu');
+    // Simulate navigation rendering using proper container
+    const menuItems = testContainer.querySelectorAll('.c-menu-item');
+    const navigation = testContainer.querySelector('.c-main-menu');
     
     const endTime = performance.now();
     const renderTime = endTime - startTime;

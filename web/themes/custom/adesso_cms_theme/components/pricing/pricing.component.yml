@@ -81,20 +81,20 @@ slots:
   pre_headline:
     title: 'Pre-headline Content'
     description: 'Content above main pricing section title'
-    required: false
+    # removed: required: false (slots are optional by default)
   title:
     title: 'Section Title'
     description: 'Main pricing section heading content'
-    required: false
+    # removed: required: false (slots are optional by default)
   content:
     title: 'Section Description'
     description: 'Description content below title'
-    required: false
+    # removed: required: false (slots are optional by default)
   pricing_cards:
     title: 'Pricing Cards'
     description: 'Individual pricing card content'
-    required: true
+    # removed: required: true (slots are optional by default)
   actions:
     title: 'Section Actions'
     description: 'Additional actions for pricing section'
-    required: false
+    # removed: required: false (slots are optional by default)

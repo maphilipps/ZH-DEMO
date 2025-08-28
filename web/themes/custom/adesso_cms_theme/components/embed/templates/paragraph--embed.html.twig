@@ -29,7 +29,7 @@
   
   {% block content %}
     {% embed 'adesso_cms_theme:embed' with {
-      embed: content.field_script|render|striptags,
+      embed: content.field_script|striptags,
     } only %}
       {% block title %}{{ content.field_title }}{% endblock %}
       {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}

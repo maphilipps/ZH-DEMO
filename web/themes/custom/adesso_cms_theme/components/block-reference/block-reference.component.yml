@@ -25,4 +25,4 @@ slots:
   content:
     title: 'Block Content'
     description: 'Referenced block content'
-    required: true
+    # removed: required: true (slots are optional by default)

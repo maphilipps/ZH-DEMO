@@ -46,8 +46,8 @@ slots:
   title:
     title: 'Title'
     description: 'Component title content'
-    required: false
+    # removed: required: false (slots are optional by default)
   content:
     title: 'Content'
     description: 'Main component content'
-    required: true
+    # removed: required: true (slots are optional by default)

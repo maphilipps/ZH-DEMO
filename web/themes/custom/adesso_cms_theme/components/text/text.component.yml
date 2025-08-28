@@ -72,4 +72,4 @@ slots:
   content:
     title: 'Content'
     description: 'Text content'
-    required: true
+    # removed: required: true (slots are optional by default)

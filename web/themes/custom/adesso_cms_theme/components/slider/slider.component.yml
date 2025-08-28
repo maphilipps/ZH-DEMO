@@ -28,12 +28,12 @@ slots:
   title:
     title: 'Slider Title'
     description: 'Main title for the slider section'
-    required: false
+    # removed: required: false (slots are optional by default)
   items:
     title: 'Slider Items'
     description: 'Individual slider item content'
-    required: true
+    # removed: required: true (slots are optional by default)
   controls:
     title: 'Slider Controls'
     description: 'Custom navigation and control elements'
-    required: false
+    # removed: required: false (slots are optional by default)

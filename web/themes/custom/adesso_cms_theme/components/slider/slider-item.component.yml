@@ -160,7 +160,7 @@ slots:
   media:
     title: 'Slider Item Media'
     description: 'Media content for the slider item (field_media)'
-    required: false
+    # removed: required: false (slots are optional by default)
 libraryOverrides:
   dependencies:
     - core/drupal
@@ -170,8 +170,8 @@ slots:
   title:
     title: 'Title'
     description: 'Component title content'
-    required: false
+    # removed: required: false (slots are optional by default)
   content:
     title: 'Content'
     description: 'Main component content'
-    required: true
+    # removed: required: true (slots are optional by default)

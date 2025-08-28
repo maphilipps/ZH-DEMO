@@ -27,12 +27,12 @@ slots:
   media:
     title: 'Gallery Media'
     description: 'Media content for gallery item'
-    required: true
+    # removed: required: true (slots are optional by default)
   title:
     title: 'Media Title'
     description: 'Title or caption for gallery item'
-    required: false
+    # removed: required: false (slots are optional by default)
   description:
     title: 'Media Description'
     description: 'Description content for gallery item'
-    required: false
+    # removed: required: false (slots are optional by default)

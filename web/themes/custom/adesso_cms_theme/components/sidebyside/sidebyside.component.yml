@@ -77,4 +77,4 @@ slots:
   media:
     title: Side-by-Side Media
     description: Media content for the side-by-side component (field_media)
-    required: false
+    # removed: required: false (slots are optional by default)

@@ -107,24 +107,24 @@ slots:
   logo:
     title: 'Site Logo'
     description: 'Site logo and branding content'
-    required: false
+    # removed: required: false (slots are optional by default)
   site_name:
     title: 'Site Name'
     description: 'Site name and title content'
-    required: false
+    # removed: required: false (slots are optional by default)
   navigation:
     title: 'Main Navigation'
     description: 'Primary navigation menu content'
-    required: false
+    # removed: required: false (slots are optional by default)
   search:
     title: 'Search Form'
     description: 'Search form and functionality'
-    required: false
+    # removed: required: false (slots are optional by default)
   user_actions:
     title: 'User Actions'
     description: 'Login, register, and user account actions'
-    required: false
+    # removed: required: false (slots are optional by default)
   secondary_nav:
     title: 'Secondary Navigation'
     description: 'Secondary navigation elements and utilities'
-    required: false
+    # removed: required: false (slots are optional by default)

@@ -8,9 +8,9 @@ wrapper_css_class, attributes: attributes } %} {% block content %}
 <div class="py-8 px-4 mx-auto container lg:py-16">
   {% include 'adesso_cms_theme:text' with { text_layout: paragraph.field_text_layout.value ?? 'left', title:
   paragraph.field_title.value, is_dark: wrapper_theme == 'dark', pre_headline: paragraph.field_pre_headline.value, body:
-  content.field_body, link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url']|render|striptags, text:
-  content.field_link[0]['#title']|render|striptags, } : {}, link2: content.field_link2[0]['#url'] ? { url:
-  content.field_link2[0]['#url']|render|striptags, text: content.field_link2[0]['#title']|render|striptags, } : {}, }
+  content.field_body, link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url']|striptags, text:
+  content.field_link[0]['#title']|striptags, } : {}, link2: content.field_link2[0]['#url'] ? { url:
+  content.field_link2[0]['#url']|striptags, text: content.field_link2[0]['#title']|striptags, } : {}, }
   only %}
 </div>
 {% endblock %} {% endembed %}

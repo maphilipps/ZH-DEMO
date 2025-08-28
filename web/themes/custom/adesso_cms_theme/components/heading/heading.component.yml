@@ -61,4 +61,4 @@ slots:
   content:
     title: 'Heading Content'
     description: 'Heading text and icon content'
-    required: true
+    # removed: required: true (slots are optional by default)

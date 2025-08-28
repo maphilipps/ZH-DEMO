@@ -50,4 +50,4 @@ slots:
   content:
     title: 'Content'
     description: 'Component content'
-    required: true
+    # removed: required: true (slots are optional by default)

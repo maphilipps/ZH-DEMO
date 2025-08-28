@@ -1,4 +1,11 @@
-{# /** * @file * Carousel item paragraph template (child component - no wrapper needed). */ #} {{ title_prefix }} {{
-title_suffix }} {% include '@adesso_cms_theme/carousel/carousel-item.twig' with { "item": { "media":
-content.field_media, "title": content.field_title|render|striptags, "summary": content.field_summary|render|striptags }
+{# /** * @file * Carousel item paragraph template using embed pattern for media slot architecture. */ #} 
+{{ title_prefix }} {{ title_suffix }} 
+
+{% embed 'adesso_cms_theme:carousel-item' with { 
+  title: paragraph.field_title.value, 
+  summary: paragraph.field_summary.value
 } only %}
+  {% block media %}
+    {{ content.field_media }}
+  {% endblock %}
+{% endembed %}

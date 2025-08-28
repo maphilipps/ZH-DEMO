@@ -9,8 +9,8 @@ block prefix %}{% endblock %} {% block content %}
 <div class="py-8 px-4 mx-auto container lg:py-16">
   {# Gallery with slot-based media collection architecture - TITLE HANDLED BY COMPONENT #}
   {% embed 'adesso_cms_theme:gallery' with { 
-    section_title: content.field_title|render|striptags,
-    pre_headline: content.field_pre_headline|render|striptags 
+    section_title: paragraph.field_title.value,
+    pre_headline: paragraph.field_pre_headline.value 
   } only %}
     {% block gallery_items %}
       {# Use field template rendering for media collection - RAW FIELD ARRAY FIX #}

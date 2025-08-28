@@ -107,16 +107,16 @@ slots:
   title:
     title: 'Result Title'
     description: 'Search result title and main heading content'
-    required: true
+    # removed: required: true (slots are optional by default)
   content:
     title: 'Result Content'
     description: 'Search excerpt and result body content'
-    required: false
+    # removed: required: false (slots are optional by default)
   metadata:
     title: 'Result Metadata'
     description: 'Categories, target groups, and verification badges'
-    required: false
+    # removed: required: false (slots are optional by default)
   actions:
     title: 'Result Actions'
     description: 'Action buttons and links for the result'
-    required: false
+    # removed: required: false (slots are optional by default)

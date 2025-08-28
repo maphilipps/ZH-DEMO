@@ -1,5 +1,5 @@
 {# /** * @file * Card paragraph template (child component - no wrapper needed). */ #} {% set heading_content = { title:
-content.field_title|render|striptags, icon: content.field_icon, as: 'h3', modifier: 'mb-3' } %} {% set link =
+content.field_title|striptags, icon: content.field_icon, as: 'h3', modifier: 'mb-3' } %} {% set link =
 content.field_link ? { "url": content.field_link.0.url, "title": content.field_link.0.title } : {} %} {% embed '@adesso_cms_theme/card-group/card.twig' with { 
   modifier: '', 
   heading: heading_content,

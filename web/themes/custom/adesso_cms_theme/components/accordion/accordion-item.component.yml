@@ -63,8 +63,8 @@ slots:
   title:
     title: 'Accordion Item Title'
     description: 'Accordion item header/title content'
-    required: true
+    # removed: required: true (slots are optional by default)
   content:
     title: 'Accordion Item Content'
     description: 'Accordion item body/content area'
-    required: true
+    # removed: required: true (slots are optional by default)

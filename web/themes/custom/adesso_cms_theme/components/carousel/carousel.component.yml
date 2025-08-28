@@ -43,8 +43,17 @@ props:
       description: Additional CSS classes for each carousel item
 slots:
   carousel_items:
-    title: Carousel Items
-    description: Carousel item content (field_carousel_item)
+    title: 'Carousel Items'
+    description: 'Carousel item content (field_carousel_item)'
+  title:
+    title: 'Carousel Title'
+    description: 'Main title for the carousel section'
+  navigation:
+    title: 'Custom Navigation'
+    description: 'Custom navigation controls or indicators'
+  actions:
+    title: 'Carousel Actions'
+    description: 'Additional actions or links related to carousel'
 libraryOverrides:
   js:
     carousel.behavior.js:
@@ -53,21 +62,3 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
-
-slots:
-  title:
-    title: 'Carousel Title'
-    description: 'Main title for the carousel section'
-    required: false
-  items:
-    title: 'Carousel Items'
-    description: 'Individual carousel item content'
-    required: true
-  navigation:
-    title: 'Custom Navigation'
-    description: 'Custom navigation controls or indicators'
-    required: false
-  actions:
-    title: 'Carousel Actions'
-    description: 'Additional actions or links related to carousel'
-    required: false

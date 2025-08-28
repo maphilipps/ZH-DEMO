@@ -32,12 +32,12 @@ slots:
   heading:
     title: 'Pager Heading'
     description: 'Screen reader heading for pagination section'
-    required: false
+    # removed: required: false (slots are optional by default)
   summary:
     title: 'Results Summary'
     description: 'Summary of current results/pagination state'
-    required: false
+    # removed: required: false (slots are optional by default)
   links:
     title: 'Pagination Links'
     description: 'Custom pagination link content'
-    required: false
+    # removed: required: false (slots are optional by default)

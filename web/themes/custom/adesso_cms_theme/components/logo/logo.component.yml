@@ -28,4 +28,4 @@ slots:
   content:
     title: 'Logo Content'
     description: 'Logo image and branding content'
-    required: true
+    # removed: required: true (slots are optional by default)

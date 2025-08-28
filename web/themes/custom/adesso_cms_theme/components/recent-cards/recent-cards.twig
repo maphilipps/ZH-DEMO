@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4 container">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
     {% block recent_card_items %} {% include 'adesso_cms_theme:recent-card-item' with { "media":
-    content.field_thumbnail|render|striptags, "title": label, "summary": content.field_summary|render|striptags, "url":
+    content.field_thumbnail|striptags, "title": label, "summary": content.field_summary|striptags, "url":
     url, } only %} {% endblock %}
   </div>
 </div>

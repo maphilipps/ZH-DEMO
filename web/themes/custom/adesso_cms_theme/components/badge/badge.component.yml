@@ -55,4 +55,4 @@ slots:
   content:
     title: 'Badge Content'
     description: 'Badge text and icon content'
-    required: true
+    # removed: required: true (slots are optional by default)

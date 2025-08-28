@@ -27,11 +27,11 @@
         {% set contact_person_content = fields.field_contact_person.content %}
         {% if contact_person_content %}
           <p class="mt-1 truncate text-xs/5 text-gray-500">
-            Kontakt: {{ contact_person_content|render|striptags|trim }}
+            Kontakt: {{ contact_person_content|striptags|trim }}
           </p>
         {% endif %}
       {% elseif fields.field_email %}
-        {% set email_content = fields.field_email.content|render|striptags|trim %}
+        {% set email_content = fields.field_email.content|striptags|trim %}
         {% if email_content %}
           <p class="mt-1 truncate text-xs/5 text-gray-500">{{ email_content }}</p>
         {% endif %}
@@ -41,12 +41,12 @@
 
   <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
     {% if fields.field_president %}
-      {% set president_content = fields.field_president.content|render|striptags|trim %}
+      {% set president_content = fields.field_president.content|striptags|trim %}
       {% if president_content %}
         <p class="text-sm/6 text-gray-900">Präsident/in: {{ president_content }}</p>
       {% endif %}
     {% elseif fields.field_description %}
-      {% set description_content = fields.field_description.content|render|striptags|trim %}
+      {% set description_content = fields.field_description.content|striptags|trim %}
       {% if description_content|length > 50 %}
         <p class="text-sm/6 text-gray-900">{{ description_content|slice(0, 50) }}...</p>
       {% else %}

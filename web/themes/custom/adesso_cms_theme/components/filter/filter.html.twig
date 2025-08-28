@@ -1,7 +1,7 @@
 <div
   class="filter-dropdown inline-flex text-left items-center mr-3 z-50"
   x-ref="filter"
-  x-data="{identifier: $id('{{ label|render|striptags|trim|clean_id }}')}"
+  x-data="{identifier: $id('{{ label|striptags|trim|clean_id }}')}"
 >
   <div class="flex flex-wrap items-center gap-2">
     {% if prefix %}
@@ -9,7 +9,7 @@
     {% endif %}
     <div x-data="filterComponent">
       <div
-        data-filter="{{ label|render|striptags|trim|clean_id }}"
+        data-filter="{{ label|striptags|trim|clean_id }}"
         :class="buttonClasses"
         @click.prevent="toggleFilter(identifier)"
       >

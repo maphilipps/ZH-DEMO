@@ -25,4 +25,4 @@ slots:
   logo_items:
     title: Logo Collection Items
     description: Logo media items collection (field_media_item)
-    required: false
+    # removed: required: false (slots are optional by default)

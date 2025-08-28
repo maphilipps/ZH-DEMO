@@ -56,4 +56,4 @@ slots:
   content:
     title: 'Content'
     description: 'Status-badge content'
-    required: true
+    # removed: required: true (slots are optional by default)

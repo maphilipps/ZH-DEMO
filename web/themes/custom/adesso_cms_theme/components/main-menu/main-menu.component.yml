@@ -115,24 +115,24 @@ slots:
   logo:
     title: 'Site Logo'
     description: 'Site logo and branding content'
-    required: false
+    # removed: required: false (slots are optional by default)
   menu_items:
     title: 'Menu Items'
     description: 'Navigation menu items content'
-    required: true
+    # removed: required: true (slots are optional by default)
   mobile_toggle:
     title: 'Mobile Toggle'
     description: 'Mobile menu toggle button content'
-    required: false
+    # removed: required: false (slots are optional by default)
   search:
     title: 'Search Widget'
     description: 'Search form or widget for navigation'
-    required: false
+    # removed: required: false (slots are optional by default)
   user_menu:
     title: 'User Menu'
     description: 'User account menu and login/logout options'
-    required: false
+    # removed: required: false (slots are optional by default)
   secondary_actions:
     title: 'Secondary Actions'
     description: 'Additional navigation actions (language switcher, etc.)'
-    required: false
+    # removed: required: false (slots are optional by default)

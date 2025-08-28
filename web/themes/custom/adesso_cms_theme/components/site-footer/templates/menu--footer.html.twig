@@ -1,29 +1,26 @@
-{#
-/**
- * @file
- * Theme override to display a menu.
- */
-#}
-{# Defensive programming: ensure items exist and is iterable #}
+{# /** * @file * Theme override to display a menu. */ #} {# Defensive programming: ensure items exist and is iterable #}
 {% if items and items is iterable and items|length > 0 %}
-  <ul class="flex flex-wrap gap-6 text-sm">
-    {% for link in items %}
-      {# Validate each link has required properties #}
-      {% if link and link.url and link.title %}
-        {# Convert URL object to string safely #}
-        {% if link.url.toString is defined %}
-          {% set link_url = link.url.toString() %}
-        {% else %}
-          {% set link_url = link.url %}
-        {% endif %}
-        <li>
-          <a href="{{ link_url|escape('html_attr') }}" 
-             class="transition-colors text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white {{ item_modifier|default('') }}"
-             {% if link_url|slice(0,4) == 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>
-            {{ link.title|escape }}
-          </a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+<ul class="flex flex-wrap gap-6 text-sm">
+  {% for link in items %} {# Validate each link has required properties #} {% if link and link.url and link.title %} {#
+  Convert URL object to string safely #} {% if link.url.toString is defined %} {% set link_url = link.url.toString() %}
+  {% else %} {% set link_url = link.url %} {% endif %}
+  <li>
+    <a
+      href="{{ link_url|escape('html_attr') }}"
+      class="transition-colors text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white {{ item_modifier|default('') }}"
+      {%
+      if
+      link_url|slice(0,4)=""
+      ="http"
+      %}target="_blank"
+      rel="noopener noreferrer"
+      {%
+      endif
+      %}
+    >
+      {{ link.title|escape }}
+    </a>
+  </li>
+  {% endif %} {% endfor %}
+</ul>
 {% endif %}

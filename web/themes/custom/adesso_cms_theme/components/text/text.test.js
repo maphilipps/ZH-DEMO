@@ -16,24 +16,32 @@ function renderText(props = {}) {
     link = {},
     link2 = {},
     text_layout = 'left',
-    className = ''
+    className = '',
   } = props;
 
   // Container classes based on layout and custom classes
-  const containerClasses = ['text-block', className, `text-layout--${text_layout}`]
-    .filter(Boolean).join(' ');
+  const containerClasses = [
+    'text-block',
+    className,
+    `text-layout--${text_layout}`,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   // Legacy eyebrow support (fallback to pre_headline)
   const effectivePreHeadline = pre_headline || eyebrow;
-  
+
   // Pre-headline HTML
-  const preHeadlineHtml = effectivePreHeadline ? 
-    `<div class="text-pre-headline text-sm font-semibold text-gray-600 mb-2">${effectivePreHeadline}</div>` : '';
-  
+  const preHeadlineHtml = effectivePreHeadline
+    ? `<div class="text-pre-headline text-sm font-semibold text-gray-600 mb-2">${effectivePreHeadline}</div>`
+    : '';
+
   // Title/Heading HTML - heading object takes precedence over title string
   let headingHtml = '';
   if (heading && heading.title) {
-    const headingIcon = heading.icon ? `<span class="mr-2">${heading.icon}</span>` : '';
+    const headingIcon = heading.icon
+      ? `<span class="mr-2">${heading.icon}</span>`
+      : '';
     if (heading.url) {
       headingHtml = `
         <h2 class="text-heading mb-4">
@@ -52,39 +60,45 @@ function renderText(props = {}) {
   } else if (title) {
     headingHtml = `<h2 class="text-heading text-2xl font-bold mb-4">${title}</h2>`;
   }
-  
+
   // Body content HTML
-  const bodyHtml = body ? 
-    `<div class="text-body text-gray-700 mb-6">${body}</div>` : '';
-  
+  const bodyHtml = body
+    ? `<div class="text-body text-gray-700 mb-6">${body}</div>`
+    : '';
+
   // Action links HTML
   const generateLinkHtml = (linkData, isPrimary = true) => {
     if (!linkData.url || !linkData.title) return '';
-    
-    const buttonClass = isPrimary ? 
-      'bg-blue-600 text-white hover:bg-blue-700' : 
-      'bg-gray-200 text-gray-800 hover:bg-gray-300';
-    
-    const iconHtml = linkData.icon ? `<span class="mr-2">${linkData.icon}</span>` : '';
-    
+
+    const buttonClass = isPrimary
+      ? 'bg-blue-600 text-white hover:bg-blue-700'
+      : 'bg-gray-200 text-gray-800 hover:bg-gray-300';
+
+    const iconHtml = linkData.icon
+      ? `<span class="mr-2">${linkData.icon}</span>`
+      : '';
+
     return `
       <a href="${linkData.url}" class="inline-flex items-center px-6 py-3 rounded-lg font-medium transition-colors ${buttonClass}">
         ${iconHtml}${linkData.title}
       </a>
     `;
   };
-  
-  const actionsHtml = (link.url || link2.url) ? `
+
+  const actionsHtml =
+    link.url || link2.url
+      ? `
     <div class="text-actions flex flex-col sm:flex-row gap-4">
       ${generateLinkHtml(link, true)}
       ${generateLinkHtml(link2, false)}
     </div>
-  ` : '';
+  `
+      : '';
 
   // Layout-specific rendering
   let layoutClass = 'text-center';
   let actionsClass = '';
-  
+
   switch (text_layout) {
     case 'left':
       layoutClass = 'text-left';
@@ -126,26 +140,27 @@ describe('Text Component', () => {
   describe('Basic Rendering', () => {
     it('should render with title', () => {
       const textHtml = renderText({
-        title: 'Transform Your Business Today'
+        title: 'Transform Your Business Today',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       const heading = container.querySelector('.text-heading');
-      
+
       expect(textBlock).toBeInTheDocument();
       expect(heading).toBeInTheDocument();
       expect(heading.textContent).toBe('Transform Your Business Today');
     });
 
     it('should render with body content', () => {
-      const bodyContent = '<p>Discover how our platform can revolutionize your workflow.</p>';
+      const bodyContent =
+        '<p>Discover how our platform can revolutionize your workflow.</p>';
       const textHtml = renderText({
         title: 'Test Title',
-        body: bodyContent
+        body: bodyContent,
       });
       container.innerHTML = textHtml;
-      
+
       const bodyElement = container.querySelector('.text-body');
       expect(bodyElement).toBeInTheDocument();
       expect(bodyElement.innerHTML).toBe(bodyContent);
@@ -154,10 +169,10 @@ describe('Text Component', () => {
     it('should render with pre-headline', () => {
       const textHtml = renderText({
         pre_headline: 'New Release',
-        title: 'Advanced Analytics'
+        title: 'Advanced Analytics',
       });
       container.innerHTML = textHtml;
-      
+
       const preHeadline = container.querySelector('.text-pre-headline');
       expect(preHeadline).toBeInTheDocument();
       expect(preHeadline.textContent).toBe('New Release');
@@ -166,12 +181,14 @@ describe('Text Component', () => {
     it('should render without content when nothing is provided', () => {
       const textHtml = renderText({});
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock).toBeInTheDocument();
       expect(container.querySelector('.text-heading')).not.toBeInTheDocument();
       expect(container.querySelector('.text-body')).not.toBeInTheDocument();
-      expect(container.querySelector('.text-pre-headline')).not.toBeInTheDocument();
+      expect(
+        container.querySelector('.text-pre-headline')
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -181,11 +198,11 @@ describe('Text Component', () => {
         heading: {
           title: 'Customer Success Stories',
           url: '',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const heading = container.querySelector('.text-heading');
       expect(heading).toBeInTheDocument();
       expect(heading.textContent.trim()).toBe('Customer Success Stories');
@@ -196,11 +213,11 @@ describe('Text Component', () => {
         heading: {
           title: 'View Case Studies',
           url: '/case-studies',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const headingLink = container.querySelector('.text-heading a');
       expect(headingLink).toBeInTheDocument();
       expect(headingLink.getAttribute('href')).toBe('/case-studies');
@@ -212,11 +229,11 @@ describe('Text Component', () => {
         heading: {
           title: 'Featured Content',
           url: '',
-          icon: '<i class="star-icon"></i>'
-        }
+          icon: '<i class="star-icon"></i>',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const heading = container.querySelector('.text-heading');
       expect(heading).toBeInTheDocument();
       expect(heading.innerHTML).toContain('<i class="star-icon"></i>');
@@ -229,11 +246,11 @@ describe('Text Component', () => {
         heading: {
           title: 'Object Title',
           url: '',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const heading = container.querySelector('.text-heading');
       expect(heading.textContent.trim()).toBe('Object Title');
     });
@@ -243,10 +260,10 @@ describe('Text Component', () => {
     it('should support legacy eyebrow prop', () => {
       const textHtml = renderText({
         eyebrow: 'Coming Soon',
-        title: 'New Features'
+        title: 'New Features',
       });
       container.innerHTML = textHtml;
-      
+
       const preHeadline = container.querySelector('.text-pre-headline');
       expect(preHeadline).toBeInTheDocument();
       expect(preHeadline.textContent).toBe('Coming Soon');
@@ -256,10 +273,10 @@ describe('Text Component', () => {
       const textHtml = renderText({
         eyebrow: 'Eyebrow Text',
         pre_headline: 'Pre-headline Text',
-        title: 'Title'
+        title: 'Title',
       });
       container.innerHTML = textHtml;
-      
+
       const preHeadline = container.querySelector('.text-pre-headline');
       expect(preHeadline.textContent).toBe('Pre-headline Text');
     });
@@ -269,10 +286,10 @@ describe('Text Component', () => {
     it('should render left layout correctly', () => {
       const textHtml = renderText({
         title: 'Left Aligned',
-        text_layout: 'left'
+        text_layout: 'left',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('[data-text-layout="left"]');
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.className).toContain('text-left');
@@ -282,11 +299,13 @@ describe('Text Component', () => {
     it('should render centered layout correctly', () => {
       const textHtml = renderText({
         title: 'Centered',
-        text_layout: 'centered'
+        text_layout: 'centered',
       });
       container.innerHTML = textHtml;
-      
-      const textBlock = container.querySelector('[data-text-layout="centered"]');
+
+      const textBlock = container.querySelector(
+        '[data-text-layout="centered"]'
+      );
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.className).toContain('text-center');
       expect(textBlock.className).toContain('text-layout--centered');
@@ -296,13 +315,15 @@ describe('Text Component', () => {
       const textHtml = renderText({
         title: 'Buttons Right',
         text_layout: 'buttons-right',
-        link: { url: '/test', title: 'Test Button' }
+        link: { url: '/test', title: 'Test Button' },
       });
       container.innerHTML = textHtml;
-      
-      const textBlock = container.querySelector('[data-text-layout="buttons-right"]');
+
+      const textBlock = container.querySelector(
+        '[data-text-layout="buttons-right"]'
+      );
       const actionsWrapper = container.querySelector('.text-actions-wrapper');
-      
+
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.className).toContain('text-left');
       expect(actionsWrapper.className).toContain('justify-end');
@@ -311,11 +332,13 @@ describe('Text Component', () => {
     it('should default to left layout for invalid layout', () => {
       const textHtml = renderText({
         title: 'Invalid Layout',
-        text_layout: 'invalid-layout'
+        text_layout: 'invalid-layout',
       });
       container.innerHTML = textHtml;
-      
-      const textBlock = container.querySelector('[data-text-layout="invalid-layout"]');
+
+      const textBlock = container.querySelector(
+        '[data-text-layout="invalid-layout"]'
+      );
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.className).toContain('text-left');
     });
@@ -328,14 +351,14 @@ describe('Text Component', () => {
         link: {
           url: '/get-started',
           title: 'Get Started',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const actions = container.querySelector('.text-actions');
       const primaryLink = container.querySelector('a[href="/get-started"]');
-      
+
       expect(actions).toBeInTheDocument();
       expect(primaryLink).toBeInTheDocument();
       expect(primaryLink.textContent.trim()).toBe('Get Started');
@@ -348,13 +371,13 @@ describe('Text Component', () => {
         link2: {
           url: '/learn-more',
           title: 'Learn More',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const secondaryLink = container.querySelector('a[href="/learn-more"]');
-      
+
       expect(secondaryLink).toBeInTheDocument();
       expect(secondaryLink.textContent.trim()).toBe('Learn More');
       expect(secondaryLink.className).toContain('bg-gray-200');
@@ -366,19 +389,19 @@ describe('Text Component', () => {
         link: {
           url: '/primary',
           title: 'Primary Action',
-          icon: ''
+          icon: '',
         },
         link2: {
           url: '/secondary',
           title: 'Secondary Action',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const primaryLink = container.querySelector('a[href="/primary"]');
       const secondaryLink = container.querySelector('a[href="/secondary"]');
-      
+
       expect(primaryLink).toBeInTheDocument();
       expect(secondaryLink).toBeInTheDocument();
     });
@@ -389,11 +412,11 @@ describe('Text Component', () => {
         link: {
           url: '/download',
           title: 'Download',
-          icon: '<i class="download-icon"></i>'
-        }
+          icon: '<i class="download-icon"></i>',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const link = container.querySelector('a[href="/download"]');
       expect(link).toBeInTheDocument();
       expect(link.innerHTML).toContain('<i class="download-icon"></i>');
@@ -404,10 +427,10 @@ describe('Text Component', () => {
       const textHtml = renderText({
         title: 'Test Title',
         link: {},
-        link2: {}
+        link2: {},
       });
       container.innerHTML = textHtml;
-      
+
       const actions = container.querySelector('.text-actions');
       expect(actions).not.toBeInTheDocument();
     });
@@ -418,16 +441,16 @@ describe('Text Component', () => {
         link: {
           url: '/test',
           title: '', // Empty title
-          icon: ''
+          icon: '',
         },
         link2: {
           url: '', // Empty URL
           title: 'Test',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const actions = container.querySelector('.text-actions');
       const links = container.querySelectorAll('.text-actions a');
       // Actions container exists but should have no valid links
@@ -440,10 +463,10 @@ describe('Text Component', () => {
     it('should apply custom className', () => {
       const textHtml = renderText({
         title: 'Test Title',
-        className: 'custom-class another-class'
+        className: 'custom-class another-class',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock.className).toContain('custom-class');
       expect(textBlock.className).toContain('another-class');
@@ -451,10 +474,10 @@ describe('Text Component', () => {
 
     it('should have base text-block class', () => {
       const textHtml = renderText({
-        title: 'Test Title'
+        title: 'Test Title',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock.className).toContain('text-block');
     });
@@ -462,10 +485,10 @@ describe('Text Component', () => {
     it('should apply layout-specific classes', () => {
       const textHtml = renderText({
         title: 'Test Title',
-        text_layout: 'centered'
+        text_layout: 'centered',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock.className).toContain('text-layout--centered');
     });
@@ -474,10 +497,10 @@ describe('Text Component', () => {
       const textHtml = renderText({
         title: 'Test Title',
         text_layout: 'centered',
-        link: { url: '/test', title: 'Test' }
+        link: { url: '/test', title: 'Test' },
       });
       container.innerHTML = textHtml;
-      
+
       const actionsWrapper = container.querySelector('.text-actions-wrapper');
       expect(actionsWrapper.className).toContain('justify-center');
     });
@@ -486,10 +509,10 @@ describe('Text Component', () => {
   describe('Accessibility', () => {
     it('should use proper heading hierarchy', () => {
       const textHtml = renderText({
-        title: 'Accessible Title'
+        title: 'Accessible Title',
       });
       container.innerHTML = textHtml;
-      
+
       const heading = container.querySelector('h2');
       expect(heading).toBeInTheDocument();
       expect(heading.textContent).toBe('Accessible Title');
@@ -497,10 +520,10 @@ describe('Text Component', () => {
 
     it('should have semantic section element', () => {
       const textHtml = renderText({
-        title: 'Test Title'
+        title: 'Test Title',
       });
       container.innerHTML = textHtml;
-      
+
       const section = container.querySelector('section');
       expect(section).toBeInTheDocument();
     });
@@ -511,11 +534,11 @@ describe('Text Component', () => {
         link: {
           url: '/accessible',
           title: 'Accessible Link',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const link = container.querySelector('a');
       expect(link.getAttribute('href')).toBe('/accessible');
       expect(link.textContent.trim()).toBe('Accessible Link');
@@ -526,11 +549,11 @@ describe('Text Component', () => {
         heading: {
           title: 'Linked Heading',
           url: '/link',
-          icon: ''
-        }
+          icon: '',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const headingLink = container.querySelector('.text-heading a');
       expect(headingLink.className).toContain('hover:text-blue-600');
       expect(headingLink.className).toContain('transition-colors');
@@ -541,20 +564,21 @@ describe('Text Component', () => {
     it('should handle empty props gracefully', () => {
       const textHtml = renderText({});
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.getAttribute('data-text-layout')).toBe('left');
     });
 
     it('should handle HTML content in body', () => {
-      const htmlBody = '<p>Paragraph with <strong>bold</strong> and <a href="#">link</a></p><ul><li>List item</li></ul>';
+      const htmlBody =
+        '<p>Paragraph with <strong>bold</strong> and <a href="#">link</a></p><ul><li>List item</li></ul>';
       const textHtml = renderText({
         title: 'HTML Content',
-        body: htmlBody
+        body: htmlBody,
       });
       container.innerHTML = textHtml;
-      
+
       const bodyElement = container.querySelector('.text-body');
       expect(bodyElement.innerHTML).toBe(htmlBody);
       expect(bodyElement.querySelector('strong')).toBeInTheDocument();
@@ -565,10 +589,10 @@ describe('Text Component', () => {
     it('should handle special characters in title', () => {
       const specialTitle = 'Title with "quotes" & <symbols>';
       const textHtml = renderText({
-        title: specialTitle
+        title: specialTitle,
       });
       container.innerHTML = textHtml;
-      
+
       const heading = container.querySelector('.text-heading');
       // HTML entities are automatically decoded by textContent
       expect(heading.textContent).toContain('Title with "quotes" & ');
@@ -579,11 +603,11 @@ describe('Text Component', () => {
         heading: {
           title: 'Complex Heading',
           url: '/complex',
-          icon: '<svg class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg>'
-        }
+          icon: '<svg class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg>',
+        },
       });
       container.innerHTML = textHtml;
-      
+
       const headingLink = container.querySelector('.text-heading a');
       expect(headingLink).toBeInTheDocument();
       expect(headingLink.getAttribute('href')).toBe('/complex');
@@ -599,40 +623,42 @@ describe('Text Component', () => {
         heading: {
           title: 'Object Title',
           url: '/heading',
-          icon: '<i class="icon"></i>'
+          icon: '<i class="icon"></i>',
         },
         body: '<p>Rich <strong>HTML</strong> content</p>',
         link: {
           url: '/primary',
           title: 'Primary',
-          icon: '<i class="primary"></i>'
+          icon: '<i class="primary"></i>',
         },
         link2: {
           url: '/secondary',
           title: 'Secondary',
-          icon: '<i class="secondary"></i>'
+          icon: '<i class="secondary"></i>',
         },
         text_layout: 'buttons-right',
-        className: 'custom-text-block'
+        className: 'custom-text-block',
       });
       container.innerHTML = textHtml;
-      
+
       const textBlock = container.querySelector('.text-block');
       expect(textBlock).toBeInTheDocument();
       expect(textBlock.className).toContain('custom-text-block');
       expect(textBlock.className).toContain('text-layout--buttons-right');
-      
+
       // Should prefer pre_headline over eyebrow
       const preHeadline = container.querySelector('.text-pre-headline');
       expect(preHeadline.textContent).toBe('Modern');
-      
+
       // Should prefer heading object over title string
       const heading = container.querySelector('.text-heading a');
       expect(heading.textContent).toContain('Object Title');
-      
+
       // Should have both action links
       expect(container.querySelector('a[href="/primary"]')).toBeInTheDocument();
-      expect(container.querySelector('a[href="/secondary"]')).toBeInTheDocument();
+      expect(
+        container.querySelector('a[href="/secondary"]')
+      ).toBeInTheDocument();
     });
   });
 });

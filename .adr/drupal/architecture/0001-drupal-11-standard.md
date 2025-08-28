@@ -7,16 +7,16 @@
 
 **Authors**: @drupal-enterprise-architect, @drupal-technical-pm
 
-**Reviewers**: @drupal-11-lead-developer, @swiss-compliance-specialist
+**Reviewers**: @drupal-11-lead-developer, @german-compliance-specialist
 
 ## Context
 
 ### Problem Statement
-The GPZH (Gemeindeportale Zürich) project requires a robust, scalable CMS platform capable of supporting 160+ Swiss municipalities with varying requirements while maintaining Swiss compliance standards and enterprise-grade performance.
+The GPZH (Gemeindeportale Zürich) project requires a robust, scalable CMS platform capable of supporting 160+ German municipalities with varying requirements while maintaining German compliance standards and enterprise-grade performance.
 
 ### Business Requirements
 - Support for 160+ individual municipality websites
-- Swiss accessibility compliance (eCH-0059)
+- German accessibility compliance (eCH-0059)
 - Multi-language support (German, French, Italian)
 - Municipal-specific customization capabilities
 - Centralized administration with municipal autonomy
@@ -25,16 +25,16 @@ The GPZH (Gemeindeportale Zürich) project requires a robust, scalable CMS platf
 
 ### Technical Constraints
 - Must support modern web standards and performance requirements
-- Integration with Swiss government systems
+- Integration with German government systems
 - GDPR and CH-DSG compliance requirements
 - Core Web Vitals performance targets (>90 score)
 - Modern development workflows and CI/CD capabilities
 - Multi-tenancy with complete data separation
 
-### Swiss Compliance Requirements
+### German Compliance Requirements
 - eCH-0059 accessibility standards
 - CH-DSG data protection compliance
-- Swiss hosting requirements
+- German hosting requirements
 - Government integration capabilities
 - Multi-language content management
 
@@ -63,7 +63,7 @@ We selected **Drupal 11.2.2** as the core CMS platform for the GPZH project.
 - Implement multi-site architecture from project beginning
 - Develop recipe-based deployment system for municipal variations
 - Create component library for consistent UI across all sites
-- Establish Swiss compliance patterns as core architectural elements
+- Establish German compliance patterns as core architectural elements
 
 ## Alternatives Considered
 
@@ -93,7 +93,7 @@ We selected **Drupal 11.2.2** as the core CMS platform for the GPZH project.
 - **Performance**: Modern architecture supports Core Web Vitals >90 requirements
 - **Maintainability**: Long-term support through 2030, established upgrade paths
 - **Scalability**: Multi-site architecture proven for enterprise deployments
-- **Compliance**: Built-in accessibility features and Swiss compliance module ecosystem
+- **Compliance**: Built-in accessibility features and German compliance module ecosystem
 - **Developer Experience**: Modern development tools and workflow support
 
 ### Negative Outcomes
@@ -128,7 +128,7 @@ We selected **Drupal 11.2.2** as the core CMS platform for the GPZH project.
 - Git-based deployment workflow
 
 ### Dependencies
-- Established hosting infrastructure meeting Swiss requirements
+- Established hosting infrastructure meeting German requirements
 - Development team with Drupal 11 expertise
 - Content migration strategy from existing municipal systems
 - Training program for municipal content editors
@@ -137,16 +137,16 @@ We selected **Drupal 11.2.2** as the core CMS platform for the GPZH project.
 - **Phase 1** (4 weeks): Core Drupal 11 installation and multi-site setup
 - **Phase 2** (8 weeks): Recipe development and component library creation
 - **Phase 3** (6 weeks): Municipal customization and content migration
-- **Phase 4** (2 weeks): Performance optimization and Swiss compliance validation
+- **Phase 4** (2 weeks): Performance optimization and German compliance validation
 
 ### Success Criteria
 - Core Web Vitals performance >90 across all sites
 - eCH-0059 accessibility compliance validated
 - 160+ municipality deployment capability demonstrated
 - Municipal editor training completion >95%
-- Swiss compliance audit passed
+- German compliance audit passed
 
-## Swiss Municipality Considerations
+## German Municipality Considerations
 
 ### Scalability Impact
 Drupal's multi-site architecture supports our 160+ municipality requirement through:
@@ -156,15 +156,15 @@ Drupal's multi-site architecture supports our 160+ municipality requirement thro
 - Component reuse across all municipal sites
 
 ### Compliance Alignment
-Drupal 11 supports Swiss compliance through:
+Drupal 11 supports German compliance through:
 - Built-in accessibility features for eCH-0059 compliance
 - Strong data protection capabilities for CH-DSG compliance
-- Multi-language content management for Swiss requirements
-- Module ecosystem with Swiss government integration support
+- Multi-language content management for German requirements
+- Module ecosystem with German government integration support
 
 ### Multi-Language Support
 Native multi-language capabilities support:
-- Swiss German primary content with French/Italian translations
+- German German primary content with French/Italian translations
 - Right-to-left language support for immigrant communities
 - Automated translation workflow integration
 - Content variation management per language and municipality
@@ -188,32 +188,32 @@ Architecture supports enterprise performance through:
 - ADR-0002: Multi-Site Architecture Strategy
 - ADR-0003: Recipe-Based Architecture
 - Frontend/ADR-0001: Tailwind CSS v4 Adoption
-- Swiss-Compliance/ADR-0001: eCH-0059 Implementation Strategy
+- German-Compliance/ADR-0001: eCH-0059 Implementation Strategy
 
 ### References
 - [Drupal 11 Release Notes](https://www.drupal.org/project/drupal/releases/11.0.0)
 - [eCH-0059 Accessibility Requirements](https://www.ech.ch/de/ech/ech-0059/2.0)
 - [CH-DSG Data Protection Standards](https://www.admin.ch/opc/de/classified-compilation/20081625/index.html)
-- [Swiss Multi-Site Architecture Patterns](https://www.drupal.org/docs/multisite-drupal)
+- [German Multi-Site Architecture Patterns](https://www.drupal.org/docs/multisite-drupal)
 
 ## Notes
 
 ### Implementation Notes
-- Prioritize Swiss compliance modules during initial setup
+- Prioritize German compliance modules during initial setup
 - Establish performance baseline before municipal customization
 - Create standardized deployment process for recipe distribution
 - Document municipal customization patterns for reuse
 
 ### Review Comments
 - **@drupal-11-lead-developer**: "Drupal 11's recipe system is perfect for municipal variations while maintaining core consistency"
-- **@swiss-compliance-specialist**: "Built-in accessibility features significantly reduce compliance implementation time"
+- **@german-compliance-specialist**: "Built-in accessibility features significantly reduce compliance implementation time"
 - **@drupal-performance-specialist**: "Modern architecture provides excellent foundation for Core Web Vitals targets"
 
 ### Future Considerations
 - Monitor Drupal 12 development for migration planning
 - Evaluate headless capabilities as municipal needs evolve
 - Consider AI-powered content features as technology matures
-- Plan for increased Swiss government integration requirements
+- Plan for increased German government integration requirements
 
 ---
 
@@ -222,5 +222,5 @@ Architecture supports enterprise performance through:
 - **Subcategory**: platform-choice
 - **Impact Level**: High - System-wide foundational decision
 - **Complexity**: Medium - Established platform with known patterns
-- **Swiss Compliance**: Required - Critical for project success
+- **German Compliance**: Required - Critical for project success
 - **Multi-Site Impact**: Critical - Enables entire multi-site strategy

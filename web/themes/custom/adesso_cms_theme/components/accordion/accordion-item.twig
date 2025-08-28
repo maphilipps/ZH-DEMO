@@ -1,38 +1,42 @@
-
 <h2 id="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}" class="accordion-item">
-  <button type="button" 
-          class="accordion-trigger flex justify-between items-center py-5 px-4 w-full font-medium text-left transition-colors bg-neutral-100 text-neutral-900 border-b border-neutral-300 hover:bg-neutral-200"
-          data-accordion-target="#accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
-          aria-expanded="{{ (item.is_expanded|default(false)) ? 'true' : 'false' }}"
-          aria-controls="accordion-content-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
-          id="accordion-trigger-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+  <button
+    type="button"
+    class="accordion-trigger flex justify-between items-center py-5 px-4 w-full font-medium text-left transition-colors bg-neutral-100 text-neutral-900 border-b border-neutral-300 hover:bg-neutral-200"
+    data-accordion-target="#accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+    aria-expanded="{{ (item.is_expanded|default(false)) ? 'true' : 'false' }}"
+    aria-controls="accordion-content-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+    id="accordion-trigger-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
   >
     <span>{{ (item.heading|default(item.title))|default('') }}</span>
-    <svg data-accordion-icon=""
-         class="w-6 h-6 rotate-180 shrink-0"
-         fill="currentColor"
-         viewBox="0 0 20 20"
-         xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clip-rule="evenodd">
-      </path>
+    <svg
+      data-accordion-icon=""
+      class="w-6 h-6 rotate-180 shrink-0"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      ></path>
     </svg>
   </button>
 </h2>
-<div id="accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
-     class="{{ (item.is_expanded|default(false)) ? '' : 'hidden' }} accordion-content bg-neutral-50 border-b border-neutral-300" 
-     aria-labelledby="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
-     data-accordion-content>
+<div
+  id="accordion-flush-body-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+  class="{{ (item.is_expanded|default(false)) ? '' : 'hidden' }} accordion-content bg-neutral-50 border-b border-neutral-300"
+  aria-labelledby="accordion-flush-heading-{{ (item.accordion_instance|default(loop.index))|default(1) }}"
+  data-accordion-content
+>
   <div class="py-5 px-4 prose-p:mb-2 text-neutral-900">
-    {% block accordion_content %}
-      {{ item.body|default('') }}
-    {% endblock %}
-    {% if item.link.url|default('') %}
-      <a href="{{ item.link.url|default('') }}" 
-         class="accordion-link whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none text-primary-600 hover:text-primary-700">
-        {{ item.link.title|default('Read more'|t) }}
-      </a>
+    {% block accordion_content %} {{ item.body|default('') }} {% endblock %} {% if item.link.url|default('') %}
+    <a
+      href="{{ item.link.url|default('') }}"
+      class="accordion-link whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none text-primary-600 hover:text-primary-700"
+    >
+      {{ item.link.title|default('Read more'|t) }}
+    </a>
     {% endif %}
   </div>
 </div>

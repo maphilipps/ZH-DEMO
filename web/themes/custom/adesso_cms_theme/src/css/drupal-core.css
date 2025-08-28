@@ -249,11 +249,11 @@
   .skip-links {
     @apply relative z-50;
   }
-  
+
   .skip-link {
     @apply absolute left-4 top-4 px-4 py-2 bg-primary text-white font-medium rounded-md shadow-lg transform -translate-y-20 opacity-0 transition-all duration-200 focus:translate-y-0 focus:opacity-100;
   }
-  
+
   .skip-link:focus {
     @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-primary;
   }
@@ -407,14 +407,17 @@
   .paragraph-form .form-item-field-title {
     @apply order-1;
   }
-  
+
   .paragraph-form .form-item-field-content-element-theme,
   .paragraph-form .js-form-item-field-content-element-theme-0-value,
   .paragraph-form [data-drupal-selector*="field-content-element-theme"] {
     @apply order-2;
   }
-  
-  .paragraph-form .form-item:not(.form-item-field-title):not(.form-item-field-content-element-theme):not(.js-form-item-field-content-element-theme-0-value) {
+
+  .paragraph-form
+    .form-item:not(.form-item-field-title):not(.form-item-field-content-element-theme):not(
+      .js-form-item-field-content-element-theme-0-value
+    ) {
     @apply order-3;
   }
 
@@ -463,7 +466,7 @@
   .form-item-field-content-element-theme:focus-within::after,
   .js-form-item-field-content-element-theme-0-value:focus-within::after,
   [data-drupal-selector*="field-content-element-theme"]:focus-within::after {
-    border-color: theme('colors.blue.500');
+    border-color: theme("colors.blue.500");
   }
 
   /**

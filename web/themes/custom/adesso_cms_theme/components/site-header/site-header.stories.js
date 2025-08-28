@@ -80,7 +80,8 @@ const meta = {
     },
     enable_mega_menu: {
       name: 'Enable Mega Menu',
-      description: 'Enable mega menu functionality for navigation items with submenus',
+      description:
+        'Enable mega menu functionality for navigation items with submenus',
       control: { type: 'boolean' },
       table: {
         type: { summary: 'boolean' },
@@ -158,9 +159,9 @@ Site header component with flexible navigation, search, and user authentication 
   menu_items: menu_links
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };

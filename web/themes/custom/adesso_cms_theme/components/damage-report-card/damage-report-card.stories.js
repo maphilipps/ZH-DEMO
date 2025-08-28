@@ -158,9 +158,9 @@ Damage Report Card component for displaying Infrastructure Damage Reports in das
 - **Swiss Formatting**: DD.MM.YYYY dates, German language labels
 
 Perfect for municipal staff dashboards showing lists of infrastructure damage reports.
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -189,13 +189,15 @@ export const WithPhoto = {
   args: {
     submission_id: 'IDR-2024-005',
     title: 'Defekte Straßenbeleuchtung',
-    description: 'Straßenlampe flackert seit einer Woche, teilweise völlig dunkel',
+    description:
+      'Straßenlampe flackert seit einer Woche, teilweise völlig dunkel',
     status: 'in_bearbeitung',
     priority: 'mittel',
     damage_type: 'Beleuchtung',
     location: 'Seestraße 15',
     created_date: '12.01.2024',
-    thumbnail_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMCAyMEw0NCA0NEwyMCA0NFYyMFoiIGZpbGw9IiNEMUQ1REIiLz4KPGJ0ZXh0IHg9IjMyIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjI2N0ZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QSE9UTzwvdGV4dD4KPC9zdmc+',
+    thumbnail_url:
+      'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMCAyMEw0NCA0NEwyMCA0NFYyMFoiIGZpbGw9IiNEMUQ1REIiLz4KPGJ0ZXh0IHg9IjMyIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjI2N0ZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QSE9UTzwvdGV4dD4KPC9zdmc+',
     thumbnail_alt: 'Defekte Straßenlampe',
     assigned_to: 'M. Müller',
   },
@@ -395,7 +397,8 @@ export const ClickableCard = {
   parameters: {
     docs: {
       description: {
-        story: 'Card with action_url becomes a clickable link to detailed view.',
+        story:
+          'Card with action_url becomes a clickable link to detailed view.',
       },
     },
   },
@@ -406,7 +409,8 @@ export const DemoReport = {
   args: {
     submission_id: 'IDR-2024-007',
     title: 'Straßenschaden am Weg nach Rohan',
-    description: 'Große Risse in der Straße, vermutlich durch schwere Reiterkolonnen verursacht',
+    description:
+      'Große Risse in der Straße, vermutlich durch schwere Reiterkolonnen verursacht',
     status: 'neu',
     priority: 'hoch',
     damage_type: 'Straße',

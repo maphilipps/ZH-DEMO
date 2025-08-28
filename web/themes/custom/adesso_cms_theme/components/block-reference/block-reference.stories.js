@@ -79,9 +79,9 @@ Block reference component for displaying standalone content blocks with optional
   block_content: section.rendered_content
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -95,7 +95,8 @@ export const Default = {
   args: {
     pre_headline: 'Featured Content',
     title: 'Welcome to Our Platform',
-    block_content: 'Discover powerful features and tools designed to help you achieve your goals. Our intuitive interface makes it easy to get started and accomplish more with less effort.',
+    block_content:
+      'Discover powerful features and tools designed to help you achieve your goals. Our intuitive interface makes it easy to get started and accomplish more with less effort.',
     is_dark: false,
   },
 };
@@ -105,7 +106,8 @@ export const Announcement = {
   args: {
     pre_headline: 'Important Notice',
     title: 'System Maintenance',
-    block_content: 'Scheduled maintenance tonight from 2:00 AM to 4:00 AM EST. Services will be temporarily unavailable during this period. We apologize for any inconvenience.',
+    block_content:
+      'Scheduled maintenance tonight from 2:00 AM to 4:00 AM EST. Services will be temporarily unavailable during this period. We apologize for any inconvenience.',
     is_dark: false,
   },
 };
@@ -115,7 +117,8 @@ export const FeatureHighlight = {
   args: {
     pre_headline: 'New Feature',
     title: 'Enhanced User Experience',
-    block_content: 'We\'ve improved the user interface with better navigation, faster loading times, and more intuitive controls. Update your app to experience these improvements.',
+    block_content:
+      "We've improved the user interface with better navigation, faster loading times, and more intuitive controls. Update your app to experience these improvements.",
     is_dark: false,
   },
 };
@@ -125,7 +128,8 @@ export const DarkTheme = {
   args: {
     pre_headline: 'Special Offer',
     title: 'Limited Time Deal',
-    block_content: 'Get 50% off your first month when you sign up this week. This exclusive offer includes all premium features and priority support.',
+    block_content:
+      'Get 50% off your first month when you sign up this week. This exclusive offer includes all premium features and priority support.',
     is_dark: true,
   },
   parameters: {
@@ -136,7 +140,8 @@ export const DarkTheme = {
 // Content without headlines
 export const ContentOnly = {
   args: {
-    block_content: 'This block contains only content without pre-headline or title. Perfect for simple text blocks, quotes, or standalone paragraphs that don\'t need additional structure.',
+    block_content:
+      "This block contains only content without pre-headline or title. Perfect for simple text blocks, quotes, or standalone paragraphs that don't need additional structure.",
     is_dark: false,
   },
 };
@@ -155,7 +160,8 @@ export const Playground = {
   args: {
     pre_headline: 'Test Section',
     title: 'Test Block Reference',
-    block_content: 'This is test content for the block reference component. Use this to experiment with different content and styling options.',
+    block_content:
+      'This is test content for the block reference component. Use this to experiment with different content and styling options.',
     is_dark: false,
   },
 };

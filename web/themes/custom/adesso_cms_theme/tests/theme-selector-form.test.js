@@ -26,7 +26,7 @@ function createMockThemeSelector(selectedValue = 'light') {
             <label for="edit-field-content-element-theme-0-value" class="form-label">Content Element Theme</label>
           </div>
           <div class="relative">
-            <select name="field_theme[0][value]" id="edit-field-content-element-theme-0-value" class="form-select block w-full rounded-md py-2 px-3 text-base font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 cursor-pointer bg-white transition-colors duration-200" onchange="window.updateThemePreview(this.value)">
+            <select name="field_theme[0][value]" id="edit-field-content-element-theme-0-value" class="form-select block w-full rounded-md py-2 px-3 text-base font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 cursor-pointer bg-white transition-colors duration-200">
               <option value="light" ${selectedValue === 'light' ? 'selected="selected"' : ''} data-theme="light">🌟 Light - Standard white background</option>
               <option value="highlighted" ${selectedValue === 'highlighted' ? 'selected="selected"' : ''} data-theme="highlighted">🎯 Highlighted - Light gray background for emphasis</option>
               <option value="dark" ${selectedValue === 'dark' ? 'selected="selected"' : ''} data-theme="dark">🌙 Dark - Dark background with light text</option>
@@ -48,7 +48,7 @@ function createMockThemeSelector(selectedValue = 'light') {
         <div class="grid grid-cols-3 gap-3 text-xs">
           <div class="theme-preview-card bg-white border border-gray-200 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md" 
                data-theme="light" 
-               onclick="window.selectTheme('light')"
+               data-select-theme="light"
                role="button" 
                tabindex="0"
                aria-label="Select Light Theme">
@@ -60,7 +60,7 @@ function createMockThemeSelector(selectedValue = 'light') {
           </div>
           <div class="theme-preview-card bg-gray-100 border border-gray-300 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md" 
                data-theme="highlighted" 
-               onclick="window.selectTheme('highlighted')"
+               data-select-theme="highlighted"
                role="button" 
                tabindex="0"
                aria-label="Select Highlighted Theme">
@@ -72,7 +72,7 @@ function createMockThemeSelector(selectedValue = 'light') {
           </div>
           <div class="theme-preview-card bg-gray-900 border border-gray-700 rounded p-3 text-center cursor-pointer transition-all duration-200 hover:shadow-md" 
                data-theme="dark" 
-               onclick="window.selectTheme('dark')"
+               data-select-theme="dark"
                role="button" 
                tabindex="0"
                aria-label="Select Dark Theme">
@@ -110,11 +110,29 @@ function setupThemeSelectorJavaScript() {
     window.updateThemePreview(themeValue);
   };
   
+  // Add event delegation for theme preview cards
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.theme-preview-card')) {
+      const card = e.target.closest('.theme-preview-card');
+      const theme = card.dataset.selectTheme;
+      if (theme) {
+        window.selectTheme(theme);
+      }
+    }
+  });
+  
   // Add keyboard support for preview cards
   document.addEventListener('keydown', function(e) {
     if (e.target.classList.contains('theme-preview-card') && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       e.target.click();
+    }
+  });
+  
+  // Add event delegation for select changes
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('select[name*="field_theme"]')) {
+      window.updateThemePreview(e.target.value);
     }
   });
 }
@@ -224,6 +242,11 @@ describe('Theme Selector Form Functionality', () => {
 
   describe('Interactive Functionality', () => {
     beforeEach(() => {
+      // Ensure functions are available before inserting HTML with inline handlers
+      if (typeof window.updateThemePreview !== 'function') {
+        setupThemeSelectorJavaScript();
+      }
+      
       const themeSelectorHtml = createMockThemeSelector();
       container.innerHTML = themeSelectorHtml;
     });
@@ -234,8 +257,8 @@ describe('Theme Selector Form Functionality', () => {
       
       expect(select.value).toBe('light'); // Initial value
       
-      // Manually trigger the selectTheme function since click events with inline handlers are problematic in JSDOM
-      window.selectTheme('highlighted');
+      // Simulate clicking the highlighted card
+      highlightedCard.click();
       
       expect(select.value).toBe('highlighted');
     });
@@ -244,8 +267,8 @@ describe('Theme Selector Form Functionality', () => {
       const highlightedCard = container.querySelector('.theme-preview-card[data-theme="highlighted"]');
       const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
       
-      // Manually trigger the selectTheme function
-      window.selectTheme('highlighted');
+      // Simulate clicking the highlighted card
+      highlightedCard.click();
       
       expect(highlightedCard.classList.contains('ring-2')).toBe(true);
       expect(highlightedCard.classList.contains('ring-blue-500')).toBe(true);

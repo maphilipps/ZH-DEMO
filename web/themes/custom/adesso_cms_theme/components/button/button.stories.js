@@ -28,7 +28,29 @@ const meta = {
       name: 'Icon',
       description: 'The icon to display inside the button',
       control: { type: 'select' },
-      options: ['', 'arrow-right', 'arrow-left', 'download', 'upload', 'external-link', 'mail', 'phone', 'user', 'settings', 'search', 'plus', 'minus', 'x', 'check', 'info', 'alert-triangle', 'heart', 'star', 'home', 'menu'],
+      options: [
+        '',
+        'arrow-right',
+        'arrow-left',
+        'download',
+        'upload',
+        'external-link',
+        'mail',
+        'phone',
+        'user',
+        'settings',
+        'search',
+        'plus',
+        'minus',
+        'x',
+        'check',
+        'info',
+        'alert-triangle',
+        'heart',
+        'star',
+        'home',
+        'menu',
+      ],
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -38,7 +60,14 @@ const meta = {
       name: 'Variant',
       description: 'The button variant',
       control: { type: 'select' },
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      options: [
+        'default',
+        'destructive',
+        'outline',
+        'secondary',
+        'ghost',
+        'link',
+      ],
       table: {
         type: { summary: 'enum' },
         defaultValue: { summary: 'default' },
@@ -116,9 +145,9 @@ Interactive button component with multiple variants, sizes, and icon support.
   size: 'icon'
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -263,4 +292,3 @@ export const Playground = {
     modifier: '',
   },
 };
-

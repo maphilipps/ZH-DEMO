@@ -12,11 +12,15 @@
    * @return {void}
    */
   function initializeHero(heroElement) {
-    const ctaButtons = heroElement.querySelectorAll('.cta-button, [data-cta], .hero-button');
-    const backgroundImage = heroElement.querySelector('.hero-background, .hero-image');
+    const ctaButtons = heroElement.querySelectorAll(
+      '.cta-button, [data-cta], .hero-button'
+    );
+    const backgroundImage = heroElement.querySelector(
+      '.hero-background, .hero-image'
+    );
     const heroContent = heroElement.querySelector('.hero-content');
     const enableParallax = heroElement.getAttribute('data-parallax') === 'true';
-    
+
     // Initialize CTA button tracking
     if (ctaButtons.length > 0) {
       initializeCTAButtons(ctaButtons, heroElement);
@@ -36,7 +40,10 @@
       initializeVideoBackground(heroVideo);
     }
 
-    console.log('[adesso-hero] Hero initialized with CTA buttons:', ctaButtons.length);
+    console.log(
+      '[adesso-hero] Hero initialized with CTA buttons:',
+      ctaButtons.length
+    );
   }
 
   /**
@@ -46,14 +53,15 @@
    * @return {void}
    */
   function initializeCTAButtons(ctaButtons, heroElement) {
-    ctaButtons.forEach(function(button, index) {
+    ctaButtons.forEach(function (button, index) {
       // Enhanced click tracking
-      button.addEventListener('click', function(e) {
+      button.addEventListener('click', function (e) {
         const ctaData = {
           position: index + 1,
           text: button.textContent.trim(),
           url: button.href || button.getAttribute('data-url'),
-          heroId: heroElement.id || 'hero-' + Math.random().toString(36).substr(2, 9)
+          heroId:
+            heroElement.id || 'hero-' + Math.random().toString(36).substr(2, 9)
         };
 
         // Track CTA interaction
@@ -61,7 +69,7 @@
 
         // Add visual feedback
         button.classList.add('animate-pulse');
-        setTimeout(function() {
+        setTimeout(function () {
           button.classList.remove('animate-pulse');
         }, 200);
 
@@ -79,7 +87,7 @@
       });
 
       // Enhanced keyboard interaction
-      button.addEventListener('keydown', function(e) {
+      button.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           button.click();
@@ -87,11 +95,11 @@
       });
 
       // Add focus management
-      button.addEventListener('focus', function() {
+      button.addEventListener('focus', function () {
         button.classList.add('ring-2', 'ring-blue-500', 'ring-opacity-50');
       });
 
-      button.addEventListener('blur', function() {
+      button.addEventListener('blur', function () {
         button.classList.remove('ring-2', 'ring-blue-500', 'ring-opacity-50');
       });
     });
@@ -105,9 +113,13 @@
    */
   function initializeParallaxEffect(heroElement, backgroundImage) {
     // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
     if (prefersReducedMotion) {
-      console.log('[adesso-hero] Parallax disabled due to reduced motion preference');
+      console.log(
+        '[adesso-hero] Parallax disabled due to reduced motion preference'
+      );
       return;
     }
 
@@ -118,15 +130,18 @@
       const heroRect = heroElement.getBoundingClientRect();
       const heroTop = scrollTop + heroRect.top;
       const heroHeight = heroRect.height;
-      
+
       // Only apply parallax when hero is in viewport
-      if (scrollTop < heroTop + heroHeight && scrollTop + window.innerHeight > heroTop) {
+      if (
+        scrollTop < heroTop + heroHeight &&
+        scrollTop + window.innerHeight > heroTop
+      ) {
         const parallaxSpeed = 0.5;
         const yPos = -(scrollTop - heroTop) * parallaxSpeed;
-        
+
         backgroundImage.style.transform = `translate3d(0, ${yPos}px, 0)`;
       }
-      
+
       ticking = false;
     }
 
@@ -142,7 +157,7 @@
     window.addEventListener('resize', requestParallaxUpdate, { passive: true });
 
     // Store cleanup function
-    heroElement.parallaxCleanup = function() {
+    heroElement.parallaxCleanup = function () {
       window.removeEventListener('scroll', requestParallaxUpdate);
       window.removeEventListener('resize', requestParallaxUpdate);
     };
@@ -157,28 +172,33 @@
   function initializeScrollAnimations(heroElement, heroContent) {
     if (!heroContent) return;
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          // Hero is visible - trigger entry animations
-          heroContent.classList.add('animate-fade-in-up');
-          
-          // Stagger animation for child elements
-          const animatableElements = heroContent.querySelectorAll('h1, h2, p, .cta-button');
-          animatableElements.forEach(function(element, index) {
-            setTimeout(function() {
-              element.classList.add('animate-fade-in');
-            }, index * 100);
-          });
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            // Hero is visible - trigger entry animations
+            heroContent.classList.add('animate-fade-in-up');
+
+            // Stagger animation for child elements
+            const animatableElements = heroContent.querySelectorAll(
+              'h1, h2, p, .cta-button'
+            );
+            animatableElements.forEach(function (element, index) {
+              setTimeout(function () {
+                element.classList.add('animate-fade-in');
+              }, index * 100);
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
     observer.observe(heroElement);
-    
+
     // Store cleanup function
     heroElement.intersectionObserver = observer;
   }
@@ -192,14 +212,15 @@
     // Ensure video is muted for autoplay
     videoElement.muted = true;
     videoElement.setAttribute('muted', '');
-    
+
     // Add play/pause controls for accessibility
     const playPauseButton = document.createElement('button');
-    playPauseButton.className = 'video-control absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded';
+    playPauseButton.className =
+      'video-control absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded';
     playPauseButton.innerHTML = '⏸️';
     playPauseButton.setAttribute('aria-label', 'Pause background video');
-    
-    playPauseButton.addEventListener('click', function() {
+
+    playPauseButton.addEventListener('click', function () {
       if (videoElement.paused) {
         videoElement.play();
         playPauseButton.innerHTML = '⏸️';
@@ -210,12 +231,12 @@
         playPauseButton.setAttribute('aria-label', 'Play background video');
       }
     });
-    
+
     // Add control button to hero
     videoElement.parentNode.appendChild(playPauseButton);
-    
+
     // Handle video load errors gracefully
-    videoElement.addEventListener('error', function() {
+    videoElement.addEventListener('error', function () {
       console.warn('[adesso-hero] Video background failed to load');
       videoElement.style.display = 'none';
     });
@@ -245,7 +266,8 @@
    * @return {void}
    */
   function smoothScrollTo(targetId) {
-    const target = document.getElementById(targetId) || document.querySelector(targetId);
+    const target =
+      document.getElementById(targetId) || document.querySelector(targetId);
     if (target) {
       target.scrollIntoView({
         behavior: 'smooth',
@@ -279,18 +301,23 @@
   Drupal.behaviors.adessoHero = {
     attach: function (context) {
       // Find hero elements
-      const heroElements = once('adesso-hero', 
-        '.hero, [data-hero], .hero-section, .hero-banner', 
+      const heroElements = once(
+        'adesso-hero',
+        '.hero, [data-hero], .hero-section, .hero-banner',
         context
       );
-      
+
       if (heroElements.length === 0) {
         return;
       }
 
-      console.log('[adesso-hero] Found', heroElements.length, 'hero section(s)');
+      console.log(
+        '[adesso-hero] Found',
+        heroElements.length,
+        'hero section(s)'
+      );
 
-      heroElements.forEach(function(heroElement) {
+      heroElements.forEach(function (heroElement) {
         initializeHero(heroElement);
       });
     },
@@ -298,35 +325,38 @@
     detach: function (context, settings, trigger) {
       if (trigger === 'unload') {
         // Clean up observers and event listeners
-        const heroes = context.querySelectorAll('.hero, [data-hero], .hero-section, .hero-banner');
-        
-        heroes.forEach(function(hero) {
+        const heroes = context.querySelectorAll(
+          '.hero, [data-hero], .hero-section, .hero-banner'
+        );
+
+        heroes.forEach(function (hero) {
           // Clean up parallax
           if (hero.parallaxCleanup) {
             hero.parallaxCleanup();
             delete hero.parallaxCleanup;
           }
-          
+
           // Clean up intersection observer
           if (hero.intersectionObserver) {
             hero.intersectionObserver.disconnect();
             delete hero.intersectionObserver;
           }
-          
+
           // Reset transforms
-          const backgroundImage = hero.querySelector('.hero-background, .hero-image');
+          const backgroundImage = hero.querySelector(
+            '.hero-background, .hero-image'
+          );
           if (backgroundImage) {
             backgroundImage.style.transform = '';
           }
-          
+
           // Remove video controls
           const videoControls = hero.querySelectorAll('.video-control');
-          videoControls.forEach(function(control) {
+          videoControls.forEach(function (control) {
             control.remove();
           });
         });
       }
     }
   };
-
 })(Drupal, once);

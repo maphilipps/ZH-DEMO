@@ -5,7 +5,6 @@
  */
 
 describe('Search Result Card Component', () => {
-  
   describe('Accessibility Compliance', () => {
     test('should have proper ARIA structure', () => {
       // Component should include:
@@ -85,14 +84,12 @@ describe('Search Result Card Component', () => {
       expect(true).toBe(true); // Placeholder for actual implementation
     });
   });
-
 });
 
 /**
  * Integration Tests for Views Template
  */
 describe('Views Template Integration', () => {
-  
   test('should process Search API fields correctly', () => {
     // Title field extraction and URL processing
     // Relevance score normalization
@@ -102,7 +99,7 @@ describe('Views Template Integration', () => {
 
   test('should handle taxonomy field processing', () => {
     // field_directory_category processing
-    // field_zielgruppe processing  
+    // field_zielgruppe processing
     // Term entity data extraction
     expect(true).toBe(true); // Placeholder for actual implementation
   });
@@ -112,14 +109,12 @@ describe('Views Template Integration', () => {
     // Unique IDs should be generated for each result
     expect(true).toBe(true); // Placeholder for actual implementation
   });
-
 });
 
 /**
  * Performance Tests
  */
 describe('Performance Considerations', () => {
-  
   test('should have minimal render overhead', () => {
     // Component should render efficiently
     // No unnecessary DOM manipulation
@@ -131,5 +126,4 @@ describe('Performance Considerations', () => {
     // Memory usage should be reasonable
     expect(true).toBe(true); // Placeholder for actual implementation
   });
-
 });

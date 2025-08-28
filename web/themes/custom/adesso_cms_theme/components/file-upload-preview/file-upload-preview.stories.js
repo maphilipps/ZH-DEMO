@@ -38,7 +38,9 @@ const meta = {
       control: { type: 'object' },
       table: {
         type: { summary: 'array' },
-        defaultValue: { summary: '["jpg", "jpeg", "png", "pdf", "doc", "docx"]' },
+        defaultValue: {
+          summary: '["jpg", "jpeg", "png", "pdf", "doc", "docx"]',
+        },
       },
     },
     upload_url: {
@@ -124,9 +126,9 @@ The component uses Alpine.js for:
 - Dynamic UI updates
 
 Perfect for Infrastructure Damage Report forms where citizens upload photos and documents.
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -156,9 +158,10 @@ export const WithFiles = {
         name: 'schlagloch_hauptstrasse.jpg',
         size: '2.1 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
         upload_progress: 100,
-        status: 'completed'
+        status: 'completed',
       },
       {
         id: 'file2',
@@ -166,8 +169,8 @@ export const WithFiles = {
         size: '890 KB',
         type: 'application/pdf',
         upload_progress: 100,
-        status: 'completed'
-      }
+        status: 'completed',
+      },
     ],
     max_files: 3,
     max_file_size: '5 MB',
@@ -184,9 +187,10 @@ export const UploadInProgress = {
         name: 'damage_photo_1.jpg',
         size: '3.2 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
         upload_progress: 67,
-        status: 'uploading'
+        status: 'uploading',
       },
       {
         id: 'file2',
@@ -194,8 +198,8 @@ export const UploadInProgress = {
         size: '1.1 MB',
         type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         upload_progress: 0,
-        status: 'validating'
-      }
+        status: 'validating',
+      },
     ],
     max_files: 3,
     max_file_size: '5 MB',
@@ -204,7 +208,8 @@ export const UploadInProgress = {
   parameters: {
     docs: {
       description: {
-        story: 'Files with various upload statuses: uploading with progress bar and validating.',
+        story:
+          'Files with various upload statuses: uploading with progress bar and validating.',
       },
     },
   },
@@ -221,7 +226,7 @@ export const WithError = {
         type: 'image/jpeg',
         upload_progress: 0,
         status: 'error',
-        error_message: 'Datei zu groß (max. 5 MB)'
+        error_message: 'Datei zu groß (max. 5 MB)',
       },
       {
         id: 'file2',
@@ -229,8 +234,8 @@ export const WithError = {
         size: '1.2 MB',
         type: 'application/pdf',
         upload_progress: 100,
-        status: 'completed'
-      }
+        status: 'completed',
+      },
     ],
     max_files: 3,
     max_file_size: '5 MB',
@@ -239,7 +244,8 @@ export const WithError = {
   parameters: {
     docs: {
       description: {
-        story: 'Upload error state with error message and successful file for comparison.',
+        story:
+          'Upload error state with error message and successful file for comparison.',
       },
     },
   },
@@ -254,24 +260,26 @@ export const MaxFilesReached = {
         name: 'beschaedigung_vorne.jpg',
         size: '2.3 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
-        status: 'completed'
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
+        status: 'completed',
       },
       {
         id: 'file2',
         name: 'beschaedigung_seite.jpg',
         size: '1.8 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
-        status: 'completed'
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
+        status: 'completed',
       },
       {
         id: 'file3',
         name: 'offizielles_dokument.pdf',
         size: '945 KB',
         type: 'application/pdf',
-        status: 'completed'
-      }
+        status: 'completed',
+      },
     ],
     max_files: 3,
     max_file_size: '5 MB',
@@ -295,9 +303,10 @@ export const CompactMode = {
         name: 'schaden_foto.jpg',
         size: '1.5 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
-        status: 'completed'
-      }
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjREREREREIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCQkJCQkIiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpQRzwvdGV4dD4KPC9zdmc+',
+        status: 'completed',
+      },
     ],
     max_files: 2,
     max_file_size: '3 MB',
@@ -322,23 +331,24 @@ export const MixedFileTypes = {
         name: 'schadens_foto.png',
         size: '4.2 MB',
         type: 'image/png',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRUVFRUVFIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNDQ0NDQ0MiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM4ODg4ODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBORzwvdGV4dD4KPC9zdmc+',
-        status: 'completed'
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRUVFRUVFIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNDQ0NDQ0MiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiM4ODg4ODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBORzwvdGV4dD4KPC9zdmc+',
+        status: 'completed',
       },
       {
         id: 'file2',
         name: 'gutachten.pdf',
         size: '2.7 MB',
         type: 'application/pdf',
-        status: 'completed'
+        status: 'completed',
       },
       {
         id: 'file3',
         name: 'zusatz_info.docx',
         size: '650 KB',
         type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        status: 'completed'
-      }
+        status: 'completed',
+      },
     ],
     max_files: 5,
     max_file_size: '5 MB',
@@ -347,7 +357,8 @@ export const MixedFileTypes = {
   parameters: {
     docs: {
       description: {
-        story: 'Various file types with appropriate icons: image with preview, PDF, and Word document.',
+        story:
+          'Various file types with appropriate icons: image with preview, PDF, and Word document.',
       },
     },
   },
@@ -380,16 +391,17 @@ export const DemoData = {
         name: 'schaden_am_weg_nach_rohan.jpg',
         size: '3.1 MB',
         type: 'image/jpeg',
-        preview_url: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRjBGOEZGIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCRERFRkYiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiMzQjgyRjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlJPSEFOPC90ZXh0Pgo8L3N2Zz4K',
-        status: 'completed'
+        preview_url:
+          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRjBGOEZGIi8+CjxwYXRoIGQ9Ik0xMCAxMEwyNSAyNUwxMCAyNVYxMFoiIGZpbGw9IiNCRERFRkYiLz4KPHR0ZXh0IHg9IjIwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjgiIGZpbGw9IiMzQjgyRjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlJPSEFOPC90ZXh0Pgo8L3N2Zz4K',
+        status: 'completed',
       },
       {
         id: 'file2',
         name: 'bericht_des_waldhueter.pdf',
         size: '1.8 MB',
         type: 'application/pdf',
-        status: 'completed'
-      }
+        status: 'completed',
+      },
     ],
     max_files: 3,
     max_file_size: '5 MB',

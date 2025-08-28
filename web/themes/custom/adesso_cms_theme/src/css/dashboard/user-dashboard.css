@@ -181,15 +181,15 @@
   .dashboard-statistics {
     @apply grid-cols-1;
   }
-  
+
   .dashboard-block {
     @apply p-4;
   }
-  
+
   .dashboard-block table {
     @apply text-xs;
   }
-  
+
   .dashboard-block thead th,
   .dashboard-block tbody td {
     @apply px-2 py-2;
@@ -201,34 +201,34 @@
   .dashboard-user {
     @apply bg-gray-900;
   }
-  
+
   .dashboard-section,
   .dashboard-stat-card,
   .dashboard-quick-actions {
     @apply bg-gray-800 border-gray-700;
   }
-  
+
   .dashboard-header h1,
   .dashboard-stat-card .stat-value,
   .dashboard-block h2,
   .dashboard-block h3 {
     @apply text-gray-100;
   }
-  
+
   .dashboard-header .dashboard-description,
   .dashboard-stat-card .stat-label,
   .dashboard-block tbody td {
     @apply text-gray-400;
   }
-  
+
   .dashboard-block thead {
     @apply bg-gray-700;
   }
-  
+
   .dashboard-block tbody {
     @apply bg-gray-800;
   }
-  
+
   .dashboard-block tbody tr:hover {
     @apply bg-gray-700;
   }
@@ -240,11 +240,11 @@
   .dashboard-block .dropbutton-wrapper {
     @apply hidden;
   }
-  
+
   .dashboard-sections {
     @apply grid-cols-1;
   }
-  
+
   .dashboard-section {
     @apply shadow-none border-0 mb-8;
     page-break-inside: avoid;
@@ -257,7 +257,7 @@
 }
 
 .dashboard-loading::after {
-  content: '';
+  content: "";
   @apply fixed inset-0 bg-white/75 flex items-center justify-center z-50;
 }
 

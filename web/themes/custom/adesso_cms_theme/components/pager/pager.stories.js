@@ -222,9 +222,9 @@ Accessible pagination component for navigating through multiple pages of content
 - **Search Results**: Paginated search with query preservation
 - **Archive Pages**: Date-based content organization
 - **Admin Interfaces**: Data tables and management listings
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -361,7 +361,7 @@ export const SearchResults = {
         title: 'Go to previous page',
       },
       next: {
-        href: '/search?q=drupal&page=4',  
+        href: '/search?q=drupal&page=4',
         title: 'Go to next page',
       },
       pages: {
@@ -379,7 +379,8 @@ export const SearchResults = {
   parameters: {
     docs: {
       description: {
-        story: 'Search results pagination with query parameters preserved in URLs.',
+        story:
+          'Search results pagination with query parameters preserved in URLs.',
       },
     },
   },
@@ -417,7 +418,8 @@ export const BlogArchive = {
   parameters: {
     docs: {
       description: {
-        story: 'Blog archive pagination showing middle page with ellipsis on both sides.',
+        story:
+          'Blog archive pagination showing middle page with ellipsis on both sides.',
       },
     },
   },
@@ -451,7 +453,8 @@ export const ProductCatalog = {
   parameters: {
     docs: {
       description: {
-        story: 'Product catalog pagination with category filtering and per-page parameters.',
+        story:
+          'Product catalog pagination with category filtering and per-page parameters.',
       },
     },
   },
@@ -489,7 +492,8 @@ export const NewsArchive = {
   parameters: {
     docs: {
       description: {
-        story: 'News archive with current page in middle of large page set, showing ellipsis handling.',
+        story:
+          'News archive with current page in middle of large page set, showing ellipsis handling.',
       },
     },
   },
@@ -556,7 +560,8 @@ export const AccessibilityDemo = {
   parameters: {
     docs: {
       description: {
-        story: 'Accessibility features including semantic structure, screen reader support, and keyboard navigation.',
+        story:
+          'Accessibility features including semantic structure, screen reader support, and keyboard navigation.',
       },
     },
     a11y: {
@@ -601,7 +606,8 @@ export const Playground = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive playground for testing pagination configurations and edge cases.',
+        story:
+          'Interactive playground for testing pagination configurations and edge cases.',
       },
     },
   },

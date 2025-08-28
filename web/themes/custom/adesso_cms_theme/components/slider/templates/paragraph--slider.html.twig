@@ -1,72 +1,36 @@
-{#
-/**
- * @file
- * Slider paragraph template using paragraph-wrapper component with embed pattern.
- */
-#}
-{{ attach_library('adesso_cms_theme/swiper') }}
-{# Manual CDN loading as fallback #}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+{# /** * @file * Slider paragraph template using paragraph-wrapper component with embed pattern. */ #} {{
+attach_library('adesso_cms_theme/swiper') }} {# Manual CDN loading as fallback #}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  defer
+></script>
 
-{# Slider paragraph configuration #}
-{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
-{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
-{% set wrapper_tag = 'section' %}
-{% set wrapper_css_class = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
-]|join(' ') %}
+{# Slider paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set
+wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
+wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ?
+'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %}
+{# Embed the paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme:
+wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {%
+block prefix %} {{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %}
+<div class="py-8 px-4 mx-auto container lg:py-16">
+  <div class="flex flex-col items-center justify-center">
+    {% if content.field_pre_headline or content.field_title %} {% include 'adesso_cms_theme:section-header' with {
+    title: content.field_title, pre_headline: content.field_pre_headline, alignment: 'center', title_tag: 'h2',
+    pre_headline_tag: 'span', title_visual_level: '2', pre_headline_visual_level: '3' } %} {% endif %}
+  </div>
+  {# Build processed slider items array #} {% set items = [] %} {% if content.field_slider_item %} {% for key, item in
+  content.field_slider_item %} {# Only process numeric keys (rendered paragraph items) #} {% if key matches '/^\\d+$/'
+  %} {# Add the rendered slider item content #} {% if item %} {% set items = items|merge([item]) %} {% endif %} {% endif
+  %} {% endfor %} {% endif %}
 
-{# Embed the paragraph-wrapper component using slots #}
-{% embed 'adesso_cms_theme:paragraph-wrapper' with {
-  theme: wrapper_theme,
-  spacing: wrapper_spacing,
-  tag: wrapper_tag,
-  className: wrapper_css_class,
-  attributes: attributes
-} %}
-  {% block prefix %}
-    {{ title_prefix }}
-    {{ title_suffix }}
-
-  {% endblock %}
-  {% block content %}
-    <div class="py-8 px-4 mx-auto container lg:py-16">
-      <div class="flex flex-col items-center justify-center">
-      {% if content.field_pre_headline or content.field_title %}
-        {% include 'adesso_cms_theme:section-header' with {
-          title: content.field_title,
-          pre_headline: content.field_pre_headline,
-          alignment: 'center',
-          title_tag: 'h2',
-          pre_headline_tag: 'span',
-          title_visual_level: '2',
-          pre_headline_visual_level: '3'
-        } %}
-      {% endif %}
-      </div>
-      {# Build processed slider items array #}
-      {% set items = [] %}
-      {% if content.field_slider_item %}
-        {% for key, item in content.field_slider_item %}
-          {# Only process numeric keys (rendered paragraph items) #}
-          {% if key matches '/^\\d+$/' %}
-            {# Add the rendered slider item content #}
-            {% if item %}
-              {% set items = items|merge([item]) %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-
-      <div class="max-w-[1536px] mx-auto  mt-6">
-        {% include "adesso_cms_theme:slider" with {
-          items: items,
-        } %}
-      </div>
-    </div>
-  {% endblock %}
-{% endembed %}
+  <div class="max-w-[1536px] mx-auto mt-6">{% include "adesso_cms_theme:slider" with { items: items, } %}</div>
+</div>
+{% endblock %} {% endembed %}

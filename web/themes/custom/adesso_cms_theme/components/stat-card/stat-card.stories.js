@@ -137,9 +137,9 @@ Statistic card component for displaying key metrics, KPIs, and data points with 
 ## Layout Options (from YAML schema)
 - **center**: Centered layout with icon/media above heading
 - **left**: Left-aligned layout with icon/media to the side
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };

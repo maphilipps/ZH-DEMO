@@ -9,35 +9,40 @@ function renderPageHeader(props = {}) {
     background_image = 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply',
     alt_text = '',
     modifier = '',
-    navbar_transparent = false
+    navbar_transparent = false,
   } = props;
 
   // Variant-specific configurations
   const variantConfig = {
-    'default': {
+    default: {
       wrapper: 'py-24 sm:py-32',
       margin: '',
       contentWrapper: '',
       contentContainer: '',
-      titleClasses: 'text-5xl font-semibold tracking-tight text-white sm:text-7xl',
-      descriptionClasses: 'mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8'
+      titleClasses:
+        'text-5xl font-semibold tracking-tight text-white sm:text-7xl',
+      descriptionClasses:
+        'mt-8 text-lg font-medium text-pretty text-white sm:text-xl/8',
     },
-    'landing': {
+    landing: {
       wrapper: 'py-64 sm:py-80 md:py-96 lg:py-112',
       margin: '-mt-20 sm:-mt-24 lg:-mt-28',
       contentWrapper: 'pt-48 sm:pt-64 md:pt-80 lg:pt-96',
       contentContainer: 'max-w-5xl lg:mx-0',
-      titleClasses: 'text-6xl font-bold tracking-tight text-white sm:text-8xl lg:text-9xl',
-      descriptionClasses: 'mt-12 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed lg:text-3xl/relaxed'
+      titleClasses:
+        'text-6xl font-bold tracking-tight text-white sm:text-8xl lg:text-9xl',
+      descriptionClasses:
+        'mt-12 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed lg:text-3xl/relaxed',
     },
-    'hero': {
+    hero: {
       wrapper: 'py-32 sm:py-48 md:py-64',
       margin: '',
       contentWrapper: 'pt-24 sm:pt-32',
       contentContainer: 'mx-auto max-w-6xl lg:mx-0 text-center',
       titleClasses: 'text-6xl font-bold tracking-tight text-white sm:text-8xl',
-      descriptionClasses: 'mt-10 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed'
-    }
+      descriptionClasses:
+        'mt-10 text-xl font-medium text-pretty text-white sm:text-2xl/relaxed',
+    },
   };
 
   const config = variantConfig[variant] || variantConfig['default'];
@@ -69,7 +74,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('Test Page Title');
     expect(html).toContain('This is a test description');
     expect(html).toContain('page-header-wrapper');
@@ -82,11 +87,11 @@ describe('Page Header Component', () => {
       variant: 'landing',
       title: 'Landing Page Title',
       description: 'Landing page description.',
-      navbar_transparent: true
+      navbar_transparent: true,
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('Landing Page Title');
     expect(html).toContain('py-64 sm:py-80 md:py-96 lg:py-112'); // Landing variant spacing
     expect(html).toContain('-mt-20 sm:-mt-24 lg:-mt-28'); // Landing negative margin
@@ -102,7 +107,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('Hero Title');
     expect(html).toContain('py-32 sm:py-48 md:py-64'); // Hero variant spacing
     expect(html).toContain('pt-24 sm:pt-32'); // Hero content wrapper padding
@@ -116,7 +121,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('Only Title');
     expect(html).not.toContain('<p class="mt-8');
   });
@@ -129,7 +134,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('https://example.com/custom-image.jpg');
     expect(html).toContain('alt="Custom background image"');
   });
@@ -141,7 +146,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('custom-class another-class');
   });
 
@@ -151,7 +156,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('images.unsplash.com');
   });
 
@@ -170,7 +175,7 @@ describe('Page Header Component', () => {
 
     const defaultHtml = renderPageHeader(defaultProps);
     const landingHtml = renderPageHeader(landingProps);
-    
+
     expect(defaultHtml).toContain('text-lg font-medium');
     expect(landingHtml).toContain('text-xl font-medium');
     expect(landingHtml).toContain('sm:text-2xl/relaxed lg:text-3xl/relaxed');
@@ -180,18 +185,18 @@ describe('Page Header Component', () => {
     const props = {
       variant: 'landing',
       title: 'Transparent Nav Test',
-      navbar_transparent: true
+      navbar_transparent: true,
     };
 
     const html = renderPageHeader(props);
-    
+
     expect(html).toContain('Transparent Nav Test');
     // Note: navbar_transparent is passed to component but styling is handled by parent templates
   });
 
   it('includes gradient decoration elements across all variants', () => {
     const variants = ['default', 'landing', 'hero'];
-    
+
     variants.forEach(variant => {
       const props = {
         variant,
@@ -199,7 +204,7 @@ describe('Page Header Component', () => {
       };
 
       const html = renderPageHeader(props);
-      
+
       expect(html).toContain('clip-path: polygon');
       expect(html).toContain('from-[#ff4694] to-[#776fff]');
       expect(html).toContain('opacity-20');
@@ -213,7 +218,7 @@ describe('Page Header Component', () => {
     };
 
     const html = renderPageHeader(props);
-    
+
     // Should fallback to default variant (though in real Twig this would be handled differently)
     expect(html).toContain('Fallback Test');
   });

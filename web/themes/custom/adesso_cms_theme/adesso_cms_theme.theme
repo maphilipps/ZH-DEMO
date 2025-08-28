@@ -1372,3 +1372,55 @@ function darkenColor($hex, $percent) {
   
   return sprintf('#%02x%02x%02x', round($r), round($g), round($b));
 }
+
+/**
+ * Implements hook_library_info_alter().
+ * 
+ * PreviousNext Vite Standards: Dynamic asset resolution using manifest.
+ * Automatically updates library paths when Vite rebuilds with new hashes.
+ */
+function adesso_cms_theme_library_info_alter(&$libraries, $extension) {
+  if ($extension !== 'adesso_cms_theme') {
+    return;
+  }
+
+  // Only alter the global library with Vite assets
+  if (!isset($libraries['global'])) {
+    return;
+  }
+
+  try {
+    // Create ViteAssetResolver service
+    $theme_manager = \Drupal::service('theme.manager');
+    $resolver = new \Drupal\adesso_cms_theme\ViteAssetResolver($theme_manager);
+    
+    // Get manifest assets
+    $assets = $resolver->getAllAssets();
+    
+    // Update CSS assets
+    if (isset($assets['src/css/adesso.css']) && isset($libraries['global']['css']['base'])) {
+      // Remove old static path
+      unset($libraries['global']['css']['base']['dist/assets/css/styles-B-7La5mF.css']);
+      
+      // Add dynamic path from manifest
+      $libraries['global']['css']['base'][$assets['src/css/adesso.css']] = [
+        'weight' => -10
+      ];
+    }
+    
+    // Update JS assets
+    if (isset($assets['src/js/adesso.js']) && isset($libraries['global']['js'])) {
+      // Remove old static path
+      unset($libraries['global']['js']['dist/assets/js/adesso-CV7kQPJ_.js']);
+      
+      // Add dynamic path from manifest
+      $libraries['global']['js'][$assets['src/js/adesso.js']] = [];
+    }
+    
+  } catch (\Exception $e) {
+    // Fail gracefully in case of manifest issues in development
+    \Drupal::logger('adesso_cms_theme')->error('Vite asset resolution failed: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+}

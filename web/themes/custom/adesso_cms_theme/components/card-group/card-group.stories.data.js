@@ -1,7 +1,7 @@
 /**
  * @file
  * Sample data for Card Group component stories.
- * 
+ *
  * This file contains realistic business and technology content
  * for demonstrating the Card Group component in various contexts.
  */
@@ -28,7 +28,8 @@ export default {
           title: 'Digital Strategy Consulting',
           level: 'h3',
         },
-        summary_text: 'Transform your business with comprehensive digital strategies that deliver measurable results and competitive advantage.',
+        summary_text:
+          'Transform your business with comprehensive digital strategies that deliver measurable results and competitive advantage.',
         link: {
           url: '/services/digital-strategy',
           title: 'Learn More',
@@ -68,7 +69,8 @@ export default {
           title: 'Cloud Solutions & Migration',
           level: 'h3',
         },
-        summary_text: 'Seamless cloud adoption with comprehensive migration services and ongoing optimization for maximum efficiency.',
+        summary_text:
+          'Seamless cloud adoption with comprehensive migration services and ongoing optimization for maximum efficiency.',
         link: {
           url: '/services/cloud',
           title: 'Explore Solutions',
@@ -230,7 +232,8 @@ export default {
           title: 'Sarah Chen',
           level: 'h3',
         },
-        summary_text: 'Chief Technology Officer with 15+ years in enterprise software development and digital transformation leadership.',
+        summary_text:
+          'Chief Technology Officer with 15+ years in enterprise software development and digital transformation leadership.',
         link: {
           url: '/team/sarah-chen',
           title: 'View Profile',
@@ -255,7 +258,8 @@ export default {
           title: 'Marcus Rodriguez',
           level: 'h3',
         },
-        summary_text: 'Lead Solutions Architect specializing in cloud infrastructure and enterprise system integration.',
+        summary_text:
+          'Lead Solutions Architect specializing in cloud infrastructure and enterprise system integration.',
         link: {
           url: '/team/marcus-rodriguez',
           title: 'View Profile',
@@ -280,7 +284,8 @@ export default {
           title: 'Dr. Emily Watson',
           level: 'h3',
         },
-        summary_text: 'Data Science Director with expertise in machine learning, AI, and advanced analytics solutions.',
+        summary_text:
+          'Data Science Director with expertise in machine learning, AI, and advanced analytics solutions.',
         link: {
           url: '/team/emily-watson',
           title: 'View Profile',
@@ -378,7 +383,8 @@ export default {
           title: 'Enterprise CMS Platform',
           level: 'h3',
         },
-        summary_text: 'Comprehensive content management system with multi-site support, advanced workflows, and seamless integrations.',
+        summary_text:
+          'Comprehensive content management system with multi-site support, advanced workflows, and seamless integrations.',
         link: {
           url: '/products/cms',
           title: 'Learn About CMS',
@@ -403,7 +409,8 @@ export default {
           title: 'API Gateway & Management',
           level: 'h3',
         },
-        summary_text: 'Complete API lifecycle management with security, monitoring, analytics, and developer portal integration.',
+        summary_text:
+          'Complete API lifecycle management with security, monitoring, analytics, and developer portal integration.',
         link: {
           url: '/products/api-gateway',
           title: 'Explore API Gateway',
@@ -428,7 +435,8 @@ export default {
           title: 'Business Intelligence Suite',
           level: 'h3',
         },
-        summary_text: 'Advanced analytics platform with real-time dashboards, predictive modeling, and automated reporting capabilities.',
+        summary_text:
+          'Advanced analytics platform with real-time dashboards, predictive modeling, and automated reporting capabilities.',
         link: {
           url: '/products/business-intelligence',
           title: 'View BI Suite',
@@ -476,7 +484,8 @@ export default {
           title: 'Performance Optimization',
           level: 'h3',
         },
-        summary_text: 'Comprehensive performance audits and optimization services to improve speed, efficiency, and user experience.',
+        summary_text:
+          'Comprehensive performance audits and optimization services to improve speed, efficiency, and user experience.',
         link: {
           url: '/services/performance',
           title: 'Optimize Performance',
@@ -515,42 +524,48 @@ export default {
         icon: 'code',
         heading: { title: 'Web Development', level: 'h3' },
         body: 'Modern web applications with cutting-edge technologies.',
-        media: '<div class="text-3xl font-bold text-blue-600 mb-1">200+</div><div class="text-xs text-gray-600">Sites Built</div>',
+        media:
+          '<div class="text-3xl font-bold text-blue-600 mb-1">200+</div><div class="text-xs text-gray-600">Sites Built</div>',
       },
       {
         type: 'stat',
         icon: 'smartphone',
         heading: { title: 'Mobile Apps', level: 'h3' },
         body: 'Native and cross-platform mobile solutions.',
-        media: '<div class="text-3xl font-bold text-green-600 mb-1">50+</div><div class="text-xs text-gray-600">Apps Launched</div>',
+        media:
+          '<div class="text-3xl font-bold text-green-600 mb-1">50+</div><div class="text-xs text-gray-600">Apps Launched</div>',
       },
       {
         type: 'stat',
         icon: 'cloud',
         heading: { title: 'Cloud Services', level: 'h3' },
         body: 'Cloud migration and infrastructure management.',
-        media: '<div class="text-3xl font-bold text-purple-600 mb-1">99.9%</div><div class="text-xs text-gray-600">Uptime</div>',
+        media:
+          '<div class="text-3xl font-bold text-purple-600 mb-1">99.9%</div><div class="text-xs text-gray-600">Uptime</div>',
       },
       {
         type: 'stat',
         icon: 'database',
         heading: { title: 'Data Analytics', level: 'h3' },
         body: 'Business intelligence and data visualization.',
-        media: '<div class="text-3xl font-bold text-orange-600 mb-1">10TB</div><div class="text-xs text-gray-600">Data Processed</div>',
+        media:
+          '<div class="text-3xl font-bold text-orange-600 mb-1">10TB</div><div class="text-xs text-gray-600">Data Processed</div>',
       },
       {
         type: 'stat',
         icon: 'shield',
         heading: { title: 'Cybersecurity', level: 'h3' },
         body: 'Comprehensive security audits and protection.',
-        media: '<div class="text-3xl font-bold text-red-600 mb-1">0</div><div class="text-xs text-gray-600">Breaches</div>',
+        media:
+          '<div class="text-3xl font-bold text-red-600 mb-1">0</div><div class="text-xs text-gray-600">Breaches</div>',
       },
       {
         type: 'stat',
         icon: 'users',
         heading: { title: 'Team Augmentation', level: 'h3' },
         body: 'Skilled developers and specialists on demand.',
-        media: '<div class="text-3xl font-bold text-indigo-600 mb-1">100+</div><div class="text-xs text-gray-600">Specialists</div>',
+        media:
+          '<div class="text-3xl font-bold text-indigo-600 mb-1">100+</div><div class="text-xs text-gray-600">Specialists</div>',
       },
     ],
   },

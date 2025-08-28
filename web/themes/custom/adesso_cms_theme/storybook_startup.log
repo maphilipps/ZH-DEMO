@@ -1,0 +1,7 @@
+
+> adesso_cms_theme@1.3.0 storybook
+> storybook dev -p 6006 --host 0.0.0.0
+
+@storybook/core v8.6.7
+
+[?25l[2K[1G[36m?[39m [1mPort 6006 is not available. Would you like to run Storybook on port 6008 instead?[22m [90m›[39m [90m(Y/n)[39m

@@ -60,9 +60,9 @@ Enhanced slider component with Swiper.js integration for displaying image galler
   items: content.field_slider_items
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -76,24 +76,32 @@ export const Default = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/1200/600?random=1" alt="Mountain landscape" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/1200/600?random=1" alt="Mountain landscape" class="w-full h-full object-cover">',
         title: 'Breathtaking Mountain Views',
-        summary: 'Experience the beauty of nature with our guided mountain tours and hiking expeditions.',
+        summary:
+          'Experience the beauty of nature with our guided mountain tours and hiking expeditions.',
       },
       {
-        media: '<img src="https://picsum.photos/1200/600?random=2" alt="Ocean sunset" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/1200/600?random=2" alt="Ocean sunset" class="w-full h-full object-cover">',
         title: 'Stunning Ocean Sunsets',
-        summary: 'Relax on pristine beaches and watch unforgettable sunsets over the Pacific Ocean.',
+        summary:
+          'Relax on pristine beaches and watch unforgettable sunsets over the Pacific Ocean.',
       },
       {
-        media: '<img src="https://picsum.photos/1200/600?random=3" alt="Forest trail" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/1200/600?random=3" alt="Forest trail" class="w-full h-full object-cover">',
         title: 'Peaceful Forest Trails',
-        summary: 'Discover hidden trails through ancient forests and connect with nature.',
+        summary:
+          'Discover hidden trails through ancient forests and connect with nature.',
       },
       {
-        media: '<img src="https://picsum.photos/1200/600?random=4" alt="City skyline" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/1200/600?random=4" alt="City skyline" class="w-full h-full object-cover">',
         title: 'Dynamic City Life',
-        summary: 'Explore vibrant urban culture, dining, and entertainment in world-class cities.',
+        summary:
+          'Explore vibrant urban culture, dining, and entertainment in world-class cities.',
       },
     ],
   },
@@ -114,7 +122,8 @@ export const Testimonials = {
           </div>
         `,
         title: 'John Smith',
-        summary: '"This platform has completely transformed how we manage our business. The team\'s support has been exceptional, and the results speak for themselves."',
+        summary:
+          '"This platform has completely transformed how we manage our business. The team\'s support has been exceptional, and the results speak for themselves."',
       },
       {
         media: `
@@ -127,7 +136,8 @@ export const Testimonials = {
           </div>
         `,
         title: 'Maria Johnson',
-        summary: '"Outstanding service and incredible results. Our productivity has increased by 300% since implementing their solution. Highly recommended!"',
+        summary:
+          '"Outstanding service and incredible results. Our productivity has increased by 300% since implementing their solution. Highly recommended!"',
       },
       {
         media: `
@@ -140,7 +150,8 @@ export const Testimonials = {
           </div>
         `,
         title: 'David Chen',
-        summary: '"The best investment we\'ve made for our company. Easy to use, powerful features, and excellent customer support throughout the process."',
+        summary:
+          '"The best investment we\'ve made for our company. Easy to use, powerful features, and excellent customer support throughout the process."',
       },
     ],
   },
@@ -151,24 +162,32 @@ export const ProductShowcase = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/800/500?random=5" alt="Product 1" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=5" alt="Product 1" class="w-full h-full object-cover">',
         title: 'Premium Dashboard',
-        summary: 'Comprehensive analytics and reporting dashboard with real-time insights and customizable widgets.',
+        summary:
+          'Comprehensive analytics and reporting dashboard with real-time insights and customizable widgets.',
       },
       {
-        media: '<img src="https://picsum.photos/800/500?random=6" alt="Product 2" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=6" alt="Product 2" class="w-full h-full object-cover">',
         title: 'Mobile Application',
-        summary: 'Native mobile app with offline capabilities, push notifications, and seamless synchronization.',
+        summary:
+          'Native mobile app with offline capabilities, push notifications, and seamless synchronization.',
       },
       {
-        media: '<img src="https://picsum.photos/800/500?random=7" alt="Product 3" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=7" alt="Product 3" class="w-full h-full object-cover">',
         title: 'API Integration',
-        summary: 'Powerful REST API with comprehensive documentation, SDKs, and third-party integrations.',
+        summary:
+          'Powerful REST API with comprehensive documentation, SDKs, and third-party integrations.',
       },
       {
-        media: '<img src="https://picsum.photos/800/500?random=8" alt="Product 4" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=8" alt="Product 4" class="w-full h-full object-cover">',
         title: 'Advanced Analytics',
-        summary: 'Machine learning-powered analytics with predictive insights and automated reporting.',
+        summary:
+          'Machine learning-powered analytics with predictive insights and automated reporting.',
       },
     ],
   },
@@ -179,19 +198,25 @@ export const Portfolio = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/900/600?random=9" alt="Project 1" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/900/600?random=9" alt="Project 1" class="w-full h-full object-cover">',
         title: 'E-commerce Platform Redesign',
-        summary: 'Complete redesign and development of a modern e-commerce platform with improved user experience and conversion rates.',
+        summary:
+          'Complete redesign and development of a modern e-commerce platform with improved user experience and conversion rates.',
       },
       {
-        media: '<img src="https://picsum.photos/900/600?random=10" alt="Project 2" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/900/600?random=10" alt="Project 2" class="w-full h-full object-cover">',
         title: 'Healthcare Management System',
-        summary: 'Custom healthcare management system with patient records, appointment scheduling, and telemedicine features.',
+        summary:
+          'Custom healthcare management system with patient records, appointment scheduling, and telemedicine features.',
       },
       {
-        media: '<img src="https://picsum.photos/900/600?random=11" alt="Project 3" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/900/600?random=11" alt="Project 3" class="w-full h-full object-cover">',
         title: 'Financial Dashboard',
-        summary: 'Real-time financial dashboard with advanced analytics, reporting, and portfolio management tools.',
+        summary:
+          'Real-time financial dashboard with advanced analytics, reporting, and portfolio management tools.',
       },
     ],
   },
@@ -202,19 +227,25 @@ export const NewsSlider = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/800/400?random=12" alt="News 1" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/400?random=12" alt="News 1" class="w-full h-full object-cover">',
         title: 'Company Reaches New Milestone',
-        summary: 'We\'re proud to announce that we\'ve reached 100,000 satisfied customers worldwide, marking a significant milestone in our journey.',
+        summary:
+          "We're proud to announce that we've reached 100,000 satisfied customers worldwide, marking a significant milestone in our journey.",
       },
       {
-        media: '<img src="https://picsum.photos/800/400?random=13" alt="News 2" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/400?random=13" alt="News 2" class="w-full h-full object-cover">',
         title: 'New Partnership Announcement',
-        summary: 'Strategic partnership with leading technology companies to expand our global reach and enhance our service offerings.',
+        summary:
+          'Strategic partnership with leading technology companies to expand our global reach and enhance our service offerings.',
       },
       {
-        media: '<img src="https://picsum.photos/800/400?random=14" alt="News 3" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/400?random=14" alt="News 3" class="w-full h-full object-cover">',
         title: 'Award Recognition',
-        summary: 'Honored to receive the Innovation Excellence Award for our groundbreaking work in digital transformation.',
+        summary:
+          'Honored to receive the Innovation Excellence Award for our groundbreaking work in digital transformation.',
       },
     ],
   },
@@ -235,7 +266,8 @@ export const TeamSlider = {
           </div>
         `,
         title: 'Sarah Williams - CEO',
-        summary: 'Visionary leader with 15+ years of experience in technology and business strategy. Passionate about innovation and team development.',
+        summary:
+          'Visionary leader with 15+ years of experience in technology and business strategy. Passionate about innovation and team development.',
       },
       {
         media: `
@@ -248,7 +280,8 @@ export const TeamSlider = {
           </div>
         `,
         title: 'Michael Rodriguez - CTO',
-        summary: 'Technical architect and full-stack developer specializing in scalable systems and emerging technologies. Expert in cloud infrastructure.',
+        summary:
+          'Technical architect and full-stack developer specializing in scalable systems and emerging technologies. Expert in cloud infrastructure.',
       },
       {
         media: `
@@ -261,7 +294,8 @@ export const TeamSlider = {
           </div>
         `,
         title: 'Emily Chang - Design Director',
-        summary: 'Creative director with expertise in user experience design and brand development. Leads our design team with focus on user-centered solutions.',
+        summary:
+          'Creative director with expertise in user experience design and brand development. Leads our design team with focus on user-centered solutions.',
       },
     ],
   },
@@ -272,9 +306,11 @@ export const SingleItem = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/1000/600?random=15" alt="Featured content" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/1000/600?random=15" alt="Featured content" class="w-full h-full object-cover">',
         title: 'Featured Innovation',
-        summary: 'Discover our latest breakthrough technology that\'s transforming the industry and setting new standards for excellence.',
+        summary:
+          "Discover our latest breakthrough technology that's transforming the industry and setting new standards for excellence.",
       },
     ],
   },
@@ -285,14 +321,17 @@ export const Playground = {
   args: {
     items: [
       {
-        media: '<img src="https://picsum.photos/800/500?random=1" alt="Test slide" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=1" alt="Test slide" class="w-full h-full object-cover">',
         title: 'Test Slide Title',
         summary: 'This is a test summary for the slider component.',
       },
       {
-        media: '<img src="https://picsum.photos/800/500?random=2" alt="Another test slide" class="w-full h-full object-cover">',
+        media:
+          '<img src="https://picsum.photos/800/500?random=2" alt="Another test slide" class="w-full h-full object-cover">',
         title: 'Another Test Slide',
-        summary: 'Another test summary to demonstrate the slider functionality.',
+        summary:
+          'Another test summary to demonstrate the slider functionality.',
       },
     ],
   },

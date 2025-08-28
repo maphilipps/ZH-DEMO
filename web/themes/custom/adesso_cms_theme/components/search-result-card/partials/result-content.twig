@@ -1,64 +1,42 @@
-{#
-/**
- * @file
- * Search result card main content area
- * Variables:
- * - title: Result title
- * - url: Result URL
- * - excerpt: Search excerpt with highlighting
- * - categories: Array of category terms
- * - target_groups: Array of target group terms
- * - result_id: Result index for accessibility IDs
- */
-#}
+{# /** * @file * Search result card main content area * Variables: * - title: Result title * - url: Result URL * -
+excerpt: Search excerpt with highlighting * - categories: Array of category terms * - target_groups: Array of target
+group terms * - result_id: Result index for accessibility IDs */ #}
 
 <div class="result-content" role="main">
   {# Title - Primary Heading #}
   <h3 class="result-title" itemprop="name">
-    <a href="{{ url }}" 
-       itemprop="url"
-       class="result-link"
-       aria-describedby="excerpt-{{ result_id }}">
-      {{ title }}
-    </a>
+    <a href="{{ url }}" itemprop="url" class="result-link" aria-describedby="excerpt-{{ result_id }}">{{ title }}</a>
   </h3>
 
   {# Taxonomy Metadata Section #}
   <div class="result-metadata" role="group" aria-label="Content categories">
     {% if categories and categories is not empty %}
-      <div class="taxonomy-category">
-        <span class="taxonomy-label visually-hidden">Category:</span>
-        {% for category in categories %}
-          <a href="{{ category.url }}" 
-             class="tag tag--category"
-             aria-label="Filter by category: {{ category.title }}">
-            {{ category.title }}
-          </a>
-        {% endfor %}
-      </div>
-    {% endif %}
-    
-    {% if target_groups and target_groups is not empty %}
-      <div class="taxonomy-target-group" role="list" aria-label="Target groups">
-        <span class="taxonomy-label visually-hidden">Target groups:</span>
-        {% for target_group in target_groups %}
-          <a href="{{ target_group.url }}"
-             class="tag tag--target-group" 
-             role="listitem"
-             aria-label="Filter by target group: {{ target_group.title }}">
-            {{ target_group.title }}
-          </a>
-        {% endfor %}
-      </div>
+    <div class="taxonomy-category">
+      <span class="taxonomy-label visually-hidden">Category:</span>
+      {% for category in categories %}
+      <a href="{{ category.url }}" class="tag tag--category" aria-label="Filter by category: {{ category.title }}">
+        {{ category.title }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %} {% if target_groups and target_groups is not empty %}
+    <div class="taxonomy-target-group" role="list" aria-label="Target groups">
+      <span class="taxonomy-label visually-hidden">Target groups:</span>
+      {% for target_group in target_groups %}
+      <a
+        href="{{ target_group.url }}"
+        class="tag tag--target-group"
+        role="listitem"
+        aria-label="Filter by target group: {{ target_group.title }}"
+      >
+        {{ target_group.title }}
+      </a>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 
-  {# Excerpt with Highlighting #}
-  {% if excerpt %}
-    <div class="result-excerpt" 
-         itemprop="description"
-         id="excerpt-{{ result_id }}">
-      {{ excerpt }}
-    </div>
+  {# Excerpt with Highlighting #} {% if excerpt %}
+  <div class="result-excerpt" itemprop="description" id="excerpt-{{ result_id }}">{{ excerpt }}</div>
   {% endif %}
 </div>

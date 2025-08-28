@@ -13,18 +13,18 @@
 /* CSS Variables for Municipal Color Scheme */
 :root {
   /* High contrast colors ensuring WCAG 2.1 AA compliance */
-  --text-primary: #111827;        /* gray-900 - 19.55:1 on white */
-  --text-secondary: #374151;      /* gray-700 - 9.19:1 on white */
-  --text-muted: #4b5563;          /* gray-600 - 7.23:1 on white */
-  --link-color: #1d4ed8;          /* blue-700 - 5.74:1 on white */
-  --link-hover: #1e40af;          /* blue-800 - 7.64:1 on white */
-  --link-visited: #7c3aed;        /* violet-600 - 5.93:1 on white */
-  
+  --text-primary: #111827; /* gray-900 - 19.55:1 on white */
+  --text-secondary: #374151; /* gray-700 - 9.19:1 on white */
+  --text-muted: #4b5563; /* gray-600 - 7.23:1 on white */
+  --link-color: #1d4ed8; /* blue-700 - 5.74:1 on white */
+  --link-hover: #1e40af; /* blue-800 - 7.64:1 on white */
+  --link-visited: #7c3aed; /* violet-600 - 5.93:1 on white */
+
   /* Municipal brand colors */
-  --bruchtal-primary: #0891b2;    /* cyan-600 - "Leben am See" theme */
-  --bruchtal-secondary: #164e63;   /* cyan-900 - darker accent */
-  --bruchtal-light: #67e8f9;      /* cyan-300 - light accent */
-  --bruchtal-bg: #f0fdff;         /* cyan-50 - background tint */
+  --bruchtal-primary: #0891b2; /* cyan-600 - "Leben am See" theme */
+  --bruchtal-secondary: #164e63; /* cyan-900 - darker accent */
+  --bruchtal-light: #67e8f9; /* cyan-300 - light accent */
+  --bruchtal-bg: #f0fdff; /* cyan-50 - background tint */
 }
 
 /* Search Results Container */
@@ -61,10 +61,10 @@
   @apply p-6 mb-6 transition-all duration-200 ease-in-out;
   @apply hover:shadow-lg hover:border-blue-300;
   @apply focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50;
-  
+
   /* Municipal portal spacing */
   @apply last:mb-0 w-full;
-  
+
   /* Ensure minimum touch targets for accessibility */
   min-height: 120px;
   contain: layout style paint;
@@ -147,12 +147,12 @@
 
 /* Progress bar style relevance indicator */
 .relevance-score::before {
-  content: '';
+  content: "";
   @apply w-12 h-2 bg-gray-200 rounded-full;
   background: linear-gradient(
-    to right, 
-    var(--bruchtal-primary) var(--score-percentage, 0%), 
-    theme('colors.gray.200') var(--score-percentage, 0%)
+    to right,
+    var(--bruchtal-primary) var(--score-percentage, 0%),
+    theme("colors.gray.200") var(--score-percentage, 0%)
   );
 }
 
@@ -175,7 +175,7 @@
   .result-header {
     @apply flex-col items-start gap-2;
   }
-  
+
   .result-header .relevance-score {
     @apply ml-0 self-end;
   }
@@ -311,11 +311,11 @@
 
 /* Color Contrast Validation */
 .high-contrast {
-  --text-primary: #000000;        /* 21:1 on white */
-  --text-secondary: #1f2937;      /* 16.94:1 on white */
-  --text-muted: #374151;          /* 9.19:1 on white */
-  --link-color: #1e40af;          /* 7.64:1 on white */
-  --link-hover: #1e3a8a;          /* 9.06:1 on white */
+  --text-primary: #000000; /* 21:1 on white */
+  --text-secondary: #1f2937; /* 16.94:1 on white */
+  --text-muted: #374151; /* 9.19:1 on white */
+  --link-color: #1e40af; /* 7.64:1 on white */
+  --link-hover: #1e3a8a; /* 9.06:1 on white */
 }
 
 /* Focus Indicators for Keyboard Navigation */
@@ -328,11 +328,11 @@
   .search-result-card *:focus {
     @apply ring-4 ring-blue-600 ring-opacity-100;
   }
-  
+
   .search-result-card {
     @apply border-2;
   }
-  
+
   .content-type-badge,
   .tag,
   .municipal-badge {
@@ -348,12 +348,12 @@
   .content-type-badge {
     @apply transition-none;
   }
-  
+
   .search-result-card:hover,
   .btn--municipal:hover {
     transform: none;
   }
-  
+
   .btn--municipal:hover .btn-icon {
     transform: none;
   }
@@ -366,28 +366,28 @@
   .search-results {
     @apply px-2;
   }
-  
+
   .search-result-card {
     @apply p-4 mb-4;
   }
-  
+
   .result-title {
     @apply text-lg;
   }
-  
+
   .result-actions {
     @apply flex-col gap-3;
   }
-  
+
   .btn--municipal {
     @apply w-full justify-center;
   }
-  
+
   .taxonomy-category,
   .taxonomy-target-group {
     @apply flex-col items-start;
   }
-  
+
   .taxonomy-label {
     @apply mb-1;
   }
@@ -398,7 +398,7 @@
   .search-result-card {
     @apply p-5;
   }
-  
+
   .result-header {
     @apply flex-wrap gap-3;
   }
@@ -409,11 +409,11 @@
   .search-result-card {
     @apply p-6;
   }
-  
+
   .result-header {
     @apply items-start;
   }
-  
+
   .search-results {
     @apply max-w-5xl;
   }
@@ -424,11 +424,11 @@
   .search-results {
     @apply max-w-6xl;
   }
-  
+
   .search-result-card {
     @apply p-8;
   }
-  
+
   .result-title {
     @apply text-2xl;
   }
@@ -443,7 +443,7 @@
 
 /* Prevent layout shifts during hover states */
 .search-result-card::before {
-  content: '';
+  content: "";
   @apply absolute inset-0 pointer-events-none;
   border: 2px solid transparent;
   border-radius: inherit;
@@ -455,24 +455,24 @@
     @apply shadow-none border border-gray-400 mb-4;
     break-inside: avoid;
   }
-  
+
   .result-actions,
   .relevance-score {
     @apply hidden;
   }
-  
+
   .content-type-badge,
   .tag,
   .municipal-badge {
     @apply border border-gray-400 text-black bg-white;
   }
-  
+
   .result-link {
     @apply text-black no-underline;
   }
-  
+
   .result-link::after {
-    content: ' (' attr(href) ')';
+    content: " (" attr(href) ")";
     @apply text-xs text-gray-600;
   }
 }
@@ -482,24 +482,24 @@
   .search-result-card {
     @apply bg-gray-800 border-gray-700 text-white;
   }
-  
+
   .result-title .result-link {
     @apply text-blue-400 hover:text-blue-300;
   }
-  
+
   .result-excerpt {
     @apply text-gray-300;
   }
-  
+
   .content-type-badge {
     @apply bg-gray-700 text-gray-200 border-gray-600;
   }
-  
+
   .tag {
     @apply bg-gray-700 text-gray-200 border-gray-600;
     @apply hover:bg-gray-600;
   }
-  
+
   .relevance-score {
     @apply bg-gray-700 text-gray-300 border-gray-600;
   }
@@ -532,7 +532,7 @@
 }
 
 .search-results.is-loading::after {
-  content: '';
+  content: "";
   @apply fixed inset-0 bg-white/75 flex items-center justify-center z-50;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' stroke='currentColor' stroke-width='4' class='opacity-25'%3E%3C/circle%3E%3Cpath fill='currentColor' d='M4 12a8 8 0 018-8v8H4z' class='opacity-75'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -619,11 +619,11 @@
   .search-result-card:hover {
     transform: none;
   }
-  
+
   .btn--municipal:hover {
     transform: none;
   }
-  
+
   /* Larger touch targets */
   .tag,
   .content-type-badge {

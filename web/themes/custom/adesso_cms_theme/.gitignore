@@ -19,3 +19,4 @@ npm-debug.log
 # !dist/images/.gitkeep
 # dist/js/*
 # !dist/js/.gitkeep
+.storybook/.vite-cache

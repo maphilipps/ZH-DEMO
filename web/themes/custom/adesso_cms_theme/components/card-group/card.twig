@@ -1,68 +1,37 @@
-<div class=" bg-card text-card-foreground card h-full flex flex-col">
-	{% block card_media %}
-		{% if media|default('') %}
-			<div class="relative">
-				{% if media_link %}
-					<a href="{{ media_link }}" class="block">
-					{% endif %}
-					{{ media|default('') }}
-					{% if media_link %}
-					</a>
-				{% endif %}
-			</div>
-		{% endif %}
-	{% endblock %}
+<div class="bg-card text-card-foreground card h-full flex flex-col">
+  {% block card_media %} {% if media|default('') %}
+  <div class="relative">
+    {% if media_link %}
+    <a href="{{ media_link }}" class="block">{% endif %} {{ media|default('') }} {% if media_link %}</a>
+    {% endif %}
+  </div>
+  {% endif %} {% endblock %}
 
-	<div class="flex-grow p-6 {% if body_modifier|default('') %}{{ body_modifier|default('') }}{% endif %}">
-		{% if tags|default([]) %}
-			<ul class="flex flex-wrap gap-2 mb-4">
-				{% for tag in tags %}
-					<li class="inline-flex">
-						{% include 'adesso_cms_theme:badge' with {
-              "tag": tag,
-              "modifier": 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-            } only %}
-					</li>
-				{% endfor %}
-			</ul>
-		{% endif %}
+  <div class="flex-grow p-6 {% if body_modifier|default('') %}{{ body_modifier|default('') }}{% endif %}">
+    {% if tags|default([]) %}
+    <ul class="flex flex-wrap gap-2 mb-4">
+      {% for tag in tags %}
+      <li class="inline-flex">
+        {% include 'adesso_cms_theme:badge' with { "tag": tag, "modifier": 'bg-secondary text-secondary-foreground
+        hover:bg-secondary/80' } only %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
 
-		<div class="space-y-1.5">
-			{%
-        include 'adesso_cms_theme:heading' with {
-          "heading": {
-            "title": heading.title,
-            "url": heading.url,
-            "modifier": "card-title text-xl font-semibold leading-none tracking-tight"
-          }
-        } only
-      %}
-			{% if summary_text %}
-				<p class="card-text text-sm text-muted-foreground">
-					{{ summary_text }}
-				</p>
-			{% endif %}
-		</div>
+    <div class="space-y-1.5">
+      {% include 'adesso_cms_theme:heading' with { "heading": { "title": heading.title, "url": heading.url, "modifier":
+      "card-title text-xl font-semibold leading-none tracking-tight" } } only %} {% if summary_text %}
+      <p class="card-text text-sm text-muted-foreground">{{ summary_text }}</p>
+      {% endif %}
+    </div>
 
-		{% if link.url or link2.url %}
-			<div class="flex flex-wrap gap-2 mt-6">
-				{% if link.url %}
-					{% include 'adesso_cms_theme:button' with {
-						"url": link.url,
-						"text": link.text,
-						"icon": 'arrow-right',
-						"modifier": ''
-          } only %}
-				{% endif %}
-				{% if link2.url %}
-					{% include 'adesso_cms_theme:button' with {
-						"url": link2.url,
-						"text": link2.text,
-						"icon": 'arrow-right',
-						"modifier": ''
-          } only %}
-				{% endif %}
-			</div>
-		{% endif %}
-	</div>
+    {% if link.url or link2.url %}
+    <div class="flex flex-wrap gap-2 mt-6">
+      {% if link.url %} {% include 'adesso_cms_theme:button' with { "url": link.url, "text": link.text, "icon":
+      'arrow-right', "modifier": '' } only %} {% endif %} {% if link2.url %} {% include 'adesso_cms_theme:button' with {
+      "url": link2.url, "text": link2.text, "icon": 'arrow-right', "modifier": '' } only %} {% endif %}
+    </div>
+    {% endif %}
+  </div>
 </div>

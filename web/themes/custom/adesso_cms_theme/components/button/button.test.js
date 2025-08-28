@@ -13,25 +13,28 @@ function renderButton(props = {}) {
     size = 'default',
     url = '',
     icon = '',
-    icon_position = 'left'
+    icon_position = 'left',
   } = props;
 
-  const baseClasses = 'inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';
-  
+  const baseClasses =
+    'inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';
+
   const variantClasses = {
     default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-    outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+    destructive:
+      'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+    outline:
+      'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
     secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
     ghost: 'hover:bg-accent hover:text-accent-foreground',
-    link: 'text-primary underline-offset-4 hover:underline'
+    link: 'text-primary underline-offset-4 hover:underline',
   };
 
   const sizeClasses = {
     default: 'h-9 px-4 py-2',
     sm: 'h-8 rounded-md px-3 text-xs',
     lg: 'h-12 rounded-lg px-6 text-lg',
-    icon: 'h-9 w-9'
+    icon: 'h-9 w-9',
   };
 
   const classes = `${baseClasses} ${variantClasses[variant] || variantClasses.default} ${sizeClasses[size] || sizeClasses.default}`;
@@ -56,16 +59,19 @@ describe('Button Component', () => {
     it('should render with correct text', () => {
       const buttonHtml = renderButton({ text: 'Test Button' });
       container.innerHTML = buttonHtml;
-      
+
       const button = container.querySelector('button, a');
       expect(button).toBeInTheDocument();
       expect(button.textContent).toContain('Test Button');
     });
 
     it('should render as link when URL is provided', () => {
-      const buttonHtml = renderButton({ text: 'Link Button', url: 'https://example.com' });
+      const buttonHtml = renderButton({
+        text: 'Link Button',
+        url: 'https://example.com',
+      });
       container.innerHTML = buttonHtml;
-      
+
       const link = container.querySelector('a');
       expect(link).toBeInTheDocument();
       expect(link.getAttribute('href')).toBe('https://example.com');
@@ -74,7 +80,7 @@ describe('Button Component', () => {
     it('should render as button when no URL is provided', () => {
       const buttonHtml = renderButton({ text: 'Button', url: '' });
       container.innerHTML = buttonHtml;
-      
+
       const button = container.querySelector('button');
       expect(button).toBeInTheDocument();
       expect(button.tagName.toLowerCase()).toBe('button');
@@ -124,7 +130,7 @@ describe('Button Component', () => {
   describe('CSS Classes', () => {
     it('should have base button classes', () => {
       const buttonHtml = renderButton();
-      
+
       expect(buttonHtml).toContain('inline-flex');
       expect(buttonHtml).toContain('rounded-lg');
       expect(buttonHtml).toContain('items-center');
@@ -139,13 +145,13 @@ describe('Button Component', () => {
     it('should have proper button semantics', () => {
       const buttonHtml = renderButton({ text: 'Test' });
       container.innerHTML = buttonHtml;
-      
+
       const button = container.querySelector('button, a');
-      
+
       if (button.tagName.toLowerCase() === 'button') {
         expect(button.type).toBe('button');
       }
-      
+
       // Should have text content
       expect(button.textContent.trim().length).toBeGreaterThan(0);
     });
@@ -153,12 +159,12 @@ describe('Button Component', () => {
     it('should be focusable', () => {
       const buttonHtml = renderButton();
       container.innerHTML = buttonHtml;
-      
+
       const button = container.querySelector('button, a');
-      
+
       // Should be focusable
       expect(button.tabIndex).not.toBe(-1);
-      
+
       // Should accept focus
       button.focus();
       expect(document.activeElement).toBe(button);

@@ -1,14 +1,3 @@
-{#
-/**
- * @file
- * Theme override for the media field in card paragraphs.
- *
- * Uses the configured view mode and image style from the backend.
- */
-#}
-{% if items %}
-  {% for item in items %}
-    {# Use the rendered media item as configured in the backend view mode #}
-    {{ item.content }}
-  {% endfor %}
-{% endif %}
+{# /** * @file * Theme override for the media field in card paragraphs. * * Uses the configured view mode and image
+style from the backend. */ #} {% if items %} {% for item in items %} {# Use the rendered media item as configured in the
+backend view mode #} {{ item.content }} {% endfor %} {% endif %}

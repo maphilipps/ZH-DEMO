@@ -1,0 +1,124 @@
+# Project Codebase - LLM Context Guide
+
+## PROJECT OVERVIEW
+[PROJECT_NAME]: [Brief description of what this project does and its main purpose]
+
+**Purpose**: [Core mission and objectives]  
+**Architecture**: [High-level architectural approach - monolith/microservices/component-based/etc]  
+**Key Technologies**: [Main tech stack items]
+
+## CORE CONFIGURATION FILES
+
+### [Key Config File 1] - [Purpose]
+**Purpose**: [What this file does]  
+**Key Dependencies**: 
+- [dependency 1]: [purpose]
+- [dependency 2]: [purpose]
+**Configuration Patterns**: [How configuration is structured]
+**Integration Points**: [How it connects to other systems]
+
+### [Key Config File 2] - [Purpose]
+**Purpose**: [What this file does]
+**Main Sections**: 
+- [section 1]: [purpose]  
+- [section 2]: [purpose]
+**Tool Integrations**: [External tools this configures]
+
+## MAIN APPLICATION FILES
+
+### [Core Application File] - [Purpose]
+**Purpose**: [Main application logic]
+**Key Functions**:
+- `functionName(param1: type, param2: type): returnType` - [concise explanation]
+- `anotherFunction(params): type` - [concise explanation]
+**Dependencies**: [Internal and external dependencies]
+**Patterns**: [Design patterns used]
+
+### [Service/Module File] - [Purpose]
+**Purpose**: [Business logic or specific functionality]
+**Key Functions**:
+- `serviceFunction(params): type` - [what it does]
+**Integration**: [How it connects to other parts]
+
+## INFRASTRUCTURE & BUILD
+
+### [Build Config] - [Purpose]
+**Purpose**: [Build process configuration]
+**Build Targets**: [What can be built/compiled]
+**Dependencies**: [Build-time dependencies]
+**Output**: [What the build produces]
+
+### [Infrastructure Config] - [Purpose]
+**Purpose**: [Deployment/environment configuration]  
+**Environments**: [dev/staging/prod configurations]
+**Services**: [External services configured]
+
+## TESTING & QUALITY
+
+### [Test Config] - [Purpose]
+**Test Types**: [Unit/integration/e2e tests configured]
+**Test Targets**: [What gets tested]
+**Quality Gates**: [Coverage thresholds, linting rules]
+
+## ASCII ARCHITECTURE MAP
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   [LAYER 1]     │    │   [LAYER 2]     │    │   [LAYER 3]     │
+│   [Purpose]     │    │   [Purpose]     │    │   [Purpose]     │
+│                 │    │                 │    │                 │
+│ [key-file.ext]  │────│ [key-file.ext]  │────│ [key-file.ext]  │
+│       │         │    │       │         │    │       │         │
+│ [component]     │    │ [component]     │    │ [component]     │
+│       │         │    │       │         │    │       │         │
+│ [sub-system]    │    │ [sub-system]    │    │ [sub-system]    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+┌─────────────────────────────────┼─────────────────────────────────┐
+│                    [CORE SYSTEM/DATABASE/STORAGE]                 │
+│                                 │                                 │
+│  ┌─────────────┐    ┌─────────────────┐    ┌─────────────────┐   │
+│  │   [UTIL 1]  │    │   [UTIL 2]      │    │   [UTIL 3]      │   │
+│  │   [Purpose] │    │   [Purpose]     │    │   [Purpose]     │   │
+│  │             │    │                 │    │                 │   │
+│  │ [files]     │────│ [files]         │────│ [files]         │   │
+│  │             │    │                 │    │                 │   │
+│  │ [patterns]  │    │ [patterns]      │    │ [patterns]      │   │
+│  └─────────────┘    └─────────────────┘    └─────────────────┘   │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+## CODE STYLE & PATTERNS ANALYSIS
+
+### Architecture Patterns
+1. **[Pattern 1]**: [Description of how it's used in codebase]
+2. **[Pattern 2]**: [Description of how it's used in codebase]  
+3. **[Pattern 3]**: [Description of how it's used in codebase]
+
+### Code Quality Standards
+- **[Language]**: [Coding standards, linting rules, formatting]
+- **[Framework]**: [Framework-specific patterns and best practices]
+- **[Testing]**: [Testing approaches and coverage expectations]
+- **[Documentation]**: [Documentation standards and requirements]
+
+### Data Formats & Standards
+- **[Data Type 1]**: [Format description and usage]
+- **[Data Type 2]**: [Format description and usage]
+- **[Integration Format]**: [API formats, message formats, etc]
+
+### Development Workflow
+- **Environment**: [Development environment setup]
+- **Dependencies**: [Dependency management approach]
+- **Build Process**: [How things get built and deployed]
+- **Testing Strategy**: [How testing is approached]
+
+### Veteran Developer Insights
+[3-4 sentences about the overall codebase from experienced developer perspective]
+- Key architectural decisions and why they make sense
+- Main complexity areas and how they're handled
+- Overall maintainability and scalability considerations  
+- Notable patterns or anti-patterns observed
+
+[Final assessment of codebase quality, maintainability, and development experience]

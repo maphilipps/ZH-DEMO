@@ -1,7 +1,7 @@
 name: Daily compact
 on:
     schedule:
-        - cron: "0 9 * * *"
+        - cron: "0 23 * * *"
 jobs:
     report:
         runs-on: ubuntu-latest

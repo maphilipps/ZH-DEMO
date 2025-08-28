@@ -60,7 +60,7 @@ slots:
     description: The main paragraph content to be wrapped
   prefix:
     title: Prefix
-    required: false
+    # removed: required: false (slots are optional by default)
     description: Frontend editing tools and prefix content
 libraryDependencies:
   - adesso_cms_theme/global

@@ -25,8 +25,8 @@
     <div class="py-8 px-4 mx-auto container lg:py-16">
       {% if content.field_pre_headline or content.field_title %}
         {% include 'adesso_cms_theme:section-header' with {
-          title: content.field_title|render|striptags,
-          pre_headline: content.field_pre_headline|render|striptags,
+          title: content.field_title|striptags,
+          pre_headline: content.field_pre_headline|striptags,
           alignment: 'center',
           title_tag: 'h2',
           pre_headline_tag: 'span',

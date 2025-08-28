@@ -52,16 +52,16 @@ libraryDependencies:
 slots:
   navigation:
     description: 'Main navigation menu content'
-    required: false
+    # removed: required: false (slots are optional by default)
   title:
     description: 'Main landing page heading content (field_title, etc.)'
-    required: true
+    # removed: required: true (slots are optional by default)
   content:
     description: 'Description and introductory content'
-    required: false
+    # removed: required: false (slots are optional by default)
   actions:
     description: 'Call-to-action buttons and links'
-    required: false
+    # removed: required: false (slots are optional by default)
   background:
     description: 'Custom background media or elements'
-    required: false
+    # removed: required: false (slots are optional by default)

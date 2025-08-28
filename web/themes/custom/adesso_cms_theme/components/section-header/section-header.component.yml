@@ -45,3 +45,12 @@ props:
       type: string
       title: Additional CSS Classes
       description: Additional CSS classes for the container
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

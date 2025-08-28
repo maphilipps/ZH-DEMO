@@ -1,21 +1,36 @@
-{# /** * @file * Gallery paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Gallery
-paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set
-wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
-wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ?
-'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %}
-{# Embed the paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme:
-wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {%
-block prefix %}{% endblock %} {% block content %}
-<div class="py-8 px-4 mx-auto container lg:py-16">
-  {# Title section with proper formatting #}
-  <div class="container mx-auto text-center mb-8">
-    {% if content.field_pre_headline|render|striptags|trim or content.field_title|render|striptags|trim %} {% include
-    'adesso_cms_theme:section-header' with { title: content.field_title|render|striptags, pre_headline:
-    content.field_pre_headline|render|striptags, alignment: 'center', title_tag: 'h2', pre_headline_tag: 'span',
-    title_visual_level: '2', pre_headline_visual_level: '3' } %} {% endif %}
-  </div>
+{# /** 
+ * @file 
+ * Gallery paragraph template using paragraph-wrapper component with embed pattern. 
+ */ #}
 
-  {# Gallery grid with 4 columns and proper spacing #}
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">{{ content.field_media_item }}</div>
-</div>
-{% endblock %} {% endembed %}
+{# Gallery paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph', 
+  'paragraph--type--' ~ paragraph.bundle|clean_class, 
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class, 
+  not paragraph.isPublished() ? 'paragraph--unpublished' 
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with { 
+  theme: wrapper_theme, 
+  spacing: wrapper_spacing, 
+  tag: wrapper_tag, 
+  className: wrapper_css_class, 
+  attributes: attributes 
+} %}
+  {% block prefix %}{% endblock %}
+  
+  {% block content %}
+    {% embed 'adesso_cms_theme:gallery' with { 
+      is_dark: wrapper_theme == 'dark' 
+    } only %}
+      {% block title %}{{ content.field_title }}{% endblock %}
+      {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+      {% block gallery_items %}{{ content.field_media_item }}{% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

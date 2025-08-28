@@ -78,3 +78,8 @@ props:
       type: string
       title: Modifier Classes
       description: Additional CSS classes
+slots:
+  content:
+    title: 'Content'
+    description: 'Component content'
+    required: true

@@ -1,0 +1,236 @@
+# Pre-commit hooks for slot standardization framework validation
+# Based on CLAUDE.md Prevention Rule #21: Slot Standardization Framework
+# Issue #56 automated validation to prevent pattern violations
+
+repos:
+  # Standard code quality hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+        exclude: '^web/themes/custom/adesso_cms_theme/dist/'
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-json
+        exclude: '^backstop_data/'
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  # PHP code quality (for theme PHP files)
+  - repo: https://github.com/pre-commit/mirrors-phpcs
+    rev: v3.7.2
+    hooks:
+      - id: phpcs
+        files: '^web/themes/custom/adesso_cms_theme/.*\.php$'
+        args: [--standard=Drupal]
+
+  # JavaScript/TypeScript quality
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.50.0
+    hooks:
+      - id: eslint
+        files: '^web/themes/custom/adesso_cms_theme/.*\.(js|ts)$'
+        additional_dependencies:
+          - eslint@8.50.0
+          - '@eslint/js'
+          - eslint-plugin-vitest
+        args: [--fix]
+
+  # Custom validation hooks for slot standardization framework
+  - repo: local
+    hooks:
+      # Field Pattern Anti-Pattern Detection
+      - id: validate-field-patterns
+        name: Field Pattern Anti-Pattern Detection
+        description: 'Validate that templates follow slot standardization patterns (Rule #21)'
+        entry: web/themes/custom/adesso_cms_theme/scripts/validate-field-patterns.sh
+        language: script
+        files: '^web/themes/custom/adesso_cms_theme/.*\.twig$'
+        pass_filenames: false
+        always_run: false
+        stages: [commit, push]
+        verbose: true
+
+      # Component Slot Standards Validation  
+      - id: validate-component-slots
+        name: Component Slot Standards Validation
+        description: 'Ensure components follow atomic design slot requirements'
+        entry: web/themes/custom/adesso_cms_theme/scripts/validate-component-slots.sh
+        language: script
+        files: '^web/themes/custom/adesso_cms_theme/components/.*\.component\.yml$'
+        pass_filenames: false
+        always_run: false
+        stages: [commit, push]
+        verbose: true
+
+      # Template Pattern Compliance
+      - id: validate-template-patterns
+        name: Template Pattern Compliance Check
+        description: 'Validate embed + slots pattern usage in templates'
+        entry: web/themes/custom/adesso_cms_theme/scripts/validate-template-patterns.sh
+        language: script
+        files: '^web/themes/custom/adesso_cms_theme/(components|templates)/.*\.twig$'
+        pass_filenames: false
+        always_run: false
+        stages: [commit, push]
+        verbose: true
+
+      # Comprehensive SDC Compliance (on push only)
+      - id: validate-sdc-compliance
+        name: Comprehensive SDC Compliance Validation
+        description: 'Complete slot standardization framework validation suite'
+        entry: web/themes/custom/adesso_cms_theme/scripts/validate-sdc-compliance.sh
+        language: script
+        files: '^web/themes/custom/adesso_cms_theme/'
+        pass_filenames: false
+        always_run: false
+        stages: [push]
+        verbose: true
+
+      # Prevent infrastructure files from being tracked
+      - id: check-infrastructure-hygiene
+        name: Infrastructure Hygiene Check
+        description: 'Prevent infrastructure volumes and service data from git tracking (Rule #7)'
+        entry: bash
+        language: script
+        args:
+          - -c
+          - |
+            # Check for infrastructure patterns that shouldn't be tracked
+            violations=0
+            
+            # DDEV volumes and service files
+            if git diff --cached --name-only | grep -E '\.ddev/.*/(volumes|certs|logs)/'; then
+              echo "❌ ERROR: DDEV service volumes detected in staging area"
+              echo "   Infrastructure files belong in containers, not repositories"
+              echo "   Add to .gitignore: .ddev/*/volumes/, .ddev/*/certs/, .ddev/*/logs/"
+              violations=$((violations + 1))
+            fi
+            
+            # Build artifacts in wrong location
+            if git diff --cached --name-only | grep -E '^web/themes/custom/adesso_cms_theme/dist/.*\.(css|js|map)$'; then
+              echo "⚠️  WARNING: Build artifacts in dist/ directory"
+              echo "   Consider adding dist/ to .gitignore if these are generated files"
+            fi
+            
+            # Database dumps and logs
+            if git diff --cached --name-only | grep -E '\.(sql|dump|log|pid)$'; then
+              echo "❌ ERROR: Database/log files detected in staging area"
+              echo "   Add to .gitignore: *.sql, *.dump, *.log, *.pid"
+              violations=$((violations + 1))
+            fi
+            
+            exit $violations
+        pass_filenames: false
+        stages: [commit]
+
+      # Documentation structure validation
+      - id: validate-documentation-structure
+        name: Documentation Structure Validation
+        description: 'Prevent unauthorized documentation proliferation (Documentation Rule #1)'
+        entry: bash
+        language: script
+        args:
+          - -c
+          - |
+            violations=0
+            
+            # Check for new .md files that aren't authorized
+            for file in $(git diff --cached --name-only | grep '\.md$'); do
+              case "$file" in
+                "CLAUDE.md"|"README.md"|*.adr.md|"web/themes/custom/adesso_cms_theme/"*)
+                  # Authorized documentation files
+                  continue
+                  ;;
+                *)
+                  echo "❌ ERROR: Unauthorized documentation file: $file"
+                  echo "   Documentation should be consolidated in CLAUDE.md or theme-specific docs"
+                  echo "   Reference: Documentation Rule #1 (CLAUDE.md)"
+                  violations=$((violations + 1))
+                  ;;
+              esac
+            done
+            
+            exit $violations
+        pass_filenames: false
+        stages: [commit]
+
+      # XSS vulnerability prevention
+      - id: prevent-xss-vulnerabilities
+        name: XSS Vulnerability Prevention
+        description: 'Detect dangerous |raw filter usage in Twig templates (Security Rule #1)'
+        entry: bash
+        language: script
+        args:
+          - -c
+          - |
+            violations=0
+            
+            # Check staged Twig files for |raw filter usage
+            for file in $(git diff --cached --name-only | grep '\.twig$'); do
+              if [[ -f "$file" ]]; then
+                raw_usage=$(grep -n '|raw' "$file" || true)
+                if [[ -n "$raw_usage" ]]; then
+                  echo "⚠️  WARNING: |raw filter detected in $file"
+                  echo "$raw_usage"
+                  echo "   Review for XSS vulnerabilities - ensure content is trusted and sanitized"
+                  echo "   Reference: Security Rule #1 (CLAUDE.md)"
+                  # Warning only - not blocking commit as some |raw usage may be legitimate
+                fi
+              fi
+            done
+            
+            exit $violations
+        files: '^.*\.twig$'
+        stages: [commit]
+
+      # Test failure prevention
+      - id: validate-test-success
+        name: Test Failure Prevention
+        description: 'Ensure all tests genuinely pass before commit (Rule #5)'
+        entry: bash
+        language: script
+        args:
+          - -c
+          - |
+            cd web/themes/custom/adesso_cms_theme
+            
+            # Only run if test files were modified
+            if git diff --cached --name-only | grep -E '\.(test|spec)\.(js|php)$' > /dev/null; then
+              echo "🧪 Running tests to validate genuine success..."
+              
+              # Run JavaScript tests if they exist
+              if [[ -f "package.json" ]] && [[ -f "vitest.config.js" ]]; then
+                if ! ddev npm test 2>&1; then
+                  echo "❌ ERROR: JavaScript tests are failing"
+                  echo "   Fix failing tests before committing"
+                  echo "   Reference: Rule #5 - Test Failure Analysis & Documentation"
+                  exit 1
+                fi
+              fi
+              
+              # Run PHP tests if they exist  
+              if [[ -d "tests/src" ]]; then
+                if ! ddev phpunit tests/ 2>&1; then
+                  echo "❌ ERROR: PHP tests are failing"
+                  echo "   Fix failing tests before committing"
+                  echo "   Reference: Rule #5 - Test Failure Analysis & Documentation"
+                  exit 1
+                fi
+              fi
+              
+              echo "✅ All tests passing"
+            fi
+            
+            exit 0
+        pass_filenames: false
+        stages: [commit]
+
+# Global configuration
+default_stages: [commit]
+fail_fast: false
+minimum_pre_commit_version: 2.20.0

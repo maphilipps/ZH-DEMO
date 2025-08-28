@@ -110,3 +110,29 @@ props:
       title: Keyboard Navigation
       description: Enable enhanced keyboard navigation support
       default: true
+
+slots:
+  logo:
+    title: 'Site Logo'
+    description: 'Site logo and branding content'
+    required: false
+  menu_items:
+    title: 'Menu Items'
+    description: 'Navigation menu items content'
+    required: true
+  mobile_toggle:
+    title: 'Mobile Toggle'
+    description: 'Mobile menu toggle button content'
+    required: false
+  search:
+    title: 'Search Widget'
+    description: 'Search form or widget for navigation'
+    required: false
+  user_menu:
+    title: 'User Menu'
+    description: 'User account menu and login/logout options'
+    required: false
+  secondary_actions:
+    title: 'Secondary Actions'
+    description: 'Additional navigation actions (language switcher, etc.)'
+    required: false

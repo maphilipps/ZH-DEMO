@@ -66,3 +66,12 @@ props:
       type: Drupal\Core\Template\Attribute
       title: attributes
       description: HTML attributes object for the wrapper element
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

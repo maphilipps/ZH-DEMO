@@ -72,3 +72,33 @@ props:
           type: string
         icon:
           type: string
+
+slots:
+  logo:
+    title: 'Footer Logo'
+    description: 'Site logo and branding for footer'
+    required: false
+  navigation:
+    title: 'Footer Navigation'
+    description: 'Footer navigation links and menus'
+    required: false
+  social_links:
+    title: 'Social Links'
+    description: 'Social media and external links'
+    required: false
+  newsletter:
+    title: 'Newsletter Signup'
+    description: 'Newsletter subscription form'
+    required: false
+  contact_info:
+    title: 'Contact Information'
+    description: 'Contact details and address information'
+    required: false
+  legal:
+    title: 'Legal Information'
+    description: 'Copyright, privacy policy, and legal links'
+    required: false
+  additional_content:
+    title: 'Additional Content'
+    description: 'Additional footer content and widgets'
+    required: false

@@ -27,3 +27,17 @@ props:
       type: string
       title: parameters
       description: ''
+
+slots:
+  heading:
+    title: 'Pager Heading'
+    description: 'Screen reader heading for pagination section'
+    required: false
+  summary:
+    title: 'Results Summary'
+    description: 'Summary of current results/pagination state'
+    required: false
+  links:
+    title: 'Pagination Links'
+    description: 'Custom pagination link content'
+    required: false

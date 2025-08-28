@@ -4,11 +4,13 @@
   {% if (hero_layout|default('')) == 'video_background' %} {# Video Background Hero #}
   <div class="absolute inset-0 z-0">
     <div class="relative w-full h-full">
-      {% if media|default('') %}
-      <div class="absolute inset-0">{{ media }}</div>
-      {% else %} {# Fallback gradient background #}
-      <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600"></div>
-      {% endif %} {# Video overlay for better text readability #}
+      <div class="absolute inset-0">
+        {% block background_media %}
+          {# Background media slot for video background hero - fallback gradient #}
+          <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600"></div>
+        {% endblock %}
+      </div>
+      {# Video overlay for better text readability #}
       <div class="absolute inset-0 bg-black/40"></div>
     </div>
   </div>
@@ -65,10 +67,16 @@
   </div>
   {% else %} {# Regular Hero Layout #}
   <div class="py-8 px-4 mx-auto container text-center lg:py-16">
-    {% if hero_layout == 'image_top' and media %}
-    <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
-      <div class="relative overflow-hidden rounded-lg">{{ media }}</div>
-    </div>
+    {% if hero_layout == 'image_top' %}
+      {% block background_media_top %}
+        <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
+          <div class="relative overflow-hidden rounded-lg">
+            {% block background_media %}
+              {# Background media slot for image_top layout #}
+            {% endblock %}
+          </div>
+        </div>
+      {% endblock %}
     {% endif %} {% if pre_headline %} {% include 'adesso_cms_theme:heading' with { heading: { title: pre_headline, as:
     'h3', custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl lg:text-4xl' } } %} {% endif
     %} {% if heading %} {% include 'adesso_cms_theme:heading' with { heading: { title: heading, as: 'h1',
@@ -87,14 +95,23 @@
       endif %}
     </div>
 
-    {% if hero_layout == 'image_bottom' and media %}
-    <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
-      <div class="relative aspect-[16/9] overflow-hidden rounded-lg">{{ media }}</div>
-    </div>
-    {% endif %} {% if hero_layout == 'image_bottom_split' and media %}
-    <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
-      <div class="relative aspect-[16/9] overflow-hidden rounded-lg">{{ media }}</div>
-    </div>
+    {% if hero_layout == 'image_bottom' %}
+      <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
+        <div class="relative aspect-[16/9] overflow-hidden rounded-lg">
+          {% block background_media %}
+            {# Background media slot for image_bottom layout #}
+          {% endblock %}
+        </div>
+      </div>
+    {% endif %} 
+    {% if hero_layout == 'image_bottom_split' %}
+      <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
+        <div class="relative aspect-[16/9] overflow-hidden rounded-lg">
+          {% block background_media %}
+            {# Background media slot for image_bottom_split layout #}
+          {% endblock %}
+        </div>
+      </div>
     {% endif %}
   </div>
   {% endif %}

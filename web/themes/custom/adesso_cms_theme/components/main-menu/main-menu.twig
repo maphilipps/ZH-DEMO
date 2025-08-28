@@ -1,280 +1,188 @@
-{# Set variant-specific classes #}
+{# Set up responsive layout and variant classes #}
+{% set layout = layout|default('horizontal') %}
 {% set variant = variant|default('default') %}
+{% set responsive_breakpoint = responsive_breakpoint|default('lg') %}
+{% set show_mobile_toggle = show_mobile_toggle ?? true %}
+
+{# Layout-specific wrapper classes #}
+{% set layout_classes = {
+  'horizontal': 'c-main-menu--horizontal',
+  'vertical': 'c-main-menu--vertical', 
+  'mobile': 'c-main-menu--mobile'
+} %}
+
+{# Responsive classes for mobile toggle visibility #}
+{% set responsive_classes = {
+  'sm': 'flex sm:hidden',
+  'md': 'flex md:hidden',
+  'lg': 'flex lg:hidden',
+  'xl': 'flex xl:hidden'
+} %}
+
+{% set desktop_classes = {
+  'sm': 'max-sm:hidden sm:flex',
+  'md': 'max-md:hidden md:flex', 
+  'lg': 'max-lg:hidden lg:flex',
+  'xl': 'max-xl:hidden xl:flex'
+} %}
+
+{# Variant-specific classes for theming #}
 {% set variant_classes = {
   'default': {
-    'link_classes': 'font-semibold text-gray-900 hover:text-primary',
-    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6  font-semibold text-gray-900',
     'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700',
-    'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
     'logo_variant': 'default'
   },
   'transparent': {
-    'link_classes': 'font-semibold text-white hover:text-gray-200',
-    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6 font-semibold text-white',
     'mobile_button_classes': '-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white',
-    'mobile_link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
     'logo_variant': 'inverted'
   }
 } %}
 
 {% set current_variant = variant_classes[variant] %}
 
-{# Main Navigation Menu based on exact templates - no Alpine.js #}
-<nav class="relative isolate z-50">
-  <div class="max-lg:hidden lg:flex lg:items-center lg:gap-x-12">
-    {% for item in nested %}
-      {# Desktop menu items with children (popover) #}
-      {% if item.children is not empty %}
-        <div class="relative">
-          {# Always use button for parent items with children #}
-          <button popovertarget="desktop-menu-{{ loop.index }}" class="{{ current_variant.button_classes }}">
-            {{ item.title }}
-            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
-              <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                    clip-rule="evenodd" fill-rule="evenodd"/>
-            </svg>
-          </button>
-
-          {# Desktop Popover #}
-          <el-popover id="desktop-menu-{{ loop.index }}" anchor="bottom" popover
-                      class="w-screen max-w-min overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
-            <div class="max-w-xl w-screen grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4 shrink rounded-xl bg-white p-4 text-md/6 font-semibold text-gray-900 shadow-lg ring-1 ring-gray-900/5">
-              {% for child in item.children %}
-                <div>
-                  {% if child.url is empty or child.url.toString() == '<nolink>' %}
-                    <span class="block p-2 text-gray-500">{{ child.title }}</span>
-                  {% else %}
-                    <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %}
-                       class="block p-2 hover:text-primary">{{ child.title }}</a>
-                  {% endif %}
-
-                  {# Nested children (third level) - indented #}
-                  {% if child.children is not empty %}
-                    {% for grandchild in child.children %}
-                      {% if grandchild.url is empty or grandchild.url.toString() == '<nolink>' %}
-                        <span class="block p-2 text-xs text-gray-400">{{ grandchild.title }}</span>
-                      {% else %}
-                        <a href="{{ grandchild.url }}"{% if grandchild.target %} target="{{ grandchild.target }}"{% endif %}
-                           class="block p-2 text-xs hover:text-primary">{{ grandchild.title }}</a>
-                      {% endif %}
-                    {% endfor %}
-                  {% endif %}
-                </div>
-              {% endfor %}
-            </div>
-          </el-popover>
-        </div>
-        {# Desktop menu items without children (simple links) #}
-      {% else %}
-        {% if item.url is empty or item.url.toString() == '<nolink>' %}
-          <span class="{{ current_variant.link_classes }}">{{ item.title }}</span>
+{# Main Navigation Menu - Unified Architecture #}
+<nav class="c-main-menu relative isolate z-50 {{ layout_classes[layout] }}" 
+     {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}
+     role="navigation">
+     
+  {% if show_logo and (layout == 'mobile' or layout == 'horizontal') %}
+    {# Logo Section - for header integration #}
+    <div class="flex {{ responsive_breakpoint }}:flex-1">
+      <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5" aria-label="{{ site_name }}">
+        {% if logo %}
+          <span class="sr-only">{{ site_name }}</span>
+          {% include 'adesso_cms_theme:logo' with {
+            site_logo: logo,
+            site_name: site_name,
+            variant: current_variant.logo_variant,
+            modifier: 'h-8 w-auto'
+          } %}
         {% else %}
-          <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %}
-             class="{{ current_variant.link_classes }}">{{ item.title }}</a>
+          <span class="text-lg font-bold text-gray-900">{{ site_name }}</span>
         {% endif %}
+      </a>
+    </div>
+  {% endif %}
+
+  {# Desktop Menu Items #}
+  <div class="{{ desktop_classes[responsive_breakpoint] }} {{ responsive_breakpoint }}:items-center {{ responsive_breakpoint }}:gap-x-12">
+    {% for item in nested %}
+      {% if item.children is not empty %}
+        {# Menu item with children - using el-popover #}
+        <div class="relative">
+          {% include 'adesso_cms_theme:menu-item' with {
+            title: item.title,
+            url: item.url,
+            target: item.target,
+            is_active: item.is_active,
+            in_active_trail: item.in_active_trail,
+            has_children: true,
+            variant: 'desktop',
+            theme: variant,
+            level: 0
+          } only %}
+
+          {% include template_from_string('components/main-menu/partials/submenu-popover.twig') with {
+            unique_id: loop.index,
+            children: item.children,
+            theme: variant
+          } only %}
+        </div>
+      {% else %}
+        {# Simple menu item without children #}
+        {% include 'adesso_cms_theme:menu-item' with {
+          title: item.title,
+          url: item.url,
+          target: item.target,
+          is_active: item.is_active,
+          in_active_trail: item.in_active_trail,
+          has_children: false,
+          variant: 'desktop',
+          theme: variant,
+          level: 0
+        } only %}
       {% endif %}
     {% endfor %}
   </div>
 
-  {# Mobile Menu Toggle Button #}
-  <div class="flex lg:hidden">
-    <button type="button" command="show-modal" commandfor="mobile-menu"
-            class="{{ current_variant.mobile_button_classes }}" aria-expanded="false">
-      <span class="sr-only">{{ 'Open main menu'|t }}</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-           class="size-6">
-        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </button>
-  </div>
+  {% if show_mobile_toggle %}
+    {# Mobile Menu Toggle Button #}
+    <div class="{{ responsive_classes[responsive_breakpoint] }}">
+      <button type="button" command="show-modal" commandfor="mobile-menu"
+              class="{{ current_variant.mobile_button_classes }}" aria-expanded="false">
+        <span class="sr-only">{{ 'Open main menu'|t }}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
+             class="size-6">
+          <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
 
-  {# Mobile Menu Dialog #}
-  <el-dialog>
-    <dialog id="mobile-menu"
-            class="backdrop:bg-transparent lg:hidden data-closed:translate-y-1 transition-all duration-300"
-            style="right: var(--el-top-layer-scrollbar-offset, 0px);">
-      <div tabindex="0" class="fixed inset-0 focus:outline-none">
-        <el-dialog-panel
-                class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 transition-all duration-200">
-          <div class="flex items-center justify-between">
-            <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5">
-              <span class="sr-only">{{ site_name|default('') }}</span>
-              {% include 'adesso_cms_theme:logo' with {
-                site_logo: logo,
-                site_name: site_name,
-                variant: current_variant.logo_variant,
-                modifier: 'h-8 w-auto'
-              } %}
-            </a>
-            <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700"
-                    aria-expanded="false">
-              <span class="sr-only">{{ 'Close menu'|t }}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
-                   aria-hidden="true" class="size-6">
-                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-          <div class="mt-6 flow-root">
-            <div class="-my-6 divide-y divide-gray-500/10">
-              <div class="space-y-2 py-6">
-                {% for item in nested %}
-                  {% if item.url is empty or item.url.toString() == '<nolink>' %}
-                    <span class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900">{{ item.title }}</span>
-                  {% else %}
-                    <a href="{{ item.url }}"{% if item.target %} target="{{ item.target }}"{% endif %}
-                       class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{{ item.title }}</a>
-                  {% endif %}
+    {# Mobile Menu Dialog #}
+    <el-dialog>
+      <dialog id="mobile-menu"
+              class="backdrop:bg-transparent {{ responsive_breakpoint }}:hidden data-closed:translate-y-1 transition-all duration-300"
+              style="right: var(--el-top-layer-scrollbar-offset, 0px);">
+        <div tabindex="0" class="fixed inset-0 focus:outline-none">
+          <el-dialog-panel
+                  class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <a href="{{ front_page|default('/') }}" class="-m-1.5 p-1.5">
+                <span class="sr-only">{{ site_name|default('') }}</span>
+                {% if logo %}
+                  {% include 'adesso_cms_theme:logo' with {
+                    site_logo: logo,
+                    site_name: site_name,
+                    variant: current_variant.logo_variant,
+                    modifier: 'h-8 w-auto'
+                  } %}
+                {% else %}
+                  <span class="text-lg font-bold text-gray-900">{{ site_name }}</span>
+                {% endif %}
+              </a>
+              <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700"
+                      aria-expanded="false">
+                <span class="sr-only">{{ 'Close menu'|t }}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                     aria-hidden="true" class="size-6">
+                  <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="mt-6 flow-root">
+              <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="space-y-2 py-6">
+                  {% for item in nested %}
+                    {% include 'adesso_cms_theme:menu-item' with {
+                      title: item.title,
+                      url: item.url,
+                      target: item.target,
+                      is_active: item.is_active,
+                      in_active_trail: item.in_active_trail,
+                      has_children: false,
+                      variant: 'mobile',
+                      theme: variant,
+                      level: 0
+                    } only %}
 
-                  {# Mobile Submenu #}
-                  {% if item.children is not empty %}
-                    <div class="ml-6 space-y-1">
-                      {% for child in item.children %}
-                        {% if child.url is empty or child.url.toString() == '<nolink>' %}
-                          <span class="-mx-3 block rounded-lg px-3 py-1 text-sm/6 text-gray-600">{{ child.title }}</span>
-                        {% else %}
-                          <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %}
-                             class="-mx-3 block rounded-lg px-3 py-1 text-sm/6 text-gray-600 hover:bg-gray-50">{{ child.title }}</a>
-                        {% endif %}
-
-                        {# Mobile nested children (third level) #}
-                        {% if child.children is not empty %}
-                          <div class="ml-4 space-y-1">
-                            {{ _self.render_mobile_submenu(child.children) }}
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
+                    {% include template_from_string('components/main-menu/partials/submenu-mobile.twig') with {
+                      children: item.children,
+                      theme: variant,
+                      level: 0
+                    } only %}
+                  {% endfor %}
+                </div>
               </div>
             </div>
-          </div>
-        </el-dialog-panel>
-      </div>
-    </dialog>
-  </el-dialog>
+          </el-dialog-panel>
+        </div>
+      </dialog>
+    </el-dialog>
+  {% endif %}
 </nav>
 
-{# Macro for desktop popover submenu rendering #}
-{% macro render_submenu(children) %}
-  {% for child in children %}
-    {% if child.url is empty or child.url.toString() == '<nolink>' %}
-      <span class="flex gap-x-4 py-1 text-xs/5 text-gray-600">
-        {{ _self.get_menu_icon(child.title, 'size-4') }}
-        {{ child.title }}
-      </span>
-    {% else %}
-      <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %}
-         class="flex gap-x-4 py-1 text-xs/5 text-gray-600 hover:text-gray-900">
-        {{ _self.get_menu_icon(child.title, 'size-4') }}
-        {{ child.title }}
-      </a>
-    {% endif %}
-  {% endfor %}
-{% endmacro %}
-
-{# Macro for mobile submenu rendering #}
-{% macro render_mobile_submenu(children) %}
-  {% for child in children %}
-    {% if child.url is empty or child.url.toString() == '<nolink>' %}
-      <span class="-mx-3 block rounded-lg px-3 py-1 text-xs/5 text-gray-500">{{ child.title }}</span>
-    {% else %}
-      <a href="{{ child.url }}"{% if child.target %} target="{{ child.target }}"{% endif %}
-         class="-mx-3 block rounded-lg px-3 py-1 text-xs/5 text-gray-500 hover:bg-gray-50">{{ child.title }}</a>
-    {% endif %}
-  {% endfor %}
-{% endmacro %}
-
-{# Macro for icon mapping based on menu title keywords #}
-{% macro get_menu_icon(title, size_class = 'size-6') %}
-  {% set title_lower = title|lower %}
-  {% set icon_class = 'flex-none text-gray-400 ' ~ size_class %}
-
-  {# About/Information icons #}
-  {% if 'about' in title_lower or 'über uns' in title_lower or 'story' in title_lower or 'team' in title_lower or 'leadership' in title_lower or 'company' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Services/Tools icons #}
-  {% elseif 'service' in title_lower or 'dienstleistung' in title_lower or 'consulting' in title_lower or 'development' in title_lower or 'web' in title_lower or 'mobile' in title_lower or 'frontend' in title_lower or 'backend' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655-4.653a2.548 2.548 0 0 1-.766-1.207l-.743-2.985a.5.5 0 0 1 .585-.585l2.985.743c.29.072.566.25.742.416l2.906 2.906c.72.72 1.275 1.572 1.653 2.548l.832 2.154a.75.75 0 0 1-.65 1.034Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Products/Package icons #}
-  {% elseif 'product' in title_lower or 'produkte' in title_lower or 'shop' in title_lower or 'category' in title_lower or 'categories' in title_lower or 'portfolio' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="m7.875 14.25 1.214 1.942a2.25 2.25 0 0 0 1.908 1.058h2.006c.776 0 1.497-.4 1.908-1.058l1.214-1.942M2.41 9h4.636a2.25 2.25 0 0 1 1.872 1.002l.164.246a2.25 2.25 0 0 0 1.872 1.002h2.092a2.25 2.25 0 0 0 1.872-1.002l.164-.246A2.25 2.25 0 0 1 16.954 9h4.636M2.41 9a2.25 2.25 0 0 0-.16.832V12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 12V9.832c0-.287-.055-.57-.16-.832M2.41 9a2.25 2.25 0 0 1 .382-.632l3.285-3.832a2.25 2.25 0 0 1 1.708-.786h8.43c.657 0 1.281.287 1.709.786l3.284 3.832c.163.19.291.404.382.632M2.41 9h19.18"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Contact/Phone icons #}
-  {% elseif 'contact' in title_lower or 'kontakt' in title_lower or 'phone' in title_lower or 'call' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Blog/News/Document icons #}
-  {% elseif 'blog' in title_lower or 'news' in title_lower or 'article' in title_lower or 'post' in title_lower or 'documentation' in title_lower or 'docs' in title_lower or 'tutorial' in title_lower or 'case studies' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Support/Help icons #}
-  {% elseif 'support' in title_lower or 'help' in title_lower or 'faq' in title_lower or 'assistance' in title_lower or 'chat' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M18.364 5.636a9 9 0 1 1-12.728 0m12.728 0L12 12m6.364-6.364a9 9 0 0 1 0 12.728m0-12.728L12 12m0 0 6.364 6.364M12 12l-6.364-6.364m0 0a9 9 0 0 1 12.728 0m-12.728 0L12 12m-6.364 6.364L12 12"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Community/Users icons #}
-  {% elseif 'community' in title_lower or 'forum' in title_lower or 'user' in title_lower or 'account' in title_lower or 'profile' in title_lower or 'member' in title_lower or 'career' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Pricing/Money icons #}
-  {% elseif 'pricing' in title_lower or 'price' in title_lower or 'cost' in title_lower or 'sale' in title_lower or 'discount' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Dashboard/Analytics icons #}
-  {% elseif 'dashboard' in title_lower or 'analytics' in title_lower or 'report' in title_lower or 'statistics' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Features/Settings icons #}
-  {% elseif 'feature' in title_lower or 'setting' in title_lower or 'configuration' in title_lower or 'integration' in title_lower or 'api' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a6.759 6.759 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
-            stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Home icon #}
-  {% elseif 'home' in title_lower or 'start' in title_lower %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    {# Default/Generic link icon #}
-  {% else %}
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true"
-         class="{{ icon_class }}">
-      <path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  {% endif %}
-{% endmacro %}
+{# 
+  Legacy macro kept for compatibility but deprecated
+  Icons should now be passed through the icon slot of menu-item components
+  This macro may be removed in future versions
+#}

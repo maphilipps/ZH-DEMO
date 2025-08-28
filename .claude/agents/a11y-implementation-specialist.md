@@ -399,3 +399,12 @@ echo "♿ Component ready for accessibility integration testing"
 - Community building: Accessibility excellence demonstrates municipal commitment to inclusion
 
 Your expertise ensures that accessibility is seamlessly woven into every aspect of the GPZH municipal portal system, creating digital experiences that empower all citizens to access government services with dignity, independence, and ease.
+
+## Compound Learning Integration
+
+When you encounter errors, issues, or learning opportunities during your work, invoke these agents to process and codify the experience:
+
+- **@agent-knowledge-synthesizer**: Use to gather and synthesize relevant knowledge from multiple sources, identify patterns, and create comprehensive understanding of complex problems
+- **@agent-feedback-codifier**: Use to collect and codify feedback from your work, transform issues into prevention rules, and update CLAUDE.md with systematic learnings
+
+This ensures every challenge becomes permanent institutional knowledge and prevents recurring issues through compound engineering principles.

@@ -33,7 +33,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Quick action buttons for Event Review Dashboard with Swiss-compliant styling and accessibility features.',
+        component:
+          'Quick action buttons for Event Review Dashboard with Swiss-compliant styling and accessibility features.',
       },
     },
   },
@@ -133,13 +134,13 @@ export const InTableContext = {
               </td>
               <td class="px-4 py-3 text-sm text-gray-500">19.08.2025 14:30</td>
               <td class="px-4 py-3 text-right">
-                ${quickActionButtonsTemplate({ 
-                  event_id: '123', 
-                  current_status: 'draft', 
-                  show_approve: true, 
-                  show_reject: true, 
+                ${quickActionButtonsTemplate({
+                  event_id: '123',
+                  current_status: 'draft',
+                  show_approve: true,
+                  show_reject: true,
                   compact: true,
-                  csrf_token: 'sample_token'
+                  csrf_token: 'sample_token',
                 })}
               </td>
             </tr>
@@ -155,13 +156,13 @@ export const InTableContext = {
               </td>
               <td class="px-4 py-3 text-sm text-gray-500">18.08.2025 09:15</td>
               <td class="px-4 py-3 text-right">
-                ${quickActionButtonsTemplate({ 
-                  event_id: '456', 
-                  current_status: 'published', 
-                  show_approve: true, 
-                  show_reject: true, 
+                ${quickActionButtonsTemplate({
+                  event_id: '456',
+                  current_status: 'published',
+                  show_approve: true,
+                  show_reject: true,
                   compact: true,
-                  csrf_token: 'sample_token'
+                  csrf_token: 'sample_token',
                 })}
               </td>
             </tr>
@@ -177,13 +178,13 @@ export const InTableContext = {
               </td>
               <td class="px-4 py-3 text-sm text-gray-500">17.08.2025 16:45</td>
               <td class="px-4 py-3 text-right">
-                ${quickActionButtonsTemplate({ 
-                  event_id: '789', 
-                  current_status: 'rejected', 
-                  show_approve: true, 
-                  show_reject: true, 
+                ${quickActionButtonsTemplate({
+                  event_id: '789',
+                  current_status: 'rejected',
+                  show_approve: true,
+                  show_reject: true,
                   compact: true,
-                  csrf_token: 'sample_token'
+                  csrf_token: 'sample_token',
                 })}
               </td>
             </tr>
@@ -231,13 +232,13 @@ export const MobileResponsive = {
             <div class="flex space-x-1">
               <input type="checkbox" class="w-4 h-4 text-red-600 border-gray-300 rounded" />
             </div>
-            ${quickActionButtonsTemplate({ 
-              event_id: '123', 
-              current_status: 'draft', 
-              show_approve: true, 
-              show_reject: true, 
+            ${quickActionButtonsTemplate({
+              event_id: '123',
+              current_status: 'draft',
+              show_approve: true,
+              show_reject: true,
               compact: true,
-              csrf_token: 'sample_token'
+              csrf_token: 'sample_token',
             })}
           </div>
         </div>
@@ -261,13 +262,13 @@ export const MobileResponsive = {
             <div class="flex space-x-1">
               <input type="checkbox" class="w-4 h-4 text-red-600 border-gray-300 rounded" />
             </div>
-            ${quickActionButtonsTemplate({ 
-              event_id: '456', 
-              current_status: 'published', 
-              show_approve: true, 
-              show_reject: true, 
+            ${quickActionButtonsTemplate({
+              event_id: '456',
+              current_status: 'published',
+              show_approve: true,
+              show_reject: true,
               compact: true,
-              csrf_token: 'sample_token'
+              csrf_token: 'sample_token',
             })}
           </div>
         </div>
@@ -286,13 +287,13 @@ export const AccessibilityDemo = {
         <div class="bg-white p-4 rounded-lg border">
           <h4 class="text-base font-semibold text-gray-900 mb-3">eCH-0059 Touch Targets (44px minimum)</h4>
           <div class="flex items-center space-x-4">
-            ${quickActionButtonsTemplate({ 
-              event_id: '123', 
-              current_status: 'draft', 
-              show_approve: true, 
-              show_reject: true, 
+            ${quickActionButtonsTemplate({
+              event_id: '123',
+              current_status: 'draft',
+              show_approve: true,
+              show_reject: true,
               compact: false,
-              csrf_token: 'sample_token'
+              csrf_token: 'sample_token',
             })}
           </div>
           <p class="text-sm text-gray-600 mt-2">All buttons meet 44px minimum touch target requirements</p>
@@ -302,13 +303,13 @@ export const AccessibilityDemo = {
         <div class="bg-white p-4 rounded-lg border" style="filter: contrast(2);">
           <h4 class="text-base font-semibold text-gray-900 mb-3">High Contrast Mode Simulation</h4>
           <div class="flex items-center space-x-4">
-            ${quickActionButtonsTemplate({ 
-              event_id: '456', 
-              current_status: 'draft', 
-              show_approve: true, 
-              show_reject: true, 
+            ${quickActionButtonsTemplate({
+              event_id: '456',
+              current_status: 'draft',
+              show_approve: true,
+              show_reject: true,
               compact: false,
-              csrf_token: 'sample_token'
+              csrf_token: 'sample_token',
             })}
           </div>
           <p class="text-sm text-gray-600 mt-2">Buttons remain clearly visible in high contrast mode</p>
@@ -338,13 +339,13 @@ export const AccessibilityDemo = {
         <div class="bg-white p-4 rounded-lg border">
           <h4 class="text-base font-semibold text-gray-900 mb-3">Screen Reader Accessibility</h4>
           <div class="flex items-center space-x-4">
-            ${quickActionButtonsTemplate({ 
-              event_id: '789', 
-              current_status: 'draft', 
-              show_approve: true, 
-              show_reject: true, 
+            ${quickActionButtonsTemplate({
+              event_id: '789',
+              current_status: 'draft',
+              show_approve: true,
+              show_reject: true,
               compact: false,
-              csrf_token: 'sample_token'
+              csrf_token: 'sample_token',
             })}
           </div>
           <div class="text-sm text-gray-600 mt-2">

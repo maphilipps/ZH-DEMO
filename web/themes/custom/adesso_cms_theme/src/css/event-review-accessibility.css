@@ -14,21 +14,21 @@
   .event-review-exposed-form {
     border: 2px solid !important;
   }
-  
+
   .event-review-dashboard table,
   .event-review-dashboard .bg-white {
     border: 2px solid !important;
   }
-  
+
   .event-review-dashboard th,
   .event-review-dashboard td {
     border: 1px solid !important;
   }
-  
+
   .status-badge {
     border: 2px solid !important;
   }
-  
+
   .quick-action-buttons button {
     border: 2px solid !important;
   }
@@ -47,7 +47,7 @@
     transition: none !important;
     animation: none !important;
   }
-  
+
   /* Keep essential loading animations but make them less intrusive */
   .loading-spinner {
     animation: spin 2s linear infinite !important;
@@ -243,7 +243,7 @@
 }
 
 .event-review-loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -257,7 +257,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Loading text for screen readers */
@@ -285,22 +287,22 @@
     color: black !important;
     background: white !important;
   }
-  
+
   .status-badge {
     border: 1px solid black !important;
     background: white !important;
     color: black !important;
   }
-  
+
   .status-badge::before {
     content: "[" attr(data-status) "] ";
     font-weight: bold;
   }
-  
+
   .quick-action-buttons {
     display: none !important;
   }
-  
+
   /* Print URLs for links */
   .event-review-dashboard a[href]:after {
     content: " (" attr(href) ")";
@@ -445,16 +447,16 @@
     min-height: 48px;
     font-size: 16px; /* Prevent zoom on iOS */
   }
-  
+
   /* Better spacing on mobile */
   .event-review-dashboard .space-x-2 > * + * {
     margin-left: 0.75rem;
   }
-  
+
   .event-review-dashboard .space-y-2 > * + * {
     margin-top: 0.75rem;
   }
-  
+
   /* Mobile-specific focus styles */
   .event-review-dashboard input:focus,
   .event-review-dashboard select:focus {

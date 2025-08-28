@@ -137,9 +137,9 @@ Flexible heading component supporting all heading levels with customizable visua
   }
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };

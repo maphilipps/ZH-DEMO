@@ -6,22 +6,22 @@ export default {
   argTypes: {
     is_landing_page: {
       control: 'boolean',
-      description: 'Whether this is a landing page'
+      description: 'Whether this is a landing page',
     },
     show_default_header: {
       control: 'boolean',
-      description: 'Whether to show the standard site header'
+      description: 'Whether to show the standard site header',
     },
     header_variant: {
       control: 'select',
       options: ['default', 'transparent'],
-      description: 'Header style variant'
+      description: 'Header style variant',
     },
     page_classes: {
       control: 'text',
-      description: 'Additional CSS classes for the page wrapper'
-    }
-  }
+      description: 'Additional CSS classes for the page wrapper',
+    },
+  },
 };
 
 export const Default = {
@@ -31,10 +31,12 @@ export const Default = {
     header_variant: 'default',
     page_classes: '',
     slots: {
-      content: '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page Content</h1><p class="text-lg">This is the main content area of a normal page.</p></div>',
-      footer: '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>'
-    }
-  }
+      content:
+        '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page Content</h1><p class="text-lg">This is the main content area of a normal page.</p></div>',
+      footer:
+        '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>',
+    },
+  },
 };
 
 export const LandingPage = {
@@ -72,10 +74,12 @@ export const LandingPage = {
           </div>
         </div>
       `,
-      content: '<div class="p-8"><h2 class="text-2xl font-bold mb-4">Landing Page Content</h2><p class="text-lg">Content after the hero section.</p></div>',
-      footer: '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>'
-    }
-  }
+      content:
+        '<div class="p-8"><h2 class="text-2xl font-bold mb-4">Landing Page Content</h2><p class="text-lg">Content after the hero section.</p></div>',
+      footer:
+        '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>',
+    },
+  },
 };
 
 export const WithHighlighted = {
@@ -85,11 +89,14 @@ export const WithHighlighted = {
     header_variant: 'default',
     page_classes: '',
     slots: {
-      highlighted: '<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-center">This is highlighted content</div>',
-      content: '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page with Highlighted Content</h1><p class="text-lg">This page demonstrates the highlighted region slot.</p></div>',
-      footer: '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>'
-    }
-  }
+      highlighted:
+        '<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-center">This is highlighted content</div>',
+      content:
+        '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page with Highlighted Content</h1><p class="text-lg">This page demonstrates the highlighted region slot.</p></div>',
+      footer:
+        '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>',
+    },
+  },
 };
 
 export const NoHeader = {
@@ -99,8 +106,10 @@ export const NoHeader = {
     header_variant: 'default',
     page_classes: '',
     slots: {
-      content: '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page Without Header</h1><p class="text-lg">This page has no header at all.</p></div>',
-      footer: '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>'
-    }
-  }
+      content:
+        '<div class="p-8"><h1 class="text-3xl font-bold mb-4">Page Without Header</h1><p class="text-lg">This page has no header at all.</p></div>',
+      footer:
+        '<footer class="bg-gray-800 text-white p-8 text-center">Footer Content</footer>',
+    },
+  },
 };

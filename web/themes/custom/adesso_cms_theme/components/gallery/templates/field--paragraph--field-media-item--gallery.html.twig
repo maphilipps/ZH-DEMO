@@ -1,24 +1,6 @@
-{#
-/**
- * @file
- * Theme override for the media field in gallery paragraphs.
- *
- * Integrates media items with the gallery-item SDC component.
- * Uses the configured view mode and image style from the backend.
- */
-#}
-{% if items %}
-  {% for delta, item in items %}
-    {# Use the rendered media item as configured in the backend view mode #}
-    {% set gallery_item = {
-      id: 'gallery-item-' ~ delta,
-      media_thumb: item.content|render,
-      media_description: item.content['#media'].name.value|default('Gallery image')
-    } %}
-    
-    {# Render using the gallery-item component #}
-    {% include 'adesso_cms_theme:gallery-item' with {
-      item: gallery_item
-    } %}
-  {% endfor %}
-{% endif %}
+{# /** * @file * Theme override for the media field in gallery paragraphs. * * Integrates media items with the
+gallery-item SDC component. * Uses the configured view mode and image style from the backend. */ #} {% if items %} {%
+for delta, item in items %} {# Use the rendered media item as configured in the backend view mode #} {% set gallery_item
+= { id: 'gallery-item-' ~ delta, media_thumb: item.content|render, media_description:
+item.content['#media'].name.value|default('Gallery image') } %} {# Render using the gallery-item component #} {% include
+'adesso_cms_theme:gallery-item' with { item: gallery_item } %} {% endfor %} {% endif %}

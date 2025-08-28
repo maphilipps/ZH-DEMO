@@ -152,9 +152,9 @@ Site footer component with flexible content areas for navigation, social links, 
   footer_links: drupal_menu('footer')
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -212,13 +212,18 @@ export const Default = {
     ],
     social_links: [
       { url: 'https://twitter.com/company', title: 'Twitter', icon: 'twitter' },
-      { url: 'https://linkedin.com/company', title: 'LinkedIn', icon: 'linkedin' },
+      {
+        url: 'https://linkedin.com/company',
+        title: 'LinkedIn',
+        icon: 'linkedin',
+      },
       { url: 'https://github.com/company', title: 'GitHub', icon: 'github' },
       { url: 'https://youtube.com/company', title: 'YouTube', icon: 'youtube' },
     ],
     newsletter_signup: {
       title: 'Stay Updated',
-      description: 'Subscribe to our newsletter for the latest updates and insights.',
+      description:
+        'Subscribe to our newsletter for the latest updates and insights.',
       url: '/newsletter/signup',
     },
     contact_info: {
@@ -249,7 +254,11 @@ export const Minimal = {
     ],
     social_links: [
       { url: 'https://twitter.com/company', title: 'Twitter', icon: 'twitter' },
-      { url: 'https://linkedin.com/company', title: 'LinkedIn', icon: 'linkedin' },
+      {
+        url: 'https://linkedin.com/company',
+        title: 'LinkedIn',
+        icon: 'linkedin',
+      },
     ],
   },
 };
@@ -284,7 +293,11 @@ export const DarkTheme = {
     ],
     social_links: [
       { url: 'https://twitter.com/company', title: 'Twitter', icon: 'twitter' },
-      { url: 'https://linkedin.com/company', title: 'LinkedIn', icon: 'linkedin' },
+      {
+        url: 'https://linkedin.com/company',
+        title: 'LinkedIn',
+        icon: 'linkedin',
+      },
       { url: 'https://github.com/company', title: 'GitHub', icon: 'github' },
     ],
     contact_info: {
@@ -315,12 +328,21 @@ export const NewsletterFocus = {
     ],
     social_links: [
       { url: 'https://twitter.com/company', title: 'Twitter', icon: 'twitter' },
-      { url: 'https://facebook.com/company', title: 'Facebook', icon: 'facebook' },
-      { url: 'https://instagram.com/company', title: 'Instagram', icon: 'instagram' },
+      {
+        url: 'https://facebook.com/company',
+        title: 'Facebook',
+        icon: 'facebook',
+      },
+      {
+        url: 'https://instagram.com/company',
+        title: 'Instagram',
+        icon: 'instagram',
+      },
     ],
     newsletter_signup: {
       title: 'Subscribe to Our Newsletter',
-      description: 'Get weekly insights, tips, and exclusive content delivered to your inbox.',
+      description:
+        'Get weekly insights, tips, and exclusive content delivered to your inbox.',
       url: '/newsletter/signup',
     },
   },
@@ -386,7 +408,11 @@ export const NoLogo = {
     ],
     social_links: [
       { url: 'https://twitter.com/company', title: 'Twitter', icon: 'twitter' },
-      { url: 'https://linkedin.com/company', title: 'LinkedIn', icon: 'linkedin' },
+      {
+        url: 'https://linkedin.com/company',
+        title: 'LinkedIn',
+        icon: 'linkedin',
+      },
     ],
   },
 };
@@ -409,9 +435,7 @@ export const Playground = {
         ],
       },
     ],
-    social_links: [
-      { url: '#', title: 'Test Social', icon: 'twitter' },
-    ],
+    social_links: [{ url: '#', title: 'Test Social', icon: 'twitter' }],
     newsletter_signup: {
       title: 'Test Newsletter',
       description: 'Test description',

@@ -1,25 +1,11 @@
 <section>
   <div class="py-8 lg:py-16 mx-auto container px-4">
-    {% if pre_headline or title %}
-      {% include 'adesso_cms_theme:section-header' with {
-        title: title,
-        pre_headline: pre_headline,
-        alignment: 'center',
-        title_tag: 'h2',
-        pre_headline_tag: 'span',
-        title_visual_level: '2',
-        pre_headline_visual_level: '3',
-        additional_classes: 'mb-8 lg:mb-16'
-      } %}
-    {% endif %}
+    {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
+    pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag: 'span', title_visual_level: '2',
+    pre_headline_visual_level: '3', additional_classes: 'mb-8 lg:mb-16' } %} {% endif %}
     <div class="grid grid-cols-2 gap-8 sm:gap-12 md:grid-cols-3 lg:grid-cols-6">
-      {% block logo_items %}
-        {% for logo in logos %}
-          {% if logo.media is not empty %}
-            {{ logo.media }}
-          {% endif %}
-        {% endfor %}
-      {% endblock %}
+      {% block logo_items %} {% for logo in logos %} {% if logo.media is not empty %} {{ logo.media }} {% endif %} {%
+      endfor %} {% endblock %}
     </div>
   </div>
 </section>

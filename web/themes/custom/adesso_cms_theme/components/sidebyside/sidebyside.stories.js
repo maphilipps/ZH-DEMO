@@ -129,9 +129,9 @@ Side-by-side component for displaying content with flexible image/text layouts a
   layout: 'right'
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -145,7 +145,8 @@ export const Default = {
   args: {
     pre_headline: 'Our Platform',
     title: 'Powerful Features for Modern Business',
-    media: '<img src="https://picsum.photos/600/400?random=1" alt="Platform features" class="w-full h-full object-cover rounded-lg">',
+    media:
+      '<img src="https://picsum.photos/600/400?random=1" alt="Platform features" class="w-full h-full object-cover rounded-lg">',
     text: '<p>Discover how our platform can transform your business with innovative solutions and cutting-edge technology. Our comprehensive suite of tools helps you streamline operations, improve efficiency, and drive growth.</p>',
     layout: 'left',
     link: {
@@ -223,7 +224,8 @@ export const ImageRight = {
   args: {
     pre_headline: 'About Us',
     title: 'Leading Digital Innovation',
-    media: '<img src="https://picsum.photos/600/400?random=2" alt="Team collaboration" class="w-full h-full object-cover rounded-lg">',
+    media:
+      '<img src="https://picsum.photos/600/400?random=2" alt="Team collaboration" class="w-full h-full object-cover rounded-lg">',
     text: '<p>With over a decade of experience in digital transformation, we help businesses achieve their technology goals through innovative solutions and expert guidance.</p>',
     layout: 'right',
     link: {
@@ -238,8 +240,9 @@ export const ImageRight = {
 export const WithFeatures = {
   args: {
     title: 'Why Choose Our Platform',
-    media: '<img src="https://picsum.photos/600/400?random=3" alt="Platform benefits" class="w-full h-full object-cover rounded-lg">',
-    text: '<p>Our platform provides everything you need to succeed in today\'s digital landscape.</p>',
+    media:
+      '<img src="https://picsum.photos/600/400?random=3" alt="Platform benefits" class="w-full h-full object-cover rounded-lg">',
+    text: "<p>Our platform provides everything you need to succeed in today's digital landscape.</p>",
     features: [
       {
         title: 'Lightning Fast Performance',
@@ -272,7 +275,8 @@ export const ServiceShowcase = {
   args: {
     pre_headline: 'Our Services',
     title: 'Complete Digital Solutions',
-    media: '<img src="https://picsum.photos/600/400?random=4" alt="Digital solutions" class="w-full h-full object-cover rounded-lg">',
+    media:
+      '<img src="https://picsum.photos/600/400?random=4" alt="Digital solutions" class="w-full h-full object-cover rounded-lg">',
     text: '<p>From strategy to implementation, we provide end-to-end digital services that drive real business results.</p>',
     features: [
       {
@@ -301,7 +305,8 @@ export const ServiceShowcase = {
 export const WithVideo = {
   args: {
     title: 'See Our Platform in Action',
-    media: '<div class="w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center"><svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>',
+    media:
+      '<div class="w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center"><svg class="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>',
     text: '<p>Watch a quick demo of our platform and see how it can streamline your workflow and boost productivity.</p>',
     layout: 'left',
     link: {
@@ -333,7 +338,8 @@ export const Playground = {
   args: {
     pre_headline: 'Test Section',
     title: 'Test Side-by-Side Component',
-    media: '<img src="https://picsum.photos/600/400?random=1" alt="Test image" class="w-full h-full object-cover rounded-lg">',
+    media:
+      '<img src="https://picsum.photos/600/400?random=1" alt="Test image" class="w-full h-full object-cover rounded-lg">',
     text: '<p>This is test content for the side-by-side component.</p>',
     features: [
       {

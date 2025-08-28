@@ -11,14 +11,17 @@ fonts:
           }
         }
 
+# PreviousNext Vite Standards: Dynamic asset paths resolved via hook_library_info_alter
 global:
   css:
     base:
-      src/css/adesso.css: {
+      # Placeholder - resolved dynamically from Vite manifest via hook_library_info_alter
+      dist/assets/css/styles-B-7La5mF.css: {
         weight: -10
       }
   js:
-    src/js/adesso.js: {}
+    # Placeholder - resolved dynamically from Vite manifest via hook_library_info_alter
+    dist/assets/js/adesso-CV7kQPJ_.js: {}
     src/js/gin-sidebar-fix.js: { weight: -100 }
   dependencies:
     - "adesso_cms_theme/fonts"

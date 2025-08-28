@@ -8,7 +8,15 @@ export default {
   argTypes: {
     status: {
       control: 'select',
-      options: ['draft', 'published', 'rejected', 'neu', 'in_bearbeitung', 'erledigt', 'abgelehnt'],
+      options: [
+        'draft',
+        'published',
+        'rejected',
+        'neu',
+        'in_bearbeitung',
+        'erledigt',
+        'abgelehnt',
+      ],
       description: 'The status value',
       table: {
         type: { summary: 'enum' },

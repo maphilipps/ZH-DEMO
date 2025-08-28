@@ -38,7 +38,8 @@ const meta = {
     },
     modifier: {
       name: 'CSS Modifier Classes',
-      description: 'Additional CSS classes for customizing form appearance and layout',
+      description:
+        'Additional CSS classes for customizing form appearance and layout',
       control: { type: 'text' },
       table: {
         type: { summary: 'string' },
@@ -82,16 +83,19 @@ const meta = {
       control: { type: 'textarea' },
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'I agree to receive newsletters and marketing communications.' },
+        defaultValue: {
+          summary:
+            'I agree to receive newsletters and marketing communications.',
+        },
         category: 'Privacy',
       },
     },
     form_state: {
       name: 'Form State',
       description: 'Current state of the form for demonstration purposes',
-      control: { 
+      control: {
         type: 'select',
-        options: ['default', 'loading', 'success', 'error', 'validation_error']
+        options: ['default', 'loading', 'success', 'error', 'validation_error'],
       },
       table: {
         type: { summary: 'string' },
@@ -112,9 +116,9 @@ const meta = {
     theme_variant: {
       name: 'Theme Variant',
       description: 'Visual theme variant for the form',
-      control: { 
+      control: {
         type: 'select',
-        options: ['light', 'dark', 'colored', 'minimal']
+        options: ['light', 'dark', 'colored', 'minimal'],
       },
       table: {
         type: { summary: 'string' },
@@ -372,9 +376,9 @@ function trackNewsletterSubscription(email, source) {
 - **Caching**: Cache form markup for faster rendering
 - **CDN Integration**: Serve assets from content delivery networks
 - **Progressive Enhancement**: Works without JavaScript
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -387,7 +391,8 @@ export const NewsletterForm = {
   args: {
     pre_headline: 'Stay Informed',
     title: 'Subscribe to Our Newsletter',
-    summary: 'Get the latest updates, insights, and exclusive content delivered directly to your inbox.',
+    summary:
+      'Get the latest updates, insights, and exclusive content delivered directly to your inbox.',
     modifier: '',
   },
 };
@@ -406,7 +411,8 @@ export const BlogSubscription = {
     ...NewsletterForm.args,
     pre_headline: 'Never Miss a Post',
     title: 'Subscribe to Our Blog',
-    summary: 'Get notified when we publish new articles, tutorials, and insights.',
+    summary:
+      'Get notified when we publish new articles, tutorials, and insights.',
   },
 };
 
@@ -415,7 +421,8 @@ export const CompanyUpdates = {
     ...NewsletterForm.args,
     pre_headline: 'Company News',
     title: 'Stay Connected',
-    summary: 'Be the first to know about product launches and company milestones.',
+    summary:
+      'Be the first to know about product launches and company milestones.',
   },
 };
 
@@ -424,7 +431,8 @@ export const WeeklyDigest = {
     ...NewsletterForm.args,
     pre_headline: 'Weekly Digest',
     title: 'Industry Insights & Trends',
-    summary: 'Every Friday, receive curated industry news and actionable insights.',
+    summary:
+      'Every Friday, receive curated industry news and actionable insights.',
   },
 };
 
@@ -447,4 +455,3 @@ export const DarkTheme = {
     modifier: 'bg-gray-900 text-white',
   },
 };
-

@@ -1,8 +1,2 @@
-{%
-  include 'adesso_cms_theme:recent-card-item' with {
-    "media": content.field_thumbnail|render|striptags,
-    "title": label,
-    "summary": content.field_summary|render|striptags,
-    "url": url,
-  } only
-%}
+{% include 'adesso_cms_theme:recent-card-item' with { "media": content.field_thumbnail|render|striptags, "title": label,
+"summary": content.field_summary|render|striptags, "url": url, } only %}

@@ -1,15 +1,3 @@
-{#
-/**
- * @file
- * Slider item paragraph template (child component - no wrapper needed).
- */
-#}
-{{ title_prefix }}
-{{ title_suffix }}
-
-{% include "adesso_cms_theme:slider-item" with {
-  media: content.field_media,
-  title: content.field_title,
-  summary: content.field_summary,
-  theme: paragraph.field_theme.value|default('default'),
-} %}
+{# /** * @file * Slider item paragraph template (child component - no wrapper needed). */ #} {{ title_prefix }} {{
+title_suffix }} {% include "adesso_cms_theme:slider-item" with { media: content.field_media, title: content.field_title,
+summary: content.field_summary, theme: paragraph.field_theme.value|default('default'), } %}

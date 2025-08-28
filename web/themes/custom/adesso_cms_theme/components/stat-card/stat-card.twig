@@ -1,36 +1,20 @@
-{% set layout = layout|default('center') %}
-{% set alignment_class = layout == 'left' ? 'text-left' : 'text-center' %}
-{% set icon_class = layout == 'left' ? 'mr-auto' : 'mx-auto' %}
-{% set border = border is defined ? border : true %}
-{% set border_class = not border ? 'border-0 shadow-none h-full' : 'border shadow' %}
-{% set content_class = not border ? 'p-0' : 'p-6' %}
+{% set layout = layout|default('center') %} {% set alignment_class = layout == 'left' ? 'text-left' : 'text-center' %}
+{% set icon_class = layout == 'left' ? 'mr-auto' : 'mx-auto' %} {% set border = border is defined ? border : true %} {%
+set border_class = not border ? 'border-0 shadow-none h-full' : 'border shadow' %} {% set content_class = not border ?
+'p-0' : 'p-6' %}
 
 <div class=" bg-card text-card-foreground stat {{ alignment_class }} {{ border_class }} {{ modifier }}">
   <div class="{{ content_class }}">
     {% if icon %}
-      <div class="stat-icon {{ icon_class }} mb-4 max-w-[120px] sm:max-w-[200px]">
-        <i data-lucide="{{ icon }}" width="56" height="56" class="mx-auto sm:hidden"></i>
-        <i data-lucide="{{ icon }}" width="68" height="68" class="mx-auto drupal-safe-hidden sm:block"></i>
-      </div>
-    {% endif %}
-
-    {% if media %}
-      <div class="stat-icon {{ icon_class }} mb-4 max-w-[120px] sm:max-w-[200px]">
-        {{ media|render }}
-      </div>
-    {% endif %}
-
-    {% include 'adesso_cms_theme:heading' with {
-      heading: {
-        title: heading,
-        as: 'span',
-        visual_level: '3',
-        custom_classes: 'block card-title font-semibold tracking-tight mb-2 text-xl'
-      }
-    } %}
-
-    {% if body %}
-      <p class="mb-0">{{ body }}</p>
+    <div class="stat-icon {{ icon_class }} mb-4 max-w-[120px] sm:max-w-[200px]">
+      <i data-lucide="{{ icon }}" width="56" height="56" class="mx-auto sm:hidden"></i>
+      <i data-lucide="{{ icon }}" width="68" height="68" class="mx-auto drupal-safe-hidden sm:block"></i>
+    </div>
+    {% endif %} {% if media %}
+    <div class="stat-icon {{ icon_class }} mb-4 max-w-[120px] sm:max-w-[200px]">{{ media|render }}</div>
+    {% endif %} {% include 'adesso_cms_theme:heading' with { heading: { title: heading, as: 'span', visual_level: '3',
+    custom_classes: 'block card-title font-semibold tracking-tight mb-2 text-xl' } } %} {% if body %}
+    <p class="mb-0">{{ body }}</p>
     {% endif %}
   </div>
 </div>

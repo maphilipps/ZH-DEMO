@@ -1,8 +1,6 @@
 @config '../js/tailwind.adesso.js';
 
 @theme {
-
-
   --color-black: #000;
   --color-white: #fff;
 
@@ -31,9 +29,8 @@
 }
 
 @layer base {
-
   :root {
-    --font-sans: 'Inter', sans-serif;
+    --font-sans: "Inter", sans-serif;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -98,12 +95,11 @@
     display: block;
     color: var(--color-yellow-900);
     text-transform: uppercase;
-    content: '-';
+    content: "-";
   }
 
   /* Default color transition on links unless user prefers reduced motion. */
   @media (prefers-reduced-motion: no-preference) {
-
     a {
       transition: color 0.3s ease-in-out;
     }
@@ -138,7 +134,7 @@
     outline-offset: 2px;
   }
 
-  input:not([type='button']):focus,
+  input:not([type="button"]):focus,
   textarea:focus,
   select:focus {
     box-shadow: none;
@@ -153,8 +149,7 @@
     color: var(--color-white);
   }
 
-  [class*='stack-'][class*='stack-space-'] {
-
+  [class*="stack-"][class*="stack-space-"] {
     & > * {
       --stack-item-space: initial;
     }
@@ -162,21 +157,45 @@
 }
 
 @layer components {
-
-
-
   /* Fluid grid for horizontal layout. */
   .fluid-grid {
     --col-gap: clamp(1rem, 3vw, 4rem);
-    --spacing-fluid-grid-gap: var(--col-gap); /* redefining this here as CSS doesn't inherit CSS variables */
+    --spacing-fluid-grid-gap: var(
+      --col-gap
+    ); /* redefining this here as CSS doesn't inherit CSS variables */
     --content-max-width: var(--breakpoint-xl);
-    --col-width: calc((min(calc(100% - var(--padding-left) - var(--padding-right) - 2 * var(--col-gap)), var(--content-max-width)) - 11 * var(--col-gap)) / 12);
-    --padding-left: clamp(calc(env(safe-area-inset-left, 0rem) + 1rem), 2vw, calc(env(safe-area-inset-left, 0rem) + 2rem));
-    --padding-right: clamp(calc(env(safe-area-inset-right, 0rem) + 1rem), 2vw, calc(env(safe-area-inset-right, 0rem) + 2rem));
+    --col-width: calc(
+      (
+          min(
+              calc(100% - var(--padding-left) - var(--padding-right) - 2 * var(--col-gap)),
+              var(--content-max-width)
+            ) -
+            11 * var(--col-gap)
+        ) /
+        12
+    );
+    --padding-left: clamp(
+      calc(env(safe-area-inset-left, 0rem) + 1rem),
+      2vw,
+      calc(env(safe-area-inset-left, 0rem) + 2rem)
+    );
+    --padding-right: clamp(
+      calc(env(safe-area-inset-right, 0rem) + 1rem),
+      2vw,
+      calc(env(safe-area-inset-right, 0rem) + 2rem)
+    );
     --side-width: minmax(0, 1fr);
     display: grid;
     column-gap: var(--col-gap);
-    grid-template-columns: [full-start] var(--side-width) [content-start col-1] var(--col-width) [col-2] var(--col-width) [col-3] var(--col-width) [col-4] var(--col-width) [col-5] var(--col-width) [col-6] var(--col-width) [col-7] var(--col-width) [col-8] var(--col-width) [col-9] var(--col-width) [col-10] var(--col-width) [col-11] var(--col-width) [col-12] var(--col-width) [content-end] var(--side-width) [full-end];
+    grid-template-columns: [full-start] var(--side-width) [content-start col-1] var(
+        --col-width
+      ) [col-2] var(--col-width) [col-3] var(--col-width) [col-4] var(--col-width) [col-5] var(
+        --col-width
+      ) [col-6] var(--col-width) [col-7] var(--col-width) [col-8] var(--col-width) [col-9] var(
+        --col-width
+      ) [col-10] var(--col-width) [col-11] var(--col-width) [col-12] var(
+        --col-width
+      ) [content-end] var(--side-width) [full-end];
   }
 
   /* Span utilities for fluid grid. */
@@ -230,7 +249,7 @@
   .stack-space-inherit {
     --stack-item-space: initial;
 
-    &:is([class*='stack-'][class*='stack-space-'] > *) {
+    &:is([class*="stack-"][class*="stack-space-"] > *) {
       --stack-item-space: initial;
     }
   }
@@ -239,7 +258,6 @@
     --stack-item-space: 0;
   }
   @responsive {
-
     .drupal-safe-hidden {
       display: none;
     }

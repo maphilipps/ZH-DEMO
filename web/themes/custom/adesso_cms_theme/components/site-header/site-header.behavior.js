@@ -72,7 +72,7 @@
     // Focus first focusable element in dropdown
     const firstFocusable = dropdown.querySelector(
       'a[href], button:not([disabled]), input:not([disabled]), ' +
-      '[tabindex]:not([tabindex="-1"])'
+        '[tabindex]:not([tabindex="-1"])'
     );
     if (firstFocusable) {
       setTimeout(() => firstFocusable.focus(), 100);
@@ -92,8 +92,7 @@
 
     if (isExpanded) {
       closeDropdown(trigger, dropdown);
-    }
-    else {
+    } else {
       openDropdown(trigger, dropdown);
     }
   }
@@ -105,7 +104,7 @@
    * @returns {void}
    */
   function initializeMobileMenuWithElements(mobileToggle, mobileMenu) {
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
 
       if (isExpanded) {
@@ -113,8 +112,7 @@
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
         announceToScreenReader('Mobile menu closed');
-      }
-      else {
+      } else {
         // Open mobile menu
         mobileMenu.classList.remove('hidden');
         mobileToggle.setAttribute('aria-expanded', 'true');
@@ -123,7 +121,7 @@
     });
 
     // Handle keyboard navigation in mobile menu
-    mobileMenu.addEventListener('keydown', function(e) {
+    mobileMenu.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -150,7 +148,7 @@
     // Handle focus management for dropdowns
     const dropdownTriggers = header.querySelectorAll('[data-dropdown-toggle]');
     dropdownTriggers.forEach(trigger => {
-      trigger.addEventListener('focus', function() {
+      trigger.addEventListener('focus', function () {
         // Announce available actions to screen readers
         const hasSubmenu = trigger.getAttribute('aria-haspopup') === 'true';
         if (hasSubmenu) {
@@ -181,24 +179,26 @@
   function initializeKeyboardNavigation(header) {
     const focusableElements = header.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), ' +
-      'select:not([disabled]), textarea:not([disabled]), ' +
-      '[tabindex]:not([tabindex="-1"])'
+        'select:not([disabled]), textarea:not([disabled]), ' +
+        '[tabindex]:not([tabindex="-1"])'
     );
 
-    focusableElements.forEach((element) => {
-      element.addEventListener('keydown', function(e) {
+    focusableElements.forEach(element => {
+      element.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
           // Handle tab navigation within dropdowns
           const openDropdown = header.querySelector(
             '[data-dropdown-toggle][aria-expanded="true"]'
           );
           if (openDropdown) {
-            const dropdownId = openDropdown.getAttribute('data-dropdown-toggle');
+            const dropdownId = openDropdown.getAttribute(
+              'data-dropdown-toggle'
+            );
             const dropdown = header.querySelector(`#${dropdownId}`);
             if (dropdown && !dropdown.classList.contains('hidden')) {
               const dropdownFocusable = dropdown.querySelectorAll(
                 'a[href], button:not([disabled]), input:not([disabled]), ' +
-                '[tabindex]:not([tabindex="-1"])'
+                  '[tabindex]:not([tabindex="-1"])'
               );
 
               if (dropdownFocusable.length > 0) {
@@ -209,12 +209,10 @@
                     e.preventDefault();
                     dropdownFocusable[dropdownFocusable.length - 1].focus();
                   }
-                }
-                else {
+                } else {
                   // Tab
-                  const lastElement = dropdownFocusable[
-                    dropdownFocusable.length - 1
-                  ];
+                  const lastElement =
+                    dropdownFocusable[dropdownFocusable.length - 1];
                   if (document.activeElement === lastElement) {
                     e.preventDefault();
                     dropdownFocusable[0].focus();
@@ -252,7 +250,7 @@
       return;
     }
 
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
 
       if (isExpanded) {
@@ -260,8 +258,7 @@
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
         announceToScreenReader('Mobile menu closed');
-      }
-      else {
+      } else {
         // Open mobile menu
         mobileMenu.classList.remove('hidden');
         mobileToggle.setAttribute('aria-expanded', 'true');
@@ -270,7 +267,7 @@
     });
 
     // Handle keyboard navigation in mobile menu
-    mobileMenu.addEventListener('keydown', function(e) {
+    mobileMenu.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -295,7 +292,7 @@
     }
 
     // Focus search input when dropdown opens
-    searchToggle.addEventListener('click', function() {
+    searchToggle.addEventListener('click', function () {
       setTimeout(() => {
         if (!searchDropdown.classList.contains('hidden')) {
           searchInput.focus();
@@ -304,7 +301,7 @@
     });
 
     // Handle search input keyboard events
-    searchInput.addEventListener('keydown', function(e) {
+    searchInput.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeDropdown(searchToggle, searchDropdown);
         searchToggle.focus();
@@ -314,7 +311,7 @@
     // Handle search form submission
     const searchForm = searchDropdown.querySelector('form');
     if (searchForm) {
-      searchForm.addEventListener('submit', function(e) {
+      searchForm.addEventListener('submit', function (e) {
         const query = searchInput.value.trim();
         if (!query) {
           e.preventDefault();
@@ -345,24 +342,23 @@
       }
 
       // Handle click events
-      trigger.addEventListener('click', function(e) {
+      trigger.addEventListener('click', function (e) {
         e.preventDefault();
         toggleDropdown(trigger, dropdown);
       });
 
       // Handle keyboard events
-      trigger.addEventListener('keydown', function(e) {
+      trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           toggleDropdown(trigger, dropdown);
-        }
-        else if (e.key === 'Escape') {
+        } else if (e.key === 'Escape') {
           closeDropdown(trigger, dropdown);
         }
       });
 
       // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
           closeDropdown(trigger, dropdown);
         }
@@ -395,7 +391,9 @@
             const { Dropdown } = window.Flowbite;
             if (Dropdown) {
               // Initialize all dropdowns with Flowbite
-              const dropdownElements = header.querySelectorAll('[data-dropdown-toggle]');
+              const dropdownElements = header.querySelectorAll(
+                '[data-dropdown-toggle]'
+              );
               dropdownElements.forEach(triggerEl => {
                 const targetId = triggerEl.getAttribute('data-dropdown-toggle');
                 const targetEl = document.getElementById(targetId);
@@ -403,14 +401,15 @@
                   // Create new Dropdown instance
                   try {
                     new Dropdown(targetEl, triggerEl, {
-                      placement: triggerEl.getAttribute('data-dropdown-placement') || 'bottom-start',
+                      placement:
+                        triggerEl.getAttribute('data-dropdown-placement') ||
+                        'bottom-start',
                       triggerType: 'click',
                       offsetSkidding: 0,
                       offsetDistance: 4,
                       delay: 0
                     });
-                  }
-                  catch (e) {
+                  } catch (e) {
                     console.warn('Failed to initialize Flowbite dropdown:', e);
                   }
                 }
@@ -436,15 +435,4 @@
       });
     }
   };
-
-
-
-
-
-
-
-
-
-
-
 })(Drupal);

@@ -27,18 +27,19 @@
 
 {%- set all_classes = [base_classes, variant_classes, size_classes, modifier|default('')]|join(' ')|trim -%}
 
+{# Extract icon rendering to avoid duplication #}
+{%- set icon_html -%}
+  {% if icon|default('') %}
+    <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="{{ text ? 'ml-2 h-4 w-4' : 'h-4 w-4' }}"></i>
+  {% endif %}
+{%- endset -%}
+
 {% if url|default('') %}
   <a href="{{ url|default('') }}" class="{{ all_classes }}">
-    {{ text|default('') }}
-    {% if icon|default('') %}
-      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="{{ text ? 'ml-2 h-4 w-4' : 'h-4 w-4' }}"></i>
-    {% endif %}
+    {{ text|default('') }}{{ icon_html }}
   </a>
 {% else %}
   <button class="{{ all_classes }}" type="{{ type|default('button') }}">
-    {{ text|default('') }}
-    {% if icon|default('') %}
-      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="{{ text ? 'ml-2 h-4 w-4' : 'h-4 w-4' }}"></i>
-    {% endif %}
+    {{ text|default('') }}{{ icon_html }}
   </button>
 {% endif %}

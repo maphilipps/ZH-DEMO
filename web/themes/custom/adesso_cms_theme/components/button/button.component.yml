@@ -51,3 +51,4 @@ props:
       type: string
       title: modifier
       description: Additional CSS classes to apply to the button
+      pattern: '^[a-zA-Z0-9\s\-_:\/]*$'

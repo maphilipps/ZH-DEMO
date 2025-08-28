@@ -66,11 +66,13 @@
                      aria-required="true"
                      required>
               <div id="newsletter-description" class="sr-only">{{ 'Subscribe to receive updates and newsletters'|t }}</div>
-              <button type="submit"
-                      class="rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                      aria-label="{{ 'Subscribe to newsletter'|t }}">
-                {{ newsletter_signup.button_text ?? 'Subscribe'|t }}
-              </button>
+              {% include 'adesso_cms_theme:button' with {
+                text: newsletter_signup.button_text ?? 'Subscribe'|t,
+                type: 'submit',
+                variant: 'default',
+                size: 'default',
+                modifier: 'text-sm font-medium focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+              } %}
             </form>
           {% endif %}
         </div>

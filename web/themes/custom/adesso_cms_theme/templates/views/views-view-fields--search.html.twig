@@ -21,13 +21,13 @@
  */
 #}
 
-{% set content_type_raw = fields.type.content|render|striptags|trim %}
-{% set relevance_score = fields.search_api_relevance.content ? (fields.search_api_relevance.content|render|striptags|trim|number_format(2)) : 0.5 %}
+{% set content_type_raw = fields.type.content|trim %}
+{% set relevance_score = fields.search_api_relevance.content ? (fields.search_api_relevance.content|trim|number_format(2)) : 0.5 %}
 {% set result_index = loop.index0 is defined ? loop.index0 : 0 %}
 
 {# Process title and URL from the title field render array #}
 {% set title_content = fields.title.content %}
-{% set result_title = title_content|render|striptags|trim %}
+{% set result_title = title_content|trim %}
 {% set result_url = '#' %}
 
 {# Extract URL from title field if it's a link #}
@@ -76,7 +76,7 @@
 {# Municipal verification status #}
 {% set municipal_verified = false %}
 {% if fields.field_municipal_verified.content %}
-  {% set verification_content = fields.field_municipal_verified.content|render|striptags|trim %}
+  {% set verification_content = fields.field_municipal_verified.content|trim %}
   {% set municipal_verified = verification_content == '1' or verification_content|lower == 'on' %}
 {% endif %}
 
@@ -84,7 +84,7 @@
 {{ include('@adesso_cms_theme/search-result-card/search-result-card.twig', {
   'title': result_title,
   'url': result_url,
-  'excerpt': fields.search_api_excerpt.content ? fields.search_api_excerpt.content|render : null,
+  'excerpt': fields.search_api_excerpt.content ? fields.search_api_excerpt.content : null,
   'content_type': content_type_raw,
   'relevance_score': relevance_score,
   'categories': categories,

@@ -54,7 +54,7 @@
       <div class="mt-2 flex flex-wrap gap-1">
         {# Vereinsstatus Badge #}
         {% if fields.field_vereinsstatus.content %}
-          {% set status_text = fields.field_vereinsstatus.content|render|striptags|trim %}
+          {% set status_text = fields.field_vereinsstatus.content|trim %}
           {% if status_text %}
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
               Status: {{ status_text }}
@@ -64,7 +64,7 @@
         
         {# Vereinskategorie Badge #}
         {% if fields.field_vereinskategorie.content %}
-          {% set category_text = fields.field_vereinskategorie.content|render|striptags|trim %}
+          {% set category_text = fields.field_vereinskategorie.content|trim %}
           {% if category_text %}
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
               {{ category_text }}
@@ -74,7 +74,7 @@
         
         {# Mitgliedergrösse Badge #}
         {% if fields.field_mitgliedergroesse.content %}
-          {% set size_text = fields.field_mitgliedergroesse.content|render|striptags|trim %}
+          {% set size_text = fields.field_mitgliedergroesse.content|trim %}
           {% if size_text %}
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
               {{ size_text }} Mitglieder
@@ -84,7 +84,7 @@
         
         {# Zielgruppe Badge #}
         {% if fields.field_zielgruppe.content %}
-          {% set target_text = fields.field_zielgruppe.content|render|striptags|trim %}
+          {% set target_text = fields.field_zielgruppe.content|trim %}
           {% if target_text %}
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
               {{ target_text }}

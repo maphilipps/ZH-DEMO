@@ -1,1 +1,5 @@
-<div class="{{ modifier|default('w-full') }}">{{ media|default('') }}</div>
+<div class="media-container {{ modifier|default('w-full') }}">
+  {% block media %}
+    {# Media content will be populated by parent template #}
+  {% endblock %}
+</div>

@@ -1,7 +1,11 @@
 <div
   class="py-8 mx-auto container lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-6 {{ modifier|default('container') }}{{ layout|default('left') == 'right' ? ' lg:flex-row-reverse' : '' }} data-[theme=light]:bg-gray-100 data-[theme=light]:text-gray-800 data-[theme=dark]:bg-gray-900 data-[theme=dark]:text-gray-100"
 >
-  <div class="w-full lg:w-1/2 relative">{{ media|default('') }}</div>
+  <div class="w-full lg:w-1/2 relative">
+    {% block media %}
+      {# Media slot replaces media prop for better template flexibility #}
+    {% endblock %}
+  </div>
   <div class="w-full lg:w-1/2 xl:w-5/12 flex flex-col gap-4">
     {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
     pre_headline, alignment: 'left', title_tag: 'h2', pre_headline_tag: 'span', title_visual_level: '2',

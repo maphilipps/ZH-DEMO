@@ -5,14 +5,11 @@
  */
 #}
 
-{# Slider item paragraph configuration using centralized mixin #}
-{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
-
 {{ title_prefix }}
 {{ title_suffix }}
 
 {% embed "adesso_cms_theme:slider-item" with {
-  theme: wrapper_theme
+  theme: paragraph.field_theme.value|default('default')
 } only %}
   {% block title %}{{ content.field_title }}{% endblock %}
   {% block summary %}{{ content.field_summary }}{% endblock %}

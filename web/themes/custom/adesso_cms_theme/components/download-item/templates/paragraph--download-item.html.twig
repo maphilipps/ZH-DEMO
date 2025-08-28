@@ -5,16 +5,19 @@
  */
 #}
 
-{# Download item paragraph configuration using centralized mixin #}
-{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
-
 {% set file_entity = paragraph.field_file.entity %}
 {% set file_url = file_entity ? file_url(file_entity.uri.value) : '' %}
 {% set file_size = file_entity ? (file_entity.filesize.value + 0) : 0 %}
 {% set file_extension = file_entity ? file_entity.uri.value|split('.')|last|lower : '' %}
 {% set file_filename = file_entity ? file_entity.filename.value : '' %}
 
-{% set is_dark = wrapper_theme == 'dark' %}
+{# LEGITIMATE: Theme inheritance logic for component styling #}
+{% set parent = paragraph.getParentEntity() %}
+{% set theme_value = paragraph.field_theme.value is defined ? 
+  paragraph.field_theme.value : 
+  (parent and parent.field_theme ? parent.field_theme.value : 'default') %}
+{% set theme_value = theme_value|default('default') %}
+{% set is_dark = theme_value == 'dark' %}
 
 {{ title_prefix }}
 {{ title_suffix }}

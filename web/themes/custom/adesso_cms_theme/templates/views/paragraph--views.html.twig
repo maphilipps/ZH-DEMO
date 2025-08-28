@@ -33,8 +33,8 @@
     <div class="py-8 px-4 mx-auto container lg:py-16">
       {% if content.field_pre_headline or content.field_title %}
         {% include 'adesso_cms_theme:section-header' with {
-          title: content.field_title|render|striptags,
-          pre_headline: content.field_pre_headline|render|striptags,
+          title: content.field_title,
+          pre_headline: content.field_pre_headline,
           alignment: 'center',
           title_tag: 'h2',
           pre_headline_tag: 'span',
@@ -46,14 +46,9 @@
       
       {{ content|without('field_title', 'field_link', 'field_pre_headline', 'field_theme', 'frontend_editing') }}
       
-      {% if content.field_link[0]['#url'] %}
+      {% if content.field_link %}
         <div class="text-center mt-6">
-          {% include 'adesso_cms_theme:button' with {
-            "button": {
-              "url": content.field_link[0]['#url'],
-              "text": content.field_link[0]['#title'],
-            }
-          } only %}
+          {{ content.field_link }}
         </div>
       {% endif %}
     </div>

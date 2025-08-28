@@ -1,5 +1,30 @@
-{# /** * @file * Accordion item paragraph template (child component - no wrapper needed). */ #} {% set is_expanded =
-false %} {{ title_prefix }} {{ title_suffix }} {% embed 'adesso_cms_theme:accordion-item' with { "item": { "heading":
-content.field_title|render|striptags, "accordion_instance": paragraph.id(), "is_expanded": is_expanded, "body":
-content.field_body|render|striptags, "link": content.field_link ? { "url": content.field_link.0["#url"], "title":
-content.field_link.0["#title"] } : null } } only %}{% endembed %}
+{# 
+/** 
+ * @file
+ * Accordion item paragraph template using slot-based architecture
+ */
+#}
+
+{% set is_expanded = false %}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
+{% embed 'adesso_cms_theme:accordion-item' with {
+  "accordion_instance": paragraph.id(),
+  "is_expanded": is_expanded
+} only %}
+  {% block title %}
+    {{ content.field_title }}
+  {% endblock %}
+  {% block content %}
+    <div class="accordion-content">
+      {{ content.field_body }}
+      {% if content.field_link %}
+        <div class="accordion-action mt-4">
+          {{ content.field_link }}
+        </div>
+      {% endif %}
+    </div>
+  {% endblock %}
+{% endembed %}

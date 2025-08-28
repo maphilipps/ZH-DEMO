@@ -19,3 +19,6 @@ slots:
   pre_headline:
     title: Pre Headline
     description: The pre-headline content above the title
+  content:
+    title: Embed Content
+    description: The embedded script or content

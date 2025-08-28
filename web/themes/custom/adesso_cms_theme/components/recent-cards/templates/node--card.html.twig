@@ -1,2 +1,11 @@
-{% include 'adesso_cms_theme:recent-card-item' with { "media": content.field_thumbnail|render|striptags, "title": label,
-"summary": content.field_summary|render|striptags, "url": url, } only %}
+{% embed 'adesso_cms_theme:recent-card-item' with { "url": url } only %}
+  {% block title %}
+    {{ label }}
+  {% endblock %}
+  {% block content %}
+    <div class="recent-card-content">
+      {{ content.field_thumbnail }}
+      {{ content.field_summary }}
+    </div>
+  {% endblock %}
+{% endembed %}

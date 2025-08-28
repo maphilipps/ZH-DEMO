@@ -7,9 +7,6 @@
   - Defaults to h2 if no tag is supplied
 #}
 {% set title_text = heading.title|default('') %}
-{% if title_text is iterable and title_text is not same as('') %}
-  {% set title_text = title_text|render|striptags %}
-{% endif %}
 {% if title_text %}
   {# Set up element tag #}
   {% set as_value = heading.as|default('h2') %}

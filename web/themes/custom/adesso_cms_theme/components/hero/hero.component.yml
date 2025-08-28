@@ -1,6 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Hero
-description: Editorial/Hero component
+description: Editorial/Hero component with media slot architecture
+group: organisms
+status: stable
 props:
   type: object
   properties:
@@ -8,10 +10,6 @@ props:
       type: string
       title: modifier
       description: Additional CSS classes for the hero wrapper
-    media:
-      type: string
-      title: media
-      description: Media content (image or video HTML)
     heading:
       type: string
       title: heading
@@ -35,6 +33,12 @@ props:
         - image_bottom
         - image_bottom_split
         - video_background
+      default: image_top
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether the hero is in dark theme mode
+      default: false
     link:
       type: object
       title: link
@@ -57,3 +61,8 @@ props:
           type: string
         icon:
           type: string
+slots:
+  background_media:
+    title: Hero Background Media
+    description: Background media content for the hero component (field_media)
+    required: false

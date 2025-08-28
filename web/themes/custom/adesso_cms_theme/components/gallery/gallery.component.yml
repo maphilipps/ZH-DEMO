@@ -1,6 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Gallery
-description: Editorial/Gallery component
+description: Editorial/Gallery component with media collection slot architecture
+group: organisms
+status: stable
 props:
   type: object
   properties:
@@ -18,18 +20,12 @@ props:
       type: string
       title: sub_headline
       description: The sub-headline of the gallery lightbox component
-    gallery_items:
-      type: object
-      title: gallery_items
-      description: Define the array of gallery lightbox items
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     modifier:
       type: string
       title: modifier
       description: The modifier class to apply to the gallery lightbox component
+slots:
+  gallery_items:
+    title: Gallery Media Items
+    description: Gallery media items collection (field_media_item)
+    required: false

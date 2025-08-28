@@ -1,6 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Logo Collection
-description: Editorial/Logo Collection component
+description: Editorial/Logo Collection component with media collection slot architecture
+group: organisms
+status: stable
 props:
   type: object
   properties:
@@ -14,14 +16,13 @@ props:
       type: string
       title: title
       description: Title for the logo collection section
-    logos:
-      type: object
-      title: logos
-      description: Array of logo objects
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether the component is in dark theme mode
+      default: false
+slots:
+  logo_items:
+    title: Logo Collection Items
+    description: Logo media items collection (field_media_item)
+    required: false

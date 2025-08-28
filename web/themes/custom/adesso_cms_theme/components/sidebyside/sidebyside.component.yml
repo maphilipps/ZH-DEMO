@@ -1,6 +1,8 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Side-by-Side
-description: Editorial/Side-by-Side component
+description: Editorial/Side-by-Side component with media slot architecture
+group: organisms
+status: stable
 props:
   type: object
   properties:
@@ -14,25 +16,27 @@ props:
       type: string
       title: title
       description: Side-by-Side title
-    media:
-      type: string
-      title: media
-      description: Side-by-Side image or video markup
     text:
       type: string
       title: text
       description: Side-by-Side body text
     features:
-      type: object
+      type: array
       title: features
       description: Array of features or stat cards
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+          heading:
+            type: string
+          body:
+            type: string
+          icon:
+            type: string
+          summary:
+            type: string
     link:
       type: object
       title: link
@@ -51,6 +55,7 @@ props:
       enum:
         - left
         - right
+      default: left
     modifier:
       type: string
       title: modifier
@@ -62,7 +67,14 @@ props:
       enum:
         - light
         - dark
+        - default
+      default: default
     attributes:
       type: Drupal\Core\Template\Attribute
       title: attributes
       description: HTML attributes object for the wrapper element
+slots:
+  media:
+    title: Side-by-Side Media
+    description: Media content for the side-by-side component (field_media)
+    required: false

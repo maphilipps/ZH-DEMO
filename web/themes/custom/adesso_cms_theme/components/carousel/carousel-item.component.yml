@@ -1,42 +1,30 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Carousel Item
 status: stable
-description: 'A single carousel item component.'
+description: 'A single carousel item component with media slot architecture.'
+group: molecules
 props:
   type: object
   properties:
-    item:
-      type: object
-      title: 'Carousel Item Data'
-      description: 'Data for the carousel item'
+    title:
+      type: [string, "null"]
+      title: 'Title'
+      description: 'Carousel item title'
+    summary:
+      type: [string, "null"]
+      title: 'Summary'
+      description: 'Carousel item summary text'
+    link:
+      type: [object, "null"]
+      title: 'Link Object'
+      description: 'Optional link object with url and title'
       properties:
-        media:
-          type: [string, "null"]
-          title: 'Media'
-          description: 'Media content for the carousel item'
-        title:
-          type: [string, "null"]
-          title: 'Title'
-          description: 'Carousel item title'
-        summary:
-          type: [string, "null"]
-          title: 'Summary'
-          description: 'Carousel item summary text'
         url:
           type: [string, "null"]
           title: 'URL'
-          description: 'Link URL for the carousel item'
-        link:
-          type: [object, "null"]
-          title: 'Link Object'
-          description: 'Optional link object with url and title'
-          properties:
-            url:
-              type: [string, "null"]
-              title: 'URL'
-            title:
-              type: [string, "null"]
-              title: 'Title'
+        title:
+          type: [string, "null"]
+          title: 'Title'
     is_active:
       type: boolean
       title: 'Is Active'
@@ -46,3 +34,8 @@ props:
       type: [string, "null"]
       title: 'CSS Classes'
       description: 'Additional CSS classes for the carousel item'
+slots:
+  media:
+    title: 'Carousel Item Media'
+    description: 'Media content for the carousel item (field_media)'
+    required: false

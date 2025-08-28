@@ -2,31 +2,33 @@
      id="slide-{{ loop.index0|default(0) }}"
      role="tabpanel"
      aria-roledescription="slide"
-     {% if item.title|default('') %}aria-label="{{ item.title }}"{% endif %}>
+     {% if title %}aria-label="{{ title }}"{% endif %}>
   
-  {# Image section #}
-  {% if item.media|default('') %}
-    <div class="carousel-image-container">
-      {{ item.media }}
-    </div>
-  {% else %}
-    <div class="carousel-image-container">
-      <div class="flex items-center justify-center w-full h-full bg-gray-300">
-        <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-          <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-        </svg>
+  {# Media slot section - Replaces item.media prop #}
+  {% block media %}
+    {% if media %}
+      <div class="carousel-image-container">
+        {{ media }}
       </div>
-    </div>
-  {% endif %}
+    {% else %}
+      <div class="carousel-image-container">
+        <div class="flex items-center justify-center w-full h-full bg-gray-300">
+          <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+            <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+          </svg>
+        </div>
+      </div>
+    {% endif %}
+  {% endblock %}
   
   {# Content section #}
   <div class="carousel-content">
-    {% if item.title|default('') %}
-      {% if item.link.url|default('') %}
-        <a href="{{ item.link.url }}" class="hover:underline decoration-2 underline-offset-4">
+    {% if title %}
+      {% if link.url %}
+        <a href="{{ link.url }}" class="hover:underline decoration-2 underline-offset-4">
           {% include 'adesso_cms_theme:heading' with {
             heading: {
-              title: item.title,
+              title: title,
               as: 'h4',
               custom_classes: 'mb-1 text-lg md:text-xl font-semibold text-gray-900'
             }
@@ -35,7 +37,7 @@
       {% else %}
         {% include 'adesso_cms_theme:heading' with {
           heading: {
-            title: item.title,
+            title: title,
             as: 'h4',
             custom_classes: 'mb-1 text-lg md:text-xl font-semibold text-gray-900'
           }
@@ -43,17 +45,17 @@
       {% endif %}
     {% endif %}
     
-    {% if item.summary|default('') %}
+    {% if summary %}
       <div class="carousel-summary">
-        {{ item.summary }}
+        {{ summary }}
       </div>
     {% endif %}
     
-    {% if item.link.url|default('') %}
+    {% if link.url %}
       <div class="carousel-actions">
-        <a href="{{ item.link.url }}" class="carousel-link">
+        <a href="{{ link.url }}" class="carousel-link">
           <span>
-            {{ item.link.title|default('Read more') }}
+            {{ link.title|default('Read more') }}
           </span>
           <svg class="size-4 md:size-5 transition-all duration-250 ease-in-out group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
             <path d="M12.627 8.25001H1.25C1.03717 8.25001 0.859 8.17817 0.7155 8.03451C0.571833 7.89101 0.5 7.71284 0.5 7.50001C0.5 7.28717 0.571833 7.10901 0.7155 6.96551C0.859 6.82184 1.03717 6.75001 1.25 6.75001H12.627L7.45775 1.58076C7.30908 1.43209 7.23567 1.25809 7.2375 1.05876C7.2395 0.859423 7.318 0.682174 7.473 0.527008C7.62817 0.382174 7.80383 0.307174 8 0.302008C8.19617 0.296841 8.37183 0.371841 8.527 0.527008L14.8673 6.86726C14.9609 6.96092 15.0269 7.05967 15.0652 7.16351C15.1037 7.26734 15.123 7.37951 15.123 7.50001C15.123 7.62051 15.1037 7.73267 15.0652 7.83651C15.0269 7.94034 14.9609 8.03909 14.8673 8.13276L8.527 14.473C8.3885 14.6115 8.217 14.6823 8.0125 14.6855C7.808 14.6887 7.62817 14.6178 7.473 14.473C7.318 14.3178 7.2405 14.1397 7.2405 13.9385C7.2405 13.7372 7.318 13.5589 7.473 13.4038L12.627 8.25001Z" fill="currentColor"></path>

@@ -1207,6 +1207,42 @@ card.component.yml:
 **Measurable Benefit**: Prevents breaking working architecture while still eliminating genuine security vulnerabilities and performance issues  
 **Status**: APPLIED - Framework for intelligent vs mechanical standardization established (2025-08-28)
 
+### Rule #24: Infrastructure Authentication Migration Protocol ✅ APPLIED
+**Context**: GitHub Actions workflows failing with "Failed to setup GitHub token: Error: Could not fetch an OIDC token"  
+**Root Cause**: Third-party service authentication evolution - Claude Code Action switched from OIDC (anthropic_api_key) to OAuth (CLAUDE_CODE_OAUTH_TOKEN) authentication  
+**Critical Migration Requirements**:
+- **Systematic Discovery**: 9+ workflow files required consistent authentication updates across entire infrastructure
+- **Authentication Method Change**: OIDC token-based auth → OAuth secrets-based auth requiring different GitHub Actions configuration
+- **Service Constraints**: Claude Code Action only supports specific event triggers (pull_request, schedule, workflow_dispatch) - push events must be removed
+- **Bulk Operation Complexity**: Multiple configuration files with consistent patterns requiring systematic replacement
+**Prevention Rule**: ALWAYS use systematic bulk operations methodology for infrastructure authentication migrations with comprehensive validation  
+**Solution Applied**: Multi-phase systematic migration following established patterns:
+```bash
+# Phase 1: Discovery - Identify all affected workflow files
+find .github/workflows -name "*.yml" -exec grep -l "anthropic_api_key" {} \;
+
+# Phase 2: Bulk Authentication Updates
+find .github/workflows -name "*.yml" -exec sed -i 's/anthropic_api_key:/claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}/g' {} \;
+
+# Phase 3: Service Constraint Compliance  
+# Remove unsupported 'push' event triggers from Claude Code workflows
+sed -i '/- push/d' .github/workflows/claude-code-quality.yml
+
+# Phase 4: Validation - Verify no remaining old authentication
+grep -r "anthropic_api_key" .github/workflows/ | grep -v ".git"
+```
+**Authentication Migration Framework**:
+- **OIDC → OAuth**: Replace token-based authentication with secrets-based authentication patterns
+- **Service Evolution Response**: Monitor third-party service authentication requirement changes proactively  
+- **Event Trigger Compliance**: Validate service-specific event support before deployment
+- **Systematic Validation**: Comprehensive verification that ALL instances updated correctly
+**Results**: ✅ All 9+ workflow files successfully migrated, ✅ Authentication failures eliminated, ✅ Service constraint compliance achieved, ✅ Zero manual oversight errors  
+**Application**: All infrastructure authentication migrations, third-party service evolution responses, systematic configuration updates  
+**Tool Requirement**: Use find + sed + grep for bulk operations with service constraint validation  
+**Compound Intelligence**: Pattern applicable to any authentication method evolution across infrastructure (API keys, tokens, certificates)  
+**Measurable Benefit**: Single systematic migration cycle prevents cascading authentication failures across entire CI/CD infrastructure  
+**Status**: APPLIED - Complete GitHub Actions authentication migration from OIDC to OAuth with service constraint compliance (2025-08-28)
+
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
 - Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
 - vor dem Stellen eines PRs muss der Zielbranch gemerged werden, damit es keine Konflikte gibt.

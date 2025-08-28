@@ -20,3 +20,9 @@ props:
       type: [string, integer, boolean]
       title: Dark Theme
       description: 'Whether to use dark theme'
+
+slots:
+  content:
+    title: 'Block Content'
+    description: 'Referenced block content'
+    required: true

@@ -43,7 +43,15 @@
     "visual:reference": "npm run backstop:reference",
     "visual:test": "npm run backstop:test",
     "visual:approve": "npm run backstop:approve",
-    "visual:report": "npm run backstop:openReport"
+    "visual:report": "npm run backstop:openReport",
+    "migration:test": "npm run migration:slots && npm run migration:visual && npm run migration:performance",
+    "migration:slots": "vitest run tests/slot-migration-validation.test.js",
+    "migration:visual": "backstop test --config=backstop-component-migration.json",
+    "migration:visual:reference": "backstop reference --config=backstop-component-migration.json",
+    "migration:visual:approve": "backstop approve --config=backstop-component-migration.json",
+    "migration:performance": "node performance-migration-benchmark.js",
+    "migration:storybook": "test-storybook --config-dir .storybook --test-runner-config .storybook/test-runner-config.js",
+    "migration:full": "npm run migration:slots && npm run migration:storybook && npm run migration:visual && npm run migration:performance"
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",

@@ -23,3 +23,17 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  title:
+    title: 'Slider Title'
+    description: 'Main title for the slider section'
+    required: false
+  items:
+    title: 'Slider Items'
+    description: 'Individual slider item content'
+    required: true
+  controls:
+    title: 'Slider Controls'
+    description: 'Custom navigation and control elements'
+    required: false

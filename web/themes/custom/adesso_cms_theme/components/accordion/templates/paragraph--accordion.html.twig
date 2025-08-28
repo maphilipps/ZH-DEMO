@@ -7,16 +7,38 @@
 
 {# Accordion paragraph configuration #}
 {% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
-{# Embed the paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme:
-wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {%
-block prefix %} {% if title is defined and title %} {% include 'adesso_cms_theme:section-header' with { title:
-title|default(''), pre_headline: pre_headline|default(''), alignment: 'center', title_tag: 'h2', pre_headline_tag:
-'span', pre_headline_visual_level: '3' } %} {% endif %} {% endblock %} {% block content %}
-<div class="mx-auto max-w-3xl">
-  {% embed 'adesso_cms_theme:accordion' with { content: content, title: content.field_title['#items'] ?
-  content.field_title['#items'].getString() : '', pre_headline: content.field_pre_headline['#items'] is defined and
-  content.field_pre_headline['#items'] ? content.field_pre_headline['#items'].getString() : '', is_dark: wrapper_theme
-  == 'dark', } only %} {% block accordion_items %} {{ content.field_accordion_item }} {% endblock accordion_items %} {%
-  endembed %}
-</div>
-{% endblock %} {% endembed %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with { 
+  theme: wrapper_theme, 
+  spacing: wrapper_spacing, 
+  tag: wrapper_tag, 
+  className: wrapper_css_class, 
+  attributes: attributes 
+} %}
+  {% block prefix %}
+    {% if title is defined and title %} 
+      {% include 'adesso_cms_theme:section-header' with { 
+        title: title|default(''), 
+        pre_headline: pre_headline|default(''), 
+        alignment: 'center', 
+        title_tag: 'h2', 
+        pre_headline_tag: 'span', 
+        pre_headline_visual_level: '3' 
+      } %} 
+    {% endif %} 
+  {% endblock %} 
+  
+  {% block content %}
+    <div class="mx-auto max-w-3xl">
+      {% embed 'adesso_cms_theme:accordion' with { 
+        content: content, 
+        is_dark: wrapper_theme == 'dark', 
+      } only %}
+        {% block title %}{{ content.field_title }}{% endblock %}
+        {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+        {% block accordion_items %}{{ content.field_accordion_item }}{% endblock %}
+      {% endembed %}
+    </div>
+  {% endblock %}
+{% endembed %}

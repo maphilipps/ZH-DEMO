@@ -7,9 +7,27 @@
 
 {# Newsletter paragraph configuration #}
 {% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
-{# Embed the paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme:
-wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {%
-block prefix %} {{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %} {% include
-'adesso_cms_theme:newsletter-form' with { pre_headline: paragraph.field_pre_headline.value, title:
-paragraph.field_title.value, summary: content.field_summary, is_dark: wrapper_theme == 'dark', } only %} {% endblock %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with { 
+  theme: wrapper_theme, 
+  spacing: wrapper_spacing, 
+  tag: wrapper_tag, 
+  className: wrapper_css_class, 
+  attributes: attributes 
+} %}
+  {% block prefix %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+  {% endblock %}
+  
+  {% block content %}
+    {% embed 'adesso_cms_theme:newsletter-form' with { 
+      summary: content.field_summary, 
+      is_dark: wrapper_theme == 'dark', 
+    } only %}
+      {% block title %}{{ content.field_title }}{% endblock %}
+      {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+    {% endembed %}
+  {% endblock %}
 {% endembed %}

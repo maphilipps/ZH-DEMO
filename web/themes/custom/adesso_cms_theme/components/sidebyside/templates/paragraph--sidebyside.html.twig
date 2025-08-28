@@ -16,13 +16,13 @@ feature_entity.field_heading.value, 'body': feature_entity.field_body.value, 'ic
 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className:
 wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} {% block content %} 
 {% embed 'adesso_cms_theme:sidebyside' with { 
-  title: paragraph.field_title.value, 
   text: content.field_summary, 
-  pre_headline: paragraph.field_pre_headline.value, 
   link: link, 
   layout: paragraph.field_sidebyside_layout.value ?? 'left', 
   features: features 
 } only %}
+  {% block title %}{{ content.field_title }}{% endblock %}
+  {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
   {% block media %}
     {# Use field template rendering instead of direct entity access - ABSTRACTION FIX #}
     {{ content.field_media }}

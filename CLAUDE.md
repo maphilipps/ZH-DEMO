@@ -808,6 +808,33 @@ card.component.yml:
 **Correct Pattern**: "Here's how our 5 card components create maintenance hell, and here's the fix" (focuses on problem)
 **Application**: All architectural refactoring projects need problem-focused migration guides
 
+### Rule #21: Configuration Logic Centralization Pattern ✅ APPLIED
+**Context**: Issue #60 - 18+ paragraph templates duplicating identical theme/spacing configuration logic  
+**Root Cause**: Template configuration logic scattered across multiple files creates maintenance overhead and inconsistent defaults  
+**Critical Issues**:
+- **DRY Violations**: 18 templates duplicating `{% set wrapper_theme = paragraph.field_theme.value|default('default') %}`  
+- **Inconsistent Defaults**: Some using 'default', others 'light', spacing varied between 'medium', 'none', 'large'
+- **Maintenance Nightmare**: Configuration changes required updates to 18+ separate files
+- **Default Drift**: New templates likely to use incorrect or inconsistent default values
+**Prevention Rule**: ALWAYS centralize template configuration logic when 3+ templates share identical patterns  
+**Solution Applied**: Created `_mixins/paragraph-config.twig` with flexible default override system:
+```twig
+{# Allow component-specific overrides before include #}
+{% set default_theme = 'light' %}  {# Override default if needed #}
+{% set default_spacing = 'none' %} {# Override default if needed #}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
+```
+**Architecture Pattern**:
+- **Centralized Logic**: Single mixin handles all configuration extraction
+- **Flexible Defaults**: Support for component-specific overrides (carousel=light+none, hero=default+none)  
+- **Consistent Structure**: Standardized wrapper_theme, wrapper_spacing, wrapper_tag, wrapper_css_class variables
+- **Maintainable**: Configuration changes now require single file update
+**Results**: ✅ 18 templates refactored, ✅ Single source of truth, ✅ Preserved intentional exceptions, ✅ Build process unaffected  
+**Application**: Apply to ANY template patterns repeated across 3+ files (form configuration, media handling, etc.)  
+**Tool Requirement**: Use Twig includes for shared template logic, not copy-paste  
+**Measurable Benefit**: Configuration maintenance overhead reduced by ~90% (1 file vs 18 files)  
+**Status**: APPLIED - Complete elimination of template configuration duplication (2025-08-28)
+
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
 - Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.
 - vor dem Stellen eines PRs muss der Zielbranch gemerged werden, damit es keine Konflikte gibt.

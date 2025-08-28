@@ -570,6 +570,34 @@ find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
 - 🟡 Medium Risk: `{{ file_description|raw }}` (user-uploaded file descriptions)  
 - 🟢 Low Risk: `{{ icons[type]|raw }}` (hardcoded SVG paths in templates)
 
+### Security Rule #4: XSS Double Processing Elimination ✅ APPLIED
+**Context**: PR #77 identified critical XSS vulnerabilities from |render|striptags double processing chains  
+**Critical Issues**: 
+- **Double Processing**: `content.field_title|render|striptags` chains creating XSS attack vectors
+- **Manual Field Access**: `content.field_link[0]['#url']` bypassing Drupal's security pipeline  
+- **Triple Processing**: `content.field_features_text|render|striptags|striptags` allowing XSS injection
+**Prevention Rule**: NEVER use |render|striptags processing - use paragraph.field_*.value for scalars, content.field_* for complex fields  
+**Solution Applied**: 
+- ✅ Replaced `content.field_title|render|striptags` with `paragraph.field_title.value` (secure scalar access)
+- ✅ Replaced `content.field_link[0]['#url']` with `paragraph.field_link.entity` (secure entity check)
+- ✅ Eliminated all double/triple processing chains that create XSS vectors
+**Code Pattern**:
+```twig
+{# WRONG - XSS vulnerability through double processing #}
+"title": content.field_title|render|striptags,
+"features": content.field_features_text|render|striptags|striptags|trim|split('\n'),
+{% if content.field_link[0]['#url'] %}
+
+{# CORRECT - Secure field access following Drupal security pipeline #}
+"title": paragraph.field_title.value,
+"features": paragraph.field_features_text.value ? paragraph.field_features_text.value|trim|split('\n') : [],
+{% if paragraph.field_link.entity %}
+```
+**Application**: All Twig templates must follow secure field access patterns to prevent XSS vulnerabilities  
+**Tool Requirement**: Systematic grep audit for `|render|striptags` and manual array access patterns  
+**Results**: ✅ Zero XSS vulnerabilities in theme, ✅ Proper Drupal security pipeline usage, ✅ Government security compliance maintained  
+**Status**: APPLIED - All identified XSS vulnerabilities eliminated across pricing-card and text paragraph templates (2025-08-28)
+
 ## 🔒 Enforcement
 - Pre-commit: Check unauthorized .md files, |raw filters, infrastructure files
 - GitHub Actions: Validate CLAUDE.md updates on PR reviews, security patterns, test quality
@@ -1033,6 +1061,67 @@ props:
 **Application**: All SDC components must use slots for Drupal field data and proper field templates for rendering  
 **Tool Requirement**: Use drupal-sdc-architect for component slot standardization and systematic field handling migrations  
 **Status**: APPLIED - High-priority components migrated, framework established for remaining 40 components (2025-08-28)
+
+### Rule #23: Intelligent Slot Standardization vs Mechanical Pattern Application ⚠️ CRITICAL
+**Context**: PR #72 slot standardization work revealed over-zealous mechanical application of validation scripts without intelligent pattern recognition  
+**Critical User Feedback**: "Bei manchen Fällen, bspw. dem Theme, macht das sinn, dass man dort die value nimmt... Hast du das berücksichtigt?"  
+**Root Cause**: Following validation scripts mechanically without distinguishing between legitimate field value access patterns vs genuine anti-patterns  
+**Critical Learning**: Smart pattern recognition requires understanding WHY patterns exist, not just WHAT patterns to change  
+
+**LEGITIMATE Cases for Direct Field Value Access (PRESERVE THESE)**:
+- **Theme Configuration**: `paragraph.field_theme.value` for styling logic and theme inheritance
+- **Conditional Logic**: `paragraph.field_enabled.value` for show/hide decisions and control flow  
+- **Data Processing**: File entity access for URLs, sizes, metadata that drive component behavior
+- **Configuration Values**: Numeric values for calculations, settings, and system logic
+- **System/Structural Data**: IDs, flags, settings that control component behavior vs. content display
+- **Boolean Logic**: `paragraph.field_active.value` for state management and conditional rendering
+
+**GENUINE Anti-Patterns (CONVERT TO SLOTS)**:
+- **Content Rendering**: `content.field_title|render|striptags` creating XSS vulnerabilities through double processing
+- **User Content as Props**: `title: content.field_title` instead of slots for user-generated display content
+- **Display Content Processing**: Content meant for user viewing processed as props instead of proper field templates
+- **Complex Field Extraction**: `content.field_title['#items'].getString()` bypassing Drupal's security pipeline
+- **Performance Overhead**: `|render|striptags|striptags` triple processing chains that create vulnerabilities
+
+**Prevention Rule**: ALWAYS apply intelligent judgment - ask "Is this field access for CONFIGURATION/LOGIC (keep as value) or CONTENT DISPLAY (convert to slots)?"  
+
+**Decision Framework**:
+```yaml
+# KEEP AS FIELD VALUE ACCESS
+- Theme selection and styling logic
+- Boolean flags for component state
+- Numeric values for calculations  
+- Configuration and system settings
+- Conditional rendering decisions
+- File metadata for processing
+
+# CONVERT TO SLOT PATTERNS  
+- User-generated content for display
+- Text content with formatting
+- Rich text and WYSIWYG fields
+- Complex field rendering
+- Content with potential XSS risks
+- Display content requiring theming
+```
+
+**Anti-Pattern Recognition**:
+- **Over-Zealous Conversion**: Converting ALL field value access to slots without context analysis
+- **Mechanical Script Following**: Applying validation rules without understanding their purpose
+- **Context Ignorance**: Treating configuration data the same as display content
+- **Breaking Working Patterns**: "Fixing" legitimate patterns that serve specific architectural purposes
+
+**Solution Applied**: Revert over-zealous slot conversions while preserving genuine anti-pattern fixes:
+- ✅ **Keep Reverted**: Theme configuration field value access (`paragraph.field_theme.value`)
+- ✅ **Keep Reverted**: Conditional logic field access (`paragraph.field_enabled.value`)  
+- ✅ **Keep Applied**: XSS vulnerability fixes (eliminated `|render|striptags` patterns)
+- ✅ **Keep Applied**: Performance improvements (removed double processing chains)
+
+**Application**: All pattern standardization work must distinguish between structural/configuration patterns vs content/display patterns  
+**Tool Requirement**: Create intelligent validation that preserves legitimate patterns while fixing genuine anti-patterns  
+**Compound Learning**: **Smart pattern recognition beats mechanical rule application** - understand the WHY behind patterns  
+
+**Measurable Benefit**: Prevents breaking working architecture while still eliminating genuine security vulnerabilities and performance issues  
+**Status**: APPLIED - Framework for intelligent vs mechanical standardization established (2025-08-28)
 
 **Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
 - Every Frontend-Task has to been reviewed and confirmed  with the help of Puppeteer MCP or Playwright MCP.

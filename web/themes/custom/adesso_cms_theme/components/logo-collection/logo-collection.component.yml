@@ -25,3 +25,13 @@ props:
           type: string
         icon:
           type: string
+
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

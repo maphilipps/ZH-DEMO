@@ -1,6 +1,7 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Pricing Card
 status: stable
+group: molecule
 description: 'A single pricing card component.'
 props:
   type: object
@@ -42,9 +43,15 @@ props:
           title: 'Title'
           description: 'Link text'
 slots:
+  title:
+    title: 'Title'
+    description: 'Pricing card title content'
+    required: false
   content:
-    title: Content
-    description: Pricing card content area with title, features, and pricing
+    title: 'Content'
+    description: 'Main pricing card content area with features and pricing'
+    required: true
   primary_action:
-    title: Primary Action
-    description: Primary call-to-action button/link area for field_link
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false

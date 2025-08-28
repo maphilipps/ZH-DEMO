@@ -1,11 +1,38 @@
-{# /** * @file * Embed paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Embed paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set wrapper_spacing =
-paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [
-'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~
-view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %} {# Embed the
-paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
-spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix %}
-{{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %} {% include 'adesso_cms_theme:embed' with {
-pre_headline: content.field_pre_headline|render|striptags, title: content.field_title|render|striptags, sub_headline:
-content.field_sub_headline|render|striptags, embed: content.field_script|render|striptags, } only %} {% endblock %} {%
-endembed %}
+{# /** 
+ * @file 
+ * Embed paragraph template using paragraph-wrapper component with embed pattern. 
+ */ #}
+
+{# Embed paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('medium') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph', 
+  'paragraph--type--' ~ paragraph.bundle|clean_class, 
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class, 
+  not paragraph.isPublished() ? 'paragraph--unpublished' 
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with { 
+  theme: wrapper_theme,
+  spacing: wrapper_spacing, 
+  tag: wrapper_tag, 
+  className: wrapper_css_class, 
+  attributes: attributes 
+} %}
+  {% block prefix %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+  {% endblock %}
+  
+  {% block content %}
+    {% embed 'adesso_cms_theme:embed' with {
+      embed: content.field_script|render|striptags,
+    } only %}
+      {% block title %}{{ content.field_title }}{% endblock %}
+      {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

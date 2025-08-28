@@ -5,6 +5,6 @@ dark theme */ #}
   {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
   pre_headline, alignment: 'left', title_tag: 'h2', pre_headline_tag: 'h3', title_visual_level: '2',
   pre_headline_visual_level: '3' } %} {% endif %} {% if block_content %}
-  <div class="block-reference-content mt-4">{{ block_content|raw }}</div>
+  <div class="block-reference-content mt-4">{{ block_content }}</div>
   {% endif %}
 </div>

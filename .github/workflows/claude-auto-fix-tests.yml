@@ -137,6 +137,7 @@ jobs:
       - name: Fix failing tests with Claude
         uses: anthropics/claude-code-action@v1
         with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
             # ZH-DEMO Test Auto-Fix Assistant
 
@@ -234,7 +235,7 @@ jobs:
 
             Begin the test fix analysis and implementation now.
 
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: |
             --allowedTools Edit,MultiEdit,Write,Read,Glob,Grep,LS,Bash(git:*),Bash(ddev:*),Bash(npm:*),Bash(npx:*),Bash(composer:*),Bash(drush:*)
             --mcp-config /tmp/mcp-config/mcp-servers.json
@@ -274,6 +275,7 @@ jobs:
         if: always()
         uses: actions/github-script@v7
         with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           script: |
             const branchName = '${{ steps.branch.outputs.branch_name }}';
             const testStatus = '${{ steps.test_validation.outputs.test_status }}';

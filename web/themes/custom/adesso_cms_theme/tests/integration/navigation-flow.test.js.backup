@@ -1,0 +1,389 @@
+/**
+ * @file
+ * Integration tests for unified navigation architecture
+ * 
+ * Tests the complete navigation flow including desktop/mobile interactions,
+ * el-popover/el-dialog functionality, and menu-item atomic composition
+ */
+
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { JSDOM } from 'jsdom';
+
+// Mock Alpine.js for el-popover and el-dialog functionality
+global.Alpine = {
+  data: vi.fn(),
+  directive: vi.fn(),
+  magic: vi.fn(),
+  start: vi.fn(),
+  store: vi.fn(() => ({}))
+};
+
+// Mock DOM environment for el-popover/el-dialog
+const dom = new JSDOM(`
+  <div id="navigation-test-container">
+    <nav class="c-main-menu relative isolate z-50 c-main-menu--horizontal" 
+         aria-label="Main navigation" role="navigation">
+      <!-- Desktop Navigation -->
+      <div class="max-lg:hidden lg:flex lg:items-center lg:gap-x-12">
+        <div class="relative">
+          <!-- Parent menu item with children -->
+          <div class="c-menu-item c-menu-item--desktop c-menu-item--level-0 c-menu-item--has-children">
+            <button type="button" popovertarget="menu-item-test" 
+                    class="inline-flex items-center gap-x-1 text-lg/6 font-semibold text-gray-900"
+                    aria-haspopup="menu" aria-expanded="false">
+              <span class="c-menu-item__title">Services</span>
+              <svg class="size-5 c-menu-item__chevron" aria-hidden="true">
+                <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"/>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Desktop popover submenu -->
+          <el-popover id="menu-item-test" anchor="bottom" popover class="w-screen max-w-min">
+            <div class="max-w-xl w-screen grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4">
+              <div>
+                <div class="c-menu-item c-menu-item--dropdown c-menu-item--level-1">
+                  <a href="/services/web-development" class="block p-2 hover:text-primary c-menu-item__link">
+                    <span class="c-menu-item__title">Web Development</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </el-popover>
+        </div>
+        
+        <!-- Simple menu item -->
+        <div class="c-menu-item c-menu-item--desktop c-menu-item--level-0">
+          <a href="/about" class="font-semibold text-gray-900 hover:text-primary c-menu-item__link"
+             aria-current="page">
+            <span class="c-menu-item__title">About</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <div class="flex lg:hidden">
+        <button type="button" command="show-modal" commandfor="mobile-menu"
+                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="size-6" aria-hidden="true">
+            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu Dialog -->
+      <el-dialog>
+        <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+          <div class="fixed inset-0">
+            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6">
+              <div class="space-y-2 py-6">
+                <div class="c-menu-item c-menu-item--mobile c-menu-item--level-0">
+                  <a href="/services" 
+                     class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 c-menu-item__link">
+                    <span class="c-menu-item__title">Services</span>
+                  </a>
+                </div>
+                
+                <!-- Mobile submenu -->
+                <div class="ml-6 space-y-1">
+                  <div class="c-menu-item c-menu-item--mobile c-menu-item--level-1">
+                    <a href="/services/web-development"
+                       class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 c-menu-item__link">
+                      <span class="c-menu-item__title">Web Development</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dialog>
+      </el-dialog>
+    </nav>
+  </div>
+`, { url: 'http://localhost' });
+
+global.document = dom.window.document;
+global.window = dom.window;
+
+describe('Navigation Integration Tests', () => {
+  let container;
+  
+  beforeEach(() => {
+    container = document.getElementById('navigation-test-container');
+  });
+
+  describe('Unified Navigation Architecture', () => {
+    it('should have main-menu organism with proper structure', () => {
+      const mainMenu = container.querySelector('.c-main-menu');
+      expect(mainMenu).toBeTruthy();
+      expect(mainMenu.getAttribute('role')).toBe('navigation');
+      expect(mainMenu.getAttribute('aria-label')).toBe('Main navigation');
+    });
+
+    it('should compose menu-item atoms correctly', () => {
+      const menuItems = container.querySelectorAll('.c-menu-item');
+      expect(menuItems.length).toBeGreaterThan(0);
+      
+      // Check atomic composition classes
+      menuItems.forEach(item => {
+        expect(item.classList.contains('c-menu-item')).toBe(true);
+        // Should have variant class (desktop, mobile, dropdown)
+        expect(
+          item.classList.contains('c-menu-item--desktop') ||
+          item.classList.contains('c-menu-item--mobile') ||
+          item.classList.contains('c-menu-item--dropdown')
+        ).toBe(true);
+        // Should have level class
+        expect(
+          item.className.includes('c-menu-item--level-')
+        ).toBe(true);
+      });
+    });
+
+    it('should eliminate duplicate navigation logic', () => {
+      // Verify single source of truth - no site-header navigation duplication
+      const navigationContainers = container.querySelectorAll('[role="navigation"]');
+      expect(navigationContainers.length).toBe(1);
+      
+      // Verify main-menu handles both desktop and mobile
+      const mainMenu = navigationContainers[0];
+      expect(mainMenu.classList.contains('c-main-menu')).toBe(true);
+      
+      // Should have both desktop and mobile sections
+      const desktopNav = mainMenu.querySelector('.max-lg\\:hidden');
+      const mobileToggle = mainMenu.querySelector('.flex.lg\\:hidden');
+      
+      expect(desktopNav).toBeTruthy();
+      expect(mobileToggle).toBeTruthy();
+    });
+  });
+
+  describe('Desktop Navigation with el-popover', () => {
+    it('should render desktop menu items with proper variants', () => {
+      const desktopItems = container.querySelectorAll('.c-menu-item--desktop');
+      expect(desktopItems.length).toBeGreaterThan(0);
+      
+      desktopItems.forEach(item => {
+        expect(item.classList.contains('c-menu-item--level-0')).toBe(true);
+      });
+    });
+
+    it('should have proper popover triggers for parent items', () => {
+      const parentButton = container.querySelector('button[popovertarget]');
+      expect(parentButton).toBeTruthy();
+      expect(parentButton.getAttribute('popovertarget')).toBe('menu-item-test');
+      expect(parentButton.getAttribute('aria-haspopup')).toBe('menu');
+      expect(parentButton.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('should render el-popover with correct structure', () => {
+      const popover = container.querySelector('el-popover');
+      expect(popover).toBeTruthy();
+      expect(popover.getAttribute('id')).toBe('menu-item-test');
+      expect(popover.getAttribute('anchor')).toBe('bottom');
+      expect(popover.hasAttribute('popover')).toBe(true);
+      
+      // Should contain dropdown menu items
+      const dropdownItems = popover.querySelectorAll('.c-menu-item--dropdown');
+      expect(dropdownItems.length).toBeGreaterThan(0);
+    });
+
+    it('should handle nested menu levels in popover', () => {
+      const popover = container.querySelector('el-popover');
+      const level1Items = popover.querySelectorAll('.c-menu-item--level-1');
+      expect(level1Items.length).toBeGreaterThan(0);
+      
+      level1Items.forEach(item => {
+        expect(item.classList.contains('c-menu-item--dropdown')).toBe(true);
+      });
+    });
+  });
+
+  describe('Mobile Navigation with el-dialog', () => {
+    it('should have mobile toggle button with proper attributes', () => {
+      const toggleButton = container.querySelector('button[commandfor="mobile-menu"]');
+      expect(toggleButton).toBeTruthy();
+      expect(toggleButton.getAttribute('command')).toBe('show-modal');
+      expect(toggleButton.getAttribute('commandfor')).toBe('mobile-menu');
+      
+      const srText = toggleButton.querySelector('.sr-only');
+      expect(srText.textContent).toBe('Open main menu');
+    });
+
+    it('should render el-dialog with proper structure', () => {
+      const elDialog = container.querySelector('el-dialog');
+      expect(elDialog).toBeTruthy();
+      
+      const dialog = elDialog.querySelector('dialog#mobile-menu');
+      expect(dialog).toBeTruthy();
+      expect(dialog.classList.contains('lg:hidden')).toBe(true);
+    });
+
+    it('should render mobile menu items with mobile variant', () => {
+      const mobileItems = container.querySelectorAll('.c-menu-item--mobile');
+      expect(mobileItems.length).toBeGreaterThan(0);
+      
+      mobileItems.forEach(item => {
+        const link = item.querySelector('.c-menu-item__link');
+        if (link) {
+          expect(link.classList.contains('-mx-3')).toBe(true);
+          expect(link.classList.contains('block')).toBe(true);
+          expect(link.classList.contains('rounded-lg')).toBe(true);
+        }
+      });
+    });
+
+    it('should handle mobile submenu nesting', () => {
+      const mobileDialog = container.querySelector('#mobile-menu');
+      const level0Items = mobileDialog.querySelectorAll('.c-menu-item--level-0');
+      const level1Items = mobileDialog.querySelectorAll('.c-menu-item--level-1');
+      
+      expect(level0Items.length).toBeGreaterThan(0);
+      expect(level1Items.length).toBeGreaterThan(0);
+      
+      // Level 1 items should be in nested container
+      const submenuContainer = mobileDialog.querySelector('.ml-6');
+      expect(submenuContainer).toBeTruthy();
+      expect(submenuContainer.querySelectorAll('.c-menu-item--level-1').length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Menu Item Atomic Component', () => {
+    it('should render consistent menu-item structure', () => {
+      const allMenuItems = container.querySelectorAll('.c-menu-item');
+      
+      allMenuItems.forEach(item => {
+        const title = item.querySelector('.c-menu-item__title');
+        expect(title).toBeTruthy();
+        
+        const link = item.querySelector('.c-menu-item__link');
+        if (link) {
+          // Links should have proper structure
+          expect(title.parentElement).toBe(link);
+        }
+      });
+    });
+
+    it('should handle active states correctly', () => {
+      const activeLink = container.querySelector('[aria-current="page"]');
+      expect(activeLink).toBeTruthy();
+      expect(activeLink.getAttribute('aria-current')).toBe('page');
+    });
+
+    it('should support icon slots (when present)', () => {
+      // Test icon slot functionality - icons would be rendered in .c-menu-item__icon
+      const menuItems = container.querySelectorAll('.c-menu-item');
+      menuItems.forEach(item => {
+        const iconSlot = item.querySelector('.c-menu-item__icon');
+        if (iconSlot) {
+          expect(iconSlot).toBeTruthy();
+        }
+      });
+    });
+
+    it('should handle chevron icons for dropdown triggers', () => {
+      const chevron = container.querySelector('.c-menu-item__chevron');
+      expect(chevron).toBeTruthy();
+      expect(chevron.classList.contains('size-5')).toBe(true);
+      expect(chevron.getAttribute('aria-hidden')).toBe('true');
+    });
+  });
+
+  describe('Accessibility Compliance', () => {
+    it('should have proper ARIA navigation structure', () => {
+      const nav = container.querySelector('[role="navigation"]');
+      expect(nav).toBeTruthy();
+      expect(nav.getAttribute('aria-label')).toBe('Main navigation');
+    });
+
+    it('should have proper focus management', () => {
+      const focusableElements = container.querySelectorAll('a, button');
+      expect(focusableElements.length).toBeGreaterThan(0);
+      
+      focusableElements.forEach(element => {
+        // Should not have negative tabindex (unless specifically intended)
+        const tabindex = element.getAttribute('tabindex');
+        if (tabindex !== null) {
+          expect(parseInt(tabindex)).toBeGreaterThanOrEqual(0);
+        }
+      });
+    });
+
+    it('should have screen reader support', () => {
+      const srOnlyElements = container.querySelectorAll('.sr-only');
+      expect(srOnlyElements.length).toBeGreaterThan(0);
+      
+      srOnlyElements.forEach(element => {
+        expect(element.textContent.trim()).toBeTruthy();
+      });
+    });
+
+    it('should have proper semantic HTML structure', () => {
+      // Should use nav element
+      const nav = container.querySelector('nav');
+      expect(nav).toBeTruthy();
+      
+      // Links should have proper href attributes
+      const links = container.querySelectorAll('a[href]');
+      links.forEach(link => {
+        expect(link.getAttribute('href')).toBeTruthy();
+      });
+    });
+  });
+
+  describe('Performance Optimization', () => {
+    it('should eliminate duplicate JavaScript behaviors', () => {
+      // No separate mobile menu behaviors - unified in main-menu
+      const menuBehaviors = container.querySelectorAll('[data-behavior]');
+      // Should be minimal or zero separate behaviors
+      expect(menuBehaviors.length).toBeLessThanOrEqual(1);
+    });
+
+    it('should use efficient class structures', () => {
+      const allElements = container.querySelectorAll('*');
+      allElements.forEach(element => {
+        const classes = element.classList;
+        // No excessive class pollution
+        expect(classes.length).toBeLessThanOrEqual(10);
+      });
+    });
+  });
+
+  describe('Responsive Behavior', () => {
+    it('should have proper responsive class patterns', () => {
+      // Desktop navigation should be hidden on mobile
+      const desktopNav = container.querySelector('.max-lg\\:hidden');
+      expect(desktopNav).toBeTruthy();
+      
+      // Mobile toggle should be hidden on desktop
+      const mobileToggle = container.querySelector('.lg\\:hidden');
+      expect(mobileToggle).toBeTruthy();
+    });
+
+    it('should support configurable breakpoints', () => {
+      // Test that responsive classes follow the pattern
+      const responsiveElements = container.querySelectorAll('[class*="lg:"]');
+      expect(responsiveElements.length).toBeGreaterThan(0);
+    });
+  });
+});
+
+describe('Navigation Performance Tests', () => {
+  it('should render efficiently with minimal DOM queries', () => {
+    const startTime = performance.now();
+    
+    // Simulate navigation rendering
+    const container = document.getElementById('navigation-test-container');
+    const menuItems = container.querySelectorAll('.c-menu-item');
+    const navigation = container.querySelector('.c-main-menu');
+    
+    const endTime = performance.now();
+    const renderTime = endTime - startTime;
+    
+    // Should render quickly (adjust threshold as needed)
+    expect(renderTime).toBeLessThan(50); // 50ms threshold
+    expect(menuItems.length).toBeGreaterThan(0);
+    expect(navigation).toBeTruthy();
+  });
+});

@@ -1,49 +1,11 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Side-by-Side
+status: stable
+group: organism
 description: Editorial/Side-by-Side component
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Pre-headline text above the main title
-    title:
-      type: string
-      title: title
-      description: Side-by-Side title
-    media:
-      type: string
-      title: media
-      description: Side-by-Side image or video markup
-    text:
-      type: string
-      title: text
-      description: Side-by-Side body text
-    features:
-      type: object
-      title: features
-      description: Array of features or stat cards
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
-    link:
-      type: object
-      title: link
-      description: Call to action
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     layout:
       type: string
       title: layout
@@ -69,9 +31,21 @@ props:
 slots:
   title:
     title: 'Title'
-    description: 'Component title content'
+    description: 'Side-by-side component title content'
     required: false
   content:
     title: 'Content'
-    description: 'Main component content'
+    description: 'Main side-by-side content area with text and media'
     required: true
+  media:
+    title: 'Media'
+    description: 'Side-by-side media content (images, videos, etc.)'
+    required: false
+  features:
+    title: 'Features'
+    description: 'Features list for side-by-side component (field_features)'
+    required: false
+  primary_action:
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false

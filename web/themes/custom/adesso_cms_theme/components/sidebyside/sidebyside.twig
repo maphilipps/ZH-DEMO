@@ -7,27 +7,19 @@
     {% endblock %}
   </div>
   <div class="w-full lg:w-1/2 xl:w-5/12 flex flex-col gap-4">
-    {% if pre_headline or title %} {% include 'adesso_cms_theme:section-header' with { title: title, pre_headline:
-    pre_headline, alignment: 'left', title_tag: 'h2', pre_headline_tag: 'span', title_visual_level: '2',
-    pre_headline_visual_level: '3', additional_classes: 'mb-2' } %} {% endif %} {% if text|default('') %}
-    <div class="mb-2 lg:mb-4">{{ text }}</div>
-    {% endif %} {% if features|default([]) and features|length > 0 %} {% set isStatType = features[0].type ==
-    'stats_item' %}
-    <div class="{{ isStatType ? 'flex flex-col sm:flex-row gap-4 mb-6' : 'mb-6 space-y-4' }}">
-      {% for feature in features %} {% if feature.type == 'stats_item' %} {% include 'adesso_cms_theme:stat-card' with {
-      heading: feature.heading|default(''), body: feature.body|default(''), icon: feature.icon|default(''), media:
-      feature.media|default(''), layout: 'left', border: false, } only %} {% else %}
-      <div class="flex items-start gap-4">
-        <i data-lucide="{{ feature.icon|default('') }}" width="24" height="24" class="mt-[-2px]"></i>
-        <span class="flex-1">{{ feature.summary|default('') }}</span>
-      </div>
-      {% endif %} {% endfor %}
+    {% block title %}
+      {# Title slot for side-by-side component title content #}
+    {% endblock %}
+    {% block content %}
+      {# Content slot for main side-by-side text content #}
+    {% endblock %}
+    <div class="mb-6">
+      {% block features %}
+        {# Features slot for side-by-side features content #}
+      {% endblock %}
     </div>
-    {% endif %} {% if link.url|default('') %}
     <div class="flex">
-      {% include 'adesso_cms_theme:button' with { url: link.url, text: link.title|default('Read more'), modifier:
-      'btn-default' } only %}
+      {% block primary_action %}{% endblock %}
     </div>
-    {% endif %}
   </div>
 </div>

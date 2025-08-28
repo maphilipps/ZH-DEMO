@@ -168,8 +168,8 @@
             {% endif %}
 
             {# Reading time estimate (basic calculation) #}
-            {% if content.body %}
-              {% set word_count = content.body|render|striptags|split(' ')|length %}
+            {% if node.body.value %}
+              {% set word_count = node.body.value|striptags|split(' ')|length %}
               {% set reading_time = (word_count / 200)|round %}
               {% if reading_time < 1 %}
                 {% set reading_time = 1 %}

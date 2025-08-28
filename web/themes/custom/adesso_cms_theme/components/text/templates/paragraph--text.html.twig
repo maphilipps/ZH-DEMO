@@ -14,12 +14,12 @@ wrapper_css_class, attributes: attributes } %} {% block content %}
     body: content.field_body,
   } only %}
     {% block primary_action %}
-      {% if content.field_link[0]['#url'] %}
+      {% if paragraph.field_link.entity %}
         {{ content.field_link }}
       {% endif %}
     {% endblock %}
     {% block secondary_action %}
-      {% if content.field_link2[0]['#url'] %}
+      {% if paragraph.field_link2.entity %}
         {{ content.field_link2 }}
       {% endif %}
     {% endblock %}

@@ -1,59 +1,39 @@
-{% import _self as macros %}
-
-{% macro render_content(pre_headline, title, body) %}
-  {% if pre_headline or title %}
-    {% include 'adesso_cms_theme:section-header' with {
-      title: title,
-      pre_headline: pre_headline,
-      alignment: 'left',
-      title_tag: 'h2',
-      pre_headline_tag: 'span',
-      title_visual_level: '2',
-      pre_headline_visual_level: '3',
-      additional_classes: 'mb-4'
-    } %}
-  {% endif %}
-  {% if body|default('') %}
-    <div class="max-w-none prose prose-lg mt-4">{{ body|default('')|render }}</div>
-  {% endif %}
-{% endmacro %}
-
-{% macro render_buttons(text_layout) %}
-  {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
-  {% if (text_layout|default('')) == 'centered' %}
-    {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
-  {% elseif (text_layout|default('')) == 'buttons-right' %}
-    {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start lg:justify-end' %}
-  {% else %}
-    {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
-  {% endif %}
-
-  <div class="{{ buttonContainerClasses }}">
-    {% block primary_action %}{% endblock %}
-    {% block secondary_action %}{% endblock %}
-  </div>
-{% endmacro %}
+{# Removed macros - using direct slot-based approach #}
 
 <div class="text-container {{ className|default('') }}">
   {% if (text_layout|default('')) == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
       <div class="lg:flex-grow">
-        {{ macros.render_content(pre_headline|default(''), title|default(''), body|default('')) }}
+        {% block content %}
+          {# Content slot for title and body text #}
+        {% endblock %}
       </div>
       
       <div class="lg:ml-8 lg:flex-shrink-0 lg:self-start">
-        {{ macros.render_buttons(text_layout|default('')) }}
+        {% set buttonContainerClasses = 'text-buttons mt-6 flex justify-start lg:justify-end' %}
+        <div class="{{ buttonContainerClasses }}">
+          {% block primary_action %}{% endblock %}
+          {% block secondary_action %}{% endblock %}
+        </div>
       </div>
     </div>
   {% else %}
     <div class="container {{ (text_layout|default('')) == 'centered' ? 'mx-auto text-center' : '' }}">
-      {{ macros.render_content(pre_headline|default(''), (heading|default('')) ?: (title|default('')), body|default('')) }}
+      {% block content %}
+        {# Content slot for title and body text #}
+      {% endblock %}
       
-      {% if heading|default('') and (text_layout|default('')) != 'buttons-right' %}
-        {% include 'adesso_cms_theme:heading' with { "heading": heading|default('') } only %}
+      {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
+      {% if (text_layout|default('')) == 'centered' %}
+        {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
+      {% else %}
+        {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
       {% endif %}
       
-      {{ macros.render_buttons(text_layout|default('')) }}
+      <div class="{{ buttonContainerClasses }}">
+        {% block primary_action %}{% endblock %}
+        {% block secondary_action %}{% endblock %}
+      </div>
     </div>
   {% endif %}
 </div>

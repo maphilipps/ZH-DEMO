@@ -5,7 +5,7 @@
   <div class="absolute inset-0 z-0">
     <div class="relative w-full h-full">
       <div class="absolute inset-0">
-        {% block background_media %}
+        {% block media %}
           {# Background media slot for video background hero - fallback gradient #}
           <div class="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600"></div>
         {% endblock %}
@@ -40,13 +40,15 @@
   <div class="relative z-10 flex items-center justify-center min-h-screen">
     <div class="container mx-auto px-4 text-center text-white">
       <div class="container mx-auto">
-        {% if pre_headline|default('') %}
-        <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">{{ pre_headline|default('') }}</p>
-        {% endif %} {% if heading|default('') %} {% include 'adesso_cms_theme:heading' with { heading: { title: heading,
-        as: 'h1', custom_classes: 'text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white' } } %}
-        {% endif %} {% if text|default('') %}
-        <div class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">{{ text|default('') }}</div>
-        {% endif %} {# Action Buttons #}
+        {% block pre_headline %}
+          <p class="text-xl mb-4 text-gray-200 uppercase tracking-wider">{% block pre_headline_content %}{% endblock %}</p>
+        {% endblock %}
+        {% block title %}
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white">{% block title_content %}{% endblock %}</h1>
+        {% endblock %}
+        {% block content %}
+          <div class="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">{% block content_text %}{% endblock %}</div>
+        {% endblock %} {# Action Buttons #}
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           {% block primary_action %}{% endblock %}
           {% block secondary_action %}{% endblock %}
@@ -69,23 +71,24 @@
       {% block background_media_top %}
         <div class="mb-4 lg:mb-8 max-w-[1536px] mx-auto">
           <div class="relative overflow-hidden rounded-lg">
-            {% block background_media %}
-              {# Background media slot for image_top layout #}
+            {% block media %}
+              {# Media slot for image_top layout #}
             {% endblock %}
           </div>
         </div>
       {% endblock %}
-    {% endif %} {% if pre_headline %} {% include 'adesso_cms_theme:heading' with { heading: { title: pre_headline, as:
-    'h3', custom_classes: 'mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl lg:text-4xl' } } %} {% endif
-    %} {% if heading %} {% include 'adesso_cms_theme:heading' with { heading: { title: heading, as: 'h1',
-    custom_classes: 'mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl' } } %} {% endif
-    %} {% if text %}
-    <div
-      class="prose-p:my-8 prose-p:text-lg prose-p:font-normal prose-p:lg:text-xl prose-p:sm:px-168 dark:prose-p:text-white prose-p:lg:px-48"
-    >
-      {{ text }}
-    </div>
-    {% endif %} {# Action Buttons #}
+    {% endif %}
+    {% block pre_headline %}
+      <h3 class="mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl lg:text-4xl">{% block pre_headline_content %}{% endblock %}</h3>
+    {% endblock %}
+    {% block title %}
+      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">{% block title_content %}{% endblock %}</h1>
+    {% endblock %}
+    {% block content %}
+      <div class="prose-p:my-8 prose-p:text-lg prose-p:font-normal prose-p:lg:text-xl prose-p:sm:px-168 dark:prose-p:text-white prose-p:lg:px-48">
+        {% block content_text %}{% endblock %}
+      </div>
+    {% endblock %} {# Action Buttons #}
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
       {% block primary_action %}{% endblock %}
       {% block secondary_action %}{% endblock %}
@@ -94,8 +97,8 @@
     {% if hero_layout == 'image_bottom' %}
       <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
         <div class="relative aspect-[16/9] overflow-hidden rounded-lg">
-          {% block background_media %}
-            {# Background media slot for image_bottom layout #}
+          {% block media %}
+            {# Media slot for image_bottom layout #}
           {% endblock %}
         </div>
       </div>
@@ -103,8 +106,8 @@
     {% if hero_layout == 'image_bottom_split' %}
       <div class="mt-6 lg:mt-12 max-w-[1536px] mx-auto">
         <div class="relative aspect-[16/9] overflow-hidden rounded-lg">
-          {% block background_media %}
-            {# Background media slot for image_bottom_split layout #}
+          {% block media %}
+            {# Media slot for image_bottom_split layout #}
           {% endblock %}
         </div>
       </div>

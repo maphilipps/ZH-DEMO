@@ -6,42 +6,11 @@ description: 'A single pricing card component.'
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: 'Pre-headline'
-      description: 'Small text above the main title'
-    title:
-      type: string
-      title: 'Title'
-      description: 'Main pricing card title'
     includes_label:
       type: string
       title: 'Includes Label'
       description: 'Label for the features list'
       default: 'Includes'
-    features:
-      type: array
-      title: 'Features'
-      description: 'List of features included in this pricing tier'
-      items:
-        type: string
-        title: 'Feature'
-        description: 'A single feature description'
-    cta_link:
-      type: object
-      title: 'Call to Action Link'
-      description: 'Link object for the CTA button'
-      properties:
-        url:
-          type: string
-          title: 'URL'
-          description: 'Link URL'
-        title:
-          type: string
-          title: 'Title'
-          description: 'Link text'
 slots:
   title:
     title: 'Title'

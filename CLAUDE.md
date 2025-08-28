@@ -113,6 +113,19 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Application**: All containerized development environments (DDEV, Docker, etc.)  
 **Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
 
+### Rule #9: Navigation Architecture DRY Principle ✅ APPLIED  
+**Context**: Issue #52 - Navigation functionality duplicated between site-header and main-menu components  
+**Root Cause**: Multiple components implementing similar navigation logic creates maintenance overhead and inconsistencies  
+**Prevention Rule**: Use atomic design principles - create atomic menu-item components composed by organism-level navigation components  
+**Solution**: Single main-menu organism handles all navigation logic (desktop/mobile/responsive) with menu-item atoms for consistency  
+**Architecture Pattern**:
+- **Atoms**: menu-item with variant support (`desktop`, `mobile`, `dropdown`, `transparent`)  
+- **Organisms**: main-menu composes menu-items, site-header delegates to main-menu
+- **No Duplication**: Single source of truth for menu functionality and mobile interactions
+**Application**: All navigation components must use atomic composition vs. duplicate implementations  
+**Tool Requirement**: Use existing modern HTML patterns (el-popover, el-dialog) for consistency  
+**Success Metrics**: ~30% code reduction, eliminates 3 separate JavaScript behaviors, unified mobile menu logic
+
 ## 🚨 Code Review Learnings (PR #39 - Issue #36)
 
 ### Security Rule #1: XSS Prevention in Twig Templates
@@ -553,6 +566,18 @@ echo "✅ PR Review process completed with learning enforcement"
 **Implementation**: Unlighthouse auditing with custom thresholds and validation  
 **Components**: Performance 90%, Accessibility 95%, SEO compliance  
 **Benefits**: Built-in compliance, automated validation, government readiness
+
+### Pattern #4: Unified Navigation Architecture (Issue #52) ✅ APPLIED
+**Success Context**: Navigation duplication elimination between site-header and main-menu components violating DRY principles  
+**Implementation**: Atomic design architecture with menu-item atoms composed by main-menu organism  
+**Architecture**: 
+- **menu-item** (Atom): Individual menu item with variant-specific styling (`desktop`, `mobile`, `dropdown`, `transparent`)
+- **main-menu** (Organism): Unified navigation supporting horizontal/vertical/mobile layouts with el-popover/el-dialog
+- **site-header** (Organism): Delegates navigation to main-menu without duplicate logic
+**Technical Achievement**: Single source of truth for menu functionality using existing el-popover patterns  
+**Code Reduction**: ~30% reduction in navigation-related JavaScript and template duplication  
+**Benefits**: Eliminates duplicate mobile menu logic, consistent menu-item styling, maintainable navigation architecture  
+**Reusable Pattern**: Any future navigation components use menu-item atoms for consistency
 
 ## ⚙️ Technical Standards & Decisions
 

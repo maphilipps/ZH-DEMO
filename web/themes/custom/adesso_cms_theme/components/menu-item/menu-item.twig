@@ -1,0 +1,115 @@
+{#
+ * @file
+ * Atomic Menu Item Component
+ * 
+ * Provides consistent styling and behavior for individual menu items
+ * Used by main-menu organism for unified navigation architecture
+ #}
+
+{# Set up classes and attributes #}
+{%- set attributes = attributes|default(create_attribute()) -%}
+{%- set variant = variant|default('default') -%}
+{%- set theme = theme|default('default') -%}
+{%- set level = level|default(0) -%}
+
+{# Variant-specific classes based on main-menu patterns #}
+{% set variant_classes = {
+  'default': {
+    'link_classes': 'font-semibold text-gray-900 hover:text-primary',
+    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6 font-semibold text-gray-900',
+  },
+  'desktop': {
+    'link_classes': 'font-semibold text-gray-900 hover:text-primary',
+    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6 font-semibold text-gray-900',
+  },
+  'mobile': {
+    'link_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
+    'button_classes': '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 w-full text-left',
+  },
+  'dropdown': {
+    'link_classes': 'block p-2 hover:text-primary',
+    'button_classes': 'block p-2 hover:text-primary w-full text-left',
+  },
+  'transparent': {
+    'link_classes': 'font-semibold text-white hover:text-gray-200',
+    'button_classes': 'inline-flex items-center gap-x-1 text-lg/6 font-semibold text-white',
+  }
+} %}
+
+{# Apply theme-specific overrides #}
+{% if theme == 'transparent' %}
+  {% set current_variant = variant_classes.transparent %}
+{% else %}
+  {% set current_variant = variant_classes[variant] %}
+{% endif %}
+
+{# Component classes #}
+{%- set classes = [
+  'c-menu-item',
+  'c-menu-item--' ~ variant,
+  'c-menu-item--level-' ~ level,
+  theme != 'default' ? 'c-menu-item--' ~ theme,
+  is_active ? 'c-menu-item--active',
+  in_active_trail ? 'c-menu-item--in-trail',
+  has_children ? 'c-menu-item--has-children',
+] -%}
+
+<div{{ attributes.addClass(classes) }}>
+  {% if has_children %}
+    {# Menu item with children - render as button for dropdown trigger #}
+    {% set unique_id = 'menu-item-' ~ random() %}
+    <button type="button"
+            popovertarget="{{ unique_id }}"
+            class="{{ current_variant.button_classes }}"
+            {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}
+            aria-haspopup="menu"
+            aria-expanded="false">
+      {% if icon %}
+        <span class="c-menu-item__icon">
+          {{ icon }}
+        </span>
+      {% endif %}
+      
+      <span class="c-menu-item__title">{{ title }}</span>
+      
+      {% if has_children and variant in ['default', 'desktop'] %}
+        <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 c-menu-item__chevron">
+          <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd" fill-rule="evenodd"/>
+        </svg>
+      {% endif %}
+    </button>
+    
+    {% if children %}
+      <div class="c-menu-item__children">
+        {{ children }}
+      </div>
+    {% endif %}
+  {% else %}
+    {# Simple menu item - render as link #}
+    {% if url is empty or url.toString() == '<nolink>' %}
+      <span class="{{ current_variant.link_classes }} c-menu-item__span"
+            {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}>
+        {% if icon %}
+          <span class="c-menu-item__icon">
+            {{ icon }}
+          </span>
+        {% endif %}
+        <span class="c-menu-item__title">{{ title }}</span>
+      </span>
+    {% else %}
+      <a href="{{ url }}"
+         {% if target != '_self' %}target="{{ target }}"{% endif %}
+         {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}
+         class="{{ current_variant.link_classes }} c-menu-item__link"
+         {% if is_active %}aria-current="page"{% endif %}>
+        {% if icon %}
+          <span class="c-menu-item__icon">
+            {{ icon }}
+          </span>
+        {% endif %}
+        <span class="c-menu-item__title">{{ title }}</span>
+      </a>
+    {% endif %}
+  {% endif %}
+</div>

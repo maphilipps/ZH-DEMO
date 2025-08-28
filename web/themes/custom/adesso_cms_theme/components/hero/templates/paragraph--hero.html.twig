@@ -10,10 +10,25 @@
 {% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %} {# Embed the
 paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
 spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix
-%}{% endblock %} {% block content %} {% include 'adesso_cms_theme:hero' with { hero_layout:
-paragraph.field_hero_layout.value, media: content.field_media, is_dark: wrapper_theme == 'dark', pre_headline:
-paragraph.field_pre_headline.value, heading: paragraph.field_heading.value|render|striptags, text:
-content.field_summary, link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url']|render|striptags,
-title: content.field_link[0]['#title']|render|striptags, } : {}, link2: content.field_link2[0]['#url'] ? { url:
-content.field_link2[0]['#url']|render|striptags, title: content.field_link2[0]['#title']|render|striptags, } : {}, }
-only %} {% endblock %} {% endembed %}
+%}{% endblock %} {% block content %} 
+{% embed 'adesso_cms_theme:hero' with { 
+  hero_layout: paragraph.field_hero_layout.value, 
+  is_dark: wrapper_theme == 'dark', 
+  pre_headline: paragraph.field_pre_headline.value, 
+  heading: paragraph.field_heading.value|render|striptags, 
+  text: content.field_summary, 
+  link: content.field_link[0]['#url'] ? { 
+    url: content.field_link[0]['#url']|render|striptags,
+    title: content.field_link[0]['#title']|render|striptags 
+  } : {}, 
+  link2: content.field_link2[0]['#url'] ? { 
+    url: content.field_link2[0]['#url']|render|striptags, 
+    title: content.field_link2[0]['#title']|render|striptags 
+  } : {} 
+} only %}
+  {% block background_media %}
+    {# Use field template rendering instead of raw field array - RAW FIELD ARRAY FIX #}
+    {{ content.field_media }}
+  {% endblock %}
+{% endembed %}
+{% endblock %} {% endembed %}

@@ -17,16 +17,44 @@ wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} 
   content.field_title, pre_headline: content.field_pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag:
   'span', title_visual_level: '2', pre_headline_visual_level: '3' } %} {% endif %}
 
-  <!-- Carousel Container -->
+  <!-- Carousel Container with Media Slot Architecture -->
   <div class="max-w-[1536px] mx-auto">
-    {# Build carousel items array with proper data structure #} {% set carousel_items = [] %} {% if
-    content.field_carousel_item %} {% for carousel_item in content.field_carousel_item %} {% if
-    carousel_item['#paragraph'] %} {% set carousel_entity = carousel_item['#paragraph'] %} {% set item_data = { 'media':
-    carousel_entity.field_media|view|render, 'title': carousel_entity.field_title.value|default(''), 'summary':
-    carousel_entity.field_summary.value|default(''), 'link': { 'url': '', 'title': 'Read more' } } %} {% set
-    carousel_items = carousel_items|merge([item_data]) %} {% endif %} {% endfor %} {% endif %} {% include
-    'adesso_cms_theme:carousel' with { items: carousel_items, cards_per_view: '3', autoplay: false, interval: '5000',
-    pause_on_hover: true, class: 'container mx-auto' } only %}
+    {% embed 'adesso_cms_theme:carousel' with { 
+      title: paragraph.field_title.value|default(''),
+      pre_headline: paragraph.field_pre_headline.value|default(''),
+      cards_per_view: '3', 
+      autoplay: false, 
+      interval: '5000',
+      pause_on_hover: true, 
+      class: 'container mx-auto' 
+    } only %}
+      {% block carousel_items %}
+        {# Process carousel items using slot-based media architecture #}
+        {% if content.field_carousel_item %}
+          {% for carousel_item in content.field_carousel_item %}
+            {% if carousel_item['#paragraph'] %}
+              {% set carousel_entity = carousel_item['#paragraph'] %}
+              <div class="swiper-slide carousel-slide" 
+                   role="group" 
+                   aria-roledescription="slide"
+                   aria-label="Slide {{ loop.index }} of {{ content.field_carousel_item|length }}"
+                   data-slide-index="{{ loop.index0 }}">
+                {% embed 'adesso_cms_theme:carousel-item' with {
+                  title: carousel_entity.field_title.value|default(''),
+                  summary: carousel_entity.field_summary.value|default(''),
+                  link: { 'url': '', 'title': 'Read more' }
+                } only %}
+                  {% block media %}
+                    {# Use field template rendering instead of |view|render - PERFORMANCE FIX #}
+                    {{ carousel_entity.field_media }}
+                  {% endblock %}
+                {% endembed %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
   </div>
 </div>
 {% endblock %} {% endembed %}

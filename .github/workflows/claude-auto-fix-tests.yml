@@ -19,12 +19,6 @@ on:
           - 'accessibility'
           - 'visual'
 
-permissions:
-  contents: write
-  pull-requests: write
-  actions: read
-  issues: write
-  checks: read
 
 jobs:
   auto-fix-tests:
@@ -34,7 +28,11 @@ jobs:
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

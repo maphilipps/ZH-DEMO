@@ -10,8 +10,8 @@ wrapper_css_class, attributes: attributes } %} {% block content %}
     text_layout: paragraph.field_text_layout.value ?? 'left', 
     is_dark: wrapper_theme == 'dark', 
     body: content.field_body, 
-    link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url']|render|striptags, text: content.field_link[0]['#title']|render|striptags, } : {}, 
-    link2: content.field_link2[0]['#url'] ? { url: content.field_link2[0]['#url']|render|striptags, text: content.field_link2[0]['#title']|render|striptags, } : {}, 
+    link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url'], text: content.field_link[0]['#title'], } : {}, 
+    link2: content.field_link2[0]['#url'] ? { url: content.field_link2[0]['#url'], text: content.field_link2[0]['#title'], } : {}, 
   } only %}
     {% block title %}{{ content.field_title }}{% endblock %}
     {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}

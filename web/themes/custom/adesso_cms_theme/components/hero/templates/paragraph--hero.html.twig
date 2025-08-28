@@ -10,17 +10,17 @@ spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attrib
   hero_layout: paragraph.field_hero_layout.value, 
   is_dark: wrapper_theme == 'dark', 
   pre_headline: paragraph.field_pre_headline.value, 
-  heading: paragraph.field_heading.value|render|striptags, 
   text: content.field_summary, 
   link: content.field_link[0]['#url'] ? { 
-    url: content.field_link[0]['#url']|render|striptags,
-    title: content.field_link[0]['#title']|render|striptags 
+    url: content.field_link[0]['#url'],
+    title: content.field_link[0]['#title'] 
   } : {}, 
   link2: content.field_link2[0]['#url'] ? { 
-    url: content.field_link2[0]['#url']|render|striptags, 
-    title: content.field_link2[0]['#title']|render|striptags 
+    url: content.field_link2[0]['#url'], 
+    title: content.field_link2[0]['#title'] 
   } : {} 
 } only %}
+  {% block heading %}{{ content.field_heading }}{% endblock %}
   {% block background_media %}
     {# Use field template rendering instead of raw field array - RAW FIELD ARRAY FIX #}
     {{ content.field_media }}

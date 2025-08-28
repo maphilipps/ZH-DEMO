@@ -3,8 +3,8 @@ Sidebyside paragraph configuration #} {% set wrapper_theme = paragraph.field_the
 wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
 wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ?
 'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %}
-{# Process link field #} {% set link = content.field_link[0] ? { url: content.field_link[0]['#url']|render|striptags,
-title: content.field_link[0]['#title']|render|striptags, } : {} %} {# Process features field #} {% set features = [] %}
+{# Process link field #} {% set link = content.field_link[0] ? { url: content.field_link[0]['#url'],
+title: content.field_link[0]['#title'], } : {} %} {# Process features field #} {% set features = [] %}
 {% if content.field_features %} {% for feature_item in content.field_features['#items'] %} {% set feature_entity =
 feature_item.entity %} {% if feature_entity %} {% set feature_type = feature_entity.bundle() %} {% set feature_data = {
 'type': feature_type } %} {# Process different feature types #} {% if feature_type == 'bullet' %} {% set feature_data =

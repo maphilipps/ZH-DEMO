@@ -36,7 +36,12 @@ jobs:
     name: Quick Slot Standardization Validation
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.validation_level == 'quick')
-    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: write # Required for Claude to read CI results on PRs
     steps:
       -   uses: anthropics/claude-code-action@v1
           with:

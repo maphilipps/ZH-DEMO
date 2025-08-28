@@ -22,11 +22,10 @@
   {% endblock %}
   
   {% block content %}
-    {% embed 'adesso_cms_theme:embed' with {
-      embed: content.field_script|render|striptags,
-    } only %}
+    {% embed 'adesso_cms_theme:embed' with {} only %}
       {% block title %}{{ content.field_title }}{% endblock %}
       {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+      {% block embed_content %}{{ content.field_script }}{% endblock %}
     {% endembed %}
   {% endblock %}
 {% endembed %}

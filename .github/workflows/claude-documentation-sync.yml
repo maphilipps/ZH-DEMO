@@ -34,12 +34,14 @@ on:
 
 jobs:
   sync-documentation:
+
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
       contents: write
       pull-requests: write
-
+      issues: write
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

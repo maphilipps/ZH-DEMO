@@ -4,6 +4,11 @@ on:
     types: [opened, synchronize]
 jobs:
   review:
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: anthropics/claude-code-action@v1

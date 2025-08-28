@@ -1,0 +1,162 @@
+name: Claude PR Summarization & Changelog
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+  issue_comment:
+    types: [created]
+
+jobs:
+  generate-pr-summary:
+    if: |
+      (github.event_name == 'pull_request' && 
+       github.event.pull_request.draft == false) ||
+      (github.event_name == 'issue_comment' && 
+       github.event.issue.pull_request &&
+       (contains(github.event.comment.body, '@claude-summarize') || 
+        contains(github.event.comment.body, '/summarize-pr')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.head_ref }}
+
+      - name: Setup Enhanced MCP Configuration
+        run: |
+          mkdir -p /tmp/mcp-config
+          cat > /tmp/mcp-config/mcp-servers.json << 'EOF'
+          {
+            "mcpServers": {
+              "github": {
+                "command": "docker",
+                "args": [
+                  "run", "-i", "--rm",
+                  "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+                  "ghcr.io/github/github-mcp-server:sha-efef8ae"
+                ],
+                "env": {
+                  "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+                }
+              }
+            }
+          }
+          EOF
+
+      - name: Create PR summarization prompt
+        run: |
+          mkdir -p /tmp/claude-prompts
+          cat > /tmp/claude-prompts/pr-summary-prompt.txt << 'EOF'
+          You are a technical writer and release manager for ZH-DEMO, creating comprehensive PR summaries and changelog entries.
+          
+          ## Project Context:
+          - **ZH-DEMO**: Drupal 11.2.2 prototype for Canton Zurich municipal portals
+          - **Demo Municipality**: Gemeinde Bruchtal ("Leben am See") 
+          - **Tech Stack**: Drupal 11.2.2, DDEV, TailwindCSS v4, Vite, Storybook, Node.js 20
+          - **Compliance**: German government standards (eCH-0059), WCAG 2.1 AA
+          - **Key Architecture**: 15 paragraph types, component-based content, responsive design
+          
+          ## Your Tasks:
+          
+          ### 1. Analyze the PR thoroughly:
+          - Use mcp__github__get_pull_request to get PR details and metadata
+          - Use mcp__github__get_pull_request_diff to understand code changes
+          - Use mcp__github__get_pull_request_files to see affected files
+          - Use mcp__github__search_issues to find related issues or discussions
+          
+          ### 2. Generate a comprehensive summary covering:
+          
+          **🎯 Summary**
+          - Brief description of what this PR accomplishes
+          - Business value or user impact
+          - Relation to project goals (GPZH demo, compliance, performance)
+          
+          **📋 Changes**
+          - Frontend changes (components, styles, interactions)
+          - Backend changes (Drupal config, modules, content types)
+          - Infrastructure changes (build tools, CI/CD, deployment)
+          - Documentation updates
+          
+          **✅ Testing**
+          - What was tested (manual, automated, browser compatibility)
+          - Performance impact measurements
+          - Accessibility compliance verification
+          - German compliance validation
+          
+          **⚠️ Breaking Changes** (if any)
+          - API changes, configuration updates required
+          - Migration steps or upgrade notes
+          
+          **🔗 Related**
+          - Closes/Fixes issue numbers
+          - Dependencies or prerequisite PRs
+          - Follow-up work required
+          
+          ### 3. Create changelog entry:
+          Format for CHANGELOG.md integration:
+          ```
+          ### [Type] Brief Description
+          - Detailed change description
+          - Impact on users/developers
+          - Related issue: #123
+          ```
+          
+          Types: Added, Changed, Deprecated, Removed, Fixed, Security
+          
+          ### 4. Update the PR:
+          - Use mcp__github__update_pull_request to enhance the PR body with your summary
+          - DO NOT post separate comments - update the PR description itself
+          - Preserve any existing user-written content in the description
+          
+          ## Guidelines:
+          - **Technical Accuracy**: Use specific file paths, component names, and technical terms
+          - **German Context**: Highlight compliance, accessibility, and government standards impact
+          - **User Focus**: Explain impact on end users (municipal staff, citizens)
+          - **Developer Focus**: Include technical implementation details for maintainers
+          - **Demo Relevance**: Note how changes affect the Bruchtal demo presentation
+          
+          **Target PR**: 
+          - Repository: ${{ github.repository }}
+          - PR Number: ${{ github.event.pull_request.number || github.event.issue.number }}
+          EOF
+
+      - name: Run Claude PR Summarization
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: $(cat /tmp/claude-prompts/pr-summary-prompt.txt)
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --allowedTools mcp__github__get_pull_request,mcp__github__get_pull_request_diff,mcp__github__get_pull_request_files,mcp__github__update_pull_request,mcp__github__search_issues,mcp__github__get_issue
+            --mcp-config /tmp/mcp-config/mcp-servers.json
+            --max-turns 5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate changelog artifact
+        run: |
+          echo "# PR #${{ github.event.pull_request.number || github.event.issue.number }} Changelog Entry" > pr-changelog.md
+          echo "" >> pr-changelog.md
+          echo "Generated: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> pr-changelog.md
+          echo "PR: ${{ github.event.pull_request.html_url || github.event.issue.html_url }}" >> pr-changelog.md
+          echo "" >> pr-changelog.md
+          echo "This changelog entry was generated by Claude and should be reviewed before inclusion in CHANGELOG.md" >> pr-changelog.md
+
+      - name: Upload changelog artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-changelog-${{ github.event.pull_request.number || github.event.issue.number }}
+          path: pr-changelog.md
+          retention-days: 30
+
+      - name: Log summarization completion
+        run: |
+          echo "✅ PR #${{ github.event.pull_request.number || github.event.issue.number }} has been summarized by Claude"
+          echo "Summary generated at: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          echo "Changelog artifact uploaded for review"

@@ -1,53 +1,44 @@
+{# Build shared class strings #}
+{%- set base_classes = 'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium rounded-lg shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50' -%}
+
+{%- set variant_classes = '' -%}
+{%- if variant|default('') == 'secondary' -%}
+  {%- set variant_classes = 'bg-secondary text-secondary-foreground hover:bg-secondary/80' -%}
+{%- elseif variant|default('') == 'outline' -%}
+  {%- set variant_classes = 'border border-input bg-background hover:bg-accent hover:text-accent-foreground' -%}
+{%- elseif variant|default('') == 'ghost' -%}
+  {%- set variant_classes = 'hover:bg-accent hover:text-accent-foreground' -%}
+{%- elseif variant|default('') == 'destructive' -%}
+  {%- set variant_classes = 'bg-destructive text-destructive-foreground hover:bg-destructive/90' -%}
+{%- else -%}
+  {%- set variant_classes = 'bg-primary text-primary-foreground hover:bg-primary/90' -%}
+{%- endif -%}
+
+{%- set size_classes = '' -%}
+{%- if size|default('') == 'sm' -%}
+  {%- set size_classes = 'h-8 px-3 py-1.5 text-xs' -%}
+{%- elseif size|default('') == 'lg' -%}
+  {%- set size_classes = 'h-12 px-6 py-3 text-lg' -%}
+{%- elseif size|default('') == 'icon' -%}
+  {%- set size_classes = 'h-9 w-9 p-0' -%}
+{%- else -%}
+  {%- set size_classes = 'h-9 px-4 py-2' -%}
+{%- endif -%}
+
+{%- set all_classes = [base_classes, variant_classes, size_classes, modifier|default('')]|join(' ')|trim -%}
+
 {% if url|default('') %}
-  <a href="{{ url|default('') }}" class="inline-flex rounded-lg items-center justify-center whitespace-nowrap text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
-    {% if variant|default('') == 'secondary' %}
-      bg-secondary text-secondary-foreground hover:bg-secondary/80
-    {% elseif variant|default('') == 'outline' %}
-      border border-input bg-background hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'ghost' %}
-      hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'destructive' %}
-      bg-destructive text-destructive-foreground hover:bg-destructive/90
-    {% else %}
-      bg-primary text-primary-foreground hover:bg-primary/90
-    {% endif %}
-    {% if size|default('') == 'sm' %}
-      h-8 px-3 py-1.5 text-xs
-    {% elseif size|default('') == 'lg' %}
-      h-12 px-6 py-3 text-lg
-    {% else %}
-      h-9 px-4 py-2
-    {% endif %}
-    {{ modifier|default('') ? ' ' ~ modifier|default('') : '' }}">
+  <a href="{{ url|default('') }}" class="{{ all_classes }}">
     {{ text|default('') }}
     {% if icon|default('') %}
-      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="ml-2 h-4 w-4"></i>
+      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="{{ text ? 'ml-2 h-4 w-4' : 'h-4 w-4' }}"></i>
     {% endif %}
   </a>
 {% else %}
-  <button class="inline-flex items-center justify-center whitespace-nowrap  text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
-    {% if variant|default('') == 'secondary' %}
-      bg-secondary text-secondary-foreground hover:bg-secondary/80
-    {% elseif variant|default('') == 'outline' %}
-      border border-input bg-background hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'ghost' %}
-      hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'destructive' %}
-      bg-destructive text-destructive-foreground hover:bg-destructive/90
-    {% else %}
-      bg-primary text-primary-foreground hover:bg-primary/90
-    {% endif %}
-    {% if size|default('') == 'sm' %}
-      h-8 px-3 py-1.5 text-xs
-    {% elseif size|default('') == 'lg' %}
-      h-12 px-6 py-3 text-lg
-    {% else %}
-      h-9 px-4 py-2
-    {% endif %}
-    {{ modifier|default('') ? ' ' ~ modifier|default('') : '' }}">
+  <button class="{{ all_classes }}" type="{{ type|default('button') }}">
     {{ text|default('') }}
     {% if icon|default('') %}
-      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="ml-2 h-4 w-4"></i>
+      <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="{{ text ? 'ml-2 h-4 w-4' : 'h-4 w-4' }}"></i>
     {% endif %}
   </button>
 {% endif %}

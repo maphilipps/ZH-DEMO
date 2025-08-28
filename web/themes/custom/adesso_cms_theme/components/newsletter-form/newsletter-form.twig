@@ -32,11 +32,13 @@
               placeholder="{{ 'Email Address'|t }}" aria-label="{{ 'Email Address'|t }}" name="newsletter_email"
               required/>
             {# Submit Button #}
-            <button
-              class="inline-flex items-center justify-center whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 px-4 py-2 rounded-lg  bg-primary text-white text-base h-12"
-              type="submit">
-              {{ 'Submit'|t }}
-            </button>
+            {% include 'adesso_cms_theme:button' with {
+              text: 'Submit'|t,
+              variant: 'default',
+              size: 'lg',
+              type: 'submit',
+              modifier: 'h-12 text-base'
+            } %}
           </div>
         </div>
       </div>

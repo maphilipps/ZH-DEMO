@@ -28,9 +28,9 @@ This file serves as the living memory and learning system for the GPZH project, 
 ## 📚 Learning & Pattern Documentation
 
 ### Current Learning Status
-**Last Updated**: 2025-08-24
-**Active Patterns**: Frontend editing, Drupal MCP integration, TDD learning cycles
-**Current Phase**: Systematic learning documentation with user feedback loops
+**Last Updated**: 2025-08-28
+**Active Patterns**: Frontend editing, Drupal MCP integration, TDD learning cycles, SDC component DRY compliance
+**Current Phase**: Systematic learning documentation with user feedback loops, component architecture consolidation
 
 ### Meta-Learning Agents
 *Specialized systems that transform individual learnings into system-wide improvements*
@@ -112,6 +112,35 @@ This file serves as the living memory and learning system for the GPZH project, 
 **Solution**: Add comprehensive .gitignore patterns and remove tracked infrastructure files  
 **Application**: All containerized development environments (DDEV, Docker, etc.)  
 **Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
+
+### Rule #9: SDC Component DRY Compliance ✅ APPLIED
+**Context**: Issue #50 - Duplicate button styling scattered across 7 component instances  
+**Root Cause**: Copy-paste development patterns causing styling duplication in SDC components  
+**Critical Issues**:
+- **Internal Duplication**: button/button.twig had 2 internal implementations (button vs anchor) with duplicate styling
+- **Cross-Component Duplication**: pricing-card.twig and newsletter-form.twig contained inline button styling instead of using base component
+- **Maintenance Burden**: Style changes required updates across multiple files instead of single source
+- **Inconsistency Risk**: Duplicate implementations could diverge over time causing design inconsistencies
+**Prevention Rule**: ALWAYS audit for styling duplication across SDC components and consolidate to single base component  
+**Solution Applied**: Enhanced base button component with shared CSS variables and proper composition patterns:
+```twig
+{# Base component with DRY implementation #}
+{% set base_classes = 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200' %}
+{% set button_classes = base_classes ~ ' ' ~ modifier %}
+```
+**Component Enhancement Pattern**:
+- ✅ Added `type` prop for form buttons (`submit`, `button`, `reset`)
+- ✅ Added `modifier` prop for additional CSS classes (`w-full`, custom spacing)
+- ✅ Enhanced Storybook stories with new props and use cases
+- ✅ Maintained backward compatibility while consolidating styling
+**Application**: Before creating new components, audit existing components for reusable patterns  
+**Tool Requirement**: Use `grep -r "class.*btn\|class.*button" --include="*.twig"` to find duplicate button styling  
+**Validation**:
+- ✅ All 319 tests passing after consolidation
+- ✅ Production build successful without errors
+- ✅ Single source of truth for button styling maintained
+**Measurable Benefit**: Reduced from 7 duplicate styling instances to 1 base component with proper composition  
+**SUCCESS**: Applied in Issue #50 - Consolidated button styling across pricing-card and newsletter-form components (2025-08-28)
 
 ## 🚨 Code Review Learnings (PR #39 - Issue #36)
 

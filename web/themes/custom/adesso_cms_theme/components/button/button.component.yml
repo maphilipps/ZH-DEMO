@@ -38,3 +38,16 @@ props:
         - sm
         - lg
         - icon
+    type:
+      type: string
+      title: type
+      description: The button type attribute (for form buttons)
+      default: button
+      enum:
+        - button
+        - submit
+        - reset
+    modifier:
+      type: string
+      title: modifier
+      description: Additional CSS classes to apply to the button

@@ -54,6 +54,25 @@ const meta = {
         defaultValue: { summary: 'default' },
       },
     },
+    type: {
+      name: 'Type',
+      description: 'The button type attribute (for form buttons)',
+      control: { type: 'select' },
+      options: ['button', 'submit', 'reset'],
+      table: {
+        type: { summary: 'enum' },
+        defaultValue: { summary: 'button' },
+      },
+    },
+    modifier: {
+      name: 'Modifier',
+      description: 'Additional CSS classes to apply to the button',
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
   parameters: {
     docs: {
@@ -212,6 +231,26 @@ export const SmallAction = {
   },
 };
 
+// Form Submit Button
+export const SubmitButton = {
+  args: {
+    text: 'Submit Form',
+    variant: 'default',
+    size: 'lg',
+    type: 'submit',
+  },
+};
+
+// Full Width Button (using modifier)
+export const FullWidth = {
+  args: {
+    text: 'Full Width Action',
+    variant: 'default',
+    size: 'default',
+    modifier: 'w-full',
+  },
+};
+
 // Playground for testing all properties
 export const Playground = {
   args: {
@@ -220,6 +259,8 @@ export const Playground = {
     size: 'default',
     icon: '',
     url: '',
+    type: 'button',
+    modifier: '',
   },
 };
 

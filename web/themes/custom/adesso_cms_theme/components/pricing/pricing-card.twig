@@ -31,9 +31,13 @@
   </div>
   {% if cta_link %}
     <div>
-      <a href="{{ cta_link.url }}" class="inline-flex items-center justify-center whitespace-nowrap  text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground rounded-lg  shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">
-        {{ cta_link.title }}
-      </a>
+      {% include 'adesso_cms_theme:button' with {
+        url: cta_link.url,
+        text: cta_link.title,
+        variant: 'default',
+        size: 'default',
+        modifier: 'w-full'
+      } %}
     </div>
   {% endif %}
 </div>

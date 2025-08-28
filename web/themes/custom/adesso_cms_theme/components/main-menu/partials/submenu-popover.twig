@@ -1,0 +1,45 @@
+{#
+ * @file
+ * Desktop Submenu Popover Partial
+ * 
+ * Renders popover submenu for desktop navigation with nested children support
+ #}
+
+{# Desktop Popover using existing el-popover pattern #}
+<el-popover id="desktop-menu-{{ unique_id }}" anchor="bottom" popover
+            class="w-screen max-w-min overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
+  <div class="max-w-xl w-screen grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-4 shrink rounded-xl bg-white p-4 text-md/6 font-semibold text-gray-900 shadow-lg ring-1 ring-gray-900/5">
+    {% for child in children %}
+      <div>
+        {% include 'adesso_cms_theme:menu-item' with {
+          title: child.title,
+          url: child.url,
+          target: child.target,
+          is_active: child.is_active,
+          in_active_trail: child.in_active_trail,
+          has_children: child.children is not empty,
+          variant: 'dropdown',
+          theme: theme,
+          level: 1
+        } only %}
+
+        {# Third level items - nested children #}
+        {% if child.children is not empty %}
+          {% for grandchild in child.children %}
+            {% include 'adesso_cms_theme:menu-item' with {
+              title: grandchild.title,
+              url: grandchild.url,
+              target: grandchild.target,
+              is_active: grandchild.is_active,
+              in_active_trail: grandchild.in_active_trail,
+              has_children: false,
+              variant: 'dropdown',
+              theme: theme,
+              level: 2
+            } only %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</el-popover>

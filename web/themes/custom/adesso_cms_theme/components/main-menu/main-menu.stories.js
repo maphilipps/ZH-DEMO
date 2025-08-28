@@ -3,7 +3,7 @@
 import Component from './main-menu.twig';
 
 const meta = {
-  title: 'Navigation/MainMenu',
+  title: 'Organisms/Main Menu',
   component: Component,
   decorators: [
     Story => {
@@ -78,27 +78,57 @@ const meta = {
     },
   ],
   argTypes: {
-    nested: {
-      name: 'Menu Items',
-      description: 'Hierarchical menu structure with nested children',
-      control: { type: 'object' },
-      table: {
-        type: { summary: 'array' },
-        defaultValue: { summary: '[]' },
-      },
-    },
-    selected__header_template: {
-      name: 'Header Template Style',
-      description: 'Header template style identifier',
-      control: { type: 'text' },
+    layout: {
+      name: 'Menu Layout',
+      description: 'Display layout for the menu system',
+      control: { type: 'select' },
+      options: ['horizontal', 'vertical', 'mobile'],
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: { summary: 'horizontal' },
       },
     },
-    account_menu: {
-      name: 'Account Menu',
-      description: 'Account menu items for mobile display',
+    variant: {
+      name: 'Menu Variant',
+      description: 'Visual variant styling for the menu',
+      control: { type: 'select' },
+      options: ['default', 'transparent'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      },
+    },
+    show_mobile_toggle: {
+      name: 'Show Mobile Toggle',
+      description: 'Whether to display the mobile menu toggle button',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    responsive_breakpoint: {
+      name: 'Responsive Breakpoint',
+      description: 'CSS breakpoint for mobile/desktop switching',
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg', 'xl'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'lg' },
+      },
+    },
+    show_logo: {
+      name: 'Show Logo',
+      description: 'Whether to display the site logo',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    nested: {
+      name: 'Menu Items',
+      description: 'Hierarchical menu structure with nested children using menu-item atoms',
       control: { type: 'object' },
       table: {
         type: { summary: 'array' },
@@ -110,28 +140,37 @@ const meta = {
     docs: {
       description: {
         component: `
-Advanced navigation menu component with Alpine.js and @tailwindplus/elements interactivity (popover/dialog), mobile-responsive design, and nested submenu support.
+Unified navigation system supporting desktop and mobile layouts with el-popover and el-dialog. Uses atomic menu-item components for consistent styling across all menu levels. Replaces duplicate navigation logic between site-header and main-menu components.
+
+## Architecture
+
+This component follows atomic design principles:
+- **menu-item** (Atom): Individual menu item presentation
+- **main-menu** (Organism): Composes menu-item atoms with navigation logic
+- **site-header** (Organism): Uses main-menu without duplicating navigation
 
 ## TWIG Usage
 
 \`\`\`twig
-{# Basic navigation menu #}
-{% include 'sdc:main_menu_save' with {
+{# Basic horizontal navigation (for headers) #}
+{% include 'adesso_cms_theme:main-menu' with {
+  layout: 'horizontal',
+  variant: 'default',
+  show_mobile_toggle: true,
   nested: [
     {
       title: 'Home',
       url: '/',
-      target: '_self'
+      is_active: true,
+      in_active_trail: false,
+      children: []
     },
     {
       title: 'About',
       url: '/about',
-      target: '_self'
-    },
-    {
-      title: 'Contact',
-      url: '/contact',
-      target: '_self'
+      is_active: false,
+      in_active_trail: false,
+      children: []
     }
   ]
 } %}
@@ -277,37 +316,54 @@ Advanced navigation menu component with Alpine.js and @tailwindplus/elements int
 };
 export default meta;
 
-// Corporate website navigation
+// Corporate website navigation (updated for unified architecture)
 const corporateNavigation = [
   {
     title: 'Home',
     url: '/',
     target: '_self',
+    is_active: true,
+    in_active_trail: false,
+    children: []
   },
   {
     title: 'About Us',
     url: '/about',
     target: '_self',
+    is_active: false,
+    in_active_trail: true,
     children: [
       {
         title: 'Our Story',
         url: '/about/story',
         target: '_self',
+        is_active: false,
+        in_active_trail: false,
+        children: []
       },
       {
         title: 'Leadership Team',
         url: '/about/team',
         target: '_self',
+        is_active: false,
+        in_active_trail: false,
+        children: []
       },
       {
         title: 'Careers',
         url: '/about/careers',
         target: '_self',
+        is_active: false,
+        in_active_trail: false,
+        children: []
       },
       {
         title: 'Company News',
         url: '/about/news',
         target: '_self',
+        is_active: false,
+        in_active_trail: false,
+        children: []
       },
     ],
   },
@@ -605,15 +661,25 @@ const basicNavigation = [
   },
 ];
 
-// Default navigation story
+// Default unified navigation story
 export const Default = {
   parameters: {
     layout: 'fullscreen',
   },
   args: {
+    layout: 'horizontal',
+    variant: 'default',
+    show_mobile_toggle: true,
+    responsive_breakpoint: 'lg',
+    show_logo: true,
+    logo: '/themes/custom/adesso_cms_theme/assets/logo.svg',
+    site_name: 'Adesso CMS',
+    front_page: '/',
+    menu_name: 'main',
+    depth: 3,
     nested: corporateNavigation,
-    selected__header_template: '',
-    account_menu: [],
+    aria_label: 'Main navigation',
+    keyboard_navigation: true
   },
 };
 
@@ -841,38 +907,143 @@ export const EmptyState = {
   },
 };
 
-// Playground for testing all properties
+// Transparent variant (for hero sections)
+export const TransparentVariant = {
+  parameters: {
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'dark',
+      values: [
+        { name: 'dark', value: '#1a1a1a' },
+      ],
+    },
+  },
+  args: {
+    ...Default.args,
+    variant: 'transparent'
+  },
+};
+
+// Vertical layout (for sidebars)
+export const VerticalLayout = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    ...Default.args,
+    layout: 'vertical',
+    show_mobile_toggle: false
+  },
+};
+
+// Mobile layout demonstration
+export const MobileLayout = {
+  parameters: {
+    layout: 'fullscreen',
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+  args: {
+    ...Default.args,
+    layout: 'mobile',
+    show_mobile_toggle: false
+  },
+};
+
+// Without logo (menu-only)
+export const MenuOnly = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    ...Default.args,
+    show_logo: false
+  },
+};
+
+// Different responsive breakpoints
+export const SmallBreakpoint = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    ...Default.args,
+    responsive_breakpoint: 'sm'
+  },
+};
+
+// Site header integration example
+export const HeaderIntegration = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    ...Default.args
+  },
+  decorators: [
+    (Story) => {
+      // Wrap in site-header context
+      return `
+        <header class="absolute inset-x-0 top-0 z-50" role="banner">
+          <div class="flex items-center justify-between p-6 lg:px-8">
+            ${Story()}
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+              <a href="/user/login" class="text-sm/6 font-semibold text-gray-900 hover:text-primary">
+                Log in <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </header>
+      `;
+    },
+  ],
+};
+
+// Playground for testing all unified properties
 export const Playground = {
   parameters: {
     layout: 'fullscreen',
   },
   args: {
+    layout: 'horizontal',
+    variant: 'default',
+    show_mobile_toggle: true,
+    responsive_breakpoint: 'lg',
+    show_logo: true,
+    logo: '/themes/custom/adesso_cms_theme/assets/logo.svg',
+    site_name: 'Test Site',
+    front_page: '/',
+    menu_name: 'main',
+    depth: 3,
+    aria_label: 'Test navigation',
+    keyboard_navigation: true,
     nested: [
       {
         title: 'Test Menu Item',
         url: '/test',
         target: '_self',
+        is_active: false,
+        in_active_trail: false,
         children: [
           {
             title: 'Sub Item 1',
             url: '/test/sub1',
             target: '_self',
+            is_active: false,
+            in_active_trail: false,
+            children: []
           },
           {
             title: 'External Sub Item',
             url: 'https://example.com',
             target: '_blank',
+            is_active: false,
+            in_active_trail: false,
+            children: []
           },
         ],
       },
-    ],
-    selected__header_template: 'style2',
-    account_menu: [
-      {
-        title: 'Test Account',
-        url: '/account',
-        target: '_self',
-      },
-    ],
+    ]
   },
 };

@@ -1,6 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Main Menu
-description: Main Menu Component with el-popover and el-dialog support and variant styling
+description: Unified navigation system supporting desktop and mobile layouts with el-popover and el-dialog
 status: stable
 group: Organisms
 libraryOverrides:
@@ -9,66 +9,107 @@ libraryOverrides:
 props:
   type: object
   properties:
-    title:
+    # Layout and display properties
+    layout:
       type: string
-      title: Title
-    url:
-      type: string
-      title: URL
-    target:
-      type: string
-      title: Target
+      title: Menu Layout
+      description: Display layout for the menu system
+      enum: [horizontal, vertical, mobile]
+      default: horizontal
     variant:
       type: string
-      title: variant
-      description: Menu variant styling
+      title: Menu Variant
+      description: Visual variant styling for the menu
       enum: [default, transparent]
       default: default
+    show_mobile_toggle:
+      type: boolean
+      title: Show Mobile Toggle
+      description: Whether to display the mobile menu toggle button
+      default: true
+    responsive_breakpoint:
+      type: string
+      title: Responsive Breakpoint
+      description: CSS breakpoint for mobile/desktop switching
+      enum: [sm, md, lg, xl]
+      default: lg
+    
+    # Site branding properties (for header integration)
     logo:
       type: [string, "null"]
-      title: logo
+      title: Logo URL
       description: Logo URL from Drupal theme settings
       default: ''
     site_name:
       type: [string, "null"]
-      title: site_name
+      title: Site Name
       description: Site name from Drupal configuration
       default: ''
     front_page:
       type: [string, "null"]
-      title: front_page
-      description: Front page URL
+      title: Front Page URL
+      description: Front page URL for logo link
       default: '/'
     show_logo:
       type: boolean
-      title: show_logo
-      description: Whether to show the logo
+      title: Show Logo
+      description: Whether to display the site logo
       default: false
+      
+    # Menu structure properties
+    menu_name:
+      type: string
+      title: Menu Name
+      description: Machine name of the Drupal menu to render
+      default: main
+    depth:
+      type: integer
+      title: Menu Depth
+      description: Maximum depth of menu items to display
+      default: 3
+      minimum: 1
+      maximum: 5
     nested:
       type: array
-      title: Nested menu items
+      title: Menu Items
       description: Processed menu structure for template rendering
-      items:
-        type: object
-    children:
-      type: array
-      title: Sub-menu items
       items:
         type: object
         properties:
           title:
             type: string
-            title: Sub-menu Title
+            title: Menu Item Title
           url:
             type: string
-            title: Sub-menu URL
+            title: Menu Item URL
           target:
             type: string
-            title: Sub-menu Target
-          children: # Add this to support nested sub-menus
+            title: Link Target
+          is_active:
+            type: boolean
+            title: Is Active
+            default: false
+          in_active_trail:
+            type: boolean
+            title: In Active Trail
+            default: false
+          children:
             type: array
-            title: Sub-menu Items
+            title: Child Menu Items
+            description: Submenu items for nested navigation
             items:
-              $ref: "#/props" # Recursively refer to the same schema
+              $ref: "#/props/properties/nested/items"
+              
+    # Accessibility and interaction properties  
+    aria_label:
+      type: string
+      title: ARIA Label
+      description: Custom ARIA label for the navigation
+      default: Main navigation
+    keyboard_navigation:
+      type: boolean
+      title: Keyboard Navigation
+      description: Enable enhanced keyboard navigation support
+      default: true
 libraryDependencies:
   - adesso_cms_theme/global

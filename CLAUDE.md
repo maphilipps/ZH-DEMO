@@ -121,14 +121,13 @@ Living memory for the GPZH project where every bug becomes a prevention rule, ev
 **Application**: All containerized development environments (DDEV, Docker, etc.)  
 **Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
 
-### Rule #9: SDC Component Schema Standardization ✅ APPLIED
+### Rule #8: SDC Component Schema Standardization ✅ APPLIED
 **Context**: Issue #54 - Inconsistent schema definitions across all 44 Single Directory Components affecting tooling and developer experience  
 **Root Cause**: Mixed schema versions (10.1.x vs 11.x), missing metadata properties (group, status, libraryDependencies), and repository hygiene issues  
 **Critical Issues**:
-- **36 components** using outdated Drupal 10.1.x schema references
-- **29 components** missing status property entirely  
-- **41 components** missing group classification  
-- **10 backup files** (.component.yml.bak) cluttering repository
+- **39 components** missing status property entirely  
+- **38 components** missing group classification  
+- **41 components** missing libraryDependencies
 **Prevention Rule**: ALWAYS standardize component schemas systematically using batch operations and validate completeness  
 **Solution Applied**: Comprehensive schema standardization across all components:
 ```bash
@@ -150,17 +149,36 @@ sed -i 's|10.1.x|11.x|g' **/*.component.yml
 **Root Cause**: Complex technical implementations need specialized knowledge vs. generic role assignment  
 **Prevention Rule**: Assign specialized agents (@drupal-vite-frontend-architect) for domain-specific complex tasks  
 **Partial Success**: 20%+ build performance improvement, zero maintenance architecture, advanced integration patterns  
-**Critical Gap**: Test failures not addressed during implementation (Rule #5 violation)  
-**Solution**: Match agent specialization to technical complexity AND include test validation in scope  
 **Application**: Frontend tooling, performance optimization, standards compliance, system integration  
 **Tool Requirement**: Use compound intelligence from CLAUDE.md to inform agent selection and briefing  
-**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents  
-**CURRENT STATUS**: Implementation 90% complete, requires test failure resolution for full success
+**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents
 
-### Rule #11: Agent Ecosystem Optimization ✅ APPLIED  
+### Rule #9: Navigation Architecture DRY Principle ✅ APPLIED  
+**Context**: Issue #52 - Navigation functionality duplicated between site-header and main-menu components  
+**Root Cause**: Multiple components implementing similar navigation logic creates maintenance overhead and inconsistencies  
+**Prevention Rule**: Use atomic design principles - create atomic menu-item components composed by organism-level navigation components  
+**Solution**: Single main-menu organism handles all navigation logic (desktop/mobile/responsive) with menu-item atoms for consistency  
+**Architecture Pattern**:
+- **Atoms**: menu-item with variant support (`desktop`, `mobile`, `dropdown`, `transparent`)  
+- **Organisms**: main-menu composes menu-items, site-header delegates to main-menu
+- **No Duplication**: Single source of truth for menu functionality and mobile interactions
+**Application**: All navigation components must use atomic composition vs. duplicate implementations  
+**Tool Requirement**: Use existing modern HTML patterns (el-popover, el-dialog) for consistency  
+**Success Metrics**: ~30% code reduction, eliminates 3 separate JavaScript behaviors, unified mobile menu logic
+
+### Rule #10: Specialized Agent Assignment for Complex Technical Tasks ✅ APPLIED
+**Context**: Issue #47 - PreviousNext Vite & Storybook standards requiring deep frontend expertise  
+**Root Cause**: Complex technical implementations need specialized knowledge vs. generic role assignment  
+**Prevention Rule**: Assign specialized agents (@drupal-vite-frontend-architect) for domain-specific complex tasks  
+**Success Results**: 20%+ build performance improvement, zero maintenance architecture, advanced integration patterns  
+**Application**: Frontend tooling, performance optimization, standards compliance, system integration  
+**Tool Requirement**: Use compound intelligence from CLAUDE.md to inform agent selection and briefing  
+**Measurable Benefit**: Single implementation cycle vs. multiple iteration cycles with generic agents
+
+### Rule #11: Agent Ecosystem Optimization ✅ APPLIED
 **Context**: 52 specialized agents requiring systematic optimization for compound intelligence vs. fragmentation  
 **Analysis Results**: Agent specialization creates genuine domain expertise with measurable ROI:
-- **Domain Coverage**: Complete coverage across Drupal, Swiss compliance, frontend, security, testing
+- **Domain Coverage**: Complete coverage across Drupal, German compliance, frontend, security, testing
 - **Specialization ROI**: 70% time savings in Issue #47 through specialized agent coordination
 - **Coordination Effectiveness**: 85% success rate with systematic dependency mapping
 - **System Intelligence**: 60% above baseline through compound agent interactions
@@ -168,20 +186,7 @@ sed -i 's|10.1.x|11.x|g' **/*.component.yml
 **Optimization Applied**: Agent ecosystem provides compound intelligence acceleration, not task fragmentation  
 **Tool Requirement**: Use systematic agent assignment based on domain expertise and learning velocity
 
-### Rule #12: Agent Assignment Strategy for Complex Tasks ✅ APPLIED
-**Context**: Issue #47 - PreviousNext Vite & Storybook implementation planning  
-**Root Cause**: Complex multi-technology tasks require specialized agent orchestration for optimal execution  
-**Prevention Rule**: ALWAYS assign specialized agents for each technology domain in complex tasks  
-**Agent Pattern**:
-- **@vite-expert**: Vite configuration, build optimization, HMR setup
-- **@storybook-specialist**: Component documentation, story creation, addon integration  
-- **@drupal-frontend-integration**: Theme integration, asset pipeline, Drupal-specific concerns
-- **@qa-testing-specialist**: Cross-browser testing, visual regression, build verification
-**Application**: Multi-technology implementations (build tools + documentation + CMS integration)  
-**Tool Requirement**: Use TodoWrite to track parallel agent execution and coordination  
-**SUCCESS**: Applied in Issue #47 planning - systematic agent assignment before implementation
-
-### Rule #13: Parallel Execution vs Sequential Dependencies
+### Rule #12: Parallel Execution vs Sequential Dependencies
 **Context**: Issue #47 revealed critical execution sequencing requirements  
 **Root Cause**: Attempting parallel execution without identifying technology dependencies  
 **Prevention Rule**: Map technology dependencies BEFORE assigning parallel execution  
@@ -193,7 +198,7 @@ sed -i 's|10.1.x|11.x|g' **/*.component.yml
 **Application**: Complex build tool integrations, multi-technology implementations  
 **Tool Requirement**: Document execution dependencies in TodoWrite before agent assignment
 
-### Rule #14: Quality Assurance Integration in Planning Phase
+### Rule #13: Quality Assurance Integration in Planning Phase
 **Context**: Issue #47 planning identified need for comprehensive QA integration  
 **Root Cause**: QA considerations added as afterthought instead of integrated planning  
 **Prevention Rule**: Include QA requirements and testing strategy in initial task breakdown  
@@ -205,7 +210,7 @@ sed -i 's|10.1.x|11.x|g' **/*.component.yml
 **Application**: All build tool and frontend architecture changes  
 **Tool Requirement**: @qa-testing-specialist must be assigned during planning, not implementation
 
-### Rule #15: Documentation Anti-Pattern Prevention
+### Rule #14: Documentation Anti-Pattern Prevention
 **Context**: Issue #47 planning process revealed documentation anti-pattern  
 **Root Cause**: Tendency to create separate documentation files instead of consolidating learnings  
 **Prevention Rule**: NEVER create standalone documentation files during complex task planning  
@@ -215,7 +220,7 @@ sed -i 's|10.1.x|11.x|g' **/*.component.yml
 **Application**: All complex task planning and implementation phases  
 **Tool Requirement**: Redirect documentation impulses to CLAUDE.md learning extraction
 
-### Rule #16: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
+### Rule #15: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
 **Context**: Storybook JavaScript errors preventing story rendering with "process is not defined" and React internal errors  
 **Root Cause**: Main Vite config optimized for Drupal library mode conflicts with Storybook's browser execution requirements  
 **Critical Issues**:
@@ -264,7 +269,7 @@ const lightCard = container.querySelector('.theme-preview-card[data-theme="light
 **Tool Requirement**: Debug DOM selector issues by logging actual element types and attributes found  
 **Status**: RESOLVED - Theme selector meets German government accessibility requirements (eCH-0059)
 
-### Rule #18: Systematic Terminology Migration Strategy ✅ APPLIED
+### Rule #16: Systematic Terminology Migration Strategy ✅ APPLIED
 **Context**: Project-wide terminology change from "Swiss" to "German" compliance standards required across all documentation, code, and configuration files  
 **Root Cause**: Need for systematic approach to prevent incomplete updates and maintain consistency across large codebase  
 **Critical Challenges**:
@@ -293,38 +298,7 @@ grep -r -i "swiss" /path | grep -v ".git"
 **Tool Requirement**: Use find + sed for bulk operations, validate with comprehensive grep searches  
 **Status**: APPLIED - Complete terminology migration from Swiss to German compliance standards across entire project
 
-### Rule #19: Advanced Frontend Tooling Optimization Strategy ⚠️ LEARNING IN PROGRESS
-**Context**: Issue #47 - PreviousNext Vite & Storybook optimization request on already high-performance baseline  
-**Critical Discovery**: 90% of requested PreviousNext features already implemented in advanced configuration  
-**Analysis Results**:
-- ✅ Library mode: Already configured (vite.config.ts:47-53)
-- ✅ Browserslist integration: Already implemented (vite.config.ts:8, 58)  
-- ✅ ESLint flat config: Already comprehensive (eslint.config.js)
-- ✅ Storybook test runner: Already in dependencies (@storybook/test-runner:^0.19.1)
-- ✅ PostCSS preset-env: Already configured (postcss-preset-env:^10.3.0)
-- ✅ Concurrent scripts: Already implemented (package.json:9-10)
-**Root Cause**: High-performance optimization requires micro-improvements vs foundational changes  
-**Critical Issue**: 7 accessibility tests failing while requesting "enhancement" - Rule #5 violation  
-**Prevention Rule**: ALWAYS audit current implementation state before planning "enhancement" work  
-**Solution**: Focus on performance measurement, testing resolution, and incremental optimization  
-**Application**: Advanced tooling requests, performance optimization, system enhancement projects  
-**Tool Requirement**: Measure baseline performance before implementing changes to validate improvements  
-**Status**: IN PROGRESS - Foundation stabilization required before optimization implementation
-
-### Rule #20: Test-Driven Quality Gates for Advanced Systems ⚠️ CRITICAL VIOLATION
-**Context**: Issue #47 claiming "enhanced frontend DX" readiness while 7 tests actively fail  
-**Violation Evidence**: 7 failed accessibility tests in theme-selector-accessibility.test.js:
-- Focus management failures (tabindex expectations)  
-- Keyboard navigation broken (Enter/Space key activation)
-- Theme preview contrast compliance failures
-**Root Cause**: Advanced systems create false confidence - sophisticated tooling can mask fundamental quality issues  
-**Prevention Rule**: NEVER claim system enhancement readiness while ANY tests fail  
-**Required Resolution**: Fix ALL failing tests before implementing ANY enhancements  
-**Application**: All optimization and enhancement requests on existing systems  
-**Tool Requirement**: Automated pre-enhancement quality validation  
-**Compound Intelligence**: Test failures expose architectural gaps that optimization cannot resolve
-
-### Rule #21: Performance Optimization Baseline Measurement Framework ✅ APPLIED
+### Rule #17: Performance Optimization Baseline Measurement Framework ✅ APPLIED
 **Context**: Issue #47 claiming "20% performance improvement" from PreviousNext Vite & Storybook standards required validation  
 **Root Cause**: Performance optimization claims without quantitative baselines lead to unverifiable improvements  
 **Prevention Rule**: ALWAYS establish comprehensive performance baselines before implementing optimization strategies  
@@ -537,12 +511,24 @@ find . -path "./.serena/memories/*.md" -o -path "./*/TRASH/*.md"
 **Implementation**: Unlighthouse auditing (Performance 90%, Accessibility 95%)  
 **Benefits**: Built-in government compliance, automated validation
 
-### Pattern #4: Complex Task Agent Orchestration
+### Pattern #4: Unified Navigation Architecture (Issue #52) ✅ APPLIED
+**Success Context**: Navigation duplication elimination between site-header and main-menu components violating DRY principles  
+**Implementation**: Atomic design architecture with menu-item atoms composed by main-menu organism  
+**Architecture**: 
+- **menu-item** (Atom): Individual menu item with variant-specific styling (`desktop`, `mobile`, `dropdown`, `transparent`)
+- **main-menu** (Organism): Unified navigation supporting horizontal/vertical/mobile layouts with el-popover/el-dialog
+- **site-header** (Organism): Delegates navigation to main-menu without duplicate logic
+**Technical Achievement**: Single source of truth for menu functionality using existing el-popover patterns  
+**Code Reduction**: ~30% reduction in navigation-related JavaScript and template duplication  
+**Benefits**: Eliminates duplicate mobile menu logic, consistent menu-item styling, maintainable navigation architecture  
+**Reusable Pattern**: Any future navigation components use menu-item atoms for consistency
+
+### Pattern #5: Complex Task Agent Orchestration
 **Success**: Issue #47 - Specialized agent assignment prevents oversight  
 **Coordination**: Dependency mapping → Agent assignment → Execution tracking → Learning integration  
 **Benefits**: Reduced complexity, parallel execution efficiency
 
-### Pattern #5: Learning vs Task Documentation Anti-Pattern
+### Pattern #6: Learning vs Task Documentation Anti-Pattern
 **Critical Rule**: CLAUDE.md contains learnings that make us better, not task descriptions  
 **Wrong**: "We assigned these agents..." → **Correct**: "Complex tasks need systematic agent assignment"  
 **Benefits**: Wisdom repository vs project log

@@ -360,7 +360,7 @@ jobs:
     if: github.event_name == 'pull_request' && !failure()
     timeout-minutes: 10
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       issues: write
     steps:
@@ -490,7 +490,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      actions: read
+      actions: write
     steps:
       - name: '🔧 Trigger auto-fix workflow'
         uses: actions/github-script@v7

@@ -6,6 +6,12 @@ on:
   issue_comment:
     types: [created]
 
+permissions:
+    contents: write
+    pull-requests: write
+    actions: read
+    issues: write
+
 jobs:
   expert-review:
     if: |
@@ -17,9 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       issues: write
+      id-token: write
 
     steps:
       - name: Checkout repository

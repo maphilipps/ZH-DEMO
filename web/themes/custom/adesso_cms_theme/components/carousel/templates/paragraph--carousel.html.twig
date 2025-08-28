@@ -52,8 +52,8 @@
             {# Use proper field rendering instead of direct entity access #}
             {% set item_data = {
               'media': carousel_item.field_media,
-              'title': carousel_item.field_title.0['#context'].value|default(''),
-              'summary': carousel_item.field_summary.0['#context'].value|default(''),
+              'title': carousel_item.field_title,
+              'summary': carousel_item.field_summary,
               'link': { 'url': '', 'title': 'Read more' }
             } %}
             {% set carousel_items = carousel_items|merge([item_data]) %}

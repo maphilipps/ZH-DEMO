@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Recent Cards
 status: stable
-description: 'A container component for displaying a grid of recent content cards.'
+description: 'A container component for displaying a grid of recent content cards with optimized field rendering (Issue #58).'
 props:
   type: object
   properties:
@@ -12,10 +12,10 @@ props:
       properties:
         field_thumbnail:
           title: 'Thumbnail Field'
-          description: 'Drupal field render array for thumbnail image - eliminates double-rendering'
+          description: 'Drupal field render array for thumbnail image - optimized field rendering (no render|striptags)'
         field_summary:
           title: 'Summary Field'
-          description: 'Drupal field render array for summary text - eliminates double-rendering'
+          description: 'Drupal field render array for summary text - optimized field rendering (no render|striptags)'
     label:
       type: string
       title: 'Label'

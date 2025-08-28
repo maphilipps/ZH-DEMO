@@ -142,14 +142,14 @@ describe('Unified Card Component - eCH-0059 German Accessibility Compliance', ()
       const html = renderCardComponent(cardArgs);
       document.body.innerHTML = html;
 
-      const card = document.querySelector('.unified-card');
-      expect(card).toBeTruthy();
+      const cardElement = document.querySelector('.unified-card');
+      expect(cardElement).toBeTruthy();
       
       // Verify card has proper semantic structure
-      expect(card.classList.contains('unified-card')).toBe(true);
+      expect(cardElement.classList.contains('unified-card')).toBe(true);
       
       // Check for content sections
-      const sections = card.querySelectorAll('.card-header, .card-body, .card-media, .card-actions');
+      const sections = cardElement.querySelectorAll('.card-header, .card-body, .card-media, .card-actions');
       expect(sections.length).toBeGreaterThan(0);
     });
 

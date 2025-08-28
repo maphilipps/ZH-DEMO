@@ -1,14 +1,11 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Card
 status: stable
-description: 'A single card component.'
+group: molecules
+description: 'A single card component with media slot architecture.'
 props:
   type: object
   properties:
-    media:
-      type: string
-      title: 'Media'
-      description: 'Media content for the card'
     media_link:
       type: string
       title: 'Media Link'
@@ -64,3 +61,8 @@ props:
         text:
           type: string
           title: 'Text'
+slots:
+  media:
+    title: 'Card Media'
+    description: 'Media content for the card (field_media)'
+    required: false

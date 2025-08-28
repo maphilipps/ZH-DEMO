@@ -1,14 +1,17 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Media
-description: Editorial/Media component
+status: stable
+group: atoms
+description: Editorial/Media component with media slot architecture
 props:
   type: object
   properties:
-    media:
-      type: string
-      title: media
-      description: Define the media content, either an image, video, or audio
     modifier:
       type: string
       title: modifier
       description: CSS modifier classes for styling the media container
+      default: ""
+slots:
+  media:
+    title: 'Media Content'
+    description: 'Media content (image, video, or audio) - field_media'

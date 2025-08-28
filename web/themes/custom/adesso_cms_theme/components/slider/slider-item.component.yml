@@ -1,16 +1,12 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Slider Item
 status: stable
-description: 'Individual item within a slider component with enhanced media processing and responsive image support'
+group: molecules
+description: 'Individual item within a slider component with media slot architecture and enhanced responsive image support'
 props:
   type: object
   properties:
-    # Media Content
-    media:
-      type: [string, object, "null"]
-      title: Media
-      description: The media/image content to display (rendered HTML or media object)
-      default: null
+    # Media Configuration
     media_url:
       type: [string, "null"]
       title: Media URL
@@ -160,6 +156,11 @@ props:
       title: Modifier classes
       description: Additional CSS classes
       default: ""
+slots:
+  media:
+    title: 'Slider Item Media'
+    description: 'Media content for the slider item (field_media)'
+    required: false
 libraryOverrides:
   dependencies:
     - core/drupal

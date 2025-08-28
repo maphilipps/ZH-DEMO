@@ -1,31 +1,13 @@
-{#
-/**
- * @file
- * Download item paragraph template (child component - no wrapper needed).
- */
-#}
-{% set file_entity = paragraph.field_file.entity %}
-{% set file_url = file_entity ? file_url(file_entity.uri.value) : '' %}
-{% set file_size = file_entity ? (file_entity.filesize.value + 0) : 0 %}
-{% set file_extension = file_entity ? file_entity.uri.value|split('.')|last|lower : '' %}
-{% set file_filename = file_entity ? file_entity.filename.value : '' %}
-{% set file_name = paragraph.field_file_name.value|default('')|trim %}
-{% set file_description = paragraph.field_file_description.value is iterable ? paragraph.field_file_description.value.value|default('')|trim : paragraph.field_file_description.value|default('')|trim %}
-{% set display_name = file_name ? file_name : file_filename %}
-{% set parent = paragraph.getParentEntity() %}
-{% set theme_value = paragraph.field_theme.value is defined ? paragraph.field_theme.value : (parent and parent.field_theme ? parent.field_theme.value : 'default') %}
-{% set theme_value = theme_value|default('default') %}
-{% set is_dark = theme_value == 'dark' %}
-
-{{ title_prefix }}
-{{ title_suffix }}
-
-{% include 'adesso_cms_theme:download-item' with {
-  file_url: file_url,
-  file_name: display_name,
-  file_description: file_description,
-  file_size: file_size,
-  file_extension: file_extension,
-  has_description: file_description ? true : false,
-  is_dark: is_dark
-} %}
+{# /** * @file * Download item paragraph template (child component - no wrapper needed). */ #} {% set file_entity =
+paragraph.field_file.entity %} {% set file_url = file_entity ? file_url(file_entity.uri.value) : '' %} {% set file_size
+= file_entity ? (file_entity.filesize.value + 0) : 0 %} {% set file_extension = file_entity ?
+file_entity.uri.value|split('.')|last|lower : '' %} {% set file_filename = file_entity ? file_entity.filename.value : ''
+%} {% set file_name = paragraph.field_file_name.value|default('')|trim %} {% set file_description =
+paragraph.field_file_description.value is iterable ? paragraph.field_file_description.value.value|default('')|trim :
+paragraph.field_file_description.value|default('')|trim %} {% set display_name = file_name ? file_name : file_filename
+%} {% set parent = paragraph.getParentEntity() %} {% set theme_value = paragraph.field_theme.value is defined ?
+paragraph.field_theme.value : (parent and parent.field_theme ? parent.field_theme.value : 'default') %} {% set
+theme_value = theme_value|default('default') %} {% set is_dark = theme_value == 'dark' %} {{ title_prefix }} {{
+title_suffix }} {% include 'adesso_cms_theme:download-item' with { file_url: file_url, file_name: display_name,
+file_description: file_description, file_size: file_size, file_extension: file_extension, has_description:
+file_description ? true : false, is_dark: is_dark } %}

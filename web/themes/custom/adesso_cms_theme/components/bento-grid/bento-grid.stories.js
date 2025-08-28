@@ -177,9 +177,9 @@ Modern bento grid layout component for showcasing features, services, or content
 - **code**: Code examples with syntax highlighting
 - **chart**: Chart/visualization placeholders
 - **text**: Text-only content (default)
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -193,13 +193,15 @@ export const Default = {
   args: {
     eyebrow: 'Platform Features',
     title: 'Everything You Need to Succeed',
-    description: 'Our comprehensive platform provides all the tools and features you need to build, deploy, and scale your applications.',
+    description:
+      'Our comprehensive platform provides all the tools and features you need to build, deploy, and scale your applications.',
     background_color: 'bg-gray-50',
     container_classes: '',
     grid_items: [
       {
         title: 'Mobile Friendly',
-        description: 'Responsive design that works perfectly on all devices, from smartphones to desktops.',
+        description:
+          'Responsive design that works perfectly on all devices, from smartphones to desktops.',
         content_type: 'image',
         image: 'https://picsum.photos/600/800?random=1',
         image_alt: 'Mobile interface preview',
@@ -208,7 +210,8 @@ export const Default = {
       },
       {
         title: 'High Performance',
-        description: 'Lightning-fast response times and optimized workflows for maximum efficiency.',
+        description:
+          'Lightning-fast response times and optimized workflows for maximum efficiency.',
         content_type: 'image',
         image: 'https://picsum.photos/400/300?random=2',
         image_alt: 'Performance metrics dashboard',
@@ -217,7 +220,8 @@ export const Default = {
       },
       {
         title: 'Enterprise Security',
-        description: 'Bank-grade security with end-to-end encryption and compliance certifications.',
+        description:
+          'Bank-grade security with end-to-end encryption and compliance certifications.',
         content_type: 'image',
         image: 'https://picsum.photos/300/200?random=3',
         image_alt: 'Security dashboard',
@@ -226,7 +230,8 @@ export const Default = {
       },
       {
         title: 'Powerful APIs',
-        description: 'RESTful APIs with comprehensive documentation and SDKs for all major languages.',
+        description:
+          'RESTful APIs with comprehensive documentation and SDKs for all major languages.',
         content_type: 'code',
         code_content: `const response = await fetch('/api/users', {
   method: 'POST',
@@ -255,12 +260,14 @@ export const Services = {
   args: {
     eyebrow: 'Our Services',
     title: 'Comprehensive Digital Solutions',
-    description: 'From strategy to implementation, we provide end-to-end digital transformation services.',
+    description:
+      'From strategy to implementation, we provide end-to-end digital transformation services.',
     background_color: 'bg-white',
     grid_items: [
       {
         title: 'Web Development',
-        description: 'Modern, scalable web applications built with cutting-edge technologies and best practices.',
+        description:
+          'Modern, scalable web applications built with cutting-edge technologies and best practices.',
         content_type: 'image',
         image: 'https://picsum.photos/600/800?random=4',
         image_alt: 'Web development workflow',
@@ -268,13 +275,15 @@ export const Services = {
       },
       {
         title: 'Cloud Solutions',
-        description: 'Migrate to the cloud with confidence using our proven methodologies and expertise.',
+        description:
+          'Migrate to the cloud with confidence using our proven methodologies and expertise.',
         content_type: 'chart',
         grid_area: 'top-right',
       },
       {
         title: 'Data Analytics',
-        description: 'Transform your data into actionable insights with advanced analytics and visualization.',
+        description:
+          'Transform your data into actionable insights with advanced analytics and visualization.',
         content_type: 'image',
         image: 'https://picsum.photos/300/200?random=5',
         image_alt: 'Analytics dashboard',
@@ -282,7 +291,8 @@ export const Services = {
       },
       {
         title: 'API Integration',
-        description: 'Seamlessly connect your systems with third-party services and internal applications.',
+        description:
+          'Seamlessly connect your systems with third-party services and internal applications.',
         content_type: 'code',
         code_content: `import requests
 from typing import Dict, Any
@@ -314,12 +324,14 @@ export const TeamShowcase = {
   args: {
     eyebrow: 'Our Team',
     title: 'Meet the Experts Behind Our Success',
-    description: 'Passionate professionals dedicated to delivering exceptional results for our clients.',
+    description:
+      'Passionate professionals dedicated to delivering exceptional results for our clients.',
     background_color: 'bg-gradient-to-br from-blue-50 to-indigo-100',
     grid_items: [
       {
         title: 'Sarah Johnson',
-        description: 'Chief Technology Officer with 15+ years of experience leading innovative development teams.',
+        description:
+          'Chief Technology Officer with 15+ years of experience leading innovative development teams.',
         content_type: 'image',
         image: 'https://picsum.photos/600/800?random=6',
         image_alt: 'Sarah Johnson photo',
@@ -327,7 +339,8 @@ export const TeamShowcase = {
       },
       {
         title: 'Michael Chen',
-        description: 'Lead Developer specializing in cloud-native applications and microservices architecture.',
+        description:
+          'Lead Developer specializing in cloud-native applications and microservices architecture.',
         content_type: 'image',
         image: 'https://picsum.photos/400/300?random=7',
         image_alt: 'Michael Chen photo',
@@ -335,7 +348,8 @@ export const TeamShowcase = {
       },
       {
         title: 'Emily Rodriguez',
-        description: 'UX Designer focused on creating intuitive and accessible user experiences.',
+        description:
+          'UX Designer focused on creating intuitive and accessible user experiences.',
         content_type: 'image',
         image: 'https://picsum.photos/300/200?random=8',
         image_alt: 'Emily Rodriguez photo',
@@ -343,7 +357,8 @@ export const TeamShowcase = {
       },
       {
         title: 'David Park',
-        description: 'DevOps Engineer ensuring reliable, scalable, and secure infrastructure for all projects.',
+        description:
+          'DevOps Engineer ensuring reliable, scalable, and secure infrastructure for all projects.',
         content_type: 'image',
         image: 'https://picsum.photos/500/700?random=9',
         image_alt: 'David Park photo',
@@ -358,13 +373,15 @@ export const TechStack = {
   args: {
     eyebrow: 'Technology Stack',
     title: 'Built with Modern Technologies',
-    description: 'We use the latest tools and frameworks to deliver cutting-edge solutions.',
+    description:
+      'We use the latest tools and frameworks to deliver cutting-edge solutions.',
     background_color: 'bg-gray-900',
     container_classes: 'text-white',
     grid_items: [
       {
         title: 'Frontend Framework',
-        description: 'React with TypeScript for type-safe, maintainable user interfaces.',
+        description:
+          'React with TypeScript for type-safe, maintainable user interfaces.',
         content_type: 'code',
         code_content: `import React, { useState, useEffect } from 'react';
 import { User } from '../types/User';
@@ -398,7 +415,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
       },
       {
         title: 'Backend API',
-        description: 'Node.js with Express for scalable server-side applications.',
+        description:
+          'Node.js with Express for scalable server-side applications.',
         content_type: 'code',
         code_content: `const express = require('express');
 const { body, validationResult } = require('express-validator');
@@ -452,7 +470,8 @@ model Post {
       },
       {
         title: 'DevOps & Deployment',
-        description: 'Docker containers with Kubernetes orchestration for scalable deployments.',
+        description:
+          'Docker containers with Kubernetes orchestration for scalable deployments.',
         content_type: 'code',
         code_content: `apiVersion: apps/v1
 kind: Deployment
@@ -500,11 +519,13 @@ spec:
 export const ProductFeatures = {
   args: {
     title: 'Powerful Features for Modern Businesses',
-    description: 'Everything you need to streamline operations and accelerate growth.',
+    description:
+      'Everything you need to streamline operations and accelerate growth.',
     grid_items: [
       {
         title: 'Advanced Analytics',
-        description: 'Get deep insights into your business performance with real-time dashboards and custom reports.',
+        description:
+          'Get deep insights into your business performance with real-time dashboards and custom reports.',
         content_type: 'image',
         image: 'https://picsum.photos/600/800?random=10',
         image_alt: 'Analytics dashboard interface',
@@ -512,7 +533,8 @@ export const ProductFeatures = {
       },
       {
         title: 'Team Collaboration',
-        description: 'Built-in tools for seamless communication and project management across teams.',
+        description:
+          'Built-in tools for seamless communication and project management across teams.',
         content_type: 'image',
         image: 'https://picsum.photos/400/300?random=11',
         image_alt: 'Team collaboration interface',
@@ -520,13 +542,15 @@ export const ProductFeatures = {
       },
       {
         title: 'Automated Workflows',
-        description: 'Save time with intelligent automation that handles repetitive tasks.',
+        description:
+          'Save time with intelligent automation that handles repetitive tasks.',
         content_type: 'chart',
         grid_area: 'middle-right',
       },
       {
         title: 'API-First Design',
-        description: 'Integrate with any system using our comprehensive REST API and webhooks.',
+        description:
+          'Integrate with any system using our comprehensive REST API and webhooks.',
         content_type: 'code',
         code_content: `// Webhook handler example
 app.post('/webhooks/payment', (req, res) => {

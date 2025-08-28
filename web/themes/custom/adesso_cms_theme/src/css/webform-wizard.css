@@ -30,7 +30,7 @@
 }
 
 .webform-progress-tracker::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 20px;
   left: 40px;
@@ -79,7 +79,7 @@
 }
 
 .webform-progress-tracker .progress-step.is-complete .step-number::after {
-  content: '✓';
+  content: "✓";
   position: absolute;
   font-size: 20px;
 }
@@ -244,7 +244,7 @@
 }
 
 .draft-saved-indicator::before {
-  content: '✓';
+  content: "✓";
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -269,9 +269,16 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 /* Mobile Responsiveness */
@@ -279,38 +286,38 @@
   .webform-progress-tracker {
     padding: 0;
   }
-  
+
   .webform-progress-tracker .progress-step .step-title {
     font-size: 0.75rem;
     max-width: 80px;
   }
-  
+
   .webform-progress-tracker .progress-step .step-number {
     width: 32px;
     height: 32px;
     font-size: 0.875rem;
   }
-  
+
   .summary-container dl {
     grid-template-columns: 1fr;
     gap: 0.25rem;
   }
-  
+
   .summary-container dt {
     text-align: left;
     font-weight: 600;
     margin-top: 0.75rem;
   }
-  
+
   .summary-container dt:first-child {
     margin-top: 0;
   }
-  
+
   .webform-wizard-buttons {
     flex-direction: column-reverse;
     gap: 1rem;
   }
-  
+
   .webform-wizard-buttons button {
     width: 100%;
   }
@@ -330,7 +337,7 @@
   .webform-progress-tracker .progress-step .step-number {
     border-width: 4px;
   }
-  
+
   .webform-wizard-buttons button {
     border: 2px solid currentColor;
   }
@@ -343,7 +350,7 @@
   .draft-saved-indicator {
     display: none;
   }
-  
+
   .webform-wizard-page {
     display: block !important;
     page-break-inside: avoid;

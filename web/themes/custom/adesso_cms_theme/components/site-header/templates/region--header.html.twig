@@ -1,37 +1,12 @@
-{#
- * @file
- * Drupal region template for header region
- * Integrates the site-header SDC component
- #}
-
-{%
-  set attributes = attributes.addClass([
-    'region',
-    'region-' ~ region|clean_class,
-  ])
-%}
-
-{# Get site configuration for header component #}
-{% set site_config = drupal_config('system.site') %}
-{% set theme_config = drupal_config('adesso_cms_theme.settings') %}
-
-{# Build menu items from main navigation #}
-{% set main_menu = drupal_menu('main') %}
-
-{# Menu items from main navigation #}
-
-{# Include the site-header component with proper data #}
-{% include 'adesso_cms_theme:site-header' with {
-  site_name: site_config.name,
-  site_logo: theme_config.logo.url ?? '/themes/custom/adesso_cms_theme/logo.svg',
-  show_logo: theme_config.features.logo ?? true,
-  show_site_name: theme_config.features.name ?? true,
-  menu_items: main_menu,
-  show_login_button: user.isAnonymous(),
-  show_register_button: user.isAnonymous() and drupal_config('user.settings').register != 'admin_only',
-  login_url: path('user.login'),
-  register_url: path('user.register'),
-  enable_mega_menu: theme_config.features.mega_menu ?? false,
-  background_color: theme_config.header.background_color ?? 'white',
-  current_path: url('<current>').toString(),
-} %}
+{# * @file * Drupal region template for header region * Integrates the site-header SDC component #} {% set attributes =
+attributes.addClass([ 'region', 'region-' ~ region|clean_class, ]) %} {# Get site configuration for header component #}
+{% set site_config = drupal_config('system.site') %} {% set theme_config = drupal_config('adesso_cms_theme.settings') %}
+{# Build menu items from main navigation #} {% set main_menu = drupal_menu('main') %} {# Menu items from main navigation
+#} {# Include the site-header component with proper data #} {% include 'adesso_cms_theme:site-header' with { site_name:
+site_config.name, site_logo: theme_config.logo.url ?? '/themes/custom/adesso_cms_theme/logo.svg', show_logo:
+theme_config.features.logo ?? true, show_site_name: theme_config.features.name ?? true, menu_items: main_menu,
+show_login_button: user.isAnonymous(), show_register_button: user.isAnonymous() and
+drupal_config('user.settings').register != 'admin_only', login_url: path('user.login'), register_url:
+path('user.register'), enable_mega_menu: theme_config.features.mega_menu ?? false, background_color:
+theme_config.header.background_color ?? 'white', current_path: url('
+<current>').toString(), } %}</current>

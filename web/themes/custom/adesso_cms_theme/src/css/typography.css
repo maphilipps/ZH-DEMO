@@ -1,7 +1,6 @@
 @plugin '@tailwindcss/typography';
 
 @layer utilities {
-
   .prose {
     --tw-prose-body: var(--color-neutral);
     --tw-prose-headings: var(--color-neutral);

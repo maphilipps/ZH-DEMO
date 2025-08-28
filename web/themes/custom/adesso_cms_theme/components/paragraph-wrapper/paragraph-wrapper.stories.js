@@ -7,7 +7,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'A reusable wrapper component for paragraph content with theme support and semantic HTML structure. Provides consistent spacing, theming, and layout controls for wrapped content.',
+        component:
+          'A reusable wrapper component for paragraph content with theme support and semantic HTML structure. Provides consistent spacing, theming, and layout controls for wrapped content.',
       },
     },
   },
@@ -53,7 +54,15 @@ export default {
       name: 'HTML Tag',
       description: 'HTML tag to use for the wrapper element',
       control: { type: 'select' },
-      options: ['div', 'section', 'article', 'aside', 'main', 'header', 'footer'],
+      options: [
+        'div',
+        'section',
+        'article',
+        'aside',
+        'main',
+        'header',
+        'footer',
+      ],
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'div' },
@@ -83,20 +92,22 @@ export default {
 };
 
 // Template function
-const Template = (args) => {
+const Template = args => {
   return include('./paragraph-wrapper.twig', args);
 };
 
 // Default story
 export const Default = Template.bind({});
 Default.args = {
-  content: '<p>This is sample paragraph content wrapped by the paragraph wrapper component. It demonstrates the default styling and behavior.</p>',
+  content:
+    '<p>This is sample paragraph content wrapped by the paragraph wrapper component. It demonstrates the default styling and behavior.</p>',
 };
 
 // With theme
 export const WithTheme = Template.bind({});
 WithTheme.args = {
-  content: '<p>This paragraph wrapper has a dark theme applied, showcasing the theming capabilities of the component.</p>',
+  content:
+    '<p>This paragraph wrapper has a dark theme applied, showcasing the theming capabilities of the component.</p>',
   theme: 'dark',
 };
 
@@ -109,34 +120,39 @@ SmallSpacing.args = {
 
 export const LargeSpacing = Template.bind({});
 LargeSpacing.args = {
-  content: '<p>This wrapper uses large spacing for more breathing room around the content.</p>',
+  content:
+    '<p>This wrapper uses large spacing for more breathing room around the content.</p>',
   spacing: 'large',
 };
 
 // Different width constraints
 export const NarrowWidth = Template.bind({});
 NarrowWidth.args = {
-  content: '<p>This content is constrained to a narrow width, ideal for focused reading experiences or sidebar content.</p>',
+  content:
+    '<p>This content is constrained to a narrow width, ideal for focused reading experiences or sidebar content.</p>',
   width: 'narrow',
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
-  content: '<p>This content spans the full available width, perfect for hero sections or full-bleed layouts.</p>',
+  content:
+    '<p>This content spans the full available width, perfect for hero sections or full-bleed layouts.</p>',
   width: 'full',
 };
 
 // Semantic HTML tags
 export const AsSection = Template.bind({});
 AsSection.args = {
-  content: '<h2>Section Content</h2><p>This wrapper uses a semantic section tag instead of a div, improving accessibility and HTML structure.</p>',
+  content:
+    '<h2>Section Content</h2><p>This wrapper uses a semantic section tag instead of a div, improving accessibility and HTML structure.</p>',
   tag: 'section',
   theme: 'primary',
 };
 
 export const AsArticle = Template.bind({});
 AsArticle.args = {
-  content: '<h1>Article Title</h1><p>This wrapper uses the article tag, perfect for standalone content that could be distributed independently.</p>',
+  content:
+    '<h1>Article Title</h1><p>This wrapper uses the article tag, perfect for standalone content that could be distributed independently.</p>',
   tag: 'article',
   spacing: 'large',
 };
@@ -167,10 +183,11 @@ ComplexContent.args = {
 // Accessibility example
 export const WithAccessibility = Template.bind({});
 WithAccessibility.args = {
-  content: '<p>This wrapper includes accessibility attributes for better screen reader support.</p>',
+  content:
+    '<p>This wrapper includes accessibility attributes for better screen reader support.</p>',
   tag: 'section',
   attributes: {
-    'role': 'region',
+    role: 'region',
     'aria-label': 'Sample content region',
     'aria-describedby': 'wrapper-description',
   },

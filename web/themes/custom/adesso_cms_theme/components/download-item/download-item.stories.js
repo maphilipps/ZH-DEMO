@@ -1,7 +1,7 @@
 /**
  * @file
  * Storybook stories for Download Item component.
- * 
+ *
  * The Download Item component provides an accessible file download interface
  * with file metadata display, intelligent size formatting, and consistent styling.
  * Designed for use in file lists, document libraries, and resource centers.
@@ -142,7 +142,8 @@ The component automatically formats file sizes:
     },
     file_name: {
       name: 'File Name',
-      description: 'Display name shown to users in the download list (required)',
+      description:
+        'Display name shown to users in the download list (required)',
       control: { type: 'text' },
       table: {
         type: { summary: 'string' },
@@ -152,7 +153,8 @@ The component automatically formats file sizes:
     },
     file_description: {
       name: 'File Description',
-      description: 'Optional descriptive text providing file context and purpose',
+      description:
+        'Optional descriptive text providing file context and purpose',
       control: { type: 'text' },
       table: {
         type: { summary: 'string' },
@@ -162,12 +164,13 @@ The component automatically formats file sizes:
     },
     file_size: {
       name: 'File Size (bytes)',
-      description: 'File size in bytes - automatically formatted to KB, MB, or GB',
-      control: { 
-        type: 'range', 
-        min: 1024, 
+      description:
+        'File size in bytes - automatically formatted to KB, MB, or GB',
+      control: {
+        type: 'range',
+        min: 1024,
         max: 5368709120, // 5GB
-        step: 1024 
+        step: 1024,
       },
       table: {
         type: { summary: 'number' },
@@ -181,21 +184,53 @@ The component automatically formats file sizes:
       control: { type: 'select' },
       options: [
         // Documents
-        'pdf', 'doc', 'docx', 'txt', 'rtf', 
-        // Spreadsheets  
-        'xls', 'xlsx', 'csv', 'ods',
+        'pdf',
+        'doc',
+        'docx',
+        'txt',
+        'rtf',
+        // Spreadsheets
+        'xls',
+        'xlsx',
+        'csv',
+        'ods',
         // Presentations
-        'ppt', 'pptx', 'odp',
+        'ppt',
+        'pptx',
+        'odp',
         // Archives
-        'zip', 'rar', '7z', 'tar', 'gz',
+        'zip',
+        'rar',
+        '7z',
+        'tar',
+        'gz',
         // Media - Video
-        'mp4', 'avi', 'mov', 'wmv', 'flv', 'webm',
+        'mp4',
+        'avi',
+        'mov',
+        'wmv',
+        'flv',
+        'webm',
         // Media - Audio
-        'mp3', 'wav', 'flac', 'aac', 'ogg',
+        'mp3',
+        'wav',
+        'flac',
+        'aac',
+        'ogg',
         // Images
-        'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'bmp', 'tiff',
+        'jpg',
+        'jpeg',
+        'png',
+        'gif',
+        'svg',
+        'webp',
+        'bmp',
+        'tiff',
         // Data
-        'json', 'xml', 'sql', 'yaml'
+        'json',
+        'xml',
+        'sql',
+        'yaml',
       ],
       table: {
         type: { summary: 'string' },
@@ -234,7 +269,8 @@ export const Default = {
   args: {
     file_url: '/files/annual-report-2024.pdf',
     file_name: 'Annual Report 2024',
-    file_description: 'Comprehensive overview of company performance and financial results for the fiscal year',
+    file_description:
+      'Comprehensive overview of company performance and financial results for the fiscal year',
     file_size: 2567890, // ~2.5MB
     file_extension: 'pdf',
     is_dark: false,
@@ -282,7 +318,8 @@ export const WordDocument = {
   args: {
     file_url: '/files/contract-template.docx',
     file_name: 'Service Contract Template',
-    file_description: 'Standard service agreement template with customizable terms and conditions for client projects',
+    file_description:
+      'Standard service agreement template with customizable terms and conditions for client projects',
     file_size: 445632, // ~435KB
     file_extension: 'docx',
     is_dark: false,
@@ -305,7 +342,8 @@ export const LegacyWordDocument = {
   args: {
     file_url: '/files/legacy-policy.doc',
     file_name: 'Company Policy Manual',
-    file_description: 'Legacy document containing established company policies and procedures',
+    file_description:
+      'Legacy document containing established company policies and procedures',
     file_size: 1456782, // ~1.4MB
     file_extension: 'doc',
     is_dark: false,
@@ -314,7 +352,8 @@ export const LegacyWordDocument = {
   parameters: {
     docs: {
       description: {
-        story: 'Legacy .doc format for older Microsoft Word documents that require backward compatibility.',
+        story:
+          'Legacy .doc format for older Microsoft Word documents that require backward compatibility.',
       },
     },
   },
@@ -327,7 +366,8 @@ export const TextDocument = {
   args: {
     file_url: '/files/readme.txt',
     file_name: 'Installation Instructions',
-    file_description: 'Step-by-step installation guide with system requirements and troubleshooting tips',
+    file_description:
+      'Step-by-step installation guide with system requirements and troubleshooting tips',
     file_size: 12847, // ~12KB
     file_extension: 'txt',
     is_dark: false,
@@ -336,7 +376,8 @@ export const TextDocument = {
   parameters: {
     docs: {
       description: {
-        story: 'Plain text document showing small file size, commonly used for technical documentation.',
+        story:
+          'Plain text document showing small file size, commonly used for technical documentation.',
       },
     },
   },
@@ -351,7 +392,8 @@ export const ExcelSpreadsheet = {
   args: {
     file_url: '/files/budget-calculator.xlsx',
     file_name: 'Project Budget Calculator',
-    file_description: 'Interactive budget planning tool with automated calculations, charts, and forecasting models',
+    file_description:
+      'Interactive budget planning tool with automated calculations, charts, and forecasting models',
     file_size: 1234567, // ~1.2MB
     file_extension: 'xlsx',
     is_dark: false,
@@ -374,7 +416,8 @@ export const CSVDataFile = {
   args: {
     file_url: '/files/customer-data.csv',
     file_name: 'Customer Database Export',
-    file_description: 'Complete customer database export with contact information, purchase history, and preferences',
+    file_description:
+      'Complete customer database export with contact information, purchase history, and preferences',
     file_size: 3456789, // ~3.3MB
     file_extension: 'csv',
     is_dark: false,
@@ -383,7 +426,8 @@ export const CSVDataFile = {
   parameters: {
     docs: {
       description: {
-        story: 'CSV data file showing database export, commonly used for data analysis and import/export operations.',
+        story:
+          'CSV data file showing database export, commonly used for data analysis and import/export operations.',
       },
     },
   },
@@ -398,7 +442,8 @@ export const PowerPointPresentation = {
   args: {
     file_url: '/files/company-overview.pptx',
     file_name: 'Company Overview Presentation',
-    file_description: 'Executive presentation covering mission, vision, services, achievements, and strategic roadmap',
+    file_description:
+      'Executive presentation covering mission, vision, services, achievements, and strategic roadmap',
     file_size: 8945623, // ~8.5MB
     file_extension: 'pptx',
     is_dark: false,
@@ -423,7 +468,8 @@ export const ZipArchive = {
   args: {
     file_url: '/files/project-assets.zip',
     file_name: 'Project Assets Archive',
-    file_description: 'Complete collection of project files, images, documentation, and source code',
+    file_description:
+      'Complete collection of project files, images, documentation, and source code',
     file_size: 15678432, // ~15MB
     file_extension: 'zip',
     is_dark: false,
@@ -432,7 +478,8 @@ export const ZipArchive = {
   parameters: {
     docs: {
       description: {
-        story: 'ZIP archive file download for multiple file collections, commonly used for project deliverables.',
+        story:
+          'ZIP archive file download for multiple file collections, commonly used for project deliverables.',
       },
     },
   },
@@ -445,7 +492,8 @@ export const RarArchive = {
   args: {
     file_url: '/files/backup-data.rar',
     file_name: 'System Backup Archive',
-    file_description: 'Compressed system backup containing configuration files, databases, and application data',
+    file_description:
+      'Compressed system backup containing configuration files, databases, and application data',
     file_size: 89456231, // ~85MB
     file_extension: 'rar',
     is_dark: false,
@@ -454,7 +502,8 @@ export const RarArchive = {
   parameters: {
     docs: {
       description: {
-        story: 'RAR archive showing high compression for large backup files, displays file size in MB format.',
+        story:
+          'RAR archive showing high compression for large backup files, displays file size in MB format.',
       },
     },
   },
@@ -469,7 +518,8 @@ export const VideoFile = {
   args: {
     file_url: '/files/training-video.mp4',
     file_name: 'Complete Training Course Video',
-    file_description: 'Full-length training course covering all essential topics with practical examples and demonstrations',
+    file_description:
+      'Full-length training course covering all essential topics with practical examples and demonstrations',
     file_size: 187654321, // ~179MB
     file_extension: 'mp4',
     is_dark: false,
@@ -478,7 +528,8 @@ export const VideoFile = {
   parameters: {
     docs: {
       description: {
-        story: 'Large video file download showing proper size formatting for media files in MB range.',
+        story:
+          'Large video file download showing proper size formatting for media files in MB range.',
       },
     },
   },
@@ -491,7 +542,8 @@ export const AudioFile = {
   args: {
     file_url: '/files/podcast-episode.mp3',
     file_name: 'Technology Trends Podcast - Episode 42',
-    file_description: 'Weekly tech podcast discussing AI developments, industry news, and expert interviews',
+    file_description:
+      'Weekly tech podcast discussing AI developments, industry news, and expert interviews',
     file_size: 45678912, // ~43.5MB
     file_extension: 'mp3',
     is_dark: false,
@@ -500,7 +552,8 @@ export const AudioFile = {
   parameters: {
     docs: {
       description: {
-        story: 'Audio file download showing typical podcast file size and metadata formatting.',
+        story:
+          'Audio file download showing typical podcast file size and metadata formatting.',
       },
     },
   },
@@ -513,7 +566,8 @@ export const ImageFile = {
   args: {
     file_url: '/files/high-res-photo.jpg',
     file_name: 'Corporate Headshots Collection',
-    file_description: 'Professional high-resolution photographs for marketing materials and press releases',
+    file_description:
+      'Professional high-resolution photographs for marketing materials and press releases',
     file_size: 12456789, // ~11.9MB
     file_extension: 'jpg',
     is_dark: false,
@@ -522,7 +576,8 @@ export const ImageFile = {
   parameters: {
     docs: {
       description: {
-        story: 'High-resolution image file showing typical photography file sizes for professional use.',
+        story:
+          'High-resolution image file showing typical photography file sizes for professional use.',
       },
     },
   },
@@ -537,7 +592,8 @@ export const EnterpriseFile = {
   args: {
     file_url: '/files/enterprise-backup.tar.gz',
     file_name: 'Enterprise System Backup',
-    file_description: 'Complete enterprise system backup including databases, applications, configurations, and user data',
+    file_description:
+      'Complete enterprise system backup including databases, applications, configurations, and user data',
     file_size: 2147483648, // 2GB
     file_extension: 'gz',
     is_dark: false,
@@ -546,7 +602,8 @@ export const EnterpriseFile = {
   parameters: {
     docs: {
       description: {
-        story: 'Enterprise-level file showing GB-range formatting for very large files like system backups.',
+        story:
+          'Enterprise-level file showing GB-range formatting for very large files like system backups.',
       },
     },
   },
@@ -559,7 +616,8 @@ export const UltraLargeFile = {
   args: {
     file_url: '/files/data-archive.tar',
     file_name: 'Historical Data Archive',
-    file_description: 'Complete historical data archive spanning 10 years of business operations, analytics, and records',
+    file_description:
+      'Complete historical data archive spanning 10 years of business operations, analytics, and records',
     file_size: 5368709120, // 5GB
     file_extension: 'tar',
     is_dark: false,
@@ -568,7 +626,8 @@ export const UltraLargeFile = {
   parameters: {
     docs: {
       description: {
-        story: 'Ultra-large file example showing maximum file size handling and GB formatting with decimal precision.',
+        story:
+          'Ultra-large file example showing maximum file size handling and GB formatting with decimal precision.',
       },
     },
   },
@@ -583,7 +642,8 @@ export const JSONDataFile = {
   args: {
     file_url: '/files/api-schema.json',
     file_name: 'API Schema Definition',
-    file_description: 'Complete API schema with endpoints, request/response formats, and authentication details',
+    file_description:
+      'Complete API schema with endpoints, request/response formats, and authentication details',
     file_size: 156789, // ~153KB
     file_extension: 'json',
     is_dark: false,
@@ -592,7 +652,8 @@ export const JSONDataFile = {
   parameters: {
     docs: {
       description: {
-        story: 'JSON data file commonly used for API documentation, configuration files, and data exchange.',
+        story:
+          'JSON data file commonly used for API documentation, configuration files, and data exchange.',
       },
     },
   },
@@ -605,7 +666,8 @@ export const XMLDataFile = {
   args: {
     file_url: '/files/config-settings.xml',
     file_name: 'System Configuration File',
-    file_description: 'Application configuration settings including database connections, security policies, and feature flags',
+    file_description:
+      'Application configuration settings including database connections, security policies, and feature flags',
     file_size: 78432, // ~76KB
     file_extension: 'xml',
     is_dark: false,
@@ -614,7 +676,8 @@ export const XMLDataFile = {
   parameters: {
     docs: {
       description: {
-        story: 'XML configuration file showing structured data format commonly used in enterprise applications.',
+        story:
+          'XML configuration file showing structured data format commonly used in enterprise applications.',
       },
     },
   },
@@ -629,7 +692,8 @@ export const DarkTheme = {
   args: {
     file_url: '/files/whitepaper.pdf',
     file_name: 'Industry Whitepaper 2024',
-    file_description: 'In-depth analysis of market trends, competitive landscape, and future predictions for the industry',
+    file_description:
+      'In-depth analysis of market trends, competitive landscape, and future predictions for the industry',
     file_size: 3456789, // ~3.3MB
     file_extension: 'pdf',
     is_dark: true,
@@ -644,9 +708,7 @@ export const DarkTheme = {
     },
     backgrounds: {
       default: 'dark',
-      values: [
-        { name: 'dark', value: '#1f2937' },
-      ],
+      values: [{ name: 'dark', value: '#1f2937' }],
     },
   },
 };
@@ -660,7 +722,8 @@ export const LastItem = {
   args: {
     file_url: '/files/privacy-policy.pdf',
     file_name: 'Privacy Policy',
-    file_description: 'Updated privacy policy effective January 2024 with GDPR compliance and data protection guidelines',
+    file_description:
+      'Updated privacy policy effective January 2024 with GDPR compliance and data protection guidelines',
     file_size: 234567, // ~229KB
     file_extension: 'pdf',
     is_dark: false,
@@ -682,7 +745,7 @@ export const LastItem = {
  * Complete file list showcase
  */
 export const FileListShowcase = {
-  render: (args) => `
+  render: args => `
     <div class="max-w-2xl mx-auto">
       <h2 class="text-xl font-semibold mb-4">Document Downloads</h2>
       <ul class="divide-y divide-gray-200 border border-gray-200 rounded-lg bg-white">
@@ -690,30 +753,31 @@ export const FileListShowcase = {
           {
             file_url: '/files/annual-report-2024.pdf',
             file_name: 'Annual Report 2024',
-            file_description: 'Comprehensive financial and operational overview',
+            file_description:
+              'Comprehensive financial and operational overview',
             file_size: 2567890,
-            file_extension: 'pdf'
+            file_extension: 'pdf',
           },
           {
             file_url: '/files/budget-template.xlsx',
             file_name: 'Project Budget Template',
             file_description: 'Excel template with automated calculations',
             file_size: 445632,
-            file_extension: 'xlsx'
+            file_extension: 'xlsx',
           },
           {
             file_url: '/files/presentation-deck.pptx',
             file_name: 'Q4 Results Presentation',
             file_description: 'Executive presentation with charts and analysis',
             file_size: 8945623,
-            file_extension: 'pptx'
+            file_extension: 'pptx',
           },
           {
             file_url: '/files/training-video.mp4',
             file_name: 'Employee Onboarding Video',
             file_description: 'Complete training course for new hires',
             file_size: 187654321,
-            file_extension: 'mp4'
+            file_extension: 'mp4',
           },
           {
             file_url: '/files/policy-handbook.pdf',
@@ -721,9 +785,11 @@ export const FileListShowcase = {
             file_description: 'Updated policies and procedures guide',
             file_size: 1456782,
             file_extension: 'pdf',
-            is_last: true
-          }
-        ].map((item, index, array) => `
+            is_last: true,
+          },
+        ]
+          .map(
+            (item, index, array) => `
           <li class="py-4 ${index === array.length - 1 ? '' : 'border-b border-gray-200'}">
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
               <div class="flex-shrink-0">
@@ -749,7 +815,9 @@ export const FileListShowcase = {
               </div>
             </div>
           </li>
-        `).join('')}
+        `
+          )
+          .join('')}
       </ul>
     </div>
   `,
@@ -763,4 +831,3 @@ export const FileListShowcase = {
     controls: { disable: true },
   },
 };
-

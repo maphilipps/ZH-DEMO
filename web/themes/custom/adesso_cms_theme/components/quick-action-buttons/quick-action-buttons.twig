@@ -1,105 +1,95 @@
-{#
-/**
- * @file
- * Quick Action Buttons Component for Event Review Dashboard
- * 
- * Swiss-compliant action buttons with accessibility features
- *
- * @param {string|number} event_id - Event node ID
- * @param {string} current_status - Current moderation state
- * @param {boolean} show_approve - Show approve button
- * @param {boolean} show_reject - Show reject button  
- * @param {boolean} compact - Use compact layout
- * @param {string} csrf_token - CSRF token for security
- */
-#}
+{# /** * @file * Quick Action Buttons Component for Event Review Dashboard * * Swiss-compliant action buttons with
+accessibility features * * @param {string|number} event_id - Event node ID * @param {string} current_status - Current
+moderation state * @param {boolean} show_approve - Show approve button * @param {boolean} show_reject - Show reject
+button * @param {boolean} compact - Use compact layout * @param {string} csrf_token - CSRF token for security */ #} {%
+set event_id = event_id|default('') %} {% set current_status = current_status|default('draft') %} {% set show_approve =
+show_approve|default(true) %} {% set show_reject = show_reject|default(true) %} {% set compact = compact|default(false)
+%} {% set csrf_token = csrf_token|default('') %} {# Only show actions for draft status #} {% if current_status ==
+'draft' and (show_approve or show_reject) %}
 
-{% set event_id = event_id|default('') %}
-{% set current_status = current_status|default('draft') %}
-{% set show_approve = show_approve|default(true) %}
-{% set show_reject = show_reject|default(true) %}
-{% set compact = compact|default(false) %}
-{% set csrf_token = csrf_token|default('') %}
-
-{# Only show actions for draft status #}
-{% if current_status == 'draft' and (show_approve or show_reject) %}
-  
-  <div class="quick-action-buttons flex {% if compact %}space-x-1{% else %}space-x-2{% endif %}" data-event-id="{{ event_id }}">
-    
-    {% if show_approve %}
-      <button
-        type="button"
-        class="approve-btn {% if compact %}px-2 py-1 text-xs{% else %}px-3 py-1.5 text-sm{% endif %} 
-               bg-green-600 hover:bg-green-700 text-white font-medium rounded-md 
-               transition-colors duration-200 focus:outline-none focus:ring-2 
-               focus:ring-green-500 focus:ring-offset-1 min-h-[44px] min-w-[44px]
-               disabled:opacity-50 disabled:cursor-not-allowed"
-        data-action="approve"
-        data-event-id="{{ event_id }}"
-        data-csrf-token="{{ csrf_token }}"
-        aria-label="Veranstaltung genehmigen: Event {{ event_id }}"
-        title="Event genehmigen"
-      >
-        <svg class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} {% if not compact %}mr-1{% endif %} flex-shrink-0" 
-             fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        {% if not compact %}
-          <span class="hidden sm:inline">Genehmigen</span>
-        {% endif %}
-      </button>
-    {% endif %}
-
-    {% if show_reject %}
-      <button
-        type="button"
-        class="reject-btn {% if compact %}px-2 py-1 text-xs{% else %}px-3 py-1.5 text-sm{% endif %}
-               bg-red-600 hover:bg-red-700 text-white font-medium rounded-md 
-               transition-colors duration-200 focus:outline-none focus:ring-2 
-               focus:ring-red-500 focus:ring-offset-1 min-h-[44px] min-w-[44px]
-               disabled:opacity-50 disabled:cursor-not-allowed"
-        data-action="reject"
-        data-event-id="{{ event_id }}"
-        data-csrf-token="{{ csrf_token }}"
-        aria-label="Veranstaltung ablehnen: Event {{ event_id }}"
-        title="Event ablehnen"
-      >
-        <svg class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} {% if not compact %}mr-1{% endif %} flex-shrink-0" 
-             fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-        {% if not compact %}
-          <span class="hidden sm:inline">Ablehnen</span>
-        {% endif %}
-      </button>
-    {% endif %}
-
-  </div>
-
-{% elseif current_status == 'published' %}
-  
-  {# Show approved status #}
-  <div class="flex items-center {% if compact %}space-x-1{% else %}space-x-2{% endif %} text-green-700">
-    <svg class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} flex-shrink-0" 
-         fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div
+  class="quick-action-buttons flex {% if compact %}space-x-1{% else %}space-x-2{% endif %}"
+  data-event-id="{{ event_id }}"
+>
+  {% if show_approve %}
+  <button
+    type="button"
+    class="approve-btn {% if compact %}px-2 py-1 text-xs{% else %}px-3 py-1.5 text-sm{% endif %} bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 min-h-[44px] min-w-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+    data-action="approve"
+    data-event-id="{{ event_id }}"
+    data-csrf-token="{{ csrf_token }}"
+    aria-label="Veranstaltung genehmigen: Event {{ event_id }}"
+    title="Event genehmigen"
+  >
+    <svg
+      class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} {% if not compact %}mr-1{% endif %} flex-shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
     </svg>
     {% if not compact %}
-      <span class="text-sm font-medium">Genehmigt</span>
+    <span class="hidden sm:inline">Genehmigen</span>
     {% endif %}
-  </div>
-
-{% elseif current_status == 'rejected' %}
-  
-  {# Show rejected status #}
-  <div class="flex items-center {% if compact %}space-x-1{% else %}space-x-2{% endif %} text-red-700">
-    <svg class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} flex-shrink-0" 
-         fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  </button>
+  {% endif %} {% if show_reject %}
+  <button
+    type="button"
+    class="reject-btn {% if compact %}px-2 py-1 text-xs{% else %}px-3 py-1.5 text-sm{% endif %} bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 min-h-[44px] min-w-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+    data-action="reject"
+    data-event-id="{{ event_id }}"
+    data-csrf-token="{{ csrf_token }}"
+    aria-label="Veranstaltung ablehnen: Event {{ event_id }}"
+    title="Event ablehnen"
+  >
+    <svg
+      class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} {% if not compact %}mr-1{% endif %} flex-shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
     </svg>
     {% if not compact %}
-      <span class="text-sm font-medium">Abgelehnt</span>
+    <span class="hidden sm:inline">Ablehnen</span>
     {% endif %}
-  </div>
+  </button>
+  {% endif %}
+</div>
+
+{% elseif current_status == 'published' %} {# Show approved status #}
+<div class="flex items-center {% if compact %}space-x-1{% else %}space-x-2{% endif %} text-green-700">
+  <svg
+    class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} flex-shrink-0"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+  </svg>
+  {% if not compact %}
+  <span class="text-sm font-medium">Genehmigt</span>
+  {% endif %}
+</div>
+
+{% elseif current_status == 'rejected' %} {# Show rejected status #}
+<div class="flex items-center {% if compact %}space-x-1{% else %}space-x-2{% endif %} text-red-700">
+  <svg
+    class="{% if compact %}w-3 h-3{% else %}w-4 h-4{% endif %} flex-shrink-0"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+  {% if not compact %}
+  <span class="text-sm font-medium">Abgelehnt</span>
+  {% endif %}
+</div>
 
 {% endif %}

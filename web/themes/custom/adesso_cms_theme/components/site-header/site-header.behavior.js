@@ -72,7 +72,7 @@
     // Focus first focusable element in dropdown
     const firstFocusable = dropdown.querySelector(
       'a[href], button:not([disabled]), input:not([disabled]), ' +
-      '[tabindex]:not([tabindex="-1"])'
+        '[tabindex]:not([tabindex="-1"])'
     );
     if (firstFocusable) {
       setTimeout(() => firstFocusable.focus(), 100);
@@ -92,8 +92,7 @@
 
     if (isExpanded) {
       closeDropdown(trigger, dropdown);
-    }
-    else {
+    } else {
       openDropdown(trigger, dropdown);
     }
   }
@@ -113,8 +112,7 @@
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
         announceToScreenReader('Mobile menu closed');
-      }
-      else {
+      } else {
         // Open mobile menu
         mobileMenu.classList.remove('hidden');
         mobileToggle.setAttribute('aria-expanded', 'true');
@@ -181,11 +179,11 @@
   function initializeKeyboardNavigation(header) {
     const focusableElements = header.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), ' +
-      'select:not([disabled]), textarea:not([disabled]), ' +
-      '[tabindex]:not([tabindex="-1"])'
+        'select:not([disabled]), textarea:not([disabled]), ' +
+        '[tabindex]:not([tabindex="-1"])'
     );
 
-    focusableElements.forEach((element) => {
+    focusableElements.forEach(element => {
       element.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
           // Handle tab navigation within dropdowns
@@ -193,12 +191,14 @@
             '[data-dropdown-toggle][aria-expanded="true"]'
           );
           if (openDropdown) {
-            const dropdownId = openDropdown.getAttribute('data-dropdown-toggle');
+            const dropdownId = openDropdown.getAttribute(
+              'data-dropdown-toggle'
+            );
             const dropdown = header.querySelector(`#${dropdownId}`);
             if (dropdown && !dropdown.classList.contains('hidden')) {
               const dropdownFocusable = dropdown.querySelectorAll(
                 'a[href], button:not([disabled]), input:not([disabled]), ' +
-                '[tabindex]:not([tabindex="-1"])'
+                  '[tabindex]:not([tabindex="-1"])'
               );
 
               if (dropdownFocusable.length > 0) {
@@ -209,12 +209,10 @@
                     e.preventDefault();
                     dropdownFocusable[dropdownFocusable.length - 1].focus();
                   }
-                }
-                else {
+                } else {
                   // Tab
-                  const lastElement = dropdownFocusable[
-                    dropdownFocusable.length - 1
-                  ];
+                  const lastElement =
+                    dropdownFocusable[dropdownFocusable.length - 1];
                   if (document.activeElement === lastElement) {
                     e.preventDefault();
                     dropdownFocusable[0].focus();
@@ -260,8 +258,7 @@
         mobileMenu.classList.add('hidden');
         mobileToggle.setAttribute('aria-expanded', 'false');
         announceToScreenReader('Mobile menu closed');
-      }
-      else {
+      } else {
         // Open mobile menu
         mobileMenu.classList.remove('hidden');
         mobileToggle.setAttribute('aria-expanded', 'true');
@@ -355,8 +352,7 @@
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           toggleDropdown(trigger, dropdown);
-        }
-        else if (e.key === 'Escape') {
+        } else if (e.key === 'Escape') {
           closeDropdown(trigger, dropdown);
         }
       });
@@ -395,7 +391,9 @@
             const { Dropdown } = window.Flowbite;
             if (Dropdown) {
               // Initialize all dropdowns with Flowbite
-              const dropdownElements = header.querySelectorAll('[data-dropdown-toggle]');
+              const dropdownElements = header.querySelectorAll(
+                '[data-dropdown-toggle]'
+              );
               dropdownElements.forEach(triggerEl => {
                 const targetId = triggerEl.getAttribute('data-dropdown-toggle');
                 const targetEl = document.getElementById(targetId);
@@ -403,14 +401,15 @@
                   // Create new Dropdown instance
                   try {
                     new Dropdown(targetEl, triggerEl, {
-                      placement: triggerEl.getAttribute('data-dropdown-placement') || 'bottom-start',
+                      placement:
+                        triggerEl.getAttribute('data-dropdown-placement') ||
+                        'bottom-start',
                       triggerType: 'click',
                       offsetSkidding: 0,
                       offsetDistance: 4,
                       delay: 0
                     });
-                  }
-                  catch (e) {
+                  } catch (e) {
                     console.warn('Failed to initialize Flowbite dropdown:', e);
                   }
                 }
@@ -436,15 +435,4 @@
       });
     }
   };
-
-
-
-
-
-
-
-
-
-
-
 })(Drupal);

@@ -121,9 +121,9 @@ Flexible section header component with optional pre-headline and configurable te
   additional_classes: 'mb-8 border-b pb-4'
 } %}
 \`\`\`
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -176,14 +176,14 @@ export const CenterAligned = {
 
 // All alignment variations
 export const AlignmentVariations = {
-  render: (args) => `
+  render: args => `
     <div class="space-y-8">
       <div class="border-b pb-4">
         ${Component({
           ...args,
           title: 'Left Aligned Header',
           pre_headline: 'Left Alignment',
-          alignment: 'left'
+          alignment: 'left',
         })}
       </div>
       <div class="border-b pb-4">
@@ -191,7 +191,7 @@ export const AlignmentVariations = {
           ...args,
           title: 'Center Aligned Header',
           pre_headline: 'Center Alignment',
-          alignment: 'center'
+          alignment: 'center',
         })}
       </div>
       <div class="border-b pb-4">
@@ -199,7 +199,7 @@ export const AlignmentVariations = {
           ...args,
           title: 'Right Aligned Header',
           pre_headline: 'Right Alignment',
-          alignment: 'right'
+          alignment: 'right',
         })}
       </div>
     </div>

@@ -1,0 +1,291 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Unified Card
+status: stable
+group: Molecules
+description: 'Unified card component supporting all card use cases through flexible content sections.'
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: 'Card Variant'
+      description: 'Visual theme variant for the card'
+      enum:
+        - default
+        - highlighted
+        - dark
+        - bordered
+        - minimal
+        - stat
+        - pricing
+        - damage-report
+      default: default
+    layout:
+      type: string
+      title: 'Card Layout'
+      description: 'Layout arrangement of card content'
+      enum:
+        - vertical
+        - horizontal
+        - compact
+        - featured
+        - stat-center
+        - stat-left
+      default: vertical
+    size:
+      type: string
+      title: 'Card Size'
+      description: 'Padding and sizing variant'
+      enum:
+        - sm
+        - md
+        - lg
+        - xl
+      default: md
+    clickable:
+      type: boolean
+      title: 'Clickable Card'
+      description: 'Whether the entire card is clickable'
+      default: false
+    url:
+      type:
+        - string
+        - 'null'
+      title: 'Card URL'
+      description: 'URL for clickable card wrapper'
+    content_sections:
+      type: array
+      title: 'Content Sections'
+      description: 'Array of content sections to render in order'
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            title: 'Section Type'
+            description: 'Type of content section'
+            enum:
+              - media
+              - header
+              - tags
+              - body
+              - features
+              - metadata
+              - actions
+              - priority-badge
+              - status-badge
+          content:
+            type: object
+            title: 'Section Content'
+            description: 'Content specific to section type'
+            properties:
+              # Media section
+              media:
+                type: string
+                title: 'Media Content'
+                description: 'Rendered media HTML (images, SVGs, icons)'
+              media_link:
+                type: string
+                title: 'Media Link'
+                description: 'URL for media wrapper link'
+              aspect_ratio:
+                type: string
+                title: 'Media Aspect Ratio'
+                description: 'CSS aspect ratio for media container'
+                default: '16/9'
+              
+              # Header section
+              title:
+                type: string
+                title: 'Title'
+                description: 'Card title text'
+              title_level:
+                type: string
+                title: 'Title Level'
+                description: 'Heading level for title'
+                enum: ['1', '2', '3', '4', '5', '6']
+                default: '3'
+              title_link:
+                type: string
+                title: 'Title Link'
+                description: 'URL for title link'
+              subtitle:
+                type: string
+                title: 'Subtitle'
+                description: 'Secondary title text'
+              pre_headline:
+                type: string
+                title: 'Pre-headline'
+                description: 'Small text above main title'
+              metadata:
+                type: array
+                title: 'Header Metadata'
+                description: 'Array of metadata items (ID, date, etc.)'
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    icon:
+                      type: string
+              
+              # Tags section
+              tags:
+                type: array
+                title: 'Tags'
+                description: 'Array of tag objects'
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    variant:
+                      type: string
+                      enum:
+                        - default
+                        - secondary
+                        - success
+                        - warning
+                        - danger
+                      default: default
+              
+              # Body section  
+              description:
+                type: string
+                title: 'Description'
+                description: 'Main card description/summary'
+              body:
+                type: string
+                title: 'Body Text'
+                description: 'Additional body content'
+              
+              # Features section (for pricing cards)
+              features:
+                type: array
+                title: 'Features List'
+                description: 'Array of feature items'
+                items:
+                  type: string
+              features_label:
+                type: string
+                title: 'Features Label'
+                description: 'Label for features section'
+                default: 'Includes'
+              
+              # Metadata section (for damage reports, assignments, etc.)
+              items:
+                type: array
+                title: 'Metadata Items'
+                description: 'Array of metadata items with icons'
+                items:
+                  type: object
+                  properties:
+                    icon:
+                      type: string
+                    label:
+                      type: string
+                    value:
+                      type: string
+              
+              # Actions section
+              actions:
+                type: array
+                title: 'Action Buttons'
+                description: 'Array of button objects'
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    text:
+                      type: string
+                    variant:
+                      type: string
+                      enum:
+                        - default
+                        - destructive
+                        - outline
+                        - secondary
+                        - ghost
+                        - link
+                      default: default
+                    size:
+                      type: string
+                      enum:
+                        - sm
+                        - default
+                        - lg
+                      default: default
+                    icon:
+                      type: string
+              
+              # Priority badge section (for damage reports)
+              priority:
+                type: string
+                title: 'Priority Level'
+                description: 'Priority level for damage reports'
+                enum:
+                  - niedrig
+                  - mittel
+                  - hoch
+                  - notfall
+              
+              # Status badge section
+              status:
+                type: string
+                title: 'Status'
+                description: 'Current status'
+              status_size:
+                type: string
+                title: 'Status Badge Size'
+                description: 'Size of status badge'
+                enum:
+                  - sm
+                  - default
+                  - lg
+                default: default
+          
+          position:
+            type: string
+            title: 'Section Position'
+            description: 'Position modifier for section placement'
+            enum:
+              - top
+              - center
+              - bottom
+              - left
+              - right
+              - overlay
+            default: center
+          
+          modifier:
+            type: string
+            title: 'Section Modifier'
+            description: 'Additional CSS classes for section'
+    
+    modifier:
+      type: string
+      title: 'Card Modifier'
+      description: 'Additional CSS classes for card container'
+    
+    attributes:
+      type: object
+      title: 'Drupal Attributes'
+      description: 'Drupal Attribute object for additional HTML attributes'
+
+# Replaces these legacy components
+replaces:
+  - card-group/card
+  - stat-card
+  - damage-report-card
+  - pricing-card
+  - recent-card-item
+
+slots:
+  content:
+    title: 'Card Content'
+    description: 'Additional content slot for complex custom content'
+libraryDependencies:
+  - adesso_cms_theme/global

@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Paragraph configuration mixin for setting up wrapper variables.
+ *
+ * This mixin extracts theme, spacing, and wrapper configuration from paragraph entities
+ * and sets up variables for use with the paragraph-wrapper component.
+ *
+ * Expected variables:
+ * - paragraph: The paragraph entity
+ * - default_theme: Default theme variant (default: 'light')
+ * - default_tag: Default HTML tag (default: 'div')
+ *
+ * Sets variables:
+ * - wrapper_theme: Theme variant for the wrapper
+ * - wrapper_spacing: Spacing configuration
+ * - wrapper_tag: HTML tag for the wrapper
+ * - wrapper_css_class: CSS classes for the wrapper
+ */
+#}
+
+{# Extract theme from paragraph field or use default #}
+{% if paragraph.field_theme is defined and paragraph.field_theme.value %}
+  {% set wrapper_theme = paragraph.field_theme.value %}
+{% else %}
+  {% set wrapper_theme = default_theme|default('light') %}
+{% endif %}
+
+{# Extract spacing from paragraph field or use default #}
+{% if paragraph.field_spacing is defined and paragraph.field_spacing.value %}
+  {% set wrapper_spacing = paragraph.field_spacing.value %}
+{% else %}
+  {% set wrapper_spacing = 'medium' %}
+{% endif %}
+
+{# Extract HTML tag from paragraph field or use default #}
+{% if paragraph.field_wrapper_tag is defined and paragraph.field_wrapper_tag.value %}
+  {% set wrapper_tag = paragraph.field_wrapper_tag.value %}
+{% else %}
+  {% set wrapper_tag = default_tag|default('div') %}
+{% endif %}
+
+{# Build CSS class string from paragraph bundle and custom classes #}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  paragraph.view_mode ? 'paragraph--view-mode--' ~ paragraph.view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{# Add any custom CSS classes from field_css_class if available #}
+{% if paragraph.field_css_class is defined and paragraph.field_css_class.value %}
+  {% set wrapper_css_class = wrapper_css_class|merge([paragraph.field_css_class.value]) %}
+{% endif %}
+
+{# Convert array to string #}
+{% set wrapper_css_class = wrapper_css_class|join(' ')|trim %}

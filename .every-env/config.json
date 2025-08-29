@@ -1,0 +1,18 @@
+{
+  "agents": {
+    "claude": {
+      "args": [
+        "--dangerously-skip-permissions"
+      ],
+      "cli": "claude"
+    }
+  },
+  "createdAt": "2025-08-29T14:55:43.780Z",
+  "defaultAgent": "claude",
+  "projectType": "basic",
+  "signals": [
+    "package.json"
+  ],
+  "updatedAt": "2025-08-29T14:55:43.783Z",
+  "version": 1
+}

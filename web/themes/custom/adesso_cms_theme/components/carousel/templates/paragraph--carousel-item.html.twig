@@ -1,6 +1,17 @@
-{# /** * @file * Carousel item paragraph template (child component - no wrapper needed). */ #} {{ title_prefix }} {{
-title_suffix }} {% embed '@adesso_cms_theme/carousel/carousel-item.twig' with { "item": { "media": content.field_media }
+{#
+/**
+ * @file
+ * Carousel item paragraph template (child component - no wrapper needed).
+ */
+#}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
+{% include '@adesso_cms_theme/carousel/carousel-item.twig' with {
+  "item": {
+    "media": content.field_media,
+    "title": content.field_title,
+    "summary": content.field_summary
+  }
 } only %}
-  {% block title %}{{ content.field_title }}{% endblock %}
-  {% block summary %}{{ content.field_summary }}{% endblock %}
-{% endembed %}

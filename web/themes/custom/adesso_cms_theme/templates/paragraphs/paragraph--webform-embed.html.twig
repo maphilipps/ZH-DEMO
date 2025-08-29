@@ -12,16 +12,9 @@
  */
 #}
 
-{# Webform embed paragraph configuration #}
-{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
-{% set wrapper_spacing = paragraph.field_spacing.value|default('large') %}
-{% set wrapper_tag = 'section' %}
-{% set wrapper_css_class = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
-]|join(' ') %}
+{# Webform embed paragraph configuration - uses large spacing by default #}
+{% set default_spacing = 'large' %}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
 
 {# Embed the paragraph-wrapper component using slots #}
 {% embed 'adesso_cms_theme:paragraph-wrapper' with {

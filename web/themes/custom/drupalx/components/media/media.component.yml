@@ -1,0 +1,14 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Media
+description: Editorial/Media component
+props:
+  type: object
+  properties:
+    media:
+      type: string
+      title: media
+      description: Define the media content, either an image or a video
+    modifier:
+      type: string
+      title: modifier
+      description: CSS modifier classes for styling the media container

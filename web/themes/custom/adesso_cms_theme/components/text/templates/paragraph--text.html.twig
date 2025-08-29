@@ -5,35 +5,20 @@
  */
 #}
 
-{# Text paragraph configuration #}
-{% set wrapper_theme = paragraph.field_theme.value|default('light') %}
-{% set wrapper_spacing = 'none' %}
-{% set wrapper_tag = 'section' %}
-{% set wrapper_css_class = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished'
-]|join(' ') %}
-
-{# Embed the paragraph-wrapper component using slots #}
-{% embed 'adesso_cms_theme:paragraph-wrapper' with {
-  theme: wrapper_theme,
-  spacing: wrapper_spacing,
-  tag: wrapper_tag,
-  className: wrapper_css_class,
-  attributes: attributes
-} %}
-
-{% block content %}
+{# Text paragraph configuration - uses light theme and no spacing by default #}
+{% set default_theme = 'light' %}
+{% set default_spacing = 'none' %}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %} {# Embed the paragraph-wrapper component using slots #} {% embed
+'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className:
+wrapper_css_class, attributes: attributes } %} {% block content %}
 <div class="py-8 px-4 mx-auto container lg:py-16">
   {% embed 'adesso_cms_theme:text' with {
     text_layout: paragraph.field_text_layout.value ?? 'left',
+    title: paragraph.field_title.value,
     is_dark: wrapper_theme == 'dark',
+    pre_headline: paragraph.field_pre_headline.value,
     body: content.field_body,
   } only %}
-    {% block title %}{{ content.field_title }}{% endblock %}
-    {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
     {% block primary_action %}
       {% if paragraph.field_link.entity %}
         {{ content.field_link }}
@@ -46,6 +31,4 @@
     {% endblock %}
   {% endembed %}
 </div>
-{% endblock %}
-
-{% endembed %}
+{% endblock %} {% endembed %}

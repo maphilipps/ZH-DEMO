@@ -1,23 +1,46 @@
-{# /** * @file * Media paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Media paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set wrapper_spacing =
-paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [
-'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~
-view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %} {# Embed the
-paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
-spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix %}
-{{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %}
+{#
+/**
+ * @file
+ * Media paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Media paragraph configuration #}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block prefix %}
+  {{ title_prefix }}
+  {{ title_suffix }}
+{% endblock %}
+
+{% block content %}
 <div class="py-8 px-4 mx-auto container lg:py-16">
-  {% if content.field_pre_headline or content.field_title %} {% embed 'adesso_cms_theme:section-header' with { 
-    alignment: 'center',
-    title_tag: 'h2', 
-    pre_headline_tag: 'span', 
-    title_visual_level: '2', 
-    pre_headline_visual_level: '3',
-    additional_classes: 'mb-8' 
+  {% if content.field_pre_headline or content.field_title %}
+    {% include 'adesso_cms_theme:section-header' with {
+      title: content.field_title,
+      pre_headline: content.field_pre_headline,
+      alignment: 'center',
+      title_tag: 'h2',
+      pre_headline_tag: 'span',
+      title_visual_level: '2',
+      pre_headline_visual_level: '3',
+      additional_classes: 'mb-8'
+    } %}
+  {% endif %}
+  
+  {% include 'adesso_cms_theme:media' with {
+    media: content.field_media,
   } only %}
-    {% block title %}{{ content.field_title }}{% endblock %}
-    {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
-  {% endembed %} {% endif %} {% include 'adesso_cms_theme:media' with { media: content.field_media, }
-  only %}
 </div>
-{% endblock %} {% endembed %}
+{% endblock %}
+
+{% endembed %}

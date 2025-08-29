@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ */
+#}
+{%
+  set classes = [
+    'mb-6 lg:mb-12',
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article{{attributes.addClass(classes)}}>
+	<div{{content_attributes.addClass('containermx-autopx-4')}}>
+		<div class="mb-7 rounded shadow">
+			{{ content.field_media }}
+		</div>
+
+		<div class="max-w-screen-lg mx-auto mb-2 lg:mb-10">
+			{% if content.field_subhead %}
+				<div class="uppercase mb-2 text-sm tracking-wide text-dark">
+					{{ content.field_subhead }}
+				</div>
+			{% endif %}
+
+			{{ title_prefix }}
+			{%
+        include 'drupalx_theme:heading' with {
+          "heading": {
+            "title": label,
+            "heading_level": 1,
+            "modifier": "scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl mb-8"
+          }
+        } only
+      %}
+			{{ title_suffix }}
+
+			{% if content.field_lead %}
+				<div class="prose prose-lg lead mb-4 max-w-screen-lg mx-auto">
+					{{ content.field_lead }}
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="prose prose-lg max-w-screen-md mx-auto">
+			{{ content|without('field_subhead', 'field_lead', 'field_tags', 'field_authors', 'field_media') }}
+		</div>
+	</div>
+</article>

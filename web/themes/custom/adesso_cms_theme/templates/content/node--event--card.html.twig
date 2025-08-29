@@ -78,6 +78,6 @@
 
 {% if node.field_description.value %}
   <p class="relative z-10 mt-2 text-sm/6 text-gray-300 line-clamp-2">
-    {{ node.field_description.value|striptags|raw }}
+    {{ node.field_description.value|striptags }}
   </p>
 {% endif %}

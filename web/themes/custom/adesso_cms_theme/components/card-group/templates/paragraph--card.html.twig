@@ -5,17 +5,24 @@
  */
 #}
 
+{% set heading_content = {
+  icon: content.field_icon,
+  as: 'h3',
+  modifier: 'mb-3'
+} %}
+
 {% set link = content.field_link ? {
-  "url": content.field_link.0.url,
-  "title": content.field_link.0.title
+  url: content.field_link.0.url,
+  title: content.field_link.0.title
 } : {} %}
 
 {% embed '@adesso_cms_theme/card-group/card.twig' with {
   modifier: '',
-  summary_text: content.field_summary
+  heading: heading_content,
+  link: link
 } only %}
   {% block title %}{{ content.field_title }}{% endblock %}
-  {% block icon %}{{ content.field_icon }}{% endblock %}
+  {% block summary %}{{ content.field_summary }}{% endblock %}
   {% block media %}
     {# Use field template rendering instead of raw field array - RAW FIELD ARRAY FIX #}
     <div class="relative">

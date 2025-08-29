@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Form Progress
 description: Visual progress bar for Infrastructure Damage Report workflow stages
+status: stable
+group: Utilities
 props:
   type: object
   properties:
@@ -34,3 +36,5 @@ slots:
     title: 'Content'
     description: 'Component content'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

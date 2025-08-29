@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Embed
 description: Editorial/Embed component
+status: stable
+group: Utilities
 props:
   type: object
   properties:
@@ -19,3 +21,5 @@ slots:
   pre_headline:
     title: Pre Headline
     description: The pre-headline content above the title
+libraryDependencies:
+  - adesso_cms_theme/global

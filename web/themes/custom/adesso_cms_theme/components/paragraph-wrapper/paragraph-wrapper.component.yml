@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Paragraph Wrapper
 description: A reusable wrapper component for paragraph content with theme support and semantic HTML structure
+status: stable
+group: Templates
 props:
   type: object
   properties:
@@ -54,9 +56,10 @@ props:
 slots:
   content:
     title: Content
-
     description: The main paragraph content to be wrapped
   prefix:
     title: Prefix
     required: false
     description: Frontend editing tools and prefix content
+libraryDependencies:
+  - adesso_cms_theme/global

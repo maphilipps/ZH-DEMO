@@ -1,6 +1,7 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Carousel Item
 status: stable
+group: Molecules
 description: 'A single carousel item component.'
 props:
   type: object
@@ -64,3 +65,5 @@ slots:
     title: 'Item Actions'
     description: 'Action buttons or links for the item'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

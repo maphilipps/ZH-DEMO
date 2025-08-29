@@ -1,6 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Recent Cards
 status: stable
+group: Organisms
 description: 'A container component for displaying a grid of recent content cards.'
 props:
   type: object
@@ -40,3 +41,5 @@ slots:
     title: 'Section Actions'
     description: 'View all links and section actions'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

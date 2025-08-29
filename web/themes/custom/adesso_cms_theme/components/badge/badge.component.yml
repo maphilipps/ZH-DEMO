@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Badge
 description: General/Badge component
+status: stable
+group: Atoms
 props:
   type: object
   properties:
@@ -56,3 +58,5 @@ slots:
     title: 'Badge Content'
     description: 'Badge text and icon content'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

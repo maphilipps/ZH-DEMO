@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Pricing
 description: Editorial/Pricing component
+status: stable
+group: Organisms
 props:
   type: object
   properties:
@@ -81,3 +83,5 @@ slots:
   actions:
     description: 'Additional actions for pricing section'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

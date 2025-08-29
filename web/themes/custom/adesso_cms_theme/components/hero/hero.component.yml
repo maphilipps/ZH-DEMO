@@ -18,7 +18,7 @@ props:
         - image_bottom_split
         - video_background
 status: stable
-group: organism
+group: Organisms
 
 slots:
   pre_headline:
@@ -53,3 +53,5 @@ slots:
     title: 'Content Overlay'
     description: 'Additional overlay content for video backgrounds'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

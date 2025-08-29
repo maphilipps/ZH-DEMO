@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Site Header
 description: Components/Site Header component
+status: stable
+group: Organisms
 props:
   type: object
   properties:
@@ -86,6 +88,8 @@ props:
                   type: boolean
                   description: Whether item is in active trail
                   default: false
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     site-header.behavior.js:

@@ -17,7 +17,7 @@ props:
       title: className
       description: Additional CSS classes for the container
 status: stable
-group: molecule
+group: Molecules
 
 slots:
   content:
@@ -32,3 +32,5 @@ slots:
     title: 'Secondary Action'
     description: 'Secondary call-to-action button/link area for field_link2'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

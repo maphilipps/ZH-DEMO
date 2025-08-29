@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Card Group
 description: Editorial/Card Group component
+status: stable
+group: Organisms
 props:
   type: object
   properties:
@@ -26,3 +28,5 @@ slots:
   card_items:
     title: Card Items
     description: The card items content
+libraryDependencies:
+  - adesso_cms_theme/global

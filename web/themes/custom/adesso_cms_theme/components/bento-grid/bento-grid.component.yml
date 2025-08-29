@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Bento Grid
 description: Layout/Bento Grid component
+status: stable
+group: Organisms
 props:
   type: object
   properties:
@@ -69,6 +71,8 @@ props:
           custom_classes:
             type: string
             description: Additional CSS classes for the item
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     bento-grid.behavior.js:

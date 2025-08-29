@@ -2,6 +2,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Carousel
 description: Interactive carousel component with Swiper.js integration, supporting both fullscreen and cards layouts
+status: stable
+group: Organisms
 props:
   type: object
   properties:
@@ -54,6 +56,8 @@ slots:
     title: 'Carousel Actions'
     description: 'Additional actions or links related to carousel'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     carousel.behavior.js:

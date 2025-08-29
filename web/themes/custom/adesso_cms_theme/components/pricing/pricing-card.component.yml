@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Pricing Card
 status: stable
-group: molecule
+group: Molecules
 description: 'A single pricing card component.'
 props:
   type: object
@@ -24,3 +24,5 @@ slots:
     title: 'Primary Action'
     description: 'Primary call-to-action button/link area for field_link'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

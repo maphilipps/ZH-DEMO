@@ -1,6 +1,7 @@
 {# pricing-card.twig #}
 <div class=" bg-card text-card-foreground flex h-full flex-col justify-between p-4 sm:p-6 md:p-8">
   <div>
+<<<<<<< HEAD
     {% include 'adesso_cms_theme:heading' with {
       heading: {
         title: pre_headline,
@@ -40,4 +41,20 @@
       } %}
     </div>
   {% endif %}
+=======
+    {% block title %}
+      {# Title slot for pricing card title and pre-headline #}
+    {% endblock %}
+    <div class="my-4 sm:my-8 h-px w-full bg-border"></div>
+    <p class="text-sm sm:text-base">{{ includes_label|default('Includes') }}:</p>
+    <div class="mb-6 sm:mb-8 mt-3 sm:mt-4 grid grid-cols-1 gap-y-3 sm:gap-y-4 py-2">
+      {% block content %}
+        {# Content slot for pricing card features and content #}
+      {% endblock %}
+    </div>
+  </div>
+  <div>
+    {% block primary_action %}{% endblock %}
+  </div>
+>>>>>>> main
 </div>

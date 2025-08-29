@@ -6,11 +6,6 @@ group: Layout
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: Page Title
-      description: The main title for the landing page
-      default: ""
     description:
       type: string
       title: Page Description
@@ -53,3 +48,20 @@ props:
       default: false
 libraryDependencies:
   - adesso_cms_theme/global
+
+slots:
+  navigation:
+    description: 'Main navigation menu content'
+    required: false
+  title:
+    description: 'Main landing page heading content (field_title, etc.)'
+    required: true
+  content:
+    description: 'Description and introductory content'
+    required: false
+  actions:
+    description: 'Call-to-action buttons and links'
+    required: false
+  background:
+    description: 'Custom background media or elements'
+    required: false

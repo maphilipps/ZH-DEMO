@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Badge
 description: General/Badge component
 props:
@@ -50,3 +50,9 @@ props:
       description: Additional CSS classes
   required:
     - text
+
+slots:
+  content:
+    title: 'Badge Content'
+    description: 'Badge text and icon content'
+    required: true

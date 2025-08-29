@@ -12,3 +12,9 @@ props:
       type: string
       title: modifier
       description: CSS modifier classes for styling the media container
+
+slots:
+  content:
+    title: 'Content'
+    description: 'Media content'
+    required: true

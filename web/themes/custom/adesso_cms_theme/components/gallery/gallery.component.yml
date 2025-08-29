@@ -4,32 +4,25 @@ description: Editorial/Gallery component
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: The pre-headline of the gallery lightbox component
-    section_title:
-      type: string
-      title: section_title
-      description: The title of the gallery lightbox component
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether to use dark theme styling
     sub_headline:
       type: string
       title: sub_headline
       description: The sub-headline of the gallery lightbox component
-    gallery_items:
-      type: object
-      title: gallery_items
-      description: Define the array of gallery lightbox items
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     modifier:
       type: string
       title: modifier
       description: The modifier class to apply to the gallery lightbox component
+slots:
+  title:
+    title: Title
+    description: The main title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title
+  gallery_items:
+    title: Gallery Items
+    description: The gallery media items content

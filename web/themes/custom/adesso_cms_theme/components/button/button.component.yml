@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Button
 description: General/Button component
 props:
@@ -38,6 +38,7 @@ props:
         - sm
         - lg
         - icon
+<<<<<<< HEAD
     type:
       type: string
       title: type
@@ -52,3 +53,11 @@ props:
       title: modifier
       description: Additional CSS classes to apply to the button
       pattern: '^[a-zA-Z0-9\s\-_:\/]*$'
+=======
+
+slots:
+  content:
+    title: 'Button Content'
+    description: 'Button text and icon content'
+    required: true
+>>>>>>> main

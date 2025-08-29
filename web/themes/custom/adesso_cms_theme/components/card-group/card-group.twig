@@ -1,16 +1,20 @@
 {% set grid_cols = columns == 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3' %}
+
 <div class="py-4 px-4 mx-auto container lg:py-16">
-  {% if pre_headline or section_title %} {% include 'adesso_cms_theme:section-header' with { title: section_title,
-  pre_headline: pre_headline, alignment: 'center', title_tag: 'h2', pre_headline_tag: 'span', title_visual_level: '2',
-  pre_headline_visual_level: '3', additional_classes: 'mb-6 md:mb-8' } %} {% endif %}
+  {% if has_slot('pre_headline') or has_slot('section_title') %} 
+    {% include 'adesso_cms_theme:section-header' with { 
+      title: get_slot('section_title'),
+      pre_headline: get_slot('pre_headline'), 
+      alignment: 'center', 
+      title_tag: 'h2', 
+      pre_headline_tag: 'span', 
+      title_visual_level: '2',
+      pre_headline_visual_level: '3', 
+      additional_classes: 'mb-6 md:mb-8' 
+    } %} 
+  {% endif %}
+  
   <div class="grid grid-cols-1 {{ grid_cols }} lg:gap-6">
-    {% block card_items %} {% for item in card_items %}
-    <div class="mb-4">
-      {% if item.type == 'custom' %} {% include 'adesso_cms_theme:card' with { media: item.media, heading: item.heading,
-      summary_text: item.summary_text, link: item.link, tags: item.tags, border: false, } only %} {% else %} {% include
-      'adesso_cms_theme:stat-card' with { media: item.media, heading: item.heading, body: item.body, link: item.link,
-      icon: item.icon, border: false, } only %} {% endif %}
-    </div>
-    {% endfor %} {% endblock %}
+    {{ get_slot('card_items') }}
   </div>
 </div>

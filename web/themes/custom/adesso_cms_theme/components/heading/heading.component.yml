@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Heading
 description: Flexible heading component with Drupal attributes support
 props:
@@ -56,3 +56,9 @@ props:
           type: object
           title: Drupal Attributes
           description: Drupal Attribute object for additional HTML attributes
+
+slots:
+  content:
+    title: 'Heading Content'
+    description: 'Heading text and icon content'
+    required: true

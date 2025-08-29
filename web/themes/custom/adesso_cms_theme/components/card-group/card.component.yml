@@ -5,10 +5,6 @@ description: 'A single card component.'
 props:
   type: object
   properties:
-    media:
-      type: string
-      title: 'Media'
-      description: 'Media content for the card'
     media_link:
       type: string
       title: 'Media Link'
@@ -64,3 +60,21 @@ props:
         text:
           type: string
           title: 'Text'
+
+slots:
+  media:
+    title: 'Card Media'
+    description: 'Media content for the card'
+    required: false
+  title:
+    title: 'Card Title'
+    description: 'Main card title and heading'
+    required: false
+  content:
+    title: 'Card Content'
+    description: 'Card body and summary content'
+    required: false
+  actions:
+    title: 'Card Actions'
+    description: 'Action buttons and links'
+    required: false

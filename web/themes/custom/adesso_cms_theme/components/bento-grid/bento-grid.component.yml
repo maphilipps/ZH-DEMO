@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Bento Grid
 description: Layout/Bento Grid component
 props:
@@ -8,10 +8,6 @@ props:
       type: string
       title: eyebrow
       description: Small text above the main title
-    title:
-      type: string
-      title: title
-      description: Main heading for the bento grid section
     description:
       type: string
       title: description
@@ -81,3 +77,21 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  pre_headline:
+    title: 'Pre-headline Content'
+    description: 'Eyebrow text above main title'
+    required: false
+  title:
+    title: 'Grid Title'
+    description: 'Main title for the bento grid section'
+    required: false
+  content:
+    title: 'Grid Description'
+    description: 'Description content for the grid section'
+    required: false
+  items:
+    title: 'Grid Items'
+    description: 'Individual grid item content'
+    required: true

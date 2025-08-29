@@ -1,14 +1,51 @@
-{# /** * @file * Hero paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Hero paragraph
-configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set wrapper_spacing =
-paragraph.field_spacing.value|default('none') %} {% set wrapper_tag = 'section' %} {% set wrapper_css_class = [
-'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ? 'paragraph--view-mode--' ~
-view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %} {# Embed the
-paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme: wrapper_theme,
-spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {% block prefix
-%}{% endblock %} {% block content %} {% include 'adesso_cms_theme:hero' with { hero_layout:
-paragraph.field_hero_layout.value, media: content.field_media, is_dark: wrapper_theme == 'dark', pre_headline:
-paragraph.field_pre_headline.value, heading: paragraph.field_heading.value|render|striptags, text:
-content.field_summary, link: content.field_link[0]['#url'] ? { url: content.field_link[0]['#url']|render|striptags,
-title: content.field_link[0]['#title']|render|striptags, } : {}, link2: content.field_link2[0]['#url'] ? { url:
-content.field_link2[0]['#url']|render|striptags, title: content.field_link2[0]['#title']|render|striptags, } : {}, }
-only %} {% endblock %} {% endembed %}
+{#
+/**
+ * @file
+ * Hero paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Hero paragraph configuration #}
+{% set wrapper_theme = paragraph.field_theme.value|default('default') %}
+{% set wrapper_spacing = paragraph.field_spacing.value|default('none') %}
+{% set wrapper_tag = 'section' %}
+{% set wrapper_css_class = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]|join(' ') %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with {
+  theme: wrapper_theme,
+  spacing: wrapper_spacing,
+  tag: wrapper_tag,
+  className: wrapper_css_class,
+  attributes: attributes
+} %}
+
+{% block prefix %}{% endblock %}
+
+{% block content %}
+  {% embed 'adesso_cms_theme:hero' with {
+    hero_layout: paragraph.field_hero_layout.value,
+    is_dark: wrapper_theme == 'dark',
+    pre_headline: paragraph.field_pre_headline.value,
+    heading: paragraph.field_heading.value,
+    text: content.field_summary,
+  } only %}
+    {% block background_media %}
+      {# Use field template rendering instead of raw field array - maintains proper Drupal rendering pipeline #}
+      {{ content.field_media }}
+    {% endblock %}
+    {% block primary_action %}
+      {{ content.field_link }}
+    {% endblock %}
+    {% block secondary_action %}
+      {{ content.field_link2 }}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% endembed %}

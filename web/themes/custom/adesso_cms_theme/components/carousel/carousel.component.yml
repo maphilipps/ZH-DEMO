@@ -1,52 +1,34 @@
 # Manually maintained schema for carousel component
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Carousel
 description: Interactive carousel component with Swiper.js integration, supporting both fullscreen and cards layouts
 props:
   type: object
   properties:
-    items:
-      type: array
-      title: items
-      description: Define the array of carousel items
-      items:
-        type: object
-        properties:
-          media:
-            type: string
-            description: Media content (image, video, etc.)
-          title:
-            type: string
-            description: Item title
-          summary:
-            type: string
-            description: Item summary/description
-          link:
-            type: object
-            description: Item link
-            properties:
-              url:
-                type: string
-                description: Link URL
-              title:
-                type: string
-                description: Link text
+    pre_headline:
+      type: string
+      title: Pre-headline
+      description: Optional pre-headline text
     cards_per_view:
       type: string
       title: cards_per_view
       description: Number of cards visible at once (for cards layout)
+      default: "3"
     autoplay:
       type: boolean
       title: autoplay
       description: Enable autoplay
+      default: false
     interval:
       type: string
       title: interval
       description: Autoplay interval in milliseconds
+      default: "5000"
     pause_on_hover:
       type: boolean
       title: pause_on_hover
       description: Pause autoplay on hover
+      default: true
     class:
       type: string
       title: class
@@ -55,6 +37,23 @@ props:
       type: string
       title: item_class
       description: Additional CSS classes for each carousel item
+slots:
+  title:
+    title: 'Carousel Title'
+    description: 'Main title for the carousel section'
+    required: false
+  items:
+    title: 'Carousel Items'
+    description: 'Individual carousel item content (field_carousel_item)'
+    required: true
+  navigation:
+    title: 'Custom Navigation'
+    description: 'Custom navigation controls or indicators'
+    required: false
+  actions:
+    title: 'Carousel Actions'
+    description: 'Additional actions or links related to carousel'
+    required: false
 libraryOverrides:
   js:
     carousel.behavior.js:

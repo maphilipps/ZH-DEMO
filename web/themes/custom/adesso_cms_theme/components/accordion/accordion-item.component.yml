@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Accordion Item
 status: stable
 description: 'A single accordion item component with collapsible content.'
@@ -58,3 +58,13 @@ props:
       title: 'Dark Mode'
       description: 'Whether to use dark mode styling'
       default: false
+
+slots:
+  title:
+    title: 'Accordion Item Title'
+    description: 'Accordion item header/title content'
+    required: true
+  content:
+    title: 'Accordion Item Content'
+    description: 'Accordion item body/content area'
+    required: true

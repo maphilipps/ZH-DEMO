@@ -1,21 +1,9 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Pricing
 description: Editorial/Pricing component
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Text displayed above the main title
-      default: Choose Your Plan
-    title:
-      type: string
-      title: title
-      description: Main heading for the pricing section
-      default: Compare Our Options
     summary:
       type:
         - string
@@ -76,3 +64,20 @@ props:
             url: '#'
             title: Contact Sales
           includes_label: Includes
+
+slots:
+  pre_headline:
+    description: 'Content above main pricing section title'
+    required: false
+  title:
+    description: 'Main pricing section heading content'
+    required: false
+  content:
+    description: 'Description content below title'
+    required: false
+  pricing_cards:
+    description: 'Individual pricing card content'
+    required: true
+  actions:
+    description: 'Additional actions for pricing section'
+    required: false

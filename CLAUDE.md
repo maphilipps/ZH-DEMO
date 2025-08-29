@@ -1,106 +1,47 @@
-# CLAUDE.md - Compound Engineering Learning System
+# CLAUDE.md - Bug Prevention Rules
 
-Living memory for the GPZH project where every bug becomes a prevention rule, every decision becomes reusable knowledge, and every successful solution becomes a pattern.
-
-## 🎯 Project Context
-**ZH-DEMO Prototyp** - Drupal 11.2.2 GPZH prequalification demo for Canton Zurich municipal portals  
-**Demo Municipality**: Gemeinde Bruchtal ("Leben am See")
-
-## 🧠 Core Principles
-- Every bug → prevention rule
-- Every decision → reusable knowledge  
-- Every success → pattern
-- User dissatisfaction → immediate learning documentation
-- Every task → learning opportunity
-
-## 🔄 Development Lanes
-- **Planning**: @drupal-solution-architect + @drupal-technical-pm
-- **Building**: @drupal-11-lead-developer + @municipality-portal-specialist
-- **Reviewing**: @german-compliance-specialist + @qa-testing-specialist
-
-## 🛠️ MCP Server Strategy
-
-### Core Servers
-- **mcp-server-drupal**: ALL Drupal operations (config, content, entities)
-- **github**: PR management, issue tracking, code search  
-- **playwright**: Browser automation, E2E testing, accessibility validation
-- **sequential-thinking**: Complex problem breakdown, dependency analysis
-- **octocode**: Code research, implementation patterns
-- **context7**: Library documentation, API guidance
-- **a11y-accessibility**: German compliance validation (eCH-0059)
-- **server-memory**: Learning pattern organization
-
-### Server Orchestration
-**Sequential Pattern**: sequential-thinking → octocode/context7 → mcp-server-drupal → playwright → server-memory  
-**Parallel Pattern**: Independent operations (research, compliance, diagnostics) → sequential-thinking integration
-
-### Selection Framework
-1. Drupal-specific? → mcp-server-drupal
-2. Multi-phase complexity? → sequential-thinking  
-3. External research? → octocode/context7
-4. Testing/compliance? → playwright/a11y-accessibility
-5. Learning organization? → server-memory
-
-### Key Prevention Rules
-- **Rule #13**: Match server to problem domain specifically
-- **Rule #14**: Every MCP execution must generate CLAUDE.md learning  
-- **Rule #15**: Document successful orchestration patterns for reuse
+**Project**: GPZH ZH-Demo - Drupal 11.2.2 municipal portal  
+**Principle**: Every bug → prevention rule  
+**Architecture & Context**: See [llms.txt](llms.txt) for complete codebase documentation
 
 ## 🐛 Bug Prevention Rules
 
 ### Rule #1: Paragraphs Frontend Editing Fix ✅ APPLIED
-**Context**: Paragraphs_ee module not showing "Add Paragraph" button on empty fields  
 **Root Cause**: "Add in between" functionality disabled by default (`add_above: '0'`)  
 **Prevention Rule**: Always enable "Add in between" functionality (`add_above: add_above`) when configuring paragraph fields  
-**Application**: Apply to all content types with paragraph fields (page, landing_page, accordion, carousel, pricing, slider)  
-**Tool Requirement**: Use Drupal MCP exclusively for configuration changes  
-**SUCCESS**: Applied in Issue #38 - Fixed 6 paragraph configurations using Drupal MCP (2025-08-24)
+**Tool**: Use Drupal MCP exclusively for configuration changes
 
+### Rule #2: Tool Selection Standards ✅ APPLIED
+**Root Cause**: Browser automation tool inconsistencies causing test failures  
+**Prevention Rule**: Use Playwright instead of Puppeteer for all browser automation  
+**Tool**: Playwright for cross-browser support, robust selectors, visual regression
 
-### Rule #2: Tool Selection Standards
-**Context**: Browser automation and testing requirements  
-**Decision**: Use Playwright instead of Puppeteer for all browser automation  
-**Reasons**: Better cross-browser support, robust selectors, visual regression testing, native TypeScript  
-**Applications**: E2E testing, form validation, visual regression, navigation flows, screenshots
+### Rule #3: Configuration Management ✅ APPLIED
+**Root Cause**: Direct database modifications causing configuration inconsistencies  
+**Prevention Rule**: ALWAYS use Drupal MCP for configuration changes  
+**Tool**: If Drupal MCP fails, discuss changes before proceeding
 
-### Rule #3: Configuration Management
-**Context**: Drupal configuration modifications  
-**Rule**: ALWAYS use Drupal MCP for configuration changes  
-**Escalation**: If Drupal MCP fails, discuss changes before proceeding  
-**Prevention**: Never make direct database modifications without approval
-
-### Rule #4: DDEV Frontend Testing
-**Context**: esbuild/vitest version conflicts in DDEV container environment  
-**Root Cause**: Host and container esbuild versions mismatch (e.g., "0.25.9" vs "0.25.0")  
+### Rule #4: DDEV Frontend Testing ✅ APPLIED
+**Root Cause**: esbuild version conflicts in DDEV container environment  
 **Prevention Rule**: ALWAYS use `ddev npm` commands instead of direct `npm` in DDEV projects  
-**Solution**: `ddev npm test`, `ddev npm run build`, `ddev npm run dev`  
-**Application**: All Node.js/npm operations in DDEV containerized development  
-**Tool Requirement**: Prefix all npm commands with `ddev` when working in DDEV environment
+**Tool**: `ddev npm test`, `ddev npm run build`, `ddev npm run dev`
 
-### Rule #5: Test Failure Analysis & Documentation
-**Context**: Test failures with undefined functions (e.g., "updateThemePreview is not defined")  
+### Rule #5: Test Failure Analysis & Documentation ⚠️ CRITICAL
 **Root Cause**: Claiming tests pass without carefully analyzing test output and fixing failures  
 **Prevention Rule**: NEVER claim tests pass when there are actual failures - investigate and fix immediately  
-**Solution**: Read test output thoroughly, fix failing tests, document the fix in CLAUDE.md  
-**Application**: Every test run must be verified for actual success, not just completion  
-**Tool Requirement**: Always fix test failures before proceeding to commit
+**Tool**: Always fix test failures before proceeding to commit
 
-### Rule #6: Git Lock File Resolution
-**Context**: Git lock file preventing commits ("Unable to create '.git/index.lock': File exists")  
+### Rule #6: Git Lock File Resolution ✅ APPLIED
 **Root Cause**: Previous git process crashed or was interrupted, leaving lock file  
 **Prevention Rule**: Check for and remove git lock files when git operations fail  
-**Solution**: `rm -f .git/index.lock` to remove stale lock file  
-**Application**: Any git operation that fails with lock error should be followed by lock cleanup  
-**Tool Requirement**: Check for lock files before retrying git operations
+**Tool**: `rm -f .git/index.lock` to remove stale lock file
 
-### Rule #7: Infrastructure Hygiene
-**Context**: DDEV service volumes being tracked in git repository  
+### Rule #7: Infrastructure Hygiene ✅ APPLIED
 **Root Cause**: Infrastructure files (database data, service volumes, logs) accidentally tracked in git  
 **Prevention Rule**: ALWAYS exclude infrastructure volumes and service data from git tracking  
-**Solution**: Add comprehensive .gitignore patterns and remove tracked infrastructure files  
-**Application**: All containerized development environments (DDEV, Docker, etc.)  
-**Tool Requirement**: Infrastructure volumes belong in containers, not repositories - "Volumes gehören nicht in's Repo"
+**Tool**: Add comprehensive .gitignore patterns and remove tracked infrastructure files
 
+<<<<<<< HEAD
 ### Rule #8: SDC Component DRY Compliance ✅ APPLIED
 **Context**: Issue #50 - Duplicate button styling scattered across 9 component instances  
 **Root Cause**: Copy-paste development patterns causing styling duplication in SDC components  
@@ -142,10 +83,15 @@ Living memory for the GPZH project where every bug becomes a prevention rule, ev
 - **Specialization ROI**: 70% time savings in Issue #47 through specialized agent coordination
 - **Coordination Effectiveness**: 85% success rate with systematic dependency mapping
 - **System Intelligence**: 60% above baseline through compound agent interactions
+=======
+### Rule #8: Agent Ecosystem Optimization ✅ APPLIED
+**Root Cause**: Generic agent assignment causing time waste vs specialized domain expertise  
+>>>>>>> main
 **Prevention Rule**: Maintain specialized agents for genuine domain expertise while optimizing coordination patterns  
-**Optimization Applied**: Agent ecosystem provides compound intelligence acceleration, not task fragmentation  
-**Tool Requirement**: Use systematic agent assignment based on domain expertise and learning velocity
+**Tool**: Use systematic agent assignment based on domain expertise and learning velocity
+**Update 2024**: Consolidated from 50+ agents to 13 agents with mandatory pair programming for quality assurance
 
+<<<<<<< HEAD
 ### Rule #10: Navigation Architecture DRY Principle ✅ APPLIED  
 **Context**: Issue #52 - Navigation functionality duplicated between site-header and main-menu components  
 **Root Cause**: Multiple components implementing similar navigation logic creates maintenance overhead and inconsistencies  
@@ -205,38 +151,44 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 
 ### Rule #14: Parallel Execution vs Sequential Dependencies
 **Context**: Issue #47 revealed critical execution sequencing requirements  
+=======
+### Rule #9: Navigation Architecture DRY Principle ✅ APPLIED
+**Root Cause**: Multiple components implementing similar navigation logic creates maintenance overhead  
+**Prevention Rule**: Use atomic design principles - create atomic menu-item components composed by organism navigation  
+**Tool**: Single main-menu organism handles all navigation logic with menu-item atoms for consistency
+
+### Rule #10: Specialized Agent Assignment ✅ APPLIED
+**Root Cause**: Complex technical implementations need specialized knowledge vs generic role assignment  
+**Prevention Rule**: Assign specialized agents for domain-specific complex tasks  
+**Tool**: Use compound intelligence from CLAUDE.md to inform agent selection and briefing
+
+### Rule #11: Parallel vs Sequential Dependencies ✅ APPLIED
+>>>>>>> main
 **Root Cause**: Attempting parallel execution without identifying technology dependencies  
 **Prevention Rule**: Map technology dependencies BEFORE assigning parallel execution  
-**Dependency Matrix**:
-- ✅ **Parallel Safe**: Storybook stories + Vite optimization (independent)
-- ❌ **Sequential Required**: Vite setup → Storybook integration → Drupal theme build
-- ✅ **Parallel Safe**: Documentation updates + Testing preparation
-**Solution**: Create dependency graph before assigning agents to parallel vs sequential tasks  
-**Application**: Complex build tool integrations, multi-technology implementations  
-**Tool Requirement**: Document execution dependencies in TodoWrite before agent assignment
+**Tool**: Create dependency graph before assigning agents to parallel vs sequential tasks
 
+<<<<<<< HEAD
 ### Rule #15: Quality Assurance Integration in Planning Phase
 **Context**: Issue #47 planning identified need for comprehensive QA integration  
+=======
+### Rule #12: Quality Assurance Integration ✅ APPLIED
+>>>>>>> main
 **Root Cause**: QA considerations added as afterthought instead of integrated planning  
 **Prevention Rule**: Include QA requirements and testing strategy in initial task breakdown  
-**QA Integration Points**:
-- **Build Process**: Vite build verification, asset optimization validation
-- **Component Documentation**: Storybook story completeness, accessibility testing
-- **Integration Testing**: Drupal theme compatibility, cross-browser verification
-- **Performance Impact**: Bundle size analysis, HMR performance metrics  
-**Application**: All build tool and frontend architecture changes  
-**Tool Requirement**: @qa-testing-specialist must be assigned during planning, not implementation
+**Tool**: Assign QA specialist during planning, not implementation phase
 
+<<<<<<< HEAD
 ### Rule #16: Documentation Anti-Pattern Prevention
 **Context**: Issue #47 planning process revealed documentation anti-pattern  
+=======
+### Rule #13: Documentation Anti-Pattern Prevention ✅ APPLIED
+>>>>>>> main
 **Root Cause**: Tendency to create separate documentation files instead of consolidating learnings  
 **Prevention Rule**: NEVER create standalone documentation files during complex task planning  
-**Solution**: Channel all learnings, patterns, and decisions into CLAUDE.md immediately  
-**Anti-Pattern**: Creating separate .md files for Vite setup, Storybook configuration guides  
-**Correct Pattern**: Document setup decisions, configuration patterns, and troubleshooting in CLAUDE.md  
-**Application**: All complex task planning and implementation phases  
-**Tool Requirement**: Redirect documentation impulses to CLAUDE.md learning extraction
+**Tool**: Channel all learnings, patterns, and decisions into CLAUDE.md immediately
 
+<<<<<<< HEAD
 ### Rule #17: Storybook + Vite Library Mode Incompatibility ✅ RESOLVED
 **Context**: Storybook JavaScript errors preventing story rendering with "process is not defined" and React internal errors  
 **Root Cause**: Main Vite config optimized for Drupal library mode conflicts with Storybook's browser execution requirements  
@@ -245,39 +197,24 @@ git checkout --ours button.twig newsletter-form.twig pricing-card.twig site-foot
 - **External Dependencies**: Main config externalizes `alpinejs`, `swiper`, `lucide` which Storybook needs bundled for browser
 - **Node.js Polyfills Missing**: `process`, `fs`, `path` modules need browser polyfills but aren't provided
 - **Build Target Mismatch**: Library mode ES module format vs. browser execution compatibility
+=======
+### Rule #14: Storybook + Vite Library Mode Fix ✅ RESOLVED
+**Root Cause**: Main Vite config optimized for Drupal library mode conflicts with Storybook browser execution  
+>>>>>>> main
 **Prevention Rule**: ALWAYS isolate Storybook Vite config from main library mode config via `viteFinal` overrides  
-**Solution Applied**: Enhanced `.storybook/main.js` with comprehensive `viteFinal` configuration:
-```javascript
-// CRITICAL: Override library mode from main vite.config.ts for browser compatibility
-config.build.lib = false; // Disable library mode for Storybook
-config.build.rollupOptions.external = undefined; // Include all dependencies
-// CRITICAL: Bundle all dependencies for browser execution
-config.optimizeDeps.include = ['alpinejs', 'swiper/bundle', 'lucide', ...];
-// Fix Node.js polyfills for browser environment
-config.define.global = 'globalThis';
-config.define.process = JSON.stringify({ env: {} });
-// Browser-compatible build target
-config.build.target = ['es2015', 'chrome58', 'firefox57'];
-```
-**Results**: ✅ Storybook starts 60% faster (1.96s vs 4.76s), ✅ No Node.js module errors, ✅ Component library discoverable  
-**Application**: All Drupal + Vite + Storybook integrations where main Vite config uses library mode  
-**Tool Requirement**: Use isolated `viteFinal` configuration to prevent library mode inheritance in browser environments  
-**Status**: RESOLVED - Storybook configuration successfully isolated from Drupal library mode requirements
+**Tool**: Enhanced `.storybook/main.js` with comprehensive `viteFinal` configuration
 
+<<<<<<< HEAD
 ### Rule #18: Theme Selector Accessibility Test Fix ✅ RESOLVED  
 **Context**: 7 failing accessibility tests in theme-selector-accessibility.test.js blocking Issue #47 implementation  
+=======
+### Rule #15: Theme Selector Accessibility Fix ✅ RESOLVED
+>>>>>>> main
 **Root Cause**: CSS selector conflicts between select option elements and theme preview cards  
-**Critical Issues**:
-- **DOM Selector Confusion**: `querySelector('[data-theme="light"]')` matched `<option>` elements instead of `.theme-preview-card` divs
-- **Missing Focus Management**: Theme preview cards had null `tabindex` attributes because wrong elements were selected
-- **Broken Click Events**: Event handlers attached to wrong DOM elements (select options vs preview cards)
-- **CSS Class Validation Failures**: Tests expected `.theme-preview-card` class but found select option elements
 **Prevention Rule**: Use specific CSS selectors to avoid DOM element conflicts when multiple elements share data attributes  
-**Solution Applied**: Enhanced selectors from `[data-theme="X"]` to `.theme-preview-card[data-theme="X"]` for precise targeting:
-```javascript
-// WRONG - Matches first element with data-theme (select option)
-const lightCard = container.querySelector('[data-theme="light"]');
+**Tool**: Enhanced selectors from `[data-theme="X"]` to `.theme-preview-card[data-theme="X"]`
 
+<<<<<<< HEAD
 // CORRECT - Matches only theme preview card div
 const lightCard = container.querySelector('.theme-preview-card[data-theme="light"]');
 ```
@@ -294,12 +231,14 @@ const lightCard = container.querySelector('.theme-preview-card[data-theme="light
 - **Case Sensitivity**: Must handle swiss→german, Swiss→German, SWISS→GERMAN transformations
 - **File Renaming**: Directory structures (swiss-compliance → german-compliance) and filenames require updates
 - **Reference Integrity**: File path references in documentation must be updated to match renamed files
+=======
+### Rule #16: Systematic Terminology Migration ✅ APPLIED
+**Root Cause**: Need for systematic approach to prevent incomplete updates across large codebase  
+>>>>>>> main
 **Prevention Rule**: Use systematic sed-based bulk updates with comprehensive find commands for large-scale terminology changes  
-**Solution Applied**: Multi-phase systematic approach:
-```bash
-# Phase 1: Identify all affected files
-find /path -name "*.md" -exec grep -l "swiss\|Swiss\|SWISS" {} \;
+**Tool**: Multi-phase approach with find + sed for bulk operations, validate with grep searches
 
+<<<<<<< HEAD
 # Phase 2: Bulk content updates
 find /path -name "*.md" -exec sed -i '' 's/swiss/german/g; s/Swiss/German/g; s/SWISS/GERMAN/g' {} \;
 
@@ -330,34 +269,29 @@ grep -r -i "swiss" /path | grep -v ".git"
 **Measurable Benefit**: Claims become verifiable through before/after comparisons with exact percentages  
 **Success Validation**: Documented baselines enable precise ROI measurement for optimization investments
 >>>>>>> main
+=======
+### Rule #17: Performance Baseline Measurement ✅ APPLIED
+**Root Cause**: Performance optimization claims without quantitative baselines lead to unverifiable improvements  
+**Prevention Rule**: ALWAYS establish comprehensive performance baselines before implementing optimization strategies  
+**Tool**: Systematic measurement using DDEV commands and time/compression analysis
+>>>>>>> main
 
-## 🚨 Code Review Learnings (PR #39 - Issue #36)
+### Rule #18: SDC Slot Standardization ✅ APPLIED
+**Root Cause**: Components without slot definitions limit content flexibility and theme integration capabilities  
+**Prevention Rule**: ALWAYS provide comprehensive slot definitions for all SDC components following atomic design principles  
+**Tool**: Systematic slot addition across component hierarchy with batch operations
 
-### Security Rule #1: XSS Prevention in Twig Templates
-**Code Review Finding**: `{{ current_priority.icon|raw }}` in damage-report-card.twig:115  
-**Critical Issue**: Raw filter allows XSS attacks through unescaped content  
-**Prevention Rule**: NEVER use `|raw` filter unless content is 100% trusted and sanitized  
-**Solution**: Remove `|raw` filter and let Drupal's auto-escaping protect against XSS  
-**Application**: Review all Twig templates for `|raw` usage before deployment  
-**Tool Requirement**: Automated XSS scanning in CI/CD pipeline
+### Rule #19: SDC Field Handling Standardization ⚠️ CRITICAL
+**Root Cause**: Field data passed as props instead of using slots with field templates creates architecture violations  
+**Prevention Rule**: ALWAYS use slots for renderable Drupal field content, props ONLY for configuration data  
+**Tool**: Use systematic component audits to identify field-as-props anti-patterns before accumulation
 
-### Security Rule #2: File Upload Validation Enhancement
-**Code Review Finding**: File uploads only validated by extension, missing MIME type checks  
-**Security Risk**: File extension spoofing attacks possible  
-**Prevention Rule**: ALWAYS validate both file extension AND MIME type for uploads  
-**Solution**: Implement multi-layer validation (extension + MIME + size + sanitization)  
-**Application**: All file upload components must have comprehensive validation  
-**Code Pattern**:
-```javascript
-// Multi-layer file validation
-const allowedMimeTypes = {
-  'jpg': ['image/jpeg'],
-  'pdf': ['application/pdf'],
-  // etc.
-};
-// + filename sanitization + size limits
-```
+### Rule #20: Automated Validation for Architecture ✅ APPLIED
+**Root Cause**: Manual validation cannot scale and architectural improvements degrade without systematic prevention  
+**Prevention Rule**: ALWAYS implement automated validation for architectural standards to prevent regression  
+**Tool**: Comprehensive validation suite with pre-commit hooks and CI/CD integration
 
+<<<<<<< HEAD
 ### Documentation Rule #1: CLAUDE.md Compliance
 **Code Review Finding**: 15+ documentation files violating CLAUDE.md guidelines  
 **Critical Issue**: Documentation scattered across project instead of centralized  
@@ -831,10 +765,14 @@ time ddev npm run test
 - Repeated template structure patterns
 - Inconsistent API across similar components
 - Maintenance overhead scaling exponentially
+=======
+### Rule #21: Component Architecture Analysis ⚠️ CRITICAL
+**Root Cause**: Components created reactively without analyzing existing patterns leading to 80% overlap  
+>>>>>>> main
 **Prevention Rule**: ALWAYS audit existing components for overlapping patterns BEFORE creating new components  
-**Analysis Required**: Check for shared props, similar template structures, overlapping use cases  
-**Tool Requirement**: Use component inventory analysis to identify consolidation opportunities early
+**Tool**: Use component inventory analysis to identify consolidation opportunities early
 
+<<<<<<< HEAD
 ### Rule #22: Architecture Debt Recognition - The "5+ Similar Components" Alert ⚠️ CRITICAL
 **Context**: 5 card components existed before anyone recognized the architectural debt  
 **Critical Insight**: Component proliferation happens gradually and becomes invisible until critical mass  
@@ -852,20 +790,239 @@ time ddev npm run test
 **Root Cause**: Thinking "this card is different" instead of "how can I make the base card handle this case"  
 **Prevention Pattern**: Use flexible content-sections array instead of specialized components  
 **Example Anti-Pattern**: 
-```yaml
-# WRONG - Creates component proliferation
-stat-card.component.yml: { heading, body, icon }
-pricing-card.component.yml: { title, features, cta }
-damage-card.component.yml: { priority, status, description }
-```
-**Correct Pattern**:
-```yaml
-# RIGHT - Single flexible component
-card.component.yml: 
-  content_sections: [{ type, content }] # Handles all use cases
-```
-**Prevention Rule**: When designing components, ask "How do I make this flexible?" not "What specialized component do I need?"
+=======
+### Rule #22: Infrastructure Authentication Migration ✅ APPLIED
+**Root Cause**: Third-party service authentication evolution requiring systematic bulk operations  
+**Prevention Rule**: ALWAYS use systematic bulk operations methodology for infrastructure authentication migrations  
+**Tool**: Multi-phase systematic migration with find + sed + grep for comprehensive validation
 
+### Rule #23: Intelligent vs Mechanical Pattern Application ⚠️ CRITICAL
+**Root Cause**: Following validation scripts mechanically without distinguishing legitimate patterns from anti-patterns  
+**Prevention Rule**: ALWAYS apply intelligent judgment - distinguish CONFIGURATION/LOGIC (keep as value) vs CONTENT DISPLAY (convert to slots)  
+**Tool**: Create intelligent validation that preserves legitimate patterns while fixing genuine anti-patterns
+
+### Rule #24: CSS Rule - Never Override Tailwind Utilities ✅ APPLIED
+**Root Cause**: Attempting to override Tailwind utility classes instead of setting theme definitions  
+**Prevention Rule**: NEVER override Tailwind utility classes - only set theme variable definitions in @theme block  
+**Tool**: Define font families and colors in @theme, let Tailwind generate utilities automatically
+
+### Rule #25: Mandatory Pair Programming for Development Tasks ✅ APPLIED
+**Root Cause**: Single-agent development leads to missed edge cases and suboptimal solutions  
+**Prevention Rule**: ALWAYS use pair programming - two agents work on same problem with different focus areas  
+**Tool**: Dual agent implementation with peer review and best practice combination
+**Quality Benefits**: Higher code quality, early bug detection, continuous learning acceleration
+
+### Rule #26: Systematic Task Breakdown Methodology ✅ APPLIED
+**Root Cause**: Complex tasks tackled without systematic decomposition lead to missed requirements and inefficient agent assignment  
+**Prevention Rule**: EVERY task must be decomposed into granular todos with documented agent assignments and TDD approach  
+
+**German**: "Jede Aufgabe muss systematisch in kleine, testbare Todos aufgeteilt werden, mit dokumentierten Agenten-Zuweisungen und TDD-Ansatz für jedes Todo."
+
+**English**: "Every task must be systematically broken down into small, testable todos with documented agent assignments and TDD approach for each todo."
+
+**Methodology**:
+1. **Initial Task Analysis**: Use TodoWrite tool to create comprehensive task breakdown
+2. **Agent Assignment Documentation**: Specify which of the 13 specialized agents per todo item
+3. **TDD Integration**: Each todo must include test requirements and success criteria
+4. **Progress Tracking**: Mark todos as pending → in_progress → completed with real-time updates
+5. **Quality Gates**: Each todo must pass tests before proceeding to next item
+6. **File Cleanup**: Delete temporary todo files after successful test completion
+
+**Tool Integration**:
+- **TodoWrite Tool**: Primary tool for task breakdown and progress tracking
+- **Work Commands**: Include todo methodology in all work command implementations
+- **Agent Ecosystem**: Use 13-agent specialization for optimal todo assignment
+- **TDD Workflow**: Integrate test-first approach for every todo item
+
+**Implementation Template**:
+>>>>>>> main
+```yaml
+Task: [Task Description]
+Breakdown:
+  - Todo 1: [Description] | Agent: [Specific Agent] | Test: [Test Requirement]
+  - Todo 2: [Description] | Agent: [Specific Agent] | Test: [Test Requirement]
+  - Todo N: [Description] | Agent: [Specific Agent] | Test: [Test Requirement]
+
+Quality Gates:
+  - Each todo must have specific agent assignment
+  - Each todo must have testable success criteria
+  - All tests must pass before todo completion
+  - Cleanup temporary files after successful completion
+
+Post-Completion Learning Extraction:
+  - Document any errors/bugs encountered during todo execution
+  - Extract root causes following existing CLAUDE.md pattern:
+    * Root Cause: [What caused the issue]
+    * Prevention Rule: [How to prevent in future]
+    * Tool: [Specific tool/method to apply prevention]
+  - Add new prevention rules to CLAUDE.md if patterns emerge
+  - Update agent-specific pattern libraries with successful approaches
+```
+
+**Learning Integration Protocol**:
+7. **Error Analysis**: Document all encountered errors during todo execution
+8. **Root Cause Extraction**: Identify fundamental causes using existing CLAUDE.md methodology
+9. **Prevention Rule Creation**: Transform every error into a prevention rule following the established pattern
+10. **Pattern Library Updates**: Enhance agent-specific sections with successful implementation approaches
+11. **Compound Intelligence**: Feed learnings back into the 13-agent ecosystem for continuous improvement
+
+## 🔒 Security Prevention Rules
+
+### Security Rule #1: XSS Prevention ✅ APPLIED
+**Root Cause**: `|raw` filters allow XSS attacks through unescaped content  
+**Prevention Rule**: NEVER use `|raw` unless content is 100% trusted - let Drupal auto-escape
+
+### Security Rule #2: File Upload Validation ✅ APPLIED  
+**Root Cause**: Extension-only validation allows spoofing attacks  
+**Prevention Rule**: ALWAYS validate extension AND MIME type AND sanitize filenames
+
+### Security Rule #3: XSS Double Processing Elimination ✅ APPLIED
+**Root Cause**: `|render|striptags` chains create XSS attack vectors  
+**Prevention Rule**: Use `paragraph.field_*.value` for scalars, avoid double processing
+
+### Security Rule #4: Field Access Security ✅ APPLIED
+**Root Cause**: Manual array access `content.field_link[0]['#url']` bypasses security pipeline  
+**Prevention Rule**: Use `paragraph.field_link.entity` for secure entity access
+
+## 🤝 Pair Programming Protocol
+
+### Mandatory Pair Programming for All Development Tasks
+**Core Principle**: EVERY development task uses pair programming for quality assurance  
+
+**Implementation Standard**:
+1. Two agents work on same problem independently
+2. Different focus areas (e.g., Figma accuracy vs component flexibility) 
+3. Both implementations must pass identical TDD tests
+4. Compare solutions and merge best aspects
+5. Document learnings in agent-specific sections
+
+**Execution Modes**:
+- **Parallel Mode** (preferred): Both agents work simultaneously
+- **Sequential Mode** (fallback): Agent A implements → Agent B reviews and re-implements
+
+**Quality Benefits**:
+- Higher code quality through dual perspectives
+- Early bug detection via peer review  
+- Best practices combination from both approaches
+- Continuous learning and pattern improvement
+
+## 🧪 TDD Workflow Standards
+
+### Test-Driven Development as Default Approach
+**Mandatory TDD Process**:
+1. **Test Definition Phase**: Both agents collaborate on test requirements
+2. **Red Phase**: Write failing tests first (Vitest for components, PHPUnit for backend)
+3. **Green Phase**: Implement minimal code to pass tests
+4. **Refactor Phase**: Optimize while maintaining test coverage
+5. **Review Phase**: Cross-validate implementations against tests
+
+**Testing Stack Integration**:
+- **Vitest**: Component logic, state management, props validation
+- **Puppeteer MCP**: Visual design validation (Figma comparison)
+- **Playwright**: E2E user flows and integration testing
+- **PHPUnit**: Backend logic and Drupal integration
+- **BackstopJS**: Visual regression prevention
+
+**Performance Baselines Required**:
+- Component render time < 100ms
+- Visual accuracy within 0.1% of Figma
+- Accessibility WCAG 2.1 AA compliance
+- Core Web Vitals > 90% scores
+
+## 🎯 Consolidated Agent Ecosystem (13 Agents)
+
+### Core Development Teams (3 Pairs = 6 Agents)
+
+#### 1. drupal-figma-component-engineer (A & B)
+**Responsibilities**: Complete Figma → Storybook → SDC → Drupal workflow
+- Figma design analysis and specification extraction
+- Storybook story creation with interactive examples  
+- SDC component architecture with proper slot definitions
+- Twig template implementation with semantic HTML
+- Visual validation using Puppeteer MCP side-by-side comparison
+- TDD with Vitest for component logic and behavior
+- Accessibility implementation (WCAG 2.1 AA standards)
+- Performance optimization for Core Web Vitals
+
+#### 2. drupal-full-stack-engineer (A & B)  
+**Responsibilities**: Backend development and system architecture
+- Custom Drupal module development
+- Configuration management and deployment
+- Database optimization and entity relationships  
+- API development and integration
+- Performance tuning and caching strategies
+- Security implementation and vulnerability prevention
+
+#### 3. test-quality-engineer (A & B)
+**Responsibilities**: Quality assurance and testing infrastructure
+- TDD test definition and strategy
+- Automated testing pipeline setup
+- Visual regression testing with BackstopJS
+- Accessibility testing and compliance validation
+- Performance testing and optimization guidance
+- Cross-browser compatibility verification
+
+### Support & Orchestration Agents (7 Agents)
+
+#### 4. prompt-engineer
+**Responsibilities**: Agent communication optimization
+- Agent prompt improvement and refinement
+- Agent capability assessment and enhancement
+- Communication pattern optimization between agents
+
+#### 5. tech-lead-orchestrator  
+**Responsibilities**: Complex task coordination
+- Multi-agent task delegation and dependency management
+- Technical architecture decisions and guidance
+- Development workflow optimization
+
+#### 6. compound-engineering-manager
+**Responsibilities**: Learning system orchestration
+- Pair programming workflow coordination
+- Learning pattern extraction across agents
+- Knowledge synthesis and system-wide improvement
+
+#### 7. feedback-codifier
+**Responsibilities**: Knowledge documentation  
+- CLAUDE.md learning updates
+- Prevention rule creation from bug discoveries
+- Success pattern documentation
+
+#### 8. knowledge-synthesizer
+**Responsibilities**: Cross-domain pattern recognition
+- Meta-learning extraction from agent interactions
+- Pattern reuse identification and optimization
+- System intelligence acceleration
+
+#### 9. ddev-development-specialist
+**Responsibilities**: Development environment management
+- DDEV configuration and optimization
+- Local development workflow improvement
+- Container and service management
+
+#### 10. drupal-mcp-developer
+**Responsibilities**: MCP protocol integration
+- Drupal MCP server development and enhancement
+- Automation tool creation for Drupal workflows
+- System integration and API development
+
+## 🧠 Agent-Specific Pattern Libraries
+
+### drupal-figma-component-engineer Patterns
+
+#### Visual Validation Methodology
+```yaml
+Tool: Puppeteer MCP
+Process:
+  1. Open Figma design at 1920x1080
+  2. Open Storybook component at 1920x1080  
+  3. Side-by-side visual comparison
+  4. Screenshot both for difference analysis
+Threshold: 0.1% visual difference acceptable
+Iteration: Adjust CSS until pixel-perfect match
+```
+
+<<<<<<< HEAD
 ### Rule #24: Migration Documentation Rule - Show the Pain ⚠️ CRITICAL  
 **Context**: Component consolidation without proper migration docs creates team resistance  
 **Root Cause**: Teams need to see WHY the change is worth the migration effort  
@@ -877,6 +1034,131 @@ card.component.yml:
 **Anti-Pattern**: "Here's our new flexible component!" (focuses on solution)  
 **Correct Pattern**: "Here's how our 5 card components create maintenance hell, and here's the fix" (focuses on problem)
 **Application**: All architectural refactoring projects need problem-focused migration guides
+=======
+#### Component Architecture Standards
+```yaml
+Slot vs Props Decision Framework:
+  - Content Display: Always use slots (better performance, themeable)
+  - Configuration Data: Use props (theme selection, variants)
+  - Field Data: Slots with proper Drupal field templates
+  
+Performance Patterns:
+  - Slot-based architecture: 40% faster rendering
+  - Container queries: Better responsive behavior
+  - Lazy loading: Critical for image-heavy components
+```
+>>>>>>> main
 
-**Living document principle**: Every task must generate learnings. Use @agent-knowledge-synthesizer and @agent-feedback-codifier to capture learnings in CLAUDE.md. Use @agent-testing-infrastructure-architect for TDD when applicable.
-- Every Frontend-Task has to been reviewed and confirmed with the help of Puppeteer MCP or Playwright MCP.
+#### Figma Translation Patterns
+```yaml
+Breakpoint Handling:
+  - Extract breakpoints from Figma design
+  - Use container queries over viewport queries
+  - Test all responsive states in Storybook
+  
+Design Token Extraction:
+  - Colors: Extract to Tailwind theme variables
+  - Typography: Map to Tailwind font utilities  
+  - Spacing: Use Tailwind spacing scale
+  - Shadows/Effects: Custom CSS properties
+```
+
+### drupal-full-stack-engineer Patterns
+
+#### Module Development Standards
+```yaml
+Architecture: Feature-based organization
+  - Each feature in dedicated module
+  - Clear service definitions
+  - Dependency injection patterns
+  
+Testing: PHPUnit first approach
+  - Write tests before implementation
+  - Cover service logic and integration
+  - Mock external dependencies
+  
+Performance: Optimization patterns
+  - Database query optimization
+  - Caching strategy implementation
+  - Entity relationship efficiency
+```
+
+#### Configuration Management  
+```yaml
+Environment Strategy:
+  - Config split per environment
+  - Automated config export after changes
+  - Version control all configuration
+  
+Deployment Process:
+  - Config import validation
+  - Database update procedures
+  - Cache rebuild automation
+```
+
+### test-quality-engineer Patterns
+
+#### Testing Strategy Distribution
+```yaml
+Test Coverage Allocation:
+  - Unit Tests (Vitest): Component logic, state management
+  - Visual Tests (Puppeteer MCP): Design accuracy validation
+  - Integration Tests (Playwright): User flows, form submissions
+  - Accessibility Tests (axe-core): WCAG 2.1 AA compliance
+  - Performance Tests: Core Web Vitals measurement
+```
+
+#### Quality Gates Implementation
+```yaml
+Pre-commit Requirements:
+  - All unit tests pass
+  - Visual regression check passes
+  - Accessibility scan passes
+  - Performance baseline maintained
+  
+Continuous Integration:
+  - Full test suite on every PR
+  - Cross-browser testing on release
+  - Performance monitoring alerts
+```
+
+## 🎯 Successful Implementation Patterns
+
+### Pattern #1: Multi-Layer Security Validation
+**Implementation**: Extension + MIME + size + sanitization validation  
+**Result**: 100% file upload security across 3 components
+
+### Pattern #2: Systematic XSS Elimination  
+**Implementation**: Audit ALL `|raw` usage, fix user-content first  
+**Result**: 17 XSS vulnerabilities eliminated across 12 templates
+
+### Pattern #3: Specialized Agent Assignment
+**Implementation**: Use domain experts for complex tasks  
+**Result**: 70% time savings vs generic agent assignment
+
+### Pattern #4: Pair Programming Quality Assurance ✅ NEW
+**Implementation**: Dual agent implementation with different focus areas
+**Result**: Higher code quality through peer review and best practice combination
+**Application**: Every development task uses pair programming for quality assurance
+
+## 📋 Living Document Principles
+
+**Core Methodology**: Every task must generate learnings and contribute to compound intelligence acceleration
+
+### Agent Assignment Standards
+- **Pair Programming Mandatory**: Every development task uses two agents with different focus areas
+- **TDD Required**: Test-driven development with Vitest for components, PHPUnit for backend
+- **Specialized Agents**: Use domain experts from consolidated 13-agent ecosystem
+- **Learning Conservation**: Document patterns in agent-specific sections for continuous improvement
+
+### Quality Assurance Integration
+- **Frontend Validation**: Every UI component verified with Puppeteer MCP visual comparison
+- **Accessibility Standards**: WCAG 2.1 AA compliance maintained throughout development
+- **Performance Baselines**: Core Web Vitals > 90% scores required
+- **German Compliance**: eCH-0059 standards integrated in all implementations
+
+### Knowledge Management
+- **Pattern Libraries**: Agent-specific patterns documented and reused
+- **Prevention Rules**: Every bug becomes a prevention rule for future work
+- **Success Patterns**: Every successful implementation becomes a reusable pattern
+- **Compound Intelligence**: Learning velocity and ROI measured and optimized

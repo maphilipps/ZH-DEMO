@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Paragraph Wrapper
 description: A reusable wrapper component for paragraph content with theme support and semantic HTML structure
 props:
@@ -54,7 +54,7 @@ props:
 slots:
   content:
     title: Content
-    required: true
+
     description: The main paragraph content to be wrapped
   prefix:
     title: Prefix

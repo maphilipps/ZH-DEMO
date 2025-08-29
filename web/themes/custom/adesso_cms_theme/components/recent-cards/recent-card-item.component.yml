@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Recent Card Item
 status: stable
 description: 'A card item component for displaying recent content with media, title, and summary.'
@@ -13,10 +13,6 @@ props:
       title: 'Media Content'
       description: 'The media content (rendered HTML) - typically a thumbnail image'
       default: ''
-    title:
-      type: string
-      title: 'Title'
-      description: 'The card title text'
     summary:
       type:
         - string
@@ -28,3 +24,13 @@ props:
       type: string
       title: 'URL'
       description: 'Destination URL for the card links'
+
+slots:
+  title:
+    title: 'Title'
+    description: 'Component title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main component content'
+    required: true

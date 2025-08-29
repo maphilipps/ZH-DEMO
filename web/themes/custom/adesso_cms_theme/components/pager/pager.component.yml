@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Pager
 description: Navigation/Pager component
 props:
@@ -27,3 +27,17 @@ props:
       type: string
       title: parameters
       description: ''
+
+slots:
+  heading:
+    title: 'Pager Heading'
+    description: 'Screen reader heading for pagination section'
+    required: false
+  summary:
+    title: 'Results Summary'
+    description: 'Summary of current results/pagination state'
+    required: false
+  links:
+    title: 'Pagination Links'
+    description: 'Custom pagination link content'
+    required: false

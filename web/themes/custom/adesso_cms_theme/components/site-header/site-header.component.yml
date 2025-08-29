@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Site Header
 description: Components/Site Header component
 props:
@@ -36,14 +36,6 @@ props:
       type: boolean
       title: show_register_button
       description: Whether to display the register button
-    logo:
-      type: string
-      title: logo
-      description: Logo URL from Drupal theme settings
-    site_name:
-      type: string
-      title: site_name
-      description: Site name from Drupal configuration
     site_slogan:
       type: string
       title: site_slogan
@@ -102,3 +94,29 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  logo:
+    title: 'Site Logo'
+    description: 'Site logo and branding content'
+    required: false
+  site_name:
+    title: 'Site Name'
+    description: 'Site name and title content'
+    required: false
+  navigation:
+    title: 'Main Navigation'
+    description: 'Primary navigation menu content'
+    required: false
+  search:
+    title: 'Search Form'
+    description: 'Search form and functionality'
+    required: false
+  user_actions:
+    title: 'User Actions'
+    description: 'Login, register, and user account actions'
+    required: false
+  secondary_nav:
+    title: 'Secondary Navigation'
+    description: 'Secondary navigation elements and utilities'
+    required: false

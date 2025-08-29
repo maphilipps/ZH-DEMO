@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Gallery Item
 status: stable
 description: 'A single gallery item component for displaying images.'
@@ -22,3 +22,17 @@ props:
           type: string
           title: 'Media Description'
           description: 'Description/title for the media item'
+
+slots:
+  media:
+    title: 'Gallery Media'
+    description: 'Media content for gallery item'
+    required: true
+  title:
+    title: 'Media Title'
+    description: 'Title or caption for gallery item'
+    required: false
+  description:
+    title: 'Media Description'
+    description: 'Description content for gallery item'
+    required: false

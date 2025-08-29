@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Stat
 description: General/Stat component
 props:
@@ -8,10 +8,6 @@ props:
       type: string
       title: type
       description: Component type
-    heading:
-      type: string
-      title: heading
-      description: Stat heading
     body:
       type: string
       title: body
@@ -41,3 +37,7 @@ props:
       enum:
         - center
         - left
+slots:
+  heading:
+    title: Heading
+    description: The stat heading content

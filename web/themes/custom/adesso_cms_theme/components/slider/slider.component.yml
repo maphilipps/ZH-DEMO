@@ -1,20 +1,9 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Enhanced Slider
 description: Components/Enhanced Slider component
 props:
   type: object
-  properties:
-    items:
-      type: object
-      title: items
-      description: Array of slider items with media, title, and summary
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+  properties: {}
 libraryOverrides:
   js:
     slider.behavior.js:
@@ -23,3 +12,17 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  title:
+    title: 'Slider Title'
+    description: 'Main title for the slider section'
+    required: false
+  items:
+    title: 'Slider Items'
+    description: 'Individual slider item content'
+    required: true
+  controls:
+    title: 'Slider Controls'
+    description: 'Custom navigation and control elements'
+    required: false

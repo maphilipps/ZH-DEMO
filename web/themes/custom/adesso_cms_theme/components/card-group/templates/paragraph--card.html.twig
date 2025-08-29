@@ -1,5 +1,14 @@
 {# /** * @file * Card paragraph template (child component - no wrapper needed). */ #} {% set heading_content = { title:
 content.field_title|render|striptags, icon: content.field_icon, as: 'h3', modifier: 'mb-3' } %} {% set link =
-content.field_link ? { "url": content.field_link.0.url, "title": content.field_link.0.title } : {} %} {% include
-'@adesso_cms_theme/card-group/card.twig' with { modifier: '', media: content.field_media, heading: heading_content,
-summary_text: content.field_summary, } only %}
+content.field_link ? { "url": content.field_link.0.url, "title": content.field_link.0.title } : {} %} {% embed '@adesso_cms_theme/card-group/card.twig' with { 
+  modifier: '', 
+  heading: heading_content,
+  summary_text: content.field_summary 
+} only %}
+  {% block media %}
+    {# Use field template rendering instead of raw field array - RAW FIELD ARRAY FIX #}
+    <div class="relative">
+      {{ content.field_media }}
+    </div>
+  {% endblock %}
+{% endembed %}

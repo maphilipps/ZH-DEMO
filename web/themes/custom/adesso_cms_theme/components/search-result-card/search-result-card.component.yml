@@ -5,13 +5,6 @@ description: 'Reusable search result card component for Gemeinde Bruchtal munici
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: 'Result Title'
-      description: 'The title of the search result'
-      examples:
-        - 'Gemeinderat Sitzung September 2024'
-        - 'FC Bruchtal - Vereinsregister'
     url:
       type: string
       title: 'Result URL'
@@ -102,3 +95,17 @@ props:
     - relevance_score
 libraryDependencies:
   - adesso_cms_theme/search-result-card
+
+slots:
+  title:
+    description: 'Search result title and main heading content'
+    required: true
+  content:
+    description: 'Search excerpt and result body content'
+    required: false
+  metadata:
+    description: 'Categories, target groups, and verification badges'
+    required: false
+  actions:
+    description: 'Action buttons and links for the result'
+    required: false

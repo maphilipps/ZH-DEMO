@@ -1,6 +1,7 @@
 $schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.json
 name: Quick Action Buttons
 status: stable
+group: Organisms
 description: 'Quick action buttons for Event Review Dashboard (Approve/Reject)'
 props:
   type: object

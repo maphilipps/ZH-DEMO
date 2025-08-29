@@ -55,7 +55,7 @@ check_atomic_design_slots() {
     
     # Extract group from component.yml
     if [[ -f "$component_file" ]]; then
-        group=$(grep "group:" "$component_file" | sed 's/.*group:[[:space:]]*//' | tr -d '"'"'"' | xargs)
+        group=$(grep "group:" "$component_file" | sed 's/.*group:[[:space:]]*//' | tr -d '"' | xargs)
     fi
     
     if [[ ! -f "$component_file" ]]; then

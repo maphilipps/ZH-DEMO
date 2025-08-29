@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: File Upload Preview
 description: Enhanced file upload experience with previews for Infrastructure Damage Report forms
+status: stable
+group: Molecules
 props:
   type: object
   properties:

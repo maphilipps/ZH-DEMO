@@ -8,7 +8,7 @@
 #}
 {% set title_text = heading.title|default('') %}
 {% if title_text is iterable and title_text is not same as('') %}
-  {% set title_text = title_text|render|striptags %}
+  {% set title_text = title_text %}
 {% endif %}
 {% if title_text %}
   {# Set up element tag #}

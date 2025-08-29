@@ -2,7 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Landing Page Header
 description: Combined navigation and hero header for landing pages
 status: stable
-group: Layout
+group: Templates
 props:
   type: object
   properties:

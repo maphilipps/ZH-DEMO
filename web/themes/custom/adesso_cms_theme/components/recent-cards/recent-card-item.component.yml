@@ -15,10 +15,6 @@ props:
       title: 'Media Content'
       description: 'Drupal field render array for media content (typically thumbnail image) - eliminates double-rendering'
       default: ''
-    title:
-      type: string
-      title: 'Title'
-      description: 'The card title text'
     summary:
       type:
         - object

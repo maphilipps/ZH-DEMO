@@ -4,10 +4,6 @@ description: Flexible section header with optional pre-headline and configurable
 props:
   type: object
   properties:
-    title:
-      type: ['string', 'null']
-      title: Main Title
-      description: The main heading text
     pre_headline:
       type: ['string', 'null']
       title: Pre-headline
@@ -47,10 +43,8 @@ props:
       description: Additional CSS classes for the container
 slots:
   title:
-    title: 'Title'
     description: 'Component title content'
     required: false
   content:
-    title: 'Content'
     description: 'Main component content'
     required: true

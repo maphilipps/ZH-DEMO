@@ -5,10 +5,6 @@ description: Interactive carousel component with Swiper.js integration, optimize
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: Carousel Title
-      description: Optional title for the carousel section
     pre_headline:
       type: string
       title: Pre-headline

@@ -1,122 +1,278 @@
 ---
-description: Optimize CLAUDE.md prevention rules through systematic triage and compound intelligence synthesis
-allowed_tools: Edit,MultiEdit,Write,Read,Glob,Grep,LS,Task(feedback-codifier),Task(knowledge-synthesizer)
+description: Intelligente CLAUDE.md Optimierung durch Konsolidierung ohne Informationsverlust
 ---
 
-# Flatten & Optimize CLAUDE.md Prevention Rules
+# Intelligente CLAUDE.md Rules Optimierung
 
-You are tasked with optimizing CLAUDE.md prevention rules through systematic triage and compound intelligence synthesis. Your goal is to transform fragmented individual learnings into an optimized compound intelligence system that maximizes prevention effectiveness and learning velocity.
+Du optimierst die CLAUDE.md durch **intelligente Konsolidierung**, nicht durch radikale Löschung. Ziel: Saubere Rule-Liste ohne Informationsverlust bei optimaler Performance. Vorher die Claude.md bitte einmal sichern. Später vergleichen, ob learnings noch da sind und erst dann löschen.
 
-## Phase 1: Agent-Orchestrated Analysis
+## 🎯 Kern-Prinzipien
 
-First, engage the specialized agents for systematic analysis:
+- **100% Informationserhalt**: Keine einzige Rule, Code-Beispiel oder Metrik geht verloren
+- **Intelligente Konsolidierung**: Ähnliche Rules werden zusammengeführt, nicht gelöscht  
+- **Einfache Rule-Liste**: Keine Meta-Patterns oder abstrakte Frameworks
+- **Duplikat-Prävention**: Neue Rules automatisch auf Ähnlichkeit prüfen
+- **Performance-Optimierung**: ~800 Zeilen (von 1095) durch Organisation
 
-### 1.1 Feedback Analysis
-Use @feedback-codifier to analyze recent technical decisions and extract new learnings:
-- Identify patterns from recent bug fixes, migrations, or implementations
-- Extract prevention rules from successful complex task completions
-- Analyze user feedback and dissatisfaction sources for learning opportunities
-- Transform reactive fixes into proactive prevention patterns
+## Phase 1: Intelligente Duplikat-Analyse
 
-### 1.2 Knowledge Synthesis  
-Use @knowledge-synthesizer to analyze the current CLAUDE.md structure:
-- Triage existing rules: Prevention vs Documentation classification
-- Identify overlapping and duplicate rules requiring consolidation
-- Synthesize meta-patterns from clusters of related rules
-- Optimize learning hierarchy and compound intelligence acceleration
+### 1.1 Ähnlichkeits-Erkennung mit @agent-knowledge-synthesizer
 
-## Phase 2: Rule Triage Framework
+```yaml
+Task für @agent-knowledge-synthesizer:
+"Analysiere alle Rules in CLAUDE.md und identifiziere Konsolidierungsmöglichkeiten mit folgendem Algorithmus:
 
-Based on agent analysis, categorize each rule using these criteria:
+Ähnlichkeits-Score Berechnung:
+- Root Cause Übereinstimmung: 40% Gewichtung
+- Solution/Pattern Ähnlichkeit: 30% Gewichtung  
+- Tool Requirements Überschneidung: 20% Gewichtung
+- Context Verwandtschaft: 10% Gewichtung
 
-### GENUINE PREVENTION RULES ✅ (Keep & Enhance)
-- **Measurable ROI**: Rules with quantifiable time savings or error prevention
-- **Clear Application**: Rules with specific tools, commands, and implementation patterns  
-- **Recurrence Prevention**: Rules that demonstrably prevent recurring issues
-- **Compound Intelligence**: Rules that accelerate learning velocity and pattern reuse
+Konsolidierungskriterien:
+- Rules mit >70% Ähnlichkeits-Score → Konsolidieren
+- Rules die gleiche Probleme lösen → Zusammenführen
+- Rules mit identischen Tools → Gruppieren
 
-### DOCUMENTATION DISGUISED AS RULES ❌ (Convert or Remove)  
-- **Project Decisions**: Rules documenting what was done without prevention value
-- **Vague Guidance**: Rules without clear application patterns or tools
-- **Historical Records**: Rules describing past events rather than future prevention
-- **Single-Use Patterns**: Rules without broader applicability or reuse potential
+Fokus-Cluster für Konsolidierung:
+- XSS/Security Rules (Security Rules #1, #3, #4)
+- SDC Field Architecture (Rules #18, #21, #22, #23, #24)
+- Agent Orchestration (Rules #8, #10, #11, #12)
+- Test/Quality Validation (Rule #5, #15, Testing Rules)
+- Infrastructure Management (Rules #6, #7, Infrastructure Rules)
 
-## Phase 3: Meta-Pattern Synthesis
-
-Create higher-level patterns from rule clusters:
-
-### Security Pipeline Integrity
-Consolidate XSS prevention, authentication, and security validation patterns
-
-### Systematic Migration Framework  
-Merge terminology changes, authentication updates, and infrastructure migrations
-
-### Component Architecture Standards
-Unify component proliferation prevention, standardization rules, and refactoring patterns
-
-### Agent Orchestration Protocol
-Consolidate complex task coordination, dependency mapping, and specialized assignment patterns
-
-### Performance Validation Framework
-Merge baseline measurement, optimization verification, and ROI validation patterns
-
-## Phase 4: Implementation Process
-
-### 4.1 Current State Analysis
-```bash
-# Analyze CLAUDE.md structure
-wc -l CLAUDE.md
-grep "### Rule #" CLAUDE.md | wc -l
-grep -c "Prevention Rule:" CLAUDE.md
+Erstelle konkrete Konsolidierungsvorschläge mit 100% Informationserhaltung."
 ```
 
-### 4.2 Systematic Optimization
-1. **Meta-Pattern Creation**: Create 5 meta-patterns from identified clusters
-2. **Rule Consolidation**: Merge overlapping rules following synthesis recommendations  
-3. **Hierarchy Optimization**: Reorganize structure for learning velocity
-4. **Documentation Separation**: Move measurement theory to appendix
-5. **Enforcement Enhancement**: Update enforcement section with optimized validation
+### 1.2 Neue Rules Extraktion mit @agent-feedback-codifier
 
-### 4.3 Compound Intelligence Validation
-Ensure optimizations achieve:
-- **Cognitive Load Reduction**: 24+ rules → 12 core rules + 5 meta-patterns
-- **Learning Velocity**: 40% faster pattern recognition and application
-- **Documentation Efficiency**: 75% reduction in maintenance overhead  
-- **Pattern Reuse**: 60% better cross-domain learning transfer
+```yaml
+Task für @agent-feedback-codifier:
+"Extrahiere uncodierte Prevention Rules aus offenen PRs und Issues:
 
-## Phase 5: Quality Gates
+Analyse-Bereiche:
+- Offene Pull Requests mit technical decisions
+- Recent Issues mit bug fixes und solutions  
+- User feedback aus Code Reviews
+- Successful patterns nicht in CLAUDE.md dokumentiert
 
-Verify optimization results meet compound intelligence objectives:
+Duplikat-Check vor Integration:
+- Prüfe ob neue Rule >70% ähnlich zu bestehender Rule
+- Falls ähnlich: Ergänze bestehende Rule statt neue zu erstellen
+- Falls unique: Erstelle neue Rule mit vollständiger Dokumentation
 
-- [ ] **Rule Classification Complete**: All rules categorized as Prevention or Documentation
-- [ ] **Duplication Eliminated**: Overlapping rules consolidated or removed
-- [ ] **Meta-Patterns Created**: Universal principles extracted from rule clusters
-- [ ] **Learning Velocity Enhanced**: Optimized hierarchy accelerates pattern recognition
-- [ ] **Compound Intelligence ROI**: 8:1 optimization investment return validated
-- [ ] **Enforcement Updated**: Automated validation matching optimized rule structure
+Fokus auf Prevention Rules mit:
+- Messbare ROI/Performance Verbesserungen
+- Konkrete Tool Requirements und Commands
+- Klare Application Patterns
+- Recurrence Prevention Potenzial"
+```
+
+## Phase 2: Intelligente Konsolidierung (ohne Verluste)
+
+### 2.1 Konsolidierungs-Template
+
+Für jede identifizierte Rule-Gruppe:
+
+```markdown
+### Rule #X: [Konsolidierter Title] [Status Badge]
+
+**Konsolidiert aus**: [Liste aller zusammengeführten Rules]
+- Ursprüngliche Rule #A: [Context A]  
+- Ursprüngliche Rule #B: [Context B]
+- Ursprüngliche Rule #C: [Context C]
+
+**Problem-Domänen**: 
+[ALLE Root Causes aus allen konsolidierten Rules]
+
+**Lösungspattern**:
+[ALLE Solutions, Code-Beispiele, Patterns aus allen Rules]
+
+**Tool Requirements**:
+[ALLE Commands, Validierungen, Scripts zusammengeführt]
+
+**Metriken & ROI**:
+[ALLE Performance-Daten, Success Rates, Zeit-Ersparnisse]
+
+**Anwendungsbereiche**:
+[ALLE Applications und Use Cases dokumentiert]
+
+**Enforcement**:
+[ALLE Pre-commit hooks, CI/CD validations, Quality Gates]
+```
+
+### 2.2 Beispiel: XSS Prevention Konsolidierung
+
+```markdown
+### Rule #1: XSS Prevention & Security Validation ✅ CRITICAL
+
+**Konsolidiert aus**:
+- Security Rule #1: XSS Prevention in Twig Templates  
+- Security Rule #3: Progressive XSS Vulnerability Elimination
+- Security Rule #4: XSS Double Processing Elimination
+
+**Problem-Domänen**:
+- Twig Templates mit |raw filter vulnerabilities
+- Double/Triple processing chains (|render|striptags)
+- User-generated content vs static content confusion
+- Field access security in SDC components
+
+**Lösungspattern**:
+```twig
+{# WRONG - Multiple XSS attack vectors #}
+{{ current_priority.icon|raw }}
+{{ content.field_title|render|striptags }}
+{{ content.field_features|render|striptags|striptags }}
+
+{# CORRECT - Secure patterns #}
+{{ current_priority.icon }}  # Auto-escaped
+{{ paragraph.field_title.value }}  # Direct scalar access  
+{{ paragraph.field_features.value|trim|split('\n') }}  # Safe processing
+```
+
+**Tool Requirements**:
+- `grep -r "|raw" --include="*.twig" .`
+- `grep -r "|render|striptags" components/`
+- Pre-commit hooks blocking XSS patterns
+- Systematic audit commands
+
+**Metriken & ROI**:
+- 100% XSS prevention success rate
+- 23 templates secured (Security Rule #1)
+- 17 additional vulnerabilities found and fixed (Security Rule #3)
+- Zero XSS vulnerabilities across theme (Security Rule #4)
+
+**Anwendungsbereiche**:
+- All Twig templates with user content
+- SDC components with field rendering
+- Search results and dynamic content
+- File uploads and descriptions
+
+**Enforcement**:
+- Pre-commit: Block |raw on user content
+- CI/CD: Systematic XSS pattern scanning
+- Quality Gates: No merge with security anti-patterns
+```
+
+## Phase 3: Optimierte CLAUDE.md Struktur
+
+### 3.1 Neue Struktur-Template
+
+```markdown
+# CLAUDE.md - Compound Engineering Learning System
+
+## 🎯 Project Context
+[Kompakt: Projekt-Info, Demo Municipality, Core Principles]
+
+## 🚀 Quick Reference Index
+**Alphabetischer Rule-Index für schnelle Navigation:**
+- Agent Orchestration → Rule #3
+- Documentation Standards → Rule #8  
+- Infrastructure Management → Rule #6
+- Performance Optimization → Rule #7
+- SDC Field Architecture → Rule #2
+- Test Validation → Rule #4
+- XSS Prevention → Rule #1
+[... alle Rules alphabetisch]
+
+## 🛡️ Prevention Rules (Konsolidiert)
+
+### Rule #1: XSS Prevention & Security Validation ✅ CRITICAL
+[Vollständig konsolidierte XSS Rules mit allen Details]
+
+### Rule #2: SDC Field Architecture & Slot Standardization ✅ APPLIED  
+[Vollständig konsolidierte SDC Rules mit 7-Phase Validation]
+
+### Rule #3: Agent Orchestration for Complex Tasks ✅ APPLIED
+[Vollständig konsolidierte Agent Rules mit Dependency Mapping]
+
+[... weitere ~12-15 konsolidierte Rules ...]
+
+## 📊 Metrics Dashboard
+**Kompakte Erfolgsmetriken-Übersicht:**
+- Prevention Success Rate: 89% (across all rules)
+- Compound Intelligence ROI: 11.25:1  
+- Pattern Reuse Rate: 80%
+- Learning Velocity: 2.3 days (learning → pattern)
+
+## 🔄 Learning Integration & Enforcement
+[Kompakte Beschreibung: Trigger Points, Quality Gates, Agent Integration]
+```
+
+### 3.2 Performance-Ziele
+
+**Optimierung durch Organisation, nicht Löschung:**
+- **Zeilen**: 1095 → ~800 (-27% durch bessere Struktur)
+- **Rules**: 25+ → ~12-15 (intelligent konsolidiert)
+- **Information**: 100% erhalten (alle Code-Beispiele, Metriken, Details)
+- **Navigation**: Schneller durch Quick Reference Index
+- **Wartung**: Einfacher durch logische Gruppierung
+
+## Phase 4: Duplikat-Prävention bei neuen Rules
+
+### 4.1 Automatische Ähnlichkeitsprüfung
+
+```bash
+# Vor Hinzufügung einer neuen Rule
+# 1. Ähnlichkeits-Check
+grep -i "similar_keywords" CLAUDE.md
+grep -C 3 "similar_root_cause" CLAUDE.md
+grep -A 5 "similar_tools" CLAUDE.md
+
+# 2. Score-Berechnung  
+# - Root Cause Overlap: X%
+# - Solution Similarity: Y%  
+# - Tool Requirements: Z%
+# → Gesamt-Score: W%
+
+# 3. Entscheidung
+# Falls W% > 70%: Ergänze bestehende Rule
+# Falls W% < 70%: Erstelle neue Rule
+```
+
+### 4.2 Integration Workflow
+
+```yaml
+Neue Rule Integration:
+1. @agent-knowledge-synthesizer: Ähnlichkeits-Check
+2. Falls >70% ähnlich: Bestehende Rule erweitern
+3. Falls <70% ähnlich: Neue Rule erstellen  
+4. @agent-feedback-codifier: Context und ROI dokumentieren
+5. Quick Reference Index aktualisieren
+6. Metrics Dashboard Update
+```
 
 ## Implementation Commands
 
-Use these systematic approaches during optimization:
-
+### Analyse der aktuellen Situation
 ```bash
-# Rule analysis and consolidation
-grep -n "### Rule #" CLAUDE.md
-grep -A 5 -B 1 "Prevention Rule:" CLAUDE.md
-grep -c "Application:" CLAUDE.md
+# Aktuelle Rule-Anzahl und Struktur
+grep -n "### Rule #" CLAUDE.md | wc -l
+grep -n "### Security Rule #" CLAUDE.md | wc -l  
+grep -n "### Documentation Rule #" CLAUDE.md | wc -l
+wc -l CLAUDE.md
 
-# Structure optimization validation  
-wc -l CLAUDE.md  # Target: ~400 lines focused content
-grep "Meta-Pattern" CLAUDE.md | wc -l  # Target: 5 patterns
+# Konsolidierungs-Kandidaten finden
+grep -A 2 "Root Cause:" CLAUDE.md | sort | uniq -c | sort -nr
+grep -A 2 "Tool Requirement:" CLAUDE.md | sort | uniq -c | sort -nr
+```
+
+### Erfolgs-Validation
+```bash
+# Nach Konsolidierung prüfen  
+wc -l CLAUDE.md  # Ziel: ~800 Zeilen
+grep "### Rule #" CLAUDE.md | wc -l  # Ziel: ~12-15 Rules
+grep -c "Code Pattern:" CLAUDE.md  # Alle Code-Beispiele erhalten
+grep -c "Metrics:" CLAUDE.md  # Alle ROI-Daten erhalten
 ```
 
 ## Expected Outcomes
 
-Transform CLAUDE.md from a growing list of fragmented learnings into an optimized compound intelligence system:
+**Intelligente Optimierung statt radikaler Kürzung:**
+- **Saubere Rule-Liste**: 12-15 gut strukturierte, konsolidierte Rules
+- **100% Informationserhalt**: Alle technischen Details, Code-Beispiele, Metriken  
+- **Bessere Performance**: ~800 Zeilen durch Organisation, nicht Löschung
+- **Schnellere Navigation**: Quick Reference Index für sofortigen Zugriff
+- **Duplikat-Prävention**: Automatische Ähnlichkeitsprüfung bei neuen Rules
+- **Einfachere Wartung**: Logische Gruppierung statt fragmentierte Rules
 
-- **Reduced Cognitive Load**: Fewer, more powerful prevention patterns
-- **Enhanced Learning Velocity**: Meta-patterns enable faster cross-domain transfer
-- **Improved Maintenance**: Consolidated patterns prevent rule proliferation  
-- **Accelerated Decision Making**: Clear hierarchy eliminates choice paralysis
-
-Begin with Phase 1 agent orchestration, then proceed systematically through all phases to achieve maximum compound intelligence optimization.
+Beginne mit Phase 1: Nutze @agent-knowledge-synthesizer und @agent-feedback-codifier für intelligente Analyse und Konsolidierung ohne Informationsverlust.

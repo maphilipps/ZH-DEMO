@@ -10,10 +10,6 @@ props:
       type: string
       title: eyebrow
       description: Small text above the main title
-    title:
-      type: string
-      title: title
-      description: Main heading for the bento grid section
     description:
       type: string
       title: description

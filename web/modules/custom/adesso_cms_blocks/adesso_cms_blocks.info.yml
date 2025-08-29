@@ -1,10 +1,9 @@
-name: Adesso CMS Blocks
+name: 'adesso CMS Blocks'
 type: module
-description: Custom block plugins for Adesso CMS theme integration
+description: 'Custom blocks for adesso CMS theme'
+package: 'Custom'
 core_version_requirement: ^11
+version: '1.0.0'
 dependencies:
   - drupal:block
-  - drupal:node
-  - drupal:file
-  - drupal:media
-package: Custom
+  - drupal:system

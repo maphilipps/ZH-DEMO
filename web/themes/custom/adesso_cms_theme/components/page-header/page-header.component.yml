@@ -17,14 +17,6 @@ props:
       title: Include Navigation
       description: Whether to render integrated navigation within the header
       default: false
-    title:
-      type: string
-      title: Page Title
-      description: The main page title
-    description:
-      type: string
-      title: Page Description
-      description: Optional page description text
     background_image:
       type: string
       title: Background Image URL
@@ -72,41 +64,19 @@ props:
       type: string
       title: Header Right Region Content  
       description: Main navigation and right elements (Drupal region content)
-variants:
-  default:
-    title: "Standard Page Header"
-    description: "Standard page header without navigation, moderate spacing"
-  landing:
-    title: "Landing Page Header"
-    description: "Large landing page header with optional integrated navigation and hero styling"
-  hero:
-    title: "Hero Header" 
-    description: "Full-screen hero header with overlay navigation and enhanced visuals"
 libraryDependencies:
   - adesso_cms_theme/global
 
 slots:
   title:
-    title: 'Page Title Content'
-    description: 'Main page title heading content (from field_title or page title)'
     required: false
   description:
-    title: 'Page Description Content'
-    description: 'Page description or subtitle content'
     required: false
   breadcrumbs:
-    title: 'Breadcrumb Navigation'
-    description: 'Breadcrumb trail content for navigation'
     required: false
   actions:
-    title: 'Page Actions'
-    description: 'Action buttons or controls related to page'
     required: false
   navigation:
-    title: 'Header Navigation'
-    description: 'Navigation menu content when includes_navigation is true'
     required: false
   background:
-    title: 'Background Content'
-    description: 'Custom background elements or media'
     required: false

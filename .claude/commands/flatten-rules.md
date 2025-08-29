@@ -1,127 +1,278 @@
 ---
-description: Analyze and fix CI failures by examining logs and making targeted fixes
-allowed_tools: Edit,MultiEdit,Write,Read,Glob,Grep,LS,Bash(git:*),Bash(bun:*),Bash(npm:*),Bash(npx:*),Bash(gh:*)
+description: Intelligente CLAUDE.md Optimierung durch Konsolidierung ohne Informationsverlust
 ---
 
-# Fix CI Failures
+# Intelligente CLAUDE.md Rules Optimierung
 
-You are tasked with analyzing CI failure logs and fixing the issues. Follow these steps:
+Du optimierst die CLAUDE.md durch **intelligente Konsolidierung**, nicht durch radikale Löschung. Ziel: Saubere Rule-Liste ohne Informationsverlust bei optimaler Performance. Vorher die Claude.md bitte einmal sichern. Später vergleichen, ob learnings noch da sind und erst dann löschen.
 
-## Context Provided
+## 🎯 Kern-Prinzipien
 
-$ARGUMENTS
+- **100% Informationserhalt**: Keine einzige Rule, Code-Beispiel oder Metrik geht verloren
+- **Intelligente Konsolidierung**: Ähnliche Rules werden zusammengeführt, nicht gelöscht  
+- **Einfache Rule-Liste**: Keine Meta-Patterns oder abstrakte Frameworks
+- **Duplikat-Prävention**: Neue Rules automatisch auf Ähnlichkeit prüfen
+- **Performance-Optimierung**: ~800 Zeilen (von 1095) durch Organisation
 
-## Important Context Information
+## Phase 1: Intelligente Duplikat-Analyse
 
-Look for these key pieces of information in the arguments:
+### 1.1 Ähnlichkeits-Erkennung mit @agent-knowledge-synthesizer
 
-- **Failed CI Run URL**: Link to the failed CI run
-- **Failed Jobs**: List of jobs that failed
-- **PR Number**: The PR number to comment on
-- **Branch Name**: The fix branch you're working on
-- **Base Branch**: The original PR branch
-- **Error logs**: Detailed logs from failed jobs
+```yaml
+Task für @agent-knowledge-synthesizer:
+"Analysiere alle Rules in CLAUDE.md und identifiziere Konsolidierungsmöglichkeiten mit folgendem Algorithmus:
 
-## Step 1: Analyze the Failure
+Ähnlichkeits-Score Berechnung:
+- Root Cause Übereinstimmung: 40% Gewichtung
+- Solution/Pattern Ähnlichkeit: 30% Gewichtung  
+- Tool Requirements Überschneidung: 20% Gewichtung
+- Context Verwandtschaft: 10% Gewichtung
 
-Parse the provided CI failure information to understand:
+Konsolidierungskriterien:
+- Rules mit >70% Ähnlichkeits-Score → Konsolidieren
+- Rules die gleiche Probleme lösen → Zusammenführen
+- Rules mit identischen Tools → Gruppieren
 
-- Which jobs failed and why
-- The specific error messages and stack traces
-- Whether failures are test-related, build-related, or linting issues
+Fokus-Cluster für Konsolidierung:
+- XSS/Security Rules (Security Rules #1, #3, #4)
+- SDC Field Architecture (Rules #18, #21, #22, #23, #24)
+- Agent Orchestration (Rules #8, #10, #11, #12)
+- Test/Quality Validation (Rule #5, #15, Testing Rules)
+- Infrastructure Management (Rules #6, #7, Infrastructure Rules)
 
-## Step 2: Search and Understand the Codebase
-
-Use search tools to locate the failing code:
-
-- Search for the failing test names or functions
-- Find the source files mentioned in error messages
-- Review related configuration files (package.json, tsconfig.json, etc.)
-
-## Step 3: Apply Targeted Fixes
-
-Make minimal, focused changes:
-
-- **For test failures**: Determine if the test or implementation needs fixing
-- **For type errors**: Fix type definitions or correct the code logic
-- **For linting issues**: Apply formatting using the project's tools
-- **For build errors**: Resolve dependency or configuration issues
-- **For missing imports**: Add the necessary imports or install packages
-
-Requirements:
-
-- Only fix the actual CI failures, avoid unrelated changes
-- Follow existing code patterns and conventions
-- Ensure changes are production-ready, not temporary hacks
-- Preserve existing functionality while fixing issues
-
-## Step 4: Verify Fixes Locally
-
-Run available verification commands:
-
-- Execute the failing tests locally to confirm they pass
-- Run the project's lint command (check package.json for scripts)
-- Run type checking if available
-- Execute any build commands to ensure compilation succeeds
-
-## Step 5: Commit and Push Changes
-
-After applying ALL fixes:
-
-1. Stage all modified files with `git add -A`
-2. Commit with: `git commit -m "Fix CI failures: [describe specific fixes]"`
-3. Document which CI jobs/tests were addressed
-4. **CRITICAL**: Push the branch with `git push origin HEAD` - You MUST push the branch after committing
-
-## Step 6: Create PR Comment (REQUIRED - DO NOT SKIP)
-
-**CRITICAL: You MUST create a PR comment after pushing. This step is MANDATORY.**
-
-After successfully pushing the fixes, you MUST create a comment on the original PR to notify about the auto-fix. DO NOT end the task without completing this step.
-
-1. Extract the PR number from the context provided in arguments (look for "PR Number:" in the context)
-2. **MANDATORY**: Execute the gh CLI command below to create the comment
-3. Verify the comment was created successfully
-
-**YOU MUST RUN THIS COMMAND** (replace placeholders with actual values from context):
-
-```bash
-gh pr comment PR_NUMBER --body "## 🤖 CI Auto-Fix Available
-
-Claude has analyzed the CI failures and prepared fixes.
-
-[**→ Create pull request to fix CI**](https://github.com/OWNER/REPO/compare/BASE_BRANCH...FIX_BRANCH?quick_pull=1)
-
-_This fix was generated automatically based on the [failed CI run](FAILED_CI_RUN_URL)._"
+Erstelle konkrete Konsolidierungsvorschläge mit 100% Informationserhaltung."
 ```
 
-**IMPORTANT REPLACEMENTS YOU MUST MAKE:**
+### 1.2 Neue Rules Extraktion mit @agent-feedback-codifier
 
-- Replace `PR_NUMBER` with the actual PR number from "PR Number:" in context
-- Replace `OWNER/REPO` with the repository from "Repository:" in context
-- Replace `BASE_BRANCH` with the branch from "Base Branch:" in context
-- Replace `FIX_BRANCH` with the branch from "Branch Name:" in context
-- Replace `FAILED_CI_RUN_URL` with the URL from "Failed CI Run:" in context
+```yaml
+Task für @agent-feedback-codifier:
+"Extrahiere uncodierte Prevention Rules aus offenen PRs und Issues:
 
-**DO NOT SKIP THIS STEP. The task is NOT complete until the PR comment is created.**
+Analyse-Bereiche:
+- Offene Pull Requests mit technical decisions
+- Recent Issues mit bug fixes und solutions  
+- User feedback aus Code Reviews
+- Successful patterns nicht in CLAUDE.md dokumentiert
 
-## Step 7: Final Verification
+Duplikat-Check vor Integration:
+- Prüfe ob neue Rule >70% ähnlich zu bestehender Rule
+- Falls ähnlich: Ergänze bestehende Rule statt neue zu erstellen
+- Falls unique: Erstelle neue Rule mit vollständiger Dokumentation
 
-**BEFORE CONSIDERING THE TASK COMPLETE**, verify you have:
+Fokus auf Prevention Rules mit:
+- Messbare ROI/Performance Verbesserungen
+- Konkrete Tool Requirements und Commands
+- Klare Application Patterns
+- Recurrence Prevention Potenzial"
+```
 
-1. ✅ Fixed all CI failures
-2. ✅ Committed the changes
-3. ✅ Pushed the branch with `git push origin HEAD`
-4. ✅ **CREATED THE PR COMMENT using `gh pr comment` command from Step 6**
+## Phase 2: Intelligente Konsolidierung (ohne Verluste)
 
-If you have NOT created the PR comment, go back to Step 6 and execute the command.
+### 2.1 Konsolidierungs-Template
 
-## Important Guidelines
+Für jede identifizierte Rule-Gruppe:
 
-- Focus exclusively on fixing the reported CI failures
-- Maintain code quality and follow the project's established patterns
-- If a fix requires significant refactoring, document why it's necessary
-- When multiple solutions exist, choose the simplest one that maintains code quality
-- **THE TASK IS NOT COMPLETE WITHOUT THE PR COMMENT**
+```markdown
+### Rule #X: [Konsolidierter Title] [Status Badge]
 
-Begin by analyzing the failure details provided above.
+**Konsolidiert aus**: [Liste aller zusammengeführten Rules]
+- Ursprüngliche Rule #A: [Context A]  
+- Ursprüngliche Rule #B: [Context B]
+- Ursprüngliche Rule #C: [Context C]
+
+**Problem-Domänen**: 
+[ALLE Root Causes aus allen konsolidierten Rules]
+
+**Lösungspattern**:
+[ALLE Solutions, Code-Beispiele, Patterns aus allen Rules]
+
+**Tool Requirements**:
+[ALLE Commands, Validierungen, Scripts zusammengeführt]
+
+**Metriken & ROI**:
+[ALLE Performance-Daten, Success Rates, Zeit-Ersparnisse]
+
+**Anwendungsbereiche**:
+[ALLE Applications und Use Cases dokumentiert]
+
+**Enforcement**:
+[ALLE Pre-commit hooks, CI/CD validations, Quality Gates]
+```
+
+### 2.2 Beispiel: XSS Prevention Konsolidierung
+
+```markdown
+### Rule #1: XSS Prevention & Security Validation ✅ CRITICAL
+
+**Konsolidiert aus**:
+- Security Rule #1: XSS Prevention in Twig Templates  
+- Security Rule #3: Progressive XSS Vulnerability Elimination
+- Security Rule #4: XSS Double Processing Elimination
+
+**Problem-Domänen**:
+- Twig Templates mit |raw filter vulnerabilities
+- Double/Triple processing chains (|render|striptags)
+- User-generated content vs static content confusion
+- Field access security in SDC components
+
+**Lösungspattern**:
+```twig
+{# WRONG - Multiple XSS attack vectors #}
+{{ current_priority.icon|raw }}
+{{ content.field_title|render|striptags }}
+{{ content.field_features|render|striptags|striptags }}
+
+{# CORRECT - Secure patterns #}
+{{ current_priority.icon }}  # Auto-escaped
+{{ paragraph.field_title.value }}  # Direct scalar access  
+{{ paragraph.field_features.value|trim|split('\n') }}  # Safe processing
+```
+
+**Tool Requirements**:
+- `grep -r "|raw" --include="*.twig" .`
+- `grep -r "|render|striptags" components/`
+- Pre-commit hooks blocking XSS patterns
+- Systematic audit commands
+
+**Metriken & ROI**:
+- 100% XSS prevention success rate
+- 23 templates secured (Security Rule #1)
+- 17 additional vulnerabilities found and fixed (Security Rule #3)
+- Zero XSS vulnerabilities across theme (Security Rule #4)
+
+**Anwendungsbereiche**:
+- All Twig templates with user content
+- SDC components with field rendering
+- Search results and dynamic content
+- File uploads and descriptions
+
+**Enforcement**:
+- Pre-commit: Block |raw on user content
+- CI/CD: Systematic XSS pattern scanning
+- Quality Gates: No merge with security anti-patterns
+```
+
+## Phase 3: Optimierte CLAUDE.md Struktur
+
+### 3.1 Neue Struktur-Template
+
+```markdown
+# CLAUDE.md - Compound Engineering Learning System
+
+## 🎯 Project Context
+[Kompakt: Projekt-Info, Demo Municipality, Core Principles]
+
+## 🚀 Quick Reference Index
+**Alphabetischer Rule-Index für schnelle Navigation:**
+- Agent Orchestration → Rule #3
+- Documentation Standards → Rule #8  
+- Infrastructure Management → Rule #6
+- Performance Optimization → Rule #7
+- SDC Field Architecture → Rule #2
+- Test Validation → Rule #4
+- XSS Prevention → Rule #1
+[... alle Rules alphabetisch]
+
+## 🛡️ Prevention Rules (Konsolidiert)
+
+### Rule #1: XSS Prevention & Security Validation ✅ CRITICAL
+[Vollständig konsolidierte XSS Rules mit allen Details]
+
+### Rule #2: SDC Field Architecture & Slot Standardization ✅ APPLIED  
+[Vollständig konsolidierte SDC Rules mit 7-Phase Validation]
+
+### Rule #3: Agent Orchestration for Complex Tasks ✅ APPLIED
+[Vollständig konsolidierte Agent Rules mit Dependency Mapping]
+
+[... weitere ~12-15 konsolidierte Rules ...]
+
+## 📊 Metrics Dashboard
+**Kompakte Erfolgsmetriken-Übersicht:**
+- Prevention Success Rate: 89% (across all rules)
+- Compound Intelligence ROI: 11.25:1  
+- Pattern Reuse Rate: 80%
+- Learning Velocity: 2.3 days (learning → pattern)
+
+## 🔄 Learning Integration & Enforcement
+[Kompakte Beschreibung: Trigger Points, Quality Gates, Agent Integration]
+```
+
+### 3.2 Performance-Ziele
+
+**Optimierung durch Organisation, nicht Löschung:**
+- **Zeilen**: 1095 → ~800 (-27% durch bessere Struktur)
+- **Rules**: 25+ → ~12-15 (intelligent konsolidiert)
+- **Information**: 100% erhalten (alle Code-Beispiele, Metriken, Details)
+- **Navigation**: Schneller durch Quick Reference Index
+- **Wartung**: Einfacher durch logische Gruppierung
+
+## Phase 4: Duplikat-Prävention bei neuen Rules
+
+### 4.1 Automatische Ähnlichkeitsprüfung
+
+```bash
+# Vor Hinzufügung einer neuen Rule
+# 1. Ähnlichkeits-Check
+grep -i "similar_keywords" CLAUDE.md
+grep -C 3 "similar_root_cause" CLAUDE.md
+grep -A 5 "similar_tools" CLAUDE.md
+
+# 2. Score-Berechnung  
+# - Root Cause Overlap: X%
+# - Solution Similarity: Y%  
+# - Tool Requirements: Z%
+# → Gesamt-Score: W%
+
+# 3. Entscheidung
+# Falls W% > 70%: Ergänze bestehende Rule
+# Falls W% < 70%: Erstelle neue Rule
+```
+
+### 4.2 Integration Workflow
+
+```yaml
+Neue Rule Integration:
+1. @agent-knowledge-synthesizer: Ähnlichkeits-Check
+2. Falls >70% ähnlich: Bestehende Rule erweitern
+3. Falls <70% ähnlich: Neue Rule erstellen  
+4. @agent-feedback-codifier: Context und ROI dokumentieren
+5. Quick Reference Index aktualisieren
+6. Metrics Dashboard Update
+```
+
+## Implementation Commands
+
+### Analyse der aktuellen Situation
+```bash
+# Aktuelle Rule-Anzahl und Struktur
+grep -n "### Rule #" CLAUDE.md | wc -l
+grep -n "### Security Rule #" CLAUDE.md | wc -l  
+grep -n "### Documentation Rule #" CLAUDE.md | wc -l
+wc -l CLAUDE.md
+
+# Konsolidierungs-Kandidaten finden
+grep -A 2 "Root Cause:" CLAUDE.md | sort | uniq -c | sort -nr
+grep -A 2 "Tool Requirement:" CLAUDE.md | sort | uniq -c | sort -nr
+```
+
+### Erfolgs-Validation
+```bash
+# Nach Konsolidierung prüfen  
+wc -l CLAUDE.md  # Ziel: ~800 Zeilen
+grep "### Rule #" CLAUDE.md | wc -l  # Ziel: ~12-15 Rules
+grep -c "Code Pattern:" CLAUDE.md  # Alle Code-Beispiele erhalten
+grep -c "Metrics:" CLAUDE.md  # Alle ROI-Daten erhalten
+```
+
+## Expected Outcomes
+
+**Intelligente Optimierung statt radikaler Kürzung:**
+- **Saubere Rule-Liste**: 12-15 gut strukturierte, konsolidierte Rules
+- **100% Informationserhalt**: Alle technischen Details, Code-Beispiele, Metriken  
+- **Bessere Performance**: ~800 Zeilen durch Organisation, nicht Löschung
+- **Schnellere Navigation**: Quick Reference Index für sofortigen Zugriff
+- **Duplikat-Prävention**: Automatische Ähnlichkeitsprüfung bei neuen Rules
+- **Einfachere Wartung**: Logische Gruppierung statt fragmentierte Rules
+
+Beginne mit Phase 1: Nutze @agent-knowledge-synthesizer und @agent-feedback-codifier für intelligente Analyse und Konsolidierung ohne Informationsverlust.

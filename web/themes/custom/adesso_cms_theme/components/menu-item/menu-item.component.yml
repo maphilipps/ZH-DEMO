@@ -17,12 +17,12 @@ props:
       description: The link destination for the menu item
   
     is_active:
-      type: boolean
+      type: [boolean, "null"]
       title: Active State
       description: Whether this menu item is currently active/selected
       default: false
     in_active_trail:
-      type: boolean
+      type: [boolean, "null"]
       title: In Active Trail
       description: Whether this menu item is in the active trail (parent of active item)
       default: false
@@ -39,10 +39,10 @@ props:
       minimum: 0
       maximum: 3
     target:
-      type: string
+      type: [string, "null"]
       title: Link Target
       description: The target attribute for the menu item link
-      enum: [_self, _blank, _parent, _top]
+      enum: [_self, _blank, _parent, _top, null]
       default: _self
     aria_label:
       type: string

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ */
+#}
+<div class="{{ modifier }}">
+	<ul class="flex flex-wrap justify-center space-x-4 md:justify-end">
+		{% for link in items %}
+			{% if link.url %}
+				<li>
+					<a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground {{ item_modifier }}">
+						{{ link.title }}
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</div>

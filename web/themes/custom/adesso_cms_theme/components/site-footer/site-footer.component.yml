@@ -41,32 +41,10 @@ props:
           type: string
         icon:
           type: string
-    social_links:
-      type: object
-      title: social_links
-      description: Array of social media links
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     newsletter_signup:
       type: object
       title: newsletter_signup
       description: Newsletter signup form configuration
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
-    contact_info:
-      type: object
-      title: contact_info
-      description: Contact information to display
       properties:
         url:
           type: string

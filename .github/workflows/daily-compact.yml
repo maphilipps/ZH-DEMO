@@ -1,0 +1,24 @@
+name: Daily compact
+on:
+    schedule:
+        - cron: "0 5 * * *"
+jobs:
+    compact:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
+            issues: write
+            id-token: write
+            actions: write # Required for Claude to read CI results on PRs
+        steps:
+            -   uses: anthropics/claude-code-action@v1
+                with:
+                  claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+                  prompt:  |
+                      "/flatten-rules"
+                      "Push the changes to the claude.md file in the main branch. The claude.md file contains learnings from all PRs and should be kept compact and free of duplicates. If you find any duplicate learnings, please remove them and keep only the most important ones. Your task is to merge and compact the learnings in the claude.md file."
+                      "Document the learnings in a concise manner, ensuring clarity and relevance."
+                      "Document the changes made to the claude.md file in the commit message."
+                      "Document the imrovements made to the claude.md file in the commit message."
+                  claude_args: "--model claude-opus-4-1-20250805"

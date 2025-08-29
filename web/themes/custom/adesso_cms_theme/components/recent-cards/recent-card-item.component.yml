@@ -14,10 +14,6 @@ props:
       title: 'Media Content'
       description: 'The media content (rendered HTML) - typically a thumbnail image'
       default: ''
-    title:
-      type: string
-      title: 'Title'
-      description: 'The card title text'
     summary:
       type:
         - string

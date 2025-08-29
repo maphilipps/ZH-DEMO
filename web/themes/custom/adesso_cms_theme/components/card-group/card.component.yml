@@ -6,10 +6,6 @@ description: 'A single card component.'
 props:
   type: object
   properties:
-    media:
-      type: string
-      title: 'Media'
-      description: 'Media content for the card'
     media_link:
       type: string
       title: 'Media Link'

@@ -1,0 +1,45 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Modal
+description: General/Modal component
+props:
+  type: object
+  properties:
+    button_text:
+      type: string
+      title: button_text
+      description: Text for the trigger button
+    modal_name:
+      type: string
+      title: modal_name
+      description: Unique identifier for the modal
+    title:
+      type: string
+      title: title
+      description: Modal header title
+    body:
+      type: string
+      title: body
+      description: Modal content body
+    close_button:
+      type: string
+      title: close_button
+      description: Text for the close button
+    save_button:
+      type: object
+      title: save_button
+      description: Configuration for the save button
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+libraryOverrides:
+  js:
+    modal.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

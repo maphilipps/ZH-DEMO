@@ -1,12 +1,18 @@
 name: Daily Report
 on:
     schedule:
-        - cron: "0 9 * * *"
+        - cron: "0 7 * * *"
 jobs:
     report:
         runs-on: ubuntu-latest
         steps:
             - uses: anthropics/claude-code-action@v1
+              permissions:
+                  contents: write
+                  pull-requests: write
+                  issues: write
+                  id-token: write
+                  actions: write # Required for Claude to read CI results on PRs
               with:
                   claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
                   prompt: "Erstelle eine Zusammenfassung der gestrigen Commits und offenen Issues"

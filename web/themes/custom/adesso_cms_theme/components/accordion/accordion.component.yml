@@ -14,17 +14,6 @@ props:
       type: boolean
       title: is_dark
       description: Whether to use dark theme styling
-    accordion_items:
-      type: object
-      title: accordion_items
-      description: Define the list of items containing the title and content of each accordion
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
 slots:
   title:
     title: Title

@@ -1,0 +1,57 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Popover
+description: Messages/Popover component
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title text for the popover
+    content:
+      type: string
+      title: content
+      description: Content text for the popover
+    placement:
+      type: string
+      title: placement
+      description: Position of the popover relative to the trigger
+      enum:
+        - top
+        - bottom
+        - left
+        - right
+    trigger:
+      type: string
+      title: trigger
+      description: Trigger action for the popover
+      enum:
+        - click
+        - hover
+    buttonVariant:
+      type: string
+      title: buttonVariant
+      description: Visual style of the trigger button
+      enum:
+        - default
+        - destructive
+        - outline
+        - secondary
+        - ghost
+        - link
+    buttonText:
+      type: string
+      title: buttonText
+      description: Text displayed on the trigger button
+    className:
+      type: string
+      title: className
+      description: Additional classes for the popover content
+libraryOverrides:
+  js:
+    popover.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

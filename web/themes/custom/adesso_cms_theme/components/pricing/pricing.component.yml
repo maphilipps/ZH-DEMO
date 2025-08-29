@@ -6,18 +6,6 @@ group: Organisms
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Text displayed above the main title
-      default: Choose Your Plan
-    title:
-      type: string
-      title: title
-      description: Main heading for the pricing section
-      default: Compare Our Options
     summary:
       type:
         - string
@@ -81,22 +69,17 @@ props:
 
 slots:
   pre_headline:
-    title: 'Pre-headline Content'
     description: 'Content above main pricing section title'
     required: false
   title:
-    title: 'Section Title'
     description: 'Main pricing section heading content'
     required: false
   content:
-    title: 'Section Description'
     description: 'Description content below title'
     required: false
   pricing_cards:
-    title: 'Pricing Cards'
     description: 'Individual pricing card content'
     required: true
   actions:
-    title: 'Section Actions'
     description: 'Additional actions for pricing section'
     required: false

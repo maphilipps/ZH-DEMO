@@ -5,18 +5,7 @@ status: stable
 group: Organisms
 props:
   type: object
-  properties:
-    items:
-      type: object
-      title: items
-      description: Array of slider items with media, title, and summary
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+  properties: {}
 libraryOverrides:
   js:
     slider.behavior.js:

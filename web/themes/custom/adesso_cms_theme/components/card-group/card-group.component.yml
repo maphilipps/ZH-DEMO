@@ -6,17 +6,6 @@ group: Organisms
 props:
   type: object
   properties:
-    card_items:
-      type: object
-      title: card_items
-      description: Array of card list items (StatCardProps | CustomCardProps)
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     columns:
       type: string
       title: columns

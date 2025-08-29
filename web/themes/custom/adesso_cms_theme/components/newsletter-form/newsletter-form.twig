@@ -4,23 +4,6 @@
     <div class="flex flex-col lg:space-y-8">
       {# Header Section #}
       <div class="flex flex-col justify-center">
-<<<<<<< HEAD
-        {% if pre_headline or title %}
-          {% include 'adesso_cms_theme:section-header' with {
-            title: title,
-            pre_headline: pre_headline,
-            alignment: 'left',
-            title_tag: 'h2',
-            pre_headline_tag: 'h3',
-            title_visual_level: '2',
-            pre_headline_visual_level: '3',
-            additional_classes: 'mb-4'
-          } %}
-        {% endif %}
-        <div class="newsletter-summary">
-          {{ summary }}
-        </div>
-=======
         {% if has_slot('pre_headline') or has_slot('title') %} 
           {% include 'adesso_cms_theme:section-header' with { 
             title: get_slot('title'), 
@@ -34,7 +17,6 @@
           } %} 
         {% endif %}
         <div class="newsletter-summary">{{ summary }}</div>
->>>>>>> main
       </div>
       {# Newsletter Form Section #}
       <div class="mt-6 lg:mt-0">

@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Status Badge
 status: stable
 group: Atoms
+libraryDependencies: ["adesso_cms_theme/global"]
 description: 'Status badge component for Event Review Dashboard with Swiss compliance colors'
 props:
   type: object

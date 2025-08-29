@@ -3,6 +3,7 @@ name: Logo
 description: General/Logo component with variant support
 status: stable
 group: Atoms
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

@@ -3,14 +3,13 @@ Result title * - municipal_verified: Boolean for official verification */ #}
 
 <footer class="result-actions" role="contentinfo">
   <div class="action-buttons">
-    <a
-      href="{{ url }}"
-      class="btn btn--primary btn--municipal"
-      aria-label="View full details for {{ title|striptags }}"
-    >
-      <span class="btn-text">Details anzeigen</span>
-      <span class="btn-icon" aria-hidden="true">→</span>
-    </a>
+    {% include 'adesso_cms_theme:button' with {
+      url: url,
+      text: 'Details anzeigen →',
+      variant: 'default',
+      size: 'default',
+      modifier: 'btn--municipal'
+    } only %}
   </div>
 
   {# Municipal Verification Badge #} {% if municipal_verified %}

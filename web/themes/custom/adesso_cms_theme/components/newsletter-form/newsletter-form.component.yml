@@ -3,6 +3,7 @@ name: Newsletter
 description: Editorial/Newsletter component
 status: stable
 group: Molecules
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

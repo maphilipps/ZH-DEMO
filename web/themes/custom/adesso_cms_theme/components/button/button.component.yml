@@ -40,6 +40,19 @@ props:
         - sm
         - lg
         - icon
+    type:
+      type: string
+      title: type
+      description: The button type for form functionality
+      enum:
+        - submit
+        - button
+        - reset
+    modifier:
+      type: string
+      title: modifier
+      description: Additional CSS classes for flexible styling (security validated)
+      pattern: '^[a-zA-Z0-9\s\-_:\/]*$'
 
 slots:
   content:

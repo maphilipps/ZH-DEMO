@@ -10,13 +10,7 @@ npm-debug.log
 # Ignore any map files. These don't need to be committed.
 *.map
 
-# Ignore any artifact files.
-# dist/css/*
-# !dist/css/.gitkeep
-# dist/fonts/*
-# !dist/fonts/.gitkeep
-# dist/images/*
-# !dist/images/.gitkeep
-# dist/js/*
-# !dist/js/.gitkeep
+# Ignore any artifact files and build output (Rule #7: Infrastructure Hygiene)
+dist/
+!dist/.gitkeep
 .storybook/.vite-cache

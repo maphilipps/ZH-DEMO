@@ -3,6 +3,7 @@ name: Paragraph Wrapper
 description: A reusable wrapper component for paragraph content with theme support and semantic HTML structure
 status: stable
 group: Templates
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

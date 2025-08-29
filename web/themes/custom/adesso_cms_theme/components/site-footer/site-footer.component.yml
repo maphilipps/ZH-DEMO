@@ -1,5 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Site Footer
+status: stable
+group: Organisms
 description: General/Site Footer component
 status: stable
 group: Organisms
@@ -45,6 +47,17 @@ props:
       type: object
       title: newsletter_signup
       description: Newsletter signup form configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    contact_info:
+      type: object
+      title: contact_info
+      description: Contact information to display
       properties:
         url:
           type: string

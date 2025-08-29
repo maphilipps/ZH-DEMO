@@ -1,5 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Site Header
+status: stable
+group: Organisms
 description: Components/Site Header component
 status: stable
 group: Organisms
@@ -98,6 +100,8 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+libraryDependencies:
+  - adesso_cms_theme/global
 
 slots:
   logo:

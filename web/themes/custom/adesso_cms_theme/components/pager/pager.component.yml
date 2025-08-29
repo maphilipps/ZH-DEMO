@@ -2,6 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Pager
 description: Navigation/Pager component
 status: stable
+group: Molecules
+libraryDependencies: ["adesso_cms_theme/global"]
 group: Utilities
 props:
   type: object

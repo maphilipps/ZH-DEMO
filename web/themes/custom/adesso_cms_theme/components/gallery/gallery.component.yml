@@ -1,5 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Gallery
+status: stable
+group: Organisms
+libraryDependencies: ["adesso_cms_theme/global"]
 description: Editorial/Gallery component
 status: stable
 group: Organisms

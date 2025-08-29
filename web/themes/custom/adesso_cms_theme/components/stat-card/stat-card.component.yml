@@ -2,6 +2,8 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Stat
 description: General/Stat component
 status: stable
+group: Atoms
+libraryDependencies: ["adesso_cms_theme/global"]
 group: Utilities
 props:
   type: object

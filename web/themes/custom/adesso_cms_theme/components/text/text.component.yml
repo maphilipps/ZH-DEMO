@@ -1,6 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Text Block
 description: Editorial/Text Block component
+status: stable
+group: Molecules
+libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:

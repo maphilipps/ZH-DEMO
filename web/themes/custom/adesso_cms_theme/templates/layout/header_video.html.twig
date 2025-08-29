@@ -71,18 +71,20 @@
         
         {# Action Buttons #}
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a 
-            href="#features" 
-            class="btn bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
-          >
-            Mehr erfahren
-          </a>
-          <a 
-            href="/contact" 
-            class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
-          >
-            Kontakt aufnehmen
-          </a>
+          {% include 'adesso_cms_theme:button' with {
+            url: '#features',
+            text: 'Mehr erfahren',
+            variant: 'default',
+            size: 'lg',
+            modifier: 'px-8 py-4 font-semibold'
+          } %}
+          {% include 'adesso_cms_theme:button' with {
+            url: '/contact',
+            text: 'Kontakt aufnehmen',
+            variant: 'outline',
+            size: 'lg',
+            modifier: 'px-8 py-4 font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-gray-900'
+          } %}
         </div>
       </div>
     </div>

@@ -8,10 +8,6 @@ props:
       type: string
       title: Submission ID
       description: Unique identifier for the submission
-    title:
-      type: string
-      title: Title
-      description: Brief title or damage type
     description:
       type: string
       title: Description
@@ -72,10 +68,8 @@ props:
     - status
 slots:
   title:
-    title: 'Title'
     description: 'Component title content'
     required: false
   content:
-    title: 'Content'
     description: 'Main component content'
     required: true

@@ -1,4 +1,4 @@
-import { i as initDropdowns } from "./vendor-common.B-MOBQmu.js";
+import { i as initDropdowns } from "./vendor-common.DNy60kh1.js";
 document.addEventListener("DOMContentLoaded", function() {
   initDropdowns();
   const observer = new MutationObserver(function(mutations) {

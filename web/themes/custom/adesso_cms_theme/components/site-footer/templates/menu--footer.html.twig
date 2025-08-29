@@ -8,15 +8,7 @@
     <a
       href="{{ link_url|escape('html_attr') }}"
       class="transition-colors text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white {{ item_modifier|default('') }}"
-      {%
-      if
-      link_url|slice(0,4)=""
-      ="http"
-      %}target="_blank"
-      rel="noopener noreferrer"
-      {%
-      endif
-      %}
+      {% if link_url|slice(0,4) == "http" %}target="_blank" rel="noopener noreferrer"{% endif %}
     >
       {{ link.title|escape }}
     </a>

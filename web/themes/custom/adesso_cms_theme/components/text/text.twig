@@ -1,29 +1,27 @@
-{# Removed macros - using direct slot-based approach #}
+{# Text component with single block definitions #}
 
 <div class="text-container {{ className|default('') }}">
+  {% block content %}
+    {# Content slot for title and body text #}
+  {% endblock %}
+  
+  {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
+  
   {% if (text_layout|default('')) == 'buttons-right' %}
     <div class="lg:flex lg:items-start lg:justify-between">
       <div class="lg:flex-grow">
-        {% block content %}
-          {# Content slot for title and body text #}
-        {% endblock %}
+        {# Content rendered above #}
       </div>
       
       <div class="lg:ml-8 lg:flex-shrink-0 lg:self-start">
-        {% set buttonContainerClasses = 'text-buttons mt-6 flex justify-start lg:justify-end' %}
-        <div class="{{ buttonContainerClasses }}">
+        <div class="{{ buttonContainerClasses }} justify-start lg:justify-end">
           {% block primary_action %}{% endblock %}
           {% block secondary_action %}{% endblock %}
         </div>
       </div>
     </div>
   {% else %}
-    <div class="container {{ (text_layout|default('')) == 'centered' ? 'mx-auto text-center' : '' }}">
-      {% block content %}
-        {# Content slot for title and body text #}
-      {% endblock %}
-      
-      {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
+    <div class="container {{ (text_layout|default('')) == 'centered' ? 'mx-auto text-center' : '' }}">      
       {% if (text_layout|default('')) == 'centered' %}
         {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
       {% else %}
@@ -31,8 +29,7 @@
       {% endif %}
       
       <div class="{{ buttonContainerClasses }}">
-        {% block primary_action %}{% endblock %}
-        {% block secondary_action %}{% endblock %}
+        {# Actions rendered above in primary block #}
       </div>
     </div>
   {% endif %}

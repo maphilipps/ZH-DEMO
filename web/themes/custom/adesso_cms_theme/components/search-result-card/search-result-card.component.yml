@@ -5,13 +5,6 @@ description: 'Reusable search result card component for Gemeinde Bruchtal munici
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: 'Result Title'
-      description: 'The title of the search result'
-      examples:
-        - 'Gemeinderat Sitzung September 2024'
-        - 'FC Bruchtal - Vereinsregister'
     url:
       type: string
       title: 'Result URL'
@@ -105,18 +98,14 @@ libraryDependencies:
 
 slots:
   title:
-    title: 'Result Title'
     description: 'Search result title and main heading content'
     required: true
   content:
-    title: 'Result Content'
     description: 'Search excerpt and result body content'
     required: false
   metadata:
-    title: 'Result Metadata'
     description: 'Categories, target groups, and verification badges'
     required: false
   actions:
-    title: 'Result Actions'
     description: 'Action buttons and links for the result'
     required: false

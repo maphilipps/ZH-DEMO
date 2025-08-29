@@ -12,17 +12,6 @@ props:
       type: string
       title: sub_headline
       description: The sub-headline of the gallery lightbox component
-    gallery_items:
-      type: object
-      title: gallery_items
-      description: Define the array of gallery lightbox items
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
     modifier:
       type: string
       title: modifier

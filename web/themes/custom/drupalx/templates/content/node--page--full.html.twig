@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ */
+#}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'mb-8',
+] %}
+
+<article{{attributes.addClass(classes)}}>
+	<div class="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
+		{% if content.field_media %}
+			<div class="mb-7">
+				{{ content.field_media }}
+			</div>
+		{% endif %}
+
+		<div class="mx-auto max-w-2xl">
+			{{ title_prefix }}
+			{% include 'drupalx_theme:heading' with {
+        "heading": {
+          "title": label,
+          "heading_level": 1,
+          "modifier": "mb-6 text-center"
+        }
+      } only %}
+			{{ title_suffix }}
+
+			{% if content.body %}
+				<div class="prose prose-lg">
+					{{ content.body }}
+				</div>
+			{% endif %}
+
+			{# Render other content fields besides field_media and body #}
+			{{ content|without('field_media', 'body') }}
+		</div>
+	</div>
+</article>

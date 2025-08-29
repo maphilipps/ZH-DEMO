@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Site Header
 description: Components/Site Header component
+status: stable
+group: Organisms
 props:
   type: object
   properties:

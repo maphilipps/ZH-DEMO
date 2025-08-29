@@ -1,6 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Newsletter
 description: Editorial/Newsletter component
+status: stable
+group: Molecules
 props:
   type: object
   properties:

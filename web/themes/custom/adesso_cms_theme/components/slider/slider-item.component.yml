@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Slider Item
 status: stable
-group: molecules
+group: Molecules
 description: 'Individual item within a slider component with media slot architecture and enhanced responsive image support'
 props:
   type: object

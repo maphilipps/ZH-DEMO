@@ -1,0 +1,10 @@
+{% if title %}
+  {%
+    include 'drupalx_theme:heading' with {
+      "heading": {
+        "title": title,
+        "heading_level": "2",
+      },
+    } only
+  %}
+{% endif %}

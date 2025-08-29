@@ -13,6 +13,12 @@
   {% endif %}
 
   <div>
-    <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">{{ embed }}</div>
+    <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">
+      {% if has_slot('embed_content') %}
+        {{ get_slot('embed_content') }}
+      {% else %}
+        {{ embed }}
+      {% endif %}
+    </div>
   </div>
 </div>

@@ -1,0 +1,26 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Quote
+description: Editorial/Quote component
+props:
+  type: object
+  properties:
+    author:
+      type: string
+      title: author
+      description: Author of the quote
+    jobTitle:
+      type: string
+      title: jobTitle
+      description: Job title of the author
+    logo:
+      type: string
+      title: logo
+      description: Logo component
+    quote:
+      type: string
+      title: quote
+      description: The quote text
+    thumb:
+      type: string
+      title: thumb
+      description: Thumbnail image for the author

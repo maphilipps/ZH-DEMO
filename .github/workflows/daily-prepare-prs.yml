@@ -1,10 +1,16 @@
 name: Daily Prepare PRs
 on:
     schedule:
-        - cron: "0 1 * * *"
+        - cron: "0 8 * * *"
 jobs:
-    report:
+    prepare-prs:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
+            issues: write
+            id-token: write
+            actions: write # Required for Claude to read CI results on PRs
         steps:
             - uses: anthropics/claude-code-action@v1
               with:

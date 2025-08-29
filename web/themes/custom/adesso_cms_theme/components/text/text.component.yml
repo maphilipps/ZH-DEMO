@@ -32,3 +32,5 @@ slots:
     title: 'Secondary Action'
     description: 'Secondary call-to-action button/link area for field_link2'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

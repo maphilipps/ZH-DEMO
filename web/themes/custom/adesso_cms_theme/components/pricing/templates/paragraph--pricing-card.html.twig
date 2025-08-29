@@ -8,10 +8,9 @@
 {{ title_prefix }}
 {{ title_suffix }}
 
-{% embed 'adesso_cms_theme:pricing-card' with {
-  title: paragraph.field_title.value,
-  pre_headline: paragraph.field_eyebrow.value,
-} only %}
+{% embed 'adesso_cms_theme:pricing-card' with {} only %}
+  {% block title %}{{ content.field_title }}{% endblock %}
+  {% block pre_headline %}{{ content.field_eyebrow }}{% endblock %}
   {% block content %}
     {# Use slot-based rendering for features field - maintains proper Drupal rendering pipeline #}
     {{ content.field_features_text }}

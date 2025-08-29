@@ -75,3 +75,5 @@ slots:
   content:
     description: 'Main component content'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

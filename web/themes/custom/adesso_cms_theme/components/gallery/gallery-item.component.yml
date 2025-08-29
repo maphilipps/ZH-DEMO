@@ -37,3 +37,5 @@ slots:
     title: 'Media Description'
     description: 'Description content for gallery item'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

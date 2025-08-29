@@ -23,3 +23,5 @@ slots:
   pre_headline:
     title: Pre Headline
     description: The pre-headline content above the title
+libraryDependencies:
+  - adesso_cms_theme/global

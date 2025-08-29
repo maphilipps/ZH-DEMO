@@ -25,9 +25,9 @@
     hero_layout: paragraph.field_hero_layout.value,
     is_dark: wrapper_theme == 'dark',
     pre_headline: paragraph.field_pre_headline.value,
-    heading: paragraph.field_heading.value,
     text: content.field_summary,
   } only %}
+    {% block heading %}{{ content.field_heading }}{% endblock %}
     {% block background_media %}
       {# Use field template rendering instead of raw field array - maintains proper Drupal rendering pipeline #}
       {{ content.field_media }}

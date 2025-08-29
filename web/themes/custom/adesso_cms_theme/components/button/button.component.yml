@@ -40,26 +40,11 @@ props:
         - sm
         - lg
         - icon
-<<<<<<< HEAD
-    type:
-      type: string
-      title: type
-      description: The button type attribute (for form buttons)
-      default: button
-      enum:
-        - button
-        - submit
-        - reset
-    modifier:
-      type: string
-      title: modifier
-      description: Additional CSS classes to apply to the button
-      pattern: '^[a-zA-Z0-9\s\-_:\/]*$'
-=======
 
 slots:
   content:
     title: 'Button Content'
     description: 'Button text and icon content'
     required: true
->>>>>>> main
+libraryDependencies:
+  - adesso_cms_theme/global

@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Accordion Item
 status: stable
-group: Organisms
+group: Molecules
 description: 'A single accordion item component with collapsible content.'
 props:
   type: object
@@ -69,3 +69,5 @@ slots:
     title: 'Accordion Item Content'
     description: 'Accordion item body/content area'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

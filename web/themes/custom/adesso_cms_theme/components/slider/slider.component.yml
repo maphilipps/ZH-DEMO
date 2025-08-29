@@ -6,6 +6,8 @@ group: Organisms
 props:
   type: object
   properties: {}
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     slider.behavior.js:

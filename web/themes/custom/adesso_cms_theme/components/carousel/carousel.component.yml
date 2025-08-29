@@ -56,6 +56,8 @@ slots:
     title: 'Carousel Actions'
     description: 'Additional actions or links related to carousel'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     carousel.behavior.js:

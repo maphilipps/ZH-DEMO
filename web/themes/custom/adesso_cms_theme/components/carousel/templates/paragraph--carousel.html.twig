@@ -20,14 +20,14 @@ wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} 
   <!-- Carousel Container with Media Slot Architecture -->
   <div class="max-w-[1536px] mx-auto">
     {% embed 'adesso_cms_theme:carousel' with { 
-      title: paragraph.field_title.value|default(''),
-      pre_headline: paragraph.field_pre_headline.value|default(''),
       cards_per_view: '3', 
       autoplay: false, 
       interval: '5000',
       pause_on_hover: true, 
       class: 'container mx-auto' 
     } only %}
+      {% block title %}{{ content.field_title }}{% endblock %}
+      {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
       {% block carousel_items %}
         {# Process carousel items using slot-based media architecture #}
         {% if content.field_carousel_item %}
@@ -40,10 +40,10 @@ wrapper_css_class, attributes: attributes } %} {% block prefix %}{% endblock %} 
                    aria-label="Slide {{ loop.index }} of {{ content.field_carousel_item|length }}"
                    data-slide-index="{{ loop.index0 }}">
                 {% embed 'adesso_cms_theme:carousel-item' with {
-                  title: carousel_entity.field_title.value|default(''),
-                  summary: carousel_entity.field_summary.value|default(''),
                   link: { 'url': '', 'title': 'Read more' }
                 } only %}
+                  {% block title %}{{ carousel_entity.field_title }}{% endblock %}
+                  {% block summary %}{{ carousel_entity.field_summary }}{% endblock %}
                   {% block media %}
                     {# Use field template rendering instead of |view|render - PERFORMANCE FIX #}
                     {{ carousel_entity.field_media }}

@@ -1,4 +1,4 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
 name: Card
 status: stable
 group: Molecules
@@ -79,3 +79,5 @@ slots:
     title: 'Card Actions'
     description: 'Action buttons and links'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

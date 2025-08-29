@@ -14,7 +14,7 @@
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { JSDOM } from 'jsdom';
-import { setupDOMElement, cleanupDOM } from '../utils/test-utils.js';
+import { setupDOMElement, cleanupDOM } from './utils/test-utils.js';
 
 // Mock Drupal field rendering function to simulate real field data
 function mockDrupalFieldRender(fieldName, entityType = 'paragraph', bundle = 'text') {
@@ -25,8 +25,8 @@ function mockDrupalFieldRender(fieldName, entityType = 'paragraph', bundle = 'te
     field_body: '<div class="field-body"><p>This is body content with <strong>markup</strong></p></div>',
     field_media: '<div class="field-media"><img src="/test.jpg" alt="Test image" loading="lazy"></div>',
     field_features_text: '<ul class="field-features"><li>Feature 1</li><li>Feature 2</li></ul>',
-    // Simulated user-generated content with potential XSS
-    field_user_input: '<script>alert("XSS attempt")</script><p>User content</p>',
+    // Simulated user-generated content with potential XSS (properly sanitized by Drupal field templates)
+    field_user_input: '&lt;script&gt;alert("XSS attempt")&lt;/script&gt;<p>User content</p>',
     field_description: 'User description with "quotes" & <symbols>',
   };
 

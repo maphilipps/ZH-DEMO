@@ -1,9 +1,0 @@
-name: 'adesso CMS Blocks'
-type: module
-description: 'Custom blocks for adesso CMS theme'
-package: 'Custom'
-core_version_requirement: ^11
-version: '1.0.0'
-dependencies:
-  - drupal:block
-  - drupal:system

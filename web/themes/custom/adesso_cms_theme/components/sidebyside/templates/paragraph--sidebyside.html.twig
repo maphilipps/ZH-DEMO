@@ -21,11 +21,11 @@
 
 {% block content %}
   {% embed 'adesso_cms_theme:sidebyside' with {
-    title: paragraph.field_title.value,
     text: content.field_summary,
-    pre_headline: paragraph.field_pre_headline.value,
     layout: paragraph.field_sidebyside_layout.value ?? 'left'
   } only %}
+    {% block title %}{{ content.field_title }}{% endblock %}
+    {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
     {% block media %}
       {# Use field template rendering instead of direct entity access - maintains proper Drupal rendering pipeline #}
       {{ content.field_media }}

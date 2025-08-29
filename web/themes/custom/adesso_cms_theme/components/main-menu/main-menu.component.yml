@@ -150,3 +150,5 @@ slots:
     title: 'Secondary Actions'
     description: 'Additional navigation actions (language switcher, etc.)'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

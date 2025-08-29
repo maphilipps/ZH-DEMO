@@ -52,3 +52,5 @@ slots:
     title: 'Download Actions'
     description: 'Download buttons and related actions'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

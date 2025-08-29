@@ -83,3 +83,5 @@ slots:
   actions:
     description: 'Additional actions for pricing section'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

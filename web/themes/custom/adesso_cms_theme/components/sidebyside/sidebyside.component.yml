@@ -49,3 +49,5 @@ slots:
     title: 'Primary Action'
     description: 'Primary call-to-action button/link area for field_link'
     required: false
+libraryDependencies:
+  - adesso_cms_theme/global

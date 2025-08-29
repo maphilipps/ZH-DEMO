@@ -289,3 +289,5 @@ slots:
   content:
     title: 'Card Content'
     description: 'Additional content slot for complex custom content'
+libraryDependencies:
+  - adesso_cms_theme/global

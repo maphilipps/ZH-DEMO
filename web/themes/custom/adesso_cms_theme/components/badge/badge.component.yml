@@ -58,3 +58,5 @@ slots:
     title: 'Badge Content'
     description: 'Badge text and icon content'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

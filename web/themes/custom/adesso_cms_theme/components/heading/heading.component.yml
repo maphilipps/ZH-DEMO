@@ -64,3 +64,5 @@ slots:
     title: 'Heading Content'
     description: 'Heading text and icon content'
     required: true
+libraryDependencies:
+  - adesso_cms_theme/global

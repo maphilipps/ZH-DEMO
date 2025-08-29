@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override to display a pager.
+ */
+#}
+{% if items %}
+  <div class="container mb-t lg:mt-12">
+    {%
+      include 'drupalx_theme:pager' with {
+        items: items,
+        current: current
+      } only
+    %}
+  </div>
+{% endif %}

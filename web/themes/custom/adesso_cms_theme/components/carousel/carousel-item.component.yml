@@ -48,3 +48,23 @@ props:
       type: [string, "null"]
       title: 'CSS Classes'
       description: 'Additional CSS classes for the carousel item'
+
+slots:
+  media:
+    title: 'Item Media'
+    description: 'Media content for carousel item (image, video, etc.)'
+    required: false
+  title:
+    title: 'Item Title'
+    description: 'Carousel item title content'
+    required: false
+  content:
+    title: 'Item Content'
+    description: 'Item summary and body content'
+    required: false
+  actions:
+    title: 'Item Actions'
+    description: 'Action buttons or links for the item'
+    required: false
+libraryDependencies:
+  - adesso_cms_theme/global

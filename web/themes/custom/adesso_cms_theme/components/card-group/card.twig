@@ -1,11 +1,14 @@
 <div class="bg-card text-card-foreground card h-full flex flex-col">
-  {% block card_media %} {% if media|default('') %}
-  <div class="relative">
+  {% block media %}
+    {# Media slot for card component - replaces media prop #}
     {% if media_link %}
-    <a href="{{ media_link }}" class="block">{% endif %} {{ media|default('') }} {% if media_link %}</a>
+      <div class="relative">
+        <a href="{{ media_link }}" class="block">
+          {# Media slot content will be populated by parent template #}
+        </a>
+      </div>
     {% endif %}
-  </div>
-  {% endif %} {% endblock %}
+  {% endblock %}
 
   <div class="flex-grow p-6 {% if body_modifier|default('') %}{{ body_modifier|default('') }}{% endif %}">
     {% if tags|default([]) %}

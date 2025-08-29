@@ -4,6 +4,7 @@ description: Content/Download Item component
 status: stable
 group: Atoms
 libraryDependencies: ["adesso_cms_theme/global"]
+group: Molecules
 props:
   type: object
   properties:
@@ -35,3 +36,23 @@ props:
       type: boolean
       title: is_last
       description: Whether this is the last item
+
+slots:
+  title:
+    title: 'File Title'
+    description: 'Download item title and filename display'
+    required: true
+  description:
+    title: 'File Description'
+    description: 'Optional file description content'
+    required: false
+  metadata:
+    title: 'File Metadata'
+    description: 'File size, type, and other metadata'
+    required: false
+  actions:
+    title: 'Download Actions'
+    description: 'Download buttons and related actions'
+    required: false
+libraryDependencies:
+  - adesso_cms_theme/global

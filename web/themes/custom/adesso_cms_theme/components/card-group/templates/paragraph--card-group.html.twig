@@ -1,13 +1,39 @@
-{# /** * @file * Card group paragraph template using paragraph-wrapper component with embed pattern. */ #} {# Card group
-paragraph configuration #} {% set wrapper_theme = paragraph.field_theme.value|default('default') %} {% set
-wrapper_spacing = paragraph.field_spacing.value|default('medium') %} {% set wrapper_tag = 'section' %} {% set
-wrapper_css_class = [ 'paragraph', 'paragraph--type--' ~ paragraph.bundle|clean_class, view_mode ?
-'paragraph--view-mode--' ~ view_mode|clean_class, not paragraph.isPublished() ? 'paragraph--unpublished' ]|join(' ') %}
-{# Embed the paragraph-wrapper component using slots #} {% embed 'adesso_cms_theme:paragraph-wrapper' with { theme:
-wrapper_theme, spacing: wrapper_spacing, tag: wrapper_tag, className: wrapper_css_class, attributes: attributes } %} {%
-block prefix %} {{ title_prefix }} {{ title_suffix }} {% endblock %} {% block content %} {% embed
-'adesso_cms_theme:card-group' with { section_title: content.field_title['#items'].getString(), is_dark: wrapper_theme ==
-'dark', pre_headline: paragraph.field_pre_headline.value, content: content, columns: content.field_card['#items']|length
-~ '' } only %} {% block card_items %} {% for i in content.field_card['#items'] %}
-<div class="col-sm-6 col-lg-4 mb-4">{{ content.field_card[loop.index0] }}</div>
-{% endfor %} {% endblock %} {% endembed %} {% endblock %} {% endembed %}
+{#
+/**
+ * @file
+ * Card group paragraph template using paragraph-wrapper component with embed pattern.
+ */
+#}
+
+{# Card group paragraph configuration #}
+{% include '@adesso_cms_theme/_mixins/paragraph-config.twig' %}
+
+{# Embed the paragraph-wrapper component using slots #}
+{% embed 'adesso_cms_theme:paragraph-wrapper' with { 
+  theme: wrapper_theme, 
+  spacing: wrapper_spacing, 
+  tag: wrapper_tag, 
+  className: wrapper_css_class, 
+  attributes: attributes 
+} %}
+  {% block prefix %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+  {% endblock %}
+  
+  {% block content %}
+    {% embed 'adesso_cms_theme:card-group' with { 
+      is_dark: wrapper_theme == 'dark', 
+      content: content, 
+      columns: content.field_card['#items']|length ~ '' 
+    } only %}
+      {% block section_title %}{{ content.field_title }}{% endblock %}
+      {% block pre_headline %}{{ content.field_pre_headline }}{% endblock %}
+      {% block card_items %}
+        {% for i in content.field_card['#items'] %}
+          <div class="col-sm-6 col-lg-4 mb-4">{{ content.field_card[loop.index0] }}</div>
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

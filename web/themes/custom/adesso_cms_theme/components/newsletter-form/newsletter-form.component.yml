@@ -7,16 +7,6 @@ libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: title
-      description: Title of the newsletter
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: pre_headline
-      description: Pre-headline text above the main title
     summary:
       type:
         - string
@@ -27,3 +17,12 @@ props:
       type: string
       title: modifier
       description: Modifier class for the newsletter container
+slots:
+  title:
+    title: Title
+    description: The main title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title
+libraryDependencies:
+  - adesso_cms_theme/global

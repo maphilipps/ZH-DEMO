@@ -4,6 +4,7 @@ description: Compact card layout for Infrastructure Damage Reports in dashboard 
 status: stable
 group: Atoms
 libraryDependencies: ["adesso_cms_theme/global"]
+group: Molecules
 props:
   type: object
   properties:
@@ -11,10 +12,6 @@ props:
       type: string
       title: Submission ID
       description: Unique identifier for the submission
-    title:
-      type: string
-      title: Title
-      description: Brief title or damage type
     description:
       type: string
       title: Description
@@ -73,3 +70,12 @@ props:
     - submission_id
     - title
     - status
+slots:
+  title:
+    description: 'Component title content'
+    required: false
+  content:
+    description: 'Main component content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

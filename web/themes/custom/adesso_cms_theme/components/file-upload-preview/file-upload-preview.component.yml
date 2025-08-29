@@ -4,6 +4,7 @@ description: Enhanced file upload experience with previews for Infrastructure Da
 status: stable
 group: Molecules
 libraryDependencies: ["adesso_cms_theme/global"]
+group: Utilities
 props:
   type: object
   properties:
@@ -81,3 +82,10 @@ props:
       type: string
       title: Modifier Classes
       description: Additional CSS classes
+slots:
+  content:
+    title: 'Content'
+    description: 'Component content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

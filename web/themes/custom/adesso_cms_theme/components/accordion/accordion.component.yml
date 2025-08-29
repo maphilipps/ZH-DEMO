@@ -3,28 +3,26 @@ name: Accordion
 description: Editorial/Accordion component
 status: stable
 group: Organisms
-libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: title
-      description: Title for the accordion group
-    pre_headline:
-      type: 
-        - string
-        - 'null'
-      title: pre_headline
-      description: Pre headline for the accordion group
-    accordion_items:
+    content:
       type: object
-      title: accordion_items
-      description: Define the list of items containing the title and content of each accordion
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+      title: content
+      description: Content object for accordion rendering
+    is_dark:
+      type: boolean
+      title: is_dark
+      description: Whether to use dark theme styling
+slots:
+  title:
+    title: Title
+    description: The main title content
+  pre_headline:
+    title: Pre Headline
+    description: The pre-headline content above the title
+  accordion_items:
+    title: Accordion Items
+    description: The accordion items content
+libraryDependencies:
+  - adesso_cms_theme/global

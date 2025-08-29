@@ -53,3 +53,11 @@ libraryOverrides:
       status-badge.css: {}
   js:
     status-badge.js: {}
+
+slots:
+  content:
+    title: 'Content'
+    description: 'Status-badge content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

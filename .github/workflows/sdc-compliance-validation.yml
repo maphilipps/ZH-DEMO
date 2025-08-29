@@ -1,0 +1,50 @@
+name: SDC Compliance Validation
+
+# Automated validation for slot standardization framework
+# Based on CLAUDE.md Prevention Rule #21: Slot Standardization Framework
+# Issue #56 architectural improvements validation
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'web/themes/custom/adesso_cms_theme/**/*.twig'
+      - 'web/themes/custom/adesso_cms_theme/**/*.component.yml'
+      - 'web/themes/custom/adesso_cms_theme/components/**'
+      - 'web/themes/custom/adesso_cms_theme/templates/**'
+  # Allow manual workflow dispatch
+  workflow_dispatch:
+    inputs:
+      validation_level:
+        description: 'Validation Level'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+          - 'quick'
+          - 'comprehensive'
+          - 'performance'
+
+env:
+  THEME_PATH: web/themes/custom/adesso_cms_theme
+  NODE_VERSION: '20'
+  PHP_VERSION: '8.3'
+
+jobs:
+  # Quick validation for PRs and commits
+  quick-validation:
+    name: Quick Slot Standardization Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.validation_level == 'quick')
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: write # Required for Claude to read CI results on PRs
+    steps:
+      -   uses: anthropics/claude-code-action@v1
+          with:
+            claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            prompt: "You are an experienced developer and code reviewer tasked with analyzing GitHub pull requests to ensure compliance with the Slot Standardization Framework as outlined in CLAUDE.md. Your task is to validate that all changes adhere to the established standards for slot usage, naming conventions, and component structure. Please provide feedback on any deviations from the framework and suggest improvements where necessary. Focus on maintaining consistency and best practices across the codebase."
+            claude_args: "--max-turns 5"

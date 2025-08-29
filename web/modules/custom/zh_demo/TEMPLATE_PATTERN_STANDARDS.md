@@ -1,0 +1,1 @@
+../../../../TEMPLATE_PATTERN_STANDARDS.md

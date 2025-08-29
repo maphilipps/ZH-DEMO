@@ -3,7 +3,6 @@ name: Button
 description: General/Button component
 status: stable
 group: Atoms
-libraryDependencies: ["adesso_cms_theme/global"]
 props:
   type: object
   properties:
@@ -54,3 +53,11 @@ props:
       title: modifier
       description: Additional CSS classes for flexible styling (security validated)
       pattern: '^[a-zA-Z0-9\s\-_:\/]*$'
+
+slots:
+  content:
+    title: 'Button Content'
+    description: 'Button text and icon content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

@@ -2,44 +2,27 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Pricing Card
 status: stable
 group: Molecules
-libraryDependencies: ["adesso_cms_theme/global"]
 description: 'A single pricing card component.'
 props:
   type: object
   properties:
-    pre_headline:
-      type:
-        - string
-        - 'null'
-      title: 'Pre-headline'
-      description: 'Small text above the main title'
-    title:
-      type: string
-      title: 'Title'
-      description: 'Main pricing card title'
     includes_label:
       type: string
       title: 'Includes Label'
       description: 'Label for the features list'
       default: 'Includes'
-    features:
-      type: array
-      title: 'Features'
-      description: 'List of features included in this pricing tier'
-      items:
-        type: string
-        title: 'Feature'
-        description: 'A single feature description'
-    cta_link:
-      type: object
-      title: 'Call to Action Link'
-      description: 'Link object for the CTA button'
-      properties:
-        url:
-          type: string
-          title: 'URL'
-          description: 'Link URL'
-        title:
-          type: string
-          title: 'Title'
-          description: 'Link text'
+slots:
+  title:
+    title: 'Title'
+    description: 'Pricing card title content'
+    required: false
+  content:
+    title: 'Content'
+    description: 'Main pricing card content area with features and pricing'
+    required: true
+  primary_action:
+    title: 'Primary Action'
+    description: 'Primary call-to-action button/link area for field_link'
+    required: false
+libraryDependencies:
+  - adesso_cms_theme/global

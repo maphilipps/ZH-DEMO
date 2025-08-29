@@ -57,9 +57,10 @@ props:
 slots:
   content:
     title: Content
-    required: true
     description: The main paragraph content to be wrapped
   prefix:
     title: Prefix
     required: false
     description: Frontend editing tools and prefix content
+libraryDependencies:
+  - adesso_cms_theme/global

@@ -3,6 +3,7 @@ name: Quick Action Buttons
 status: stable
 group: Molecules
 libraryDependencies: ["adesso_cms_theme/global"]
+group: Utilities
 description: 'Quick action buttons for Event Review Dashboard (Approve/Reject)'
 props:
   type: object
@@ -48,3 +49,10 @@ libraryOverrides:
       quick-action-buttons.css: {}
   js:
     quick-action-buttons.js: {}
+slots:
+  content:
+    title: 'Content'
+    description: 'Component content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

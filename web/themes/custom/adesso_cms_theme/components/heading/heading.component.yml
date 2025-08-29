@@ -59,3 +59,11 @@ props:
           type: object
           title: Drupal Attributes
           description: Drupal Attribute object for additional HTML attributes
+
+slots:
+  content:
+    title: 'Heading Content'
+    description: 'Heading text and icon content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global

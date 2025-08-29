@@ -1,0 +1,7 @@
+{% include '@drupalx_theme/carousel/carousel-item.twig' with {
+	"item": {
+		"media": content.field_media,
+		"title": content.field_title|render,
+		"summary": content.field_summary|render
+	}
+} only %}

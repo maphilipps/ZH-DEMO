@@ -4,20 +4,13 @@ status: stable
 group: Organisms
 libraryDependencies: ["adesso_cms_theme/global"]
 description: Components/Enhanced Slider component
+status: stable
+group: Organisms
 props:
   type: object
-  properties:
-    items:
-      type: object
-      title: items
-      description: Array of slider items with media, title, and summary
-      properties:
-        url:
-          type: string
-        title:
-          type: string
-        icon:
-          type: string
+  properties: {}
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   js:
     slider.behavior.js:
@@ -26,3 +19,17 @@ libraryOverrides:
         defer: true
   dependencies:
     - core/drupal
+
+slots:
+  title:
+    title: 'Slider Title'
+    description: 'Main title for the slider section'
+    required: false
+  items:
+    title: 'Slider Items'
+    description: 'Individual slider item content'
+    required: true
+  controls:
+    title: 'Slider Controls'
+    description: 'Custom navigation and control elements'
+    required: false

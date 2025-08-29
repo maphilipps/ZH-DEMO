@@ -2,17 +2,11 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/s
 name: Slider Item
 status: stable
 group: Molecules
-libraryDependencies: ["adesso_cms_theme/global"]
-description: 'Individual item within a slider component with enhanced media processing and responsive image support'
+description: 'Individual item within a slider component with media slot architecture and enhanced responsive image support'
 props:
   type: object
   properties:
-    # Media Content
-    media:
-      type: [string, object, "null"]
-      title: Media
-      description: The media/image content to display (rendered HTML or media object)
-      default: null
+    # Media Configuration
     media_url:
       type: [string, "null"]
       title: Media URL
@@ -55,11 +49,6 @@ props:
           type: [string, "null"]
           description: AVIF optimized version
     # Content
-    title:
-      type: [string, "null"]
-      title: Title
-      description: Optional title for the slide
-      default: null
     subtitle:
       type: [string, "null"]
       title: Subtitle
@@ -162,6 +151,18 @@ props:
       title: Modifier classes
       description: Additional CSS classes
       default: ""
+slots:
+  media:
+    description: 'Media content for the slider item (field_media)'
+    required: false
+  title:
+    description: 'Component title content'
+    required: false
+  content:
+    description: 'Main component content'
+    required: true
+libraryDependencies:
+  - adesso_cms_theme/global
 libraryOverrides:
   dependencies:
     - core/drupal

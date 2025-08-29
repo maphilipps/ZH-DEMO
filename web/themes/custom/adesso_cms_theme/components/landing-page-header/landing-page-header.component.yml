@@ -6,11 +6,6 @@ group: Layout
 props:
   type: object
   properties:
-    title:
-      type: string
-      title: Page Title
-      description: The main title for the landing page
-      default: ""
     description:
       type: string
       title: Page Description
@@ -56,22 +51,17 @@ libraryDependencies:
 
 slots:
   navigation:
-    title: 'Header Navigation'
     description: 'Main navigation menu content'
     required: false
   title:
-    title: 'Landing Page Title'
     description: 'Main landing page heading content (field_title, etc.)'
     required: true
   content:
-    title: 'Landing Page Content'
     description: 'Description and introductory content'
     required: false
   actions:
-    title: 'Primary Actions'
     description: 'Call-to-action buttons and links'
     required: false
   background:
-    title: 'Background Content'
     description: 'Custom background media or elements'
     required: false

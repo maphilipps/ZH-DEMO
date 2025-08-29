@@ -1,22 +1,13 @@
 <section class="{{ is_dark ? 'bg-gray-100' : 'bg-white' }}">
   <div class="py-8 px-4 mx-auto container lg:py-16">
     <div class="container mx-auto text-center mb-8">
-      {% if has_slot('pre_headline') or has_slot('title') %} 
-        {% include 'adesso_cms_theme:section-header' with { 
-          title: get_slot('title'), 
-          pre_headline: get_slot('pre_headline'), 
-          alignment: 'center', 
-          title_tag: 'h2', 
-          pre_headline_tag: 'span',
-          title_visual_level: '2', 
-          pre_headline_visual_level: '3' 
-        } %} 
-      {% endif %}
+      {% block title %}{% endblock %}
+      {% block pre_headline %}{% endblock %}
     </div>
     
     {# Gallery grid with 4 columns and proper spacing #}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-      {{ get_slot('gallery_items') }}
+      {% block gallery_items %}{% endblock %}
     </div>
   </div>
 </section>

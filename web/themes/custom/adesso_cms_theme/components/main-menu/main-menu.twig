@@ -82,7 +82,7 @@
             level: 0
           } only %}
 
-          {% include template_from_string('components/main-menu/partials/submenu-popover.twig') with {
+          {% include 'components/main-menu/partials/submenu-popover.twig' with {
             unique_id: loop.index,
             children: item.children,
             theme: variant
@@ -165,7 +165,7 @@
                       level: 0
                     } only %}
 
-                    {% include template_from_string('components/main-menu/partials/submenu-mobile.twig') with {
+                    {% include 'components/main-menu/partials/submenu-mobile.twig' with {
                       children: item.children,
                       theme: variant,
                       level: 0

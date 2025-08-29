@@ -10,10 +10,6 @@ props:
         - 'null'
       title: pre_headline
       description: Pre-headline text for the logo collection section
-    title:
-      type: string
-      title: title
-      description: Title for the logo collection section
     logos:
       type: object
       title: logos
@@ -28,10 +24,8 @@ props:
 
 slots:
   title:
-    title: 'Title'
     description: 'Component title content'
     required: false
   content:
-    title: 'Content'
     description: 'Main component content'
     required: true

@@ -7371,26 +7371,26 @@
         },
         {
             "name": "drupal/redirect",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/redirect.git",
-                "reference": "8.x-1.11"
+                "reference": "8.x-1.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.11.zip",
-                "reference": "8.x-1.11",
-                "shasum": "7df8b3524bbde07d254216039636947a689140ef"
+                "url": "https://ftp.drupal.org/files/projects/redirect-8.x-1.12.zip",
+                "reference": "8.x-1.12",
+                "shasum": "1cdee11356a25b9f9a10329aec0eeb293e0023de"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10 || ^11"
+                "drupal/core": "^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.11",
-                    "datestamp": "1737382886",
+                    "version": "8.x-1.12",
+                    "datestamp": "1756419163",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9515,27 +9515,43 @@
         },
         {
             "name": "drupalninja/drupalx_ai",
-            "version": "1.x-dev",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextagencyio/drupalx_ai.git",
-                "reference": "c1606246ef64e879c4255f94c43642c0622f4306"
+                "reference": "cda4cd7f895c83af0a2f6a069547f066685241c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextagencyio/drupalx_ai/zipball/c1606246ef64e879c4255f94c43642c0622f4306",
-                "reference": "c1606246ef64e879c4255f94c43642c0622f4306",
+                "url": "https://api.github.com/repos/nextagencyio/drupalx_ai/zipball/cda4cd7f895c83af0a2f6a069547f066685241c2",
+                "reference": "cda4cd7f895c83af0a2f6a069547f066685241c2",
                 "shasum": ""
+            },
+            "require": {
+                "drupal/ai": "^1.0@beta",
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "suggest": {
+                "drupal/ai_provider_groq": "Groq AI provider for the AI module - or use drupalx_ai_groq submodule for automatic setup"
             },
             "default-branch": true,
             "type": "drupal-module",
             "notification-url": "https://packagist.org/downloads/",
-            "description": "Provides AI-powered DrupalX and Drush extensions using Claude 3 AI model.",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Provides AI-powered features including a chatbot and landing page generation.",
+            "keywords": [
+                "ai",
+                "chatbot",
+                "drupal",
+                "openai"
+            ],
             "support": {
                 "issues": "https://github.com/nextagencyio/drupalx_ai/issues",
-                "source": "https://github.com/nextagencyio/drupalx_ai/tree/1.x"
+                "source": "https://github.com/nextagencyio/drupalx_ai/tree/2.x"
             },
-            "time": "2025-02-09T21:37:40+00:00"
+            "time": "2025-07-23T01:49:38+00:00"
         },
         {
             "name": "drush/drush",

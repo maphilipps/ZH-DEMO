@@ -34,11 +34,6 @@ props:
       default: lg
     
     # Site branding properties (for header integration)
-    logo:
-      type: [string, "null"]
-      title: Logo URL
-      description: Logo URL from Drupal theme settings
-      default: ''
     site_name:
       type: [string, "null"]
       title: Site Name
@@ -97,7 +92,25 @@ props:
             title: Child Menu Items
             description: Submenu items for nested navigation
             items:
-              $ref: "#/props/properties/nested/items"
+              type: object
+              properties:
+                title:
+                  type: string
+                  title: Child Menu Item Title
+                url:
+                  type: string
+                  title: Child Menu Item URL
+                target:
+                  type: string
+                  title: Child Link Target
+                is_active:
+                  type: boolean
+                  title: Child Is Active
+                  default: false
+                in_active_trail:
+                  type: boolean
+                  title: Child In Active Trail
+                  default: false
               
     # Accessibility and interaction properties  
     aria_label:

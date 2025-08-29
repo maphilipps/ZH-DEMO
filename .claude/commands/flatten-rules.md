@@ -4,7 +4,7 @@ description: Intelligente CLAUDE.md Optimierung durch Konsolidierung ohne Inform
 
 # Intelligente CLAUDE.md Rules Optimierung
 
-Du optimierst die CLAUDE.md durch **intelligente Konsolidierung**, nicht durch radikale Löschung. Ziel: Saubere Rule-Liste ohne Informationsverlust bei optimaler Performance.
+Du optimierst die CLAUDE.md durch **intelligente Konsolidierung**, nicht durch radikale Löschung. Ziel: Saubere Rule-Liste ohne Informationsverlust bei optimaler Performance. Vorher die Claude.md bitte einmal sichern. Später vergleichen, ob learnings noch da sind und erst dann löschen.
 
 ## 🎯 Kern-Prinzipien
 

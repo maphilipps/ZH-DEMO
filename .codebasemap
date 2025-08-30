@@ -1,13 +1,13 @@
 {
   "metadata": {
     "version": 1,
-    "root": "/Users/marc.philipps/Sites/zh-demo",
-    "createdAt": "2025-08-30T08:07:06.333Z",
-    "updatedAt": "2025-08-30T08:07:06.333Z",
-    "totalFiles": 173
+    "root": "/Users/marc.philipps/Sites/zh-demo/.worktrees/issues-82",
+    "createdAt": "2025-08-30T18:43:44.745Z",
+    "updatedAt": "2025-08-30T18:43:44.745Z",
+    "totalFiles": 203
   },
   "tree": {
-    "name": "zh-demo",
+    "name": "issues-82",
     "type": "dir",
     "children": [
       {
@@ -299,6 +299,10 @@
                                 "type": "file"
                               },
                               {
+                                "name": "accordion.entry.js",
+                                "type": "file"
+                              },
+                              {
                                 "name": "accordion.stories.data.js",
                                 "type": "file"
                               },
@@ -359,11 +363,25 @@
                                 "type": "file"
                               },
                               {
+                                "name": "button.entry.js",
+                                "type": "file"
+                              },
+                              {
                                 "name": "button.stories.js",
                                 "type": "file"
                               },
                               {
                                 "name": "button.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "card",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "card.test.js",
                                 "type": "file"
                               }
                             ]
@@ -517,6 +535,10 @@
                                 "type": "file"
                               },
                               {
+                                "name": "hero.entry.js",
+                                "type": "file"
+                              },
+                              {
                                 "name": "hero.stories.js",
                                 "type": "file"
                               },
@@ -600,6 +622,10 @@
                               },
                               {
                                 "name": "newsletter-form.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "newsletter-form.test.js",
                                 "type": "file"
                               }
                             ]
@@ -744,6 +770,10 @@
                               },
                               {
                                 "name": "site-header.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "site-header.test.js",
                                 "type": "file"
                               }
                             ]
@@ -1049,6 +1079,52 @@
                         ]
                       },
                       {
+                        "name": "scripts",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "asset-optimizer.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "bundle-optimizer.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "bundle-stats.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "setup-storybook-testing.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "validate-browser-config.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "validate-browser-support.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "validate-build.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "validate-cross-browser-config.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "validate-workflow.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "verify-storybook-setup.js",
+                            "type": "file"
+                          }
+                        ]
+                      },
+                      {
                         "name": "src",
                         "type": "dir",
                         "children": [
@@ -1111,6 +1187,18 @@
                                 "type": "file"
                               },
                               {
+                                "name": "browser-compatibility.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "cross-browser-component.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "cross-browser-visual.spec.js",
+                                "type": "file"
+                              },
+                              {
                                 "name": "municipal-forms.spec.js",
                                 "type": "file"
                               },
@@ -1119,7 +1207,15 @@
                                 "type": "file"
                               },
                               {
+                                "name": "swiss-compliance.spec.js",
+                                "type": "file"
+                              },
+                              {
                                 "name": "theme-customization.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "visual-regression.spec.js",
                                 "type": "file"
                               }
                             ]
@@ -1128,6 +1224,22 @@
                             "name": "utils",
                             "type": "dir",
                             "children": [
+                              {
+                                "name": "accessibility-test-modules.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "municipality-theme-testing.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "performance-quality-testing.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "test-coverage-validation.js",
+                                "type": "file"
+                              },
                               {
                                 "name": "test-utils.js",
                                 "type": "file"
@@ -1161,7 +1273,15 @@
                             ]
                           },
                           {
+                            "name": "accessibility.spec.js",
+                            "type": "file"
+                          },
+                          {
                             "name": "basic.test.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "browser.setup.js",
                             "type": "file"
                           },
                           {
@@ -1199,7 +1319,19 @@
                         "type": "file"
                       },
                       {
-                        "name": "playwright.config.js",
+                        "name": "lighthouserc-critical.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "lighthouserc-mobile.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "lighthouserc.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "playwright-cross-browser.config.js",
                         "type": "file"
                       },
                       {
@@ -1372,6 +1504,7 @@
     "web/profiles/adesso_cms_installer/js/progress.js",
     "web/profiles/drupal_cms_installer/theme/js/progress.js",
     "web/themes/custom/adesso_cms_theme/components/accordion/accordion.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.entry.js",
     "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.data.js",
     "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.js",
     "web/themes/custom/adesso_cms_theme/components/accordion/accordion.test.js",
@@ -1381,11 +1514,13 @@
     "web/themes/custom/adesso_cms_theme/components/bento-grid/bento-grid.stories.js",
     "web/themes/custom/adesso_cms_theme/components/block-reference/block-reference.stories.js",
     "web/themes/custom/adesso_cms_theme/components/button/button.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/button/button.entry.js",
     "web/themes/custom/adesso_cms_theme/components/button/button.stories.js",
     "web/themes/custom/adesso_cms_theme/components/button/button.test.js",
     "web/themes/custom/adesso_cms_theme/components/card-group/card-group.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js",
     "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/card/card.test.js",
     "web/themes/custom/adesso_cms_theme/components/carousel/carousel.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.data.js",
     "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.js",
@@ -1404,6 +1539,7 @@
     "web/themes/custom/adesso_cms_theme/components/gallery/gallery.test.js",
     "web/themes/custom/adesso_cms_theme/components/heading/heading.stories.js",
     "web/themes/custom/adesso_cms_theme/components/hero/hero.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.entry.js",
     "web/themes/custom/adesso_cms_theme/components/hero/hero.stories.js",
     "web/themes/custom/adesso_cms_theme/components/hero/hero.test.js",
     "web/themes/custom/adesso_cms_theme/components/landing-page-header/landing-page-header.stories.js",
@@ -1415,6 +1551,7 @@
     "web/themes/custom/adesso_cms_theme/components/mobile-menu/mobile-menu.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.test.js",
     "web/themes/custom/adesso_cms_theme/components/page-header/page-header.stories.js",
     "web/themes/custom/adesso_cms_theme/components/page-header/page-header.test.js",
     "web/themes/custom/adesso_cms_theme/components/page/page.stories.js",
@@ -1433,6 +1570,7 @@
     "web/themes/custom/adesso_cms_theme/components/site-header/site-header-sdc-props.js",
     "web/themes/custom/adesso_cms_theme/components/site-header/site-header.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/site-header/site-header.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.test.js",
     "web/themes/custom/adesso_cms_theme/components/slider/slider.behavior.js",
     "web/themes/custom/adesso_cms_theme/components/slider/slider.stories.js",
     "web/themes/custom/adesso_cms_theme/components/stat-card/stat-card.stories.js",
@@ -1475,8 +1613,21 @@
     "web/themes/custom/adesso_cms_theme/dist/storybook/vendor-BCESAF0D.js",
     "web/themes/custom/adesso_cms_theme/eslint.config.js",
     "web/themes/custom/adesso_cms_theme/lighthouse-performance-monitoring.js",
-    "web/themes/custom/adesso_cms_theme/playwright.config.js",
+    "web/themes/custom/adesso_cms_theme/lighthouserc-critical.js",
+    "web/themes/custom/adesso_cms_theme/lighthouserc-mobile.js",
+    "web/themes/custom/adesso_cms_theme/lighthouserc.js",
+    "web/themes/custom/adesso_cms_theme/playwright-cross-browser.config.js",
     "web/themes/custom/adesso_cms_theme/postcss.config.js",
+    "web/themes/custom/adesso_cms_theme/scripts/asset-optimizer.js",
+    "web/themes/custom/adesso_cms_theme/scripts/bundle-optimizer.js",
+    "web/themes/custom/adesso_cms_theme/scripts/bundle-stats.js",
+    "web/themes/custom/adesso_cms_theme/scripts/setup-storybook-testing.js",
+    "web/themes/custom/adesso_cms_theme/scripts/validate-browser-config.js",
+    "web/themes/custom/adesso_cms_theme/scripts/validate-browser-support.js",
+    "web/themes/custom/adesso_cms_theme/scripts/validate-build.js",
+    "web/themes/custom/adesso_cms_theme/scripts/validate-cross-browser-config.js",
+    "web/themes/custom/adesso_cms_theme/scripts/validate-workflow.js",
+    "web/themes/custom/adesso_cms_theme/scripts/verify-storybook-setup.js",
     "web/themes/custom/adesso_cms_theme/src/js/adesso.js",
     "web/themes/custom/adesso_cms_theme/src/js/fix-block-reference-preview.js",
     "web/themes/custom/adesso_cms_theme/src/js/lucide-init.behaviors.js",
@@ -1488,17 +1639,28 @@
     "web/themes/custom/adesso_cms_theme/stylelint.config.js",
     "web/themes/custom/adesso_cms_theme/sw.js",
     "web/themes/custom/adesso_cms_theme/tailwind.config.js",
+    "web/themes/custom/adesso_cms_theme/tests/accessibility.spec.js",
     "web/themes/custom/adesso_cms_theme/tests/basic.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/browser.setup.js",
     "web/themes/custom/adesso_cms_theme/tests/e2e/accessibility.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/browser-compatibility.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/cross-browser-component.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/cross-browser-visual.spec.js",
     "web/themes/custom/adesso_cms_theme/tests/e2e/municipal-forms.spec.js",
     "web/themes/custom/adesso_cms_theme/tests/e2e/performance.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/swiss-compliance.spec.js",
     "web/themes/custom/adesso_cms_theme/tests/e2e/theme-customization.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/visual-regression.spec.js",
     "web/themes/custom/adesso_cms_theme/tests/global-setup.js",
     "web/themes/custom/adesso_cms_theme/tests/global-teardown.js",
     "web/themes/custom/adesso_cms_theme/tests/theme-customization.test.js",
     "web/themes/custom/adesso_cms_theme/tests/theme-selector-accessibility.test.js",
     "web/themes/custom/adesso_cms_theme/tests/theme-selector-form.test.js",
     "web/themes/custom/adesso_cms_theme/tests/theme-selector-integration.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/utils/accessibility-test-modules.js",
+    "web/themes/custom/adesso_cms_theme/tests/utils/municipality-theme-testing.js",
+    "web/themes/custom/adesso_cms_theme/tests/utils/performance-quality-testing.js",
+    "web/themes/custom/adesso_cms_theme/tests/utils/test-coverage-validation.js",
     "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js",
     "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onBefore.js",
     "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onReady.js",
@@ -1529,8 +1691,20 @@
       "to": "tests/installer/cleanup-helper.js"
     },
     {
+      "from": "web/themes/custom/adesso_cms_theme/components/accordion/accordion.entry.js",
+      "to": "web/themes/custom/adesso_cms_theme/components/accordion/accordion.behavior.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/components/button/button.entry.js",
+      "to": "web/themes/custom/adesso_cms_theme/components/button/button.behavior.js"
+    },
+    {
       "from": "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.js",
       "to": "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/components/hero/hero.entry.js",
+      "to": "web/themes/custom/adesso_cms_theme/components/hero/hero.behavior.js"
     },
     {
       "from": "web/themes/custom/adesso_cms_theme/dist/assets/js/adesso.D5XBimrt.js",
@@ -1550,6 +1724,14 @@
     },
     {
       "from": "web/themes/custom/adesso_cms_theme/tests/theme-selector-integration.test.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/utils/accessibility-test-modules.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/utils/performance-quality-testing.js",
       "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
     }
   ],
@@ -2179,6 +2361,27 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.entry.js": {
+      "imports": [
+        {
+          "from": "./accordion.behavior.js",
+          "kind": "import"
+        },
+        {
+          "from": "./accordion.behavior.js",
+          "kind": "export",
+          "imported": [
+            "accordionInit"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/components/accordion/accordion.behavior.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
     "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.data.js": {
       "imports": [],
       "dependencies": [],
@@ -2445,6 +2648,27 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/components/button/button.entry.js": {
+      "imports": [
+        {
+          "from": "./button.behavior.js",
+          "kind": "import"
+        },
+        {
+          "from": "./button.behavior.js",
+          "kind": "export",
+          "imported": [
+            "buttonInit"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/components/button/button.behavior.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
     "web/themes/custom/adesso_cms_theme/components/button/button.stories.js": {
       "imports": [
         {
@@ -2595,6 +2819,18 @@
           "isExported": true
         }
       ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/card/card.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
     },
     "web/themes/custom/adesso_cms_theme/components/carousel/carousel.behavior.js": {
       "imports": [],
@@ -3318,6 +3554,27 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.entry.js": {
+      "imports": [
+        {
+          "from": "./hero.behavior.js",
+          "kind": "import"
+        },
+        {
+          "from": "./hero.behavior.js",
+          "kind": "export",
+          "imported": [
+            "heroInit"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/components/hero/hero.behavior.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
     "web/themes/custom/adesso_cms_theme/components/hero/hero.stories.js": {
       "imports": [
         {
@@ -3795,6 +4052,18 @@
           "isExported": true
         }
       ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
     },
     "web/themes/custom/adesso_cms_theme/components/page-header/page-header.stories.js": {
       "imports": [
@@ -4539,6 +4808,18 @@
           "isExported": true
         }
       ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
     },
     "web/themes/custom/adesso_cms_theme/components/slider/slider.behavior.js": {
       "imports": [],
@@ -5740,8 +6021,38 @@
       "classes": [],
       "constants": []
     },
-    "web/themes/custom/adesso_cms_theme/playwright.config.js": {
+    "web/themes/custom/adesso_cms_theme/lighthouserc-critical.js": {
       "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/lighthouserc-mobile.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/lighthouserc.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/playwright-cross-browser.config.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "defineConfig",
+            "devices"
+          ]
+        }
+      ],
       "dependencies": [],
       "functions": [],
       "classes": [],
@@ -5753,6 +6064,1148 @@
       "functions": [],
       "classes": [],
       "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/asset-optimizer.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import",
+          "imported": [
+            "readFileSync",
+            "writeFileSync",
+            "existsSync",
+            "readdirSync",
+            "statSync",
+            "mkdirSync"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve",
+            "join",
+            "basename",
+            "extname",
+            "dirname"
+          ]
+        },
+        {
+          "from": "url",
+          "kind": "import",
+          "imported": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "from": "child_process",
+          "kind": "import",
+          "imported": [
+            "execSync"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "AssetOptimizer",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "log",
+              "params": [
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "type"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "optimizeImages",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "optimizeCSS",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "optimizeJavaScript",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "optimizeFonts",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "implementCacheBusting",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "optimizeMunicipalityAssets",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "generateOptimizationReport",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "saveOptimizationResults",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getFilesByType",
+              "params": [
+                {
+                  "name": "extensions"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getAllFiles",
+              "params": [
+                {
+                  "name": "dir"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileSize",
+              "params": [
+                {
+                  "name": "filePath"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileType",
+              "params": [
+                {
+                  "name": "filename"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalImageSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalCSSSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalJSSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalFontSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalAssetSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "formatBytes",
+              "params": [
+                {
+                  "name": "bytes"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "addRecommendation",
+              "params": [
+                {
+                  "name": "category"
+                },
+                {
+                  "name": "priority"
+                },
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "suggestion"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "generateContentHash",
+              "params": [
+                {
+                  "name": "filePath"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "optimizeSVG",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findUnusedCSS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findAboveFoldCSS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findMunicipalitySpecificCSS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "estimateCSSCompressionSavings",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findUnusedJSImports",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findUnusedAlpineComponents",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findDynamicImportOpportunities",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findMunicipalitySpecificJS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "optimize",
+              "params": [],
+              "isAsync": true
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "themeRoot",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "distDir",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "srcDir",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/bundle-optimizer.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import",
+          "imported": [
+            "readFileSync",
+            "writeFileSync",
+            "existsSync",
+            "readdirSync",
+            "statSync"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve",
+            "join",
+            "basename",
+            "extname"
+          ]
+        },
+        {
+          "from": "url",
+          "kind": "import",
+          "imported": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "from": "child_process",
+          "kind": "import",
+          "imported": [
+            "execSync"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "BundleOptimizer",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "log",
+              "params": [
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "type"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeTreeshaking",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "analyzeCodeSplitting",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeAssetOptimization",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeMunicipalityBundles",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "detectPerformanceRegressions",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "validateSwissCompliance",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "generateOptimizationReport",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "saveOptimizationData",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getFilesByType",
+              "params": [
+                {
+                  "name": "extensions"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getAllFiles",
+              "params": [
+                {
+                  "name": "dir"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileSize",
+              "params": [
+                {
+                  "name": "filePath"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileType",
+              "params": [
+                {
+                  "name": "filename"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalBundleSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getTotalAssetSize",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "calculateTotalSavings",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "formatBytes",
+              "params": [
+                {
+                  "name": "bytes"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "addRecommendation",
+              "params": [
+                {
+                  "name": "category"
+                },
+                {
+                  "name": "priority"
+                },
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "suggestion"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findUnusedCSS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findDuplicateCSS",
+              "params": [
+                {
+                  "name": "content"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "findSharedAssets",
+              "params": [
+                {
+                  "name": "municipalityFiles"
+                },
+                {
+                  "name": "allMunicipalities"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "validateWCAGCompliance",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "validatePerformanceBudgets",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "optimize",
+              "params": [],
+              "isAsync": true
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "themeRoot",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "distDir",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/bundle-stats.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import",
+          "imported": [
+            "readFileSync",
+            "writeFileSync",
+            "existsSync",
+            "readdirSync",
+            "statSync"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve",
+            "extname",
+            "basename"
+          ]
+        },
+        {
+          "from": "url",
+          "kind": "import",
+          "imported": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "BundleAnalyzer",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "log",
+              "params": [
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "type"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeManifest",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeOutputFiles",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getAllFiles",
+              "params": [
+                {
+                  "name": "dir"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileSize",
+              "params": [
+                {
+                  "name": "filePath"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "estimateGzipSize",
+              "params": [
+                {
+                  "name": "originalSize"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "getFileType",
+              "params": [
+                {
+                  "name": "ext"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "trackMunicipalityFiles",
+              "params": [
+                {
+                  "name": "relativePath"
+                },
+                {
+                  "name": "size"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "updateBudgetStatuses",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "generateRecommendations",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "generateReport",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "formatBytes",
+              "params": [
+                {
+                  "name": "bytes"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "saveStats",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "analyze",
+              "params": [],
+              "isAsync": true
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "themeRoot",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "distDir",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "manifestPath",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "outputPath",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/setup-storybook-testing.js": {
+      "imports": [
+        {
+          "from": "fs/promises",
+          "kind": "import",
+          "imported": [
+            "mkdir",
+            "access",
+            "writeFile"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "join"
+          ]
+        },
+        {
+          "from": "url",
+          "kind": "import",
+          "imported": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "dirname"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "setupDirectories",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "setupGitignore",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "validateDependencies",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "createSampleTestScript",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "generateConfigurationReport",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "main",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "themeRoot",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "requiredDirectories",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "gitignoreContent",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "testConfig",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/validate-browser-config.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/validate-browser-support.js": {
+      "imports": [
+        {
+          "from": "browserslist",
+          "kind": "import"
+        },
+        {
+          "from": "browserslist-to-esbuild",
+          "kind": "import"
+        },
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/validate-build.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import",
+          "imported": [
+            "readFileSync",
+            "statSync",
+            "existsSync",
+            "readdirSync"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve",
+            "join"
+          ]
+        },
+        {
+          "from": "url",
+          "kind": "import",
+          "imported": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "BuildValidator",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "log",
+              "params": [
+                {
+                  "name": "message"
+                },
+                {
+                  "name": "type"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "error",
+              "params": [
+                {
+                  "name": "message"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "warn",
+              "params": [
+                {
+                  "name": "message"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "info",
+              "params": [
+                {
+                  "name": "message"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "validateDistStructure",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeManifest",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getFileSize",
+              "params": [
+                {
+                  "name": "filePath"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "calculateStats",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "getFileType",
+              "params": [
+                {
+                  "name": "filename"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "validatePerformanceBudgets",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "validateMunicipalityCompliance",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "generateReport",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "formatBytes",
+              "params": [
+                {
+                  "name": "bytes"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "validate",
+              "params": [],
+              "isAsync": true
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "themeRoot",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "distDir",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "manifestPath",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "PERFORMANCE_BUDGETS",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "COMPLIANCE_CHECKS",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/validate-cross-browser-config.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        },
+        {
+          "from": "url",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/validate-workflow.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "child_process",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        },
+        {
+          "from": "url",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/scripts/verify-storybook-setup.js": {
+      "imports": [
+        {
+          "from": "child_process",
+          "kind": "import",
+          "imported": [
+            "exec"
+          ]
+        },
+        {
+          "from": "util",
+          "kind": "import",
+          "imported": [
+            "promisify"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "verifyStorybookConfig",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "execAsync",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
     },
     "web/themes/custom/adesso_cms_theme/src/js/adesso.js": {
       "imports": [
@@ -5962,6 +7415,41 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/tests/accessibility.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "from": "axe-playwright",
+          "kind": "import",
+          "imported": [
+            "injectAxe",
+            "checkA11y"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "SWISS_A11Y_CONFIG",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "accessibilityUtils",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
     "web/themes/custom/adesso_cms_theme/tests/basic.test.js": {
       "imports": [
         {
@@ -5988,12 +7476,79 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/tests/browser.setup.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import"
+        },
+        {
+          "from": "fs/promises",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
     "web/themes/custom/adesso_cms_theme/tests/e2e/accessibility.spec.js": {
       "imports": [],
       "dependencies": [],
       "functions": [],
       "classes": [],
       "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/browser-compatibility.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/cross-browser-component.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import"
+        },
+        {
+          "from": "axe-playwright",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/cross-browser-visual.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect",
+            "devices"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "VISUAL_TEST_CONFIG",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
     },
     "web/themes/custom/adesso_cms_theme/tests/e2e/municipal-forms.spec.js": {
       "imports": [],
@@ -6008,6 +7563,46 @@
       "functions": [],
       "classes": [],
       "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/swiss-compliance.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "from": "axe-playwright",
+          "kind": "import",
+          "imported": [
+            "injectAxe",
+            "checkA11y"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "SWISS_COMPLIANCE_STANDARDS",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "SWISS_LANGUAGES",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "MUNICIPALITY_COMPLIANCE",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
     },
     "web/themes/custom/adesso_cms_theme/tests/e2e/theme-customization.spec.js": {
       "imports": [
@@ -6036,21 +7631,45 @@
         }
       ]
     },
-    "web/themes/custom/adesso_cms_theme/tests/global-setup.js": {
-      "imports": [],
-      "dependencies": [],
-      "functions": [
+    "web/themes/custom/adesso_cms_theme/tests/e2e/visual-regression.spec.js": {
+      "imports": [
         {
-          "name": "globalSetup",
-          "params": [
-            {
-              "name": "config"
-            }
-          ],
-          "isAsync": true,
-          "isExported": false
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
         }
       ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "visualTestUtils",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/global-setup.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "require"
+        },
+        {
+          "from": "fs",
+          "kind": "require"
+        },
+        {
+          "from": "path",
+          "kind": "require"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
       "classes": [],
       "constants": []
     },
@@ -6152,6 +7771,620 @@
       "classes": [],
       "constants": []
     },
+    "web/themes/custom/adesso_cms_theme/tests/utils/accessibility-test-modules.js": {
+      "imports": [
+        {
+          "from": "./test-utils.js",
+          "kind": "import",
+          "imported": [
+            "testAccessibility",
+            "testSwissCompliance"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "accessibilityTestForms",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "accessibilityTestNavigation",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "accessibilityTestInteractive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "accessibilityTestMedia",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/utils/municipality-theme-testing.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "testComponentAcrossAllMunicipalities",
+          "params": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "options"
+            }
+          ],
+          "isAsync": true,
+          "isExported": true
+        }
+      ],
+      "classes": [
+        {
+          "name": "MunicipalityThemeTester",
+          "isExported": true,
+          "methods": [
+            {
+              "name": "runCompleteThemeTests",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "options"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testThemeClassApplication",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testColorPaletteCompliance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testTypographyConsistency",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testBrandElementPositioning",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testComponentStateTheming",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testResponsiveThemeBehavior",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testThemeAccessibilityCompliance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testCrossThemeConsistency",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testColorContrasts",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "findInconsistentColors",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testHeadingHierarchy",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "testElementStates",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "isThemeConsistentColor",
+              "params": [
+                {
+                  "name": "color"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "colorsMatch",
+              "params": [
+                {
+                  "name": "color1"
+                },
+                {
+                  "name": "color2"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "analyzeBreakpointTheming",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "breakpoint"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testAllColorContrasts",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testThemeFocusIndicators",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testColorBlindnessCompatibility",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "compareThemeStructure",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "otherTheme"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "updateSummary",
+              "params": [
+                {
+                  "name": "test"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "calculateTestSummary",
+              "params": [],
+              "isAsync": false
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "MUNICIPALITY_THEMES",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/utils/performance-quality-testing.js": {
+      "imports": [
+        {
+          "from": "./test-utils.js",
+          "kind": "import",
+          "imported": [
+            "testPerformance",
+            "testAccessibility",
+            "testSwissCompliance"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [
+        {
+          "name": "quickPerformanceValidation",
+          "params": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "componentName"
+            }
+          ],
+          "isAsync": true,
+          "isExported": true
+        }
+      ],
+      "classes": [
+        {
+          "name": "ComponentPerformanceTester",
+          "isExported": true,
+          "methods": [
+            {
+              "name": "runComprehensivePerformanceTests",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                },
+                {
+                  "name": "options"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testCoreWebVitals",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testRenderingPerformance",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testBundleSize",
+              "params": [
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testAccessibilityPerformance",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testSwissCompliancePerformance",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testCrossBrowserPerformance",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testMemoryUsage",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testNetworkPerformance",
+              "params": [
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "measureLCP",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "measureFID",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "measureCLS",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "measureRenderTime",
+              "params": [
+                {
+                  "name": "element"
+                },
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "calculateComponentComplexity",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "determineComponentCategory",
+              "params": [
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "testFocusIndicatorPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testAriaLiveRegionPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testKeyboardNavigationPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testScreenReaderPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testLanguageSwitchPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testFormValidationPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testSearchPerformance",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "getCurrentMemoryUsage",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "simulateComponentInteractions",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "testEventListenerCleanup",
+              "params": [
+                {
+                  "name": "element"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "measureNetworkImpact",
+              "params": [
+                {
+                  "name": "componentName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "calculateOverallPerformanceScore",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "updateSummary",
+              "params": [
+                {
+                  "name": "test"
+                }
+              ],
+              "isAsync": false
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "SWISS_PERFORMANCE_THRESHOLDS",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/utils/test-coverage-validation.js": {
+      "imports": [
+        {
+          "from": "fs/promises",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
     "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js": {
       "imports": [
         {
@@ -6220,6 +8453,11 @@
           "from": "./.storybook/sdc-plugin.js",
           "kind": "import",
           "isDefault": true
+        },
+        {
+          "from": "browserslist-to-esbuild",
+          "kind": "import",
+          "isDefault": true
         }
       ],
       "dependencies": [],
@@ -6252,7 +8490,7 @@
           "isExported": false
         },
         {
-          "name": "getEntries",
+          "name": "getComponentEntries",
           "initKind": "function",
           "isExported": false
         }

@@ -145,7 +145,6 @@ export default defineConfig(({ mode }) => ({
           once: 'once'
         },
         assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: 'chunks/[name]-[hash].js',
         // Phase 4.2: Advanced code splitting for municipality themes
         manualChunks: {
           // Vendor libraries

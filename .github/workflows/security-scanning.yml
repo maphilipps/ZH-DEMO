@@ -79,6 +79,14 @@ jobs:
       - name: Install dependencies
         working-directory: ${{ env.THEME_PATH }}
         run: |
+          echo "📍 Current directory: $(pwd)"
+          echo "📂 Checking if package.json exists..."
+          if [ ! -f "package.json" ]; then
+            echo "❌ package.json not found in $(pwd)"
+            ls -la
+            exit 1
+          fi
+          echo "✅ package.json found, installing dependencies..."
           npm ci --prefer-offline --no-audit
           echo "✅ Dependencies installed successfully"
 
@@ -375,197 +383,38 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ env.THEME_PATH }}
-        run: npm ci --prefer-offline --no-audit
+        run: |
+          echo "📍 Current directory: $(pwd)"
+          echo "📂 Checking if package.json exists..."
+          if [ ! -f "package.json" ]; then
+            echo "❌ package.json not found in $(pwd)"
+            ls -la
+            exit 1
+          fi
+          echo "✅ package.json found, installing dependencies..."
+          npm ci --prefer-offline --no-audit
 
       - name: XSS Prevention Scan - Twig Templates
         working-directory: ${{ env.THEME_PATH }}
         run: |
           echo "🔍 Scanning Twig templates for XSS vulnerabilities..."
           
-          # Create XSS scanning script
-          cat > scripts/security/xss-template-scanner.js << 'EOF'
-          const fs = require('fs');
-          const path = require('path');
-          const glob = require('glob');
-
-          // XSS vulnerability patterns in Twig templates
-          const xssPatterns = [
-            { pattern: /\|\s*raw\s*\}/, risk: 'HIGH', description: 'Raw filter bypasses auto-escaping' },
-            { pattern: /\{%\s*autoescape\s+false/, risk: 'HIGH', description: 'Auto-escaping disabled' },
-            { pattern: /innerHTML\s*=/, risk: 'MEDIUM', description: 'Direct innerHTML assignment' },
-            { pattern: /document\.write\s*\(/, risk: 'MEDIUM', description: 'document.write() usage' },
-            { pattern: /eval\s*\(/, risk: 'HIGH', description: 'eval() function usage' },
-            { pattern: /onclick\s*=/, risk: 'MEDIUM', description: 'Inline event handlers' },
-            { pattern: /javascript:/, risk: 'HIGH', description: 'JavaScript URL scheme' }
-          ];
-
-          // User-content contexts (high risk)
-          const userContentPatterns = [
-            'title', 'summary', 'content', 'description', 'text', 'excerpt'
-          ];
-
-          function scanFile(filePath) {
-            const content = fs.readFileSync(filePath, 'utf8');
-            const findings = [];
-            
-            xssPatterns.forEach(({ pattern, risk, description }) => {
-              const matches = [...content.matchAll(new RegExp(pattern, 'gi'))];
-              matches.forEach(match => {
-                const lineNum = content.substr(0, match.index).split('\\n').length;
-                
-                // Check if in user content context
-                const isUserContent = userContentPatterns.some(ctx => 
-                  content.substr(Math.max(0, match.index - 100), 200).toLowerCase().includes(ctx)
-                );
-                
-                findings.push({
-                  file: filePath,
-                  line: lineNum,
-                  risk: isUserContent ? 'CRITICAL' : risk,
-                  pattern: pattern.source,
-                  description,
-                  context: match[0],
-                  userContent: isUserContent
-                });
-              });
-            });
-            
-            return findings;
-          }
-
-          // Scan Twig templates
-          const templateFiles = glob.sync('components/**/*.twig', { ignore: 'node_modules/**' });
-          const allFindings = [];
-
-          templateFiles.forEach(file => {
-            const findings = scanFile(file);
-            allFindings.push(...findings);
-          });
-
-          // Report results
-          console.log(`🔍 Scanned ${templateFiles.length} Twig templates`);
-          
-          const criticalCount = allFindings.filter(f => f.risk === 'CRITICAL').length;
-          const highCount = allFindings.filter(f => f.risk === 'HIGH').length;
-          const mediumCount = allFindings.filter(f => f.risk === 'MEDIUM').length;
-
-          console.log('🛡️ XSS Vulnerability Scan Results:');
-          console.log(`   🔴 Critical (User Content): ${criticalCount}`);
-          console.log(`   🟠 High Risk: ${highCount}`);
-          console.log(`   🟡 Medium Risk: ${mediumCount}`);
-
-          // Detailed findings for critical/high
-          allFindings
-            .filter(f => f.risk === 'CRITICAL' || f.risk === 'HIGH')
-            .forEach(finding => {
-              console.log(`   ⚠️ ${finding.file}:${finding.line} - ${finding.description}`);
-              if (finding.userContent) {
-                console.log(`      🚨 USER CONTENT CONTEXT - Immediate fix required`);
-              }
-            });
-
-          // Swiss government compliance check
-          if (criticalCount > 0) {
-            console.log('❌ Critical XSS vulnerabilities in user content - Swiss compliance violated');
-            process.exit(1);
-          } else if (highCount > 5) {
-            console.log('⚠️ High number of XSS risks detected - Review required');
-            process.exit(1);
-          } else {
-            console.log('✅ XSS prevention standards maintained');
-          }
-
-          // Save detailed report
-          fs.writeFileSync('xss-scan-results.json', JSON.stringify(allFindings, null, 2));
-          EOF
+          # Copy XSS scanner script from root
+          cp ../../../scripts/security/xss-template-scanner.js ./
           
           # Run XSS scan
-          node scripts/security/xss-template-scanner.js
+          node xss-template-scanner.js
 
       - name: Content Security Policy (CSP) Validation
         working-directory: ${{ env.THEME_PATH }}
         run: |
           echo "🔍 Validating Content Security Policy implementation..."
           
-          # Create CSP validation script
-          cat > scripts/security/csp-validator.js << 'EOF'
-          const fs = require('fs');
-          const path = require('path');
-
-          // Swiss government CSP requirements
-          const requiredCSPDirectives = [
-            'default-src',
-            'script-src', 
-            'style-src',
-            'img-src',
-            'connect-src',
-            'font-src',
-            'object-src',
-            'media-src',
-            'frame-src'
-          ];
-
-          const swissGovernmentCSPPolicy = {
-            'default-src': ["'self'"],
-            'script-src': ["'self'", "'unsafe-inline'"], // Minimize unsafe-inline
-            'style-src': ["'self'", "'unsafe-inline'"], // Allow for dynamic styling
-            'img-src': ["'self'", 'data:', 'https:'],
-            'connect-src': ["'self'"],
-            'font-src': ["'self'", 'https:'],
-            'object-src': ["'none'"], // Strict: no plugins
-            'media-src': ["'self'"],
-            'frame-src': ["'none'"], // Strict: no frames
-            'base-uri': ["'self'"],
-            'form-action': ["'self'"],
-            'frame-ancestors': ["'none'"] // Clickjacking protection
-          };
-
-          function validateCSP() {
-            console.log('🛡️ CSP Validation for Swiss Government Compliance:');
-            
-            let complianceScore = 0;
-            const maxScore = Object.keys(swissGovernmentCSPPolicy).length;
-            
-            // Check each required directive
-            Object.entries(swissGovernmentCSPPolicy).forEach(([directive, allowedValues]) => {
-              console.log(`   📋 ${directive}: ${allowedValues.join(' ')}`);
-              complianceScore++;
-            });
-            
-            // Generate CSP header
-            const cspHeader = Object.entries(swissGovernmentCSPPolicy)
-              .map(([directive, values]) => `${directive} ${values.join(' ')}`)
-              .join('; ');
-              
-            console.log('\\n🔒 Recommended CSP Header:');
-            console.log(`Content-Security-Policy: ${cspHeader}`);
-            
-            // Save CSP configuration
-            const cspConfig = {
-              policy: swissGovernmentCSPPolicy,
-              header: cspHeader,
-              compliance: 'eCH-0194',
-              score: `${complianceScore}/${maxScore}`,
-              lastUpdated: new Date().toISOString()
-            };
-            
-            fs.writeFileSync('csp-config.json', JSON.stringify(cspConfig, null, 2));
-            
-            console.log(`\\n✅ CSP compliance score: ${complianceScore}/${maxScore}`);
-            return complianceScore === maxScore;
-          }
-
-          // Run CSP validation
-          if (validateCSP()) {
-            console.log('✅ CSP configuration meets Swiss government standards');
-          } else {
-            console.log('❌ CSP configuration requires enhancement');
-            process.exit(1);
-          }
-          EOF
+          # Copy CSP validator script from root
+          cp ../../../scripts/security/csp-validator.js ./
           
           # Run CSP validation
-          node scripts/security/csp-validator.js
+          node csp-validator.js
 
       - name: Upload XSS and CSP results
         if: always()
@@ -596,164 +445,8 @@ jobs:
         run: |
           echo "🇨🇭 Validating Swiss Cybersecurity Standards (eCH-0194) Compliance..."
           
-          # Create Swiss compliance validation script
-          cat > swiss-compliance-validator.js << 'EOF'
-          const fs = require('fs');
-          const path = require('path');
-
-          // eCH-0194 Swiss Cybersecurity Standards Checklist
-          const swissComplianceChecklist = {
-            'dependency-security': {
-              name: 'Dependency Vulnerability Management',
-              requirement: 'No critical/high vulnerabilities in dependencies',
-              weight: 25
-            },
-            'web-application-security': {
-              name: 'Web Application Security',
-              requirement: 'OWASP Top 10 protection implemented',
-              weight: 25
-            },
-            'xss-prevention': {
-              name: 'Cross-Site Scripting (XSS) Prevention', 
-              requirement: 'Comprehensive XSS protection for user content',
-              weight: 20
-            },
-            'content-security-policy': {
-              name: 'Content Security Policy',
-              requirement: 'Strict CSP implementation with government standards',
-              weight: 15
-            },
-            'data-protection': {
-              name: 'Citizen Data Protection',
-              requirement: 'GDPR compliance for municipal data handling',
-              weight: 15
-            }
-          };
-
-          function validateCompliance() {
-            console.log('🇨🇭 eCH-0194 Swiss Cybersecurity Standards Validation');
-            console.log('================================================');
-            
-            let totalScore = 0;
-            let maxScore = 0;
-            const complianceResults = {};
-            
-            Object.entries(swissComplianceChecklist).forEach(([key, check]) => {
-              maxScore += check.weight;
-              
-              // Validate each compliance area
-              let score = 0;
-              let status = 'FAIL';
-              
-              switch(key) {
-                case 'dependency-security':
-                  // Check if dependency scans passed
-                  try {
-                    const npmAudit = fs.readFileSync('security-results/dependency-security-results/npm-audit-results.json', 'utf8');
-                    const auditData = JSON.parse(npmAudit);
-                    const hasHighRisk = Object.values(auditData.vulnerabilities || {})
-                      .some(v => v.severity === 'critical' || v.severity === 'high');
-                    
-                    if (!hasHighRisk) {
-                      score = check.weight;
-                      status = 'PASS';
-                    }
-                  } catch (e) {
-                    console.log(`   ⚠️ Could not validate dependency security: ${e.message}`);
-                  }
-                  break;
-                  
-                case 'xss-prevention':
-                  // Check XSS scan results
-                  try {
-                    const xssResults = fs.readFileSync('security-results/xss-csp-validation-results/xss-scan-results.json', 'utf8');
-                    const xssData = JSON.parse(xssResults);
-                    const hasCriticalXSS = xssData.some(finding => finding.risk === 'CRITICAL');
-                    
-                    if (!hasCriticalXSS) {
-                      score = check.weight;
-                      status = 'PASS';
-                    }
-                  } catch (e) {
-                    console.log(`   ⚠️ Could not validate XSS prevention: ${e.message}`);
-                  }
-                  break;
-                  
-                case 'content-security-policy':
-                  // Check CSP configuration
-                  try {
-                    const cspConfig = fs.readFileSync('security-results/xss-csp-validation-results/csp-config.json', 'utf8');
-                    const cspData = JSON.parse(cspConfig);
-                    
-                    if (cspData.compliance === 'eCH-0194') {
-                      score = check.weight;
-                      status = 'PASS';
-                    }
-                  } catch (e) {
-                    console.log(`   ⚠️ Could not validate CSP configuration: ${e.message}`);
-                  }
-                  break;
-                  
-                default:
-                  // Default scoring for other areas
-                  score = Math.floor(check.weight * 0.8); // 80% partial credit
-                  status = 'PARTIAL';
-              }
-              
-              totalScore += score;
-              complianceResults[key] = {
-                ...check,
-                score,
-                status,
-                percentage: Math.round((score / check.weight) * 100)
-              };
-              
-              const emoji = status === 'PASS' ? '✅' : status === 'PARTIAL' ? '🟡' : '❌';
-              console.log(`${emoji} ${check.name}: ${score}/${check.weight} (${Math.round((score/check.weight)*100)}%)`);
-            });
-            
-            const overallCompliance = Math.round((totalScore / maxScore) * 100);
-            
-            console.log('\\n📊 Overall Compliance Summary:');
-            console.log(`   🎯 Total Score: ${totalScore}/${maxScore} (${overallCompliance}%)`);
-            console.log(`   📋 Standard: eCH-0194 Swiss Cybersecurity Standards`);
-            console.log(`   🏛️ Context: GPZH Municipal Portal System`);
-            
-            // Swiss government requires 90%+ compliance
-            if (overallCompliance >= 90) {
-              console.log(`   ✅ COMPLIANT: Meets Swiss government cybersecurity requirements`);
-            } else if (overallCompliance >= 75) {
-              console.log(`   🟡 PARTIAL: Requires improvements for full compliance`);
-            } else {
-              console.log(`   ❌ NON-COMPLIANT: Significant security improvements required`);
-            }
-            
-            // Generate compliance report
-            const complianceReport = {
-              standard: 'eCH-0194',
-              system: 'GPZH Municipal Portal System',
-              scanDate: new Date().toISOString(),
-              overallScore: totalScore,
-              maxScore,
-              compliancePercentage: overallCompliance,
-              status: overallCompliance >= 90 ? 'COMPLIANT' : overallCompliance >= 75 ? 'PARTIAL' : 'NON-COMPLIANT',
-              results: complianceResults,
-              nextReview: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() // 30 days
-            };
-            
-            fs.writeFileSync('swiss-compliance-report.json', JSON.stringify(complianceReport, null, 2));
-            
-            return overallCompliance >= 90;
-          }
-
-          // Run compliance validation
-          if (validateCompliance()) {
-            console.log('\\n🇨🇭 Swiss cybersecurity compliance achieved');
-          } else {
-            console.log('\\n❌ Swiss cybersecurity compliance not met');
-            process.exit(1);
-          }
-          EOF
+          # Copy Swiss compliance validator script
+          cp scripts/security/swiss-compliance-validator.js ./
           
           # Run Swiss compliance validation
           node swiss-compliance-validator.js
@@ -789,10 +482,13 @@ jobs:
           mkdir -p reports
           
           # Generate security summary report
-          cat > reports/security-summary-$(date +%Y%m%d-%H%M).md << 'EOF'
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S UTC')
+          REPORT_FILE="reports/security-summary-$(date +%Y%m%d-%H%M).md"
+          
+          cat > "$REPORT_FILE" << EOF
           # GPZH Security Scanning Report - Phase 3.3
           
-          **Date**: $(date '+%Y-%m-%d %H:%M:%S UTC')
+          **Date**: $CURRENT_DATE
           **Branch**: ${{ github.ref_name }}
           **Commit**: ${{ github.sha }}
           **Standard**: eCH-0194 Swiss Cybersecurity Standards
@@ -868,6 +564,23 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
+            
+            // Check for existing comments to prevent duplicates
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            const existingComment = comments.find(comment => 
+              comment.body.includes('Security Scanning Results - Phase 3.3') && 
+              comment.body.includes(context.sha.substring(0, 7))
+            );
+            
+            if (existingComment) {
+              console.log('Security comment already exists for this commit, skipping...');
+              return;
+            }
             
             // Find the latest security report
             const reportDir = 'reports';

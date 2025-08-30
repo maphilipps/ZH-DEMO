@@ -80,6 +80,14 @@ jobs:
         if: steps.theme-cache.outputs.cache-hit != 'true'
         working-directory: ${{ env.THEME_PATH }}
         run: |
+          echo "📍 Current directory: $(pwd)"
+          echo "📂 Checking if package.json exists..."
+          if [ ! -f "package.json" ]; then
+            echo "❌ package.json not found in $(pwd)"
+            ls -la
+            exit 1
+          fi
+          echo "✅ package.json found, installing dependencies..."
           npm ci --prefer-offline --no-audit --progress=false
           npm ls # Verify installation
 
@@ -486,10 +494,13 @@ jobs:
           mkdir -p reports
           
           # Generate markdown report
-          cat > reports/performance-summary-$(date +%Y%m%d-%H%M).md << 'EOF'
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S UTC')
+          REPORT_FILE="reports/performance-summary-$(date +%Y%m%d-%H%M).md"
+          
+          cat > "$REPORT_FILE" << EOF
           # GPZH Performance Monitoring Report - Phase 3.2
           
-          **Date**: $(date '+%Y-%m-%d %H:%M:%S UTC')
+          **Date**: $CURRENT_DATE
           **Branch**: ${{ github.ref_name }}
           **Commit**: ${{ github.sha }}
           **Workflow**: Frontend Performance Monitoring
@@ -527,6 +538,23 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
+            
+            // Check for existing comments to prevent duplicates
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            const existingComment = comments.find(comment => 
+              comment.body.includes('Performance Monitoring Results - Phase 3.2') && 
+              comment.body.includes(context.sha.substring(0, 7))
+            );
+            
+            if (existingComment) {
+              console.log('Performance comment already exists for this commit, skipping...');
+              return;
+            }
             
             // Find the latest performance report
             const reportDir = 'reports';

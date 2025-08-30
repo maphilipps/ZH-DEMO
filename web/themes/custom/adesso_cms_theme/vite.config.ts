@@ -22,7 +22,37 @@ const getDDEVOrigin = () => {
 
 const origin = getDDEVOrigin();
 
-export default defineConfig({
+// Automatic entry discovery with fallback to manual entries
+const getEntries = () => {
+  const autoEntries = globSync([
+    '**/*.entry.{js,jsx}',
+    '**/*.css'
+  ], {
+    ignore: [
+      '**/_*.css',
+      'node_modules/**',
+      'vendor/**',
+      'web/sites/**',
+      'web/core/**',
+      'web/modules/contrib/**',
+      'web/themes/contrib/**',
+      'dist/**',
+      'storybook-static/**'
+    ]
+  });
+
+  // Fallback to current manual entries if no auto entries found
+  if (autoEntries.length === 0) {
+    return [
+      ...globSync('./src/js/adesso.js'),
+      ...globSync('./src/css/adesso.css')
+    ];
+  }
+
+  return autoEntries;
+};
+
+export default defineConfig(({ mode }) => ({
   plugins: [
     tailwindcss(),
     twig({
@@ -45,17 +75,14 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     emptyOutDir: false, // Keep compiled SCSS files
-    sourcemap: true, // Enable source maps for better debugging and testing
+    sourcemap: mode === 'development',
+    cssCodeSplit: true,
     rollupOptions: {
-      input: [
-        ...globSync('./src/js/adesso.js'),
-        ...globSync('./src/css/adesso.css')
-      ],
+      input: getEntries(),
       output: {
         assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: 'assets/[name].js',
-        entryFileNames: 'assets/[name].js',
-        sourcemap: true // Enable source maps in output
+        chunkFileNames: 'chunks/[name]-[hash].js',
+        entryFileNames: 'assets/[name].js'
       }
     }
   },
@@ -89,4 +116,4 @@ export default defineConfig({
       }
     }
   }
-});
+}));

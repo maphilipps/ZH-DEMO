@@ -1,0 +1,221 @@
+# Project: ZH-DEMO - GPZH Municipal Portal Prototyping System
+
+A Drupal 11.2.2 multi-site municipal portal system for Canton Zurich government demonstration, featuring AI-enhanced content generation, modern frontend architecture, and Swiss compliance standards.
+
+## Goals
+- Demonstrate modern municipal portal capabilities for Canton Zurich GPZH project
+- Showcase multi-site architecture for different municipalities (Thalwil, Thalheim, Erlenbach)
+- Provide AI-enhanced content management and generation workflows
+- Achieve WCAG 2.1 AA accessibility compliance and eCH-0059 Swiss standards
+- Support responsive design with Core Web Vitals >90% performance scores
+
+## Architecture
+
+```
+ZH-DEMO System Architecture
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           DDEV Environment                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                      │
+│  │   Drupal    │  │   MariaDB   │  │   Node.js   │                      │
+│  │    11.2     │  │   10.11     │  │     20      │                      │
+│  │   PHP 8.3   │  │             │  │             │                      │
+│  └─────────────┘  └─────────────┘  └─────────────┘                      │
+│           │               │               │                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                      │
+│  │Multi-Site   │  │ AI Services │  │   Frontend  │                      │
+│  │Management   │  │ (OpenAI,    │  │ (Vite 6.2)  │                      │
+│  │             │  │ Claude API) │  │             │                      │
+│  └─────────────┘  └─────────────┘  └─────────────┘                      │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Multi-Site Configuration:
+├── zh-demo.ddev.site (Main admin site)
+├── thalwil.zh-demo.ddev.site (Modern lakeside municipality)
+├── thalheim.zh-demo.ddev.site (Traditional wine region)
+└── erlenbach.zh-demo.ddev.site (Upscale Goldküste location)
+
+Frontend Stack Flow:
+Figma Design → SDC Components → Storybook → Vite Build → Drupal Integration
+
+Data Flow:
+User Input → AI Processing → Drupal Content → Multi-Site Display
+```
+
+## Functions
+
+### Core Drupal Functions
+- **drush_commands()**: Custom Drush commands for multi-site management, AI content generation
+- **hook_theme()**: Theme registration and preprocessing for municipality-specific styling
+- **hook_form_alter()**: Form modifications for Swiss compliance and accessibility standards
+- **hook_preprocess_page()**: Page preprocessing for multi-site theme variants
+- **theme_preprocess_paragraph()**: Paragraph preprocessing for SDC component integration
+
+### AI Integration Functions  
+- **ai_generate_content($type, $municipality)**: Generate municipality-specific content using OpenAI/Claude APIs
+- **ai_translate_content($content, $target_lang)**: Multi-language content translation (DE/FR/IT)
+- **ai_moderate_content($input)**: Content moderation for user-generated submissions
+- **ai_image_alt_text($image_path)**: Automated alt-text generation for accessibility compliance
+
+### Multi-Site Management Functions
+- **get_municipality_config($site_id)**: Retrieve municipality-specific configuration and branding
+- **sync_content_across_sites($content_id)**: Synchronize shared content across municipality sites
+- **municipality_theme_variants($municipality)**: Apply municipality-specific theme variations
+- **validate_swiss_compliance($content)**: Validate content against eCH-0059 and WCAG 2.1 AA standards
+
+### Frontend Integration Functions (JavaScript/Alpine.js)
+- **initializeMunicipalityTheme(municipality)**: Set municipality-specific CSS custom properties
+- **componentFactory(componentName, props)**: Dynamic SDC component instantiation
+- **validateFormFields(formData)**: Client-side form validation with Swiss standards
+- **lazyLoadComponents()**: Performance-optimized component loading for >90% Core Web Vitals
+
+### Testing & Quality Assurance Functions
+- **runAccessibilityAudit($url)**: Automated WCAG 2.1 AA compliance testing
+- **validatePerformance($site)**: Core Web Vitals validation across all municipality sites
+- **visualRegressionTest($component)**: BackstopJS visual regression testing for components
+- **e2eTestScenarios($municipality)**: Playwright end-to-end testing for specific municipalities
+
+## Code Style
+
+### PHP/Drupal Standards
+- PSR-4 autoloading with `Drupal\` namespace prefix
+- Drupal Coding Standards with phpcs/phpcbf validation
+- Type hints required for all function parameters and return values
+- Dependency injection pattern for all services
+- Hook implementations following drupal_function_name() convention
+
+### Frontend Standards  
+- ES6+ JavaScript with module imports using `import` statements
+- Alpine.js x-data components for interactive functionality
+- Tailwind CSS v4 utility-first styling with custom CSS properties
+- Twig templates with strict variable typing and sanitization
+- SDC (Single Directory Components) architecture for reusable components
+
+### Import Conventions
+```php
+// PHP imports
+use Drupal\Core\Form\FormBase;
+use Drupal\ai\Service\AiProviderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+```
+
+```javascript
+// JavaScript imports (Vite/ES6)
+import Alpine from 'alpinejs';
+import { initializeComponent } from './utils/components.js';
+import '@tailwindcss/base';
+```
+
+### File Organization Patterns
+- Custom modules: `web/modules/custom/module_name/`
+- SDC components: `web/themes/custom/adesso_cms_theme/components/component_name/`
+- Municipality themes: `web/themes/custom/zh_[municipality]/`
+- AI integration: `web/modules/custom/zh_ai_integration/`
+
+## Build & Commands
+
+### Development Commands
+- **Build**: `ddev npm run build` (in theme directory)
+- **Dev server**: `ddev theme dev` (starts Vite dev server on port 5173)
+- **Test**: `ddev npm run test` (Vitest unit tests)
+- **Lint**: `ddev npm run lint` (ESLint + Stylelint + Prettier)
+- **Storybook**: `ddev theme storybook` (component documentation on port 6006)
+
+### Multi-Site Management
+- **Site status**: `ddev drush status --uri=thalwil.zh-demo.ddev.site`
+- **Cache clear**: `ddev drush cr` (all sites) or `ddev drush --uri=municipality.zh-demo.ddev.site cr`
+- **Config export**: `ddev drush cex` (shared configuration)
+- **Content export**: `ddev export-contents` (Default Content module integration)
+
+### AI Integration Commands  
+- **AI status**: `ddev drush ai:status` (check AI provider connections)
+- **Generate content**: `ddev drush ai:generate "content-type" --municipality=thalwil`
+- **Translate content**: `ddev drush ai:translate de-fr "content" --site=thalheim`
+- **Test AI services**: `ddev drush ai:test-connection openai`
+
+### Quality Assurance Commands
+- **Full QA**: `ddev npm run qa:full` (lint + test + e2e)
+- **Visual regression**: `ddev npm run visual:test` (BackstopJS)
+- **E2E testing**: `ddev npm run test:e2e` (Playwright across municipalities)
+- **Accessibility audit**: `ddev pa11y https://thalwil.zh-demo.ddev.site`
+
+## Testing
+
+### Testing Frameworks
+- **Backend**: PHPUnit 10+ for Drupal module testing with Kernel and Browser test base classes
+- **Frontend**: Vitest for JavaScript unit testing with jsdom environment
+- **E2E**: Playwright for cross-browser end-to-end testing across all municipality sites
+- **Visual**: BackstopJS for visual regression testing of SDC components
+- **Accessibility**: Pa11y + axe-core for automated WCAG 2.1 AA compliance validation
+
+### Testing Patterns
+- Test file naming: `*.test.php` for PHPUnit, `*.test.js` for Vitest, `*.spec.js` for Playwright
+- Municipality-specific test suites for validating theme variants and functionality
+- AI integration tests with mocked API responses for consistent testing
+- Performance testing to maintain >90% Core Web Vitals scores across sites
+
+## Security
+
+### Authentication & Authorization
+- Drupal role-based permissions with municipality-specific access controls
+- AI API key management through Drupal Key module with environment variable integration  
+- Form token validation for all user-submitted content and AI-generated content workflows
+- CSP (Content Security Policy) headers configured for Vite development and production environments
+
+### Data Protection & Swiss Compliance
+- GDPR/DSG compliant user data handling with explicit consent workflows
+- eCH-0059 accessibility standards implementation with automated validation
+- Sanitization of all AI-generated content before database storage
+- Secure file upload handling with validation against Swiss government security guidelines
+
+## Dependencies
+
+### Core Backend Dependencies
+- **drupal/core**: 11.2.2 - Core Drupal CMS functionality
+- **drupal/ai**: 1.1 - AI integration framework for content generation
+- **drupal/ai_provider_anthropic**: 1.1 - Claude AI API integration
+- **drupal/ai_provider_openai**: 1.1 - OpenAI API integration  
+- **drupal/paragraphs**: 1.17 - Structured content creation system
+- **drupal/components**: 3.1 - SDC (Single Directory Components) support
+
+### Frontend Dependencies
+- **vite**: 6.2.0 - Modern frontend build tool with HMR support
+- **tailwindcss**: 4.0.0 - Utility-first CSS framework
+- **@tailwindcss/vite**: 4.0.9 - Vite integration for Tailwind CSS v4
+- **alpinejs**: 3+ - Lightweight JavaScript framework for interactive components
+- **storybook**: 8.6.7 - Component documentation and development environment
+- **vite-plugin-twig-drupal**: 1.6.0 - Drupal Twig template integration for Storybook
+
+### Development & Testing Dependencies  
+- **@playwright/test**: 1.49.1 - Cross-browser end-to-end testing
+- **vitest**: 3.2.4 - Fast JavaScript unit testing framework
+- **backstopjs**: 6.3.25 - Visual regression testing for components
+- **eslint**: 8.57.1 - JavaScript/TypeScript linting with Drupal coding standards
+- **stylelint**: 16.23.1 - CSS linting for Tailwind and custom styles
+
+### DDEV Environment Dependencies
+- **PHP**: 8.3 with required extensions (bcmath, gd, intl, opcache, pdo_mysql)
+- **Node.js**: 20 LTS with npm 10+ and corepack enabled for modern package management
+- **MariaDB**: 10.11 optimized for Drupal performance with utf8mb4 character set
+- **Nginx**: nginx-fpm configuration optimized for Drupal with Vite proxy support
+
+## Multi-Site Configuration
+
+### Site Structure
+```
+sites/
+├── default/          # Main administration site (zh-demo.ddev.site)
+├── thalwil/         # Modern lakeside municipality
+├── thalheim/        # Traditional wine region municipality  
+└── erlenbach/       # Upscale Goldküste municipality
+```
+
+### Municipality-Specific Features
+- **Thalwil**: Modern blue theme, tech-forward content, lakeside imagery
+- **Thalheim**: Traditional green theme, wine/agriculture focus, rural aesthetics
+- **Erlenbach**: Upscale turquoise theme, tourism orientation, luxury positioning
+
+### Shared Components & Content
+- Base SDC component library shared across all municipalities
+- Common administrative workflows and form systems
+- Centralized AI content generation with municipality-specific customization
+- Unified user management and permission system across sites

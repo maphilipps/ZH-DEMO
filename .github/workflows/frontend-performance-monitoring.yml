@@ -63,7 +63,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Cache theme dependencies
         id: theme-cache
@@ -88,7 +88,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit --progress=false --legacy-peer-deps
+          npm install --prefer-offline --no-audit --progress=false --legacy-peer-deps
           npm ls # Verify installation
 
       - name: Analyze component architecture
@@ -118,7 +118,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Restore theme dependencies
         uses: actions/cache@v4
@@ -190,7 +190,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Restore dependencies and build artifacts
         uses: actions/cache@v4
@@ -350,7 +350,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Restore dependencies
         uses: actions/cache@v4

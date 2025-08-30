@@ -68,7 +68,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Setup PHP for Drupal security
         uses: shivammathur/setup-php@v2
@@ -87,7 +87,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit --legacy-peer-deps
+          npm install --prefer-offline --no-audit --legacy-peer-deps
           echo "✅ Dependencies installed successfully"
 
       - name: NPM Audit Security Check
@@ -258,12 +258,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Install dependencies
         working-directory: ${{ env.THEME_PATH }}
         run: |
-          npm ci --prefer-offline --no-audit --legacy-peer-deps
+          npm install --prefer-offline --no-audit --legacy-peer-deps
           echo "✅ Dependencies installed for security testing"
 
       - name: Build and start Storybook for security testing
@@ -379,7 +379,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ env.THEME_PATH }}/package-lock.json'
+          cache-dependency-path: '${{ env.THEME_PATH }}/package.json'
 
       - name: Install dependencies
         working-directory: ${{ env.THEME_PATH }}
@@ -392,7 +392,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit --legacy-peer-deps
+          npm install --prefer-offline --no-audit --legacy-peer-deps
 
       - name: XSS Prevention Scan - Twig Templates
         working-directory: ${{ env.THEME_PATH }}

@@ -83,3 +83,4 @@ storybook-static/
 # Ignore milvus temporary files
 .ddev/milvus/volumes/minio/.minio.sys/tmp/.trash/
 
+.worktrees

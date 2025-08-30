@@ -206,7 +206,24 @@ export const decorators = [
     return Story();
   },
   
-  // Accessibility decorator
+  // Accessibility decorator for comprehensive testing
+  (Story, context) => {
+    // Add municipality theme data for testing
+    const municipality = context.parameters?.municipality;
+    if (municipality) {
+      document.documentElement.setAttribute('data-municipality', municipality);
+    }
+    
+    // Add accessibility landmarks for proper testing
+    const story = Story();
+    
+    // Ensure proper ARIA structure for testing
+    if (typeof story === 'string') {
+      return `<main role="main" aria-label="Component Story">${story}</main>`;
+    }
+    
+    return story;
+  }
 
 ];
 

@@ -1,0 +1,378 @@
+{
+  "timestamp": "2025-08-30T16:23:04.158Z",
+  "commit": "local",
+  "branch": "local",
+  "budgets": {
+    "total": 500000,
+    "javascript": 200000,
+    "stylesheet": 100000,
+    "image": 300000,
+    "font": 150000,
+    "document": 50000,
+    "other": 100000
+  },
+  "sizes": {
+    "javascript": {
+      "files": 34,
+      "size": 5153166,
+      "budget": 200000,
+      "fileList": [
+        {
+          "name": "globals-runtime.js",
+          "size": 1455775,
+          "path": "dist/storybook/sb-manager/globals-runtime.js"
+        },
+        {
+          "name": "vendor-common.DNy60kh1.js",
+          "size": 742364,
+          "path": "dist/assets/js/vendor-common.DNy60kh1.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 563980,
+          "path": "dist/storybook/sb-addons/chromatic-com-storybook-10/manager-bundle.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 420857,
+          "path": "dist/storybook/sb-addons/essentials-controls-1/manager-bundle.js"
+        },
+        {
+          "name": "runtime.js",
+          "size": 413025,
+          "path": "dist/storybook/sb-manager/runtime.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 375831,
+          "path": "dist/storybook/sb-addons/docs-8/manager-bundle.js"
+        },
+        {
+          "name": "adesso.js",
+          "size": 352005,
+          "path": "dist/assets/adesso.js"
+        },
+        {
+          "name": "vendor-BCESAF0D.js",
+          "size": 197535,
+          "path": "dist/assets/vendor-BCESAF0D.js"
+        },
+        {
+          "name": "vendor-BCESAF0D.js",
+          "size": 197535,
+          "path": "dist/storybook/vendor-BCESAF0D.js"
+        },
+        {
+          "name": "swiper-bundle-BaZ2v1G1.js",
+          "size": 85298,
+          "path": "dist/assets/swiper-bundle-BaZ2v1G1.js"
+        },
+        {
+          "name": "swiper-bundle-BaZ2v1G1.js",
+          "size": 85298,
+          "path": "dist/storybook/swiper-bundle-BaZ2v1G1.js"
+        },
+        {
+          "name": "module.esm-D75zlPos.js",
+          "size": 43454,
+          "path": "dist/assets/module.esm-D75zlPos.js"
+        },
+        {
+          "name": "module.esm-D75zlPos.js",
+          "size": 43454,
+          "path": "dist/storybook/module.esm-D75zlPos.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 41416,
+          "path": "dist/storybook/sb-addons/essentials-actions-2/manager-bundle.js"
+        },
+        {
+          "name": "globals-module-info.js",
+          "size": 23431,
+          "path": "dist/storybook/sb-manager/globals-module-info.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 16857,
+          "path": "dist/storybook/sb-addons/essentials-viewport-4/manager-bundle.js"
+        },
+        {
+          "name": "alpine-bbL-tKFA.js",
+          "size": 16030,
+          "path": "dist/assets/alpine-bbL-tKFA.js"
+        },
+        {
+          "name": "alpine-bbL-tKFA.js",
+          "size": 16030,
+          "path": "dist/storybook/alpine-bbL-tKFA.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 15151,
+          "path": "dist/storybook/sb-addons/essentials-backgrounds-3/manager-bundle.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 6697,
+          "path": "dist/storybook/sb-addons/essentials-outline-7/manager-bundle.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 6655,
+          "path": "dist/storybook/sb-addons/essentials-measure-6/manager-bundle.js"
+        },
+        {
+          "name": "tailwind.adesso.js",
+          "size": 6025,
+          "path": "dist/js/tailwind.adesso.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 5389,
+          "path": "dist/storybook/sb-addons/essentials-toolbars-5/manager-bundle.js"
+        },
+        {
+          "name": "adesso-C94AOm52.js",
+          "size": 4064,
+          "path": "dist/assets/adesso-C94AOm52.js"
+        },
+        {
+          "name": "adesso-DeNXCHp5.js",
+          "size": 4064,
+          "path": "dist/assets/adesso-DeNXCHp5.js"
+        },
+        {
+          "name": "adesso-C94AOm52.js",
+          "size": 4064,
+          "path": "dist/storybook/adesso-C94AOm52.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 2941,
+          "path": "dist/storybook/sb-addons/whitespace-html-11/manager-bundle.js"
+        },
+        {
+          "name": "globals.js",
+          "size": 2428,
+          "path": "dist/storybook/sb-manager/globals.js"
+        },
+        {
+          "name": "fix-block-reference-preview.js",
+          "size": 1370,
+          "path": "dist/js/fix-block-reference-preview.js"
+        },
+        {
+          "name": "common-manager-bundle.js",
+          "size": 1229,
+          "path": "dist/storybook/sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js"
+        },
+        {
+          "name": "manager-bundle.js",
+          "size": 988,
+          "path": "dist/storybook/sb-addons/links-9/manager-bundle.js"
+        },
+        {
+          "name": "adesso.js",
+          "size": 953,
+          "path": "dist/js/adesso.js"
+        },
+        {
+          "name": "adesso.D5XBimrt.js",
+          "size": 753,
+          "path": "dist/assets/js/adesso.D5XBimrt.js"
+        },
+        {
+          "name": "lucide-init.behaviors.js",
+          "size": 220,
+          "path": "dist/js/lucide-init.behaviors.js"
+        }
+      ]
+    },
+    "stylesheet": {
+      "files": 6,
+      "size": 2458286,
+      "budget": 100000,
+      "fileList": [
+        {
+          "name": "adesso.css",
+          "size": 766674,
+          "path": "dist/assets/adesso.css"
+        },
+        {
+          "name": "adesso-BXt7Sw8b.css",
+          "size": 339842,
+          "path": "dist/assets/adesso-BXt7Sw8b.css"
+        },
+        {
+          "name": "adesso-s98mfDc6.css",
+          "size": 339842,
+          "path": "dist/assets/adesso-s98mfDc6.css"
+        },
+        {
+          "name": "adesso-DtKSSEnL.css",
+          "size": 339818,
+          "path": "dist/assets/adesso-DtKSSEnL.css"
+        },
+        {
+          "name": "adesso-EIF4SSNU.css",
+          "size": 336055,
+          "path": "dist/assets/adesso-EIF4SSNU.css"
+        },
+        {
+          "name": "adesso-EIF4SSNU.css",
+          "size": 336055,
+          "path": "dist/storybook/adesso-EIF4SSNU.css"
+        }
+      ]
+    },
+    "image": {
+      "files": 2,
+      "size": 2502,
+      "budget": 300000,
+      "fileList": [
+        {
+          "name": "favicon.svg",
+          "size": 1251,
+          "path": "dist/storybook/favicon.svg"
+        },
+        {
+          "name": "favicon.svg",
+          "size": 1251,
+          "path": "dist/storybook/sb-common-assets/favicon.svg"
+        }
+      ]
+    },
+    "font": {
+      "files": 8,
+      "size": 386592,
+      "budget": 150000,
+      "fileList": [
+        {
+          "name": "nunito-sans-italic.woff2",
+          "size": 49620,
+          "path": "dist/storybook/nunito-sans-italic.woff2"
+        },
+        {
+          "name": "nunito-sans-italic.woff2",
+          "size": 49620,
+          "path": "dist/storybook/sb-common-assets/nunito-sans-italic.woff2"
+        },
+        {
+          "name": "nunito-sans-bold-italic.woff2",
+          "size": 49460,
+          "path": "dist/storybook/nunito-sans-bold-italic.woff2"
+        },
+        {
+          "name": "nunito-sans-bold-italic.woff2",
+          "size": 49460,
+          "path": "dist/storybook/sb-common-assets/nunito-sans-bold-italic.woff2"
+        },
+        {
+          "name": "nunito-sans-bold.woff2",
+          "size": 47144,
+          "path": "dist/storybook/nunito-sans-bold.woff2"
+        },
+        {
+          "name": "nunito-sans-bold.woff2",
+          "size": 47144,
+          "path": "dist/storybook/sb-common-assets/nunito-sans-bold.woff2"
+        },
+        {
+          "name": "nunito-sans-regular.woff2",
+          "size": 47072,
+          "path": "dist/storybook/nunito-sans-regular.woff2"
+        },
+        {
+          "name": "nunito-sans-regular.woff2",
+          "size": 47072,
+          "path": "dist/storybook/sb-common-assets/nunito-sans-regular.woff2"
+        }
+      ]
+    },
+    "document": {
+      "files": 1,
+      "size": 4870,
+      "budget": 50000,
+      "fileList": [
+        {
+          "name": "index.html",
+          "size": 4870,
+          "path": "dist/storybook/index.html"
+        }
+      ]
+    },
+    "other": {
+      "files": 4,
+      "size": 83237,
+      "budget": 100000,
+      "fileList": [
+        {
+          "name": "manifest.json",
+          "size": 253,
+          "path": "dist/.vite/manifest.json"
+        },
+        {
+          "name": "index.json",
+          "size": 79747,
+          "path": "dist/storybook/index.json"
+        },
+        {
+          "name": "project.json",
+          "size": 1244,
+          "path": "dist/storybook/project.json"
+        },
+        {
+          "name": "manager-bundle.js.LEGAL.txt",
+          "size": 1993,
+          "path": "dist/storybook/sb-addons/chromatic-com-storybook-10/manager-bundle.js.LEGAL.txt"
+        }
+      ]
+    },
+    "total": {
+      "files": 55,
+      "size": 8088653,
+      "budget": 500000,
+      "fileList": []
+    }
+  },
+  "violations": [
+    {
+      "type": "javascript",
+      "size": 5153166,
+      "budget": 200000,
+      "excess": 4953166,
+      "percentage": "2576.6",
+      "severity": "critical"
+    },
+    {
+      "type": "stylesheet",
+      "size": 2458286,
+      "budget": 100000,
+      "excess": 2358286,
+      "percentage": "2458.3",
+      "severity": "warning"
+    },
+    {
+      "type": "font",
+      "size": 386592,
+      "budget": 150000,
+      "excess": 236592,
+      "percentage": "257.7",
+      "severity": "warning"
+    },
+    {
+      "type": "total",
+      "size": 8088653,
+      "budget": 500000,
+      "excess": 7588653,
+      "percentage": "1617.7",
+      "severity": "critical"
+    }
+  ],
+  "compliance": {
+    "swissGovernment": false,
+    "emergencyServices": false,
+    "criticalPath": false
+  }
+}

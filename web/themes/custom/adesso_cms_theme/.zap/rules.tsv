@@ -1,0 +1,126 @@
+# OWASP ZAP Security Scanning Rules for GPZH Municipal Portal
+# Phase 3.3 - Swiss Government Cybersecurity Standards (eCH-0194)
+# 
+# Rule format: RULEID	THRESHOLD	IGNORE/WARN/FAIL	[URL]
+# RULEID: ZAP rule identifier
+# THRESHOLD: OFF/LOW/MEDIUM/HIGH
+# ACTION: IGNORE (suppress), WARN (report but continue), FAIL (stop on finding)
+
+# Critical Security Rules - Swiss Government Compliance (FAIL on violation)
+10021	MEDIUM	FAIL	# X-Content-Type-Options Header Missing
+10020	MEDIUM	FAIL	# X-Frame-Options Header Missing  
+10016	MEDIUM	FAIL	# Web Browser XSS Protection Not Enabled
+10035	HIGH	FAIL	# Strict-Transport-Security Header Missing
+10038	MEDIUM	FAIL	# Content Security Policy (CSP) Header Not Set
+10094	HIGH	FAIL	# Base64 Disclosure
+10095	MEDIUM	FAIL	# Backup File Disclosure
+10096	HIGH	FAIL	# Timestamp Disclosure
+10097	MEDIUM	FAIL	# Hash Disclosure
+10098	MEDIUM	FAIL	# Cross-Domain Misconfiguration
+
+# XSS Prevention - Municipal Portal Critical (FAIL on violation)
+40012	HIGH	FAIL	# Cross Site Scripting (Reflected)
+40013	HIGH	FAIL	# Cross Site Scripting (Persistent)  
+40014	HIGH	FAIL	# Cross Site Scripting (DOM Based)
+40016	HIGH	FAIL	# Cross Site Scripting (Persistent) - Prime
+40017	HIGH	FAIL	# Cross Site Scripting (Persistent) - Spider
+40018	HIGH	FAIL	# Cross Site Scripting (Persistent) - OTG-INPVAL-002
+
+# Swiss Data Protection Compliance (FAIL on violation)
+10105	HIGH	FAIL	# Weak Authentication Method
+10106	HIGH	FAIL	# HTTP to HTTPS Insecure Transition
+10107	MEDIUM	FAIL	# Httpoxy - Proxy Header Misuse
+10108	MEDIUM	FAIL	# Reverse Tabnabbing
+10109	MEDIUM	FAIL	# Modern Web Application
+10110	MEDIUM	FAIL	# Dangerous JS Functions
+
+# Government Portal Security Requirements (FAIL on violation)  
+90001	HIGH	FAIL	# Insecure JSF ViewState
+90002	HIGH	FAIL	# Java Serialization Object
+90011	MEDIUM	FAIL	# Charset Mismatch
+90017	MEDIUM	FAIL	# XSLT Injection
+90019	HIGH	FAIL	# Server Side Code Injection
+90020	HIGH	FAIL	# Remote OS Command Injection
+90021	HIGH	FAIL	# XPath Injection
+90022	HIGH	FAIL	# Application Error Disclosure
+90023	MEDIUM	FAIL	# XML External Entity Attack
+90024	HIGH	FAIL	# Generic Padding Oracle
+90025	HIGH	FAIL	# Expression Language Injection
+90026	MEDIUM	FAIL	# SOAP Action Spoofing
+90027	HIGH	FAIL	# Cookie Slack Detector
+90028	HIGH	FAIL	# Insecure HTTP Method
+90029	MEDIUM	FAIL	# SOAP XML Injection
+
+# Municipal Citizen Data Protection (WARN - review required)
+10015	LOW	WARN	# Incomplete or No Cache-control and Pragma HTTP Header Set
+10017	LOW	WARN	# Cross-Domain JavaScript Source File Inclusion
+10019	LOW	WARN	# Content-Type Header Missing
+10036	MEDIUM	WARN	# HTTP Server Response Header
+10040	LOW	WARN	# Secure Pages Include Mixed Content
+10041	LOW	WARN	# HTTP to HTTPS Insecure Transition in Form Post
+10042	MEDIUM	WARN	# Authentication Request Identified
+10043	MEDIUM	WARN	# User Controllable HTML Element Attribute (Potential XSS)
+10044	MEDIUM	WARN	# User Controllable JavaScript Event (XSS)
+10045	MEDIUM	WARN	# Source Code Disclosure - /WEB-INF folder
+10048	MEDIUM	WARN	# Remote Code Execution - Shell Shock
+10049	MEDIUM	WARN	# Content Cacheability
+10050	MEDIUM	WARN	# Retrieved from Cache
+10051	LOW	WARN	# Relative Path Confusion
+10052	LOW	WARN	# X-ChromeLogger-Data (XCOLD) Header Information Leak
+10054	LOW	WARN	# Cookie Without SameSite Attribute
+10055	LOW	WARN	# CSP: Wildcard Directive
+10056	MEDIUM	WARN	# X-Debug-Token Information Leak
+10057	LOW	WARN	# Username Hash Found
+10061	LOW	WARN	# X-AspNet-Version Response Header
+10062	LOW	WARN	# PII Disclosure
+10063	LOW	WARN	# Feature Policy Header Not Set
+
+# Accessibility Security (Swiss WCAG 2.1 AA + eCH-0059)
+10003	LOW	WARN	# Vulnerable JS Library
+10010	LOW	WARN	# Cookie No HttpOnly Flag
+10011	LOW	WARN	# Cookie Without Secure Flag
+10026	LOW	WARN	# HTTP Parameter Override
+10027	LOW	WARN	# Information Disclosure - Suspicious Comments
+10028	LOW	WARN	# Open Redirect
+10029	LOW	WARN	# Cookie Poisoning
+10030	LOW	WARN	# User Controllable Charset
+
+# Performance Security (Swiss Government Standards)
+10031	LOW	WARN	# User Controllable HTML Element Attribute (Potential XSS)
+10032	MEDIUM	WARN	# Viewstate Scanner
+10033	LOW	WARN	# Directory Browsing
+10034	LOW	WARN	# Heartbleed OpenSSL Vulnerability
+10037	LOW	WARN	# Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+10039	LOW	WARN	# X-Backend-Server Header Information Leak  
+10046	MEDIUM	WARN	# Generic Padding Oracle
+10047	MEDIUM	WARN	# HTTPS Content Available via HTTP
+
+# Development/Testing Exceptions (IGNORE in non-production)
+10058	LOW	IGNORE	# GET for POST
+10059	LOW	IGNORE	# X-AspNet-Version Response Header  
+10060	LOW	IGNORE	# Server Leaks Version Information via "Server" HTTP Response Header Field
+
+# Storybook/Development Specific Rules (IGNORE for component testing)
+0	LOW	IGNORE	http://localhost:6006/iframe.html	# Storybook iframe security exceptions
+0	LOW	IGNORE	http://localhost:5173	# Vite development server exceptions
+
+# Municipality-Specific Allowances
+# Thalwil Municipality
+0	LOW	IGNORE	*/thalwil/*	# Thalwil-specific components
+# Thalheim Municipality  
+0	LOW	IGNORE	*/thalheim/*	# Thalheim-specific components
+# Erlenbach Municipality
+0	LOW	IGNORE	*/erlenbach/*	# Erlenbach-specific components
+
+# Swiss Government Portal Exceptions (Reviewed and Approved)
+10004	LOW	IGNORE	# Cross Site Scripting (XSS) weakness (Filtered)
+10009	LOW	IGNORE	# In Page Banner Information Leak
+
+# Comments for Municipal Portal Context:
+# - All HIGH/CRITICAL rules set to FAIL for Swiss government compliance
+# - XSS prevention is prioritized for citizen data protection
+# - Content Security Policy enforcement is mandatory
+# - HTTP security headers required for all government portals
+# - Development tools (Storybook, Vite) have specific exceptions
+# - Municipality-specific components have contextual allowances
+# - Regular review and updates required for eCH-0194 compliance

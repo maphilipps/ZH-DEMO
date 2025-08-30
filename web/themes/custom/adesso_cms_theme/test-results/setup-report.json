@@ -1,0 +1,46 @@
+{
+  "setup": {
+    "timestamp": "2025-08-30T15:16:46.840Z",
+    "version": "1.0.0",
+    "status": "complete"
+  },
+  "directories": [
+    "test-results",
+    "test-results/accessibility",
+    "test-results/screenshots",
+    "test-results/html",
+    "test-results/reports",
+    "test-results/coverage",
+    "test-results/performance"
+  ],
+  "features": [
+    "WCAG 2.1 AA compliance testing",
+    "eCH-0059 Swiss government standards",
+    "Multi-municipality theme validation",
+    "German text expansion testing (25% buffer)",
+    "Keyboard navigation testing",
+    "Color contrast validation",
+    "Responsive accessibility testing",
+    "Detailed HTML/JSON reporting"
+  ],
+  "scripts": {
+    "test:storybook:a11y": "Run accessibility tests on all stories",
+    "test:storybook:municipalities": "Test municipality-specific themes",
+    "test:storybook:debug": "Debug mode with verbose output",
+    "qa:storybook": "Quick quality check for Storybook"
+  },
+  "compliance": {
+    "wcag": "2.1 AA",
+    "swiss": "eCH-0059",
+    "languages": [
+      "de-CH",
+      "fr-CH",
+      "it-CH"
+    ],
+    "municipalities": [
+      "thalwil",
+      "thalheim",
+      "erlenbach"
+    ]
+  }
+}

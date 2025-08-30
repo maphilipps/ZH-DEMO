@@ -1,0 +1,32 @@
+# German Government Browser Compatibility
+# Based on eCH-0059 standards and WCAG 2.1 AA requirements
+# Updated for Swiss municipality portal compatibility
+
+# Current browsers (last 2 versions)
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Market share > 1% globally
+> 1%
+
+# Maintained browsers (not dead)
+not dead
+
+# German government requirements
+# Support for enterprise environments
+Firefox ESR
+
+# Mobile browsers for accessibility
+last 2 iOS versions
+last 2 Android versions
+
+# Exclude outdated browsers
+not IE 11
+not IE_Mob 11
+not op_mini all
+
+# Swiss accessibility standards compliance
+# Ensure broad compatibility for government portals
+since 2020

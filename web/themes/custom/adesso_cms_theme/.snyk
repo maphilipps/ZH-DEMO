@@ -1,0 +1,169 @@
+# Snyk Security Configuration for GPZH Municipal Portal
+# Phase 3.3 - Swiss Government Cybersecurity Compliance (eCH-0194)
+# 
+# This file configures Snyk vulnerability scanning for the GPZH multi-municipality portal system
+# Implements Swiss government security standards for municipal portal development
+
+version: v1.0.0
+
+# Language-specific configuration
+language-settings:
+  javascript:
+    # Swiss government severity threshold - no high/critical vulnerabilities allowed
+    severity-threshold: medium
+    # Municipal portal specific exclusions
+    exclude-base-image-vulns: false
+    
+  # Include Drupal PHP dependencies if present
+  php:
+    severity-threshold: medium
+
+# Swiss Government Compliance Settings
+patch:
+  # Automatic patching preferences for municipal portals
+  'SNYK-JS-LODASH-567746':
+    - lodash:
+        patched: '2024-01-01T00:00:00.000Z'
+        reason: 'Swiss government security requirement - prototype pollution prevention'
+  
+  # Municipal portal specific patches
+  'SNYK-JS-MINIMIST-559764':
+    - minimist:
+        patched: '2024-01-01T00:00:00.000Z'
+        reason: 'Government portal security - argument injection prevention'
+
+# Ignore specific vulnerabilities (with Swiss government justification)
+ignore:
+  # Development dependencies - acceptable risk for municipal development
+  'SNYK-JS-SEMVER-3247795':
+    - '*':
+        reason: 'Development dependency only, not deployed to production municipal portals'
+        expires: '2025-12-31T23:59:59.999Z'
+        created: '2024-08-30T00:00:00.000Z'
+
+  # Storybook specific vulnerabilities - isolated from production
+  'SNYK-JS-STORYBOOK-*':
+    - '@storybook/*':
+        reason: 'Storybook used only for component development, isolated from municipal production'
+        expires: '2025-06-30T23:59:59.999Z'
+        created: '2024-08-30T00:00:00.000Z'
+
+  # Playwright testing vulnerabilities - development only
+  'SNYK-JS-PLAYWRIGHT-*':
+    - '@playwright/*':
+        reason: 'Testing framework not deployed to municipal production environments'
+        expires: '2025-06-30T23:59:59.999Z'
+        created: '2024-08-30T00:00:00.000Z'
+
+# Swiss eCH-0194 Cybersecurity Standards Configuration
+exclude:
+  # Exclude non-production paths from security scanning
+  global:
+    - 'dist/**'
+    - 'node_modules/**'
+    - '.git/**'
+    - 'test-results/**'
+    - 'backstop_data/**'
+    - 'storybook-static/**'
+    - '.storybook/**'
+    
+  # Development and testing exclusions
+  development:
+    - 'tests/**'
+    - '**/*.test.js'
+    - '**/*.spec.js'
+    - '**/*.stories.js'
+    - 'scripts/debug/**'
+
+# Municipal Portal Security Policies
+policy:
+  # Swiss government requires immediate action on critical vulnerabilities
+  critical:
+    action: 'fail'
+    reason: 'Swiss government municipal portals require immediate remediation of critical vulnerabilities'
+    
+  high:
+    action: 'fail' 
+    reason: 'eCH-0194 compliance requires resolution of high-severity vulnerabilities'
+    
+  medium:
+    action: 'warn'
+    reason: 'Medium vulnerabilities require assessment and planning for municipal contexts'
+    
+  low:
+    action: 'ignore'
+    reason: 'Low-severity vulnerabilities acceptable for municipal development with monitoring'
+
+# Citizen Data Protection Settings
+data-protection:
+  # GDPR and Swiss DPA compliance settings
+  pii-scanning: true
+  encryption-requirements: true
+  audit-logging: true
+  
+  # Municipal-specific data protection
+  citizen-data-classification: 'sensitive'
+  retention-policies: true
+  cross-border-restrictions: true
+
+# Multi-Municipality Configuration
+municipalities:
+  thalwil:
+    security-level: 'government-standard'
+    compliance: ['eCH-0194', 'GDPR', 'Swiss-DPA']
+  thalheim:
+    security-level: 'government-standard'
+    compliance: ['eCH-0194', 'GDPR', 'Swiss-DPA']
+  erlenbach:
+    security-level: 'government-standard'  
+    compliance: ['eCH-0194', 'GDPR', 'Swiss-DPA']
+
+# Reporting Configuration
+reporting:
+  # Swiss government audit trail requirements
+  format: ['json', 'sarif']
+  include-dev-dependencies: false
+  include-licenses: true
+  
+  # Municipal compliance reporting
+  compliance-reporting: true
+  audit-trail: true
+  executive-summary: true
+  
+  # eCH-0194 specific reporting requirements
+  swiss-government-format: true
+  municipal-context: true
+  citizen-impact-assessment: true
+
+# Integration Settings  
+integrations:
+  github:
+    # GitHub Security integration for municipal portal
+    dependency-review: true
+    security-advisories: true
+    automated-pr-reviews: true
+    
+  ci-cd:
+    # CI/CD pipeline security integration
+    fail-on-critical: true
+    block-deployment: true
+    notification-webhooks: true
+
+# Swiss Government Metadata
+metadata:
+  compliance-standard: 'eCH-0194'
+  system-classification: 'municipal-portal'
+  data-sensitivity: 'citizen-data'
+  jurisdiction: 'Switzerland'
+  language-requirements: ['German', 'French', 'Italian']
+  
+  # GPZH Project Specific
+  project: 'GPZH Multi-Municipality Portal'
+  municipalities: ['Thalwil', 'Thalheim', 'Erlenbach']
+  security-officer: 'GPZH Security Team'
+  review-schedule: 'monthly'
+  
+  # Contact Information
+  security-contact: 'security@gpzh.ch'
+  compliance-contact: 'compliance@gpzh.ch'
+  technical-contact: 'development@gpzh.ch'

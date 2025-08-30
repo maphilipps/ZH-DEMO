@@ -15,7 +15,8 @@ const config = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y'
   ],
 
   framework: {
@@ -30,6 +31,14 @@ const config = {
   features: {
     buildStoriesJson: true,
     storyStoreV7: true
+  },
+
+  // Test runner configuration for PnX architecture
+  testRunner: {
+    name: '@storybook/test-runner',
+    options: {
+      configPath: '.storybook/test-runner-jest.config.js'
+    }
   },
 
   // DDEV-compatible Vite configuration (preserved)

@@ -1,0 +1,176 @@
+{
+  "timestamp": "2025-08-30T17:27:47.190Z",
+  "version": "4.2.0",
+  "buildMode": "production",
+  "optimization": {
+    "treeshaking": {
+      "enabled": true,
+      "savings": 0,
+      "unusedExports": [],
+      "analysisDate": "2025-08-30T17:27:47.271Z"
+    },
+    "deadCodeElimination": {
+      "enabled": false,
+      "savings": 0
+    },
+    "codeSplitting": {
+      "enabled": true,
+      "chunks": 2,
+      "analysis": {
+        "total": 2,
+        "optimized": 0,
+        "recommendations": [
+          {
+            "entry": "src/css/adesso.css",
+            "size": 766674,
+            "recommendation": "Split into smaller chunks using dynamic imports"
+          },
+          {
+            "entry": "src/js/adesso.js",
+            "size": 352005,
+            "recommendation": "Split into smaller chunks using dynamic imports"
+          }
+        ],
+        "largeEntries": 2
+      },
+      "date": "2025-08-30T17:27:47.272Z"
+    },
+    "assetOptimization": {
+      "enabled": true,
+      "totalSavings": 562000,
+      "optimizations": [
+        {
+          "type": "css-purging",
+          "file": "adesso-BXt7Sw8b.css",
+          "unusedSelectors": 800,
+          "estimatedSavings": 40000
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso-BXt7Sw8b.css",
+          "duplicateRules": 46,
+          "estimatedSavings": 4600
+        },
+        {
+          "type": "css-purging",
+          "file": "adesso-DtKSSEnL.css",
+          "unusedSelectors": 800,
+          "estimatedSavings": 40000
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso-DtKSSEnL.css",
+          "duplicateRules": 46,
+          "estimatedSavings": 4600
+        },
+        {
+          "type": "css-purging",
+          "file": "adesso-EIF4SSNU.css",
+          "unusedSelectors": 790,
+          "estimatedSavings": 39500
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso-EIF4SSNU.css",
+          "duplicateRules": 44,
+          "estimatedSavings": 4400
+        },
+        {
+          "type": "css-purging",
+          "file": "adesso-s98mfDc6.css",
+          "unusedSelectors": 800,
+          "estimatedSavings": 40000
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso-s98mfDc6.css",
+          "duplicateRules": 46,
+          "estimatedSavings": 4600
+        },
+        {
+          "type": "css-purging",
+          "file": "adesso.css",
+          "unusedSelectors": 68,
+          "estimatedSavings": 3400
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso.css",
+          "duplicateRules": 3370,
+          "estimatedSavings": 337000
+        },
+        {
+          "type": "css-purging",
+          "file": "adesso-EIF4SSNU.css",
+          "unusedSelectors": 790,
+          "estimatedSavings": 39500
+        },
+        {
+          "type": "css-deduplication",
+          "file": "adesso-EIF4SSNU.css",
+          "duplicateRules": 44,
+          "estimatedSavings": 4400
+        }
+      ],
+      "compressionRatio": 0.22861457129072857,
+      "date": "2025-08-30T17:27:48.639Z"
+    }
+  },
+  "performance": {
+    "beforeOptimization": {},
+    "afterOptimization": {},
+    "improvement": {}
+  },
+  "municipalities": {
+    "thalwil": {
+      "size": 0,
+      "optimized": 0,
+      "savings": 0,
+      "files": 0,
+      "sharedAssets": 0,
+      "compliance": true
+    },
+    "thalheim": {
+      "size": 0,
+      "optimized": 0,
+      "savings": 0,
+      "files": 0,
+      "sharedAssets": 0,
+      "compliance": true
+    },
+    "erlenbach": {
+      "size": 0,
+      "optimized": 0,
+      "savings": 0,
+      "files": 0,
+      "sharedAssets": 0,
+      "compliance": true
+    }
+  },
+  "recommendations": [
+    {
+      "category": "optimization",
+      "priority": "high",
+      "message": "Asset optimization can save 548.8 KB",
+      "suggestion": "Implement CSS purging, image optimization, and font subsetting",
+      "timestamp": "2025-08-30T17:27:48.639Z"
+    },
+    {
+      "category": "compliance",
+      "priority": "critical",
+      "message": "Swiss government performance standards not met",
+      "suggestion": "Total: 7.8 MB/488.3 KB, Scripts: 4.9 MB/195.3 KB, Styles: 2.3 MB/97.7 KB",
+      "timestamp": "2025-08-30T17:27:48.667Z"
+    }
+  ],
+  "compliance": {
+    "swissGovernment": false,
+    "wcag21aa": true,
+    "performanceBudgets": false
+  },
+  "regressions": [],
+  "totalSize": 8209173,
+  "generatedAt": "2025-08-30T17:27:48.671Z",
+  "commit": "local",
+  "branch": "local"
+}

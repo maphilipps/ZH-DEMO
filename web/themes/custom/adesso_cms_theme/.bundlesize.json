@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "path": "./dist/assets/adesso.js",
+      "maxSize": "120 kB",
+      "compression": "gzip",
+      "description": "Main theme JavaScript bundle"
+    },
+    {
+      "path": "./dist/assets/adesso.css",
+      "maxSize": "80 kB",
+      "compression": "gzip",
+      "description": "Main theme CSS bundle"
+    },
+    {
+      "path": "./dist/assets/vendor-*.js",
+      "maxSize": "100 kB",
+      "compression": "gzip",
+      "description": "Third-party vendor bundles"
+    },
+    {
+      "path": "./dist/assets/swiper-*.js",
+      "maxSize": "40 kB",
+      "compression": "gzip",
+      "description": "Swiper component bundle"
+    },
+    {
+      "path": "./dist/assets/alpine-*.js",
+      "maxSize": "20 kB",
+      "compression": "gzip",
+      "description": "Alpine.js framework bundle"
+    },
+    {
+      "path": "./dist/assets/**/adesso-*.css",
+      "maxSize": "25 kB",
+      "compression": "gzip",
+      "description": "Municipality-specific theme variations"
+    }
+  ],
+  "globalMaxSize": "500 kB",
+  "performance": {
+    "budgets": {
+      "total": "500 kB",
+      "scripts": "200 kB",
+      "styles": "100 kB",
+      "images": "300 kB",
+      "fonts": "100 kB"
+    },
+    "thresholds": {
+      "error": "500 kB",
+      "warn": "400 kB"
+    }
+  },
+  "ci": {
+    "trackBranches": ["main", "develop", "issues-*"],
+    "repoBranch": "main",
+    "repoOwner": "maphilipps",
+    "repoName": "zh-demo",
+    "alertThreshold": 15,
+    "failBuild": true
+  },
+  "municipalities": {
+    "thalwil": {
+      "maxSize": "450 kB",
+      "description": "Thalwil municipality theme bundle"
+    },
+    "thalheim": {
+      "maxSize": "450 kB",
+      "description": "Thalheim municipality theme bundle"
+    },
+    "erlenbach": {
+      "maxSize": "450 kB",
+      "description": "Erlenbach municipality theme bundle"
+    }
+  }
+}

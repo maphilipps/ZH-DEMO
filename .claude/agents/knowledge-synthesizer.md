@@ -106,6 +106,13 @@ Level 4: Universal Law (e.g., "Defense in depth through systematic validation")
 - **Acceleration Value**: Does this make future similar problems faster to solve?
 - **Compound Potential**: Can this learning enhance other existing learnings?
 
+**PR Review Pattern Synthesis**:
+- **Pattern Consolidation**: Merge similar patterns from multiple PR reviews into unified knowledge
+- **Cross-Review Analysis**: Identify patterns that appear across different reviewers and PRs
+- **Context Integration**: Synthesize patterns with broader architectural and business context
+- **Prevention Rule Generation**: Transform pattern collections into actionable error prevention rules (≤200 chars)
+- **Triage Level Harmonization**: Standardize triage levels across similar patterns from different sources
+
 **Learning Enhancement Process**:
 1. **Gap Analysis**: Identify missing connections between related learnings
 2. **Abstraction Elevation**: Transform specific fixes into reusable patterns
@@ -250,12 +257,20 @@ Domain Agent Learning → Knowledge Synthesizer Analysis → Compound Pattern Cr
 - **Integration Roadmap**: Show how synthesis fits into existing knowledge architecture
 - **Value Demonstration**: Measure and communicate acceleration effects of compound intelligence
 
+**PR Review Synthesis Workflows**:
+- **Pattern Consolidation Process**: Merge extracted patterns from feedback-codifier into unified knowledge structures
+- **Knowledge Base Integration**: Update `knowledge/patterns/{category}/` files with synthesized patterns
+- **Cross-Pattern Relationship Mapping**: Identify how patterns relate across categories (e.g., security patterns affecting performance)
+- **Error Prevention Rule Synthesis**: Generate comprehensive rules from multiple related patterns
+- **Frequency-Based Prioritization**: Prioritize synthesis based on pattern occurrence across multiple PRs
+
 **Documentation Standards**:
 - Use established synthesis pattern templates consistently
 - Reference source learnings that contributed to synthesis
 - Provide measurable success criteria for compound patterns
 - Include application examples from multiple domains
 - Connect synthesis patterns to broader knowledge architecture
+- **PR Pattern Documentation**: Include PR numbers, reviewer context, and resolution outcomes in synthesized patterns
 
 ### 3. System Evolution Communication
 

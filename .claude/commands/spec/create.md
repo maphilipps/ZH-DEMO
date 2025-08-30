@@ -6,7 +6,8 @@ argument-hint: "<feature-or-bugfix-description>"
 ---
 
 ## Context
-- Existing specs: !`ls -la specs/ 2>/dev/null || echo "No specs directory found"`
+- Repository: !`gh repo view --json nameWithOwner --jq '.nameWithOwner'`
+- Current Issues: !`gh issue list --state all --limit 5 --json number,title,state --jq '.[] | "#\(.number): \(.title) [\(.state)]"' | head -5`
 
 ## Optional: Enhanced Library Documentation Support
 
@@ -83,7 +84,7 @@ After validating the problem from first principles, complete these technical che
 
 ## Your task
 
-Create a comprehensive specification document in the `specs/` folder for the following feature/bugfix: $ARGUMENTS
+Create a comprehensive GitHub Issue specification for the following feature/bugfix: $ARGUMENTS
 
 First, analyze the request to understand:
 1. Whether this is a feature or bugfix
@@ -120,7 +121,7 @@ Before writing the detailed specification, map the complete system impact:
 
 **VERIFICATION: Ensure you can trace the complete end-to-end flow before proceeding to detailed specification.**
 
-Then create a spec document that includes:
+Then create a GitHub Issue with the following structure:
 
 1. **Title**: Clear, descriptive title of the feature/bugfix
 2. **Status**: Draft/Under Review/Approved/Implemented
@@ -172,9 +173,10 @@ Follow these guidelines:
 - When referencing external libraries, include version-specific information
 - Do NOT include time or effort estimations (no "X days", "Y hours", or complexity estimates)
 
-Name the spec file descriptively based on the feature:
-- Features: `feat-{kebab-case-name}.md`
-- Bugfixes: `fix-{issue-number}-{brief-description}.md`
+Create the GitHub Issue using:
+```bash
+gh issue create --title "[SPEC] Feature Name" --body "$(cat issue-template.md)" --label "spec,needs-decomposition"
+```
 
 ## PROGRESSIVE VALIDATION CHECKPOINTS
 
@@ -195,8 +197,103 @@ Before marking complete:
 3. **Implementability Check**: Someone could build this from the spec
 4. **Quality Score**: Rate spec 1-10, only accept 8+
 
-Before writing, use AgentTool to search for:
+## GitHub Issue Creation Process
+
+### 1. Generate Issue Content
+
+Create a comprehensive issue body with all specification sections:
+
+```markdown
+# [SPEC] Feature/Bugfix Title
+
+## Status
+Draft
+
+## Authors
+Claude Code Assistant - $(date +"%Y-%m-%d")
+
+## Overview
+Brief description and purpose
+
+## Background/Problem Statement
+Why this feature is needed or what problem it solves
+
+## Goals
+- What we aim to achieve (bullet points)
+
+## Non-Goals  
+- What is explicitly out of scope (bullet points)
+
+## Technical Dependencies
+- External libraries/frameworks used
+- Version requirements
+- Links to relevant documentation
+
+## Detailed Design
+- Architecture changes
+- Implementation approach
+- Code structure and file organization
+- API changes (if any)
+- Data model changes (if any)
+- Integration with external libraries (with examples from docs)
+
+## User Experience
+How users will interact with this feature
+
+## Testing Strategy
+- Unit tests
+- Integration tests
+- E2E tests (if needed)
+- Mocking strategies for external dependencies
+- Test documentation with purpose comments
+- Meaningful tests that can fail to reveal real issues
+- Edge case testing
+
+## Performance Considerations
+Impact on performance and mitigation strategies
+
+## Security Considerations
+Security implications and safeguards
+
+## Documentation
+What documentation needs to be created/updated
+
+## Implementation Phases
+- Phase 1: MVP/Core functionality
+- Phase 2: Enhanced features (if applicable)
+- Phase 3: Polish and optimization (if applicable)
+
+## Open Questions
+Any unresolved questions or decisions
+
+## References
+- Links to related issues, PRs, or documentation
+- External library documentation links
+- Relevant design patterns or architectural decisions
+```
+
+### 2. Create GitHub Issue
+
+```bash
+# Create issue with generated content
+gh issue create \
+  --title "[SPEC] ${FEATURE_TITLE}" \
+  --body "$(cat /tmp/spec-issue-body.md)" \
+  --label "spec,needs-decomposition" \
+  --assignee @me
+```
+
+### 3. Link Related Issues
+
+```bash
+# Link to related issues if any exist
+gh issue comment ${ISSUE_NUMBER} --body "Related to: #${RELATED_ISSUE}"
+```
+
+### 4. Research and Context Gathering
+
+Before writing, use Task tool to search for:
 - Related existing features or code
-- Similar patterns in the codebase
+- Similar patterns in the codebase  
 - Potential conflicts or dependencies
 - Current library versions in package.json or equivalent

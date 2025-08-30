@@ -5,17 +5,19 @@ allowed-tools: Read, Task, Write, TodoWrite, Bash(mkdir:*), Bash(cat:*), Bash(gr
 argument-hint: "<path-to-spec-file>"
 ---
 
-# Decompose Specification into Tasks
+# Decompose GitHub Issue Specification into Tasks
 
-Decompose the specification at: $ARGUMENTS
+Decompose the GitHub Issue specification: #$ARGUMENTS
 
 ## Process Overview
 
-This command takes a validated specification and breaks it down into:
-1. Clear, actionable tasks with dependencies
+This command takes a validated GitHub Issue specification and breaks it down into:
+1. Clear, actionable subtask issues with dependencies
 2. Implementation phases and milestones
 3. Testing and validation requirements
 4. Documentation needs
+
+All tasks are created as separate GitHub Issues linked to the parent spec issue.
 
 !which stm &> /dev/null && test -d .simple-task-master && echo "STM_STATUS: Available and initialized" || (which stm &> /dev/null && echo "STM_STATUS: Available but not initialized" || echo "STM_STATUS: Not installed")
 
@@ -42,10 +44,10 @@ Before creating any STM tasks, confirm your understanding:
    - If status is "Available and initialized", use STM for task management
    - If status is "Not installed", fall back to TodoWrite
 
-1. **Read and Validate Specification**:
-   - Read the specified spec file
-   - Verify it's a valid specification (has expected sections)
-   - Extract implementation phases and technical details
+1. **Read and Validate GitHub Issue Specification**:
+   - Read the GitHub Issue: `gh issue view $ARGUMENTS --json body,title,labels`
+   - Verify it has the `spec` label and contains expected sections
+   - Extract implementation phases and technical details from issue body
 
 2. **Analyze Specification Components**:
    - Identify major features and components
@@ -92,9 +94,9 @@ Before creating any STM tasks, confirm your understanding:
    - Testing tasks: Unit, integration, and E2E tests
    - Documentation tasks: API docs, user guides, code comments
 
-4. **Generate Task Document**:
+4. **Generate GitHub Issue Tasks**:
 
-   Create a comprehensive task breakdown document:
+   Create comprehensive subtask GitHub Issues. First, create a task breakdown document for planning:
    
    ```markdown
    # Task Breakdown: [Specification Name]
@@ -179,7 +181,54 @@ Before creating any STM tasks, confirm your understanding:
    - [ ] Tests: All operations work on macOS/Linux with proper error handling
    ```
    
-5. **Create Task Management Entries**:
+5. **Create GitHub Subtask Issues**:
+
+   Create each task as a separate GitHub Issue:
+   
+   ```bash
+   # For each task in the breakdown
+   gh issue create \
+     --title "[TASK] Task Title" \
+     --body "$(cat task-details.md)" \
+     --label "task:backend,priority:high,phase:1" \
+     --assignee @me
+   
+   # Link to parent issue
+   gh issue comment ${NEW_ISSUE_NUMBER} --body "Part of #$ARGUMENTS"
+   gh issue comment $ARGUMENTS --body "Subtask: #${NEW_ISSUE_NUMBER}"
+   ```
+
+   **Task Issue Template:**
+   ```markdown
+   # Task: [Title]
+   
+   **Parent Issue**: #$ARGUMENTS
+   **Phase**: 1
+   **Priority**: High/Medium/Low
+   **Size**: Small/Medium/Large
+   **Dependencies**: None / #123, #124
+   **Can run parallel with**: #125, #126
+   
+   ## Technical Requirements
+   [All technical details from spec]
+   
+   ## Implementation Steps
+   1. [Detailed step from spec]
+   2. [Another step with specifics]
+   
+   ## Acceptance Criteria
+   - [ ] [Specific criteria from spec]
+   - [ ] Tests written and passing
+   - [ ] [Additional criteria]
+   
+   ## Definition of Done
+   - [ ] All acceptance criteria met
+   - [ ] Code reviewed and approved
+   - [ ] Tests passing
+   - [ ] Documentation updated
+   ```
+
+   **And also create STM tasks for local tracking:**
    
    ## 🚨 STOP AND READ: Common Mistake vs Correct Approach
    
@@ -425,9 +474,10 @@ Before creating any STM tasks, confirm your understanding:
    ]
    ```
 
-6. **Save Task Breakdown**:
-   - Save the detailed task breakdown document to `specs/[spec-name]-tasks.md`
-   - Create tasks in STM or TodoWrite for immediate tracking
+6. **Update Parent Issue**:
+   - Add a comment to the parent issue with all created subtasks
+   - Update parent issue labels to include `decomposed`
+   - Save the detailed task breakdown document to `reports/issue-$ARGUMENTS-breakdown.md`
    - Generate a summary report showing:
      - Total number of tasks
      - Breakdown by phase

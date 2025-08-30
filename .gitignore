@@ -80,3 +80,6 @@ node_modules/
 install-state.gz
 storybook-static/
 
+# Ignore milvus temporary files
+.ddev/milvus/volumes/minio/.minio.sys/tmp/.trash/
+

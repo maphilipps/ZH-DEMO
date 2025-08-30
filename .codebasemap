@@ -2,9 +2,9 @@
   "metadata": {
     "version": 1,
     "root": "/Users/marc.philipps/Sites/zh-demo/.worktrees/issues-82",
-    "createdAt": "2025-08-30T18:43:44.745Z",
-    "updatedAt": "2025-08-30T18:43:44.745Z",
-    "totalFiles": 203
+    "createdAt": "2025-08-30T18:59:18.756Z",
+    "updatedAt": "2025-08-30T18:59:18.756Z",
+    "totalFiles": 206
   },
   "tree": {
     "name": "issues-82",
@@ -35,6 +35,30 @@
                     "type": "file"
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "scripts",
+        "type": "dir",
+        "children": [
+          {
+            "name": "security",
+            "type": "dir",
+            "children": [
+              {
+                "name": "csp-validator.js",
+                "type": "file"
+              },
+              {
+                "name": "swiss-compliance-validator.js",
+                "type": "file"
+              },
+              {
+                "name": "xss-template-scanner.js",
+                "type": "file"
               }
             ]
           }
@@ -1477,6 +1501,9 @@
     "backstop_data/engine_scripts/puppet/onBefore.js",
     "backstop_data/engine_scripts/puppet/onReady.js",
     "playwright.config.js",
+    "scripts/security/csp-validator.js",
+    "scripts/security/swiss-compliance-validator.js",
+    "scripts/security/xss-template-scanner.js",
     "tests/backstop/backstop_data/engine_scripts/puppet/clickAndHoverHelper.js",
     "tests/backstop/backstop_data/engine_scripts/puppet/onBefore.js",
     "tests/backstop/backstop_data/engine_scripts/puppet/onReady.js",
@@ -1759,6 +1786,58 @@
     },
     "playwright.config.js": {
       "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "scripts/security/csp-validator.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "require"
+        },
+        {
+          "from": "path",
+          "kind": "require"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "scripts/security/swiss-compliance-validator.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "require"
+        },
+        {
+          "from": "path",
+          "kind": "require"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "scripts/security/xss-template-scanner.js": {
+      "imports": [
+        {
+          "from": "fs",
+          "kind": "require"
+        },
+        {
+          "from": "path",
+          "kind": "require"
+        },
+        {
+          "from": "glob",
+          "kind": "require"
+        }
+      ],
       "dependencies": [],
       "functions": [],
       "classes": [],

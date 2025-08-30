@@ -88,7 +88,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit --progress=false
+          npm ci --prefer-offline --no-audit --progress=false --legacy-peer-deps
           npm ls # Verify installation
 
       - name: Analyze component architecture
@@ -516,11 +516,17 @@ jobs:
           EOF
           
           # Process performance results
-          find performance-results -name "*.json" -exec echo "Processing: {}" \;
-          
-          # List all artifacts for debugging
-          echo "🔍 Available performance artifacts:"
-          find performance-results -type f -name "*.json" | head -20
+          if [ -d "performance-results" ]; then
+            find performance-results -name "*.json" -exec echo "Processing: {}" \;
+            
+            # List all artifacts for debugging
+            echo "🔍 Available performance artifacts:"
+            find performance-results -type f -name "*.json" | head -20
+          else
+            echo "⚠️ No performance-results directory found - earlier steps may have failed"
+            echo "🔍 Available directories:"
+            ls -la
+          fi
           
           echo "✅ Performance summary report generated"
 

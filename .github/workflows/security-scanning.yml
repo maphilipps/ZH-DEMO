@@ -87,7 +87,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit --legacy-peer-deps
           echo "✅ Dependencies installed successfully"
 
       - name: NPM Audit Security Check
@@ -263,7 +263,7 @@ jobs:
       - name: Install dependencies
         working-directory: ${{ env.THEME_PATH }}
         run: |
-          npm ci --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit --legacy-peer-deps
           echo "✅ Dependencies installed for security testing"
 
       - name: Build and start Storybook for security testing
@@ -392,7 +392,7 @@ jobs:
             exit 1
           fi
           echo "✅ package.json found, installing dependencies..."
-          npm ci --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit --legacy-peer-deps
 
       - name: XSS Prevention Scan - Twig Templates
         working-directory: ${{ env.THEME_PATH }}

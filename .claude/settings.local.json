@@ -51,5 +51,69 @@
       "DRUPAL_AUTH_USER": "admin",
       "DRUPAL_AUTH_PASSWORD": "secret"
     }
+  },
+  "hooks": {
+    "PostToolUse": [
+
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codebase-map update"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "claudekit-hooks run create-checkpoint"
+          },
+          {
+            "type": "command",
+            "command": "claudekit-hooks run check-todos"
+          },
+          {
+            "type": "command",
+            "command": "claudekit-hooks run typecheck-project"
+          },
+          {
+            "type": "command",
+            "command": "claudekit-hooks run lint-project"
+          },
+          {
+            "type": "command",
+            "command": "claudekit-hooks run test-project"
+          },
+          {
+            "type": "command",
+            "command": "claudekit-hooks run self-review"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "*",
+        "hooks": [
+        ]
+      }
+    ],
+    "SessionStart": [],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codebase-map scan"
+          }
+        ]
+      }
+    ]
   }
 }

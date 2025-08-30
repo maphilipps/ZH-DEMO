@@ -6,13 +6,15 @@
  * to ensure consistent design system integration.
  */
 
+@reference;
+
 @layer components {
   /**
    * Button Components
    * Standard Drupal button classes with Tailwind styling
    */
   .button {
-    @apply inline-flex items-center gap-x-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200;
+    @apply inline-flex items-center gap-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200;
   }
 
   .button--primary {
@@ -448,7 +450,7 @@
   .form-item-field-content-element-theme:focus-within::after,
   .js-form-item-field-content-element-theme-0-value:focus-within::after,
   [data-drupal-selector*="field-content-element-theme"]:focus-within::after {
-    border-color: theme('colors.blue.500');
+    border-color: #3b82f6; /* blue-500 fallback */
   }
 
   /**
@@ -487,7 +489,7 @@
 
   /* Button reset for consistent styling */
   button:not([class]) {
-    @apply inline-flex items-center gap-x-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+    @apply inline-flex items-center gap-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
   }
 
   /* Link styling */

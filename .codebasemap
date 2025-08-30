@@ -1,0 +1,6411 @@
+{
+  "metadata": {
+    "version": 1,
+    "root": "/Users/marc.philipps/Sites/zh-demo",
+    "createdAt": "2025-08-30T05:56:04.078Z",
+    "updatedAt": "2025-08-30T05:56:04.078Z",
+    "totalFiles": 173
+  },
+  "tree": {
+    "name": "zh-demo",
+    "type": "dir",
+    "children": [
+      {
+        "name": "backstop_data",
+        "type": "dir",
+        "children": [
+          {
+            "name": "engine_scripts",
+            "type": "dir",
+            "children": [
+              {
+                "name": "puppet",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "clickAndHoverHelper.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "onBefore.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "onReady.js",
+                    "type": "file"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tests",
+        "type": "dir",
+        "children": [
+          {
+            "name": "backstop",
+            "type": "dir",
+            "children": [
+              {
+                "name": "backstop_data",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "engine_scripts",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "puppet",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "clickAndHoverHelper.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "onBefore.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "onReady.js",
+                            "type": "file"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "puppet",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "clickAndHoverHelper.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "onBefore.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "onReady.js",
+                        "type": "file"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "installer",
+            "type": "dir",
+            "children": [
+              {
+                "name": "cleanup-helper.js",
+                "type": "file"
+              },
+              {
+                "name": "global-setup.js",
+                "type": "file"
+              },
+              {
+                "name": "global-teardown.js",
+                "type": "file"
+              },
+              {
+                "name": "installer-comprehensive.spec.js",
+                "type": "file"
+              },
+              {
+                "name": "playwright.config.js",
+                "type": "file"
+              },
+              {
+                "name": "smoke.spec.js",
+                "type": "file"
+              },
+              {
+                "name": "validation-suite.js",
+                "type": "file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "web",
+        "type": "dir",
+        "children": [
+          {
+            "name": "backstop_data",
+            "type": "dir",
+            "children": [
+              {
+                "name": "html_report",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "config.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "diff.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "diverged.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "divergedWorker.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "index_bundle.js",
+                    "type": "file"
+                  }
+                ]
+              },
+              {
+                "name": "puppet",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "clickAndHoverHelper.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "onBefore.js",
+                    "type": "file"
+                  },
+                  {
+                    "name": "onReady.js",
+                    "type": "file"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "profiles",
+            "type": "dir",
+            "children": [
+              {
+                "name": "adesso_cms_installer",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "adesso_cms_installer_theme",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "js",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "progress.js",
+                            "type": "file"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "drupal_cms_installer",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "theme",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "progress.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "js",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "language-dropdown.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "progress.js",
+                        "type": "file"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "drupal_cms_installer",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "theme",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "js",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "progress.js",
+                            "type": "file"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "themes",
+            "type": "dir",
+            "children": [
+              {
+                "name": "custom",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "adesso_cms_theme",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "components",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "accordion",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "accordion.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "accordion.stories.data.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "accordion.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "accordion.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "badge",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "badge.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "badge.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "bento-grid",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "bento-grid.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "bento-grid.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "block-reference",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "block-reference.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "button",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "button.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "button.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "button.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "card-group",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "card-group.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "card-group.stories.data.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "card-group.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "carousel",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "carousel.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "carousel.stories.data.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "carousel.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "carousel.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "damage-report-card",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "damage-report-card.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "download-item",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "download-item.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "download-item.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "embed",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "embed.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "file-upload-preview",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "file-upload-preview.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "file-upload-preview.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "filter",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "filter-list.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "filter-tag.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "filter.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "form-progress",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "form-progress.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "gallery",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "gallery.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "gallery.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "heading",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "heading.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "hero",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "hero.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "hero.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "hero.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "landing-page-header",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "landing-page-header.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "logo",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "logo.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "logo-collection",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "logo-collection.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "main-menu",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "main-menu.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "main-menu.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "media",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "media.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "mobile-menu",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "mobile-menu.behavior.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "newsletter-form",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "newsletter-form.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "newsletter-form.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "page",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "page.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "page-header",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "page-header.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "page-header.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "pager",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "pager.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "pager.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "paragraph-wrapper",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "paragraph-wrapper.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "pricing",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "pricing.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "pricing.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "quick-action-buttons",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "quick-action-buttons.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "quick-action-buttons.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "recent-cards",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "recent-cards.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "region",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "region.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "section-header",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "section-header.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "sidebyside",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "sidebyside.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "site-footer",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "site-footer.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "site-header",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "site-header-sdc-props.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "site-header.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "site-header.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "slider",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "slider.behavior.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "slider.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "stat-card",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "stat-card.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "status-badge",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "status-badge.stories.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "text",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "text.stories.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "text.test.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "dist",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "assets",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "js",
+                                "type": "dir",
+                                "children": [
+                                  {
+                                    "name": "adesso.D5XBimrt.js",
+                                    "type": "file"
+                                  },
+                                  {
+                                    "name": "vendor-common.DNy60kh1.js",
+                                    "type": "file"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "adesso-C94AOm52.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "adesso-DeNXCHp5.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "adesso.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "alpine-bbL-tKFA.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "module.esm-D75zlPos.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "swiper-bundle-BaZ2v1G1.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "vendor-BCESAF0D.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "adesso.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "fix-block-reference-preview.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "lucide-init.behaviors.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "tailwind.adesso.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "storybook",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "sb-addons",
+                                "type": "dir",
+                                "children": [
+                                  {
+                                    "name": "chromatic-com-storybook-10",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "docs-8",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-actions-2",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-backgrounds-3",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-controls-1",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-measure-6",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-outline-7",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-toolbars-5",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "essentials-viewport-4",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "links-9",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "storybook-core-core-server-presets-0",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "common-manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "whitespace-html-11",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "manager-bundle.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "sb-manager",
+                                "type": "dir",
+                                "children": [
+                                  {
+                                    "name": "globals-module-info.js",
+                                    "type": "file"
+                                  },
+                                  {
+                                    "name": "globals-runtime.js",
+                                    "type": "file"
+                                  },
+                                  {
+                                    "name": "globals.js",
+                                    "type": "file"
+                                  },
+                                  {
+                                    "name": "runtime.js",
+                                    "type": "file"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "adesso-C94AOm52.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "alpine-bbL-tKFA.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "module.esm-D75zlPos.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "swiper-bundle-BaZ2v1G1.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "vendor-BCESAF0D.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "src",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "adesso.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "fix-block-reference-preview.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "lucide-init.behaviors.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "tailwind.adesso.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "theme-customization.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "static",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "drupal.init.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "drupal.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "drupalSettingsLoader.js",
+                            "type": "file"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "tests",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "e2e",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "accessibility.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "municipal-forms.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "performance.spec.js",
+                                "type": "file"
+                              },
+                              {
+                                "name": "theme-customization.spec.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "utils",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "test-utils.js",
+                                "type": "file"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "visual-regression",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "engine_scripts",
+                                "type": "dir",
+                                "children": [
+                                  {
+                                    "name": "puppet",
+                                    "type": "dir",
+                                    "children": [
+                                      {
+                                        "name": "onBefore.js",
+                                        "type": "file"
+                                      },
+                                      {
+                                        "name": "onReady.js",
+                                        "type": "file"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "basic.test.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "global-setup.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "global-teardown.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "theme-customization.test.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "theme-selector-accessibility.test.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "theme-selector-form.test.js",
+                            "type": "file"
+                          },
+                          {
+                            "name": "theme-selector-integration.test.js",
+                            "type": "file"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "eslint.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "lighthouse-performance-monitoring.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "playwright.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "postcss.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "stylelint.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "sw.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "tailwind.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "vite.config.ts",
+                        "type": "file"
+                      },
+                      {
+                        "name": "vitest.config.js",
+                        "type": "file"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "zh_erlenbach",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "src",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "erlenbach.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "postcss.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "vite.config.js",
+                        "type": "file"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "zh_thalheim",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "src",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "thalheim.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "postcss.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "vite.config.js",
+                        "type": "file"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "zh_thalwil",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "dist",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "thalwil.js",
+                            "type": "file"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "src",
+                        "type": "dir",
+                        "children": [
+                          {
+                            "name": "js",
+                            "type": "dir",
+                            "children": [
+                              {
+                                "name": "thalwil.js",
+                                "type": "file"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "postcss.config.js",
+                        "type": "file"
+                      },
+                      {
+                        "name": "vite.config.js",
+                        "type": "file"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "playwright.config.js",
+        "type": "file"
+      }
+    ]
+  },
+  "nodes": [
+    "backstop_data/engine_scripts/puppet/clickAndHoverHelper.js",
+    "backstop_data/engine_scripts/puppet/onBefore.js",
+    "backstop_data/engine_scripts/puppet/onReady.js",
+    "playwright.config.js",
+    "tests/backstop/backstop_data/engine_scripts/puppet/clickAndHoverHelper.js",
+    "tests/backstop/backstop_data/engine_scripts/puppet/onBefore.js",
+    "tests/backstop/backstop_data/engine_scripts/puppet/onReady.js",
+    "tests/backstop/backstop_data/puppet/clickAndHoverHelper.js",
+    "tests/backstop/backstop_data/puppet/onBefore.js",
+    "tests/backstop/backstop_data/puppet/onReady.js",
+    "tests/installer/cleanup-helper.js",
+    "tests/installer/global-setup.js",
+    "tests/installer/global-teardown.js",
+    "tests/installer/installer-comprehensive.spec.js",
+    "tests/installer/playwright.config.js",
+    "tests/installer/smoke.spec.js",
+    "tests/installer/validation-suite.js",
+    "web/backstop_data/html_report/config.js",
+    "web/backstop_data/html_report/diff.js",
+    "web/backstop_data/html_report/diverged.js",
+    "web/backstop_data/html_report/divergedWorker.js",
+    "web/backstop_data/html_report/index_bundle.js",
+    "web/backstop_data/puppet/clickAndHoverHelper.js",
+    "web/backstop_data/puppet/onBefore.js",
+    "web/backstop_data/puppet/onReady.js",
+    "web/profiles/adesso_cms_installer/adesso_cms_installer_theme/js/progress.js",
+    "web/profiles/adesso_cms_installer/drupal_cms_installer/theme/js/progress.js",
+    "web/profiles/adesso_cms_installer/js/language-dropdown.js",
+    "web/profiles/adesso_cms_installer/js/progress.js",
+    "web/profiles/drupal_cms_installer/theme/js/progress.js",
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.data.js",
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.test.js",
+    "web/themes/custom/adesso_cms_theme/components/badge/badge.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/badge/badge.test.js",
+    "web/themes/custom/adesso_cms_theme/components/bento-grid/bento-grid.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/bento-grid/bento-grid.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/block-reference/block-reference.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/button/button.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/button/button.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/button/button.test.js",
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js",
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.data.js",
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.test.js",
+    "web/themes/custom/adesso_cms_theme/components/damage-report-card/damage-report-card.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/download-item/download-item.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/download-item/download-item.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/embed/embed.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/file-upload-preview/file-upload-preview.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/file-upload-preview/file-upload-preview.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/filter/filter-list.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/filter/filter-tag.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/filter/filter.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/form-progress/form-progress.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/gallery/gallery.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/gallery/gallery.test.js",
+    "web/themes/custom/adesso_cms_theme/components/heading/heading.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.test.js",
+    "web/themes/custom/adesso_cms_theme/components/landing-page-header/landing-page-header.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/logo-collection/logo-collection.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/logo/logo.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/main-menu/main-menu.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/main-menu/main-menu.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/media/media.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/mobile-menu/mobile-menu.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/page-header/page-header.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/page-header/page-header.test.js",
+    "web/themes/custom/adesso_cms_theme/components/page/page.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/pager/pager.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/pager/pager.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/paragraph-wrapper/paragraph-wrapper.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/pricing/pricing.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/pricing/pricing.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/quick-action-buttons/quick-action-buttons.js",
+    "web/themes/custom/adesso_cms_theme/components/quick-action-buttons/quick-action-buttons.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/recent-cards/recent-cards.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/region/region.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/section-header/section-header.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/sidebyside/sidebyside.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/site-footer/site-footer.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header-sdc-props.js",
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/slider/slider.behavior.js",
+    "web/themes/custom/adesso_cms_theme/components/slider/slider.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/stat-card/stat-card.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/status-badge/status-badge.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/text/text.stories.js",
+    "web/themes/custom/adesso_cms_theme/components/text/text.test.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso-C94AOm52.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso-DeNXCHp5.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/alpine-bbL-tKFA.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/js/adesso.D5XBimrt.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/js/vendor-common.DNy60kh1.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/module.esm-D75zlPos.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/swiper-bundle-BaZ2v1G1.js",
+    "web/themes/custom/adesso_cms_theme/dist/assets/vendor-BCESAF0D.js",
+    "web/themes/custom/adesso_cms_theme/dist/js/adesso.js",
+    "web/themes/custom/adesso_cms_theme/dist/js/fix-block-reference-preview.js",
+    "web/themes/custom/adesso_cms_theme/dist/js/lucide-init.behaviors.js",
+    "web/themes/custom/adesso_cms_theme/dist/js/tailwind.adesso.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/adesso-C94AOm52.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/alpine-bbL-tKFA.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/module.esm-D75zlPos.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/chromatic-com-storybook-10/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/docs-8/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-actions-2/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-backgrounds-3/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-controls-1/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-measure-6/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-outline-7/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-toolbars-5/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-viewport-4/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/links-9/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/whitespace-html-11/manager-bundle.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals-module-info.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals-runtime.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/runtime.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/swiper-bundle-BaZ2v1G1.js",
+    "web/themes/custom/adesso_cms_theme/dist/storybook/vendor-BCESAF0D.js",
+    "web/themes/custom/adesso_cms_theme/eslint.config.js",
+    "web/themes/custom/adesso_cms_theme/lighthouse-performance-monitoring.js",
+    "web/themes/custom/adesso_cms_theme/playwright.config.js",
+    "web/themes/custom/adesso_cms_theme/postcss.config.js",
+    "web/themes/custom/adesso_cms_theme/src/js/adesso.js",
+    "web/themes/custom/adesso_cms_theme/src/js/fix-block-reference-preview.js",
+    "web/themes/custom/adesso_cms_theme/src/js/lucide-init.behaviors.js",
+    "web/themes/custom/adesso_cms_theme/src/js/tailwind.adesso.js",
+    "web/themes/custom/adesso_cms_theme/src/js/theme-customization.js",
+    "web/themes/custom/adesso_cms_theme/static/drupal.init.js",
+    "web/themes/custom/adesso_cms_theme/static/drupal.js",
+    "web/themes/custom/adesso_cms_theme/static/drupalSettingsLoader.js",
+    "web/themes/custom/adesso_cms_theme/stylelint.config.js",
+    "web/themes/custom/adesso_cms_theme/sw.js",
+    "web/themes/custom/adesso_cms_theme/tailwind.config.js",
+    "web/themes/custom/adesso_cms_theme/tests/basic.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/accessibility.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/municipal-forms.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/performance.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/e2e/theme-customization.spec.js",
+    "web/themes/custom/adesso_cms_theme/tests/global-setup.js",
+    "web/themes/custom/adesso_cms_theme/tests/global-teardown.js",
+    "web/themes/custom/adesso_cms_theme/tests/theme-customization.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-accessibility.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-form.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-integration.test.js",
+    "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js",
+    "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onBefore.js",
+    "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onReady.js",
+    "web/themes/custom/adesso_cms_theme/vite.config.ts",
+    "web/themes/custom/adesso_cms_theme/vitest.config.js",
+    "web/themes/custom/zh_erlenbach/postcss.config.js",
+    "web/themes/custom/zh_erlenbach/src/js/erlenbach.js",
+    "web/themes/custom/zh_erlenbach/vite.config.js",
+    "web/themes/custom/zh_thalheim/postcss.config.js",
+    "web/themes/custom/zh_thalheim/src/js/thalheim.js",
+    "web/themes/custom/zh_thalheim/vite.config.js",
+    "web/themes/custom/zh_thalwil/dist/thalwil.js",
+    "web/themes/custom/zh_thalwil/postcss.config.js",
+    "web/themes/custom/zh_thalwil/src/js/thalwil.js",
+    "web/themes/custom/zh_thalwil/vite.config.js"
+  ],
+  "edges": [
+    {
+      "from": "tests/installer/global-setup.js",
+      "to": "tests/installer/cleanup-helper.js"
+    },
+    {
+      "from": "tests/installer/global-teardown.js",
+      "to": "tests/installer/cleanup-helper.js"
+    },
+    {
+      "from": "tests/installer/smoke.spec.js",
+      "to": "tests/installer/cleanup-helper.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.js",
+      "to": "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/dist/assets/js/adesso.D5XBimrt.js",
+      "to": "web/themes/custom/adesso_cms_theme/dist/assets/js/vendor-common.DNy60kh1.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/basic.test.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/theme-selector-accessibility.test.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/theme-selector-form.test.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    },
+    {
+      "from": "web/themes/custom/adesso_cms_theme/tests/theme-selector-integration.test.js",
+      "to": "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+    }
+  ],
+  "files": {
+    "backstop_data/engine_scripts/puppet/clickAndHoverHelper.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "backstop_data/engine_scripts/puppet/onBefore.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "backstop_data/engine_scripts/puppet/onReady.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "playwright.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/engine_scripts/puppet/clickAndHoverHelper.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/engine_scripts/puppet/onBefore.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/engine_scripts/puppet/onReady.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/puppet/clickAndHoverHelper.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/puppet/onBefore.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/backstop/backstop_data/puppet/onReady.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/cleanup-helper.js": {
+      "imports": [
+        {
+          "from": "child_process",
+          "kind": "import"
+        },
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/global-setup.js": {
+      "imports": [
+        {
+          "from": "./cleanup-helper.js",
+          "kind": "import",
+          "imported": [
+            "DatabaseCleanupHelper"
+          ]
+        },
+        {
+          "from": "child_process",
+          "kind": "import",
+          "imported": [
+            "execSync"
+          ]
+        }
+      ],
+      "dependencies": [
+        "tests/installer/cleanup-helper.js"
+      ],
+      "functions": [
+        {
+          "name": "globalSetup",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/global-teardown.js": {
+      "imports": [
+        {
+          "from": "./cleanup-helper.js",
+          "kind": "import"
+        },
+        {
+          "from": "fs",
+          "kind": "import"
+        },
+        {
+          "from": "path",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [
+        "tests/installer/cleanup-helper.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/installer-comprehensive.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "from": "child_process",
+          "kind": "import",
+          "imported": [
+            "execSync"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "InstallerTestHelper",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "setupFreshEnvironment",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "navigateToInstaller",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "completeInitialSetup",
+              "params": [
+                {
+                  "name": "siteName"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "configureRecipes",
+              "params": [
+                {
+                  "name": "recipeConfig"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "setCheckboxState",
+              "params": [
+                {
+                  "name": "name"
+                },
+                {
+                  "name": "shouldBeChecked"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "completeInstallation",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "verifyInstallation",
+              "params": [
+                {
+                  "name": "expectedModules"
+                }
+              ],
+              "isAsync": true
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "testScenarios",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "skipScenarios",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "errorScenarios",
+          "initKind": "array",
+          "isExported": false
+        }
+      ]
+    },
+    "tests/installer/playwright.config.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "defineConfig",
+            "devices"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/smoke.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "from": "./cleanup-helper.js",
+          "kind": "import",
+          "imported": [
+            "DatabaseCleanupHelper"
+          ]
+        }
+      ],
+      "dependencies": [
+        "tests/installer/cleanup-helper.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "tests/installer/validation-suite.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import"
+        },
+        {
+          "from": "child_process",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/html_report/config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/html_report/diff.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/html_report/diverged.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "diverged",
+          "params": [
+            {
+              "name": "reference"
+            },
+            {
+              "name": "test"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "columnWordDataToImgDataFormatAsWords",
+          "params": [
+            {
+              "name": "columns"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "convertImgDataWordsToClampedImgData",
+          "params": [
+            {
+              "name": "wordsArr"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "reduceColumnDiffRaw",
+          "params": [
+            {
+              "name": "columnDiffs"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "diffArr",
+          "params": [
+            {
+              "name": "refArr"
+            },
+            {
+              "name": "testArr"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "groupAdjacent",
+          "params": [
+            {
+              "name": "columns"
+            },
+            {
+              "name": "spread"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "ungroupAdjacent",
+          "params": [
+            {
+              "name": "grouped"
+            },
+            {
+              "name": "spread"
+            },
+            {
+              "name": "columnUnderlay"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "imgDataWordArrToColsAndRows",
+          "params": [
+            {
+              "name": "arr"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "serialToColumnMap",
+          "params": [
+            {
+              "name": "index"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "serialToRowMap",
+          "params": [
+            {
+              "name": "index"
+            },
+            {
+              "name": "h"
+            },
+            {
+              "name": "w"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "imgDataToWords",
+          "params": [
+            {
+              "name": "arr"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "noop",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "rowSpread",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "spread",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "IS_ADDED_WORD",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "IS_REMOVED_WORD",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "IS_ADDED_AND_REMOVED_WORD",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "IS_SAME_WORD",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "OPACITY",
+          "initKind": "literal",
+          "isExported": false
+        }
+      ]
+    },
+    "web/backstop_data/html_report/divergedWorker.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/html_report/index_bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/puppet/clickAndHoverHelper.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/puppet/onBefore.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/backstop_data/puppet/onReady.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/profiles/adesso_cms_installer/adesso_cms_installer_theme/js/progress.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/profiles/adesso_cms_installer/drupal_cms_installer/theme/js/progress.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/profiles/adesso_cms_installer/js/language-dropdown.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/profiles/adesso_cms_installer/js/progress.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/profiles/drupal_cms_installer/theme/js/progress.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.data.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.stories.js": {
+      "imports": [
+        {
+          "from": "./accordion.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FAQ",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Features",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SingleItem",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithoutPreHeadline",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/accordion/accordion.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/badge/badge.stories.js": {
+      "imports": [
+        {
+          "from": "./badge.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Variants",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Sizes",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithIcon",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Removable",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Clickable",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithModifier",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/badge/badge.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/bento-grid/bento-grid.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/bento-grid/bento-grid.stories.js": {
+      "imports": [
+        {
+          "from": "./bento-grid.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Services",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TeamShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TechStack",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ProductFeatures",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ContentTypes",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "GridAreas",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/block-reference/block-reference.stories.js": {
+      "imports": [
+        {
+          "from": "./block-reference.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Announcement",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FeatureHighlight",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ContentOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TitleOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/button/button.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/button/button.stories.js": {
+      "imports": [
+        {
+          "from": "./button.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Variants",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Sizes",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CallToAction",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithIcon",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Delete",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AsLink",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "IconOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SmallAction",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/button/button.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.js": {
+      "imports": [
+        {
+          "from": "./card-group.twig",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "./card-group.stories.data.js",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/components/card-group/card-group.stories.data.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Columns",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Statistics",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TwoColumn",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TeamShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.data.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.stories.js": {
+      "imports": [
+        {
+          "from": "./carousel.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "sampleItems",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HeroCarousel",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TestimonialsCarousel",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DualLayout",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "QuadLayout",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AutoplayVariants",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AccessibilityFeatures",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ResponsiveBehavior",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ContentWithoutLinks",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EmptyState",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/carousel/carousel.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/damage-report-card/damage-report-card.stories.js": {
+      "imports": [
+        {
+          "from": "./damage-report-card.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithPhoto",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "PriorityLevels",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithAssignment",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EmergencyReport",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CompletedReport",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ClickableCard",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DemoReport",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/download-item/download-item.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/download-item/download-item.stories.js": {
+      "imports": [
+        {
+          "from": "../../dist/assets/adesso.css",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithoutDescription",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WordDocument",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LegacyWordDocument",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TextDocument",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ExcelSpreadsheet",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CSVDataFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "PowerPointPresentation",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ZipArchive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RarArchive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "VideoFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AudioFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ImageFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EnterpriseFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "UltraLargeFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "JSONDataFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "XMLDataFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LastItem",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FileListShowcase",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/embed/embed.stories.js": {
+      "imports": [
+        {
+          "from": "./embed.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Embed",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "VimeoVideo",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "GoogleMaps",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ContactForm",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewsletterSignup",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithoutTitle",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithModifier",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/file-upload-preview/file-upload-preview.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/file-upload-preview/file-upload-preview.stories.js": {
+      "imports": [
+        {
+          "from": "./file-upload-preview.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithFiles",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "UploadInProgress",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithError",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MaxFilesReached",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CompactMode",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MixedFileTypes",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SingleFile",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DemoData",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/filter/filter-list.stories.js": {
+      "imports": [
+        {
+          "from": "./filter-list.html.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "function",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/filter/filter-tag.stories.js": {
+      "imports": [
+        {
+          "from": "./filter-tag.html.twig",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "./filter-tag-remove.html.twig",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "../../module/stage/filter-stage-data.json",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "function",
+          "isExported": true
+        },
+        {
+          "name": "Remove",
+          "initKind": "function",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/filter/filter.stories.js": {
+      "imports": [
+        {
+          "from": "./filter.html.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "function",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/form-progress/form-progress.stories.js": {
+      "imports": [
+        {
+          "from": "./form-progress.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AllStages",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RejectedStatus",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CompactMode",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NoLabels",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewSubmission",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "InProgress",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Completed",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/gallery/gallery.stories.js": {
+      "imports": [
+        {
+          "from": "./gallery.twig",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "./gallery-item.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "createGalleryItems",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TeamMembers",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ProductShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EventPhotos",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithoutHeadlines",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LargeGallery",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MixedContent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AccessibilityFeatures",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/gallery/gallery.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/heading/heading.stories.js": {
+      "imports": [
+        {
+          "from": "./heading.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HTMLTags",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "VisualLevels",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "PageTitle",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SectionWithAnchor",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithIcon",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithModifier",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SemanticVsVisual",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AdditionalStyling",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.stories.js": {
+      "imports": [
+        {
+          "from": "./hero.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HeroLayouts",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ImageBottom",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "VideoBackground",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TextOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SingleCTA",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithIcons",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/hero/hero.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/landing-page-header/landing-page-header.stories.js": {
+      "imports": [
+        {
+          "from": "./landing-page-header.twig",
+          "kind": "import",
+          "imported": [
+            "landingPageHeaderTemplate"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithoutImage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ShortTitle",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/logo-collection/logo-collection.stories.js": {
+      "imports": [
+        {
+          "from": "./logo-collection.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "sampleLogos",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "techStackLogos",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "consultingPartners",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "LogoCollection",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ClientShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TechnologyStack",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MinimalVersion",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FewLogos",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ExtendedCollection",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EmptyState",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/logo/logo.stories.js": {
+      "imports": [
+        {
+          "from": "./logo.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Sizes",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Header",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Footer",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Hero",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithHover",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Grayscale",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/main-menu/main-menu.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/main-menu/main-menu.stories.js": {
+      "imports": [
+        {
+          "from": "./main-menu.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "corporateNavigation",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "ecommerceNavigation",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "saasNavigation",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "basicNavigation",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "BasicNavigation",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ECommerceNavigation",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SaaSNavigation",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithExternalLinks",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithAccountMenu",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DeepNested",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EmptyState",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/media/media.stories.js": {
+      "imports": [
+        {
+          "from": "./media.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "createImageHtml",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "createVideoHtml",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "createAudioHtml",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "createYouTubeEmbed",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "createDocumentPreview",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "Media",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SquareImage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CircularImage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "VideoContent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AudioContent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "YouTubeEmbed",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DocumentPreview",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "EmptyState",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/mobile-menu/mobile-menu.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/newsletter-form/newsletter-form.stories.js": {
+      "imports": [
+        {
+          "from": "./newsletter-form.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "NewsletterForm",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Minimal",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "BlogSubscription",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CompanyUpdates",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WeeklyDigest",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CompactFooter",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/page-header/page-header.stories.js": {
+      "imports": [
+        {
+          "from": "./page-header.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Landing",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Hero",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TitleOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LandingWithTransparentNav",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HeroVideoReady",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LongContent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LandingLongContent",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/page-header/page-header.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import",
+          "imported": [
+            "describe",
+            "it",
+            "expect"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "renderPageHeader",
+          "params": [
+            {
+              "name": "props"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/page/page.stories.js": {
+      "imports": [
+        {
+          "from": "./page.twig",
+          "kind": "import",
+          "imported": [
+            "pageTemplate"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LandingPage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithHighlighted",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NoHeader",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/pager/pager.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/pager/pager.stories.js": {
+      "imports": [
+        {
+          "from": "./pager.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Pager",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FirstPage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LastPage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ManyPages",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SinglePage",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SearchResults",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "BlogArchive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ProductCatalog",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewsArchive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AccessibilityDemo",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/paragraph-wrapper/paragraph-wrapper.stories.js": {
+      "imports": [
+        {
+          "from": "@storybook/html",
+          "kind": "import",
+          "imported": [
+            "Story",
+            "Meta"
+          ]
+        },
+        {
+          "from": "@storybook/addon-docs",
+          "kind": "import",
+          "imported": [
+            "include"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Template",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "WithTheme",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "SmallSpacing",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "LargeSpacing",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "NarrowWidth",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "FullWidth",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "AsSection",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "AsArticle",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "ComplexContent",
+          "initKind": "unknown",
+          "isExported": true
+        },
+        {
+          "name": "WithAccessibility",
+          "initKind": "unknown",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/pricing/pricing.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/pricing/pricing.stories.js": {
+      "imports": [
+        {
+          "from": "./pricing.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "GridColumns",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TwoColumn",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SubscriptionPricing",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ServicePackages",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/quick-action-buttons/quick-action-buttons.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/quick-action-buttons/quick-action-buttons.stories.js": {
+      "imports": [
+        {
+          "from": "./quick-action-buttons.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "DraftEvent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DraftEventCompact",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ApproveOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RejectOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "PublishedEvent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RejectedEvent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "InTableContext",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MobileResponsive",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AccessibilityDemo",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/recent-cards/recent-cards.stories.js": {
+      "imports": [
+        {
+          "from": "./recent-cards.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "BlogPost",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewsArticle",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CaseStudy",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NoThumbnail",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LongContent",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/region/region.stories.js": {
+      "imports": [
+        {
+          "from": "drupal-attribute",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "./region.html.twig",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "../block/block.stories",
+          "kind": "import",
+          "isNamespace": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Default",
+          "initKind": "function",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/section-header/section-header.stories.js": {
+      "imports": [
+        {
+          "from": "./section-header.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithPreHeadline",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LeftAligned",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RightAligned",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CenterAligned",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AlignmentVariations",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HeadingLevels",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CustomStyling",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/sidebyside/sidebyside.stories.js": {
+      "imports": [
+        {
+          "from": "./sidebyside.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Layouts",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ImageRight",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithFeatures",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ServiceShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithVideo",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TextOnly",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/site-footer/site-footer.stories.js": {
+      "imports": [
+        {
+          "from": "./site-footer.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Minimal",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewsletterFocus",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ContactFocus",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NoLogo",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header-sdc-props.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "siteHeaderSDCProps",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "siteHeaderSchema",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/site-header/site-header.stories.js": {
+      "imports": [
+        {
+          "from": "./site-header.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Minimal",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "DarkTheme",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "MegaMenu",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "WithSiteName",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SearchFocused",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "AuthFocused",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/slider/slider.behavior.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/components/slider/slider.stories.js": {
+      "imports": [
+        {
+          "from": "./slider.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Testimonials",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "ProductShowcase",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Portfolio",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "NewsSlider",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TeamSlider",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SingleItem",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/stat-card/stat-card.stories.js": {
+      "imports": [
+        {
+          "from": "./stat-card.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "RevenueGrowth",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "PerformanceMetric",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CustomerSatisfaction",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LeftAligned",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CustomMedia",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Downloads",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SupportTickets",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LayoutComparison",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/status-badge/status-badge.stories.js": {
+      "imports": [
+        {
+          "from": "./status-badge.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Draft",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Published",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Rejected",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Neu",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "InBearbeitung",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Erledigt",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Abgelehnt",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "SmallBadge",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LargeBadge",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CustomLabel",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/text/text.stories.js": {
+      "imports": [
+        {
+          "from": "./text.twig",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "meta",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "Default",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Centered",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "TwoButtons",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "HeadingObject",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LegacyEyebrow",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "FeatureAnnouncement",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "CallToAction",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LayoutLeft",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LayoutCentered",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "LayoutButtonsRight",
+          "initKind": "object",
+          "isExported": true
+        },
+        {
+          "name": "Playground",
+          "initKind": "object",
+          "isExported": true
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/components/text/text.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso-C94AOm52.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "y",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "loadModule",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "initFlowbite",
+              "params": [
+                {
+                  "name": "unknown"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "setupDynamicContentObserver",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "initSwiper",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "initAlpineComponents",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "init",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "destroy",
+              "params": [],
+              "isAsync": false
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__vite__mapDeps",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "g",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "v",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "w",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "u",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "m",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso-DeNXCHp5.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "f",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "loadModule",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "initFlowbite",
+              "params": [
+                {
+                  "name": "unknown"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "setupDynamicContentObserver",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "initSwiper",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "initAlpineComponents",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "init",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "destroy",
+              "params": [],
+              "isAsync": false
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__vite__mapDeps",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "v",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "y",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "m",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "u",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "w",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/adesso.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/alpine-bbL-tKFA.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "Z",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "G",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            },
+            {
+              "name": "t"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "U",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "V",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "Te",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            },
+            {
+              "name": "t"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "ne",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "Y",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "ie",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "xe",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Oe",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "De",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/js/adesso.D5XBimrt.js": {
+      "imports": [
+        {
+          "from": "./vendor-common.DNy60kh1.js",
+          "kind": "import",
+          "imported": [
+            "initDropdowns"
+          ]
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/dist/assets/js/vendor-common.DNy60kh1.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/js/vendor-common.DNy60kh1.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/module.esm-D75zlPos.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/swiper-bundle-BaZ2v1G1.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/assets/vendor-BCESAF0D.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/js/adesso.js": {
+      "imports": [
+        {
+          "from": "flowbite/dist/flowbite.js",
+          "kind": "import"
+        },
+        {
+          "from": "flowbite",
+          "kind": "import",
+          "imported": [
+            "initDropdowns"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/js/fix-block-reference-preview.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/js/lucide-init.behaviors.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/js/tailwind.adesso.js": {
+      "imports": [
+        {
+          "from": "tailwindcss/plugin",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "defaultTheme",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/adesso-C94AOm52.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [
+        {
+          "name": "y",
+          "isExported": false,
+          "methods": [
+            {
+              "name": "loadModule",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": true
+            },
+            {
+              "name": "initFlowbite",
+              "params": [
+                {
+                  "name": "unknown"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "setupDynamicContentObserver",
+              "params": [],
+              "isAsync": false
+            },
+            {
+              "name": "initSwiper",
+              "params": [
+                {
+                  "name": "t"
+                }
+              ],
+              "isAsync": false
+            },
+            {
+              "name": "initAlpineComponents",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "init",
+              "params": [],
+              "isAsync": true
+            },
+            {
+              "name": "destroy",
+              "params": [],
+              "isAsync": false
+            }
+          ],
+          "properties": []
+        }
+      ],
+      "constants": [
+        {
+          "name": "__vite__mapDeps",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "g",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "v",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "w",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "u",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "m",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/alpine-bbL-tKFA.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "Z",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "G",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            },
+            {
+              "name": "t"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "U",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "V",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "Te",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            },
+            {
+              "name": "t"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "ne",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "Y",
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "ie",
+          "params": [
+            {
+              "name": "i"
+            },
+            {
+              "name": "e"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "xe",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "Oe",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "De",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/module.esm-D75zlPos.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/chromatic-com-storybook-10/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/docs-8/manager-bundle.js": {
+      "imports": [
+        {
+          "from": "@storybook/test",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-actions-2/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-backgrounds-3/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-controls-1/manager-bundle.js": {
+      "imports": [
+        {
+          "from": "@storybook/test",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-measure-6/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-outline-7/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-toolbars-5/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/essentials-viewport-4/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/links-9/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-addons/whitespace-html-11/manager-bundle.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals-module-info.js": {
+      "imports": [
+        {
+          "from": "node:module",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "node:url",
+          "kind": "import",
+          "imported": [
+            "ESM_COMPAT_fileURLToPath"
+          ]
+        },
+        {
+          "from": "node:path",
+          "kind": "import",
+          "imported": [
+            "ESM_COMPAT_dirname"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "require",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals-runtime.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/globals.js": {
+      "imports": [
+        {
+          "from": "node:module",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "node:url",
+          "kind": "import",
+          "imported": [
+            "ESM_COMPAT_fileURLToPath"
+          ]
+        },
+        {
+          "from": "node:path",
+          "kind": "import",
+          "imported": [
+            "ESM_COMPAT_dirname"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "__filename",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "__dirname",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "require",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/sb-manager/runtime.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/swiper-bundle-BaZ2v1G1.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/dist/storybook/vendor-BCESAF0D.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/eslint.config.js": {
+      "imports": [
+        {
+          "from": "@eslint/js",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "globals",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "eslint-config-prettier",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/lighthouse-performance-monitoring.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "initPerformanceMonitoring",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "sendToAnalytics",
+          "params": [
+            {
+              "name": "metricName"
+            },
+            {
+              "name": "value"
+            },
+            {
+              "name": "rating"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "checkPerformanceBudgets",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "trackPageLoadPerformance",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "trackResourcePerformance",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/playwright.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/postcss.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/src/js/adesso.js": {
+      "imports": [
+        {
+          "from": "flowbite/dist/flowbite.js",
+          "kind": "import"
+        },
+        {
+          "from": "flowbite",
+          "kind": "import",
+          "imported": [
+            "initDropdowns"
+          ]
+        },
+        {
+          "from": "@tailwindplus/elements",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/src/js/fix-block-reference-preview.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/src/js/lucide-init.behaviors.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/src/js/tailwind.adesso.js": {
+      "imports": [
+        {
+          "from": "tailwindcss/plugin",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "@tailwindplus/elements",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "defaultTheme",
+          "initKind": "unknown",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/src/js/theme-customization.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/static/drupal.init.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/static/drupal.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/static/drupalSettingsLoader.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/stylelint.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "config",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/sw.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "networkFirst",
+          "params": [
+            {
+              "name": "request"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "cacheFirst",
+          "params": [
+            {
+              "name": "request"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "staleWhileRevalidate",
+          "params": [
+            {
+              "name": "request"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "updateCache",
+          "params": [
+            {
+              "name": "request"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        },
+        {
+          "name": "isExpired",
+          "params": [
+            {
+              "name": "response"
+            }
+          ],
+          "isAsync": false,
+          "isExported": false
+        },
+        {
+          "name": "doBackgroundSync",
+          "params": [],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": [
+        {
+          "name": "CACHE_NAME",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "STATIC_CACHE",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "DYNAMIC_CACHE",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "CACHE_DURATION",
+          "initKind": "object",
+          "isExported": false
+        },
+        {
+          "name": "STATIC_ASSETS",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "NETWORK_FIRST",
+          "initKind": "array",
+          "isExported": false
+        },
+        {
+          "name": "CACHE_FIRST",
+          "initKind": "array",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tailwind.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/basic.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        },
+        {
+          "from": "./utils/test-utils.js",
+          "kind": "import"
+        },
+        {
+          "from": "./utils/test-utils.js",
+          "kind": "import"
+        },
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/accessibility.spec.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/municipal-forms.spec.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/performance.spec.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/e2e/theme-customization.spec.js": {
+      "imports": [
+        {
+          "from": "@playwright/test",
+          "kind": "import",
+          "imported": [
+            "test",
+            "expect"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "THEME_ADMIN_URL",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "DEMO_MUNICIPALITIES",
+          "initKind": "array",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/global-setup.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "globalSetup",
+          "params": [
+            {
+              "name": "config"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/global-teardown.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "globalTeardown",
+          "params": [
+            {
+              "name": "config"
+            }
+          ],
+          "isAsync": true,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/theme-customization.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import",
+          "imported": [
+            "describe",
+            "it",
+            "expect",
+            "beforeEach",
+            "afterEach",
+            "vi"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "mockThemeCustomization",
+          "initKind": "object",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-accessibility.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        },
+        {
+          "from": "./utils/test-utils.js",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-form.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        },
+        {
+          "from": "./utils/test-utils.js",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/theme-selector-integration.test.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        },
+        {
+          "from": "./utils/test-utils.js",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [
+        "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/utils/test-utils.js": {
+      "imports": [
+        {
+          "from": "vitest",
+          "kind": "import"
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onBefore.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/tests/visual-regression/engine_scripts/puppet/onReady.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/adesso_cms_theme/vite.config.ts": {
+      "imports": [
+        {
+          "from": "vite",
+          "kind": "import",
+          "imported": [
+            "defineConfig"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "@tailwindcss/vite",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "glob",
+          "kind": "import",
+          "imported": [
+            "globSync"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve"
+          ]
+        },
+        {
+          "from": "vite-plugin-twig-drupal",
+          "kind": "import",
+          "isDefault": true
+        },
+        {
+          "from": "./.storybook/sdc-plugin.js",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        {
+          "name": "componentDir",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "port",
+          "initKind": "literal",
+          "isExported": false
+        },
+        {
+          "name": "isDDEV",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "getDDEVOrigin",
+          "initKind": "function",
+          "isExported": false
+        },
+        {
+          "name": "origin",
+          "initKind": "unknown",
+          "isExported": false
+        },
+        {
+          "name": "getEntries",
+          "initKind": "function",
+          "isExported": false
+        }
+      ]
+    },
+    "web/themes/custom/adesso_cms_theme/vitest.config.js": {
+      "imports": [
+        {
+          "from": "vitest/config",
+          "kind": "import",
+          "imported": [
+            "defineConfig"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "isDefault": true
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_erlenbach/postcss.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_erlenbach/src/js/erlenbach.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_erlenbach/vite.config.js": {
+      "imports": [
+        {
+          "from": "vite",
+          "kind": "import",
+          "imported": [
+            "defineConfig"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalheim/postcss.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalheim/src/js/thalheim.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalheim/vite.config.js": {
+      "imports": [
+        {
+          "from": "vite",
+          "kind": "import",
+          "imported": [
+            "defineConfig"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalwil/dist/thalwil.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "initThalwilComponents",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalwil/postcss.config.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalwil/src/js/thalwil.js": {
+      "imports": [],
+      "dependencies": [],
+      "functions": [
+        {
+          "name": "initThalwilComponents",
+          "params": [],
+          "isAsync": false,
+          "isExported": false
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "web/themes/custom/zh_thalwil/vite.config.js": {
+      "imports": [
+        {
+          "from": "vite",
+          "kind": "import",
+          "imported": [
+            "defineConfig"
+          ]
+        },
+        {
+          "from": "path",
+          "kind": "import",
+          "imported": [
+            "resolve"
+          ]
+        }
+      ],
+      "dependencies": [],
+      "functions": [],
+      "classes": [],
+      "constants": []
+    }
+  }
+}

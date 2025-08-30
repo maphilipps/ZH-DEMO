@@ -1,1 +1,0 @@
-../../../../insert_demo_content.sh

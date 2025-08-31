@@ -116,9 +116,9 @@ export default defineConfig(({ mode }) => ({
     }
   ],
   build: {
-    // PreviousNext Frontend Architecture: Library mode configuration
+    // PreviousNext Frontend Architecture: Library mode configuration  
     lib: mode === 'production' ? {
-      entry: getComponentEntries(),
+      entry: resolve(__dirname, './src/js/adesso.js'), // Single entry point for IIFE
       name: 'AdessoTheme',
       formats: ['iife'], // IIFE format for Drupal compatibility
       fileName: (format, entryName) => `${entryName}.${format}.js`
@@ -135,7 +135,7 @@ export default defineConfig(({ mode }) => ({
     cssTarget: browserslistToTargets(), // Ensure CSS targets match JS targets
     reportCompressedSize: true, // Monitor bundle sizes
     rollupOptions: {
-      input: getComponentEntries(),
+      input: mode === 'production' ? resolve(__dirname, './src/js/adesso.js') : getComponentEntries(),
       // Externalize dependencies that shouldn't be bundled with library mode
       external: mode === 'production' ? ['drupal', 'jquery', 'once'] : undefined,
       output: mode === 'production' ? {

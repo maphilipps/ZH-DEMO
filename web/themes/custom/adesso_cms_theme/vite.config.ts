@@ -145,16 +145,18 @@ export default defineConfig(({ mode }) => ({
           once: 'once'
         },
         assetFileNames: 'assets/[name].[ext]',
-        // Phase 4.2: Advanced code splitting for municipality themes
-        manualChunks: {
-          // Vendor libraries
-          'vendor-core': ['flowbite'],
-          'vendor-ui': ['@tailwindplus/elements'],
-          'vendor-swiper': ['swiper'],
-          // Municipality-specific chunks (will be created dynamically)
-          'alpine-core': ['alpinejs'],
-          'utils': ['once']
-        },
+        // Phase 4.2: Advanced code splitting for municipality themes (disabled in lib mode)
+        ...(mode !== 'production' ? {
+          manualChunks: {
+            // Vendor libraries
+            'vendor-core': ['flowbite'],
+            'vendor-ui': ['@tailwindplus/elements'],
+            'vendor-swiper': ['swiper'],
+            // Municipality-specific chunks (will be created dynamically)
+            'alpine-core': ['alpinejs'],
+            'utils': ['once']
+          }
+        } : {}),
         // Phase 4.2: Optimize chunk loading strategy
         chunkFileNames: (chunkInfo) => {
           // Group municipality-specific files

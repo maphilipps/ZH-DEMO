@@ -52,30 +52,110 @@ This document captures the compound learning patterns from the GPZH municipal po
 **Implementation Template**:
 ```bash
 #!/bin/bash
-# Reference detection and elimination pattern
+# Enhanced reference detection and elimination pattern with Swiss-specific terms
 
-# Phase 1: Discovery
+# Phase 1: Discovery with Swiss-specific regex patterns
 echo "=== Reference Discovery Phase ==="
-grep -r "municipal\|zh_demo\|thalwil\|thalheim\|erlenbach" . \
+# Enhanced Swiss municipal reference detection
+grep -rE "(GPZH|ZH-|zh-demo|zh_demo|Thalwil|Thalheim|Erlenbach|Bruchtal|municipal_|municipal-|Canton\s+Zur|Leben\s+am\s+See)" . \
   --exclude-dir=node_modules \
   --exclude-dir=vendor \
-  --exclude-dir=.git > references_initial.txt
+  --exclude-dir=.git \
+  --exclude-dir=.ddev/db_snapshots \
+  --include="*.php" \
+  --include="*.js" \
+  --include="*.yml" \
+  --include="*.yaml" \
+  --include="*.twig" \
+  --include="*.json" > references_initial.txt
 
-# Phase 2: Categorization
+# Phase 1.5: Database content scanning
+echo "=== Database Content Scanning ==="
+ddev drush sql:query "SELECT title, type FROM node WHERE title LIKE '%Thalwil%' OR title LIKE '%Thalheim%' OR title LIKE '%Bruchtal%' OR title LIKE '%GPZH%';" > db_references.txt
+
+# Phase 2: Enhanced Categorization with whitelist
 echo "=== Reference Categorization ==="
-# High Risk: Module namespaces, service definitions
-# Medium Risk: Configuration files, content templates  
-# Low Risk: Comments, documentation
+# Create whitelist for legitimate references (documentation, examples)
+cat > reference_whitelist.txt << 'EOF'
+# Legitimate references that should be preserved
+.claude/learning/patterns/  # Learning documentation
+doc/examples/               # Example configurations
+README.md                  # Project documentation references
+CHANGELOG.md               # Historical references
+EOF
 
-# Phase 3: Systematic Elimination
+# High Risk: Module namespaces, service definitions, database content
+grep -E "(namespace|class|function|service:|entity_type:|bundle:)" references_initial.txt > high_risk_refs.txt
+
+# Medium Risk: Configuration files, content templates, URLs
+grep -E "(\.(yml|yaml|json)|config/|templates?/|https?://)" references_initial.txt > medium_risk_refs.txt
+
+# Low Risk: Comments, documentation (after whitelist filtering)
+grep -v -f reference_whitelist.txt references_initial.txt | grep -E "(#|//|\*|\.md:)" > low_risk_refs.txt
+
+# Phase 3: Systematic Elimination with validation
 echo "=== Systematic Elimination ==="
 # Process by risk category, validate at each step
-# Maintain reference count tracking
+elimination_order=("high_risk_refs.txt" "medium_risk_refs.txt" "low_risk_refs.txt")
 
-# Phase 4: Validation
+for risk_file in "${elimination_order[@]}"; do
+    echo "Processing $risk_file..."
+    initial_count=$(wc -l < references_initial.txt)
+    
+    # Process each reference type
+    while IFS= read -r reference_line; do
+        file_path=$(echo "$reference_line" | cut -d: -f1)
+        line_number=$(echo "$reference_line" | cut -d: -f2)
+        
+        echo "  Processing: $file_path:$line_number"
+        # Individual reference replacement would happen here
+        
+    done < "$risk_file"
+    
+    # Validate after each category
+    new_count=$(grep -c . references_initial.txt)
+    echo "  References reduced: $initial_count → $new_count"
+    
+    # Run functional tests after high and medium risk changes
+    if [[ "$risk_file" != "low_risk_refs.txt" ]]; then
+        echo "  Running validation tests..."
+        ddev test:functional || {
+            echo "❌ Validation failed for $risk_file - rolling back"
+            git checkout HEAD~1
+            exit 1
+        }
+    fi
+done
+
+# Phase 4: Final Validation with comprehensive checks
 echo "=== Final Validation ==="
-# Zero-reference confirmation
+# Enhanced zero-reference confirmation
+final_refs=$(grep -rE "(GPZH|ZH-|zh-demo|zh_demo|Thalwil|Thalheim|Erlenbach|Bruchtal|municipal_)" . \
+  --exclude-dir=node_modules \
+  --exclude-dir=vendor \
+  --exclude-dir=.git \
+  --exclude="*.md" \
+  --exclude-dir=".claude/learning" | wc -l)
+
+if [ "$final_refs" -gt 0 ]; then
+    echo "❌ $final_refs municipal references still detected"
+    exit 1
+fi
+
+# Database content validation  
+db_refs=$(ddev drush sql:query "SELECT COUNT(*) FROM node WHERE title LIKE '%Thalwil%' OR title LIKE '%Thalheim%' OR title LIKE '%Bruchtal%' OR title LIKE '%GPZH%';" | tail -n 1)
+if [ "$db_refs" -gt 0 ]; then
+    echo "❌ $db_refs municipal references in database content"
+    exit 1
+fi
+
 # Functionality preservation testing
+ddev test:functional && ddev test:fresh-install || {
+    echo "❌ Final functionality validation failed"
+    exit 1
+}
+
+echo "✅ Zero-reference validation complete"
 ```
 
 **Quality Gates**:

@@ -115,18 +115,19 @@ The decision implements a methodical approach that:
 - Success pattern identification from component library
 - Agent ecosystem optimization for cleanup coordination
 
-### Phase 2: Module Refactoring and Configuration Cleanup
+### Phase 2: Module Refactoring with Automated Service Validation
 **Scope**: 
-- **Module Namespace Updates**: `municipal_*` → `adesso_cms_*` with service reference coordination
-- **Database Configuration**: Generic project naming and environment variable cleanup
-- **AI Agent Configuration**: Remove municipality-specific agent parameters
-- **DDEV Project Configuration**: Rename from `zh-demo` to `adesso-cms`
+- **Module Namespace Updates**: `municipal_*` → `adesso_cms_*` with automated service dependency validation
+- **Database Configuration**: Generic project naming with foreign key constraint validation
+- **AI Agent Configuration**: Remove municipality-specific parameters with response time monitoring
+- **DDEV Project Configuration**: Rename from `zh-demo` to `adesso-cms` with connectivity validation
 
-**Quality Gates**:
-- All module services maintain functionality post-refactoring
-- Database operations complete without data loss
-- DDEV environment successfully rebuilds with new configuration
-- AI agents function with generic parameters
+**Enhanced Quality Gates**:
+- **Service Dependency Validation**: Automated validation before/after namespace changes
+- **Automated Rollback Triggers**: Service registration failures trigger immediate rollback
+- **Performance Baseline Comparison**: Lighthouse score ≥85, response time <2s
+- **Database Integrity Checks**: Foreign key constraints validated, no orphaned references
+- **Fresh Installation Validation**: Complete setup in <10 minutes with automated testing
 
 **Pattern Documentation**:
 - Module namespace transformation template

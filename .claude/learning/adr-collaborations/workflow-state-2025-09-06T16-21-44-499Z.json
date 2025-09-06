@@ -1,0 +1,36 @@
+{
+  "sessionId": "adr-collab-2025-09-06T16-21-44-499Z",
+  "timestamp": "2025-09-06T16:21:44.504Z",
+  "activeWorkflows": [],
+  "collaborativeReviews": {},
+  "stakeholderEngagements": {},
+  "agentCoordinations": {},
+  "municipalCompliance": {
+    "thalwil": {
+      "status": "pending",
+      "requirements": []
+    },
+    "thalheim": {
+      "status": "pending",
+      "requirements": []
+    },
+    "erlenbach": {
+      "status": "pending",
+      "requirements": []
+    }
+  },
+  "swissCompliance": {
+    "wcag-2.1-aa": {
+      "status": "pending",
+      "validations": []
+    },
+    "ch-dsg": {
+      "status": "pending",
+      "validations": []
+    },
+    "ech-0059": {
+      "status": "pending",
+      "validations": []
+    }
+  }
+}

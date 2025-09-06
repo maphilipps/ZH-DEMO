@@ -87,4 +87,4 @@ For each implementation phase:
 - **Success Criteria**: How to verify agent completion
 - **Dependencies**: Previous agent outputs required
 
-Save the final plan to `.work/plans/plan-XXX.md` for use in the `/work` command.
+Save the final plan to `.work/XXX/plan.md` for use in the `/work` command. The plan should also be added to github issue as a comment.

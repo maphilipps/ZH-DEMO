@@ -39,19 +39,28 @@ This command performs comprehensive research combining codebase analysis, Contex
 - Map current data flow and processing patterns
 
 ### Phase 3: Context7 Integration (Best Practices Intelligence)  
-**Parallel Subtasks:**
+**Parallel Subtasks with Municipal Compliance Context:**
 
 **Task Group C - Library Documentation:**
-- Query Context7 for relevant library documentation
-- Extract best practices from official documentation
-- Identify recommended patterns and approaches
-- Find configuration examples and setup guides
+- Query Context7 for relevant library documentation using municipal-specific contexts
+- Extract best practices from official documentation with Swiss compliance focus
+- Identify recommended patterns and approaches for government portals
+- Find configuration examples and setup guides for Drupal 11 + Vite + Tailwind CSS v4
+- Apply Context7 query optimization patterns from `.claude/mcp-servers/context7/municipal-queries.yml`
 
-**Task Group D - Framework Patterns:**
-- Research framework-specific best practices via Context7
-- Identify recommended architectural patterns
-- Find performance optimization techniques
-- Extract security and compliance guidelines
+**Task Group D - Framework Integration & Compliance:**
+- Research framework-specific best practices via Context7 with accessibility requirements
+- Identify recommended architectural patterns for municipal multi-tenancy
+- Find performance optimization techniques meeting government standards
+- Extract security and compliance guidelines for Swiss data protection (CH-DSG)
+- Query multilingual implementation patterns for German/French support
+
+**Context7 Query Enhancement Protocol:**
+1. **Version-Specific Queries**: Always include exact version numbers (Drupal 11.x, Tailwind CSS v4, etc.)
+2. **Municipal Context**: Append "for swiss municipal portal development" to improve relevance
+3. **Compliance Integration**: Include "meeting wcag 2.1 aa standards" for accessibility context
+4. **Fallback Handling**: Use Context7FallbackHandler for graceful degradation to WebSearch
+5. **Cache Optimization**: Leverage municipal-specific caching for repeated queries
 
 ### Phase 4: Web Research (Current Intelligence)
 **Parallel Subtasks:**
@@ -106,13 +115,25 @@ Create comprehensive research report in `.work/research/research-XXX.md`:
 
 ## Best Practices Research (Context7)
 ### Library Documentation Insights
-- **Recommended Approach**: [Official recommendations]
-- **Configuration Patterns**: [Setup examples]
-- **Performance Guidelines**: [Optimization tips]
+- **Recommended Approach**: [Official recommendations with municipal compliance context]
+- **Configuration Patterns**: [Setup examples for Drupal 11 + Vite + Tailwind CSS v4]
+- **Performance Guidelines**: [Optimization tips meeting government standards]
+- **Accessibility Compliance**: [WCAG 2.1 AA implementation patterns]
+- **Security Patterns**: [Swiss data protection (CH-DSG) compliance measures]
 
-### Framework Integration
-- [Framework-specific patterns and practices]
-- [Official architectural recommendations]
+### Framework Integration & Municipal Compliance
+- **Drupal 11 Municipal Patterns**: [Municipal-specific content modeling and workflows]
+- **Vite + Tailwind Integration**: [Hot reload setup with DDEV for municipal development]
+- **Multilingual Implementation**: [German/French content management patterns]
+- **AI Integration Guidelines**: [Municipal AI agents and content generation compliance]
+- **Performance Optimization**: [Municipal scale performance requirements]
+
+### Context7 Query Results Analysis
+- **Query Success Rate**: [Percentage of successful Context7 responses]
+- **Fallback Utilization**: [When WebSearch fallback was necessary]  
+- **Municipal Context Effectiveness**: [How well municipal context improved results]
+- **Version-Specific Accuracy**: [Quality of version-specific documentation]
+- **Cache Performance**: [Municipal query cache hit rates and effectiveness]
 
 ## Current Industry Analysis (Web Research)
 ### Industry Trends
@@ -183,12 +204,23 @@ Before finalizing research:
 ### Pattern Recognition
 - Document reusable research patterns for future topics
 - Identify research approaches that accelerate future investigations
-- Capture Context7 query patterns that work effectively
+- Capture Context7 query patterns that work effectively for municipal development
+- Track Context7 vs WebSearch effectiveness for different query types
+- Document municipal compliance context patterns that improve documentation quality
 
 ### Context Evolution  
 - Update CLAUDE.md with research findings that affect project direction
 - Add discovered patterns to project knowledge base
 - Document effective research methodologies for reuse
+- Integrate successful Context7 query patterns into `.claude/mcp-servers/context7/municipal-queries.yml`
+- Update municipal compliance requirements based on Context7 documentation findings
+
+### Context7 Learning Integration
+- **Query Optimization Patterns**: Track which Context7 queries yield highest quality municipal-relevant results
+- **Fallback Effectiveness**: Monitor when WebSearch provides better results than Context7 for specific topics
+- **Municipal Context Impact**: Measure improvement in documentation relevance with Swiss compliance context
+- **Version Accuracy Tracking**: Validate Context7 version-specific documentation against actual implementation
+- **Performance Metrics**: Monitor Context7 response times, cache effectiveness, and error rates
 
 ### Predictive Intelligence
 - Identify potential issues before they occur based on research

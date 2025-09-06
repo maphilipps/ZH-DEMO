@@ -142,6 +142,34 @@ This is **adesso CMS** - a Drupal 11-based municipal portal system designed for 
 - Geographic distribution for Swiss regions
 - AI-driven orchestration for complex municipal workflows
 
+## Context7 MCP Server Integration
+
+**Enhanced Research Workflow:**
+- Context7 MCP server integration for AI-optimized documentation retrieval
+- Municipal-specific query patterns in `.claude/mcp-servers/context7/municipal-queries.yml`
+- Swiss compliance-aware documentation synthesis
+- Fallback mechanisms to WebSearch when Context7 unavailable
+
+**Context7 Configuration:**
+- MCP server config: `.claude/mcp-servers/context7/config.json`
+- Municipal query optimization: `.claude/mcp-servers/context7/query-optimization-guide.md`
+- Agent coordination: `.claude/mcp-servers/context7/agent-coordination.md`
+- Performance monitoring: `.claude/mcp-servers/context7/monitoring-system.js`
+
+**Municipal Query Enhancement:**
+- Automatic municipal context: "for swiss municipal portal development"
+- Compliance integration: "meeting wcag 2.1 aa standards"
+- Version-specific queries: Include exact technology stack versions
+- Multilingual context: "supporting german french content"
+
+**Usage in Research Command:**
+```bash
+/research "drupal 11 content types municipal services"
+```
+- Phase 3 automatically uses Context7 with municipal optimization
+- Fallback to WebSearch for Swiss-specific implementation examples
+- Integration with existing agent ecosystem for validation
+
 ## Important File Locations
 
 - Main Composer file: `composer.json`
@@ -151,6 +179,7 @@ This is **adesso CMS** - a Drupal 11-based municipal portal system designed for 
 - Custom modules: `web/modules/custom/`
 - Drupal recipes: `recipes/`
 - Agent configurations: `.claude/agents/`
+- Context7 integration: `.claude/mcp-servers/context7/`
 
 This system emphasizes municipal compliance, AI integration, and modern Drupal development practices specifically tailored for Swiss government portal requirements.
 

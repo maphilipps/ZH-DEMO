@@ -1,0 +1,84 @@
+# Context7 Query Templates for Municipal Portal Development
+# Optimized for Swiss government compliance and Drupal 11 stack
+
+drupal_queries:
+  content_modeling:
+    - "drupal 11 content types municipal services {version}"
+    - "drupal paragraphs multilingual content {version}"
+    - "drupal entity reference accessibility {version}"
+    
+  ai_integration:
+    - "drupal ai module integration patterns {version}"
+    - "drupal openai anthropic providers {version}"
+    - "drupal vector search milvus {version}"
+    
+  compliance:
+    - "drupal wcag 2.1 aa accessibility modules {version}"
+    - "drupal multilingual swiss government {version}"
+    - "drupal security hardening municipal {version}"
+
+frontend_queries:
+  vite_integration:
+    - "vite drupal theme integration hot reload {version}"
+    - "vite tailwind css v4 configuration {version}"
+    - "vite storybook drupal components {version}"
+    
+  component_development:
+    - "drupal single directory components SDC {version}"
+    - "tailwind css v4 drupal theming {version}"
+    - "alpine js drupal behavior integration {version}"
+    
+  accessibility:
+    - "wcag 2.1 aa frontend implementation {version}"
+    - "swiss accessibility standards web {version}"
+    - "aria patterns government websites {version}"
+
+municipal_compliance:
+  swiss_standards:
+    - "swiss government web standards eCH-0059 {version}"
+    - "ch-dsg data protection implementation {version}"
+    - "gpzh canton zurich compliance {version}"
+    
+  multilingual:
+    - "drupal multilingual german french {version}"
+    - "swiss language requirements municipal {version}"
+    - "content translation workflows government {version}"
+    
+  performance:
+    - "drupal 11 performance optimization municipal {version}"
+    - "vite build optimization government sites {version}"
+    - "accessibility performance balance {version}"
+
+development_workflow:
+  ddev_integration:
+    - "ddev drupal 11 development setup {version}"
+    - "ddev vite integration hot reload {version}"
+    - "ddev testing playwright vitest {version}"
+    
+  testing:
+    - "drupal 11 testing patterns municipal {version}"
+    - "backstopjs visual regression testing {version}"
+    - "playwright e2e testing accessibility {version}"
+    
+  deployment:
+    - "drupal 11 deployment best practices {version}"
+    - "vite production build optimization {version}"
+    - "municipal portal scaling strategies {version}"
+
+# Query Enhancement Patterns
+query_modifiers:
+  version_specific: "{version}" # Replace with actual version numbers
+  use_case_context: "for municipal portal development"
+  compliance_context: "meeting swiss government standards"
+  accessibility_context: "with wcag 2.1 aa compliance"
+  performance_context: "optimized for municipal scale"
+  
+# Context7 Query Optimization Rules
+optimization_rules:
+  - "Always include specific version numbers when available"
+  - "Combine library queries with municipal use case context"
+  - "Prioritize official documentation over community sources"
+  - "Include accessibility and compliance requirements in queries"
+  - "Request configuration examples and setup patterns"
+  - "Ask for performance optimization techniques"
+  - "Include error handling and fallback strategies"

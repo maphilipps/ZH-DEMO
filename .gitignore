@@ -93,3 +93,4 @@ storybook-static/
 # Ignore symbolic link directories that cause git issues
 web/modules/custom/zh_demo_workspace/
 
+.worktrees

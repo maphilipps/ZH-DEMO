@@ -1,14 +1,302 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Media
-description: Editorial/Media component
+description: Comprehensive media component supporting images, videos, audio, and documents with accessibility, performance optimization, and Swiss municipal compliance features
+status: stable
 props:
   type: object
   properties:
-    media:
+    # Media Entity Integration
+    media_entity:
+      type: object
+      title: Media Entity
+      description: Drupal media entity with complete metadata
+      properties:
+        id:
+          type: integer
+          title: Media Entity ID
+          description: Drupal media entity ID
+          minimum: 1
+        bundle:
+          type: string
+          title: Media Bundle
+          description: Type of media content
+          enum:
+            - image
+            - video
+            - audio
+            - document
+            - remote_video
+          default: image
+        uri:
+          type: string
+          title: Media URI
+          description: File URI or external URL for the media
+        mime_type:
+          type: string
+          title: MIME Type
+          description: MIME type of the media file
+        file_size:
+          type: integer
+          title: File Size
+          description: File size in bytes
+          minimum: 0
+        metadata:
+          type: object
+          title: Media Metadata
+          description: Additional metadata from media entity (dimensions, duration, etc.)
+      required:
+        - id
+        - bundle
+        - uri
+    
+    # Display Configuration
+    variant:
       type: string
-      title: media
-      description: Define the media content, either an image, video, or audio
+      title: Display Variant
+      description: Visual presentation style for different use cases
+      enum:
+        - default
+        - hero
+        - thumbnail
+        - card
+        - gallery
+        - document_preview
+        - banner
+        - accessibility
+      default: default
+    
+    display_mode:
+      type: string
+      title: Display Mode
+      description: Drupal view mode for rendering the media entity
+      enum:
+        - default
+        - thumbnail
+        - preview
+        - full
+        - teaser
+      default: default
+    
+    aspect_ratio:
+      type: string
+      title: Aspect Ratio
+      description: Control aspect ratio for consistent layouts
+      enum:
+        - auto
+        - square
+        - "16:9"
+        - "4:3"
+        - "3:2"
+        - "21:9"
+      default: auto
+    
+    size:
+      type: string
+      title: Size Variant
+      description: Size variation for the media display
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+        - full
+      default: md
+    
+    alignment:
+      type: string
+      title: Alignment
+      description: Positioning alignment for the media
+      enum:
+        - left
+        - center
+        - right
+        - full-width
+      default: center
+    
+    # Accessibility Properties (WCAG 2.1 AA Compliance)
+    alt_text:
+      type: string
+      title: Alt Text
+      description: Alternative text for images (overrides media entity alt text)
+      maxLength: 250
+    
+    alt_text_de:
+      type: string
+      title: Alt Text (German)
+      description: German alternative text for multilingual support
+      maxLength: 250
+    
+    alt_text_fr:
+      type: string
+      title: Alt Text (French)
+      description: French alternative text for multilingual support
+      maxLength: 250
+    
+    aria_label:
+      type: string
+      title: ARIA Label
+      description: ARIA label for complex media elements
+      maxLength: 100
+    
+    long_description:
+      type: string
+      title: Long Description
+      description: Detailed description for complex media (linked via aria-describedby)
+    
+    caption:
+      type: string
+      title: Caption
+      description: Visible caption text displayed with the media
+    
+    caption_de:
+      type: string
+      title: Caption (German)
+      description: German caption for multilingual support
+    
+    caption_fr:
+      type: string
+      title: Caption (French)
+      description: French caption for multilingual support
+    
+    # Performance Controls
+    lazy_loading:
+      type: boolean
+      title: Lazy Loading
+      description: Enable lazy loading for performance optimization
+      default: true
+    
+    responsive:
+      type: boolean
+      title: Responsive Images
+      description: Enable responsive image support with srcset
+      default: true
+    
+    preload:
+      type: string
+      title: Preload Strategy
+      description: Control preloading behavior for performance
+      enum:
+        - none
+        - metadata
+        - auto
+      default: metadata
+    
+    quality:
+      type: integer
+      title: Image Quality
+      description: Image quality percentage (for JPEG/WebP)
+      minimum: 1
+      maximum: 100
+      default: 85
+    
+    # Interactive Features
+    lightbox:
+      type: boolean
+      title: Lightbox
+      description: Enable lightbox/modal functionality
+      default: false
+    
+    autoplay:
+      type: boolean
+      title: Autoplay
+      description: Enable autoplay for videos (respects user preferences)
+      default: false
+    
+    controls:
+      type: boolean
+      title: Show Controls
+      description: Show/hide media controls for videos and audio
+      default: true
+    
+    muted:
+      type: boolean
+      title: Muted
+      description: Start videos muted (required for autoplay)
+      default: false
+    
+    loop:
+      type: boolean
+      title: Loop
+      description: Enable looping for videos and audio
+      default: false
+    
+    # Swiss Municipal Compliance
+    external_content:
+      type: boolean
+      title: External Content
+      description: Flag if media contains external content requiring user consent
+      default: false
+    
+    privacy_level:
+      type: string
+      title: Privacy Level
+      description: Privacy classification for municipal content
+      enum:
+        - public
+        - internal
+        - restricted
+      default: public
+    
+    gdpr_compliant:
+      type: boolean
+      title: GDPR Compliant
+      description: Indicates if the media meets GDPR requirements
+      default: true
+    
+    # Styling and Customization
     modifier:
       type: string
-      title: modifier
-      description: CSS modifier classes for styling the media container
+      title: CSS Modifier Classes
+      description: Additional CSS classes for custom styling
+    
+    background_color:
+      type: string
+      title: Background Color
+      description: Background color for media container (hex, rgb, or CSS color name)
+    
+    border_radius:
+      type: string
+      title: Border Radius
+      description: Border radius for media element
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+        - xl
+        - full
+      default: none
+    
+    shadow:
+      type: string
+      title: Shadow
+      description: Drop shadow intensity
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+        - xl
+      default: none
+
+slots:
+  caption:
+    title: Caption Slot
+    description: Flexible slot for rich caption content including links and formatting
+  overlay:
+    title: Overlay Slot
+    description: Content to overlay on the media (e.g., play buttons, badges, text)
+  controls:
+    title: Custom Controls Slot
+    description: Custom control elements for interactive media
+  fallback:
+    title: Fallback Content Slot
+    description: Content to display if media fails to load or is not supported
+
+libraryDependencies:
+  - core/drupal
+  - core/drupal.ajax
+  - core/once
+  - responsive_image/responsive_image
+  - adesso_cms_theme/global

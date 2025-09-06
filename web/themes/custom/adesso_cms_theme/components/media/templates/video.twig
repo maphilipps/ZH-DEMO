@@ -1,0 +1,124 @@
+{#
+/**
+ * @file
+ * Specialized Video Media Template
+ * 
+ * Enhanced video player with accessibility controls, transcripts,
+ * and Swiss municipal compliance features.
+ * 
+ * Available variables:
+ * - All variables from main media component schema
+ * - Enhanced video controls and accessibility features
+ */
+#}
+
+{# Enhanced video player with accessibility and performance features #}
+<div class="adesso-media__video-container relative">
+  
+  {# Video element with comprehensive accessibility #}
+  <video 
+    class="adesso-media__video w-full h-auto"
+    {% if controls %}controls{% endif %}
+    {% if autoplay and muted %}autoplay muted{% endif %}
+    {% if loop %}loop{% endif %}
+    {% if preload != 'none' %}preload="{{ preload }}"{% endif %}
+    {% if lazy_loading %}loading="lazy"{% endif %}
+    aria-label="{{ resolved_alt_text|default('Video content')|striptags }}"
+    {% if resolved_caption %}aria-describedby="{{ media_id }}-video-desc"{% endif %}
+    playsinline
+    data-media-bundle="video"
+    data-privacy-level="{{ privacy_level }}"
+  >
+    {# Multiple source formats for optimal compatibility and performance #}
+    {% if media_entity.uri matches '/\\.mp4$/i' %}
+      <source src="{{ media_entity.uri }}" type="video/mp4">
+    {% elseif media_entity.uri matches '/\\.webm$/i' %}
+      <source src="{{ media_entity.uri }}" type="video/webm">
+    {% elseif media_entity.uri matches '/\\.ogv$/i' %}
+      <source src="{{ media_entity.uri }}" type="video/ogg">
+    {% else %}
+      <source src="{{ media_entity.uri }}" type="{{ media_entity.mime_type }}">
+    {% endif %}
+    
+    {# Accessibility fallback with download option #}
+    <div class="adesso-media__video-fallback bg-gray-100 p-4 rounded border border-gray-300">
+      <p class="text-gray-700 mb-2">
+        <strong>{{ 'Video not supported'|t }}:</strong>
+        {{ 'Your browser does not support the video format or JavaScript is disabled.'|t }}
+      </p>
+      {% if media_entity.uri %}
+        <a 
+          href="{{ media_entity.uri }}" 
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded underline"
+          download
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          {{ 'Download video file'|t }}
+          {% if media_entity.file_size %}
+            ({{ (media_entity.file_size / 1024 / 1024)|number_format(1) }} MB)
+          {% endif %}
+        </a>
+      {% endif %}
+    </div>
+  </video>
+  
+  {# Custom video controls overlay for enhanced UX #}
+  {% if slots.controls %}
+    <div class="adesso-media__video-controls absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-4">
+      {{ slots.controls }}
+    </div>
+  {% endif %}
+  
+  {# Play button overlay for better visual hierarchy #}
+  {% if not autoplay %}
+    <button 
+      type="button"
+      class="adesso-media__play-button absolute inset-0 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+      aria-label="{{ 'Play video'|t }}: {{ resolved_alt_text|default('Video')|striptags }}"
+      data-video-play-button
+    >
+      <div class="bg-black/50 rounded-full p-4 group-hover:bg-black/70 transition-colors">
+        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </button>
+  {% endif %}
+  
+  {# Video metadata and accessibility description #}
+  {% if resolved_caption or media_entity.metadata.duration %}
+    <div id="{{ media_id }}-video-desc" class="sr-only">
+      {% if resolved_caption %}{{ resolved_caption|striptags }}. {% endif %}
+      {% if media_entity.metadata.duration %}
+        {{ 'Duration'|t }}: {{ media_entity.metadata.duration|date('i:s') }}.
+      {% endif %}
+      {% if media_entity.metadata.width and media_entity.metadata.height %}
+        {{ 'Resolution'|t }}: {{ media_entity.metadata.width }}x{{ media_entity.metadata.height }}.
+      {% endif %}
+    </div>
+  {% endif %}
+  
+</div>
+
+{# Video transcript support for accessibility compliance #}
+{% if slots.transcript %}
+  <details class="adesso-media__transcript mt-4 border border-gray-300 rounded">
+    <summary class="p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
+      <strong class="text-gray-900">{{ 'Video Transcript'|t }}</strong>
+      <span class="text-gray-600 text-sm ml-2">({{ 'Click to expand'|t }})</span>
+    </summary>
+    <div class="p-4 prose prose-sm max-w-none">
+      {{ slots.transcript }}
+    </div>
+  </details>
+{% endif %}
+
+{# GDPR/Privacy compliance notice for municipal portals #}
+{% if external_content %}
+  <div class="adesso-media__privacy-notice mt-2 text-xs text-gray-600 bg-yellow-50 p-2 rounded border-l-4 border-yellow-400">
+    <strong>{{ 'Privacy Notice'|t }}:</strong>
+    {{ 'This video may load external resources or track viewing behavior.'|t }}
+  </div>
+{% endif %}

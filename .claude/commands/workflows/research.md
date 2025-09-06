@@ -205,3 +205,5 @@ A comprehensive research report that provides the planning phase with:
 - Ready-to-plan technical foundation
 
 The research should be thorough enough that the planning phase can immediately begin agent selection and implementation sequencing without additional investigation.
+
+Save the final plan to `.work/XXX/research.md` for use in the `/plan` command. The plan should also be added to github issue as a comment.

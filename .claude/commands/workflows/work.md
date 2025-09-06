@@ -3,7 +3,7 @@ You are an experienced software developer with agent orchestration capabilities.
 1. **Input Detection and Loading**:
    
    **Option A: Plan-Based Execution** (Preferred)
-   - Check if argument is a plan file: `.work/plans/plan-XXX.md`
+   - Check if argument is a plan file: `.work/XXX/plan.md`
    - Load implementation plan with agent assignments
    - Extract agent orchestration matrix and phase definitions
    
@@ -18,7 +18,7 @@ You are an experienced software developer with agent orchestration capabilities.
    </codebase>
 
 2. **Agent Orchestration Execution** (For Plan-Based Work):
-   
+   Read the plan and research thoroughly and think ultrahard before proceeding.
    **Phase Execution Strategy**:
    - Parse agent assignments from implementation plan
    - Execute agents in specified sequence (sequential/parallel)

@@ -1,0 +1,682 @@
+/**
+ * @file
+ * Accessible Media Component Styles
+ * 
+ * Implements WCAG 2.1 AA accessibility compliance and Swiss municipal design standards
+ * for the media component. Includes responsive design, high contrast support, and
+ * enhanced focus management for all media types.
+ */
+
+/* Base media component styles */
+.adesso-media {
+  @apply relative max-w-full;
+  
+  /* Ensure consistent line-height for captions */
+  line-height: 1.5;
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    border: 1px solid;
+  }
+}
+
+/* Focus management for accessibility */
+.adesso-media:focus-within {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 rounded-sm;
+}
+
+/* Media container positioning */
+.adesso-media__container {
+  @apply relative overflow-hidden;
+}
+
+/* Privacy warning styling */
+.adesso-media__privacy-warning {
+  @apply mb-4;
+}
+
+.adesso-media__privacy-warning p {
+  @apply text-sm leading-relaxed;
+}
+
+/* Media content base styles */
+.adesso-media__content {
+  @apply relative w-full;
+}
+
+/* Image-specific styles */
+.adesso-media__image {
+  @apply block w-full h-auto;
+  
+  /* Ensure smooth loading transitions */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.adesso-media__image[loading="lazy"] {
+  opacity: 0;
+}
+
+.adesso-media__image[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* High contrast and reduced motion support */
+@media (prefers-contrast: high) {
+  .adesso-media__image {
+    filter: contrast(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adesso-media__image {
+    transition: none;
+  }
+}
+
+/* Video and audio controls */
+.adesso-media__video,
+.adesso-media__audio {
+  @apply outline-none;
+}
+
+.adesso-media__video:focus,
+.adesso-media__audio:focus {
+  @apply ring-2 ring-blue-500 ring-offset-2 rounded;
+}
+
+/* Document preview styles */
+.adesso-media__document {
+  @apply transition-colors duration-200;
+}
+
+.adesso-media__document:hover {
+  @apply bg-gray-100;
+}
+
+.adesso-media__document-link:focus {
+  @apply bg-blue-50;
+}
+
+/* External content consent styling */
+.adesso-media__external-consent {
+  @apply transition-all duration-200;
+}
+
+.adesso-media__external-consent button:focus {
+  @apply transform scale-105;
+}
+
+/* Caption styling with proper spacing */
+.adesso-media__caption {
+  @apply leading-relaxed;
+  
+  /* Ensure captions are readable */
+  font-size: 0.875rem;
+  
+  /* Add proper spacing from media */
+  margin-top: 0.5rem;
+}
+
+.adesso-media__caption a {
+  @apply text-blue-600 underline hover:text-blue-800;
+}
+
+.adesso-media__caption a:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-1 rounded-sm;
+}
+
+/* Overlay positioning and accessibility */
+.adesso-media__overlay {
+  @apply pointer-events-none;
+  
+  /* Allow overlay content to be interactive */
+  > * {
+    @apply pointer-events-auto;
+  }
+}
+
+/* Fallback content (hidden by default) */
+.adesso-media__fallback {
+  @apply absolute inset-0 flex items-center justify-center;
+  @apply bg-gray-100 text-gray-700 text-center p-4;
+  
+  /* Only show when media fails to load */
+  display: none;
+}
+
+/* Show fallback when media fails */
+.adesso-media.media-error .adesso-media__fallback {
+  display: flex;
+}
+
+/* Variant-specific styles */
+
+/* Hero variant - large, prominent display */
+.adesso-media--hero {
+  @apply w-full;
+}
+
+.adesso-media--hero .adesso-media__image {
+  @apply object-cover;
+  min-height: 300px;
+  max-height: 60vh;
+}
+
+.adesso-media--hero .adesso-media__caption {
+  @apply text-base mt-4;
+}
+
+/* Thumbnail variant - small, compact */
+.adesso-media--thumbnail {
+  @apply max-w-32;
+}
+
+.adesso-media--thumbnail .adesso-media__caption {
+  @apply text-xs mt-1;
+}
+
+/* Card variant - structured presentation */
+.adesso-media--card {
+  @apply bg-white rounded-lg shadow-sm overflow-hidden;
+}
+
+.adesso-media--card .adesso-media__caption {
+  @apply p-3 bg-gray-50;
+}
+
+/* Gallery variant - optimized for collections */
+.adesso-media--gallery {
+  @apply cursor-pointer transition-transform duration-200;
+}
+
+.adesso-media--gallery:hover {
+  @apply transform scale-105;
+}
+
+.adesso-media--gallery:focus {
+  @apply transform scale-105 ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Document preview variant */
+.adesso-media--document-preview .adesso-media__document {
+  @apply border-2 border-dashed border-gray-300;
+}
+
+/* Banner variant - full width emphasis */
+.adesso-media--banner {
+  @apply w-full;
+}
+
+.adesso-media--banner .adesso-media__image {
+  @apply w-full object-cover;
+  height: 200px;
+}
+
+/* Accessibility variant - enhanced for assistive technology */
+.adesso-media--accessibility {
+  @apply border-2 border-blue-200 bg-blue-50 p-2 rounded;
+}
+
+.adesso-media--accessibility .adesso-media__caption {
+  @apply text-blue-900 font-medium;
+}
+
+/* Size variants */
+.adesso-media--size-xs { @apply max-w-16; }
+.adesso-media--size-sm { @apply max-w-32; }
+.adesso-media--size-md { @apply max-w-64; }
+.adesso-media--size-lg { @apply max-w-96; }
+.adesso-media--size-xl { @apply max-w-128; }
+.adesso-media--size-full { @apply w-full max-w-full; }
+
+/* Alignment variants */
+.adesso-media--align-left { @apply mr-auto; }
+.adesso-media--align-center { @apply mx-auto; }
+.adesso-media--align-right { @apply ml-auto; }
+.adesso-media--align-full-width { @apply w-full; }
+
+/* Modern aspect ratio variants with container queries */
+.adesso-media--aspect-square .adesso-media__image,
+.adesso-media--aspect-square .adesso-media__video {
+  aspect-ratio: 1;
+  @apply object-cover;
+}
+
+.adesso-media--aspect-16-9 .adesso-media__image,
+.adesso-media--aspect-16-9 .adesso-media__video {
+  aspect-ratio: 16/9;
+  @apply object-cover;
+}
+
+.adesso-media--aspect-4-3 .adesso-media__image,
+.adesso-media--aspect-4-3 .adesso-media__video {
+  aspect-ratio: 4/3;
+  @apply object-cover;
+}
+
+.adesso-media--aspect-3-2 .adesso-media__image,
+.adesso-media--aspect-3-2 .adesso-media__video {
+  aspect-ratio: 3/2;
+  @apply object-cover;
+}
+
+.adesso-media--aspect-21-9 .adesso-media__image,
+.adesso-media--aspect-21-9 .adesso-media__video {
+  aspect-ratio: 21/9;
+  @apply object-cover;
+}
+
+/* Container queries for responsive behavior */
+@container (min-width: 480px) {
+  .adesso-media--hero .adesso-media__image {
+    min-height: 400px;
+    max-height: 70vh;
+  }
+}
+
+@container (max-width: 320px) {
+  .adesso-media--hero .adesso-media__image {
+    min-height: 180px;
+    max-height: 30vh;
+  }
+}
+
+/* Media type specific enhancements */
+
+/* Image type */
+.adesso-media--image .adesso-media__image {
+  /* Ensure images are never pixelated */
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Video type */
+.adesso-media--video {
+  @apply bg-black;
+}
+
+.adesso-media--video .adesso-media__video {
+  @apply w-full;
+}
+
+/* Audio type */
+.adesso-media--audio {
+  @apply bg-gray-900 text-white rounded p-4;
+}
+
+.adesso-media--audio .adesso-media__audio {
+  @apply w-full;
+}
+
+/* Document type */
+.adesso-media--document {
+  @apply border border-gray-300 rounded bg-white;
+}
+
+/* Remote video type with privacy controls */
+.adesso-media--remote-video .adesso-media__external-consent {
+  @apply min-h-48 flex flex-col justify-center;
+}
+
+/* Screen reader only content */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* Ensure content is accessible when focused */
+.sr-only:focus {
+  @apply static w-auto h-auto p-1 m-0 overflow-visible whitespace-normal;
+  clip: auto;
+}
+
+/* High contrast mode specific adjustments */
+@media (prefers-contrast: high) {
+  .adesso-media {
+    border-width: 2px;
+  }
+  
+  .adesso-media__caption {
+    @apply font-semibold;
+  }
+  
+  .adesso-media__privacy-warning p {
+    @apply font-bold;
+  }
+}
+
+/* Performance optimizations for Core Web Vitals */
+
+/* Aspect ratio containers to prevent CLS */
+.adesso-media--aspect-preserved {
+  position: relative;
+}
+
+.adesso-media--aspect-preserved::before {
+  content: '';
+  display: block;
+  padding-bottom: var(--aspect-ratio, 56.25%); /* Default 16:9 */
+}
+
+.adesso-media--aspect-preserved .adesso-media__image,
+.adesso-media--aspect-preserved .adesso-media__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Aspect ratio variables for different ratios */
+.adesso-media--aspect-square { --aspect-ratio: 100%; }
+.adesso-media--aspect-16-9 { --aspect-ratio: 56.25%; }
+.adesso-media--aspect-4-3 { --aspect-ratio: 75%; }
+.adesso-media--aspect-3-2 { --aspect-ratio: 66.67%; }
+.adesso-media--aspect-21-9 { --aspect-ratio: 42.86%; }
+
+/* Optimize for LCP (Largest Contentful Paint) */
+.adesso-media--hero .adesso-media__image,
+.adesso-media--banner .adesso-media__image {
+  /* Prioritize hero images for faster LCP */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  
+  /* Prevent layout shift */
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--hero-aspect-ratio, 16/9);
+}
+
+/* Memory management for large collections */
+.adesso-media-collection {
+  /* Use contain for better performance in galleries */
+  contain: layout style paint;
+}
+
+.adesso-media-collection .adesso-media {
+  /* Optimize rendering for collections */
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Connection-aware optimizations */
+@media (max-width: 768px) {
+  .adesso-media--size-xl,
+  .adesso-media--size-lg {
+    /* Reduce size on mobile for performance */
+    max-width: 100vw;
+  }
+  
+  .adesso-media__image {
+    /* Optimize mobile image loading */
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .adesso-media *,
+  .adesso-media *::before,
+  .adesso-media *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Disable shimmer animation for reduced motion */
+  .adesso-media__image.loading,
+  .adesso-media__video.loading {
+    animation: none;
+    @apply bg-gray-200;
+  }
+}
+
+/* Dark mode support for municipal portals */
+@media (prefers-color-scheme: dark) {
+  .adesso-media {
+    @apply bg-gray-800;
+  }
+  
+  .adesso-media__caption {
+    @apply text-gray-300;
+  }
+  
+  .adesso-media__document {
+    @apply bg-gray-700 border-gray-600;
+  }
+  
+  .adesso-media__external-consent {
+    @apply bg-gray-700 border-gray-600;
+  }
+}
+
+/* Modern picture element support */
+.adesso-media__picture {
+  @apply block w-full;
+  container-type: inline-size;
+}
+
+/* Modern video enhancements */
+.adesso-media__video-container {
+  @apply relative;
+  container-type: inline-size;
+}
+
+.adesso-media__play-button {
+  @apply transition-transform duration-200 ease-out;
+}
+
+.adesso-media__play-button:hover {
+  @apply transform scale-110;
+}
+
+/* Enhanced audio player styling */
+.adesso-media__audio-container {
+  container-type: inline-size;
+}
+
+.adesso-media__audio-visual {
+  @apply flex justify-center items-end;
+}
+
+.adesso-media__audio-bar {
+  animation: audioVisualize 2s ease-in-out infinite;
+}
+
+.adesso-media__audio-bar:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.adesso-media__audio-bar:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+@keyframes audioVisualize {
+  0%, 100% {
+    @apply opacity-60;
+    transform: scaleY(0.8);
+  }
+  50% {
+    @apply opacity-100;
+    transform: scaleY(1.2);
+  }
+}
+
+/* Enhanced document styling */
+.adesso-media__document-header {
+  container-type: inline-size;
+}
+
+@container (max-width: 300px) {
+  .adesso-media__document-header .flex {
+    @apply flex-col space-x-0 space-y-3;
+  }
+}
+
+/* Remote video consent improvements */
+.adesso-media__external-consent {
+  container-type: inline-size;
+}
+
+@container (max-width: 400px) {
+  .adesso-media__external-consent .flex {
+    @apply flex-col gap-2;
+  }
+}
+
+/* Lightbox enhancements */
+.lightbox-modal {
+  backdrop-filter: blur(4px);
+  @apply transition-all duration-300 ease-out;
+}
+
+.lightbox-content {
+  @apply animate-fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Swiss municipal branding enhancements */
+.adesso-media--document .adesso-media__document-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.adesso-media--remote-video .adesso-media__external-consent {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+/* Performance optimizations */
+.adesso-media__image {
+  @apply transform-gpu;
+}
+
+.adesso-media__video,
+.adesso-media__audio {
+  will-change: transform;
+}
+
+/* Print styles for document accessibility */
+@media print {
+  .adesso-media {
+    @apply break-inside-avoid;
+  }
+  
+  .adesso-media__overlay {
+    @apply hidden;
+  }
+  
+  .adesso-media__caption {
+    @apply text-black;
+  }
+  
+  /* Ensure URLs are visible in print for document links */
+  .adesso-media__document-link::after {
+    content: " (" attr(href) ")";
+    @apply text-xs text-gray-600;
+  }
+  
+  /* Print external video information */
+  .adesso-media__external-consent::after {
+    content: "External video: " attr(data-video-url);
+    @apply block text-sm text-gray-700 mt-2;
+  }
+}
+
+/* Focus trap for lightbox functionality */
+.adesso-media[data-lightbox="true"] {
+  @apply cursor-pointer;
+}
+
+.adesso-media[data-lightbox="true"]:focus {
+  @apply ring-4 ring-blue-500 ring-offset-4;
+}
+
+/* Enhanced loading states with performance indicators */
+.adesso-media__image.loading,
+.adesso-media__video.loading {
+  @apply bg-gray-200;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  
+  /* Skeleton loader background */
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 2s infinite;
+}
+
+/* Loading shimmer animation */
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.adesso-media__image.loaded,
+.adesso-media__video.loaded {
+  opacity: 1;
+  animation: none;
+  background: transparent;
+}
+
+/* Performance-aware loading states */
+.adesso-media[data-connection="slow"] .adesso-media__image.loading {
+  /* Simplified animation for slow connections */
+  @apply animate-pulse;
+  animation-duration: 3s;
+}
+
+.adesso-media__content.loading::after {
+  content: "Loading media...";
+  @apply absolute inset-0 flex items-center justify-center text-gray-500 text-sm;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+/* Error states */
+.adesso-media.error {
+  @apply border-red-200 bg-red-50;
+}
+
+.adesso-media.error .adesso-media__fallback {
+  @apply text-red-700 bg-red-100 border border-red-200 rounded p-4;
+}
+
+/* Responsive design breakpoints */
+@media (max-width: 640px) {
+  .adesso-media--hero .adesso-media__image {
+    min-height: 200px;
+    max-height: 40vh;
+  }
+  
+  .adesso-media__caption {
+    @apply text-xs;
+  }
+  
+  .adesso-media--size-xl,
+  .adesso-media--size-lg {
+    @apply max-w-full;
+  }
+}
+
+@media (max-width: 480px) {
+  .adesso-media__external-consent {
+    @apply p-2;
+  }
+  
+  .adesso-media__external-consent button {
+    @apply text-sm px-3 py-1;
+  }
+}

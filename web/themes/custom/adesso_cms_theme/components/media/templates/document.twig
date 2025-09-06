@@ -1,0 +1,218 @@
+{#
+/**
+ * @file
+ * Specialized Document Media Template
+ * 
+ * Enhanced document preview with Swiss government compliance,
+ * accessibility features, and municipal branding support.
+ * 
+ * Available variables:
+ * - All variables from main media component schema
+ * - Enhanced document handling and preview features
+ */
+#}
+
+{# Enhanced document preview with Swiss municipal styling #}
+<div class="adesso-media__document bg-white border-2 border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+  
+  {# Document header with icon and metadata #}
+  <div class="adesso-media__document-header bg-gradient-to-r from-gray-50 to-gray-100 p-4 border-b border-gray-200">
+    <div class="flex items-start space-x-3">
+      
+      {# Document type icon based on MIME type #}
+      <div class="flex-shrink-0">
+        {% if media_entity.mime_type matches '/pdf/' %}
+          <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        {% elseif media_entity.mime_type matches '/(word|msword)/' %}
+          <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        {% elseif media_entity.mime_type matches '/(excel|sheet)/' %}
+          <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        {% elseif media_entity.mime_type matches '/image/' %}
+          <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z" />
+          </svg>
+        {% else %}
+          <svg class="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        {% endif %}
+      </div>
+      
+      {# Document metadata #}
+      <div class="flex-grow min-w-0">
+        <h3 class="text-gray-900 font-semibold text-sm truncate">
+          {{ resolved_alt_text|default(media_entity.name|default('Document'))|striptags }}
+        </h3>
+        
+        <div class="mt-1 flex items-center space-x-4 text-xs text-gray-500">
+          {% if media_entity.mime_type %}
+            <span class="bg-gray-200 px-2 py-1 rounded uppercase font-mono">
+              {{ media_entity.mime_type|split('/')|last }}
+            </span>
+          {% endif %}
+          
+          {% if media_entity.file_size %}
+            <span class="flex items-center">
+              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M7 4H5a2 2 0 00-2 2v14a2 2 0 002 2h2" />
+              </svg>
+              {{ (media_entity.file_size / 1024 / 1024)|number_format(2) }} MB
+            </span>
+          {% endif %}
+          
+          {% if media_entity.created %}
+            <span class="flex items-center">
+              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4M8 7h8M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-2" />
+              </svg>
+              {{ media_entity.created|date('d.m.Y') }}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+      
+      {# Swiss government seal/badge for official documents #}
+      {% if privacy_level == 'public' and variant == 'document_preview' %}
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.89,1 3,1.89 3,3V7H9V9H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V9M5,3H15V9H21V19H5V3Z" />
+            </svg>
+          </div>
+          <p class="text-xs text-center text-gray-600 mt-1">{{ 'Official'|t }}</p>
+        </div>
+      {% endif %}
+      
+    </div>
+    
+    {# Document description/caption #}
+    {% if resolved_caption %}
+      <div class="mt-3 pt-3 border-t border-gray-100">
+        <p class="text-sm text-gray-700 leading-relaxed">{{ resolved_caption|striptags }}</p>
+      </div>
+    {% endif %}
+  </div>
+  
+  {# Document actions #}
+  <div class="adesso-media__document-actions p-4">
+    <div class="flex flex-wrap gap-2">
+      
+      {# Primary download/view action #}
+      {% if media_entity.uri %}
+        <a 
+          href="{{ media_entity.uri }}"
+          class="adesso-media__document-link inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          {% if media_entity.mime_type matches '/pdf/' %}target="_blank" rel="noopener"{% else %}download{% endif %}
+          aria-describedby="{{ media_id }}-doc-desc"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            {% if media_entity.mime_type matches '/pdf/' %}
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            {% else %}
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            {% endif %}
+          </svg>
+          {% if media_entity.mime_type matches '/pdf/' %}
+            {{ 'View PDF'|t }}
+          {% else %}
+            {{ 'Download'|t }}
+          {% endif %}
+        </a>
+      {% endif %}
+      
+      {# Secondary actions #}
+      {% if media_entity.mime_type matches '/pdf/' %}
+        <a 
+          href="{{ media_entity.uri }}" 
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          download
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          {{ 'Download'|t }}
+        </a>
+      {% endif %}
+      
+      {# Share action for public documents #}
+      {% if privacy_level == 'public' %}
+        <button 
+          type="button"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+          data-document-share
+          aria-label="{{ 'Share document'|t }}: {{ resolved_alt_text|default('Document')|striptags }}"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+          </svg>
+          {{ 'Share'|t }}
+        </button>
+      {% endif %}
+      
+    </div>
+    
+    {# Accessibility description for document actions #}
+    <div id="{{ media_id }}-doc-desc" class="sr-only">
+      {{ 'Document'|t }}: {{ resolved_alt_text|default(media_entity.name|default('Untitled'))|striptags }}.
+      {% if media_entity.mime_type %}{{ 'File type'|t }}: {{ media_entity.mime_type }}.{% endif %}
+      {% if media_entity.file_size %}{{ 'File size'|t }}: {{ (media_entity.file_size / 1024 / 1024)|number_format(2) }} MB.{% endif %}
+      {% if resolved_caption %}{{ resolved_caption|striptags }}{% endif %}
+    </div>
+  </div>
+  
+  {# Document preview section (for PDFs and images) #}
+  {% if variant == 'document_preview' and (media_entity.mime_type matches '/pdf/' or media_entity.mime_type matches '/image/') %}
+    <div class="adesso-media__document-preview border-t border-gray-200">
+      {% if media_entity.mime_type matches '/pdf/' %}
+        {# PDF preview placeholder - would integrate with PDF.js in production #}
+        <div class="bg-gray-100 h-48 flex items-center justify-center text-gray-500">
+          <div class="text-center">
+            <svg class="w-12 h-12 mx-auto mb-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            <p class="text-sm">{{ 'PDF Preview'|t }}</p>
+            <p class="text-xs text-gray-400">{{ 'Click "View PDF" to open full document'|t }}</p>
+          </div>
+        </div>
+      {% elseif media_entity.mime_type matches '/image/' %}
+        {# Image preview #}
+        <div class="p-2">
+          <img 
+            src="{{ media_entity.uri }}" 
+            alt="{{ resolved_alt_text|default('')|striptags }}"
+            class="w-full h-48 object-cover rounded border border-gray-200"
+            loading="lazy"
+          />
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  
+</div>
+
+{# Swiss municipal compliance and security notice #}
+{% if privacy_level != 'public' %}
+  <div class="adesso-media__security-notice mt-2 text-xs text-red-700 bg-red-50 p-2 rounded border-l-4 border-red-400">
+    <strong>{{ 'Security Notice'|t }}:</strong>
+    {% if privacy_level == 'restricted' %}
+      {{ 'This document contains restricted information. Access may be logged.'|t }}
+    {% else %}
+      {{ 'This document is for internal use. Please handle according to municipal policies.'|t }}
+    {% endif %}
+  </div>
+{% endif %}
+
+{# External content privacy warning #}
+{% if external_content %}
+  <div class="adesso-media__privacy-notice mt-2 text-xs text-yellow-700 bg-yellow-50 p-2 rounded border-l-4 border-yellow-400">
+    <strong>{{ 'Privacy Notice'|t }}:</strong>
+    {{ 'This document may be hosted externally and subject to different privacy policies.'|t }}
+  </div>
+{% endif %}

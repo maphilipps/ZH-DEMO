@@ -1,35 +1,178 @@
-# Project Context for AI Development
+# ZH-Demo GPZH Municipal Portal System
 
-## Technology Stack
-Primary: rails
-Framework: Ruby on Rails
-Database: 
-CSS: standard
-Authentication: custom
+## Technology Stack Analysis
 
-## Architecture Patterns
-- Follows Rails conventions and best practices
-- Test-driven development with automated feedback loops
-- Continuous learning from code reviews and failures
-- AI-assisted development with human oversight
+**Core Framework**: Drupal 11.2.2 (PHP 8.3, MariaDB 10.11)
+**Frontend**: Vite 6.2.0, Tailwind CSS v4, Flowbite components
+**Development**: DDEV containerized environment, Node.js 20
+**AI Integration**: Anthropic Claude, OpenAI GPT, with Swiss compliance
+**Architecture**: Multi-site portal system (Thalwil, Thalheim, Erlenbach)
+**Compliance**: Swiss DSGVO/CH-DSG, eCH-0059 accessibility standards
 
-## Development Workflow
-1. AI agents handle routine tasks (testing, review, implementation)
-2. Human oversight ensures quality and architectural coherence  
-3. Every failure becomes a learning opportunity captured in rules
-4. Code reviews feed back into AI knowledge for future improvements
+## High-Level Component Goals
 
-## Key Principles
-- Compounding Engineering: Systems that improve systems
-- Fail Fast, Learn Faster: Convert every error into permanent improvement
-- Context Over Configuration: Maintain lean, project-specific AI guidance
-- Trust but Verify: AI autonomy with human validation checkpoints
+### Municipal Portal System
+- Serve three Swiss municipalities with distinct branding/functionality
+- GPZH (Gemeindeportale Zürich) compliance demonstration system
+- Multi-language support (DE/FR/IT) with Swiss administrative standards
 
-## Current Focus Areas
-- Implementing robust testing patterns
-- Establishing clear architectural boundaries
-- Creating feedback loops for continuous improvement
-- Maintaining code quality through automated reviews
+### AI-Enhanced Content Management
+- Automated content generation with municipal context
+- Smart alt-text generation for accessibility compliance
+- Form auto-completion and administrative text assistance
+- Natural language search with semantic understanding
 
-Generated: Wed Sep  3 17:08:44 CEST 2025
-Last Updated: Wed Sep  3 17:08:44 CEST 2025
+### Swiss Compliance & Accessibility
+- WCAG 2.1 AA accessibility standards enforcement
+- Data protection according to Swiss privacy laws
+- Municipal workflow management with approval processes
+
+### Performance & Modern Frontend
+- Vite-powered asset pipeline with HMR development
+- Tailwind CSS v4 utility-first styling system
+- Component-based architecture with Storybook documentation
+- Responsive design optimized for government portals
+
+## Key Functions & API Reference
+
+### Core Drupal Functions
+```php
+// Multi-site configuration
+\Drupal::service('municipality.manager')->getCurrentMunicipality(): string
+\Drupal::service('gpzh.config')->getMunicipalitySettings($site): array
+
+// AI Integration
+\Drupal::service('ai.provider.anthropic')->generate($prompt, $context): string
+\Drupal::service('gpzh.ai.content')->generateMunicipalNews($municipality): array
+\Drupal::service('gpzh.ai.accessibility')->generateAltText($image_path): string
+
+// Swiss Compliance
+\Drupal::service('gpzh.compliance.privacy')->validateConsent($data): bool
+\Drupal::service('gpzh.accessibility.validator')->auditContent($content): array
+```
+
+### DDEV Commands
+```bash
+ddev start                    # Start multi-site environment
+ddev theme dev               # Vite development server (:5173)
+ddev theme build             # Production asset compilation
+ddev drush --uri=[site].gpzh.local cr  # Municipal site cache clear
+```
+
+### Frontend Build System
+```javascript
+// Vite configuration supports multi-site themes
+export default {
+  build: {
+    rollupOptions: {
+      input: {
+        thalwil: 'src/themes/thalwil/main.js',
+        thalheim: 'src/themes/thalheim/main.js',
+        erlenbach: 'src/themes/erlenbach/main.js'
+      }
+    }
+  }
+}
+```
+
+## ASCII Architecture Map
+
+```
+┌─────────────────────────────────────────────────┐
+│                 ZH-Demo Portal                  │
+├─────────────────┬───────────────────────────────┤
+│   Multi-Site    │        AI Integration         │
+│   ┌─Thalwil─┐   │   ┌─Claude/GPT─┐              │
+│   ├─Thalheim─┤  │   ├─Content Gen─┤             │
+│   └─Erlenbach─┘ │   └─Alt-Text────┘             │
+├─────────────────┼───────────────────────────────┤
+│  Drupal 11 Core │      Frontend Stack           │
+│  ┌─Config Mgmt─┐│   ┌─Vite 6.2────┐             │
+│  ├─Custom Mods─┤│   ├─Tailwind v4─┤             │
+│  └─Compliance──┘│   └─Flowbite────┘             │
+├─────────────────┼───────────────────────────────┤
+│    Data Layer   │    Infrastructure             │
+│  ┌─MariaDB────┐ │   ┌─DDEV────────┐             │
+│  ├─File System─┤ │   ├─Docker─────┤             │
+│  └─Search Index─┘│   └─Local Dev───┘             │
+└─────────────────┴───────────────────────────────┘
+     │                        │
+     ▼                        ▼
+┌─Swiss Compliance─┐    ┌─Performance─┐
+│ • WCAG 2.1 AA    │    │ • <2s Load  │
+│ • CH-DSG/DSGVO   │    │ • Lighthouse│
+│ • eCH-0059       │    │ • PWA Ready │
+└──────────────────┘    └─────────────┘
+```
+
+## File Relationships & Dependencies
+
+**Configuration Flow:**
+```
+composer.json → .ddev/config.yaml → config/sync/*.yml → web/sites/*/settings.php
+```
+
+**Theme Architecture:**
+```
+web/themes/custom/adesso_cms_theme/
+├── src/css/[municipality].css → Tailwind compilation
+├── src/js/components/*.js → ES6 modules
+└── package.json → Vite build pipeline
+```
+
+**Custom Module Dependencies:**
+```
+web/modules/custom/municipal_ai_agents/ → ai:ai_provider_anthropic
+web/modules/custom/gpzh_compliance/ → privacy & accessibility
+web/modules/custom/zh_demo_*/ → municipality-specific features
+```
+
+## Current Structure Assessment
+
+### Strengths
+- Modern Drupal 11 foundation with PHP 8.3 performance
+- Well-organized multi-site architecture for municipal portals
+- Advanced AI integration with Swiss compliance considerations
+- Modern frontend tooling (Vite, Tailwind v4) for rapid development
+- Comprehensive DDEV containerization for consistent environments
+
+### Code Style Guidelines
+- PSR-12 PHP coding standards with Drupal-specific adaptations
+- ESLint configuration for JavaScript consistency
+- Tailwind utility-first CSS methodology
+- Drupal configuration management best practices
+- Multi-site namespace organization (gpzh_*, municipal_*, zh_demo_*)
+
+### Data Formats & Standards
+- **Configuration**: YAML-based Drupal configuration management
+- **Content**: Structured JSON APIs for AI integration
+- **Styling**: Tailwind CSS classes with Swiss design system variables
+- **Localization**: PO files for DE/FR/IT multi-language support
+- **Compliance**: Structured metadata for accessibility and privacy tracking
+
+## Veteran Developer Insights
+
+### Architecture Maturity
+This system demonstrates enterprise-grade municipal portal architecture with thoughtful separation of concerns. The multi-site Drupal approach is well-suited for managing multiple municipalities while maintaining code reuse and centralized maintenance.
+
+### AI Integration Philosophy
+The AI implementation is pragmatic - leveraging multiple providers (Anthropic Claude, OpenAI) while maintaining Swiss privacy compliance. The context-aware content generation for municipalities shows sophisticated prompt engineering.
+
+### Performance Considerations
+Modern tooling choices (Vite over Webpack, Tailwind v4, PHP 8.3) indicate performance-first thinking. The DDEV containerization ensures consistent development environments across team members.
+
+### Compliance-First Design
+The explicit Swiss compliance modules (CH-DSG, WCAG 2.1 AA, eCH-0059) show regulatory awareness uncommon in many projects. This suggests a mature understanding of government portal requirements.
+
+### Technical Debt Assessment
+- **Low**: Modern dependency management and build tools
+- **Medium**: Custom module interdependencies require careful management
+- **Opportunity**: Potential for automated testing expansion across municipalities
+
+### Scalability Outlook
+Well-positioned for horizontal scaling with additional municipalities. The configuration-driven approach and AI integration provide foundation for rapid municipal portal deployment.
+
+This system represents a sophisticated balance of modern web development practices with specific Swiss municipal requirements - a strong foundation for government portal expansion.
+
+Generated: 2025-09-06
+Last Updated: 2025-09-06

@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ * Specialized Image Media Template
+ * 
+ * Advanced image handling with modern formats (AVIF/WebP/JPEG),
+ * responsive images, and performance optimizations.
+ * 
+ * Available variables:
+ * - All variables from main media component schema
+ * - Enhanced performance and format controls
+ */
+#}
+
+{# Modern image format support with performance optimization #}
+{% if responsive and media_entity.uri %}
+  <picture class="adesso-media__picture">
+    {# AVIF format - Best compression and quality (90% smaller than JPEG) #}
+    <source 
+      type="image/avif"
+      srcset="
+        {{ media_entity.uri|image_style('thumbnail_avif')|default(media_entity.uri|image_style('thumbnail')) }} 300w,
+        {{ media_entity.uri|image_style('medium_avif')|default(media_entity.uri|image_style('medium')) }} 600w,
+        {{ media_entity.uri|image_style('large_avif')|default(media_entity.uri|image_style('large')) }} 1200w,
+        {{ media_entity.uri|image_style('full_avif')|default(media_entity.uri|image_style('full')) }} 1920w
+      "
+      sizes="
+        {% if size == 'full' %}100vw
+        {% elseif size == 'xl' %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 70vw
+        {% elseif size == 'lg' %}(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw
+        {% elseif size == 'md' %}(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw
+        {% elseif size == 'sm' %}(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw
+        {% else %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw{% endif %}
+      "
+    />
+    
+    {# WebP format - Excellent compression and wide support #}
+    <source 
+      type="image/webp"
+      srcset="
+        {{ media_entity.uri|image_style('thumbnail_webp')|default(media_entity.uri|image_style('thumbnail')) }} 300w,
+        {{ media_entity.uri|image_style('medium_webp')|default(media_entity.uri|image_style('medium')) }} 600w,
+        {{ media_entity.uri|image_style('large_webp')|default(media_entity.uri|image_style('large')) }} 1200w,
+        {{ media_entity.uri|image_style('full_webp')|default(media_entity.uri|image_style('full')) }} 1920w
+      "
+      sizes="
+        {% if size == 'full' %}100vw
+        {% elseif size == 'xl' %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 70vw
+        {% elseif size == 'lg' %}(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw
+        {% elseif size == 'md' %}(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw
+        {% elseif size == 'sm' %}(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw
+        {% else %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw{% endif %}
+      "
+    />
+    
+    {# JPEG fallback - Universal compatibility #}
+    <img 
+      src="{{ media_entity.uri|image_style('large') }}"
+      srcset="
+        {{ media_entity.uri|image_style('thumbnail') }} 300w,
+        {{ media_entity.uri|image_style('medium') }} 600w,
+        {{ media_entity.uri|image_style('large') }} 1200w,
+        {{ media_entity.uri|image_style('full') }} 1920w
+      "
+      sizes="
+        {% if size == 'full' %}100vw
+        {% elseif size == 'xl' %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 70vw
+        {% elseif size == 'lg' %}(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 50vw
+        {% elseif size == 'md' %}(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw
+        {% elseif size == 'sm' %}(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw
+        {% else %}(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw{% endif %}
+      "
+      alt="{{ resolved_alt_text|default('')|striptags }}"
+      class="adesso-media__image max-w-full h-auto"
+      {% if lazy_loading %}loading="lazy"{% endif %}
+      {% if media_entity.metadata.width %}width="{{ media_entity.metadata.width }}"{% endif %}
+      {% if media_entity.metadata.height %}height="{{ media_entity.metadata.height }}"{% endif %}
+      {% if lightbox %}
+        data-lightbox="true"
+        data-lightbox-src="{{ media_entity.uri|image_style('full') }}"
+        tabindex="0"
+        role="button"
+        aria-label="{{ 'Open image in lightbox'|t }}: {{ resolved_alt_text|default('Image')|striptags }}"
+      {% endif %}
+      fetchpriority="{% if preload == 'auto' %}high{% else %}auto{% endif %}"
+      decoding="async"
+      data-image-quality="{{ quality|default(85) }}"
+      data-media-bundle="image"
+      {% if variant == 'hero' %}
+        importance="high"
+      {% endif %}
+    />
+  </picture>
+  
+  {# Image optimization metadata for debugging and performance monitoring #}
+  {% if variant == 'hero' or preload == 'auto' %}
+    <link 
+      rel="preload" 
+      as="image"
+      href="{{ media_entity.uri|image_style('large_avif')|default(media_entity.uri|image_style('large_webp')|default(media_entity.uri|image_style('large'))) }}"
+      fetchpriority="high"
+    />
+  {% endif %}
+  
+{% else %}
+  {# Fallback to Drupal's default media rendering #}
+  {{ media_entity|view(display_mode|default('default')) }}
+{% endif %}

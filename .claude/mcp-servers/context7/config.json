@@ -1,0 +1,44 @@
+{
+  "name": "context7",
+  "description": "Context7 MCP server integration for municipal portal development",
+  "version": "1.0.0",
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "10000",
+        "CONTEXT7_MODE": "municipal_compliance",
+        "CONTEXT7_FALLBACK_ENABLED": "true"
+      }
+    }
+  },
+  "municipal_config": {
+    "compliance_frameworks": [
+      "WCAG_2_1_AA",
+      "CH_DSG",
+      "eCH_0059",
+      "GPZH_STANDARDS"
+    ],
+    "technology_stack": {
+      "backend": "drupal-11",
+      "frontend": ["vite", "tailwind-css-v4", "alpine-js"],
+      "development": "ddev",
+      "languages": ["php-8.3", "node-20", "typescript"]
+    },
+    "query_priorities": [
+      "municipal_compliance",
+      "accessibility_standards",
+      "swiss_government_requirements",
+      "drupal_best_practices",
+      "performance_optimization"
+    ]
+  },
+  "performance_config": {
+    "timeout": 30000,
+    "max_concurrent_requests": 5,
+    "cache_duration": 3600,
+    "retry_attempts": 3,
+    "fallback_sources": ["web_search", "local_cache", "documentation_cache"]
+  }
+}

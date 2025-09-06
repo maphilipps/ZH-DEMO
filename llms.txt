@@ -1,221 +1,35 @@
-# GPZH ZH-Demo Codebase - LLM Context Guide
+# Project Context for AI Development
 
-## PROJECT OVERVIEW
-ZH-Demo: Drupal 11.2.2 municipal portal demonstration system for GPZH (Gemeindeportale Zürich) prequalification. Showcases enterprise CMS capabilities for Canton Zurich municipal websites with AI integration, component-based architecture, and Swiss compliance features.
+## Technology Stack
+Primary: rails
+Framework: Ruby on Rails
+Database: 
+CSS: standard
+Authentication: custom
 
-**Demo Municipality**: Gemeinde Bruchtal ("Leben am See")  
-**Architecture**: Multi-site CMS with three-lane development (Planning/Building/Reviewing)  
-**Key Technologies**: Drupal 11, PHP 8.3, TailwindCSS v4, Playwright, MCP servers, Milvus vector DB
+## Architecture Patterns
+- Follows Rails conventions and best practices
+- Test-driven development with automated feedback loops
+- Continuous learning from code reviews and failures
+- AI-assisted development with human oversight
 
-## CORE CONFIGURATION FILES
+## Development Workflow
+1. AI agents handle routine tasks (testing, review, implementation)
+2. Human oversight ensures quality and architectural coherence  
+3. Every failure becomes a learning opportunity captured in rules
+4. Code reviews feed back into AI knowledge for future improvements
 
-### composer.json - Dependency Management
-**Purpose**: Drupal enterprise distribution with 100+ modules  
-**Key Dependencies**: 
-- AI Stack: drupal/ai, ai_agents, ai_provider_anthropic, ai_vdb_provider_milvus
-- Content: paragraphs, webform, search_api, easy_email
-- Performance: autosave_form, scheduler, automatic_updates
-**Custom Repositories**: Local theme/modules, external packages
-**Patterns**: Path-based local repos, patch management, scaffold customization
+## Key Principles
+- Compounding Engineering: Systems that improve systems
+- Fail Fast, Learn Faster: Convert every error into permanent improvement
+- Context Over Configuration: Maintain lean, project-specific AI guidance
+- Trust but Verify: AI autonomy with human validation checkpoints
 
-### CLAUDE.md - AI Development Context
-**Purpose**: Living memory system for compounding engineering
-**Sections**: 
-- Three-lane development system with specialized agents
-- Bug-to-rule transformation patterns
-- Compounding knowledge accumulation
-**Learning Rules**: Every failure becomes permanent prevention system
-**Tool Preferences**: Playwright over Puppeteer, Drupal MCP for all config changes
+## Current Focus Areas
+- Implementing robust testing patterns
+- Establishing clear architectural boundaries
+- Creating feedback loops for continuous improvement
+- Maintaining code quality through automated reviews
 
-### playwright.config.js - E2E Testing
-**Purpose**: Multi-browser testing configuration
-**Devices**: Desktop (Chrome/Firefox/Safari) + Mobile (Pixel 5/iPhone 12)
-**Features**: Parallel execution, retry logic, failure recording
-**Base URL**: https://adesso-cms.ddev.site (DDEV development)
-
-### unlighthouse.config.ts - Performance Auditing  
-**Purpose**: Swiss government compliance testing (eCH-0059)
-**Thresholds**: Performance 90%, Accessibility 95%, SEO/Best Practices
-**Multi-device**: Mobile + Desktop scanning with custom hooks
-
-## INFRASTRUCTURE SCRIPTS
-
-### launch-adesso-cms.sh - Development Bootstrap
-**Purpose**: Primary DDEV development environment setup
-**Functions**: Container orchestration, dependency management, theme building
-**Dependencies**: DDEV, Composer, Node.js, custom theme compilation
-
-### mcp-install-gpzh.sh - AI Integration Setup
-**Purpose**: Installs Model Context Protocol servers for Claude integration
-**MCP Servers**: atlassian-mcp, github-mcp, playwright-mcp, browser-tools-mcp
-**Environment**: JIRA integration, GitHub workflows, AI-assisted development
-
-### build-subthemes.sh - Municipality Theme Builder
-**Purpose**: Builds municipality-specific subthemes with TailwindCSS v4
-**Function**: `build_subtheme(theme_name, base_config)` 
-**Municipalities**: zh_thalwil, zh_thalheim, zh_erlenbach
-**Process**: npm install → compile → validate
-
-## CONTENT MANAGEMENT SCRIPTS
-
-### create_demo_content.php - Demo Content Factory
-**Purpose**: Generates comprehensive Bruchtal municipality content
-**Functions**:
-- `createDemoNodes(string $content_type, array $nodes_data): void`
-- Creates club, company, hospitality content with structured data
-**Dependencies**: Drupal\node\Entity\Node, DrupalKernel bootstrap
-**Pattern**: Entity factory with field mapping
-
-### create_navigation.php - Menu Structure Builder
-**Purpose**: Creates GPZH-compliant navigation hierarchy
-**Functions**:
-- `createPageAndMenu(array $page, ?string $parent_menu_id = null, int $level = 0): void`
-- Recursive tree building with menu link creation
-**Dependencies**: Node, MenuLinkContent entities
-**Pattern**: Hierarchical content structure with navigation integration
-
-### create-demo-page-final.php - Component Showcase
-**Purpose**: Demonstrates all 15 paragraph component types
-**Functions**: Creates nested paragraph structures with media integration
-**Pattern**: Component-based content architecture with nested relationships
-
-## USER MANAGEMENT & WORKFLOWS
-
-### setup_editorial_workflow.php - Workflow Configuration
-**Purpose**: Configures content moderation workflow (draft→review→published)
-**Functions**: Creates roles, permissions, workflow states and transitions
-**Roles**: Guest Editor, Content Editor, Content Manager, Administrator
-**Dependencies**: Role, Workflow, User entities
-
-### adjust_guest_editor_permissions.php - Permission Matrix
-**Purpose**: Restricts Guest Editor to directory content types only
-**Functions**: Permission validation and cleanup
-**Pattern**: Role-based access control with content type restrictions
-
-### test_guest_editor_final.php - Permission Validation
-**Purpose**: Comprehensive permission auditing system
-**Functions**: Validates permission matrix across content types and workflows
-**Pattern**: Automated testing of access control configurations
-
-## MAINTENANCE & FIX SCRIPTS
-
-### fix-paragraph-theme-field.php - Field System Repair
-**Purpose**: Adds missing theme field to paragraph types
-**Functions**: 
-- Creates FieldStorageConfig and FieldConfig entities
-- Updates form/view displays
-**Pattern**: Dynamic field system management with cache clearing
-
-### fix-all-nullable-fields.php - Component Schema Repair
-**Purpose**: Updates component YAML schemas to allow null values
-**Dependencies**: Symfony\Component\Yaml, Finder
-**Pattern**: File system YAML manipulation for schema fixes
-
-### cleanup_menu.php - Menu Maintenance
-**Purpose**: Maintains GPZH navigation structure
-**Functions**: Selective menu cleanup with whitelist/blacklist logic
-**Pattern**: Data maintenance with predefined content preservation
-
-## TESTING & QUALITY ASSURANCE
-
-### backstop.json - Visual Regression Testing
-**Scenarios**: Landing pages, paragraph showcases, responsive viewports
-**Viewports**: Mobile (375x667), Desktop (1920x1080)
-**Engine**: Puppeteer with containerized security args
-**Threshold**: 0.1% mismatch tolerance
-
-### phpstan.neon - Static Analysis
-**Level**: 6 (enterprise-grade)
-**Scope**: Custom modules and themes
-**Rules**: Drupal-specific analysis, "adesso" lowercase enforcement
-**Integration**: Drupal core bootstrapping
-
-## ASCII ARCHITECTURE MAP
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   DEVELOPMENT   │    │   CONTENT       │    │   TESTING       │
-│   ENVIRONMENT   │    │   MANAGEMENT    │    │   QUALITY       │
-│                 │    │                 │    │                 │
-│ launch-adesso-  │    │ create_demo_    │    │ playwright.     │
-│ cms.sh          │────│ content.php     │────│ config.js       │
-│       │         │    │       │         │    │       │         │
-│ DDEV + Docker   │    │ create_         │    │ backstop.json   │
-│       │         │    │ navigation.php  │    │       │         │
-│ composer.json   │    │       │         │    │ unlighthouse.   │
-│       │         │    │ Drupal Entities │    │ config.ts       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-┌─────────────────────────────────┼─────────────────────────────────┐
-│                    DRUPAL CORE SYSTEM                             │
-│                                 │                                 │
-│  ┌─────────────┐    ┌─────────────────┐    ┌─────────────────┐   │
-│  │   USERS &   │    │   COMPONENTS    │    │   AI INTEGRATION│   │
-│  │  WORKFLOWS  │    │   PARAGRAPHS    │    │   MCP SERVERS   │   │
-│  │             │    │                 │    │                 │   │
-│  │ setup_      │────│ fix-paragraph-  │────│ mcp-install-    │   │
-│  │ editorial_  │    │ theme-field.php │    │ gpzh.sh         │   │
-│  │ workflow.php│    │                 │    │                 │   │
-│  │             │    │ Component YAML  │    │ Claude + GitHub │   │
-│  │ Permission  │    │ Schema Files    │    │ Atlassian       │   │
-│  │ Matrix      │    │                 │    │                 │   │
-│  └─────────────┘    └─────────────────┘    └─────────────────┘   │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                      MAINTENANCE & REPAIR                       │
-│                                                                 │
-│  fix-all-nullable-fields.php ──── YAML Schema Updates          │
-│  cleanup_menu.php ──────────────── Navigation Maintenance      │
-│  simple-fix-components.php ─────── Text-based Repairs          │
-│  test_*.php ────────────────────── Validation & Auditing       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-## CODE STYLE & PATTERNS ANALYSIS
-
-### Architecture Patterns
-1. **Entity Factory Pattern**: Extensive use of `Entity::create()` for content generation
-2. **Component Architecture**: Paragraph-based content with nested relationships  
-3. **Permission Matrix**: Role-based access control with validation systems
-4. **Recursive Tree Building**: Menu and content hierarchy creation
-5. **Configuration as Code**: YAML-driven component definitions
-6. **Compounding Engineering**: Failure-to-rule transformation system
-
-### Code Quality Standards
-- **PHP**: PSR-12 compliance, PHPStan level 6 analysis
-- **Drupal**: Entity API patterns, proper cache management
-- **Frontend**: TailwindCSS v4 utility-first, component-driven CSS
-- **Testing**: Multi-browser E2E, visual regression, performance auditing
-- **Documentation**: Comprehensive inline documentation, architectural decision records
-
-### Data Formats & Standards
-- **Content**: Drupal entity system with field API
-- **Configuration**: YAML-based, version controlled
-- **Components**: Single Directory Components (SDC) with YAML schema
-- **Media**: Responsive images with focal point, SVG support
-- **Search**: Milvus vector database for semantic search
-- **Compliance**: Swiss eCH-0059 government standards
-
-### Development Workflow
-- **Environment**: DDEV containerized development
-- **Dependencies**: Composer (PHP) + npm (Node.js)
-- **Testing**: Automated via Playwright + BackstopJS + Unlighthouse
-- **AI Integration**: MCP servers for Claude-assisted development
-- **Deployment**: Docker multi-stage builds with optimized layers
-
-### Veteran Developer Insights
-This codebase demonstrates enterprise-grade Drupal architecture with:
-- Sophisticated content modeling via paragraphs system
-- Proper separation of concerns (content/config/code)
-- Comprehensive testing strategy across multiple dimensions
-- Modern frontend toolchain integration
-- AI-first development approach with compounding learning
-- Swiss government compliance built-in from ground up
-- Maintenance-first approach with automated repair scripts
-
-The system successfully bridges traditional CMS architecture with modern AI-assisted development, creating a maintainable and scalable municipal portal solution.
+Generated: Wed Sep  3 17:08:44 CEST 2025
+Last Updated: Wed Sep  3 17:08:44 CEST 2025

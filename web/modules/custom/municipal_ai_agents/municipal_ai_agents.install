@@ -1,0 +1,310 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Municipal AI Agents module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_install().
+ */
+function municipal_ai_agents_install() {
+  // Set initial configuration for Swiss compliance
+  $config = \Drupal::configFactory()->getEditable('municipal_ai_agents.settings');
+  
+  // Enable Swiss compliance by default
+  $config->set('swiss_compliance_enabled', TRUE);
+  $config->set('compliance_level', 'ech_0059_standard');
+  $config->set('privacy_level', 'balanced');
+  $config->set('data_retention_period', '90_days');
+  
+  // Set default municipality values (to be customized by administrator)
+  $config->set('municipality_name', '');
+  $config->set('default_language', 'de');
+  $config->set('supported_languages', ['de', 'fr', 'it']);
+  
+  // Enable recommended agents by default
+  $config->set('agents.municipal_content_curation.enabled', TRUE);
+  $config->set('agents.citizen_service_automation.enabled', TRUE);
+  $config->set('agents.accessibility_enhancement.enabled', TRUE);
+  
+  $config->save();
+  
+  // Create performance monitoring table
+  _municipal_ai_agents_create_performance_table();
+  
+  // Set up Swiss data sovereignty compliance checks
+  _municipal_ai_agents_configure_swiss_compliance();
+  
+  \Drupal::messenger()->addMessage(t('Municipal AI Agents installed successfully. Please configure your municipality settings at /admin/config/ai/municipal-agents.'));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function municipal_ai_agents_uninstall() {
+  // Clean up configuration
+  \Drupal::configFactory()->getEditable('municipal_ai_agents.settings')->delete();
+  
+  // Clean up state variables
+  \Drupal::state()->deleteMultiple([
+    'municipal_ai_agents.last_performance_check',
+    'municipal_ai_agents.last_performance_report',
+    'municipal_ai_agents.compliance_check_timestamp',
+  ]);
+  
+  // Drop performance monitoring table
+  $connection = Database::getConnection();
+  if ($connection->schema()->tableExists('municipal_ai_performance_log')) {
+    $connection->schema()->dropTable('municipal_ai_performance_log');
+  }
+  
+  \Drupal::messenger()->addMessage(t('Municipal AI Agents uninstalled successfully.'));
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function municipal_ai_agents_requirements($phase) {
+  $requirements = [];
+  
+  if ($phase == 'install') {
+    // Check if required AI modules are available
+    $required_modules = ['ai', 'ai_agents', 'ai_provider_anthropic'];
+    $missing_modules = [];
+    
+    foreach ($required_modules as $module) {
+      if (!\Drupal::moduleHandler()->moduleExists($module)) {
+        $missing_modules[] = $module;
+      }
+    }
+    
+    if (!empty($missing_modules)) {
+      $requirements['municipal_ai_agents_dependencies'] = [
+        'title' => t('Municipal AI Agents Dependencies'),
+        'description' => t('The following required modules must be enabled: @modules', [
+          '@modules' => implode(', ', $missing_modules),
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+    
+    // Check PHP version for AI processing
+    if (version_compare(PHP_VERSION, '8.1.0', '<')) {
+      $requirements['municipal_ai_agents_php'] = [
+        'title' => t('Municipal AI Agents PHP Version'),
+        'description' => t('Municipal AI Agents requires PHP 8.1 or higher for optimal AI processing performance.'),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+  
+  if ($phase == 'runtime') {
+    $config = \Drupal::config('municipal_ai_agents.settings');
+    
+    // Check Swiss compliance configuration
+    if (!$config->get('municipality_name')) {
+      $requirements['municipal_ai_agents_config'] = [
+        'title' => t('Municipal AI Agents Configuration'),
+        'value' => t('Municipality name not configured'),
+        'description' => t('Please configure your municipality settings at <a href="@url">Municipal AI Agents settings</a>.', [
+          '@url' => '/admin/config/ai/municipal-agents',
+        ]),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+    
+    // Check AI provider configuration
+    $anthropic_config = \Drupal::config('ai_provider_anthropic.settings');
+    if (!$anthropic_config->get('api_key')) {
+      $requirements['municipal_ai_agents_provider'] = [
+        'title' => t('Municipal AI Agents Provider'),
+        'value' => t('Anthropic API key not configured'),
+        'description' => t('Please configure your Anthropic API key for Swiss-compliant AI processing.'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+    else {
+      $requirements['municipal_ai_agents_provider'] = [
+        'title' => t('Municipal AI Agents Provider'),
+        'value' => t('AI provider configured'),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    
+    // Check performance monitoring
+    if ($config->get('enable_performance_monitoring')) {
+      $last_check = \Drupal::state()->get('municipal_ai_agents.last_performance_check', 0);
+      $interval = $config->get('performance_monitoring_interval', 3600);
+      
+      if (REQUEST_TIME - $last_check > $interval * 2) {
+        $requirements['municipal_ai_agents_performance'] = [
+          'title' => t('Municipal AI Performance Monitoring'),
+          'value' => t('Performance monitoring overdue'),
+          'description' => t('Performance monitoring has not run recently. Last check: @time', [
+            '@time' => $last_check ? \Drupal::service('date.formatter')->format($last_check) : t('Never'),
+          ]),
+          'severity' => REQUIREMENT_WARNING,
+        ];
+      }
+      else {
+        $requirements['municipal_ai_agents_performance'] = [
+          'title' => t('Municipal AI Performance Monitoring'),
+          'value' => t('Performance monitoring active'),
+          'severity' => REQUIREMENT_OK,
+        ];
+      }
+    }
+  }
+  
+  return $requirements;
+}
+
+/**
+ * Creates the performance monitoring table.
+ */
+function _municipal_ai_agents_create_performance_table() {
+  $connection = Database::getConnection();
+  $schema = $connection->schema();
+  
+  if (!$schema->tableExists('municipal_ai_performance_log')) {
+    $table = [
+      'description' => 'Stores performance monitoring data for Municipal AI Agents',
+      'fields' => [
+        'id' => [
+          'type' => 'serial',
+          'not null' => TRUE,
+          'description' => 'Primary Key: Unique ID.',
+        ],
+        'timestamp' => [
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'Unix timestamp of the performance check.',
+        ],
+        'agent_id' => [
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'description' => 'The ID of the AI agent.',
+        ],
+        'metric_type' => [
+          'type' => 'varchar',
+          'length' => 64,
+          'not null' => TRUE,
+          'description' => 'Type of performance metric.',
+        ],
+        'metric_value' => [
+          'type' => 'float',
+          'not null' => TRUE,
+          'description' => 'The performance metric value.',
+        ],
+        'context_data' => [
+          'type' => 'text',
+          'size' => 'big',
+          'description' => 'Serialized context data for the metric.',
+        ],
+        'compliance_status' => [
+          'type' => 'varchar',
+          'length' => 32,
+          'default' => 'compliant',
+          'description' => 'Swiss compliance status.',
+        ],
+      ],
+      'primary key' => ['id'],
+      'indexes' => [
+        'timestamp' => ['timestamp'],
+        'agent_metric' => ['agent_id', 'metric_type'],
+        'compliance' => ['compliance_status'],
+      ],
+    ];
+    
+    $schema->createTable('municipal_ai_performance_log', $table);
+  }
+}
+
+/**
+ * Configures Swiss data sovereignty compliance.
+ */
+function _municipal_ai_agents_configure_swiss_compliance() {
+  // Configure AI providers for Swiss compliance
+  $anthropic_config = \Drupal::configFactory()->getEditable('ai_provider_anthropic.settings');
+  
+  // Ensure moderation is enabled for compliance
+  $anthropic_config->set('openai_moderation', TRUE);
+  $anthropic_config->save();
+  
+  // Set compliance check timestamp
+  \Drupal::state()->set('municipal_ai_agents.compliance_check_timestamp', REQUEST_TIME);
+  
+  // Log compliance configuration
+  \Drupal::logger('municipal_ai_agents')->info('Swiss compliance configuration applied successfully.');
+}
+
+/**
+ * Update 10001: Add Swiss data sovereignty enhancements.
+ */
+function municipal_ai_agents_update_10001() {
+  $config = \Drupal::configFactory()->getEditable('municipal_ai_agents.settings');
+  
+  // Add new Swiss compliance settings
+  if (!$config->get('swiss_data_sovereignty_level')) {
+    $config->set('swiss_data_sovereignty_level', 'strict');
+    $config->set('canton_specific_requirements', []);
+    $config->set('municipal_classification_level', 'public');
+  }
+  
+  $config->save();
+  
+  return t('Swiss data sovereignty enhancements added.');
+}
+
+/**
+ * Update 10002: Enhance accessibility compliance features.
+ */
+function municipal_ai_agents_update_10002() {
+  $config = \Drupal::configFactory()->getEditable('municipal_ai_agents.settings');
+  
+  // Upgrade accessibility compliance to ECH-0059 standard
+  if ($config->get('compliance_level') === 'basic') {
+    $config->set('compliance_level', 'ech_0059_standard');
+  }
+  
+  // Enable enhanced accessibility features
+  $config->set('agents.accessibility_enhancement.enhanced_features', TRUE);
+  $config->set('agents.accessibility_enhancement.automated_testing', TRUE);
+  
+  $config->save();
+  
+  return t('Accessibility compliance features enhanced for ECH-0059 standard.');
+}
+
+/**
+ * Update 10003: Add performance monitoring enhancements.
+ */
+function municipal_ai_agents_update_10003() {
+  // Add new fields to performance monitoring table
+  $connection = Database::getConnection();
+  $schema = $connection->schema();
+  
+  if ($schema->tableExists('municipal_ai_performance_log')) {
+    if (!$schema->fieldExists('municipal_ai_performance_log', 'privacy_impact_score')) {
+      $schema->addField('municipal_ai_performance_log', 'privacy_impact_score', [
+        'type' => 'float',
+        'description' => 'Privacy impact assessment score.',
+        'default' => 0.0,
+      ]);
+    }
+    
+    if (!$schema->fieldExists('municipal_ai_performance_log', 'citizen_satisfaction_score')) {
+      $schema->addField('municipal_ai_performance_log', 'citizen_satisfaction_score', [
+        'type' => 'float',
+        'description' => 'Citizen satisfaction score.',
+        'default' => 0.0,
+      ]);
+    }
+  }
+  
+  return t('Performance monitoring enhancements added with privacy and citizen satisfaction metrics.');
+}

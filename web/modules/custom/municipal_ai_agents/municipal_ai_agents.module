@@ -1,0 +1,317 @@
+<?php
+
+/**
+ * @file
+ * Municipal AI Agents module for Swiss municipalities.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function municipal_ai_agents_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.municipal_ai_agents':
+      return '<p>' . t('Municipal AI Agents provides specialized AI-powered agents for Swiss municipal portals, including content curation, citizen service automation, multilingual localization, accessibility enhancement, and performance monitoring with Swiss compliance.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function municipal_ai_agents_theme() {
+  return [
+    'municipal_ai_agent_report' => [
+      'variables' => [
+        'agent_id' => NULL,
+        'report_title' => NULL,
+        'report_content' => NULL,
+        'timestamp' => NULL,
+        'compliance_notes' => NULL,
+      ],
+      'template' => 'municipal-ai-agent-report',
+    ],
+    'municipal_accessibility_report' => [
+      'variables' => [
+        'compliance_level' => NULL,
+        'issues_found' => [],
+        'recommendations' => [],
+        'checklist' => [],
+      ],
+      'template' => 'municipal-accessibility-report',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function municipal_ai_agents_node_presave(NodeInterface $node) {
+  // Automatically enhance accessibility for municipal content
+  $config = \Drupal::config('municipal_ai_agents.settings');
+  
+  if ($config->get('auto_accessibility_enhancement')) {
+    _municipal_ai_agents_enhance_node_accessibility($node);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function municipal_ai_agents_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add AI assistance to municipal content forms
+  if (strpos($form_id, 'node_') === 0 && strpos($form_id, '_form') !== FALSE) {
+    _municipal_ai_agents_add_content_assistance($form, $form_state);
+  }
+}
+
+/**
+ * Helper function to enhance node accessibility.
+ */
+function _municipal_ai_agents_enhance_node_accessibility(NodeInterface $node) {
+  $agent_manager = \Drupal::service('ai_agents.agent_manager');
+  
+  try {
+    $accessibility_agent = $agent_manager->createInstance('accessibility_enhancement');
+    
+    // Get node content for analysis
+    $content = '';
+    if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
+      $content = $node->get('body')->value;
+    }
+    
+    if (!empty($content)) {
+      $context = [
+        'entity_type' => 'node',
+        'bundle' => $node->bundle(),
+        'language' => $node->language()->getId(),
+      ];
+      
+      // Run accessibility analysis
+      $accessibility_report = $accessibility_agent->run($content, $context);
+      
+      // Log accessibility analysis for review
+      \Drupal::logger('municipal_ai_agents')->info('Accessibility analysis completed for node @nid: @title', [
+        '@nid' => $node->id(),
+        '@title' => $node->label(),
+      ]);
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('municipal_ai_agents')->error('Error in accessibility enhancement: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+}
+
+/**
+ * Helper function to add AI content assistance to forms.
+ */
+function _municipal_ai_agents_add_content_assistance(&$form, FormStateInterface $form_state) {
+  $config = \Drupal::config('municipal_ai_agents.settings');
+  
+  if ($config->get('enable_content_assistance')) {
+    // Add AI content suggestions
+    if (isset($form['body'])) {
+      $form['municipal_ai_assistance'] = [
+        '#type' => 'details',
+        '#title' => t('AI-Assisted Content Creation'),
+        '#open' => FALSE,
+        '#weight' => -10,
+      ];
+      
+      $form['municipal_ai_assistance']['content_suggestions'] = [
+        '#type' => 'button',
+        '#value' => t('Get Content Suggestions'),
+        '#ajax' => [
+          'callback' => 'municipal_ai_agents_content_suggestions_callback',
+          'wrapper' => 'ai-suggestions-wrapper',
+        ],
+      ];
+      
+      $form['municipal_ai_assistance']['suggestions_display'] = [
+        '#type' => 'markup',
+        '#markup' => '<div id="ai-suggestions-wrapper"></div>',
+      ];
+    }
+  }
+}
+
+/**
+ * Ajax callback for content suggestions.
+ */
+function municipal_ai_agents_content_suggestions_callback($form, FormStateInterface $form_state) {
+  $agent_manager = \Drupal::service('ai_agents.agent_manager');
+  
+  try {
+    $content_agent = $agent_manager->createInstance('municipal_content_curation');
+    
+    // Get current form content
+    $current_content = $form_state->getValue(['body', 0, 'value']) ?? '';
+    
+    if (!empty($current_content)) {
+      $context = [
+        'content_type' => 'municipal_content',
+        'language' => \Drupal::languageManager()->getCurrentLanguage()->getId(),
+      ];
+      
+      $suggestions = $content_agent->run($current_content, $context);
+      
+      return [
+        '#type' => 'markup',
+        '#markup' => '<div class="ai-suggestions">' . $suggestions . '</div>',
+      ];
+    }
+  }
+  catch (\Exception $e) {
+    return [
+      '#type' => 'markup',
+      '#markup' => '<div class="error">' . t('Error generating suggestions: @error', ['@error' => $e->getMessage()]) . '</div>',
+    ];
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function municipal_ai_agents_cron() {
+  $config = \Drupal::config('municipal_ai_agents.settings');
+  $last_run = \Drupal::state()->get('municipal_ai_agents.last_performance_check', 0);
+  
+  // Run performance monitoring if enabled and due
+  if ($config->get('enable_performance_monitoring')) {
+    $interval = $config->get('performance_monitoring_interval', 3600); // Default 1 hour
+    
+    if (REQUEST_TIME - $last_run > $interval) {
+      _municipal_ai_agents_run_performance_monitoring();
+      \Drupal::state()->set('municipal_ai_agents.last_performance_check', REQUEST_TIME);
+    }
+  }
+}
+
+/**
+ * Helper function to run performance monitoring.
+ */
+function _municipal_ai_agents_run_performance_monitoring() {
+  $agent_manager = \Drupal::service('ai_agents.agent_manager');
+  
+  try {
+    $performance_agent = $agent_manager->createInstance('performance_monitoring');
+    
+    // Gather performance data
+    $performance_data = _municipal_ai_agents_gather_performance_data();
+    
+    if (!empty($performance_data)) {
+      $context = [
+        'monitoring_type' => 'automated_check',
+        'timestamp' => REQUEST_TIME,
+      ];
+      
+      $performance_report = $performance_agent->run($performance_data, $context);
+      
+      // Log performance report
+      \Drupal::logger('municipal_ai_agents')->info('Performance monitoring completed: @report', [
+        '@report' => substr($performance_report, 0, 200) . '...',
+      ]);
+      
+      // Store report for later retrieval
+      \Drupal::state()->set('municipal_ai_agents.last_performance_report', [
+        'timestamp' => REQUEST_TIME,
+        'report' => $performance_report,
+      ]);
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('municipal_ai_agents')->error('Error in performance monitoring: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+}
+
+/**
+ * Helper function to gather performance data.
+ */
+function _municipal_ai_agents_gather_performance_data() {
+  // Gather basic performance metrics
+  $data = [];
+  
+  // Database query performance
+  $database = \Drupal::database();
+  $start_time = microtime(TRUE);
+  $database->select('node', 'n')->fields('n', ['nid'])->range(0, 1)->execute();
+  $db_query_time = microtime(TRUE) - $start_time;
+  
+  $data[] = "Database query time: " . round($db_query_time * 1000, 2) . "ms";
+  
+  // Memory usage
+  $memory_usage = memory_get_peak_usage(TRUE);
+  $data[] = "Peak memory usage: " . round($memory_usage / 1024 / 1024, 2) . "MB";
+  
+  // Cache statistics if available
+  $cache_backend = \Drupal::cache();
+  if (method_exists($cache_backend, 'getMultiple')) {
+    $data[] = "Cache backend: " . get_class($cache_backend);
+  }
+  
+  return implode("\n", $data);
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function municipal_ai_agents_requirements($phase) {
+  $requirements = [];
+  
+  if ($phase == 'runtime') {
+    // Check AI module dependencies
+    $ai_modules = ['ai', 'ai_agents', 'ai_provider_anthropic'];
+    $missing_modules = [];
+    
+    foreach ($ai_modules as $module) {
+      if (!\Drupal::moduleHandler()->moduleExists($module)) {
+        $missing_modules[] = $module;
+      }
+    }
+    
+    if (!empty($missing_modules)) {
+      $requirements['municipal_ai_agents_dependencies'] = [
+        'title' => t('Municipal AI Agents Dependencies'),
+        'value' => t('Missing required modules'),
+        'description' => t('The following required modules are not enabled: @modules', [
+          '@modules' => implode(', ', $missing_modules),
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+    else {
+      $requirements['municipal_ai_agents_dependencies'] = [
+        'title' => t('Municipal AI Agents Dependencies'),
+        'value' => t('All required modules are enabled'),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    
+    // Check Swiss compliance configuration
+    $config = \Drupal::config('municipal_ai_agents.settings');
+    if ($config->get('swiss_compliance_enabled')) {
+      $requirements['municipal_ai_agents_compliance'] = [
+        'title' => t('Swiss Compliance'),
+        'value' => t('Swiss data sovereignty compliance enabled'),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    else {
+      $requirements['municipal_ai_agents_compliance'] = [
+        'title' => t('Swiss Compliance'),
+        'value' => t('Swiss compliance not configured'),
+        'description' => t('Consider enabling Swiss compliance features for municipal use.'),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+  
+  return $requirements;
+}

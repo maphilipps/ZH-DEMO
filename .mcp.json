@@ -1,33 +1,22 @@
 {
   "mcpServers": {
-    "mcp-server-drupal": {
+    "taskmaster-ai": {
       "type": "stdio",
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "DRUPAL_AUTH_USER",
-        "-e",
-        "DRUPAL_AUTH_PASSWORD",
-        "--network=host",
-        "ghcr.io/omedia/mcp-server-drupal:latest",
-        "--drupal-url=https://zh-demo.ddev.site",
-        "--unsafe-net"
-      ],
-      "env": {
-        "DRUPAL_AUTH_USER": "admin",
-        "DRUPAL_AUTH_PASSWORD": "secret"
-      }
+      "command": "npx",
+      "args": ["-y", "--package=task-master-ai", "task-master-ai"],
+      "env": {}
     },
     "playwright": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "@playwright/mcp@latest",
-        "--ignore-https-errors",
-        "--isolated"
-      ]
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": {}
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {}
     }
   }
 }

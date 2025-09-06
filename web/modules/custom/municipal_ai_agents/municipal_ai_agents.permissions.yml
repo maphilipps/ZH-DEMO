@@ -1,0 +1,17 @@
+administer municipal ai agents:
+  title: 'Administer Municipal AI Agents'
+  description: 'Configure and manage Municipal AI Agents settings'
+  restrict access: true
+
+use municipal ai agents:
+  title: 'Use Municipal AI Agents'
+  description: 'Use AI agents for content creation and enhancement'
+
+view municipal ai reports:
+  title: 'View Municipal AI Reports'
+  description: 'Access performance and accessibility reports from AI agents'
+
+manage municipal ai compliance:
+  title: 'Manage Municipal AI Compliance'
+  description: 'Configure Swiss compliance and privacy settings'
+  restrict access: true

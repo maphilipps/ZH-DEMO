@@ -1,0 +1,15 @@
+name: 'Municipal AI Agents'
+type: module
+description: 'AI-powered agents for municipal portal enhancement with Swiss compliance'
+package: Municipal
+core_version_requirement: ^10 || ^11
+dependencies:
+  - ai:ai
+  - ai:ai_agents
+  - ai:ai_content_suggestions
+  - ai:ai_translate
+  - ai:ai_provider_anthropic
+  - node:node
+  - field:field
+  - user:user
+version: '1.0.0'

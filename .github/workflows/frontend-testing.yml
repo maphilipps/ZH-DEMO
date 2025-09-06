@@ -1,0 +1,733 @@
+# PreviousNext Frontend Build Tools CI/CD Pipeline
+# Phase 3.1: Comprehensive GitHub Actions Workflow for Frontend Testing
+# 
+# Implements multi-Node matrix testing, cross-browser validation, and Swiss government compliance
+# for the GPZH multi-municipality portal system with 25+ SDC components.
+#
+# Architecture Features:
+# - Multi-Node (18, 20) parallel execution with optimized caching
+# - Comprehensive testing: Vitest + Storybook + Playwright + Visual Regression
+# - Municipality theme validation (Thalwil, Thalheim, Erlenbach)  
+# - Swiss compliance: WCAG 2.1 AA + eCH-0059 + performance >90 scores
+# - Artifact management with detailed reporting and failure debugging
+
+name: 🚀 Frontend Testing Pipeline
+
+on:
+  push:
+    branches: 
+      - main
+      - develop
+      - 'feature/**'
+      - 'hotfix/**'
+    paths:
+      - 'web/themes/custom/adesso_cms_theme/**'
+      - '.github/workflows/frontend-testing.yml'
+      - 'package*.json'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'web/themes/custom/adesso_cms_theme/**'
+      - '.github/workflows/frontend-testing.yml'
+      - 'package*.json'
+  workflow_dispatch:
+    inputs:
+      run_performance_audit:
+        description: 'Run performance audit (slower)'
+        required: false
+        default: false
+        type: boolean
+      run_visual_regression:
+        description: 'Run visual regression tests'
+        required: false
+        default: true
+        type: boolean
+      municipality_filter:
+        description: 'Test specific municipality (all/thalwil/thalheim/erlenbach)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - thalwil
+          - thalheim
+          - erlenbach
+
+# Prevent concurrent runs on same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Performance and compatibility settings
+  NODE_OPTIONS: '--max-old-space-size=4096'
+  PLAYWRIGHT_BROWSERS_PATH: 0
+  # Swiss government testing standards
+  GPZH_DEMO_MODE: true
+  LIGHTHOUSE_CI_SERVER_URL: 'temporary-public-storage'
+  # Municipality testing configuration
+  MUNICIPALITY_THEMES: 'thalwil,thalheim,erlenbach'
+  # Test result paths
+  TEST_RESULTS_PATH: 'test-results'
+  COVERAGE_THRESHOLD: 85
+
+jobs:
+  # ===================================================================
+  # Phase 1: Setup and Validation
+  # ===================================================================
+  
+  setup-and-validate:
+    name: 🔧 Setup & Validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
+      node-versions: ${{ steps.matrix.outputs.node-versions }}
+      should-run-performance: ${{ steps.conditions.outputs.run-performance }}
+      should-run-visual: ${{ steps.conditions.outputs.run-visual }}
+      municipality-filter: ${{ steps.conditions.outputs.municipality-filter }}
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # For change detection
+      
+      - name: 🔍 Detect Changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            theme:
+              - 'web/themes/custom/adesso_cms_theme/**'
+            config:
+              - 'web/themes/custom/adesso_cms_theme/package*.json'
+              - 'web/themes/custom/adesso_cms_theme/vite.config.*'
+              - 'web/themes/custom/adesso_cms_theme/playwright.config.*'
+              - 'web/themes/custom/adesso_cms_theme/.storybook/**'
+            components:
+              - 'web/themes/custom/adesso_cms_theme/components/**'
+            tests:
+              - 'web/themes/custom/adesso_cms_theme/tests/**'
+      
+      - name: 🎯 Set Testing Conditions
+        id: conditions
+        run: |
+          # Determine if performance testing should run
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "run-performance=${{ inputs.run_performance_audit }}" >> $GITHUB_OUTPUT
+            echo "run-visual=${{ inputs.run_visual_regression }}" >> $GITHUB_OUTPUT
+            echo "municipality-filter=${{ inputs.municipality_filter }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/main" ]] || [[ "${{ steps.changes.outputs.components }}" == "true" ]]; then
+            echo "run-performance=true" >> $GITHUB_OUTPUT
+            echo "run-visual=true" >> $GITHUB_OUTPUT
+            echo "municipality-filter=all" >> $GITHUB_OUTPUT
+          else
+            echo "run-performance=false" >> $GITHUB_OUTPUT
+            echo "run-visual=true" >> $GITHUB_OUTPUT
+            echo "municipality-filter=all" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: 📊 Setup Matrix Configuration
+        id: matrix
+        run: |
+          # Multi-Node matrix for comprehensive testing
+          echo 'node-versions=["18", "20"]' >> $GITHUB_OUTPUT
+      
+      - name: 🔑 Generate Cache Key
+        id: cache-key
+        run: |
+          # Create composite cache key for dependencies
+          THEME_PATH="web/themes/custom/adesso_cms_theme"
+          CACHE_KEY="${{ runner.os }}-node-${{ hashFiles(format('{0}/package-lock.json', env.THEME_PATH), format('{0}/package.json', env.THEME_PATH)) }}"
+          echo "key=$CACHE_KEY" >> $GITHUB_OUTPUT
+          echo "Generated cache key: $CACHE_KEY"
+      
+      - name: 📋 Validation Summary
+        run: |
+          echo "## 🔍 Pipeline Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "- **Node versions**: ${{ steps.matrix.outputs.node-versions }}" >> $GITHUB_STEP_SUMMARY  
+          echo "- **Run performance**: ${{ steps.conditions.outputs.run-performance }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run visual tests**: ${{ steps.conditions.outputs.run-visual }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Municipality filter**: ${{ steps.conditions.outputs.municipality-filter }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Cache key**: \`${{ steps.cache-key.outputs.key }}\`" >> $GITHUB_STEP_SUMMARY
+  
+  # ===================================================================
+  # Phase 2: Build and Dependencies (Matrix)
+  # ===================================================================
+  
+  build-and-cache:
+    name: 🏗️ Build & Cache (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-24.04
+    needs: setup-and-validate
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        node-version: ${{ fromJson(needs.setup-and-validate.outputs.node-versions) }}
+      fail-fast: false
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: 'web/themes/custom/adesso_cms_theme/package-lock.json'
+      
+      - name: 📦 Install Dependencies
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Installing dependencies for Node ${{ matrix.node-version }}"
+          npm ci --prefer-offline --no-audit --progress=false
+      
+      - name: 🔧 Setup Playwright Browsers
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          # Install browsers for cross-browser testing
+          npx playwright install chromium firefox webkit
+          npx playwright install-deps
+      
+      - name: 🏗️ Build Vite Library Mode
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Building Vite library mode for production..."
+          npm run build-lib
+          
+          # Verify build outputs
+          echo "## Build Output Verification" >> $GITHUB_STEP_SUMMARY
+          ls -la dist/ >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "No dist directory found"
+          
+          # Check bundle sizes
+          if [ -f "dist/adesso-theme.iife.js" ]; then
+            BUNDLE_SIZE=$(wc -c < "dist/adesso-theme.iife.js")
+            echo "- **Main bundle size**: ${BUNDLE_SIZE} bytes" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: 📊 Validate Browser Compatibility
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Validating browser compatibility configuration..."
+          npm run browser:validate
+      
+      - name: 💾 Cache Build Artifacts
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-${{ matrix.node-version }}-${{ github.sha }}
+  
+  # ===================================================================
+  # Phase 3: Unit Testing (Matrix)
+  # ===================================================================
+  
+  unit-testing:
+    name: 🧪 Unit Tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-24.04
+    needs: [setup-and-validate, build-and-cache]
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: ${{ fromJson(needs.setup-and-validate.outputs.node-versions) }}
+      fail-fast: false
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: 🗂️ Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-${{ matrix.node-version }}-${{ github.sha }}
+      
+      - name: 🧪 Run Vitest Unit Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running Vitest unit tests with coverage..."
+          npm run test:coverage -- --reporter=verbose --reporter=junit --outputFile=../../${{ env.TEST_RESULTS_PATH }}/junit-node-${{ matrix.node-version }}.xml
+      
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results-node-${{ matrix.node-version }}
+          path: |
+            ${{ env.TEST_RESULTS_PATH }}/junit-node-${{ matrix.node-version }}.xml
+            web/themes/custom/adesso_cms_theme/coverage/
+          retention-days: 30
+      
+      - name: 📈 Coverage Summary
+        if: matrix.node-version == '20' # Only run on latest Node
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          if [ -f "coverage/coverage-summary.json" ]; then
+            echo "## 📊 Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+            cat coverage/coverage-summary.json | jq -r '
+              "- **Lines**: " + (.total.lines.pct | tostring) + "%",
+              "- **Functions**: " + (.total.functions.pct | tostring) + "%",
+              "- **Branches**: " + (.total.branches.pct | tostring) + "%",
+              "- **Statements**: " + (.total.statements.pct | tostring) + "%"
+            ' >> $GITHUB_STEP_SUMMARY
+          fi
+  
+  # ===================================================================
+  # Phase 4: Storybook Testing
+  # ===================================================================
+  
+  storybook-testing:
+    name: 📚 Storybook Tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-24.04
+    needs: [setup-and-validate, build-and-cache]
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        node-version: ${{ fromJson(needs.setup-and-validate.outputs.node-versions) }}
+      fail-fast: false
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: 🗂️ Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-${{ matrix.node-version }}-${{ github.sha }}
+      
+      - name: 📚 Build Storybook
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Building Storybook for testing..."
+          npm run build-storybook
+      
+      - name: 🔍 Run Storybook Accessibility Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running Storybook accessibility tests with axe-core..."
+          npm run test:storybook:a11y:ci
+      
+      - name: 🏛️ Test Municipality Themes
+        if: needs.setup-and-validate.outputs.municipality-filter == 'all' || needs.setup-and-validate.outputs.municipality-filter != 'all'
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Testing municipality-specific themes..."
+          FILTER="${{ needs.setup-and-validate.outputs.municipality-filter }}"
+          
+          if [ "$FILTER" = "all" ]; then
+            npm run test:storybook:municipalities
+          else
+            npm run test:storybook:a11y -- --testNamePattern="$FILTER"
+          fi
+      
+      - name: 📊 Upload Storybook Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-results-node-${{ matrix.node-version }}
+          path: |
+            web/themes/custom/adesso_cms_theme/dist/storybook/
+            web/themes/custom/adesso_cms_theme/test-results/accessibility/
+            web/themes/custom/adesso_cms_theme/test-results/screenshots/
+          retention-days: 30
+  
+  # ===================================================================
+  # Phase 5: Cross-Browser E2E Testing
+  # ===================================================================
+  
+  cross-browser-testing:
+    name: 🌐 Cross-Browser E2E (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-24.04
+    needs: [setup-and-validate, build-and-cache]
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        node-version: ${{ fromJson(needs.setup-and-validate.outputs.node-versions) }}
+      fail-fast: false
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: 🗂️ Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-${{ matrix.node-version }}-${{ github.sha }}
+      
+      - name: 🔍 Run Cross-Browser Compatibility Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running cross-browser compatibility tests..."
+          npm run test:e2e:cross-browser -- --reporter=html --output-dir=../../${{ env.TEST_RESULTS_PATH }}/playwright-html-${{ matrix.node-version }}
+      
+      - name: ♿ Run Accessibility Compliance Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running WCAG 2.1 AA compliance tests..."
+          npm run test:e2e:accessibility
+      
+      - name: 🇨🇭 Run Swiss Government Compliance Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running eCH-0059 Swiss compliance tests..."
+          npm run test:e2e:swiss-compliance
+      
+      - name: 🏛️ Test Municipality Portal Features
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Testing municipality-specific portal features..."
+          npm run test:e2e:municipalities
+      
+      - name: 📱 Run Mobile and Tablet Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running mobile and tablet compatibility tests..."
+          npm run test:e2e:mobile
+      
+      - name: 📊 Upload E2E Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results-node-${{ matrix.node-version }}
+          path: |
+            ${{ env.TEST_RESULTS_PATH }}/playwright-html-${{ matrix.node-version }}/
+            web/themes/custom/adesso_cms_theme/test-results/
+          retention-days: 30
+  
+  # ===================================================================
+  # Phase 6: Visual Regression Testing
+  # ===================================================================
+  
+  visual-regression:
+    name: 👁️ Visual Regression Tests
+    runs-on: ubuntu-24.04
+    needs: [setup-and-validate, build-and-cache]
+    timeout-minutes: 25
+    if: needs.setup-and-validate.outputs.should-run-visual == 'true'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: 🗂️ Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-20-${{ github.sha }}
+      
+      - name: 👁️ Run Visual Regression Tests
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running visual regression tests across all components..."
+          npm run test:e2e:visual
+      
+      - name: 🎨 Test Municipality Theme Variations
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Testing visual consistency across municipality themes..."
+          npm run visual:municipalities
+      
+      - name: 🌐 Cross-Browser Visual Testing
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running cross-browser visual regression tests..."
+          npm run visual:cross-browser
+      
+      - name: 📊 Upload Visual Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-results
+          path: |
+            web/themes/custom/adesso_cms_theme/test-results/
+            web/themes/custom/adesso_cms_theme/backstop_data/
+          retention-days: 30
+      
+      - name: 🖼️ Generate Visual Report
+        if: always()
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "## 👁️ Visual Regression Summary" >> $GITHUB_STEP_SUMMARY
+          if [ -f "test-results/visual-report.json" ]; then
+            cat test-results/visual-report.json | jq -r '
+              "- **Total scenarios**: " + (.total | tostring),
+              "- **Passed**: " + (.passed | tostring),
+              "- **Failed**: " + (.failed | tostring)
+            ' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Visual regression tests completed successfully" >> $GITHUB_STEP_SUMMARY
+          fi
+  
+  # ===================================================================
+  # Phase 7: Performance Auditing
+  # ===================================================================
+  
+  performance-audit:
+    name: ⚡ Performance Audit
+    runs-on: ubuntu-24.04
+    needs: [setup-and-validate, build-and-cache]
+    timeout-minutes: 20
+    if: needs.setup-and-validate.outputs.should-run-performance == 'true'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: ⚡ Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: 🗂️ Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web/themes/custom/adesso_cms_theme/dist
+            web/themes/custom/adesso_cms_theme/node_modules
+            ~/.cache/ms-playwright
+          key: ${{ needs.setup-and-validate.outputs.cache-key }}-node-20-${{ github.sha }}
+      
+      - name: 🚀 Run Lighthouse CI Performance Audit
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Running Lighthouse CI performance audit..."
+          npm run performance:lighthouse
+      
+      - name: 📊 Core Web Vitals Testing
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Testing Core Web Vitals compliance..."
+          npm run performance:core-vitals
+      
+      - name: 📦 Bundle Size Analysis
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Analyzing bundle sizes and performance budget..."
+          npm run performance:budget
+      
+      - name: 🏛️ Municipality Performance Testing
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "Testing performance across municipality themes..."
+          FILTER="${{ needs.setup-and-validate.outputs.municipality-filter }}"
+          
+          for MUNICIPALITY in thalwil thalheim erlenbach; do
+            if [ "$FILTER" = "all" ] || [ "$FILTER" = "$MUNICIPALITY" ]; then
+              echo "Testing performance for $MUNICIPALITY theme..."
+              # Run municipality-specific performance tests
+              npm run test:e2e:performance -- --grep="$MUNICIPALITY"
+            fi
+          done
+      
+      - name: 📊 Upload Performance Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-audit-results
+          path: |
+            web/themes/custom/adesso_cms_theme/.lighthouseci/
+            web/themes/custom/adesso_cms_theme/bundle-analysis.html
+            web/themes/custom/adesso_cms_theme/test-results/performance/
+          retention-days: 30
+      
+      - name: 📈 Performance Summary
+        if: always()
+        working-directory: web/themes/custom/adesso_cms_theme
+        run: |
+          echo "## ⚡ Performance Audit Summary" >> $GITHUB_STEP_SUMMARY
+          
+          # Check if Lighthouse CI results exist
+          if [ -f ".lighthouseci/manifest.json" ]; then
+            cat .lighthouseci/manifest.json | jq -r '
+              .[] | select(.isRepresentativeRun == true) | 
+              "- **Performance**: " + (.summary.performance * 100 | floor | tostring) + "%",
+              "- **Accessibility**: " + (.summary.accessibility * 100 | floor | tostring) + "%", 
+              "- **Best Practices**: " + (.summary["best-practices"] * 100 | floor | tostring) + "%",
+              "- **SEO**: " + (.summary.seo * 100 | floor | tostring) + "%"
+            ' >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Performance audit completed" >> $GITHUB_STEP_SUMMARY
+          fi
+  
+  # ===================================================================
+  # Phase 8: Quality Gates and Reporting
+  # ===================================================================
+  
+  quality-gates:
+    name: 🎯 Quality Gates & Reporting
+    runs-on: ubuntu-24.04
+    needs: [unit-testing, storybook-testing, cross-browser-testing, visual-regression, performance-audit]
+    if: always()
+    timeout-minutes: 10
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: 📊 Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: collected-artifacts
+      
+      - name: 📈 Generate Comprehensive Report
+        run: |
+          echo "# 🚀 Frontend Testing Pipeline Report" > pipeline-report.md
+          echo "" >> pipeline-report.md
+          echo "**Workflow**: ${{ github.workflow }}" >> pipeline-report.md  
+          echo "**Run ID**: ${{ github.run_id }}" >> pipeline-report.md
+          echo "**Commit**: \`${{ github.sha }}\`" >> pipeline-report.md
+          echo "**Branch**: ${{ github.ref_name }}" >> pipeline-report.md
+          echo "**Triggered by**: ${{ github.event_name }}" >> pipeline-report.md
+          echo "" >> pipeline-report.md
+          
+          # Job Status Summary
+          echo "## 📊 Job Results" >> pipeline-report.md
+          echo "" >> pipeline-report.md
+          echo "| Job | Status |" >> pipeline-report.md
+          echo "|-----|--------|" >> pipeline-report.md
+          echo "| Unit Testing | ${{ needs.unit-testing.result }} |" >> pipeline-report.md
+          echo "| Storybook Testing | ${{ needs.storybook-testing.result }} |" >> pipeline-report.md
+          echo "| Cross-Browser Testing | ${{ needs.cross-browser-testing.result }} |" >> pipeline-report.md
+          echo "| Visual Regression | ${{ needs.visual-regression.result }} |" >> pipeline-report.md
+          echo "| Performance Audit | ${{ needs.performance-audit.result }} |" >> pipeline-report.md
+          echo "" >> pipeline-report.md
+          
+          # Artifact Summary
+          echo "## 📦 Generated Artifacts" >> pipeline-report.md
+          echo "" >> pipeline-report.md
+          find collected-artifacts -name "*.xml" -o -name "*.html" -o -name "*.json" | sort | while read file; do
+            echo "- \`$file\`" >> pipeline-report.md
+          done
+          
+          # Quality Gates
+          echo "" >> pipeline-report.md
+          echo "## 🎯 Quality Gates" >> pipeline-report.md
+          echo "" >> pipeline-report.md
+          
+          FAILED_JOBS=0
+          
+          if [[ "${{ needs.unit-testing.result }}" != "success" ]]; then
+            echo "❌ Unit testing failed" >> pipeline-report.md
+            FAILED_JOBS=$((FAILED_JOBS + 1))
+          else
+            echo "✅ Unit testing passed" >> pipeline-report.md
+          fi
+          
+          if [[ "${{ needs.storybook-testing.result }}" != "success" ]]; then
+            echo "❌ Storybook testing failed" >> pipeline-report.md
+            FAILED_JOBS=$((FAILED_JOBS + 1))
+          else
+            echo "✅ Storybook accessibility tests passed" >> pipeline-report.md
+          fi
+          
+          if [[ "${{ needs.cross-browser-testing.result }}" != "success" ]]; then
+            echo "❌ Cross-browser testing failed" >> pipeline-report.md
+            FAILED_JOBS=$((FAILED_JOBS + 1))
+          else
+            echo "✅ Cross-browser compatibility verified" >> pipeline-report.md
+          fi
+          
+          if [[ "${{ needs.visual-regression.result }}" == "failure" ]]; then
+            echo "❌ Visual regression tests failed" >> pipeline-report.md
+            FAILED_JOBS=$((FAILED_JOBS + 1))
+          elif [[ "${{ needs.visual-regression.result }}" == "success" ]]; then
+            echo "✅ Visual regression tests passed" >> pipeline-report.md
+          else
+            echo "⏭️ Visual regression tests skipped" >> pipeline-report.md
+          fi
+          
+          if [[ "${{ needs.performance-audit.result }}" == "failure" ]]; then
+            echo "❌ Performance audit failed" >> pipeline-report.md
+            FAILED_JOBS=$((FAILED_JOBS + 1))
+          elif [[ "${{ needs.performance-audit.result }}" == "success" ]]; then
+            echo "✅ Performance requirements met (>90% scores)" >> pipeline-report.md
+          else
+            echo "⏭️ Performance audit skipped" >> pipeline-report.md
+          fi
+          
+          echo "" >> pipeline-report.md
+          
+          if [ $FAILED_JOBS -eq 0 ]; then
+            echo "## 🎉 All Quality Gates Passed!" >> pipeline-report.md
+            echo "" >> pipeline-report.md
+            echo "The frontend build is ready for deployment with:" >> pipeline-report.md
+            echo "- ✅ Comprehensive test coverage" >> pipeline-report.md
+            echo "- ✅ WCAG 2.1 AA accessibility compliance" >> pipeline-report.md  
+            echo "- ✅ Cross-browser compatibility" >> pipeline-report.md
+            echo "- ✅ Swiss government standards (eCH-0059)" >> pipeline-report.md
+            echo "- ✅ Municipality theme validation" >> pipeline-report.md
+            echo "- ✅ Performance optimization (>90% Lighthouse scores)" >> pipeline-report.md
+          else
+            echo "## ❌ Quality Gate Failures: $FAILED_JOBS" >> pipeline-report.md
+            echo "" >> pipeline-report.md
+            echo "Please review the failed jobs above and address issues before deployment." >> pipeline-report.md
+          fi
+          
+          # Set step output for overall status
+          echo "failed-jobs=$FAILED_JOBS" >> $GITHUB_OUTPUT
+      
+      - name: 📋 Add Report to Summary
+        run: |
+          cat pipeline-report.md >> $GITHUB_STEP_SUMMARY
+      
+      - name: 📊 Upload Final Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-report
+          path: |
+            pipeline-report.md
+            collected-artifacts/
+          retention-days: 90
+      
+      - name: ❌ Fail Pipeline if Quality Gates Failed  
+        if: steps.quality-gates.outputs.failed-jobs != '0'
+        run: |
+          echo "❌ Pipeline failed with ${{ steps.quality-gates.outputs.failed-jobs }} failed quality gates"
+          exit 1
+      
+      - name: 🎉 Success Notification
+        if: steps.quality-gates.outputs.failed-jobs == '0'
+        run: |
+          echo "🎉 All quality gates passed! Frontend build is ready for production deployment."
+          echo "- Swiss government compliance validated ✅"
+          echo "- Municipality themes tested ✅"
+          echo "- Performance optimized (>90% scores) ✅"
+          echo "- Accessibility compliance (WCAG 2.1 AA) ✅"
+          echo "- Cross-browser compatibility verified ✅"

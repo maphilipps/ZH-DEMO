@@ -1,0 +1,31 @@
+municipal_ai_agents.settings:
+  path: '/admin/config/ai/municipal-agents'
+  defaults:
+    _form: '\Drupal\municipal_ai_agents\Form\MunicipalAiAgentsSettingsForm'
+    _title: 'Municipal AI Agents Settings'
+  requirements:
+    _permission: 'administer municipal ai agents'
+
+municipal_ai_agents.agent_dashboard:
+  path: '/admin/config/ai/municipal-agents/dashboard'
+  defaults:
+    _controller: '\Drupal\municipal_ai_agents\Controller\MunicipalAgentDashboard::dashboard'
+    _title: 'Municipal AI Agents Dashboard'
+  requirements:
+    _permission: 'administer municipal ai agents'
+
+municipal_ai_agents.performance_report:
+  path: '/admin/reports/municipal-ai-performance'
+  defaults:
+    _controller: '\Drupal\municipal_ai_agents\Controller\MunicipalAgentDashboard::performanceReport'
+    _title: 'Municipal AI Performance Report'
+  requirements:
+    _permission: 'view municipal ai reports'
+
+municipal_ai_agents.accessibility_report:
+  path: '/admin/reports/municipal-ai-accessibility'
+  defaults:
+    _controller: '\Drupal\municipal_ai_agents\Controller\MunicipalAgentDashboard::accessibilityReport'
+    _title: 'Municipal AI Accessibility Report'
+  requirements:
+    _permission: 'view municipal ai reports'

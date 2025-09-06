@@ -1,55 +1,57 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mv:*)",
+      "Bash(npm run lint)",
+      "Bash(npm test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm publish:*)",
       "Bash(grep:*)",
-      "Bash(find:*)",
-      "mcp__playwright__browser_navigate",
-      "mcp__serena__list_dir",
-      "Bash(drush cex:*)",
-      "Bash(ddev status:*)",
-      "Bash(ddev drush:*)",
-      "mcp__serena__search_for_pattern",
-      "mcp__serena__think_about_collected_information",
-      "Bash(cp:*)",
-      "Bash(chmod:*)",
-      "Bash(./cleanup-installer-config.sh:*)",
-      "mcp__atlassian__getAccessibleAtlassianResources",
-      "mcp__atlassian__getVisibleJiraProjects",
-      "mcp__atlassian__createJiraIssue",
-      "mcp__atlassian__editJiraIssue",
-      "mcp__atlassian__getJiraIssue",
-      "mcp__atlassian__searchJiraIssuesUsingJql",
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git commit:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\ndocs: Add research commands integration plan\n\n- Create integration plan for research commands in every-env\n- Add prompt templates for research-codebase and research-feature\n- Document configuration approach aligned with command pattern refactor\n- Prepare for future research.* namespace while maintaining compatibility\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "mcp__sequential-thinking__sequentialthinking",
-      "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs",
-      "Bash(gh issue view:*)",
-      "Bash(gh issue comment:*)"
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline-agnoster.sh"
-  },
-  "outputStyle": "default",
-  "mcp-server-drupal": {
-    "command": "docker",
-    "args": [
-      "run",
-      "-i",
-      "--rm",
-      "-e",
-      "DRUPAL_AUTH_USER",
-      "-e",
-      "DRUPAL_AUTH_PASSWORD",
-      "--network=host",
-      "ghcr.io/omedia/mcp-server-drupal:latest",
-      "--drupal-url=https://zh-demo.ddev.site",
-      "--unsafe-net"
+      "WebFetch(domain:every.to)",
+      "Bash(find:*)",
+      "WebSearch"
     ],
-    "env": {
-      "DRUPAL_AUTH_USER": "admin",
-      "DRUPAL_AUTH_PASSWORD": "secret"
-    }
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-tool-use-aw.js"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/pre-tool-use-learn.js"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/completion-validation.js"
+          }
+        ]
+      }
+    ]
   }
 }

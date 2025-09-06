@@ -5,6 +5,16 @@
 
 http:
   routers:
+    zh-demo-selenium-chrome-7900-http:
+      entrypoints:
+        - http-7910
+      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
+      
+      service: "zh-demo-selenium-chrome-7900"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "zh-demo-redirectHttps"
     zh-demo-xhgui-80-http:
       entrypoints:
         - http-8143
@@ -15,12 +25,12 @@ http:
       tls: false
       # middlewares:
       #   - "zh-demo-redirectHttps"
-    zh-demo-selenium-chrome-7900-http:
+    zh-demo-attu-3000-http:
       entrypoints:
-        - http-7910
+        - http-8521
       rule: HostRegexp(`^zh-demo\.ddev\.site$`)
       
-      service: "zh-demo-selenium-chrome-7900"
+      service: "zh-demo-attu-3000"
       ruleSyntax: v3
       tls: false
       # middlewares:
@@ -65,17 +75,18 @@ http:
       tls: false
       # middlewares:
       #   - "zh-demo-redirectHttps"
-    zh-demo-attu-3000-http:
+    
+    
+    zh-demo-selenium-chrome-7900-https:
       entrypoints:
-        - http-8521
+        - http-7900
       rule: HostRegexp(`^zh-demo\.ddev\.site$`)
       
-      service: "zh-demo-attu-3000"
+      service: "zh-demo-selenium-chrome-7900"
       ruleSyntax: v3
-      tls: false
-      # middlewares:
-      #   - "zh-demo-redirectHttps"
-    
+      
+      tls: true
+      
     
     zh-demo-xhgui-80-https:
       entrypoints:
@@ -88,12 +99,12 @@ http:
       tls: true
       
     
-    zh-demo-selenium-chrome-7900-https:
+    zh-demo-attu-3000-https:
       entrypoints:
-        - http-7900
+        - http-8521
       rule: HostRegexp(`^zh-demo\.ddev\.site$`)
       
-      service: "zh-demo-selenium-chrome-7900"
+      service: "zh-demo-attu-3000"
       ruleSyntax: v3
       
       tls: true
@@ -143,17 +154,6 @@ http:
       tls: true
       
     
-    zh-demo-attu-3000-https:
-      entrypoints:
-        - http-8521
-      rule: HostRegexp(`^zh-demo\.ddev\.site$`)
-      
-      service: "zh-demo-attu-3000"
-      ruleSyntax: v3
-      
-      tls: true
-      
-    
 
   middlewares:
     zh-demo-redirectHttps:
@@ -162,16 +162,22 @@ http:
         permanent: true
 
   services:
+    zh-demo-selenium-chrome-7900:
+      loadbalancer:
+        servers:
+          - url: http://ddev-zh-demo-selenium-chrome:7900
+        
+    
     zh-demo-xhgui-80:
       loadbalancer:
         servers:
           - url: http://ddev-zh-demo-xhgui:80
         
     
-    zh-demo-selenium-chrome-7900:
+    zh-demo-attu-3000:
       loadbalancer:
         servers:
-          - url: http://ddev-zh-demo-selenium-chrome:7900
+          - url: http://ddev-zh-demo-attu:3000
         
     
     zh-demo-web-80:
@@ -197,12 +203,6 @@ http:
     
     
     
-    
-    zh-demo-attu-3000:
-      loadbalancer:
-        servers:
-          - url: http://ddev-zh-demo-attu:3000
-        
     
     
 

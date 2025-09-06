@@ -1,0 +1,52 @@
+swiss_compliance_enabled: true
+auto_accessibility_enhancement: true
+enable_content_assistance: true
+enable_performance_monitoring: true
+performance_monitoring_interval: 3600
+default_language: 'de'
+supported_languages:
+  - 'de'
+  - 'fr'
+  - 'it'
+municipality_name: ''
+compliance_level: 'ech_0059_standard'
+data_retention_period: '90_days'
+privacy_level: 'balanced'
+
+# Agent-specific default configurations
+agents:
+  municipal_content_curation:
+    enabled: true
+    primary_language: 'de'
+    secondary_languages: ['fr', 'it']
+    tone_of_voice: 'formal'
+    compliance_level: 'municipal'
+  
+  citizen_service_automation:
+    enabled: true
+    operating_hours: 'Mo-Fr 08:00-17:00'
+    appointment_system: true
+    document_upload_guidance: true
+    privacy_level: 'standard'
+  
+  multilingual_localization:
+    enabled: true
+    source_language: 'de'
+    target_languages: ['fr', 'it']
+    region: 'national'
+    cultural_adaptation: 'standard'
+    quality_assurance: 'enhanced'
+  
+  accessibility_enhancement:
+    enabled: true
+    compliance_level: 'ech_0059_standard'
+    automatic_fixes: ['alt_text_generation', 'heading_structure']
+    language_support: ['de', 'fr', 'it']
+    user_testing: true
+  
+  performance_monitoring:
+    enabled: true
+    monitoring_scope: ['page_speed', 'core_web_vitals', 'accessibility_performance']
+    privacy_level: 'balanced'
+    reporting_frequency: 'weekly'
+    swiss_compliance: true

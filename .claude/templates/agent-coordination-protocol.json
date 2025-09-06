@@ -1,0 +1,345 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude Code Agent Coordination Protocol",
+  "description": "Standardized format for agent handoffs and progress tracking during multi-agent workflows",
+  "version": "1.0.0",
+  "type": "object",
+  "properties": {
+    "workflow_id": {
+      "type": "string",
+      "description": "Unique identifier for the multi-agent workflow",
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "example": "gpzh-cleanup-phase-2"
+    },
+    "phase": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Current phase number (1-4)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable phase name",
+          "example": "Module Refactoring and Configuration Cleanup"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "completed", "failed", "rolled_back"],
+          "description": "Current phase execution status"
+        }
+      },
+      "required": ["current", "name", "status"]
+    },
+    "agents": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "$ref": "#/definitions/agent"
+        },
+        "supporting": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/agent"
+          }
+        }
+      },
+      "required": ["primary"]
+    },
+    "handoff_data": {
+      "type": "object",
+      "properties": {
+        "input_requirements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of required input"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["file", "analysis", "configuration", "validation_result", "metrics"],
+                "description": "Type of input data"
+              },
+              "source": {
+                "type": "string",
+                "description": "Source agent or system that provides this input"
+              },
+              "location": {
+                "type": "string",
+                "description": "File path or data location",
+                "example": ".work/90/phase-1-analysis.json"
+              },
+              "required": {
+                "type": "boolean",
+                "description": "Whether this input is required for agent execution"
+              }
+            },
+            "required": ["name", "type", "required"]
+          }
+        },
+        "output_deliverables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of output deliverable"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["file", "analysis", "configuration", "validation_result", "metrics"],
+                "description": "Type of output data"
+              },
+              "location": {
+                "type": "string",
+                "description": "Where output will be saved",
+                "example": ".work/90/module-refactoring-results.json"
+              },
+              "format": {
+                "type": "string",
+                "description": "Data format specification",
+                "example": "JSON Schema v7"
+              }
+            },
+            "required": ["name", "type", "location"]
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "checkpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Checkpoint name"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["automated", "manual", "agent_review"],
+                "description": "Type of validation checkpoint"
+              },
+              "criteria": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Success criteria for this checkpoint"
+              },
+              "failure_action": {
+                "type": "string",
+                "enum": ["rollback", "retry", "escalate", "continue_with_warning"],
+                "description": "Action to take if checkpoint fails"
+              }
+            },
+            "required": ["name", "type", "criteria", "failure_action"]
+          }
+        },
+        "success_metrics": {
+          "type": "object",
+          "properties": {
+            "quantitative": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "metric": {
+                    "type": "string",
+                    "description": "Metric name"
+                  },
+                  "threshold": {
+                    "type": "number",
+                    "description": "Success threshold value"
+                  },
+                  "comparison": {
+                    "type": "string",
+                    "enum": ["<", "<=", ">", ">=", "=", "!="],
+                    "description": "Comparison operator"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "Unit of measurement"
+                  }
+                },
+                "required": ["metric", "threshold", "comparison"]
+              }
+            },
+            "qualitative": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Qualitative success criteria"
+            }
+          }
+        }
+      }
+    },
+    "error_handling": {
+      "type": "object",
+      "properties": {
+        "escalation_procedures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "error_type": {
+                "type": "string",
+                "enum": ["service_failure", "data_corruption", "validation_failure", "timeout", "dependency_failure"],
+                "description": "Type of error that triggers this procedure"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"],
+                "description": "Error severity level"
+              },
+              "action": {
+                "type": "string",
+                "enum": ["retry", "rollback", "escalate_to_human", "switch_agent", "abort_workflow"],
+                "description": "Action to take for this error type"
+              },
+              "max_retries": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Maximum retry attempts before escalation"
+              }
+            },
+            "required": ["error_type", "severity", "action"]
+          }
+        },
+        "rollback_procedures": {
+          "type": "object",
+          "properties": {
+            "git_recovery_point": {
+              "type": "string",
+              "description": "Git tag or commit hash for recovery",
+              "example": "cleanup-phase-1-complete"
+            },
+            "database_backup": {
+              "type": "string",
+              "description": "Database backup file path",
+              "example": "backup-20250906-phase1.sql.gz"
+            },
+            "automated_rollback": {
+              "type": "boolean",
+              "description": "Whether rollback can be executed automatically"
+            }
+          }
+        }
+      }
+    },
+    "progress_tracking": {
+      "type": "object",
+      "properties": {
+        "current_step": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current step number in phase"
+        },
+        "total_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total steps in current phase"
+        },
+        "completion_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Phase completion percentage"
+        },
+        "estimated_completion": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Estimated completion timestamp"
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Blocker description"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "resolution_plan": {
+                "type": "string",
+                "description": "Plan to resolve this blocker"
+              }
+            },
+            "required": ["description", "severity"]
+          }
+        }
+      },
+      "required": ["current_step", "total_steps", "completion_percentage"]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Agent or human that created this coordination context"
+        },
+        "workflow_version": {
+          "type": "string",
+          "description": "Version of the workflow definition used"
+        }
+      },
+      "required": ["created_at", "created_by", "workflow_version"]
+    }
+  },
+  "definitions": {
+    "agent": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Agent name",
+          "example": "drupal-migration-architect"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Domain-Specific", "Analysis", "Quality Assurance", "Meta", "Research"],
+          "description": "Agent category"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "active", "completed", "failed", "paused"],
+          "description": "Current agent execution status"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When agent execution started"
+        },
+        "estimated_duration": {
+          "type": "integer",
+          "description": "Estimated execution time in minutes"
+        }
+      },
+      "required": ["name", "type", "status"]
+    }
+  },
+  "required": ["workflow_id", "phase", "agents", "progress_tracking", "metadata"]
+}

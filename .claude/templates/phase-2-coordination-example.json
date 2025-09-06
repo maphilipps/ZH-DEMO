@@ -1,0 +1,211 @@
+{
+  "workflow_id": "gpzh-cleanup-phase-2",
+  "phase": {
+    "current": 2,
+    "name": "Module Refactoring with Automated Service Validation", 
+    "status": "pending"
+  },
+  "agents": {
+    "primary": {
+      "name": "drupal-migration-architect",
+      "type": "Domain-Specific",
+      "status": "pending",
+      "estimated_duration": 180
+    },
+    "supporting": [
+      {
+        "name": "drupal-implementation-planner",
+        "type": "Domain-Specific", 
+        "status": "pending",
+        "estimated_duration": 120
+      },
+      {
+        "name": "development-orchestrator",
+        "type": "Meta",
+        "status": "pending", 
+        "estimated_duration": 60
+      },
+      {
+        "name": "debug-detective",
+        "type": "Quality Assurance",
+        "status": "pending",
+        "estimated_duration": 90
+      }
+    ]
+  },
+  "handoff_data": {
+    "input_requirements": [
+      {
+        "name": "Phase 1 Analysis Results",
+        "type": "analysis",
+        "source": "codebase-analyzer",
+        "location": ".work/research/research-90.md",
+        "required": true
+      },
+      {
+        "name": "Transformation Patterns",
+        "type": "file", 
+        "source": "codebase-pattern-finder",
+        "location": ".claude/learning/patterns/gpzh-cleanup-transformation-patterns.md",
+        "required": true
+      },
+      {
+        "name": "Current Module Dependencies",
+        "type": "analysis",
+        "source": "system",
+        "location": "web/modules/custom/",
+        "required": true
+      }
+    ],
+    "output_deliverables": [
+      {
+        "name": "Module Refactoring Plan",
+        "type": "analysis",
+        "location": ".work/90/module-refactoring-plan.json",
+        "format": "JSON with module mapping and dependency graph"
+      },
+      {
+        "name": "Service Coordination Strategy", 
+        "type": "configuration",
+        "location": ".work/90/service-coordination-strategy.yml",
+        "format": "YAML configuration for service updates"
+      },
+      {
+        "name": "Database Migration Scripts",
+        "type": "file",
+        "location": ".work/90/database-migration/",
+        "format": "SQL scripts and validation procedures"
+      },
+      {
+        "name": "Validation Test Suite",
+        "type": "file", 
+        "location": ".work/90/validation-tests/",
+        "format": "Executable test scripts"
+      }
+    ]
+  },
+  "validation": {
+    "checkpoints": [
+      {
+        "name": "Service Dependency Validation",
+        "type": "automated",
+        "criteria": [
+          "All services register successfully",
+          "No circular dependencies detected", 
+          "Service container builds without errors"
+        ],
+        "failure_action": "rollback"
+      },
+      {
+        "name": "Database Integrity Check",
+        "type": "automated", 
+        "criteria": [
+          "Foreign key constraints valid",
+          "No orphaned references detected",
+          "Content types operational"
+        ],
+        "failure_action": "rollback"
+      },
+      {
+        "name": "Performance Baseline Validation",
+        "type": "automated",
+        "criteria": [
+          "Lighthouse score >= 85",
+          "Response time <= 2000ms",
+          "Memory usage within 10% of baseline"
+        ],
+        "failure_action": "continue_with_warning"
+      },
+      {
+        "name": "Agent Coordination Review",
+        "type": "agent_review", 
+        "criteria": [
+          "All agent outputs validated",
+          "Handoff data integrity confirmed",
+          "No agent execution errors"
+        ],
+        "failure_action": "escalate"
+      }
+    ],
+    "success_metrics": {
+      "quantitative": [
+        {
+          "metric": "municipal_references_count",
+          "threshold": 0,
+          "comparison": "=",
+          "unit": "count"
+        },
+        {
+          "metric": "service_registration_time", 
+          "threshold": 30,
+          "comparison": "<",
+          "unit": "seconds"
+        },
+        {
+          "metric": "fresh_install_time",
+          "threshold": 600,
+          "comparison": "<", 
+          "unit": "seconds"
+        },
+        {
+          "metric": "performance_score",
+          "threshold": 85,
+          "comparison": ">=",
+          "unit": "score"
+        }
+      ],
+      "qualitative": [
+        "All module namespaces successfully updated",
+        "DDEV environment operational with new configuration", 
+        "AI agents function with generic parameters",
+        "Database operations complete without data loss"
+      ]
+    }
+  },
+  "error_handling": {
+    "escalation_procedures": [
+      {
+        "error_type": "service_failure",
+        "severity": "high", 
+        "action": "rollback",
+        "max_retries": 2
+      },
+      {
+        "error_type": "data_corruption",
+        "severity": "critical",
+        "action": "rollback", 
+        "max_retries": 0
+      },
+      {
+        "error_type": "validation_failure",
+        "severity": "medium",
+        "action": "retry",
+        "max_retries": 3
+      },
+      {
+        "error_type": "dependency_failure",
+        "severity": "high",
+        "action": "escalate_to_human",
+        "max_retries": 1
+      }
+    ],
+    "rollback_procedures": {
+      "git_recovery_point": "cleanup-phase-1-complete-20250906",
+      "database_backup": "pre-phase2-20250906-backup.sql.gz",
+      "automated_rollback": true
+    }
+  },
+  "progress_tracking": {
+    "current_step": 1,
+    "total_steps": 8,
+    "completion_percentage": 0,
+    "estimated_completion": "2025-09-13T17:00:00Z",
+    "blockers": []
+  },
+  "metadata": {
+    "created_at": "2025-09-06T17:45:00Z",
+    "updated_at": "2025-09-06T17:45:00Z", 
+    "created_by": "adr-reviewer",
+    "workflow_version": "1.0.0"
+  }
+}

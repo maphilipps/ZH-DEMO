@@ -4,33 +4,48 @@
  * Theme override for a breadcrumb trail.
  *
  * Available variables:
- * - breadcrumb: Breadcrumb trail items.
+ * - breadcrumb: Breadcrumb trail items from Easy Breadcrumb module.
+ *   Each item contains:
+ *   - text: The display text
+ *   - url: The URL (may be null for current page)
+ *   - attributes: HTML attributes for the item
+ *
+ * This template integrates with the SDC breadcrumb component, converting
+ * Easy Breadcrumb data to the expected SDC component format.
  */
 #}
 {% if breadcrumb %}
-  {% set items %}
-    {% for item in breadcrumb %}
-      {% if loop.first %}
-        {{ include('@components/breadcrumb-item.html.twig', {
-          url: '/',
-          text: 'Startseite'
-        }) }}
-      {% elseif loop.index == 2 %}
-        {{ include('@components/breadcrumb-item.html.twig', {
-          text: item.text,
-          devider: true
-        }) }}
-      {% else %}
-        {{ include('@components/breadcrumb-item.html.twig', {
-          url: item.url,
-          text: item.text,
-          devider: true
-        }) }}
-      {% endif %}
-    {% endfor %}
-  {% endset %}
+  {# Convert Easy Breadcrumb items to SDC component format #}
+  {% set breadcrumb_items = [] %}
+  
+  {% for item in breadcrumb %}
+    {% set sdc_item = {
+      'title': item.text,
+      'url': item.url,
+      'is_current': item.url is empty or item.url is null
+    } %}
+    {% set breadcrumb_items = breadcrumb_items|merge([sdc_item]) %}
+  {% endfor %}
 
-  {{ include('@components/breadcrumb.html.twig', {
-    'breadcrumb': items,
-  }) }}
+  {# Use the SDC breadcrumb component with municipal portal settings #}
+  {# Note: show_home is false because Easy Breadcrumb already includes home segment #}
+  {% include 'sdc:breadcrumb' with {
+    'items': breadcrumb_items,
+    'separator': '/',
+    'show_home': false,
+    'home_title': 'Startseite',
+    'home_url': '/',
+    'aria_label': 'Breadcrumb',
+    'aria_label_de': 'Brotkrümelnavigation',
+    'aria_label_fr': 'Fil d\'Ariane',
+    'enable_structured_data': true,
+    'mobile_responsive': true,
+    'max_mobile_items': 3,
+    'show_current_page': true,
+    'link_current_page': false,
+    'skip_link': false,
+    'wrapper_classes': 'municipal-breadcrumb',
+    'item_classes': '',
+    'separator_classes': 'text-muted-foreground'
+  } only %}
 {% endif %}

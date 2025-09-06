@@ -1,0 +1,127 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Breadcrumb Item
+description: Individual breadcrumb navigation item component with accessibility and municipal portal support
+status: stable
+group: Navigation
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Item Title
+      description: The display text for the breadcrumb item
+    url:
+      type:
+        - string
+        - 'null'
+      title: Item URL
+      description: The URL for the breadcrumb item (null for current page or non-linked items)
+    text:
+      type: string
+      title: Item Text
+      description: Alternative property name for display text (legacy support)
+    is_current:
+      type: boolean
+      title: Is Current Page
+      description: Whether this item represents the current page
+      default: false
+    is_link:
+      type: boolean
+      title: Is Link
+      description: Whether this item should be rendered as a link
+      default: true
+    show_separator:
+      type: boolean
+      title: Show Separator
+      description: Whether to display a separator after this item
+      default: true
+    separator:
+      type: string
+      title: Separator
+      description: Character or symbol used after this item
+      default: "/"
+      enum:
+        - "/"
+        - ">"
+        - "›"
+        - "→"
+    divider:
+      type: boolean
+      title: Divider
+      description: Alternative property name for show_separator (legacy support)
+    item_classes:
+      type: string
+      title: Item Classes
+      description: Additional CSS classes for this breadcrumb item
+      default: ""
+    link_classes:
+      type: string
+      title: Link Classes
+      description: Additional CSS classes for the link element
+      default: ""
+    separator_classes:
+      type: string
+      title: Separator Classes
+      description: Additional CSS classes for the separator element
+      default: ""
+    aria_current:
+      type:
+        - string
+        - 'null'
+      title: Aria Current
+      description: ARIA current attribute value for accessibility
+      enum:
+        - page
+        - step
+        - location
+        - date
+        - time
+        - true
+        - false
+        - null
+    title_attribute:
+      type:
+        - string
+        - 'null'
+      title: Title Attribute
+      description: HTML title attribute for additional context
+    rel:
+      type:
+        - string
+        - 'null'
+      title: Link Relationship
+      description: HTML rel attribute for link relationship
+    target:
+      type:
+        - string
+        - 'null'
+      title: Link Target
+      description: HTML target attribute for link behavior
+      enum:
+        - "_self"
+        - "_blank"
+        - "_parent"
+        - "_top"
+        - null
+    microdata_property:
+      type:
+        - string
+        - 'null'
+      title: Microdata Property
+      description: Schema.org microdata property for structured data
+      default: "item"
+    hide_on_mobile:
+      type: boolean
+      title: Hide on Mobile
+      description: Hide this item on mobile devices for responsive behavior
+      default: false
+slots:
+  icon:
+    title: Icon
+    description: Optional icon content for the breadcrumb item
+  suffix:
+    title: Suffix Content
+    description: Additional content to display after the item text
+libraryDependencies:
+  - core/drupal.nav
+  - adesso_cms_theme/breadcrumb-item-styles

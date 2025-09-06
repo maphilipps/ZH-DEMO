@@ -155,3 +155,21 @@ theme-customization:
     - core/drupal
     - core/once
     - core/drupalSettings
+
+# Breadcrumb Component Styles
+breadcrumb-styles:
+  version: 1.x
+  css:
+    component:
+      components/breadcrumb/breadcrumb.css: {}
+  dependencies:
+    - core/drupal.nav
+
+# Breadcrumb Item Component Styles  
+breadcrumb-item-styles:
+  version: 1.x
+  css:
+    component:
+      components/breadcrumb-item/breadcrumb-item.css: {}
+  dependencies:
+    - core/drupal.nav

@@ -1,0 +1,134 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Breadcrumb
+description: Municipal portal breadcrumb navigation component with Swiss government compliance and multilingual support
+status: stable
+group: Navigation
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Breadcrumb Items
+      description: Array of breadcrumb navigation items
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            title: Item Title
+            description: The display text for the breadcrumb item
+          url:
+            type:
+              - string
+              - 'null'
+            title: Item URL
+            description: The URL for the breadcrumb item (null for current page)
+          is_current:
+            type: boolean
+            title: Is Current Page
+            description: Whether this item represents the current page
+            default: false
+        required:
+          - title
+    separator:
+      type: string
+      title: Separator
+      description: Character or symbol used to separate breadcrumb items
+      default: "/"
+      enum:
+        - "/"
+        - ">"
+        - "›"
+        - "→"
+    show_home:
+      type: boolean
+      title: Show Home Link
+      description: Whether to display a home/start page link as the first item
+      default: true
+    home_title:
+      type: string
+      title: Home Title
+      description: Title for the home/start page link
+      default: "Startseite"
+    home_url:
+      type: string
+      title: Home URL
+      description: URL for the home/start page link
+      default: "/"
+    aria_label:
+      type: string
+      title: Aria Label
+      description: Accessible label for the breadcrumb navigation
+      default: "Breadcrumb"
+    aria_label_de:
+      type: string
+      title: German Aria Label
+      description: German accessible label for multilingual support
+      default: "Brotkrümelnavigation"
+    aria_label_fr:
+      type: string
+      title: French Aria Label
+      description: French accessible label for multilingual support
+      default: "Fil d'Ariane"
+    enable_structured_data:
+      type: boolean
+      title: Enable Structured Data
+      description: Generate JSON-LD structured data for search engines
+      default: true
+    mobile_responsive:
+      type: boolean
+      title: Mobile Responsive
+      description: Enable mobile-responsive breadcrumb behavior
+      default: true
+    max_mobile_items:
+      type: integer
+      title: Maximum Mobile Items
+      description: Maximum number of items to show on mobile devices
+      default: 3
+      minimum: 1
+      maximum: 10
+    show_current_page:
+      type: boolean
+      title: Show Current Page
+      description: Whether to show the current page as the last breadcrumb item
+      default: true
+    link_current_page:
+      type: boolean
+      title: Link Current Page
+      description: Whether the current page item should be a link
+      default: false
+    wrapper_classes:
+      type: string
+      title: Wrapper Classes
+      description: Additional CSS classes for the breadcrumb wrapper
+      default: ""
+    item_classes:
+      type: string
+      title: Item Classes
+      description: Additional CSS classes for breadcrumb items
+      default: ""
+    separator_classes:
+      type: string
+      title: Separator Classes
+      description: Additional CSS classes for separators
+      default: ""
+    skip_link:
+      type: boolean
+      title: Skip Link
+      description: Add skip link for accessibility (WCAG compliance)
+      default: false
+    skip_link_text:
+      type: string
+      title: Skip Link Text
+      description: Text for the skip link
+      default: "Skip breadcrumb navigation"
+slots:
+  prefix:
+    title: Prefix Content
+    description: Content to display before the breadcrumb items
+  suffix:
+    title: Suffix Content
+    description: Content to display after the breadcrumb items
+libraryDependencies:
+  - core/drupal.nav
+  - adesso_cms_theme/breadcrumb-styles

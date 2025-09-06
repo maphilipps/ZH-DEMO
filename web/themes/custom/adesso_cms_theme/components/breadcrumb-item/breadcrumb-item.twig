@@ -1,0 +1,134 @@
+{#
+/**
+ * @file
+ * Individual breadcrumb navigation item component with accessibility support.
+ *
+ * WCAG 2.1 AA compliance features:
+ * - Proper ARIA current attribute for current page
+ * - Semantic link structure with appropriate roles
+ * - Keyboard navigation support
+ * - Screen reader friendly text and labels
+ * - High contrast support
+ *
+ * Available variables:
+ * - title: The display text for the breadcrumb item
+ * - text: Alternative property name for display text (legacy support)
+ * - url: The URL for the breadcrumb item (null for current page)
+ * - is_current: Whether this item represents the current page
+ * - is_link: Whether this item should be rendered as a link
+ * - show_separator: Whether to display a separator after this item
+ * - separator: Character or symbol used after this item
+ * - divider: Alternative property name for show_separator (legacy)
+ * - item_classes: Additional CSS classes for this breadcrumb item
+ * - link_classes: Additional CSS classes for the link element
+ * - separator_classes: Additional CSS classes for the separator
+ * - aria_current: ARIA current attribute value for accessibility
+ * - title_attribute: HTML title attribute for additional context
+ * - rel: HTML rel attribute for link relationship
+ * - target: HTML target attribute for link behavior
+ * - microdata_property: Schema.org microdata property
+ * - hide_on_mobile: Hide this item on mobile devices
+ * - icon: Icon content slot
+ * - suffix: Additional content after the item text
+ */
+#}
+
+{# Set default values and normalize properties #}
+{% set item_title = title|default(text)|default('') %}
+{% set item_url = url %}
+{% set is_current = is_current ?? false %}
+{% set is_link = is_link ?? (item_url and not is_current) %}
+{% set show_separator = show_separator ?? (divider ?? true) %}
+{% set separator = separator|default('/') %}
+{% set aria_current = aria_current|default(is_current ? 'page' : null) %}
+{% set microdata_property = microdata_property|default('item') %}
+{% set hide_on_mobile = hide_on_mobile ?? false %}
+
+{# Build CSS classes #}
+{% set item_wrapper_classes = [
+  'breadcrumb-item',
+  hide_on_mobile ? 'hidden sm:flex' : 'flex',
+  'items-center',
+  item_classes
+]|join(' ')|trim %}
+
+{% set link_base_classes = [
+  'breadcrumb-link',
+  'text-blue-600',
+  'hover:text-blue-800',
+  'hover:underline',
+  'focus:outline-2',
+  'focus:outline-offset-2',
+  'focus:outline-blue-600',
+  'transition-colors',
+  'duration-200',
+  link_classes
+]|join(' ')|trim %}
+
+{% set current_classes = [
+  'breadcrumb-current',
+  'text-gray-900',
+  'font-medium',
+  link_classes
+]|join(' ')|trim %}
+
+{% set separator_base_classes = [
+  'breadcrumb-separator',
+  'text-muted-foreground',
+  'mx-2',
+  'select-none',
+  separator_classes
+]|join(' ')|trim %}
+
+{# Build link attributes #}
+{% set link_attributes = create_attribute() %}
+{% if title_attribute %}
+  {% set link_attributes = link_attributes.setAttribute('title', title_attribute) %}
+{% endif %}
+{% if rel %}
+  {% set link_attributes = link_attributes.setAttribute('rel', rel) %}
+{% endif %}
+{% if target %}
+  {% set link_attributes = link_attributes.setAttribute('target', target) %}
+{% endif %}
+{% if aria_current %}
+  {% set link_attributes = link_attributes.setAttribute('aria-current', aria_current) %}
+{% endif %}
+
+{# Microdata attributes for structured data #}
+{% set microdata_attributes = create_attribute() %}
+{% if microdata_property %}
+  {% set microdata_attributes = microdata_attributes.setAttribute('itemprop', microdata_property) %}
+{% endif %}
+
+<div class="{{ item_wrapper_classes }}"{{ microdata_attributes }}>
+  {# Icon content slot #}
+  {% if icon %}
+    <span class="breadcrumb-icon mr-1">
+      {{ icon }}
+    </span>
+  {% endif %}
+
+  {# Main item content #}
+  {% if is_link and item_url %}
+    <a href="{{ item_url }}" class="{{ link_base_classes }}"{{ link_attributes.addClass(link_base_classes) }}>
+      {{ item_title }}
+    </a>
+  {% else %}
+    <span class="{{ is_current ? current_classes : 'text-gray-900' }}"{% if aria_current %} aria-current="{{ aria_current }}"{% endif %}>
+      {{ item_title }}
+    </span>
+  {% endif %}
+
+  {# Suffix content slot #}
+  {% if suffix %}
+    <span class="breadcrumb-suffix ml-1">
+      {{ suffix }}
+    </span>
+  {% endif %}
+
+  {# Separator #}
+  {% if show_separator %}
+    <span class="{{ separator_base_classes }}" aria-hidden="true">{{ separator }}</span>
+  {% endif %}
+</div>

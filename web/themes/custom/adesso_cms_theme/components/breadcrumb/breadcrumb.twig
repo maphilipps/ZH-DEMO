@@ -1,0 +1,218 @@
+{#
+/**
+ * @file
+ * Municipal portal breadcrumb navigation component with Swiss government compliance.
+ * 
+ * WCAG 2.1 AA compliance features:
+ * - Semantic nav element with proper ARIA labeling
+ * - Screen reader friendly with aria-current for current page
+ * - Keyboard navigation support
+ * - High contrast support
+ * - Skip link integration
+ *
+ * Available variables:
+ * - items: Array of breadcrumb items (title, url, is_current)
+ * - separator: Character or symbol used to separate items
+ * - show_home: Whether to display home link as first item
+ * - home_title: Title for home link
+ * - home_url: URL for home link
+ * - aria_label: Accessible label for breadcrumb navigation
+ * - aria_label_de: German accessible label
+ * - aria_label_fr: French accessible label
+ * - enable_structured_data: Generate JSON-LD structured data
+ * - mobile_responsive: Enable mobile-responsive behavior
+ * - max_mobile_items: Maximum items to show on mobile
+ * - show_current_page: Show current page item
+ * - link_current_page: Whether current page should be a link
+ * - wrapper_classes: Additional CSS classes for wrapper
+ * - item_classes: Additional CSS classes for items
+ * - separator_classes: Additional CSS classes for separators
+ * - skip_link: Add skip link for accessibility
+ * - skip_link_text: Text for skip link
+ * - prefix: Prefix content slot
+ * - suffix: Suffix content slot
+ */
+#}
+
+{# Set default values #}
+{% set separator = separator|default('/') %}
+{% set show_home = show_home ?? true %}
+{% set home_title = home_title|default('Startseite') %}
+{% set home_url = home_url|default('/') %}
+{% set aria_label = aria_label|default('Breadcrumb') %}
+{% set enable_structured_data = enable_structured_data ?? true %}
+{% set mobile_responsive = mobile_responsive ?? true %}
+{% set max_mobile_items = max_mobile_items|default(3) %}
+{% set show_current_page = show_current_page ?? true %}
+{% set link_current_page = link_current_page ?? false %}
+{% set skip_link = skip_link ?? false %}
+{% set skip_link_text = skip_link_text|default('Skip breadcrumb navigation') %}
+
+{# Determine aria label based on available multilingual options #}
+{% set current_aria_label = aria_label %}
+{% if aria_label_de and 'de' in drupal_config('system.site', 'default_langcode') %}
+  {% set current_aria_label = aria_label_de %}
+{% elseif aria_label_fr and 'fr' in drupal_config('system.site', 'default_langcode') %}
+  {% set current_aria_label = aria_label_fr %}
+{% endif %}
+
+{# Build complete breadcrumb items array #}
+{% set breadcrumb_items = [] %}
+
+{# Add home item if enabled #}
+{% if show_home %}
+  {% set home_item = {
+    'title': home_title,
+    'url': home_url,
+    'is_current': false
+  } %}
+  {% set breadcrumb_items = breadcrumb_items|merge([home_item]) %}
+{% endif %}
+
+{# Add provided items #}
+{% if items %}
+  {% set breadcrumb_items = breadcrumb_items|merge(items) %}
+{% endif %}
+
+{# Generate structured data if enabled #}
+{% if enable_structured_data and breadcrumb_items %}
+  {% set structured_data = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': []
+  } %}
+  
+  {% for item in breadcrumb_items %}
+    {% if item.url or item.is_current %}
+      {% set list_item = {
+        '@type': 'ListItem',
+        'position': loop.index,
+        'name': item.title
+      } %}
+      
+      {% if item.url and not item.is_current %}
+        {% set list_item = list_item|merge({'item': item.url}) %}
+      {% endif %}
+      
+      {% set structured_data = structured_data|merge({
+        'itemListElement': structured_data.itemListElement|merge([list_item])
+      }) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Process items for mobile responsiveness #}
+{% set display_items = breadcrumb_items %}
+{% if mobile_responsive and breadcrumb_items|length > max_mobile_items %}
+  {% set total_items = breadcrumb_items|length %}
+  {% set current_item = breadcrumb_items|last %}
+  {% set first_item = breadcrumb_items|first %}
+  
+  {# Create truncated array: first item + ... + current item and immediate parents #}
+  {% set display_items = [first_item] %}
+  
+  {# Add ellipsis indicator #}
+  {% set ellipsis_item = {
+    'title': '...',
+    'url': null,
+    'is_ellipsis': true,
+    'is_current': false
+  } %}
+  {% set display_items = display_items|merge([ellipsis_item]) %}
+  
+  {# Add last few items including current #}
+  {% set remaining_slots = max_mobile_items - 2 %} {# -2 for first item and ellipsis #}
+  {% set start_index = total_items - remaining_slots %}
+  
+  {% for item in breadcrumb_items|slice(start_index) %}
+    {% set display_items = display_items|merge([item]) %}
+  {% endfor %}
+{% endif %}
+
+{# Component classes #}
+{% set breadcrumb_classes = [
+  'breadcrumb',
+  'py-2',
+  mobile_responsive ? 'mobile-responsive' : '',
+  wrapper_classes
+]|join(' ')|trim %}
+
+{% set nav_classes = [
+  'breadcrumb-nav'
+]|join(' ')|trim %}
+
+{% set list_classes = [
+  'breadcrumb-list',
+  'flex',
+  'flex-wrap',
+  'items-center',
+  'gap-x-1',
+  'gap-y-1',
+  'text-sm',
+  'leading-6'
+]|join(' ')|trim %}
+
+{% set item_base_classes = [
+  'breadcrumb-item',
+  'flex',
+  'items-center',
+  item_classes
+]|join(' ')|trim %}
+
+{# Skip link for accessibility #}
+{% if skip_link %}
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 z-50 bg-primary text-white px-3 py-2 rounded text-sm font-medium focus:outline-2 focus:outline-offset-2 focus:outline-primary">
+    {{ skip_link_text }}
+  </a>
+{% endif %}
+
+{# Structured data script #}
+{% if enable_structured_data and structured_data %}
+  <script type="application/ld+json">{{ structured_data|json_encode(constant('JSON_UNESCAPED_SLASHES')|default(64)) }}</script>
+{% endif %}
+
+{# Prefix content slot #}
+{% if prefix %}
+  {{ prefix }}
+{% endif %}
+
+{# Main breadcrumb navigation #}
+<div class="{{ breadcrumb_classes }}">
+  <nav class="{{ nav_classes }}" aria-label="{{ current_aria_label }}" role="navigation">
+    <ol class="{{ list_classes }}">
+      {% for item in display_items %}
+        {% if not item.is_ellipsis %}
+          <li class="{{ item_base_classes }}">
+            {% include 'sdc:breadcrumb-item' with {
+              'title': item.title,
+              'text': item.title,
+              'url': item.url,
+              'is_current': item.is_current,
+              'is_link': item.url and (not item.is_current or link_current_page),
+              'show_separator': not loop.last,
+              'separator': separator,
+              'item_classes': '',
+              'link_classes': '',
+              'separator_classes': separator_classes,
+              'aria_current': item.is_current ? 'page' : null,
+              'microdata_property': 'item'
+            } only %}
+          </li>
+        {% else %}
+          {# Ellipsis item for mobile truncation #}
+          <li class="{{ item_base_classes }}">
+            <span class="breadcrumb-ellipsis text-muted-foreground px-1" aria-hidden="true">...</span>
+            {% if not loop.last %}
+              <span class="breadcrumb-separator text-muted-foreground px-1 {{ separator_classes }}" aria-hidden="true">{{ separator }}</span>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+
+{# Suffix content slot #}
+{% if suffix %}
+  {{ suffix }}
+{% endif %}

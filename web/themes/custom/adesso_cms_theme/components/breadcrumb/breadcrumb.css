@@ -1,0 +1,81 @@
+/**
+ * @file
+ * Breadcrumb component styles - optimized for performance and Swiss government compliance.
+ */
+
+/* CSS variables for theming */
+.breadcrumb {
+  @apply min-h-[44px] py-3;
+  --bc-link: theme(colors.blue.600);
+  --bc-hover: theme(colors.blue.800);
+  --bc-current: theme(colors.gray.900);
+  --bc-separator: theme(colors.gray.400);
+}
+
+/* Consolidated styles for optimal performance */
+.breadcrumb-nav { @apply w-full; }
+
+.breadcrumb-list {
+  @apply list-none m-0 p-0 flex flex-wrap items-center gap-x-1 gap-y-1 text-sm leading-6;
+  direction: ltr;
+  font-size: max(0.875rem, 14px);
+}
+
+.breadcrumb-item { @apply min-h-[44px] flex items-center; }
+
+.breadcrumb-link {
+  color: var(--bc-link);
+  @apply min-h-[44px] flex items-center px-1 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 focus:rounded;
+}
+.breadcrumb-link:hover { color: var(--bc-hover); @apply underline; }
+
+.breadcrumb-current {
+  color: var(--bc-current);
+  @apply font-medium min-h-[44px] flex items-center px-1 py-2 cursor-default;
+}
+
+.breadcrumb-separator {
+  color: var(--bc-separator);
+  @apply select-none pointer-events-none mx-2 flex-shrink-0 text-base;
+}
+
+.breadcrumb-ellipsis {
+  color: var(--bc-separator);
+  @apply select-none pointer-events-none px-1 font-bold text-base;
+}
+
+/* Mobile responsive */
+.breadcrumb.mobile-responsive .breadcrumb-list { @apply gap-x-0.5 gap-y-1; }
+.breadcrumb.mobile-responsive .breadcrumb-separator { @apply mx-1; }
+
+/* High contrast */
+@media (prefers-contrast: high) {
+  .breadcrumb {
+    --bc-link: theme(colors.blue.700);
+    --bc-hover: theme(colors.blue.900);
+    --bc-separator: theme(colors.gray.600);
+  }
+  .breadcrumb-link { @apply font-semibold; }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .breadcrumb {
+    --bc-link: theme(colors.blue.400);
+    --bc-hover: theme(colors.blue.300);
+    --bc-current: theme(colors.gray.100);
+    --bc-separator: theme(colors.gray.500);
+  }
+}
+
+/* Print */
+@media print {
+  .breadcrumb { @apply text-black bg-transparent; }
+  .breadcrumb-link { @apply text-black no-underline; }
+  .breadcrumb-separator { @apply text-black; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-link { @apply transition-none; }
+}

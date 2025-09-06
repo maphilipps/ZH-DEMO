@@ -21,6 +21,10 @@
     "qa:visual": "npm run visual:test",
     "qa:e2e": "npm run test:e2e",
     "qa:full": "npm run qa:validate && npm run qa:visual && npm run qa:e2e",
+    "validate:schema": "cd components/pager && node schema-validation-test.js",
+    "validate:schema:watch": "cd components/pager && chokidar 'pager.component.yml' 'schema-validation-test.js' -c 'node schema-validation-test.js'",
+    "validate:integration": "cd components/pager && node storybook-integration-test.js",
+    "validate:phase2.2": "npm run validate:schema && npm run validate:integration",
     "storybook": "storybook dev -p 6006 --host 0.0.0.0",
     "backstop:reference": "backstop reference",
     "backstop:test": "backstop test",
@@ -67,7 +71,10 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindplus/elements": "^1.0.8",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "flowbite": "^3.1.2",
+    "js-yaml": "^4.1.0",
     "swiper": "^11.2.10"
   },
   "engines": {

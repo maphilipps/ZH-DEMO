@@ -1,0 +1,669 @@
+/**
+ * Swiss Government Accessible Pager Component
+ * 
+ * Implements eCH-0059 Version 3 accessibility standards for municipal portals
+ * with enhanced focus indicators, high contrast support, and multilingual typography.
+ * 
+ * Supports Swiss municipalities: Thalwil, Thalheim, Erlenbach
+ * WCAG 2.1 AA+ compliance with penalty avoidance (up to 5,000 CHF)
+ */
+
+@import '../../../src/css/theme-variables.css';
+
+/* ===== SWISS GOVERNMENT ACCESSIBILITY FOUNDATION ===== */
+
+/**
+ * CSS Custom Properties for Municipal Branding Flexibility
+ * Allows each municipality to maintain their branding while ensuring accessibility
+ */
+:root {
+  /* eCH-0059 Color Compliance */
+  --pager-color-primary: var(--color-primary-600, #2563eb);
+  --pager-color-primary-hover: var(--color-primary-700, #1d4ed8);
+  --pager-color-primary-active: var(--color-primary-800, #1e40af);
+  --pager-color-current: var(--color-primary-600, #2563eb);
+  --pager-color-current-bg: var(--color-primary-50, #eff6ff);
+  
+  /* Swiss Typography Standards */
+  --pager-font-family: var(--font-primary, 'Inter', sans-serif);
+  --pager-font-size-base: 1rem; /* 20px base from theme */
+  --pager-font-size-sm: 0.875rem; /* 17.5px */
+  --pager-font-weight: 500;
+  --pager-line-height: 1.5;
+  
+  /* Enhanced Focus Indicators (eCH-0059 Requirements) */
+  --pager-focus-width: 3px;
+  --pager-focus-offset: 2px;
+  --pager-focus-color: var(--color-primary-600, #2563eb);
+  --pager-focus-outline-color: var(--color-neutral-900, #0f172a);
+  
+  /* Touch Target Sizes (Mobile Swiss Citizens) */
+  --pager-touch-target-min: 44px;
+  --pager-padding-x: 1rem; /* 20px */
+  --pager-padding-y: 0.75rem; /* 15px */
+  --pager-margin: 0.25rem; /* 5px */
+  
+  /* Contrast Ratios (WCAG 2.1 AA+) */
+  --pager-text-primary: var(--color-neutral-700, #374151);
+  --pager-text-secondary: var(--color-neutral-600, #4b5563);
+  --pager-text-disabled: var(--color-neutral-400, #9ca3af);
+  --pager-bg-primary: var(--color-neutral-50, #f9fafb);
+  --pager-bg-hover: var(--color-neutral-100, #f3f4f6);
+  --pager-bg-disabled: var(--color-neutral-100, #f3f4f6);
+  --pager-border: var(--color-neutral-300, #d1d5db);
+  --pager-border-hover: var(--color-neutral-400, #9ca3af);
+  
+  /* Animation & Motion (Accessibility Preferences) */
+  --pager-transition-duration: 150ms;
+  --pager-transition-timing: ease-in-out;
+}
+
+/* Reduced Motion Support - Swiss Accessibility Guidelines */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pager-transition-duration: 0ms;
+  }
+}
+
+/* High Contrast Mode Support - eCH-0059 Requirement */
+@media (prefers-contrast: high) {
+  :root {
+    --pager-focus-width: 4px;
+    --pager-focus-offset: 3px;
+    --pager-border: #000000;
+    --pager-text-primary: #000000;
+    --pager-text-disabled: #666666;
+    --pager-bg-primary: #ffffff;
+    --pager-color-current: #000000;
+    --pager-color-current-bg: #ffffff;
+  }
+}
+
+/* ===== MUNICIPAL BRANDING VARIATIONS ===== */
+
+/* Thalwil Municipality Theme */
+[data-municipality="thalwil"] {
+  --pager-color-primary: var(--color-thalwil-600, #2563eb);
+  --pager-color-primary-hover: var(--color-thalwil-700, #1d4ed8);
+  --pager-color-primary-active: var(--color-thalwil-800, #1e40af);
+  --pager-color-current: var(--color-thalwil-600, #2563eb);
+  --pager-color-current-bg: var(--color-thalwil-50, #eff6ff);
+  --pager-focus-color: var(--color-thalwil-600, #2563eb);
+}
+
+/* Thalheim Municipality Theme */
+[data-municipality="thalheim"] {
+  --pager-color-primary: var(--color-thalheim-600, #16a34a);
+  --pager-color-primary-hover: var(--color-thalheim-700, #15803d);
+  --pager-color-primary-active: var(--color-thalheim-800, #166534);
+  --pager-color-current: var(--color-thalheim-600, #16a34a);
+  --pager-color-current-bg: var(--color-thalheim-50, #f0fdf4);
+  --pager-focus-color: var(--color-thalheim-600, #16a34a);
+}
+
+/* Erlenbach Municipality Theme */
+[data-municipality="erlenbach"] {
+  --pager-color-primary: var(--color-erlenbach-600, #0891b2);
+  --pager-color-primary-hover: var(--color-erlenbach-700, #0e7490);
+  --pager-color-primary-active: var(--color-erlenbach-800, #155e75);
+  --pager-color-current: var(--color-erlenbach-600, #0891b2);
+  --pager-color-current-bg: var(--color-erlenbach-50, #f0fdfa);
+  --pager-focus-color: var(--color-erlenbach-600, #0891b2);
+}
+
+/* ===== CORE PAGER NAVIGATION STYLES ===== */
+
+/**
+ * Main navigation container with Swiss semantic structure
+ * Implements proper landmark and heading hierarchy
+ */
+nav[role="navigation"][data-pager-nav] {
+  font-family: var(--pager-font-family);
+  font-size: var(--pager-font-size-base);
+  line-height: var(--pager-line-height);
+  
+  /* Ensure adequate spacing for touch targets */
+  padding: var(--pager-padding-y) 0;
+  
+  /* Clear focus outline for container - individual elements handle focus */
+  outline: none;
+}
+
+/* ARIA live region for dynamic announcements */
+[data-pager-announcements] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== ENHANCED FOCUS INDICATORS (eCH-0059 COMPLIANCE) ===== */
+
+/**
+ * Swiss Government Standard Focus Ring
+ * Exceeds WCAG 2.1 AA requirements with high visibility
+ */
+nav[data-pager-nav] a,
+nav[data-pager-nav] button {
+  position: relative;
+  transition: all var(--pager-transition-duration) var(--pager-transition-timing);
+  
+  /* Base focus ring - always present but invisible */
+  outline: var(--pager-focus-width) solid transparent;
+  outline-offset: var(--pager-focus-offset);
+}
+
+nav[data-pager-nav] a:focus-visible,
+nav[data-pager-nav] button:focus-visible {
+  /* Primary focus ring */
+  outline: var(--pager-focus-width) solid var(--pager-focus-color);
+  outline-offset: var(--pager-focus-offset);
+  
+  /* Secondary outline for high contrast */
+  box-shadow: 
+    0 0 0 calc(var(--pager-focus-width) + var(--pager-focus-offset)) var(--pager-focus-outline-color),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  /* Ensure focus ring is above other elements */
+  z-index: 10;
+}
+
+/* Enhanced focus for high contrast mode */
+@media (prefers-contrast: high) {
+  nav[data-pager-nav] a:focus-visible,
+  nav[data-pager-nav] button:focus-visible {
+    outline: var(--pager-focus-width) solid #000000;
+    box-shadow: 
+      0 0 0 calc(var(--pager-focus-width) + var(--pager-focus-offset)) #ffffff,
+      0 0 0 calc(var(--pager-focus-width) * 2 + var(--pager-focus-offset)) #000000;
+  }
+}
+
+/* ===== PREVIOUS/NEXT BUTTON STYLES ===== */
+
+/**
+ * Previous and Next navigation buttons
+ * Swiss government standard with enhanced accessibility
+ */
+nav[data-pager-nav] a,
+nav[data-pager-nav] button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Enhanced touch targets for mobile citizens */
+  min-width: var(--pager-touch-target-min);
+  min-height: var(--pager-touch-target-min);
+  padding: var(--pager-padding-y) var(--pager-padding-x);
+  
+  /* Swiss typography standards */
+  font-family: var(--pager-font-family);
+  font-size: var(--pager-font-size-base);
+  font-weight: var(--pager-font-weight);
+  line-height: var(--pager-line-height);
+  text-decoration: none;
+  
+  /* Government color standards */
+  color: var(--pager-text-primary);
+  background-color: var(--pager-bg-primary);
+  border: 1px solid var(--pager-border);
+  border-radius: 0.375rem; /* 6px - subtle rounding for modern feel */
+  
+  /* Interaction feedback */
+  cursor: pointer;
+  user-select: none;
+}
+
+nav[data-pager-nav] a:hover,
+nav[data-pager-nav] button:hover:not(:disabled) {
+  color: var(--pager-color-primary-hover);
+  background-color: var(--pager-bg-hover);
+  border-color: var(--pager-border-hover);
+  
+  /* Subtle lift effect for interactive feedback */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+nav[data-pager-nav] a:active,
+nav[data-pager-nav] button:active:not(:disabled) {
+  color: var(--pager-color-primary-active);
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Disabled state styling */
+nav[data-pager-nav] button:disabled {
+  color: var(--pager-text-disabled);
+  background-color: var(--pager-bg-disabled);
+  border-color: var(--pager-border);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Icon spacing in navigation buttons */
+nav[data-pager-nav] svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem;
+}
+
+/* Ensure icons don't interfere with screen readers */
+nav[data-pager-nav] svg[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* ===== PAGE NUMBER STYLES ===== */
+
+/**
+ * Page number navigation with Swiss design standards
+ * Semantic list structure with enhanced accessibility
+ */
+div[role="group"] ol[role="list"] {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--pager-margin);
+  
+  /* Responsive behavior for mobile */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+div[role="group"] ol[role="list"] li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual page number links */
+div[role="group"] a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Consistent sizing with navigation buttons */
+  min-width: var(--pager-touch-target-min);
+  min-height: var(--pager-touch-target-min);
+  padding: var(--pager-padding-y) var(--pager-padding-x);
+  
+  /* Typography matching navigation */
+  font-family: var(--pager-font-family);
+  font-size: var(--pager-font-size-base);
+  font-weight: var(--pager-font-weight);
+  line-height: var(--pager-line-height);
+  text-decoration: none;
+  
+  /* Standard page number appearance */
+  color: var(--pager-text-primary);
+  background-color: var(--pager-bg-primary);
+  border: 1px solid var(--pager-border);
+  border-radius: 0.375rem;
+  
+  /* Interaction states */
+  transition: all var(--pager-transition-duration) var(--pager-transition-timing);
+  cursor: pointer;
+}
+
+div[role="group"] a:hover {
+  color: var(--pager-color-primary-hover);
+  background-color: var(--pager-bg-hover);
+  border-color: var(--pager-border-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Current page indicator - highest contrast and visibility */
+span[aria-current="page"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Matching dimensions */
+  min-width: var(--pager-touch-target-min);
+  min-height: var(--pager-touch-target-min);
+  padding: var(--pager-padding-y) var(--pager-padding-x);
+  
+  /* Typography consistency */
+  font-family: var(--pager-font-family);
+  font-size: var(--pager-font-size-base);
+  font-weight: 600; /* Slightly bolder for current page */
+  line-height: var(--pager-line-height);
+  
+  /* High contrast current page styling */
+  color: white;
+  background-color: var(--pager-color-current);
+  border: 1px solid var(--pager-color-current);
+  border-radius: 0.375rem;
+  
+  /* Accessibility enhancement */
+  position: relative;
+}
+
+/* Additional visual indicator for current page (accessibility) */
+span[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--pager-color-current);
+  border-radius: 0.5rem;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Ellipsis styling */
+span[aria-hidden="true"][role="presentation"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Consistent sizing */
+  min-width: var(--pager-touch-target-min);
+  min-height: var(--pager-touch-target-min);
+  padding: var(--pager-padding-y) var(--pager-padding-x);
+  
+  /* Subtle appearance */
+  color: var(--pager-text-secondary);
+  font-size: var(--pager-font-size-base);
+  font-weight: var(--pager-font-weight);
+  
+  /* No interactive styling */
+  cursor: default;
+  user-select: none;
+}
+
+/* ===== RESPONSIVE DESIGN FOR SWISS GOVERNMENT PORTALS ===== */
+
+/**
+ * Mobile-first responsive design optimized for citizen access
+ * Swiss federal standards for mobile government services
+ */
+
+/* Mobile (default) - Essential navigation only */
+@media (max-width: 767.98px) {
+  /* Hide page numbers on mobile, keep prev/next only */
+  div[role="group"] {
+    display: none;
+  }
+  
+  /* Optimize navigation button layout for mobile */
+  nav[data-pager-nav] {
+    gap: 1rem;
+  }
+  
+  /* Ensure touch targets are large enough */
+  nav[data-pager-nav] a,
+  nav[data-pager-nav] button {
+    min-width: 48px; /* Slightly larger for mobile */
+    min-height: 48px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Stack navigation on very small screens */
+  @media (max-width: 479.98px) {
+    nav[data-pager-nav] {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    
+    nav[data-pager-nav] > div {
+      flex: 1;
+      display: flex;
+    }
+    
+    nav[data-pager-nav] a,
+    nav[data-pager-nav] button {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}
+
+/* Tablet (768px+) - Show simplified page numbers */
+@media (min-width: 768px) {
+  div[role="group"] {
+    display: flex;
+  }
+  
+  /* Optimize spacing for tablet */
+  nav[data-pager-nav] {
+    gap: 1.5rem;
+  }
+  
+  /* Adjust page number display for tablet */
+  div[role="group"] ol[role="list"] {
+    gap: 0.5rem;
+  }
+}
+
+/* Desktop (1024px+) - Full pagination display */
+@media (min-width: 1024px) {
+  nav[data-pager-nav] {
+    gap: 2rem;
+  }
+  
+  div[role="group"] ol[role="list"] {
+    gap: 0.25rem;
+  }
+  
+  /* Optimize hover effects for desktop */
+  nav[data-pager-nav] a:hover,
+  nav[data-pager-nav] button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ===== PRINT STYLES FOR GOVERNMENT DOCUMENTS ===== */
+
+/**
+ * Enhanced print styles for Swiss government document requirements
+ * Citizens often print government portal content
+ */
+@media print {
+  nav[data-pager-nav] {
+    display: none !important;
+  }
+  
+  /* Provide print-friendly pagination info */
+  nav[data-pager-nav]::after {
+    content: "Seite " attr(data-current-page) " von " attr(data-total-pages);
+    display: block !important;
+    font-size: 10pt;
+    color: #000;
+    text-align: center;
+    margin: 1rem 0;
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+/**
+ * Dark mode implementation for accessibility and user preference
+ * Maintains contrast ratios per eCH-0059 standards
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pager-text-primary: var(--color-neutral-200, #e5e7eb);
+    --pager-text-secondary: var(--color-neutral-300, #d1d5db);
+    --pager-text-disabled: var(--color-neutral-500, #6b7280);
+    --pager-bg-primary: var(--color-neutral-800, #1f2937);
+    --pager-bg-hover: var(--color-neutral-700, #374151);
+    --pager-bg-disabled: var(--color-neutral-800, #1f2937);
+    --pager-border: var(--color-neutral-600, #4b5563);
+    --pager-border-hover: var(--color-neutral-500, #6b7280);
+    --pager-focus-outline-color: var(--color-neutral-100, #f3f4f6);
+  }
+  
+  /* Adjust current page for dark mode */
+  span[aria-current="page"] {
+    color: var(--color-neutral-900, #111827);
+  }
+}
+
+/* Explicit dark theme class support */
+[data-theme="dark"] nav[data-pager-nav],
+.dark nav[data-pager-nav] {
+  --pager-text-primary: var(--color-neutral-200, #e5e7eb);
+  --pager-text-secondary: var(--color-neutral-300, #d1d5db);
+  --pager-text-disabled: var(--color-neutral-500, #6b7280);
+  --pager-bg-primary: var(--color-neutral-800, #1f2937);
+  --pager-bg-hover: var(--color-neutral-700, #374151);
+  --pager-bg-disabled: var(--color-neutral-800, #1f2937);
+  --pager-border: var(--color-neutral-600, #4b5563);
+  --pager-border-hover: var(--color-neutral-500, #6b7280);
+  --pager-focus-outline-color: var(--color-neutral-100, #f3f4f6);
+}
+
+/* ===== ENHANCED LOADING STATES ===== */
+
+/**
+ * AJAX loading states with accessibility announcements
+ * Supports screen readers and provides visual feedback
+ */
+nav[data-pager-nav].loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+nav[data-pager-nav].loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--pager-border);
+  border-top: 2px solid var(--pager-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  nav[data-pager-nav].loading::after {
+    animation: none;
+    border: 2px solid var(--pager-color-primary);
+  }
+}
+
+/* ===== KEYBOARD NAVIGATION ENHANCEMENTS ===== */
+
+/**
+ * Enhanced keyboard navigation for Swiss accessibility standards
+ * Arrow key navigation and skip patterns
+ */
+
+/* Visual indicator for keyboard navigation mode */
+nav[data-pager-nav]:focus-within {
+  outline: 2px solid var(--pager-focus-color);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
+}
+
+/* Skip to first/last page indicators */
+nav[data-pager-nav] a[href*="page=1"]::before,
+nav[data-pager-nav] button[data-page="1"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px dashed transparent;
+  border-radius: inherit;
+  transition: border-color var(--pager-transition-duration) var(--pager-transition-timing);
+}
+
+nav[data-pager-nav] a[href*="page=1"]:focus-visible::before,
+nav[data-pager-nav] button[data-page="1"]:focus-visible::before {
+  border-color: var(--pager-focus-color);
+}
+
+/* ===== ERROR STATES AND FALLBACKS ===== */
+
+/**
+ * Error handling and graceful degradation
+ * Ensures accessibility even when JavaScript fails
+ */
+.pager-error {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fef2f2; /* red-50 */
+  border: 1px solid #fecaca; /* red-200 */
+  border-radius: 0.5rem;
+  color: #dc2626; /* red-600 */
+}
+
+[data-theme="dark"] .pager-error {
+  background-color: #7f1d1d; /* red-900 */
+  border-color: #dc2626; /* red-600 */
+  color: #fca5a5; /* red-300 */
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/**
+ * Performance enhancements for government portal usage
+ * Optimized for various network conditions in Switzerland
+ */
+
+/* GPU acceleration for smooth interactions */
+nav[data-pager-nav] a,
+nav[data-pager-nav] button,
+span[aria-current="page"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Contain layout shifts during state changes */
+nav[data-pager-nav] {
+  contain: layout style;
+}
+
+/* ===== MULTILINGUAL TYPOGRAPHY SUPPORT ===== */
+
+/**
+ * Enhanced typography for German/French/Italian content
+ * Accounts for text expansion in Swiss federal languages
+ */
+
+/* German language optimizations */
+:lang(de) nav[data-pager-nav] {
+  --pager-padding-x: 1.25rem; /* Extra space for longer German words */
+}
+
+/* French language optimizations */
+:lang(fr) nav[data-pager-nav] {
+  --pager-padding-x: 1.125rem;
+}
+
+/* Italian language optimizations */
+:lang(it) nav[data-pager-nav] {
+  --pager-padding-x: 1.125rem;
+}
+
+/* RTL language support (if needed for future expansion) */
+[dir="rtl"] nav[data-pager-nav] svg {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] nav[data-pager-nav] {
+  direction: rtl;
+}

@@ -1,0 +1,196 @@
+{
+  "timestamp": "2025-09-06T17:09:30.909Z",
+  "environment": "DDEV",
+  "infrastructure_files": {
+    ".claude/infrastructure/knowledge-synthesis.js": {
+      "name": "Knowledge Synthesis Engine",
+      "exists": true,
+      "size_kb": 50,
+      "last_modified": "2025-09-06T16:37:24.111Z",
+      "status": "valid"
+    },
+    ".claude/infrastructure/predictive-adr-engine.js": {
+      "name": "Predictive ADR Engine",
+      "exists": true,
+      "size_kb": 25,
+      "last_modified": "2025-09-06T16:41:44.648Z",
+      "status": "valid"
+    },
+    ".claude/infrastructure/cross-project-learning-engine.js": {
+      "name": "Cross-Project Learning Engine",
+      "exists": true,
+      "size_kb": 38,
+      "last_modified": "2025-09-06T16:44:45.733Z",
+      "status": "valid"
+    },
+    ".claude/infrastructure/municipal-knowledge-graph.js": {
+      "name": "Municipal Knowledge Graph",
+      "exists": true,
+      "size_kb": 37,
+      "last_modified": "2025-09-06T16:47:00.970Z",
+      "status": "valid"
+    },
+    ".claude/infrastructure/multi-municipality-scaling-automation.js": {
+      "name": "Multi-Municipality Scaling Automation",
+      "exists": true,
+      "size_kb": 35,
+      "last_modified": "2025-09-06T16:49:10.863Z",
+      "status": "valid"
+    },
+    ".claude/tests/automation-enhancement-tests.js": {
+      "name": "Automation Enhancement Tests",
+      "exists": true,
+      "size_kb": 54,
+      "last_modified": "2025-09-06T16:54:19.018Z",
+      "status": "valid"
+    }
+  },
+  "ddev_compatibility": {
+    "is_ddev_environment": true,
+    "config_accessible": true,
+    "project_name": "zh-demo",
+    "file_system_operations": true,
+    "drupal_paths": {
+      "web": {
+        "exists": true,
+        "type": "directory"
+      },
+      "web/modules/custom": {
+        "exists": true,
+        "type": "directory"
+      },
+      "web/themes/custom/adesso_cms_theme": {
+        "exists": true,
+        "type": "directory"
+      },
+      "composer.json": {
+        "exists": true,
+        "type": "file"
+      }
+    }
+  },
+  "module_accessibility": {
+    ".claude/infrastructure/knowledge-synthesis.js": {
+      "accessible": true,
+      "has_expected_export": true,
+      "available_exports": [
+        "KnowledgeSynthesisEngine",
+        "EnhancedPatternRecognizer",
+        "MADR40ADRGenerator",
+        "MunicipalKnowledgeGraph",
+        "MunicipalBestPracticeExtractor",
+        "PredictiveADREngine",
+        "CollaborativeWorkflowIntegrator",
+        "SwissComplianceValidator",
+        "MultiMunicipalityCoordinator"
+      ],
+      "status": "valid"
+    },
+    ".claude/infrastructure/predictive-adr-engine.js": {
+      "accessible": true,
+      "has_expected_export": true,
+      "available_exports": [
+        "PredictiveADREngine",
+        "CodePatternAnalyzer",
+        "MunicipalContextPredictor",
+        "SwissCompliancePredictor",
+        "StakeholderImpactAnalyzer",
+        "DecisionOutcomeForecaster"
+      ],
+      "status": "valid"
+    },
+    ".claude/infrastructure/cross-project-learning-engine.js": {
+      "accessible": true,
+      "has_expected_export": true,
+      "available_exports": [
+        "CrossProjectLearningEngine",
+        "EnhancedPatternLibrary",
+        "MunicipalPatternSpecializer",
+        "SwissCompliancePatternManager",
+        "CrossProjectAnalyzer",
+        "PatternEvolutionTracker",
+        "CantonZurichSpecializer"
+      ],
+      "status": "valid"
+    },
+    ".claude/infrastructure/municipal-knowledge-graph.js": {
+      "accessible": true,
+      "has_expected_export": true,
+      "available_exports": [
+        "MunicipalKnowledgeGraph",
+        "DecisionRelationshipAnalyzer",
+        "MunicipalContextMapper",
+        "ComplianceDependencyTracker",
+        "StakeholderNetworkAnalyzer",
+        "CrossProjectConnector",
+        "PatternRelationshipTracker"
+      ],
+      "status": "valid"
+    },
+    ".claude/infrastructure/multi-municipality-scaling-automation.js": {
+      "accessible": true,
+      "has_expected_export": true,
+      "available_exports": [
+        "MultiMunicipalityScalingAutomation",
+        "ThalwilSpecificAutomator",
+        "ThalheimSpecificAutomator",
+        "ErlenbachSpecificAutomator",
+        "TenantArchitectureDocumenter",
+        "InterMunicipalCoordinator",
+        "CantonComplianceScaler"
+      ],
+      "status": "valid"
+    }
+  },
+  "directory_structure": {
+    ".claude": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/infrastructure": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/learning": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/learning/patterns": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/learning/adr-collaborations": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/tests": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/workflows": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    },
+    ".claude/templates": {
+      "exists": true,
+      "is_directory": true,
+      "created_if_missing": true,
+      "status": "valid"
+    }
+  },
+  "overall_status": "valid"
+}

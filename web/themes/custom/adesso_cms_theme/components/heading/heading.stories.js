@@ -225,6 +225,25 @@ export const SectionWithAnchor = {
   },
 };
 
+// External link heading with security features
+export const ExternalLink = {
+  args: {
+    heading: {
+      title: 'External Resource',
+      as: 'h3',
+      visual_level: '3',
+      url: 'https://example.com/resource',
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Heading with external link that automatically gets security attributes and accessibility features via Foundation Link integration.',
+      },
+    },
+  },
+};
+
 // Heading with icon
 export const WithIcon = {
   args: {

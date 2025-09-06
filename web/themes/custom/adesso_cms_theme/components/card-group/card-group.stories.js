@@ -420,6 +420,73 @@ export const TeamShowcase = {
   },
 };
 
+// External media links with security features
+export const ExternalMediaLinks = {
+  args: {
+    section_title: 'External Resources',
+    pre_headline: 'Linked Content',
+    columns: '3',
+    card_items: [
+      {
+        type: 'custom',
+        media: `
+          <div class="w-full h-48 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </div>
+        `,
+        media_link: 'https://example.com/video',
+        heading: {
+          title: 'External Video Content',
+          level: 'h3',
+          url: 'https://example.com/page'
+        },
+        summary_text: 'External media link with automatic security attributes and accessibility features.',
+        link: {
+          url: 'https://external-site.com',
+          title: 'Visit External Site',
+        },
+        tags: [
+          { name: 'External', color: 'red' },
+          { name: 'Media', color: 'blue' },
+        ],
+      },
+      {
+        type: 'custom',
+        media: `
+          <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+        `,
+        media_link: '/local-document.pdf',
+        heading: {
+          title: 'Local Document',
+          level: 'h3',
+        },
+        summary_text: 'Internal document link without external security attributes.',
+        link: {
+          url: '/services/documentation',
+          title: 'View Documentation',
+        },
+        tags: [
+          { name: 'Internal', color: 'blue' },
+          { name: 'Document', color: 'green' },
+        ],
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Cards with media links demonstrating the Foundation Link security integration for both external and internal links.',
+      },
+    },
+  },
+};
+
 // Playground for testing all properties
 export const Playground = {
   args: {

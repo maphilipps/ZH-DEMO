@@ -143,6 +143,18 @@ search-results:
     - core/once
     - adesso_cms_theme/global  # Base theme styles
 
+# Foundation Link Component
+link:
+  version: 1.x
+  css:
+    component:
+      components/link/link.css: {}
+  js:
+    components/link/link.behavior.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 # Theme Customization (Issue #36)
 theme-customization:
   version: 1.x

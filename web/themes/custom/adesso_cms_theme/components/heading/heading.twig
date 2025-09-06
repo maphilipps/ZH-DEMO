@@ -67,9 +67,14 @@
       {{ heading.icon|default('') }}
     {% endif %}
     {% if heading.url|default('') %}
-      <a href="{{ heading.url|default('') }}" class="hover:underline">
-        {{ title_text }}
-      </a>
+      {% include 'adesso_cms_theme:link' with {
+        'text': title_text,
+        'url': heading.url,
+        'variant': 'inline',
+        'modifier': 'hover:underline text-inherit',
+        'municipality_compliant': true,
+        'aria_label': heading.aria_label|default(null)
+      } only %}
     {% else %}
       {{ title_text }}
     {% endif %}

@@ -1,0 +1,343 @@
+/**
+ * @file
+ * Foundation Link Component Styles
+ * 
+ * Tailwind CSS v4 component styles for the link component.
+ * Provides accessible, municipal-compliant link styling with variants.
+ */
+
+/* Component base styles */
+.adesso-link {
+  /* Ensure minimum touch target size (44x44px) for accessibility */
+  min-height: 44px;
+  min-width: 44px;
+  
+  /* High contrast focus styles for WCAG compliance */
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* Ensure sufficient color contrast */
+  &:hover {
+    transition: all 0.15s ease-in-out;
+  }
+  
+  /* Print styles for municipal compliance */
+  @media print {
+    &[href^="http"]:after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+      color: #666;
+    }
+  }
+}
+
+/* Icon positioning and sizing */
+.adesso-link__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  
+  /* Ensure icons maintain aspect ratio */
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+/* Text styling */
+.adesso-link__text {
+  line-height: 1.4;
+  
+  /* Prevent text from breaking inappropriately */
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Badge styling */
+.adesso-link__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+}
+
+/* External link indicator */
+.adesso-link__external-indicator {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.25rem;
+  
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+/* Variant: Button */
+.adesso-link[data-variant="button"] {
+  /* Enhanced button-like appearance */
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  
+  /* Municipal blue color scheme */
+  background-color: var(--color-blue-600);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-blue-700);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: var(--color-blue-800);
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+  }
+  
+  /* Focus styles for keyboard navigation */
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-400);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Disabled state */
+  &[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* Variant: External */
+.adesso-link[data-variant="external"],
+.adesso-link[data-external="true"] {
+  /* Enhanced external link styling */
+  position: relative;
+  
+  &:hover {
+    .adesso-link__external-indicator {
+      transform: translateX(2px) translateY(-2px);
+    }
+  }
+  
+  /* Security indicator for municipal compliance */
+  &[target="_blank"]::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-green-500);
+    border: 1px solid white;
+    z-index: 1;
+  }
+}
+
+/* Variant: Download */
+.adesso-link[data-variant="download"] {
+  color: var(--color-green-600);
+  
+  &:hover {
+    color: var(--color-green-700);
+    
+    .adesso-link__icon {
+      transform: translateY(2px);
+    }
+  }
+  
+  /* Download indicator animation */
+  .adesso-link__icon {
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+/* Variant: Phone */
+.adesso-link[data-variant="phone"] {
+  /* Phone number formatting */
+  font-family: var(--font-mono, monospace);
+  font-variant-numeric: tabular-nums;
+  
+  &:hover {
+    .adesso-link__icon {
+      animation: ring 0.5s ease-in-out;
+    }
+  }
+  
+  @keyframes ring {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+  }
+}
+
+/* Variant: Email */
+.adesso-link[data-variant="email"] {
+  /* Email styling */
+  word-break: break-all;
+  
+  &:hover {
+    .adesso-link__icon {
+      animation: bounce 0.5s ease-in-out;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+}
+
+/* Variant: Inline */
+.adesso-link[data-variant="inline"] {
+  /* Minimal styling for inline text links */
+  text-underline-offset: 0.125rem;
+  
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* Size variants */
+.adesso-link[data-size="sm"] {
+  font-size: 0.875rem;
+  min-height: 36px;
+  min-width: 36px;
+  
+  &[data-variant="button"] {
+    padding: 0.375rem 0.75rem;
+    height: 2rem;
+  }
+}
+
+.adesso-link[data-size="lg"] {
+  font-size: 1.125rem;
+  min-height: 48px;
+  min-width: 48px;
+  
+  &[data-variant="button"] {
+    padding: 0.75rem 1.5rem;
+    height: 3rem;
+  }
+}
+
+/* Municipal compliance features */
+.adesso-link[data-municipality-compliant="true"] {
+  /* Enhanced accessibility for municipal portals */
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    &:not([data-variant="button"]) {
+      border-bottom: 2px solid currentColor;
+      text-decoration: none;
+    }
+    
+    &[data-variant="button"] {
+      border: 2px solid var(--color-blue-600);
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+    
+    .adesso-link__icon,
+    .adesso-link__external-indicator {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    &:hover {
+      transform: none !important;
+    }
+  }
+  
+  /* Dark mode support for Swiss municipal standards */
+  @media (prefers-color-scheme: dark) {
+    &:not([data-variant="button"]) {
+      color: var(--color-blue-400);
+      
+      &:hover {
+        color: var(--color-blue-300);
+      }
+    }
+    
+    &[data-variant="button"] {
+      background-color: var(--color-blue-500);
+      
+      &:hover:not(:disabled) {
+        background-color: var(--color-blue-400);
+      }
+    }
+    
+    &[data-variant="download"] {
+      color: var(--color-green-400);
+      
+      &:hover {
+        color: var(--color-green-300);
+      }
+    }
+  }
+}
+
+/* Loading state support */
+.adesso-link[aria-busy="true"] {
+  opacity: 0.75;
+  cursor: wait;
+  pointer-events: none;
+  
+  .adesso-link__text::after {
+    content: "...";
+    animation: dots 1.5s infinite;
+  }
+  
+  @keyframes dots {
+    0%, 20% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
+
+/* Error state support */
+.adesso-link[data-error="true"] {
+  color: var(--color-red-600);
+  
+  &:hover {
+    color: var(--color-red-700);
+  }
+  
+  &[data-variant="button"] {
+    background-color: var(--color-red-600);
+    
+    &:hover:not(:disabled) {
+      background-color: var(--color-red-700);
+    }
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

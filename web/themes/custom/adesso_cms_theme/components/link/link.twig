@@ -27,8 +27,18 @@
  */
 #}
 
-{# Determine if this is an external link #}
-{% set is_external = url|default('') starts with 'http' and not (url|default('') starts with 'https://zh-demo.ddev.site' or url|default('') starts with '/') %}
+{# Determine if this is an external link with configurable domain detection #}
+{% set current_domain = app.request ? app.request.getSchemeAndHttpHost() : 'https://zh-demo.ddev.site' %}
+{% set swiss_gov_domains = ['.admin.ch', '.ch.ch', '.bag.admin.ch', '.seco.admin.ch'] %}
+{% set is_relative = url|default('') starts with '/' %}
+{% set is_same_domain = url|default('') starts with current_domain %}
+{% set is_swiss_gov = false %}
+{% for domain in swiss_gov_domains %}
+  {% if url|default('') contains domain %}
+    {% set is_swiss_gov = true %}
+  {% endif %}
+{% endfor %}
+{% set is_external = url|default('') starts with 'http' and not (is_same_domain or is_relative or is_swiss_gov) %}
 
 {# Determine link type from URL or variant #}
 {% set is_email = variant|default('') == 'email' or url|default('') starts with 'mailto:' %}
@@ -142,9 +152,23 @@
   ])|filter %}
 {% endif %}
 
-{# Add modifier classes #}
+{# Add modifier classes with security whitelist #}
 {% if modifier|default('') %}
-  {% set link_classes = link_classes|merge([modifier]) %}
+  {# Security: Whitelist allowed CSS classes to prevent XSS injection #}
+  {% set allowed_modifiers = [
+    'text-sm', 'text-base', 'text-lg', 'text-xl',
+    'font-normal', 'font-medium', 'font-semibold', 'font-bold',
+    'uppercase', 'lowercase', 'capitalize',
+    'underline', 'no-underline',
+    'text-left', 'text-center', 'text-right',
+    'block', 'inline-block', 'inline-flex',
+    'w-full', 'w-auto',
+    'justify-start', 'justify-center', 'justify-end'
+  ] %}
+  {% set sanitized_modifier = modifier in allowed_modifiers ? modifier : '' %}
+  {% if sanitized_modifier %}
+    {% set link_classes = link_classes|merge([sanitized_modifier]) %}
+  {% endif %}
 {% endif %}
 
 {# Build attributes with proper escaping #}

@@ -1,0 +1,3806 @@
+{
+  "timestamp": "2025-09-06T16:14:59.182Z",
+  "schemaVersion": "draft-07",
+  "compliance": "eCH-0059 Version 3",
+  "summary": {
+    "totalTests": 6,
+    "passed": 6,
+    "performance": {
+      "count": 7,
+      "average": 3.923416714285714,
+      "min": 0.009542,
+      "max": 22.994583,
+      "median": 0.025333,
+      "p95": 22.994583,
+      "total": 27.463917
+    }
+  },
+  "details": {
+    "validMinimal": {
+      "valid": true,
+      "duration": 2.973333,
+      "errors": []
+    },
+    "validComprehensive": {
+      "valid": true,
+      "duration": 1.427292,
+      "errors": []
+    },
+    "invalidMissingRequired": {
+      "valid": false,
+      "duration": 0.009542,
+      "errors": [
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "heading_id"
+          },
+          "message": "must have required property 'heading_id'",
+          "schema": [
+            "heading_id",
+            "current",
+            "items",
+            "pagination_metadata"
+          ],
+          "parentSchema": {
+            "type": "object",
+            "required": [
+              "heading_id",
+              "current",
+              "items",
+              "pagination_metadata"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading_id": {
+                "type": "string",
+                "title": "Heading ID",
+                "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "minLength": 3,
+                "maxLength": 64,
+                "examples": [
+                  "pagination-main",
+                  "search-pagination",
+                  "blog-pagination",
+                  "municipal-services-pager"
+                ]
+              },
+              "current": {
+                "type": "integer",
+                "title": "Current Page",
+                "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+                "minimum": 1,
+                "maximum": 99999,
+                "examples": [
+                  1,
+                  5,
+                  12,
+                  247
+                ]
+              },
+              "items": {
+                "type": "object",
+                "title": "Pagination Items",
+                "description": "Complete pagination data structure including page links, navigation buttons,\nand ellipsis indicators. Supports Drupal's standard pager array format.\n",
+                "required": [
+                  "pages"
+                ],
+                "properties": {
+                  "previous": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Previous Page Link",
+                    "description": "Previous page navigation link data (omit if on first page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Previous Page URL",
+                        "description": "URL for the previous page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page Title",
+                        "description": "Descriptive title for previous page link",
+                        "default": "Go to previous page",
+                        "examples": [
+                          "Go to previous page",
+                          "Vorherige Seite",
+                          "Page précédente"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to previous page, page {number}",
+                          "Zur vorherigen Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "next": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Next Page Link",
+                    "description": "Next page navigation link data (omit if on last page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Next Page URL",
+                        "description": "URL for the next page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page Title",
+                        "description": "Descriptive title for next page link",
+                        "default": "Go to next page",
+                        "examples": [
+                          "Go to next page",
+                          "Nächste Seite",
+                          "Page suivante"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to next page, page {number}",
+                          "Zur nächsten Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "pages": {
+                    "type": "object",
+                    "title": "Page Number Links",
+                    "description": "Object with page numbers as keys and page data as values.\nEach page entry should contain href for navigation.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "href"
+                        ],
+                        "properties": {
+                          "href": {
+                            "type": "string",
+                            "format": "uri-reference",
+                            "title": "Page URL",
+                            "description": "URL for this specific page",
+                            "minLength": 1
+                          },
+                          "title": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link Title",
+                            "description": "Optional title attribute for the page link",
+                            "examples": [
+                              "Go to page 1",
+                              "Gehe zu Seite 1"
+                            ]
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link ARIA Label",
+                            "description": "Enhanced ARIA label for page links",
+                            "examples": [
+                              "Go to page {number}",
+                              "Gehe zu Seite {number}"
+                            ]
+                          },
+                          "is_current": {
+                            "type": "boolean",
+                            "title": "Is Current Page",
+                            "description": "Whether this page is the current active page",
+                            "default": false
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "1": {
+                          "href": "/page/1",
+                          "is_current": true
+                        },
+                        "2": {
+                          "href": "/page/2"
+                        }
+                      }
+                    ]
+                  },
+                  "ellipses": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Ellipsis Indicators",
+                    "description": "Object indicating where ellipsis (...) should be displayed between\npage numbers. Keys are page numbers after which ellipsis should appear.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "title": "Show Ellipsis",
+                            "description": "Whether to show ellipsis after this page number",
+                            "default": true
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Ellipsis ARIA Label",
+                            "description": "ARIA label for ellipsis indicators",
+                            "examples": [
+                              "More pages available",
+                              "Weitere Seiten verfügbar",
+                              "Plus de pages disponibles"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "2": {
+                          "show": true
+                        },
+                        "8": {
+                          "show": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "parameters": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "URL Parameters",
+                "description": "Additional URL parameters to preserve across pagination (e.g., search queries,\nfilters). These will be maintained in all pagination links.\n",
+                "examples": [
+                  "q=search+term",
+                  "category=news&sort=date",
+                  "filter[type]=article&per_page=10"
+                ]
+              },
+              "pagination_metadata": {
+                "type": "object",
+                "title": "Pagination Metadata",
+                "description": "Comprehensive pagination metadata for advanced navigation, performance optimization,\nand Swiss municipal portal integration. Contains all necessary data for\naccessibility compliance and citizen service optimization.\n",
+                "required": [
+                  "total_items",
+                  "items_per_page",
+                  "total_pages"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "total_items": {
+                    "type": "integer",
+                    "title": "Total Items",
+                    "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+                    "minimum": 0,
+                    "examples": [
+                      245,
+                      1024,
+                      0
+                    ]
+                  },
+                  "items_per_page": {
+                    "type": "integer",
+                    "title": "Items Per Page",
+                    "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10,
+                    "examples": [
+                      10,
+                      25,
+                      50
+                    ]
+                  },
+                  "total_pages": {
+                    "type": "integer",
+                    "title": "Total Pages",
+                    "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      25,
+                      41,
+                      1
+                    ]
+                  },
+                  "start_item": {
+                    "type": "integer",
+                    "title": "Start Item Number",
+                    "description": "The index of the first item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      1,
+                      11,
+                      51
+                    ]
+                  },
+                  "end_item": {
+                    "type": "integer",
+                    "title": "End Item Number",
+                    "description": "The index of the last item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      10,
+                      20,
+                      60
+                    ]
+                  },
+                  "page_range": {
+                    "type": "object",
+                    "title": "Page Range Configuration",
+                    "description": "Configuration for visible page number range and ellipsis behavior.\nOptimized for Swiss municipal portal navigation patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "adjacency": {
+                        "type": "integer",
+                        "title": "Adjacent Pages",
+                        "description": "Number of pages to show on each side of current page",
+                        "minimum": 0,
+                        "maximum": 10,
+                        "default": 2,
+                        "examples": [
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "max_pages_shown": {
+                        "type": "integer",
+                        "title": "Maximum Pages Shown",
+                        "description": "Maximum number of page links to display at once",
+                        "minimum": 3,
+                        "maximum": 20,
+                        "default": 9,
+                        "examples": [
+                          7,
+                          9,
+                          11
+                        ]
+                      },
+                      "show_first_last": {
+                        "type": "boolean",
+                        "title": "Show First/Last Links",
+                        "description": "Whether to always show first and last page links",
+                        "default": true
+                      },
+                      "ellipsis_handling": {
+                        "type": "string",
+                        "title": "Ellipsis Handling",
+                        "description": "Strategy for displaying ellipsis between page ranges",
+                        "enum": [
+                          "smart",
+                          "always",
+                          "never"
+                        ],
+                        "default": "smart"
+                      }
+                    }
+                  },
+                  "performance_settings": {
+                    "type": "object",
+                    "title": "Performance Settings",
+                    "description": "Performance optimization settings for large result sets and\nmunicipal portal citizen access patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "lazy_loading": {
+                        "type": "boolean",
+                        "title": "Enable Lazy Loading",
+                        "description": "Enable AJAX-based lazy loading for better performance",
+                        "default": false
+                      },
+                      "infinite_scroll": {
+                        "type": "boolean",
+                        "title": "Enable Infinite Scroll",
+                        "description": "Enable infinite scroll functionality",
+                        "default": false
+                      },
+                      "batch_size": {
+                        "type": "integer",
+                        "title": "Batch Size",
+                        "description": "Number of items to load per AJAX request",
+                        "minimum": 1,
+                        "maximum": 200,
+                        "default": 20,
+                        "examples": [
+                          10,
+                          20,
+                          50
+                        ]
+                      },
+                      "preload_adjacent": {
+                        "type": "boolean",
+                        "title": "Preload Adjacent Pages",
+                        "description": "Preload next/previous pages for faster navigation",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              },
+              "accessibility_config": {
+                "type": "object",
+                "title": "Accessibility Configuration",
+                "description": "Swiss eCH-0059 Version 3 accessibility configuration with municipal\ncompliance settings and multilingual support.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "pagination_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Pagination ARIA Label",
+                    "description": "Custom ARIA label for the pagination navigation landmark.\nDefaults to multilingual municipal standards.\n",
+                    "examples": [
+                      "Seitennavigation für Suchergebnisse",
+                      "Navigation de pagination pour résultats",
+                      "Navigazione di paginazione per risultati"
+                    ]
+                  },
+                  "verbose_labels": {
+                    "type": "boolean",
+                    "title": "Enable Verbose Labels",
+                    "description": "Enable detailed ARIA labels with context information for\nenhanced screen reader accessibility.\n",
+                    "default": true
+                  },
+                  "live_region_settings": {
+                    "type": "object",
+                    "title": "Live Region Configuration",
+                    "description": "Configuration for ARIA live regions and announcements",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enable_announcements": {
+                        "type": "boolean",
+                        "title": "Enable Live Announcements",
+                        "description": "Enable ARIA live region announcements for navigation",
+                        "default": true
+                      },
+                      "announcement_delay": {
+                        "type": "integer",
+                        "title": "Announcement Delay (ms)",
+                        "description": "Delay before announcing page changes",
+                        "minimum": 0,
+                        "maximum": 5000,
+                        "default": 500
+                      },
+                      "politeness_level": {
+                        "type": "string",
+                        "title": "Live Region Politeness",
+                        "description": "ARIA live region politeness level",
+                        "enum": [
+                          "polite",
+                          "assertive",
+                          "off"
+                        ],
+                        "default": "polite"
+                      }
+                    }
+                  },
+                  "multilingual_labels": {
+                    "type": "object",
+                    "title": "Multilingual Label Support",
+                    "description": "Swiss federal language requirement support for German, French,\nItalian, and English accessibility labels.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "primary_language": {
+                        "type": "string",
+                        "title": "Primary Language",
+                        "description": "Primary language for accessibility labels",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "de"
+                      },
+                      "fallback_language": {
+                        "type": "string",
+                        "title": "Fallback Language",
+                        "description": "Fallback language when primary is unavailable",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "en"
+                      },
+                      "label_translations": {
+                        "type": "object",
+                        "title": "Label Translations",
+                        "description": "Translation mapping for accessibility labels",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                          "^(de|fr|it|en)$": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "previous_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Vorherige Seite",
+                                  "Page précédente",
+                                  "Pagina precedente"
+                                ]
+                              },
+                              "next_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Nächste Seite",
+                                  "Page suivante",
+                                  "Pagina successiva"
+                                ]
+                              },
+                              "current_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Aktuelle Seite",
+                                  "Page actuelle",
+                                  "Pagina corrente"
+                                ]
+                              },
+                              "page_of": {
+                                "type": "string",
+                                "examples": [
+                                  "Seite {current} von {total}",
+                                  "Page {current} sur {total}",
+                                  "Pagina {current} di {total}"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "municipal_theme_support": {
+                    "type": "object",
+                    "title": "Municipal Theme Support",
+                    "description": "Configuration for Swiss municipal theme variations and\ncanton-specific accessibility requirements.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "canton": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Canton Code",
+                        "description": "Swiss canton code for specific accessibility requirements",
+                        "pattern": "^[A-Z]{2}$",
+                        "examples": [
+                          "ZH",
+                          "BE",
+                          "GE",
+                          "VD"
+                        ]
+                      },
+                      "municipality": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Municipality Name",
+                        "description": "Municipality name for branding and compliance",
+                        "examples": [
+                          "Thalwil",
+                          "Thalheim",
+                          "Erlenbach"
+                        ]
+                      },
+                      "compliance_level": {
+                        "type": "string",
+                        "title": "Compliance Level",
+                        "description": "Required accessibility compliance level",
+                        "enum": [
+                          "federal",
+                          "cantonal",
+                          "municipal"
+                        ],
+                        "default": "federal"
+                      }
+                    }
+                  }
+                }
+              },
+              "navigation_context": {
+                "type": "object",
+                "title": "Navigation Context Configuration",
+                "description": "Advanced navigation context settings for enhanced user experience\nand Swiss municipal portal integration.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "skip_navigation": {
+                    "type": "object",
+                    "title": "Skip Navigation Settings",
+                    "description": "Configuration for skip navigation functionality",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Skip Navigation",
+                        "description": "Enable skip navigation links for accessibility",
+                        "default": true
+                      },
+                      "target_selector": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Skip Target Selector",
+                        "description": "CSS selector for skip navigation target",
+                        "examples": [
+                          "#main-content",
+                          ".content-main",
+                          "#search-results"
+                        ]
+                      }
+                    }
+                  },
+                  "keyboard_shortcuts": {
+                    "type": "object",
+                    "title": "Keyboard Shortcuts",
+                    "description": "Configuration for keyboard navigation shortcuts",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Keyboard Shortcuts",
+                        "description": "Enable advanced keyboard navigation shortcuts",
+                        "default": true
+                      },
+                      "shortcut_keys": {
+                        "type": "object",
+                        "title": "Shortcut Key Mappings",
+                        "description": "Custom keyboard shortcut mappings",
+                        "additionalProperties": false,
+                        "properties": {
+                          "first_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "First Page Shortcut",
+                            "description": "Keyboard shortcut for first page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+Home"
+                          },
+                          "last_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Last Page Shortcut",
+                            "description": "Keyboard shortcut for last page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+End"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "focus_management": {
+                    "type": "object",
+                    "title": "Focus Management",
+                    "description": "Advanced focus management for navigation interactions",
+                    "additionalProperties": false,
+                    "properties": {
+                      "restore_focus": {
+                        "type": "boolean",
+                        "title": "Restore Focus After Navigation",
+                        "description": "Restore focus to pagination after content updates",
+                        "default": true
+                      },
+                      "focus_target": {
+                        "type": "string",
+                        "title": "Focus Target Strategy",
+                        "description": "Where to place focus after navigation",
+                        "enum": [
+                          "pagination",
+                          "content",
+                          "heading",
+                          "smart"
+                        ],
+                        "default": "smart"
+                      },
+                      "focus_delay": {
+                        "type": "integer",
+                        "title": "Focus Delay (ms)",
+                        "description": "Delay before setting focus after navigation",
+                        "minimum": 0,
+                        "maximum": 2000,
+                        "default": 200
+                      }
+                    }
+                  }
+                }
+              },
+              "display_options": {
+                "type": "object",
+                "title": "Display Options",
+                "description": "Visual display configuration for Swiss municipal portal requirements\nand responsive design optimization.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "responsive_behavior": {
+                    "type": "string",
+                    "title": "Responsive Behavior",
+                    "description": "How pagination adapts to different screen sizes",
+                    "enum": [
+                      "adaptive",
+                      "collapse",
+                      "scroll",
+                      "minimal"
+                    ],
+                    "default": "adaptive"
+                  },
+                  "mobile_breakpoint": {
+                    "type": "integer",
+                    "title": "Mobile Breakpoint (px)",
+                    "description": "Breakpoint for mobile pagination adaptations",
+                    "minimum": 320,
+                    "maximum": 1024,
+                    "default": 768
+                  },
+                  "show_result_count": {
+                    "type": "boolean",
+                    "title": "Show Result Count",
+                    "description": "Display \"Showing X-Y of Z results\" information",
+                    "default": true
+                  },
+                  "show_page_size_selector": {
+                    "type": "boolean",
+                    "title": "Show Page Size Selector",
+                    "description": "Display items per page selection dropdown",
+                    "default": false
+                  },
+                  "compact_mode": {
+                    "type": "boolean",
+                    "title": "Enable Compact Mode",
+                    "description": "Use compact pagination layout for small screens",
+                    "default": false
+                  }
+                }
+              }
+            }
+          },
+          "data": {}
+        },
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "current"
+          },
+          "message": "must have required property 'current'",
+          "schema": [
+            "heading_id",
+            "current",
+            "items",
+            "pagination_metadata"
+          ],
+          "parentSchema": {
+            "type": "object",
+            "required": [
+              "heading_id",
+              "current",
+              "items",
+              "pagination_metadata"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading_id": {
+                "type": "string",
+                "title": "Heading ID",
+                "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "minLength": 3,
+                "maxLength": 64,
+                "examples": [
+                  "pagination-main",
+                  "search-pagination",
+                  "blog-pagination",
+                  "municipal-services-pager"
+                ]
+              },
+              "current": {
+                "type": "integer",
+                "title": "Current Page",
+                "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+                "minimum": 1,
+                "maximum": 99999,
+                "examples": [
+                  1,
+                  5,
+                  12,
+                  247
+                ]
+              },
+              "items": {
+                "type": "object",
+                "title": "Pagination Items",
+                "description": "Complete pagination data structure including page links, navigation buttons,\nand ellipsis indicators. Supports Drupal's standard pager array format.\n",
+                "required": [
+                  "pages"
+                ],
+                "properties": {
+                  "previous": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Previous Page Link",
+                    "description": "Previous page navigation link data (omit if on first page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Previous Page URL",
+                        "description": "URL for the previous page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page Title",
+                        "description": "Descriptive title for previous page link",
+                        "default": "Go to previous page",
+                        "examples": [
+                          "Go to previous page",
+                          "Vorherige Seite",
+                          "Page précédente"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to previous page, page {number}",
+                          "Zur vorherigen Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "next": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Next Page Link",
+                    "description": "Next page navigation link data (omit if on last page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Next Page URL",
+                        "description": "URL for the next page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page Title",
+                        "description": "Descriptive title for next page link",
+                        "default": "Go to next page",
+                        "examples": [
+                          "Go to next page",
+                          "Nächste Seite",
+                          "Page suivante"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to next page, page {number}",
+                          "Zur nächsten Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "pages": {
+                    "type": "object",
+                    "title": "Page Number Links",
+                    "description": "Object with page numbers as keys and page data as values.\nEach page entry should contain href for navigation.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "href"
+                        ],
+                        "properties": {
+                          "href": {
+                            "type": "string",
+                            "format": "uri-reference",
+                            "title": "Page URL",
+                            "description": "URL for this specific page",
+                            "minLength": 1
+                          },
+                          "title": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link Title",
+                            "description": "Optional title attribute for the page link",
+                            "examples": [
+                              "Go to page 1",
+                              "Gehe zu Seite 1"
+                            ]
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link ARIA Label",
+                            "description": "Enhanced ARIA label for page links",
+                            "examples": [
+                              "Go to page {number}",
+                              "Gehe zu Seite {number}"
+                            ]
+                          },
+                          "is_current": {
+                            "type": "boolean",
+                            "title": "Is Current Page",
+                            "description": "Whether this page is the current active page",
+                            "default": false
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "1": {
+                          "href": "/page/1",
+                          "is_current": true
+                        },
+                        "2": {
+                          "href": "/page/2"
+                        }
+                      }
+                    ]
+                  },
+                  "ellipses": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Ellipsis Indicators",
+                    "description": "Object indicating where ellipsis (...) should be displayed between\npage numbers. Keys are page numbers after which ellipsis should appear.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "title": "Show Ellipsis",
+                            "description": "Whether to show ellipsis after this page number",
+                            "default": true
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Ellipsis ARIA Label",
+                            "description": "ARIA label for ellipsis indicators",
+                            "examples": [
+                              "More pages available",
+                              "Weitere Seiten verfügbar",
+                              "Plus de pages disponibles"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "2": {
+                          "show": true
+                        },
+                        "8": {
+                          "show": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "parameters": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "URL Parameters",
+                "description": "Additional URL parameters to preserve across pagination (e.g., search queries,\nfilters). These will be maintained in all pagination links.\n",
+                "examples": [
+                  "q=search+term",
+                  "category=news&sort=date",
+                  "filter[type]=article&per_page=10"
+                ]
+              },
+              "pagination_metadata": {
+                "type": "object",
+                "title": "Pagination Metadata",
+                "description": "Comprehensive pagination metadata for advanced navigation, performance optimization,\nand Swiss municipal portal integration. Contains all necessary data for\naccessibility compliance and citizen service optimization.\n",
+                "required": [
+                  "total_items",
+                  "items_per_page",
+                  "total_pages"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "total_items": {
+                    "type": "integer",
+                    "title": "Total Items",
+                    "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+                    "minimum": 0,
+                    "examples": [
+                      245,
+                      1024,
+                      0
+                    ]
+                  },
+                  "items_per_page": {
+                    "type": "integer",
+                    "title": "Items Per Page",
+                    "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10,
+                    "examples": [
+                      10,
+                      25,
+                      50
+                    ]
+                  },
+                  "total_pages": {
+                    "type": "integer",
+                    "title": "Total Pages",
+                    "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      25,
+                      41,
+                      1
+                    ]
+                  },
+                  "start_item": {
+                    "type": "integer",
+                    "title": "Start Item Number",
+                    "description": "The index of the first item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      1,
+                      11,
+                      51
+                    ]
+                  },
+                  "end_item": {
+                    "type": "integer",
+                    "title": "End Item Number",
+                    "description": "The index of the last item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      10,
+                      20,
+                      60
+                    ]
+                  },
+                  "page_range": {
+                    "type": "object",
+                    "title": "Page Range Configuration",
+                    "description": "Configuration for visible page number range and ellipsis behavior.\nOptimized for Swiss municipal portal navigation patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "adjacency": {
+                        "type": "integer",
+                        "title": "Adjacent Pages",
+                        "description": "Number of pages to show on each side of current page",
+                        "minimum": 0,
+                        "maximum": 10,
+                        "default": 2,
+                        "examples": [
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "max_pages_shown": {
+                        "type": "integer",
+                        "title": "Maximum Pages Shown",
+                        "description": "Maximum number of page links to display at once",
+                        "minimum": 3,
+                        "maximum": 20,
+                        "default": 9,
+                        "examples": [
+                          7,
+                          9,
+                          11
+                        ]
+                      },
+                      "show_first_last": {
+                        "type": "boolean",
+                        "title": "Show First/Last Links",
+                        "description": "Whether to always show first and last page links",
+                        "default": true
+                      },
+                      "ellipsis_handling": {
+                        "type": "string",
+                        "title": "Ellipsis Handling",
+                        "description": "Strategy for displaying ellipsis between page ranges",
+                        "enum": [
+                          "smart",
+                          "always",
+                          "never"
+                        ],
+                        "default": "smart"
+                      }
+                    }
+                  },
+                  "performance_settings": {
+                    "type": "object",
+                    "title": "Performance Settings",
+                    "description": "Performance optimization settings for large result sets and\nmunicipal portal citizen access patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "lazy_loading": {
+                        "type": "boolean",
+                        "title": "Enable Lazy Loading",
+                        "description": "Enable AJAX-based lazy loading for better performance",
+                        "default": false
+                      },
+                      "infinite_scroll": {
+                        "type": "boolean",
+                        "title": "Enable Infinite Scroll",
+                        "description": "Enable infinite scroll functionality",
+                        "default": false
+                      },
+                      "batch_size": {
+                        "type": "integer",
+                        "title": "Batch Size",
+                        "description": "Number of items to load per AJAX request",
+                        "minimum": 1,
+                        "maximum": 200,
+                        "default": 20,
+                        "examples": [
+                          10,
+                          20,
+                          50
+                        ]
+                      },
+                      "preload_adjacent": {
+                        "type": "boolean",
+                        "title": "Preload Adjacent Pages",
+                        "description": "Preload next/previous pages for faster navigation",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              },
+              "accessibility_config": {
+                "type": "object",
+                "title": "Accessibility Configuration",
+                "description": "Swiss eCH-0059 Version 3 accessibility configuration with municipal\ncompliance settings and multilingual support.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "pagination_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Pagination ARIA Label",
+                    "description": "Custom ARIA label for the pagination navigation landmark.\nDefaults to multilingual municipal standards.\n",
+                    "examples": [
+                      "Seitennavigation für Suchergebnisse",
+                      "Navigation de pagination pour résultats",
+                      "Navigazione di paginazione per risultati"
+                    ]
+                  },
+                  "verbose_labels": {
+                    "type": "boolean",
+                    "title": "Enable Verbose Labels",
+                    "description": "Enable detailed ARIA labels with context information for\nenhanced screen reader accessibility.\n",
+                    "default": true
+                  },
+                  "live_region_settings": {
+                    "type": "object",
+                    "title": "Live Region Configuration",
+                    "description": "Configuration for ARIA live regions and announcements",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enable_announcements": {
+                        "type": "boolean",
+                        "title": "Enable Live Announcements",
+                        "description": "Enable ARIA live region announcements for navigation",
+                        "default": true
+                      },
+                      "announcement_delay": {
+                        "type": "integer",
+                        "title": "Announcement Delay (ms)",
+                        "description": "Delay before announcing page changes",
+                        "minimum": 0,
+                        "maximum": 5000,
+                        "default": 500
+                      },
+                      "politeness_level": {
+                        "type": "string",
+                        "title": "Live Region Politeness",
+                        "description": "ARIA live region politeness level",
+                        "enum": [
+                          "polite",
+                          "assertive",
+                          "off"
+                        ],
+                        "default": "polite"
+                      }
+                    }
+                  },
+                  "multilingual_labels": {
+                    "type": "object",
+                    "title": "Multilingual Label Support",
+                    "description": "Swiss federal language requirement support for German, French,\nItalian, and English accessibility labels.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "primary_language": {
+                        "type": "string",
+                        "title": "Primary Language",
+                        "description": "Primary language for accessibility labels",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "de"
+                      },
+                      "fallback_language": {
+                        "type": "string",
+                        "title": "Fallback Language",
+                        "description": "Fallback language when primary is unavailable",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "en"
+                      },
+                      "label_translations": {
+                        "type": "object",
+                        "title": "Label Translations",
+                        "description": "Translation mapping for accessibility labels",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                          "^(de|fr|it|en)$": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "previous_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Vorherige Seite",
+                                  "Page précédente",
+                                  "Pagina precedente"
+                                ]
+                              },
+                              "next_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Nächste Seite",
+                                  "Page suivante",
+                                  "Pagina successiva"
+                                ]
+                              },
+                              "current_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Aktuelle Seite",
+                                  "Page actuelle",
+                                  "Pagina corrente"
+                                ]
+                              },
+                              "page_of": {
+                                "type": "string",
+                                "examples": [
+                                  "Seite {current} von {total}",
+                                  "Page {current} sur {total}",
+                                  "Pagina {current} di {total}"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "municipal_theme_support": {
+                    "type": "object",
+                    "title": "Municipal Theme Support",
+                    "description": "Configuration for Swiss municipal theme variations and\ncanton-specific accessibility requirements.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "canton": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Canton Code",
+                        "description": "Swiss canton code for specific accessibility requirements",
+                        "pattern": "^[A-Z]{2}$",
+                        "examples": [
+                          "ZH",
+                          "BE",
+                          "GE",
+                          "VD"
+                        ]
+                      },
+                      "municipality": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Municipality Name",
+                        "description": "Municipality name for branding and compliance",
+                        "examples": [
+                          "Thalwil",
+                          "Thalheim",
+                          "Erlenbach"
+                        ]
+                      },
+                      "compliance_level": {
+                        "type": "string",
+                        "title": "Compliance Level",
+                        "description": "Required accessibility compliance level",
+                        "enum": [
+                          "federal",
+                          "cantonal",
+                          "municipal"
+                        ],
+                        "default": "federal"
+                      }
+                    }
+                  }
+                }
+              },
+              "navigation_context": {
+                "type": "object",
+                "title": "Navigation Context Configuration",
+                "description": "Advanced navigation context settings for enhanced user experience\nand Swiss municipal portal integration.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "skip_navigation": {
+                    "type": "object",
+                    "title": "Skip Navigation Settings",
+                    "description": "Configuration for skip navigation functionality",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Skip Navigation",
+                        "description": "Enable skip navigation links for accessibility",
+                        "default": true
+                      },
+                      "target_selector": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Skip Target Selector",
+                        "description": "CSS selector for skip navigation target",
+                        "examples": [
+                          "#main-content",
+                          ".content-main",
+                          "#search-results"
+                        ]
+                      }
+                    }
+                  },
+                  "keyboard_shortcuts": {
+                    "type": "object",
+                    "title": "Keyboard Shortcuts",
+                    "description": "Configuration for keyboard navigation shortcuts",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Keyboard Shortcuts",
+                        "description": "Enable advanced keyboard navigation shortcuts",
+                        "default": true
+                      },
+                      "shortcut_keys": {
+                        "type": "object",
+                        "title": "Shortcut Key Mappings",
+                        "description": "Custom keyboard shortcut mappings",
+                        "additionalProperties": false,
+                        "properties": {
+                          "first_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "First Page Shortcut",
+                            "description": "Keyboard shortcut for first page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+Home"
+                          },
+                          "last_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Last Page Shortcut",
+                            "description": "Keyboard shortcut for last page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+End"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "focus_management": {
+                    "type": "object",
+                    "title": "Focus Management",
+                    "description": "Advanced focus management for navigation interactions",
+                    "additionalProperties": false,
+                    "properties": {
+                      "restore_focus": {
+                        "type": "boolean",
+                        "title": "Restore Focus After Navigation",
+                        "description": "Restore focus to pagination after content updates",
+                        "default": true
+                      },
+                      "focus_target": {
+                        "type": "string",
+                        "title": "Focus Target Strategy",
+                        "description": "Where to place focus after navigation",
+                        "enum": [
+                          "pagination",
+                          "content",
+                          "heading",
+                          "smart"
+                        ],
+                        "default": "smart"
+                      },
+                      "focus_delay": {
+                        "type": "integer",
+                        "title": "Focus Delay (ms)",
+                        "description": "Delay before setting focus after navigation",
+                        "minimum": 0,
+                        "maximum": 2000,
+                        "default": 200
+                      }
+                    }
+                  }
+                }
+              },
+              "display_options": {
+                "type": "object",
+                "title": "Display Options",
+                "description": "Visual display configuration for Swiss municipal portal requirements\nand responsive design optimization.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "responsive_behavior": {
+                    "type": "string",
+                    "title": "Responsive Behavior",
+                    "description": "How pagination adapts to different screen sizes",
+                    "enum": [
+                      "adaptive",
+                      "collapse",
+                      "scroll",
+                      "minimal"
+                    ],
+                    "default": "adaptive"
+                  },
+                  "mobile_breakpoint": {
+                    "type": "integer",
+                    "title": "Mobile Breakpoint (px)",
+                    "description": "Breakpoint for mobile pagination adaptations",
+                    "minimum": 320,
+                    "maximum": 1024,
+                    "default": 768
+                  },
+                  "show_result_count": {
+                    "type": "boolean",
+                    "title": "Show Result Count",
+                    "description": "Display \"Showing X-Y of Z results\" information",
+                    "default": true
+                  },
+                  "show_page_size_selector": {
+                    "type": "boolean",
+                    "title": "Show Page Size Selector",
+                    "description": "Display items per page selection dropdown",
+                    "default": false
+                  },
+                  "compact_mode": {
+                    "type": "boolean",
+                    "title": "Enable Compact Mode",
+                    "description": "Use compact pagination layout for small screens",
+                    "default": false
+                  }
+                }
+              }
+            }
+          },
+          "data": {}
+        },
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "items"
+          },
+          "message": "must have required property 'items'",
+          "schema": [
+            "heading_id",
+            "current",
+            "items",
+            "pagination_metadata"
+          ],
+          "parentSchema": {
+            "type": "object",
+            "required": [
+              "heading_id",
+              "current",
+              "items",
+              "pagination_metadata"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading_id": {
+                "type": "string",
+                "title": "Heading ID",
+                "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "minLength": 3,
+                "maxLength": 64,
+                "examples": [
+                  "pagination-main",
+                  "search-pagination",
+                  "blog-pagination",
+                  "municipal-services-pager"
+                ]
+              },
+              "current": {
+                "type": "integer",
+                "title": "Current Page",
+                "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+                "minimum": 1,
+                "maximum": 99999,
+                "examples": [
+                  1,
+                  5,
+                  12,
+                  247
+                ]
+              },
+              "items": {
+                "type": "object",
+                "title": "Pagination Items",
+                "description": "Complete pagination data structure including page links, navigation buttons,\nand ellipsis indicators. Supports Drupal's standard pager array format.\n",
+                "required": [
+                  "pages"
+                ],
+                "properties": {
+                  "previous": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Previous Page Link",
+                    "description": "Previous page navigation link data (omit if on first page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Previous Page URL",
+                        "description": "URL for the previous page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page Title",
+                        "description": "Descriptive title for previous page link",
+                        "default": "Go to previous page",
+                        "examples": [
+                          "Go to previous page",
+                          "Vorherige Seite",
+                          "Page précédente"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to previous page, page {number}",
+                          "Zur vorherigen Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "next": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Next Page Link",
+                    "description": "Next page navigation link data (omit if on last page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Next Page URL",
+                        "description": "URL for the next page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page Title",
+                        "description": "Descriptive title for next page link",
+                        "default": "Go to next page",
+                        "examples": [
+                          "Go to next page",
+                          "Nächste Seite",
+                          "Page suivante"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to next page, page {number}",
+                          "Zur nächsten Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "pages": {
+                    "type": "object",
+                    "title": "Page Number Links",
+                    "description": "Object with page numbers as keys and page data as values.\nEach page entry should contain href for navigation.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "href"
+                        ],
+                        "properties": {
+                          "href": {
+                            "type": "string",
+                            "format": "uri-reference",
+                            "title": "Page URL",
+                            "description": "URL for this specific page",
+                            "minLength": 1
+                          },
+                          "title": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link Title",
+                            "description": "Optional title attribute for the page link",
+                            "examples": [
+                              "Go to page 1",
+                              "Gehe zu Seite 1"
+                            ]
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link ARIA Label",
+                            "description": "Enhanced ARIA label for page links",
+                            "examples": [
+                              "Go to page {number}",
+                              "Gehe zu Seite {number}"
+                            ]
+                          },
+                          "is_current": {
+                            "type": "boolean",
+                            "title": "Is Current Page",
+                            "description": "Whether this page is the current active page",
+                            "default": false
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "1": {
+                          "href": "/page/1",
+                          "is_current": true
+                        },
+                        "2": {
+                          "href": "/page/2"
+                        }
+                      }
+                    ]
+                  },
+                  "ellipses": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Ellipsis Indicators",
+                    "description": "Object indicating where ellipsis (...) should be displayed between\npage numbers. Keys are page numbers after which ellipsis should appear.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "title": "Show Ellipsis",
+                            "description": "Whether to show ellipsis after this page number",
+                            "default": true
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Ellipsis ARIA Label",
+                            "description": "ARIA label for ellipsis indicators",
+                            "examples": [
+                              "More pages available",
+                              "Weitere Seiten verfügbar",
+                              "Plus de pages disponibles"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "2": {
+                          "show": true
+                        },
+                        "8": {
+                          "show": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "parameters": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "URL Parameters",
+                "description": "Additional URL parameters to preserve across pagination (e.g., search queries,\nfilters). These will be maintained in all pagination links.\n",
+                "examples": [
+                  "q=search+term",
+                  "category=news&sort=date",
+                  "filter[type]=article&per_page=10"
+                ]
+              },
+              "pagination_metadata": {
+                "type": "object",
+                "title": "Pagination Metadata",
+                "description": "Comprehensive pagination metadata for advanced navigation, performance optimization,\nand Swiss municipal portal integration. Contains all necessary data for\naccessibility compliance and citizen service optimization.\n",
+                "required": [
+                  "total_items",
+                  "items_per_page",
+                  "total_pages"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "total_items": {
+                    "type": "integer",
+                    "title": "Total Items",
+                    "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+                    "minimum": 0,
+                    "examples": [
+                      245,
+                      1024,
+                      0
+                    ]
+                  },
+                  "items_per_page": {
+                    "type": "integer",
+                    "title": "Items Per Page",
+                    "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10,
+                    "examples": [
+                      10,
+                      25,
+                      50
+                    ]
+                  },
+                  "total_pages": {
+                    "type": "integer",
+                    "title": "Total Pages",
+                    "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      25,
+                      41,
+                      1
+                    ]
+                  },
+                  "start_item": {
+                    "type": "integer",
+                    "title": "Start Item Number",
+                    "description": "The index of the first item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      1,
+                      11,
+                      51
+                    ]
+                  },
+                  "end_item": {
+                    "type": "integer",
+                    "title": "End Item Number",
+                    "description": "The index of the last item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      10,
+                      20,
+                      60
+                    ]
+                  },
+                  "page_range": {
+                    "type": "object",
+                    "title": "Page Range Configuration",
+                    "description": "Configuration for visible page number range and ellipsis behavior.\nOptimized for Swiss municipal portal navigation patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "adjacency": {
+                        "type": "integer",
+                        "title": "Adjacent Pages",
+                        "description": "Number of pages to show on each side of current page",
+                        "minimum": 0,
+                        "maximum": 10,
+                        "default": 2,
+                        "examples": [
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "max_pages_shown": {
+                        "type": "integer",
+                        "title": "Maximum Pages Shown",
+                        "description": "Maximum number of page links to display at once",
+                        "minimum": 3,
+                        "maximum": 20,
+                        "default": 9,
+                        "examples": [
+                          7,
+                          9,
+                          11
+                        ]
+                      },
+                      "show_first_last": {
+                        "type": "boolean",
+                        "title": "Show First/Last Links",
+                        "description": "Whether to always show first and last page links",
+                        "default": true
+                      },
+                      "ellipsis_handling": {
+                        "type": "string",
+                        "title": "Ellipsis Handling",
+                        "description": "Strategy for displaying ellipsis between page ranges",
+                        "enum": [
+                          "smart",
+                          "always",
+                          "never"
+                        ],
+                        "default": "smart"
+                      }
+                    }
+                  },
+                  "performance_settings": {
+                    "type": "object",
+                    "title": "Performance Settings",
+                    "description": "Performance optimization settings for large result sets and\nmunicipal portal citizen access patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "lazy_loading": {
+                        "type": "boolean",
+                        "title": "Enable Lazy Loading",
+                        "description": "Enable AJAX-based lazy loading for better performance",
+                        "default": false
+                      },
+                      "infinite_scroll": {
+                        "type": "boolean",
+                        "title": "Enable Infinite Scroll",
+                        "description": "Enable infinite scroll functionality",
+                        "default": false
+                      },
+                      "batch_size": {
+                        "type": "integer",
+                        "title": "Batch Size",
+                        "description": "Number of items to load per AJAX request",
+                        "minimum": 1,
+                        "maximum": 200,
+                        "default": 20,
+                        "examples": [
+                          10,
+                          20,
+                          50
+                        ]
+                      },
+                      "preload_adjacent": {
+                        "type": "boolean",
+                        "title": "Preload Adjacent Pages",
+                        "description": "Preload next/previous pages for faster navigation",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              },
+              "accessibility_config": {
+                "type": "object",
+                "title": "Accessibility Configuration",
+                "description": "Swiss eCH-0059 Version 3 accessibility configuration with municipal\ncompliance settings and multilingual support.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "pagination_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Pagination ARIA Label",
+                    "description": "Custom ARIA label for the pagination navigation landmark.\nDefaults to multilingual municipal standards.\n",
+                    "examples": [
+                      "Seitennavigation für Suchergebnisse",
+                      "Navigation de pagination pour résultats",
+                      "Navigazione di paginazione per risultati"
+                    ]
+                  },
+                  "verbose_labels": {
+                    "type": "boolean",
+                    "title": "Enable Verbose Labels",
+                    "description": "Enable detailed ARIA labels with context information for\nenhanced screen reader accessibility.\n",
+                    "default": true
+                  },
+                  "live_region_settings": {
+                    "type": "object",
+                    "title": "Live Region Configuration",
+                    "description": "Configuration for ARIA live regions and announcements",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enable_announcements": {
+                        "type": "boolean",
+                        "title": "Enable Live Announcements",
+                        "description": "Enable ARIA live region announcements for navigation",
+                        "default": true
+                      },
+                      "announcement_delay": {
+                        "type": "integer",
+                        "title": "Announcement Delay (ms)",
+                        "description": "Delay before announcing page changes",
+                        "minimum": 0,
+                        "maximum": 5000,
+                        "default": 500
+                      },
+                      "politeness_level": {
+                        "type": "string",
+                        "title": "Live Region Politeness",
+                        "description": "ARIA live region politeness level",
+                        "enum": [
+                          "polite",
+                          "assertive",
+                          "off"
+                        ],
+                        "default": "polite"
+                      }
+                    }
+                  },
+                  "multilingual_labels": {
+                    "type": "object",
+                    "title": "Multilingual Label Support",
+                    "description": "Swiss federal language requirement support for German, French,\nItalian, and English accessibility labels.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "primary_language": {
+                        "type": "string",
+                        "title": "Primary Language",
+                        "description": "Primary language for accessibility labels",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "de"
+                      },
+                      "fallback_language": {
+                        "type": "string",
+                        "title": "Fallback Language",
+                        "description": "Fallback language when primary is unavailable",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "en"
+                      },
+                      "label_translations": {
+                        "type": "object",
+                        "title": "Label Translations",
+                        "description": "Translation mapping for accessibility labels",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                          "^(de|fr|it|en)$": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "previous_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Vorherige Seite",
+                                  "Page précédente",
+                                  "Pagina precedente"
+                                ]
+                              },
+                              "next_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Nächste Seite",
+                                  "Page suivante",
+                                  "Pagina successiva"
+                                ]
+                              },
+                              "current_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Aktuelle Seite",
+                                  "Page actuelle",
+                                  "Pagina corrente"
+                                ]
+                              },
+                              "page_of": {
+                                "type": "string",
+                                "examples": [
+                                  "Seite {current} von {total}",
+                                  "Page {current} sur {total}",
+                                  "Pagina {current} di {total}"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "municipal_theme_support": {
+                    "type": "object",
+                    "title": "Municipal Theme Support",
+                    "description": "Configuration for Swiss municipal theme variations and\ncanton-specific accessibility requirements.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "canton": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Canton Code",
+                        "description": "Swiss canton code for specific accessibility requirements",
+                        "pattern": "^[A-Z]{2}$",
+                        "examples": [
+                          "ZH",
+                          "BE",
+                          "GE",
+                          "VD"
+                        ]
+                      },
+                      "municipality": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Municipality Name",
+                        "description": "Municipality name for branding and compliance",
+                        "examples": [
+                          "Thalwil",
+                          "Thalheim",
+                          "Erlenbach"
+                        ]
+                      },
+                      "compliance_level": {
+                        "type": "string",
+                        "title": "Compliance Level",
+                        "description": "Required accessibility compliance level",
+                        "enum": [
+                          "federal",
+                          "cantonal",
+                          "municipal"
+                        ],
+                        "default": "federal"
+                      }
+                    }
+                  }
+                }
+              },
+              "navigation_context": {
+                "type": "object",
+                "title": "Navigation Context Configuration",
+                "description": "Advanced navigation context settings for enhanced user experience\nand Swiss municipal portal integration.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "skip_navigation": {
+                    "type": "object",
+                    "title": "Skip Navigation Settings",
+                    "description": "Configuration for skip navigation functionality",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Skip Navigation",
+                        "description": "Enable skip navigation links for accessibility",
+                        "default": true
+                      },
+                      "target_selector": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Skip Target Selector",
+                        "description": "CSS selector for skip navigation target",
+                        "examples": [
+                          "#main-content",
+                          ".content-main",
+                          "#search-results"
+                        ]
+                      }
+                    }
+                  },
+                  "keyboard_shortcuts": {
+                    "type": "object",
+                    "title": "Keyboard Shortcuts",
+                    "description": "Configuration for keyboard navigation shortcuts",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Keyboard Shortcuts",
+                        "description": "Enable advanced keyboard navigation shortcuts",
+                        "default": true
+                      },
+                      "shortcut_keys": {
+                        "type": "object",
+                        "title": "Shortcut Key Mappings",
+                        "description": "Custom keyboard shortcut mappings",
+                        "additionalProperties": false,
+                        "properties": {
+                          "first_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "First Page Shortcut",
+                            "description": "Keyboard shortcut for first page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+Home"
+                          },
+                          "last_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Last Page Shortcut",
+                            "description": "Keyboard shortcut for last page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+End"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "focus_management": {
+                    "type": "object",
+                    "title": "Focus Management",
+                    "description": "Advanced focus management for navigation interactions",
+                    "additionalProperties": false,
+                    "properties": {
+                      "restore_focus": {
+                        "type": "boolean",
+                        "title": "Restore Focus After Navigation",
+                        "description": "Restore focus to pagination after content updates",
+                        "default": true
+                      },
+                      "focus_target": {
+                        "type": "string",
+                        "title": "Focus Target Strategy",
+                        "description": "Where to place focus after navigation",
+                        "enum": [
+                          "pagination",
+                          "content",
+                          "heading",
+                          "smart"
+                        ],
+                        "default": "smart"
+                      },
+                      "focus_delay": {
+                        "type": "integer",
+                        "title": "Focus Delay (ms)",
+                        "description": "Delay before setting focus after navigation",
+                        "minimum": 0,
+                        "maximum": 2000,
+                        "default": 200
+                      }
+                    }
+                  }
+                }
+              },
+              "display_options": {
+                "type": "object",
+                "title": "Display Options",
+                "description": "Visual display configuration for Swiss municipal portal requirements\nand responsive design optimization.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "responsive_behavior": {
+                    "type": "string",
+                    "title": "Responsive Behavior",
+                    "description": "How pagination adapts to different screen sizes",
+                    "enum": [
+                      "adaptive",
+                      "collapse",
+                      "scroll",
+                      "minimal"
+                    ],
+                    "default": "adaptive"
+                  },
+                  "mobile_breakpoint": {
+                    "type": "integer",
+                    "title": "Mobile Breakpoint (px)",
+                    "description": "Breakpoint for mobile pagination adaptations",
+                    "minimum": 320,
+                    "maximum": 1024,
+                    "default": 768
+                  },
+                  "show_result_count": {
+                    "type": "boolean",
+                    "title": "Show Result Count",
+                    "description": "Display \"Showing X-Y of Z results\" information",
+                    "default": true
+                  },
+                  "show_page_size_selector": {
+                    "type": "boolean",
+                    "title": "Show Page Size Selector",
+                    "description": "Display items per page selection dropdown",
+                    "default": false
+                  },
+                  "compact_mode": {
+                    "type": "boolean",
+                    "title": "Enable Compact Mode",
+                    "description": "Use compact pagination layout for small screens",
+                    "default": false
+                  }
+                }
+              }
+            }
+          },
+          "data": {}
+        },
+        {
+          "instancePath": "",
+          "schemaPath": "#/required",
+          "keyword": "required",
+          "params": {
+            "missingProperty": "pagination_metadata"
+          },
+          "message": "must have required property 'pagination_metadata'",
+          "schema": [
+            "heading_id",
+            "current",
+            "items",
+            "pagination_metadata"
+          ],
+          "parentSchema": {
+            "type": "object",
+            "required": [
+              "heading_id",
+              "current",
+              "items",
+              "pagination_metadata"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading_id": {
+                "type": "string",
+                "title": "Heading ID",
+                "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "minLength": 3,
+                "maxLength": 64,
+                "examples": [
+                  "pagination-main",
+                  "search-pagination",
+                  "blog-pagination",
+                  "municipal-services-pager"
+                ]
+              },
+              "current": {
+                "type": "integer",
+                "title": "Current Page",
+                "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+                "minimum": 1,
+                "maximum": 99999,
+                "examples": [
+                  1,
+                  5,
+                  12,
+                  247
+                ]
+              },
+              "items": {
+                "type": "object",
+                "title": "Pagination Items",
+                "description": "Complete pagination data structure including page links, navigation buttons,\nand ellipsis indicators. Supports Drupal's standard pager array format.\n",
+                "required": [
+                  "pages"
+                ],
+                "properties": {
+                  "previous": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Previous Page Link",
+                    "description": "Previous page navigation link data (omit if on first page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Previous Page URL",
+                        "description": "URL for the previous page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page Title",
+                        "description": "Descriptive title for previous page link",
+                        "default": "Go to previous page",
+                        "examples": [
+                          "Go to previous page",
+                          "Vorherige Seite",
+                          "Page précédente"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Previous Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to previous page, page {number}",
+                          "Zur vorherigen Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "next": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Next Page Link",
+                    "description": "Next page navigation link data (omit if on last page)",
+                    "additionalProperties": false,
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Next Page URL",
+                        "description": "URL for the next page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page Title",
+                        "description": "Descriptive title for next page link",
+                        "default": "Go to next page",
+                        "examples": [
+                          "Go to next page",
+                          "Nächste Seite",
+                          "Page suivante"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Next Page ARIA Label",
+                        "description": "Enhanced ARIA label for screen readers",
+                        "examples": [
+                          "Go to next page, page {number}",
+                          "Zur nächsten Seite, Seite {number}"
+                        ]
+                      }
+                    }
+                  },
+                  "pages": {
+                    "type": "object",
+                    "title": "Page Number Links",
+                    "description": "Object with page numbers as keys and page data as values.\nEach page entry should contain href for navigation.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "href"
+                        ],
+                        "properties": {
+                          "href": {
+                            "type": "string",
+                            "format": "uri-reference",
+                            "title": "Page URL",
+                            "description": "URL for this specific page",
+                            "minLength": 1
+                          },
+                          "title": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link Title",
+                            "description": "Optional title attribute for the page link",
+                            "examples": [
+                              "Go to page 1",
+                              "Gehe zu Seite 1"
+                            ]
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Page Link ARIA Label",
+                            "description": "Enhanced ARIA label for page links",
+                            "examples": [
+                              "Go to page {number}",
+                              "Gehe zu Seite {number}"
+                            ]
+                          },
+                          "is_current": {
+                            "type": "boolean",
+                            "title": "Is Current Page",
+                            "description": "Whether this page is the current active page",
+                            "default": false
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "1": {
+                          "href": "/page/1",
+                          "is_current": true
+                        },
+                        "2": {
+                          "href": "/page/2"
+                        }
+                      }
+                    ]
+                  },
+                  "ellipses": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "title": "Ellipsis Indicators",
+                    "description": "Object indicating where ellipsis (...) should be displayed between\npage numbers. Keys are page numbers after which ellipsis should appear.\n",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^[0-9]+$": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "title": "Show Ellipsis",
+                            "description": "Whether to show ellipsis after this page number",
+                            "default": true
+                          },
+                          "aria_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Ellipsis ARIA Label",
+                            "description": "ARIA label for ellipsis indicators",
+                            "examples": [
+                              "More pages available",
+                              "Weitere Seiten verfügbar",
+                              "Plus de pages disponibles"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "examples": [
+                      {
+                        "2": {
+                          "show": true
+                        },
+                        "8": {
+                          "show": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "parameters": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "URL Parameters",
+                "description": "Additional URL parameters to preserve across pagination (e.g., search queries,\nfilters). These will be maintained in all pagination links.\n",
+                "examples": [
+                  "q=search+term",
+                  "category=news&sort=date",
+                  "filter[type]=article&per_page=10"
+                ]
+              },
+              "pagination_metadata": {
+                "type": "object",
+                "title": "Pagination Metadata",
+                "description": "Comprehensive pagination metadata for advanced navigation, performance optimization,\nand Swiss municipal portal integration. Contains all necessary data for\naccessibility compliance and citizen service optimization.\n",
+                "required": [
+                  "total_items",
+                  "items_per_page",
+                  "total_pages"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "total_items": {
+                    "type": "integer",
+                    "title": "Total Items",
+                    "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+                    "minimum": 0,
+                    "examples": [
+                      245,
+                      1024,
+                      0
+                    ]
+                  },
+                  "items_per_page": {
+                    "type": "integer",
+                    "title": "Items Per Page",
+                    "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10,
+                    "examples": [
+                      10,
+                      25,
+                      50
+                    ]
+                  },
+                  "total_pages": {
+                    "type": "integer",
+                    "title": "Total Pages",
+                    "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      25,
+                      41,
+                      1
+                    ]
+                  },
+                  "start_item": {
+                    "type": "integer",
+                    "title": "Start Item Number",
+                    "description": "The index of the first item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      1,
+                      11,
+                      51
+                    ]
+                  },
+                  "end_item": {
+                    "type": "integer",
+                    "title": "End Item Number",
+                    "description": "The index of the last item on the current page (1-based).\nUsed for \"Showing X-Y of Z\" announcements.\n",
+                    "minimum": 1,
+                    "examples": [
+                      10,
+                      20,
+                      60
+                    ]
+                  },
+                  "page_range": {
+                    "type": "object",
+                    "title": "Page Range Configuration",
+                    "description": "Configuration for visible page number range and ellipsis behavior.\nOptimized for Swiss municipal portal navigation patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "adjacency": {
+                        "type": "integer",
+                        "title": "Adjacent Pages",
+                        "description": "Number of pages to show on each side of current page",
+                        "minimum": 0,
+                        "maximum": 10,
+                        "default": 2,
+                        "examples": [
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "max_pages_shown": {
+                        "type": "integer",
+                        "title": "Maximum Pages Shown",
+                        "description": "Maximum number of page links to display at once",
+                        "minimum": 3,
+                        "maximum": 20,
+                        "default": 9,
+                        "examples": [
+                          7,
+                          9,
+                          11
+                        ]
+                      },
+                      "show_first_last": {
+                        "type": "boolean",
+                        "title": "Show First/Last Links",
+                        "description": "Whether to always show first and last page links",
+                        "default": true
+                      },
+                      "ellipsis_handling": {
+                        "type": "string",
+                        "title": "Ellipsis Handling",
+                        "description": "Strategy for displaying ellipsis between page ranges",
+                        "enum": [
+                          "smart",
+                          "always",
+                          "never"
+                        ],
+                        "default": "smart"
+                      }
+                    }
+                  },
+                  "performance_settings": {
+                    "type": "object",
+                    "title": "Performance Settings",
+                    "description": "Performance optimization settings for large result sets and\nmunicipal portal citizen access patterns.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "lazy_loading": {
+                        "type": "boolean",
+                        "title": "Enable Lazy Loading",
+                        "description": "Enable AJAX-based lazy loading for better performance",
+                        "default": false
+                      },
+                      "infinite_scroll": {
+                        "type": "boolean",
+                        "title": "Enable Infinite Scroll",
+                        "description": "Enable infinite scroll functionality",
+                        "default": false
+                      },
+                      "batch_size": {
+                        "type": "integer",
+                        "title": "Batch Size",
+                        "description": "Number of items to load per AJAX request",
+                        "minimum": 1,
+                        "maximum": 200,
+                        "default": 20,
+                        "examples": [
+                          10,
+                          20,
+                          50
+                        ]
+                      },
+                      "preload_adjacent": {
+                        "type": "boolean",
+                        "title": "Preload Adjacent Pages",
+                        "description": "Preload next/previous pages for faster navigation",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              },
+              "accessibility_config": {
+                "type": "object",
+                "title": "Accessibility Configuration",
+                "description": "Swiss eCH-0059 Version 3 accessibility configuration with municipal\ncompliance settings and multilingual support.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "pagination_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Pagination ARIA Label",
+                    "description": "Custom ARIA label for the pagination navigation landmark.\nDefaults to multilingual municipal standards.\n",
+                    "examples": [
+                      "Seitennavigation für Suchergebnisse",
+                      "Navigation de pagination pour résultats",
+                      "Navigazione di paginazione per risultati"
+                    ]
+                  },
+                  "verbose_labels": {
+                    "type": "boolean",
+                    "title": "Enable Verbose Labels",
+                    "description": "Enable detailed ARIA labels with context information for\nenhanced screen reader accessibility.\n",
+                    "default": true
+                  },
+                  "live_region_settings": {
+                    "type": "object",
+                    "title": "Live Region Configuration",
+                    "description": "Configuration for ARIA live regions and announcements",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enable_announcements": {
+                        "type": "boolean",
+                        "title": "Enable Live Announcements",
+                        "description": "Enable ARIA live region announcements for navigation",
+                        "default": true
+                      },
+                      "announcement_delay": {
+                        "type": "integer",
+                        "title": "Announcement Delay (ms)",
+                        "description": "Delay before announcing page changes",
+                        "minimum": 0,
+                        "maximum": 5000,
+                        "default": 500
+                      },
+                      "politeness_level": {
+                        "type": "string",
+                        "title": "Live Region Politeness",
+                        "description": "ARIA live region politeness level",
+                        "enum": [
+                          "polite",
+                          "assertive",
+                          "off"
+                        ],
+                        "default": "polite"
+                      }
+                    }
+                  },
+                  "multilingual_labels": {
+                    "type": "object",
+                    "title": "Multilingual Label Support",
+                    "description": "Swiss federal language requirement support for German, French,\nItalian, and English accessibility labels.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "primary_language": {
+                        "type": "string",
+                        "title": "Primary Language",
+                        "description": "Primary language for accessibility labels",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "de"
+                      },
+                      "fallback_language": {
+                        "type": "string",
+                        "title": "Fallback Language",
+                        "description": "Fallback language when primary is unavailable",
+                        "enum": [
+                          "de",
+                          "fr",
+                          "it",
+                          "en"
+                        ],
+                        "default": "en"
+                      },
+                      "label_translations": {
+                        "type": "object",
+                        "title": "Label Translations",
+                        "description": "Translation mapping for accessibility labels",
+                        "additionalProperties": false,
+                        "patternProperties": {
+                          "^(de|fr|it|en)$": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "previous_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Vorherige Seite",
+                                  "Page précédente",
+                                  "Pagina precedente"
+                                ]
+                              },
+                              "next_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Nächste Seite",
+                                  "Page suivante",
+                                  "Pagina successiva"
+                                ]
+                              },
+                              "current_page": {
+                                "type": "string",
+                                "examples": [
+                                  "Aktuelle Seite",
+                                  "Page actuelle",
+                                  "Pagina corrente"
+                                ]
+                              },
+                              "page_of": {
+                                "type": "string",
+                                "examples": [
+                                  "Seite {current} von {total}",
+                                  "Page {current} sur {total}",
+                                  "Pagina {current} di {total}"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "municipal_theme_support": {
+                    "type": "object",
+                    "title": "Municipal Theme Support",
+                    "description": "Configuration for Swiss municipal theme variations and\ncanton-specific accessibility requirements.\n",
+                    "additionalProperties": false,
+                    "properties": {
+                      "canton": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Canton Code",
+                        "description": "Swiss canton code for specific accessibility requirements",
+                        "pattern": "^[A-Z]{2}$",
+                        "examples": [
+                          "ZH",
+                          "BE",
+                          "GE",
+                          "VD"
+                        ]
+                      },
+                      "municipality": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Municipality Name",
+                        "description": "Municipality name for branding and compliance",
+                        "examples": [
+                          "Thalwil",
+                          "Thalheim",
+                          "Erlenbach"
+                        ]
+                      },
+                      "compliance_level": {
+                        "type": "string",
+                        "title": "Compliance Level",
+                        "description": "Required accessibility compliance level",
+                        "enum": [
+                          "federal",
+                          "cantonal",
+                          "municipal"
+                        ],
+                        "default": "federal"
+                      }
+                    }
+                  }
+                }
+              },
+              "navigation_context": {
+                "type": "object",
+                "title": "Navigation Context Configuration",
+                "description": "Advanced navigation context settings for enhanced user experience\nand Swiss municipal portal integration.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "skip_navigation": {
+                    "type": "object",
+                    "title": "Skip Navigation Settings",
+                    "description": "Configuration for skip navigation functionality",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Skip Navigation",
+                        "description": "Enable skip navigation links for accessibility",
+                        "default": true
+                      },
+                      "target_selector": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Skip Target Selector",
+                        "description": "CSS selector for skip navigation target",
+                        "examples": [
+                          "#main-content",
+                          ".content-main",
+                          "#search-results"
+                        ]
+                      }
+                    }
+                  },
+                  "keyboard_shortcuts": {
+                    "type": "object",
+                    "title": "Keyboard Shortcuts",
+                    "description": "Configuration for keyboard navigation shortcuts",
+                    "additionalProperties": false,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "Enable Keyboard Shortcuts",
+                        "description": "Enable advanced keyboard navigation shortcuts",
+                        "default": true
+                      },
+                      "shortcut_keys": {
+                        "type": "object",
+                        "title": "Shortcut Key Mappings",
+                        "description": "Custom keyboard shortcut mappings",
+                        "additionalProperties": false,
+                        "properties": {
+                          "first_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "First Page Shortcut",
+                            "description": "Keyboard shortcut for first page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+Home"
+                          },
+                          "last_page": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "title": "Last Page Shortcut",
+                            "description": "Keyboard shortcut for last page",
+                            "pattern": "^[A-Za-z0-9+]+$",
+                            "default": "Ctrl+End"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "focus_management": {
+                    "type": "object",
+                    "title": "Focus Management",
+                    "description": "Advanced focus management for navigation interactions",
+                    "additionalProperties": false,
+                    "properties": {
+                      "restore_focus": {
+                        "type": "boolean",
+                        "title": "Restore Focus After Navigation",
+                        "description": "Restore focus to pagination after content updates",
+                        "default": true
+                      },
+                      "focus_target": {
+                        "type": "string",
+                        "title": "Focus Target Strategy",
+                        "description": "Where to place focus after navigation",
+                        "enum": [
+                          "pagination",
+                          "content",
+                          "heading",
+                          "smart"
+                        ],
+                        "default": "smart"
+                      },
+                      "focus_delay": {
+                        "type": "integer",
+                        "title": "Focus Delay (ms)",
+                        "description": "Delay before setting focus after navigation",
+                        "minimum": 0,
+                        "maximum": 2000,
+                        "default": 200
+                      }
+                    }
+                  }
+                }
+              },
+              "display_options": {
+                "type": "object",
+                "title": "Display Options",
+                "description": "Visual display configuration for Swiss municipal portal requirements\nand responsive design optimization.\n",
+                "additionalProperties": false,
+                "properties": {
+                  "responsive_behavior": {
+                    "type": "string",
+                    "title": "Responsive Behavior",
+                    "description": "How pagination adapts to different screen sizes",
+                    "enum": [
+                      "adaptive",
+                      "collapse",
+                      "scroll",
+                      "minimal"
+                    ],
+                    "default": "adaptive"
+                  },
+                  "mobile_breakpoint": {
+                    "type": "integer",
+                    "title": "Mobile Breakpoint (px)",
+                    "description": "Breakpoint for mobile pagination adaptations",
+                    "minimum": 320,
+                    "maximum": 1024,
+                    "default": 768
+                  },
+                  "show_result_count": {
+                    "type": "boolean",
+                    "title": "Show Result Count",
+                    "description": "Display \"Showing X-Y of Z results\" information",
+                    "default": true
+                  },
+                  "show_page_size_selector": {
+                    "type": "boolean",
+                    "title": "Show Page Size Selector",
+                    "description": "Display items per page selection dropdown",
+                    "default": false
+                  },
+                  "compact_mode": {
+                    "type": "boolean",
+                    "title": "Enable Compact Mode",
+                    "description": "Use compact pagination layout for small screens",
+                    "default": false
+                  }
+                }
+              }
+            }
+          },
+          "data": {}
+        }
+      ]
+    },
+    "invalidWrongTypes": {
+      "valid": false,
+      "duration": 0.016792,
+      "errors": [
+        {
+          "instancePath": "/heading_id",
+          "schemaPath": "#/properties/heading_id/type",
+          "keyword": "type",
+          "params": {
+            "type": "string"
+          },
+          "message": "must be string",
+          "schema": "string",
+          "parentSchema": {
+            "type": "string",
+            "title": "Heading ID",
+            "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+            "minLength": 3,
+            "maxLength": 64,
+            "examples": [
+              "pagination-main",
+              "search-pagination",
+              "blog-pagination",
+              "municipal-services-pager"
+            ]
+          },
+          "data": 123
+        },
+        {
+          "instancePath": "/current",
+          "schemaPath": "#/properties/current/type",
+          "keyword": "type",
+          "params": {
+            "type": "integer"
+          },
+          "message": "must be integer",
+          "schema": "integer",
+          "parentSchema": {
+            "type": "integer",
+            "title": "Current Page",
+            "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+            "minimum": 1,
+            "maximum": 99999,
+            "examples": [
+              1,
+              5,
+              12,
+              247
+            ]
+          },
+          "data": "invalid"
+        },
+        {
+          "instancePath": "/items",
+          "schemaPath": "#/properties/items/type",
+          "keyword": "type",
+          "params": {
+            "type": "object"
+          },
+          "message": "must be object",
+          "schema": "object",
+          "parentSchema": {
+            "type": "object",
+            "title": "Pagination Items",
+            "description": "Complete pagination data structure including page links, navigation buttons,\nand ellipsis indicators. Supports Drupal's standard pager array format.\n",
+            "required": [
+              "pages"
+            ],
+            "properties": {
+              "previous": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "title": "Previous Page Link",
+                "description": "Previous page navigation link data (omit if on first page)",
+                "additionalProperties": false,
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "format": "uri-reference",
+                    "title": "Previous Page URL",
+                    "description": "URL for the previous page",
+                    "minLength": 1
+                  },
+                  "title": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Previous Page Title",
+                    "description": "Descriptive title for previous page link",
+                    "default": "Go to previous page",
+                    "examples": [
+                      "Go to previous page",
+                      "Vorherige Seite",
+                      "Page précédente"
+                    ]
+                  },
+                  "aria_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Previous Page ARIA Label",
+                    "description": "Enhanced ARIA label for screen readers",
+                    "examples": [
+                      "Go to previous page, page {number}",
+                      "Zur vorherigen Seite, Seite {number}"
+                    ]
+                  }
+                }
+              },
+              "next": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "title": "Next Page Link",
+                "description": "Next page navigation link data (omit if on last page)",
+                "additionalProperties": false,
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "format": "uri-reference",
+                    "title": "Next Page URL",
+                    "description": "URL for the next page",
+                    "minLength": 1
+                  },
+                  "title": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Next Page Title",
+                    "description": "Descriptive title for next page link",
+                    "default": "Go to next page",
+                    "examples": [
+                      "Go to next page",
+                      "Nächste Seite",
+                      "Page suivante"
+                    ]
+                  },
+                  "aria_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Next Page ARIA Label",
+                    "description": "Enhanced ARIA label for screen readers",
+                    "examples": [
+                      "Go to next page, page {number}",
+                      "Zur nächsten Seite, Seite {number}"
+                    ]
+                  }
+                }
+              },
+              "pages": {
+                "type": "object",
+                "title": "Page Number Links",
+                "description": "Object with page numbers as keys and page data as values.\nEach page entry should contain href for navigation.\n",
+                "additionalProperties": false,
+                "patternProperties": {
+                  "^[0-9]+$": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "href"
+                    ],
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "format": "uri-reference",
+                        "title": "Page URL",
+                        "description": "URL for this specific page",
+                        "minLength": 1
+                      },
+                      "title": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Page Link Title",
+                        "description": "Optional title attribute for the page link",
+                        "examples": [
+                          "Go to page 1",
+                          "Gehe zu Seite 1"
+                        ]
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Page Link ARIA Label",
+                        "description": "Enhanced ARIA label for page links",
+                        "examples": [
+                          "Go to page {number}",
+                          "Gehe zu Seite {number}"
+                        ]
+                      },
+                      "is_current": {
+                        "type": "boolean",
+                        "title": "Is Current Page",
+                        "description": "Whether this page is the current active page",
+                        "default": false
+                      }
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "1": {
+                      "href": "/page/1",
+                      "is_current": true
+                    },
+                    "2": {
+                      "href": "/page/2"
+                    }
+                  }
+                ]
+              },
+              "ellipses": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "title": "Ellipsis Indicators",
+                "description": "Object indicating where ellipsis (...) should be displayed between\npage numbers. Keys are page numbers after which ellipsis should appear.\n",
+                "additionalProperties": false,
+                "patternProperties": {
+                  "^[0-9]+$": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "show": {
+                        "type": "boolean",
+                        "title": "Show Ellipsis",
+                        "description": "Whether to show ellipsis after this page number",
+                        "default": true
+                      },
+                      "aria_label": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Ellipsis ARIA Label",
+                        "description": "ARIA label for ellipsis indicators",
+                        "examples": [
+                          "More pages available",
+                          "Weitere Seiten verfügbar",
+                          "Plus de pages disponibles"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "examples": [
+                  {
+                    "2": {
+                      "show": true
+                    },
+                    "8": {
+                      "show": true
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "data": "not-an-object"
+        },
+        {
+          "instancePath": "/pagination_metadata/total_items",
+          "schemaPath": "#/properties/pagination_metadata/properties/total_items/type",
+          "keyword": "type",
+          "params": {
+            "type": "integer"
+          },
+          "message": "must be integer",
+          "schema": "integer",
+          "parentSchema": {
+            "type": "integer",
+            "title": "Total Items",
+            "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+            "minimum": 0,
+            "examples": [
+              245,
+              1024,
+              0
+            ]
+          },
+          "data": "invalid"
+        },
+        {
+          "instancePath": "/pagination_metadata/items_per_page",
+          "schemaPath": "#/properties/pagination_metadata/properties/items_per_page/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 1
+          },
+          "message": "must be >= 1",
+          "schema": 1,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Items Per Page",
+            "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10,
+            "examples": [
+              10,
+              25,
+              50
+            ]
+          },
+          "data": -1
+        },
+        {
+          "instancePath": "/pagination_metadata/total_pages",
+          "schemaPath": "#/properties/pagination_metadata/properties/total_pages/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 1
+          },
+          "message": "must be >= 1",
+          "schema": 1,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+            "minimum": 1,
+            "examples": [
+              25,
+              41,
+              1
+            ]
+          },
+          "data": 0
+        }
+      ]
+    },
+    "invalidConstraints": {
+      "valid": false,
+      "duration": 0.017042,
+      "errors": [
+        {
+          "instancePath": "/heading_id",
+          "schemaPath": "#/properties/heading_id/minLength",
+          "keyword": "minLength",
+          "params": {
+            "limit": 3
+          },
+          "message": "must NOT have fewer than 3 characters",
+          "schema": 3,
+          "parentSchema": {
+            "type": "string",
+            "title": "Heading ID",
+            "description": "Unique identifier for the pagination heading element. Used for ARIA labeling\nand associating the navigation landmark with its semantic description.\nAlso used as base ID for live region announcements.\n",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+            "minLength": 3,
+            "maxLength": 64,
+            "examples": [
+              "pagination-main",
+              "search-pagination",
+              "blog-pagination",
+              "municipal-services-pager"
+            ]
+          },
+          "data": "a"
+        },
+        {
+          "instancePath": "/current",
+          "schemaPath": "#/properties/current/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 1
+          },
+          "message": "must be >= 1",
+          "schema": 1,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Current Page",
+            "description": "Current active page number (1-based index). Used to highlight the current\npage with aria-current=\"page\" for screen reader accessibility.\n",
+            "minimum": 1,
+            "maximum": 99999,
+            "examples": [
+              1,
+              5,
+              12,
+              247
+            ]
+          },
+          "data": 0
+        },
+        {
+          "instancePath": "/items/pages/1/href",
+          "schemaPath": "#/properties/items/properties/pages/patternProperties/%5E%5B0-9%5D%2B%24/properties/href/minLength",
+          "keyword": "minLength",
+          "params": {
+            "limit": 1
+          },
+          "message": "must NOT have fewer than 1 characters",
+          "schema": 1,
+          "parentSchema": {
+            "type": "string",
+            "format": "uri-reference",
+            "title": "Page URL",
+            "description": "URL for this specific page",
+            "minLength": 1
+          },
+          "data": ""
+        },
+        {
+          "instancePath": "/pagination_metadata/total_items",
+          "schemaPath": "#/properties/pagination_metadata/properties/total_items/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 0
+          },
+          "message": "must be >= 0",
+          "schema": 0,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Total Items",
+            "description": "Total number of items across all pages. Used for result count announcements\nand pagination context. Critical for Swiss accessibility compliance.\n",
+            "minimum": 0,
+            "examples": [
+              245,
+              1024,
+              0
+            ]
+          },
+          "data": -1
+        },
+        {
+          "instancePath": "/pagination_metadata/items_per_page",
+          "schemaPath": "#/properties/pagination_metadata/properties/items_per_page/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 1
+          },
+          "message": "must be >= 1",
+          "schema": 1,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Items Per Page",
+            "description": "Number of items displayed per page. Used for navigation calculations\nand performance optimization in municipal portals.\n",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10,
+            "examples": [
+              10,
+              25,
+              50
+            ]
+          },
+          "data": 0
+        },
+        {
+          "instancePath": "/pagination_metadata/total_pages",
+          "schemaPath": "#/properties/pagination_metadata/properties/total_pages/minimum",
+          "keyword": "minimum",
+          "params": {
+            "comparison": ">=",
+            "limit": 1
+          },
+          "message": "must be >= 1",
+          "schema": 1,
+          "parentSchema": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total number of pages in the result set. Used for pagination bounds\nand navigation context announcements.\n",
+            "minimum": 1,
+            "examples": [
+              25,
+              41,
+              1
+            ]
+          },
+          "data": -5
+        }
+      ]
+    },
+    "swissCompliance": {
+      "valid": false,
+      "duration": 0.025333,
+      "errors": [
+        {
+          "instancePath": "/accessibility_config/multilingual_labels/primary_language",
+          "schemaPath": "#/properties/accessibility_config/properties/multilingual_labels/properties/primary_language/enum",
+          "keyword": "enum",
+          "params": {
+            "allowedValues": [
+              "de",
+              "fr",
+              "it",
+              "en"
+            ]
+          },
+          "message": "must be equal to one of the allowed values",
+          "schema": [
+            "de",
+            "fr",
+            "it",
+            "en"
+          ],
+          "parentSchema": {
+            "type": "string",
+            "title": "Primary Language",
+            "description": "Primary language for accessibility labels",
+            "enum": [
+              "de",
+              "fr",
+              "it",
+              "en"
+            ],
+            "default": "de"
+          },
+          "data": "invalid"
+        },
+        {
+          "instancePath": "/accessibility_config/multilingual_labels/label_translations",
+          "schemaPath": "#/properties/accessibility_config/properties/multilingual_labels/properties/label_translations/additionalProperties",
+          "keyword": "additionalProperties",
+          "params": {
+            "additionalProperty": "invalid"
+          },
+          "message": "must NOT have additional properties",
+          "schema": false,
+          "parentSchema": {
+            "type": "object",
+            "title": "Label Translations",
+            "description": "Translation mapping for accessibility labels",
+            "additionalProperties": false,
+            "patternProperties": {
+              "^(de|fr|it|en)$": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "previous_page": {
+                    "type": "string",
+                    "examples": [
+                      "Vorherige Seite",
+                      "Page précédente",
+                      "Pagina precedente"
+                    ]
+                  },
+                  "next_page": {
+                    "type": "string",
+                    "examples": [
+                      "Nächste Seite",
+                      "Page suivante",
+                      "Pagina successiva"
+                    ]
+                  },
+                  "current_page": {
+                    "type": "string",
+                    "examples": [
+                      "Aktuelle Seite",
+                      "Page actuelle",
+                      "Pagina corrente"
+                    ]
+                  },
+                  "page_of": {
+                    "type": "string",
+                    "examples": [
+                      "Seite {current} von {total}",
+                      "Page {current} sur {total}",
+                      "Pagina {current} di {total}"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "data": {
+            "invalid": {
+              "previous_page": "Test"
+            }
+          }
+        },
+        {
+          "instancePath": "/accessibility_config/municipal_theme_support/canton",
+          "schemaPath": "#/properties/accessibility_config/properties/municipal_theme_support/properties/canton/pattern",
+          "keyword": "pattern",
+          "params": {
+            "pattern": "^[A-Z]{2}$"
+          },
+          "message": "must match pattern \"^[A-Z]{2}$\"",
+          "schema": "^[A-Z]{2}$",
+          "parentSchema": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Canton Code",
+            "description": "Swiss canton code for specific accessibility requirements",
+            "pattern": "^[A-Z]{2}$",
+            "examples": [
+              "ZH",
+              "BE",
+              "GE",
+              "VD"
+            ]
+          },
+          "data": "INVALID"
+        },
+        {
+          "instancePath": "/accessibility_config/municipal_theme_support/compliance_level",
+          "schemaPath": "#/properties/accessibility_config/properties/municipal_theme_support/properties/compliance_level/enum",
+          "keyword": "enum",
+          "params": {
+            "allowedValues": [
+              "federal",
+              "cantonal",
+              "municipal"
+            ]
+          },
+          "message": "must be equal to one of the allowed values",
+          "schema": [
+            "federal",
+            "cantonal",
+            "municipal"
+          ],
+          "parentSchema": {
+            "type": "string",
+            "title": "Compliance Level",
+            "description": "Required accessibility compliance level",
+            "enum": [
+              "federal",
+              "cantonal",
+              "municipal"
+            ],
+            "default": "federal"
+          },
+          "data": "unknown"
+        }
+      ]
+    }
+  },
+  "recommendations": [
+    {
+      "category": "Swiss Compliance",
+      "priority": "Critical",
+      "description": "Swiss eCH-0059 compliance validation working correctly",
+      "solution": "Swiss government standards properly enforced"
+    }
+  ]
+}

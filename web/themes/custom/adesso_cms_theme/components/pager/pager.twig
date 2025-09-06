@@ -1,20 +1,62 @@
-{# Wrapper template that includes the pager component #}
+{# 
+/**
+ * @file
+ * Accessible pagination component template for Swiss municipal portals
+ * 
+ * Implements WCAG 2.1 AA compliance and eCH-0059 accessibility standards
+ * with comprehensive ARIA support and multilingual readiness.
+ */
+#}
 {% if items %}
-  <nav class="flex items-center justify-between" role="navigation" aria-labelledby="{{ heading_id }}">
-    <h4 id="{{ heading_id }}" class="sr-only">{{ 'Pagination'|t }}</h4>
+  {# ARIA live region for dynamic content announcements (AJAX pagination) #}
+  <div id="{{ heading_id }}-live" class="sr-only" aria-live="polite" aria-atomic="true" data-pager-announcements></div>
 
-    {# Previous button section #}
+  <nav class="flex items-center justify-between" 
+       role="navigation" 
+       aria-labelledby="{{ heading_id }}" 
+       aria-describedby="{{ heading_id }}-description"
+       data-pager-nav>
+    
+    {# Enhanced semantic heading with context #}
+    <h4 id="{{ heading_id }}" class="sr-only">{{ 'Pagination Navigation'|t }}</h4>
+    <div id="{{ heading_id }}-description" class="sr-only">
+      {{ 'Navigate through multiple pages of content using previous, next, and page number links.'|t }}
+    </div>
+
+    {# Previous button section with enhanced ARIA #}
     <div class="flex-1 flex justify-between sm:justify-start">
       {% if items.previous %}
-        <a href="{{ items.previous.href }}" title="{{ 'Go to previous page'|t }}" rel="prev" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium  text-gray-700 bg-white hover:bg-gray-50">
-          <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <a href="{{ items.previous.href }}" 
+           rel="prev" 
+           aria-label="{{ 'Go to previous page'|t }}"
+           class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+          <svg class="mr-2 h-4 w-4" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="currentColor" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"
+               aria-hidden="true"
+               focusable="false">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
           {{ 'Previous'|t }}
         </a>
       {% else %}
-        <button disabled class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium  text-gray-400 bg-gray-50 cursor-not-allowed">
-          <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button disabled 
+                aria-label="{{ 'Previous page unavailable, currently on first page'|t }}"
+                aria-disabled="true"
+                class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed">
+          <svg class="mr-2 h-4 w-4" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="currentColor" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"
+               aria-hidden="true"
+               focusable="false">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
           {{ 'Previous'|t }}
@@ -22,44 +64,76 @@
       {% endif %}
     </div>
 
-    {# Page numbers section #}
-    <div class="drupal-safe-hidden md:flex">
-      {% for key, page in items.pages %}
-        {% if current == key %}
-          <span class="relative inline-flex items-center px-4 py-2 mx-1 border text-sm font-medium  z-10 bg-primary text-white border-primary">
-            <span class="sr-only">{{ 'Current page'|t }}</span>
-            {{- key -}}
-          </span>
-        {% else %}
-          <a href="{{ page.href }}" title="{{ 'Go to page @key'|t({'@key': key}) }}" class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium ">
-            <span class="sr-only">{{ 'Page'|t }}</span>
-            {{- key -}}
-          </a>
-        {% endif %}
+    {# Page numbers section with enhanced semantic structure #}
+    <div class="drupal-safe-hidden md:flex" role="group" aria-label="{{ 'Page numbers'|t }}">
+      <ol class="flex list-none m-0 p-0" role="list">
+        {% for key, page in items.pages %}
+          <li class="list-none">
+            {% if current == key %}
+              <span class="relative inline-flex items-center px-4 py-2 mx-1 border text-sm font-medium z-10 bg-primary text-white border-primary"
+                    aria-current="page"
+                    aria-label="{{ 'Current page, page @key'|t({'@key': key}) }}">
+                {{- key -}}
+              </span>
+            {% else %}
+              <a href="{{ page.href }}" 
+                 aria-label="{{ 'Go to page @key'|t({'@key': key}) }}"
+                 class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                {{- key -}}
+              </a>
+            {% endif %}
 
-        {% if not loop.last %}
-          {% if items.ellipses[key] is defined %}
-            <span class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 text-sm font-medium ">
-              ...
-            </span>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
+            {% if not loop.last %}
+              {% if items.ellipses[key] is defined %}
+                </li>
+                <li class="list-none">
+                  <span class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 text-sm font-medium"
+                        aria-hidden="true"
+                        role="presentation">
+                    ...
+                  </span>
+              {% endif %}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
     </div>
 
-    {# Next button section #}
+    {# Next button section with enhanced ARIA #}
     <div class="flex-1 flex justify-end">
       {% if items.next %}
-        <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium  text-gray-700 bg-white hover:bg-gray-50">
+        <a href="{{ items.next.href }}" 
+           rel="next" 
+           aria-label="{{ 'Go to next page'|t }}"
+           class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
           {{ 'Next'|t }}
-          <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="ml-2 h-4 w-4" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="currentColor" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"
+               aria-hidden="true"
+               focusable="false">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </a>
       {% else %}
-        <button disabled class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium  text-gray-400 bg-gray-50 cursor-not-allowed">
+        <button disabled 
+                aria-label="{{ 'Next page unavailable, currently on last page'|t }}"
+                aria-disabled="true"
+                class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed">
           {{ 'Next'|t }}
-          <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="ml-2 h-4 w-4" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="currentColor" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"
+               aria-hidden="true"
+               focusable="false">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>

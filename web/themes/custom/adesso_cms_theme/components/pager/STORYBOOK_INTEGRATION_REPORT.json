@@ -1,0 +1,96 @@
+{
+  "timestamp": "2025-09-06T16:14:59.658Z",
+  "storybookLoading": {
+    "success": true,
+    "storiesFound": 12,
+    "storiesPath": "/Users/marc.philipps/Sites/zh-demo/.worktrees/issues-98/web/themes/custom/adesso_cms_theme/components/pager/pager.stories.js"
+  },
+  "behaviorIntegration": {
+    "success": true,
+    "score": 1,
+    "tests": [
+      {
+        "name": "ARIA Label Integration",
+        "pattern": "aria-label",
+        "required": true,
+        "found": true
+      },
+      {
+        "name": "Data Attributes Usage",
+        "pattern": "data-",
+        "required": true,
+        "found": true
+      },
+      {
+        "name": "Accessibility Features",
+        "pattern": "aria-current",
+        "required": true,
+        "found": true
+      },
+      {
+        "name": "AJAX Loading Support",
+        "pattern": "loadPageContent",
+        "required": false,
+        "found": true
+      },
+      {
+        "name": "Keyboard Navigation",
+        "pattern": "keyboard",
+        "required": true,
+        "found": true
+      },
+      {
+        "name": "History Management",
+        "pattern": "history",
+        "required": false,
+        "found": true
+      }
+    ]
+  },
+  "schemaValidation": [
+    {
+      "name": "Thalwil Municipal Configuration",
+      "valid": true,
+      "duration": 24.091959,
+      "errors": []
+    },
+    {
+      "name": "Multi-language Swiss Portal",
+      "valid": true,
+      "duration": 1.439125,
+      "errors": []
+    },
+    {
+      "name": "Performance Optimized Configuration",
+      "valid": true,
+      "duration": 0.031875,
+      "errors": []
+    }
+  ],
+  "performanceMetrics": {
+    "average": 8.520986333333333,
+    "maximum": 24.091959,
+    "targetMet": false,
+    "results": [
+      {
+        "name": "Thalwil Municipal Configuration",
+        "valid": true,
+        "duration": 24.091959,
+        "errors": []
+      },
+      {
+        "name": "Multi-language Swiss Portal",
+        "valid": true,
+        "duration": 1.439125,
+        "errors": []
+      },
+      {
+        "name": "Performance Optimized Configuration",
+        "valid": true,
+        "duration": 0.031875,
+        "errors": []
+      }
+    ]
+  },
+  "overallSuccess": false
+}

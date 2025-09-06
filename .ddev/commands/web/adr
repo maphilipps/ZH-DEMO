@@ -1,0 +1,63 @@
+#!/bin/bash
+
+## Description: ADR (Architecture Decision Record) management commands
+## Usage: adr [subcommand]
+## Example: "ddev adr validate path/to/adr.md"
+## Example: "ddev adr status-report"
+## Example: "ddev adr validate-all"
+
+set -e
+
+SCRIPT_DIR="/var/www/html/.claude/scripts"
+ADR_SCRIPT="$SCRIPT_DIR/adr-status-check.sh"
+
+# Colors for output
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+show_usage() {
+    echo -e "${BLUE}ADR Management Commands${NC}"
+    echo ""
+    echo "Usage: ddev adr [subcommand] [args...]"
+    echo ""
+    echo "Subcommands:"
+    echo "  validate <file>     Validate specific ADR file"
+    echo "  validate-all        Validate all ADR files in project"
+    echo "  status-report       Generate ADR status report"
+    echo "  help               Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  ddev adr validate .claude/adrs/adr-001-forms.md"
+    echo "  ddev adr validate-all"
+    echo "  ddev adr status-report"
+    echo ""
+    echo "Municipal Portal ADR Management"
+    echo "MADR 4.0.0 compliant with Swiss government standards"
+}
+
+case "${1:-help}" in
+    "validate")
+        if [[ -n "$2" ]]; then
+            exec "$ADR_SCRIPT" "$2"
+        else
+            echo "Error: Please specify ADR file to validate"
+            echo "Usage: ddev adr validate <file>"
+            exit 1
+        fi
+        ;;
+    "validate-all")
+        exec "$ADR_SCRIPT" --validate-all
+        ;;
+    "status-report")
+        exec "$ADR_SCRIPT" --status-report
+        ;;
+    "help"|"--help"|"-h")
+        show_usage
+        ;;
+    *)
+        echo "Error: Unknown subcommand '$1'"
+        echo ""
+        show_usage
+        exit 1
+        ;;
+esac

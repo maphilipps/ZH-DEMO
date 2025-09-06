@@ -169,7 +169,6 @@ This is **adesso CMS** - a Drupal 11-based municipal portal system designed for 
 - Phase 3 automatically uses Context7 with municipal optimization
 - Fallback to WebSearch for Swiss-specific implementation examples
 - Integration with existing agent ecosystem for validation
-
 ## Important File Locations
 
 - Main Composer file: `composer.json`

@@ -1,0 +1,177 @@
+{#
+/**
+ * @file
+ * Specialized Audio Media Template
+ * 
+ * Enhanced audio player with custom controls, transcript support,
+ * and accessibility features for municipal content.
+ * 
+ * Available variables:
+ * - All variables from main media component schema
+ * - Enhanced audio controls and transcript features
+ */
+#}
+
+{# Enhanced audio player with accessibility and Swiss municipal styling #}
+<div class="adesso-media__audio-container bg-gradient-to-r from-blue-900 to-blue-800 rounded-lg p-6 text-white shadow-lg">
+  
+  {# Audio visualizer placeholder (cosmetic enhancement) #}
+  <div class="adesso-media__audio-visual mb-4">
+    <div class="flex items-center justify-center space-x-1 h-12">
+      {% for i in 1..20 %}
+        <div class="adesso-media__audio-bar bg-blue-300 rounded-full opacity-60 transition-all duration-300" 
+             style="width: 3px; height: {{ (i % 4 + 1) * 8 }}px;"
+             data-audio-bar="{{ i }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  {# Audio metadata display #}
+  <div class="adesso-media__audio-meta mb-4">
+    <h3 class="text-white font-semibold text-lg">
+      {{ resolved_alt_text|default(media_entity.name|default('Audio Content'))|striptags }}
+    </h3>
+    {% if resolved_caption %}
+      <p class="text-blue-100 text-sm mt-1">{{ resolved_caption|striptags }}</p>
+    {% endif %}
+    {% if media_entity.metadata.duration %}
+      <p class="text-blue-200 text-xs mt-2">
+        {{ 'Duration'|t }}: <span data-audio-duration>{{ media_entity.metadata.duration|date('i:s') }}</span>
+      </p>
+    {% endif %}
+  </div>
+  
+  {# Native audio element with enhanced accessibility #}
+  <audio 
+    class="adesso-media__audio w-full"
+    {% if controls %}controls{% endif %}
+    {% if autoplay %}autoplay{% endif %}
+    {% if loop %}loop{% endif %}
+    {% if preload != 'none' %}preload="{{ preload }}"{% endif %}
+    aria-label="{{ resolved_alt_text|default('Audio content')|striptags }}"
+    {% if resolved_caption %}aria-describedby="{{ media_id }}-audio-desc"{% endif %}
+    data-media-bundle="audio"
+    data-privacy-level="{{ privacy_level }}"
+  >
+    {# Multiple source formats for optimal compatibility #}
+    {% if media_entity.uri matches '/\\.mp3$/i' %}
+      <source src="{{ media_entity.uri }}" type="audio/mpeg">
+    {% elseif media_entity.uri matches '/\\.ogg$/i' %}
+      <source src="{{ media_entity.uri }}" type="audio/ogg">
+    {% elseif media_entity.uri matches '/\\.wav$/i' %}
+      <source src="{{ media_entity.uri }}" type="audio/wav">
+    {% elseif media_entity.uri matches '/\\.m4a$/i' %}
+      <source src="{{ media_entity.uri }}" type="audio/mp4">
+    {% else %}
+      <source src="{{ media_entity.uri }}" type="{{ media_entity.mime_type }}">
+    {% endif %}
+    
+    {# Accessibility fallback with download option #}
+    <div class="adesso-media__audio-fallback bg-red-50 border border-red-200 p-4 rounded mt-4 text-red-800">
+      <p class="mb-2">
+        <strong>{{ 'Audio not supported'|t }}:</strong>
+        {{ 'Your browser does not support the audio format or JavaScript is disabled.'|t }}
+      </p>
+      {% if media_entity.uri %}
+        <a 
+          href="{{ media_entity.uri }}" 
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded underline"
+          download
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          {{ 'Download audio file'|t }}
+          {% if media_entity.file_size %}
+            ({{ (media_entity.file_size / 1024 / 1024)|number_format(1) }} MB)
+          {% endif %}
+        </a>
+      {% endif %}
+    </div>
+  </audio>
+  
+  {# Custom audio controls for enhanced UX #}
+  <div class="adesso-media__audio-custom-controls mt-4 flex items-center justify-between text-sm">
+    
+    {# Playback time display #}
+    <div class="flex items-center space-x-2 text-blue-100">
+      <span data-audio-current-time>0:00</span>
+      <span>/</span>
+      <span data-audio-total-time>{{ media_entity.metadata.duration|date('i:s')|default('0:00') }}</span>
+    </div>
+    
+    {# Custom control buttons #}
+    <div class="flex items-center space-x-2">
+      <button 
+        type="button"
+        class="p-2 hover:bg-blue-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+        data-audio-control="play-pause"
+        aria-label="{{ 'Play or pause audio'|t }}"
+      >
+        <svg class="w-5 h-5" data-play-icon fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="w-5 h-5 hidden" data-pause-icon fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+        </svg>
+      </button>
+      
+      <button 
+        type="button"
+        class="p-2 hover:bg-blue-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+        data-audio-control="mute"
+        aria-label="{{ 'Mute or unmute audio'|t }}"
+      >
+        <svg class="w-5 h-5" data-volume-icon fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <svg class="w-5 h-5 hidden" data-mute-icon fill="currentColor" viewBox="0 0 24 24">
+          <path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+      </button>
+    </div>
+    
+  </div>
+  
+  {# Progress bar #}
+  <div class="adesso-media__audio-progress mt-3">
+    <div class="bg-blue-700 h-1 rounded-full overflow-hidden">
+      <div class="bg-blue-300 h-full w-0 transition-all duration-100" data-audio-progress></div>
+    </div>
+  </div>
+  
+  {# Audio accessibility description #}
+  {% if resolved_caption or media_entity.metadata.duration %}
+    <div id="{{ media_id }}-audio-desc" class="sr-only">
+      {% if resolved_caption %}{{ resolved_caption|striptags }}. {% endif %}
+      {% if media_entity.metadata.duration %}
+        {{ 'Duration'|t }}: {{ media_entity.metadata.duration|date('i:s') }}.
+      {% endif %}
+      {% if media_entity.mime_type %}
+        {{ 'Format'|t }}: {{ media_entity.mime_type }}.
+      {% endif %}
+    </div>
+  {% endif %}
+  
+</div>
+
+{# Audio transcript support for accessibility compliance #}
+{% if slots.transcript %}
+  <details class="adesso-media__transcript mt-4 border border-gray-300 rounded bg-white">
+    <summary class="p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
+      <strong class="text-gray-900">{{ 'Audio Transcript'|t }}</strong>
+      <span class="text-gray-600 text-sm ml-2">({{ 'Click to expand'|t }})</span>
+    </summary>
+    <div class="p-4 prose prose-sm max-w-none">
+      {{ slots.transcript }}
+    </div>
+  </details>
+{% endif %}
+
+{# Swiss municipal compliance and privacy notice #}
+{% if external_content %}
+  <div class="adesso-media__privacy-notice mt-2 text-xs text-gray-600 bg-yellow-50 p-2 rounded border-l-4 border-yellow-400">
+    <strong>{{ 'Privacy Notice'|t }}:</strong>
+    {{ 'This audio may load external resources or track playback behavior.'|t }}
+  </div>
+{% endif %}

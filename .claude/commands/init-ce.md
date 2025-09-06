@@ -55,7 +55,6 @@ You are an AI assistant tasked with setting up a project for compounding enginee
 - **Storybook Component Testing**: Every frontend component requires Storybook stories and visual regression tests
 - **Accessibility Compliance**: Automated a11y testing integrated into development workflow
 - **Cross-browser Validation**: Components tested across major browsers automatically
-
 4. Create the following learning infrastructure:
    - Directories: .claude/learning/, .claude/learning/decisions/, .claude/learning/patterns/, .claude/learning/failures/
    - Files: .claude/hooks/ for automated learning capture, .claude/templates/ for improvement documentation

@@ -1,0 +1,257 @@
+{
+  "media_component_scenarios": [
+    {
+      "label": "Media Component - Default Image",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--default-image",
+      "delay": 2000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Hero Image",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--hero-image",
+      "delay": 2000,
+      "readySelector": ".adesso-media--hero",
+      "selectors": [
+        ".adesso-media--hero"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Modern Image Formats",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--modern-image-formats",
+      "delay": 3000,
+      "readySelector": ".adesso-media picture",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Enhanced Video Player",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--enhanced-video-player",
+      "delay": 2000,
+      "readySelector": ".adesso-media--video",
+      "selectors": [
+        ".adesso-media--video"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Swiss Municipal Audio",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--swiss-municipal-audio",
+      "delay": 2000,
+      "readySelector": ".adesso-media--audio",
+      "selectors": [
+        ".adesso-media--audio"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Swiss Government Document",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--swiss-government-document",
+      "delay": 2000,
+      "readySelector": ".adesso-media--document",
+      "selectors": [
+        ".adesso-media--document"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - GDPR Compliant Video",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--gdpr-compliant-video",
+      "delay": 2000,
+      "readySelector": ".adesso-media--remote_video",
+      "selectors": [
+        ".adesso-media--remote_video"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Accessibility Enhanced",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--accessibility-enhanced",
+      "delay": 2000,
+      "readySelector": ".adesso-media--accessibility",
+      "selectors": [
+        ".adesso-media--accessibility"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Performance Optimized Gallery",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-optimized-gallery",
+      "delay": 2000,
+      "readySelector": ".adesso-media--gallery",
+      "selectors": [
+        ".adesso-media--gallery"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Card Variant",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--media-card",
+      "delay": 2000,
+      "readySelector": ".adesso-media--card",
+      "selectors": [
+        ".adesso-media--card"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Thumbnail Variant",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--thumbnail",
+      "delay": 2000,
+      "readySelector": ".adesso-media--thumbnail",
+      "selectors": [
+        ".adesso-media--thumbnail"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Multilingual Content",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--multilingual-content",
+      "delay": 2000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Error Fallback",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--error-fallback",
+      "delay": 3000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media",
+        ".adesso-media__fallback"
+      ],
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Performance Hero (LCP Optimized)",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-hero",
+      "delay": 2000,
+      "readySelector": ".adesso-media--hero",
+      "selectors": [
+        ".adesso-media--hero"
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Lazy Loading Test",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-lazy-loading",
+      "delay": 3000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        "body"
+      ],
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Connection Aware Loading",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-connection-aware",
+      "delay": 3000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        "body"
+      ],
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Format Optimization Test",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-format-optimization",
+      "delay": 3000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        "body"
+      ],
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Core Web Vitals Monitor",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--performance-core-web-vitals",
+      "delay": 3000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        "body"
+      ],
+      "misMatchThreshold": 0.3,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Mobile Responsive (375px)",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--default-image",
+      "delay": 2000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "viewports": [
+        {
+          "label": "mobile",
+          "width": 375,
+          "height": 667
+        }
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Tablet Responsive (768px)",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--hero-image",
+      "delay": 2000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "viewports": [
+        {
+          "label": "tablet",
+          "width": 768,
+          "height": 1024
+        }
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    },
+    {
+      "label": "Media Component - Desktop Large (1920px)",
+      "url": "http://localhost:6006/iframe.html?id=media-media---phase-2-enhanced--hero-image",
+      "delay": 2000,
+      "readySelector": ".adesso-media",
+      "selectors": [
+        ".adesso-media"
+      ],
+      "viewports": [
+        {
+          "label": "desktop-large",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "misMatchThreshold": 0.2,
+      "requireSameDimensions": false
+    }
+  ]
+}

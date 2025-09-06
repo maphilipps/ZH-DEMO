@@ -1,3 +1,221 @@
-<div class="{{ modifier|default('w-full') }}">
-  {{ media|default('') }}
-</div>
+{#
+/**
+ * @file
+ * Accessible Media Component Template
+ * 
+ * Implements comprehensive WCAG 2.1 AA accessibility compliance and Swiss municipal
+ * standards for all media types (image, video, audio, document, remote_video).
+ * 
+ * Key accessibility features:
+ * - Semantic HTML with figure/figcaption structure
+ * - ARIA roles, labels, and descriptions
+ * - Keyboard navigation support
+ * - Screen reader compatibility
+ * - Multilingual content support (DE/FR)
+ * - High contrast and focus management
+ * 
+ * Available variables:
+ * - media_entity: Drupal media entity with metadata
+ * - variant: Display variant (default, hero, thumbnail, card, etc.)
+ * - All accessibility properties (alt_text, aria_label, etc.)
+ * - All performance and styling options
+ * - Slots: caption, overlay, controls, fallback
+ */
+#}
+
+{# Set up accessibility and display variables #}
+{% set media_id = 'media-' ~ media_entity.id|default(random()) %}
+{% set caption_id = media_id ~ '-caption' %}
+{% set desc_id = media_id ~ '-desc' %}
+{% set current_lang = language.getId()|default('de') %}
+
+{# Determine multilingual content based on current language #}
+{% set resolved_alt_text = alt_text %}
+{% if current_lang == 'de' and alt_text_de %}
+  {% set resolved_alt_text = alt_text_de %}
+{% elseif current_lang == 'fr' and alt_text_fr %}
+  {% set resolved_alt_text = alt_text_fr %}
+{% endif %}
+
+{% set resolved_caption = caption %}
+{% if current_lang == 'de' and caption_de %}
+  {% set resolved_caption = caption_de %}
+{% elseif current_lang == 'fr' and caption_fr %}
+  {% set resolved_caption = caption_fr %}
+{% endif %}
+
+{# Performance optimization variables #}
+{% set is_hero = variant == 'hero' or variant == 'banner' %}
+{% set connection_aware = true %}
+{% set performance_priority = is_hero ? 'high' : 'low' %}
+
+{# Build CSS classes for styling #}
+{% set base_classes = [
+  'adesso-media',
+  'adesso-media--' ~ variant|default('default'),
+  'adesso-media--' ~ media_entity.bundle|default('image'),
+  'adesso-media--size-' ~ size|default('md'),
+  'adesso-media--align-' ~ alignment|default('center'),
+] %}
+
+{# Add performance optimization classes #}
+{% if aspect_ratio != 'auto' %}
+  {% set base_classes = base_classes|merge(['adesso-media--aspect-preserved']) %}
+{% endif %}
+
+{% if aspect_ratio != 'auto' %}
+  {% set base_classes = base_classes|merge(['adesso-media--aspect-' ~ aspect_ratio|replace(':', '-')]) %}
+{% endif %}
+
+{% if border_radius != 'none' %}
+  {% set base_classes = base_classes|merge(['rounded-' ~ border_radius]) %}
+{% endif %}
+
+{% if shadow != 'none' %}
+  {% set base_classes = base_classes|merge(['shadow-' ~ shadow]) %}
+{% endif %}
+
+{% if modifier %}
+  {% set base_classes = base_classes|merge(modifier.split(' ')) %}
+{% endif %}
+
+{# ARIA and accessibility attributes #}
+{% set aria_attributes = {} %}
+{% if aria_label %}
+  {% set aria_attributes = aria_attributes|merge({'aria-label': aria_label}) %}
+{% endif %}
+
+{% if long_description %}
+  {% set aria_attributes = aria_attributes|merge({'aria-describedby': desc_id}) %}
+{% endif %}
+
+{% if resolved_caption or slots.caption %}
+  {% set aria_attributes = aria_attributes|merge({'aria-labelledby': caption_id}) %}
+{% endif %}
+
+{# Privacy and compliance warnings for external content #}
+{% if external_content and privacy_level != 'public' %}
+  {% set privacy_warning = true %}
+{% else %}
+  {% set privacy_warning = false %}
+{% endif %}
+
+{# Main media figure element with full accessibility structure #}
+<figure 
+  id="{{ media_id }}"
+  class="{{ base_classes|join(' ') }}"
+  role="img"
+  {% if background_color %}style="background-color: {{ background_color }};"{% endif %}
+  {% for attr, value in aria_attributes %}{{ attr }}="{{ value }}"{% endfor %}
+  {% if media_entity.bundle in ['video', 'audio'] %}tabindex="0"{% endif %}
+  data-media-id="{{ media_entity.id }}"
+  data-media-bundle="{{ media_entity.bundle }}"
+  data-privacy-level="{{ privacy_level }}"
+  data-performance-priority="{{ performance_priority }}"
+  {% if connection_aware %}data-connection-aware="true"{% endif %}
+  {% if external_content %}data-external-content="true"{% endif %}
+  {% if not gdpr_compliant %}data-gdpr-warning="true"{% endif %}
+  data-behavior="media"
+>
+  
+  {# Privacy/GDPR warning for external or restricted content #}
+  {% if privacy_warning %}
+    <div class="adesso-media__privacy-warning" role="alert" aria-live="polite">
+      <p class="text-sm text-amber-800 bg-amber-50 p-2 rounded border-l-4 border-amber-400">
+        <strong>{{ 'Privacy Notice'|t }}:</strong>
+        {{ 'This content may contain external resources. Please review before viewing.'|t }}
+      </p>
+    </div>
+  {% endif %}
+
+  {# Main media container with responsive wrapper #}
+  <div class="adesso-media__container relative">
+    
+    {# Fallback content slot - displayed if media fails to load #}
+    {% if slots.fallback %}
+      <div class="adesso-media__fallback sr-only" role="alert">
+        {{ slots.fallback }}
+      </div>
+    {% endif %}
+
+    {# Media content rendering using specialized bundle templates #}
+    <div class="adesso-media__content">
+      
+      {# Use specialized templates for each media bundle type #}
+      {% if media_entity.bundle == 'image' %}
+        {% include '@adesso_cms_theme/media/templates/image.twig' %}
+
+      {% elseif media_entity.bundle == 'video' %}
+        {% include '@adesso_cms_theme/media/templates/video.twig' %}
+
+      {% elseif media_entity.bundle == 'audio' %}
+        {% include '@adesso_cms_theme/media/templates/audio.twig' %}
+
+      {% elseif media_entity.bundle == 'document' %}
+        {% include '@adesso_cms_theme/media/templates/document.twig' %}
+
+      {% elseif media_entity.bundle == 'remote_video' %}
+        {% include '@adesso_cms_theme/media/templates/remote_video.twig' %}
+
+      {% else %}
+        {# Fallback for unknown media types #}
+        {{ media_entity|view(display_mode|default('default')) }}
+      {% endif %}
+
+    </div>
+
+    {# Overlay content slot (play buttons, badges, etc.) #}
+    {% if slots.overlay %}
+      <div class="adesso-media__overlay absolute inset-0 flex items-center justify-center">
+        {{ slots.overlay }}
+      </div>
+    {% endif %}
+
+    {# Custom controls slot #}
+    {% if slots.controls %}
+      <div class="adesso-media__custom-controls">
+        {{ slots.controls }}
+      </div>
+    {% endif %}
+
+  </div>
+
+  {# Caption section with proper semantic structure #}
+  {% if resolved_caption or slots.caption %}
+    <figcaption 
+      id="{{ caption_id }}"
+      class="adesso-media__caption mt-2 text-sm text-gray-700"
+    >
+      {% if slots.caption %}
+        {{ slots.caption }}
+      {% else %}
+        {{ resolved_caption|raw }}
+      {% endif %}
+    </figcaption>
+  {% endif %}
+
+  {# Long description for complex media (hidden, referenced by aria-describedby) #}
+  {% if long_description %}
+    <div id="{{ desc_id }}" class="sr-only">
+      {{ long_description|striptags }}
+    </div>
+  {% endif %}
+
+</figure>
+
+{# Add structured data for better SEO and accessibility #}
+{% if media_entity.bundle == 'image' and resolved_alt_text %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": "{{ media_entity.uri }}",
+  {% if resolved_caption %}"caption": "{{ resolved_caption|striptags }}",{% endif %}
+  "description": "{{ resolved_alt_text|striptags }}"
+  {% if media_entity.metadata.width and media_entity.metadata.height %},
+  "width": {{ media_entity.metadata.width }},
+  "height": {{ media_entity.metadata.height }}
+  {% endif %}
+}
+</script>
+{% endif %}

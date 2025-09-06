@@ -1,0 +1,24 @@
+{
+  "adr": "ADR-001-test",
+  "transition": "proposed -> accepted",
+  "timestamp": "2025-09-06T16:22:02.399Z",
+  "sessionId": "adr-collab-2025-09-06T16-22-02-394Z",
+  "patterns": {
+    "successful": [
+      "readout_meeting_efficiency",
+      "stakeholder_engagement_optimization"
+    ],
+    "challenging": [],
+    "innovative": []
+  },
+  "systemImprovements": {
+    "processOptimizations": [],
+    "toolEnhancements": [],
+    "coordinationImprovements": []
+  },
+  "municipalLearning": {
+    "multiSiteCoordination": [],
+    "swissComplianceIntegration": [],
+    "stakeholderEngagementOptimization": []
+  }
+}

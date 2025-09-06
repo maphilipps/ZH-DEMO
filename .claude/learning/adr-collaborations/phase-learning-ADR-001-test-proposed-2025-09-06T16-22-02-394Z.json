@@ -1,0 +1,61 @@
+{
+  "adrId": "ADR-001-test",
+  "phase": "proposed",
+  "timestamp": "2025-09-06T16:22:02.396Z",
+  "sessionId": "adr-collab-2025-09-06T16-22-02-394Z",
+  "metadata": {
+    "municipalImpact": {
+      "thalwil": {
+        "status": "approved"
+      },
+      "thalheim": {
+        "status": "approved"
+      },
+      "erlenbach": {
+        "status": "approved"
+      }
+    },
+    "successfulPatterns": [
+      "readout_meeting_efficiency",
+      "stakeholder_engagement_optimization"
+    ]
+  },
+  "metrics": {
+    "duration": null,
+    "participationRate": null,
+    "issuesIdentified": [],
+    "stakeholderSatisfaction": null,
+    "complianceAchievement": null
+  },
+  "insights": {
+    "successfulPatterns": [
+      "readout_meeting_efficiency",
+      "stakeholder_engagement_optimization"
+    ],
+    "challengesFaced": [],
+    "improvementOpportunities": [],
+    "stakeholderFeedback": []
+  },
+  "municipalImpact": {
+    "thalwil": {
+      "status": "approved"
+    },
+    "thalheim": {
+      "status": "approved"
+    },
+    "erlenbach": {
+      "status": "approved"
+    }
+  },
+  "swissCompliance": {
+    "wcag": {
+      "status": "pending"
+    },
+    "chDsg": {
+      "status": "pending"
+    },
+    "ech0059": {
+      "status": "pending"
+    }
+  }
+}

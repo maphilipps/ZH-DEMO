@@ -1,0 +1,25 @@
+{
+  "adrId": "ADR-001-test",
+  "phase": "accepted",
+  "timestamp": "2025-09-06T16:22:02.398Z",
+  "sessionId": "adr-collab-2025-09-06T16-22-02-394Z",
+  "requirements": [
+    "implementation_planning",
+    "resource_allocation",
+    "timeline_establishment"
+  ],
+  "stakeholders": [
+    "implementation_team",
+    "municipal_coordinators",
+    "testing_team"
+  ],
+  "complianceChecks": [
+    "compliance_implementation_planning",
+    "certification_timeline"
+  ],
+  "qualityGates": [
+    "implementation_readiness",
+    "resource_availability",
+    "timeline_validation"
+  ]
+}

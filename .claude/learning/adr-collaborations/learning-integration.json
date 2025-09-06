@@ -1,0 +1,50 @@
+{
+  "collaborativePatterns": {
+    "readoutMeetingEffectiveness": {
+      "metrics": [
+        "duration",
+        "participation_rate",
+        "decision_quality",
+        "stakeholder_satisfaction"
+      ],
+      "learningCapture": "automatic",
+      "compoundImprovement": "meeting_optimization"
+    },
+    "crossFunctionalReviews": {
+      "metrics": [
+        "review_completeness",
+        "issue_identification",
+        "compliance_validation",
+        "timeline_adherence"
+      ],
+      "learningCapture": "automatic",
+      "compoundImprovement": "review_process_optimization"
+    },
+    "agentCoordination": {
+      "metrics": [
+        "handoff_efficiency",
+        "conflict_resolution",
+        "quality_gate_success",
+        "escalation_rate"
+      ],
+      "learningCapture": "automatic",
+      "compoundImprovement": "agent_orchestration_optimization"
+    },
+    "stakeholderEngagement": {
+      "metrics": [
+        "participation_rate",
+        "feedback_quality",
+        "municipal_satisfaction",
+        "compliance_achievement"
+      ],
+      "learningCapture": "automatic",
+      "compoundImprovement": "stakeholder_process_optimization"
+    }
+  },
+  "integrationPoints": {
+    "existingLearningCapture": ".claude/learning/raw_reflection_log.md",
+    "consolidatedLearnings": ".claude/learning/consolidated_learnings.md",
+    "patternLibrary": ".claude/learning/patterns/",
+    "failureAnalysis": ".claude/learning/failures/"
+  }
+}

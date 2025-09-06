@@ -1,0 +1,112 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Link
+description: Foundation Link Component - Accessible, secure links for municipal portals
+props:
+  type: object
+  required:
+    - text
+    - url
+  properties:
+    text:
+      type: string
+      title: Text
+      description: The visible text of the link
+      examples:
+        - "Visit our services"
+        - "Download PDF"
+        - "Contact us"
+    url:
+      type: string
+      title: URL
+      description: The destination URL or URI (supports tel:, mailto:, external URLs)
+      examples:
+        - "https://example.com"
+        - "mailto:info@municipality.ch"
+        - "tel:+41441234567"
+        - "/services/citizen-portal"
+    variant:
+      type: string
+      title: Variant
+      description: Visual style variant of the link
+      default: "default"
+      enum:
+        - default
+        - button
+        - external
+        - download
+        - phone
+        - email
+        - inline
+    size:
+      type: string
+      title: Size
+      description: Size variant for the link
+      default: "default"
+      enum:
+        - sm
+        - default
+        - lg
+    title:
+      type:
+        - string
+        - 'null'
+      title: Title
+      description: Optional title attribute for additional context (accessibility)
+    target:
+      type:
+        - string
+        - 'null'
+      title: Target
+      description: Link target (_blank for external links, auto-detected for external URLs)
+      enum:
+        - '_blank'
+        - '_self'
+        - '_parent'
+        - '_top'
+    download:
+      type:
+        - string
+        - boolean
+        - 'null'
+      title: Download
+      description: Download attribute for file links (boolean true or filename string)
+    rel:
+      type:
+        - string
+        - 'null'
+      title: Rel
+      description: Link relationship attributes (automatically adds security attributes for external links)
+    aria_label:
+      type:
+        - string
+        - 'null'
+      title: ARIA Label
+      description: Accessible label for screen readers (overrides default text)
+    show_external_indicator:
+      type: boolean
+      title: Show External Indicator
+      description: Show visual indicator for external links
+      default: true
+    municipality_compliant:
+      type: boolean
+      title: Municipality Compliant
+      description: Enable Swiss municipal compliance features
+      default: true
+    modifier:
+      type:
+        - string
+        - 'null'
+      title: Modifier
+      description: Additional CSS classes for customization
+slots:
+  icon:
+    title: Icon
+    description: Optional icon to display with the link
+  badge:
+    title: Badge
+    description: Optional badge or label to display with the link
+  external_indicator:
+    title: External Indicator
+    description: Custom external link indicator (overrides default)
+libraryDependencies:
+  - adesso_cms_theme/link

@@ -1,50 +1,88 @@
+{# Define button styling classes based on variants and sizes #}
+{% set button_variant_classes = {
+  'default': 'bg-primary text-primary-foreground hover:bg-primary/90',
+  'secondary': 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  'outline': 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+  'ghost': 'hover:bg-accent hover:text-accent-foreground',
+  'destructive': 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
+} %}
+
+{% set button_size_classes = {
+  'sm': 'h-8 px-3 py-1.5 text-xs',
+  'lg': 'h-12 px-6 py-3 text-lg',
+  'default': 'h-9 px-4 py-2'
+} %}
+
+{% set current_variant = variant|default('default') %}
+{% set current_size = size|default('default') %}
+
+{# Base button classes #}
+{% set base_button_classes = [
+  'inline-flex',
+  'rounded-lg',
+  'items-center',
+  'justify-center',
+  'whitespace-nowrap',
+  'text-sm',
+  'font-medium',
+  'shadow',
+  'transition-colors',
+  'focus-visible:outline-none',
+  'focus-visible:ring-1',
+  'focus-visible:ring-ring',
+  'disabled:pointer-events-none',
+  'disabled:opacity-50'
+] %}
+
+{# Build complete button classes #}
+{% set button_classes = base_button_classes|join(' ') %}
+{% set button_classes = button_classes ~ ' ' ~ (button_variant_classes[current_variant] ?? button_variant_classes['default']) %}
+{% set button_classes = button_classes ~ ' ' ~ (button_size_classes[current_size] ?? button_size_classes['default']) %}
+{% if modifier|default('') %}
+  {% set button_classes = button_classes ~ ' ' ~ modifier %}
+{% endif %}
+
+{# If URL is provided, create a secure, accessible link with button styling #}
 {% if url|default('') %}
-  <a href="{{ url|default('') }}" class="inline-flex rounded-lg items-center justify-center whitespace-nowrap text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
-    {% if variant|default('') == 'secondary' %}
-      bg-secondary text-secondary-foreground hover:bg-secondary/80
-    {% elseif variant|default('') == 'outline' %}
-      border border-input bg-background hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'ghost' %}
-      hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'destructive' %}
-      bg-destructive text-destructive-foreground hover:bg-destructive/90
-    {% else %}
-      bg-primary text-primary-foreground hover:bg-primary/90
-    {% endif %}
-    {% if size|default('') == 'sm' %}
-      h-8 px-3 py-1.5 text-xs
-    {% elseif size|default('') == 'lg' %}
-      h-12 px-6 py-3 text-lg
-    {% else %}
-      h-9 px-4 py-2
-    {% endif %}
-    {{ modifier|default('') ? ' ' ~ modifier|default('') : '' }}">
+  {# Apply Foundation Link security logic #}
+  {% set is_external = url|default('') starts with 'http' and not (url|default('') starts with 'https://zh-demo.ddev.site' or url|default('') starts with '/') %}
+  {% set is_email = url|default('') starts with 'mailto:' %}
+  {% set is_phone = url|default('') starts with 'tel:' %}
+  
+  {# Build secure attributes #}
+  {% set link_attributes = {
+    'href': url|default('')|escape('html_attr'),
+    'class': button_classes|escape('html_attr')
+  } %}
+  
+  {# Add security attributes for external links #}
+  {% if is_external %}
+    {% set link_attributes = link_attributes|merge({
+      'target': '_blank',
+      'rel': 'noopener noreferrer'
+    }) %}
+  {% endif %}
+  
+  {# Add data attributes for JavaScript enhancement #}
+  {% set link_attributes = link_attributes|merge({
+    'data-adesso-button': 'link',
+    'data-external': is_external ? 'true' : 'false',
+    'data-municipality-compliant': 'true'
+  }) %}
+
+  <a{{ attributes(link_attributes) }}>
     {{ text|default('') }}
     {% if icon|default('') %}
       <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="ml-2 h-4 w-4"></i>
     {% endif %}
+    {# External link indicator for accessibility #}
+    {% if is_external %}
+      <span class="sr-only">{{ 'Opens in new window'|t }}</span>
+    {% endif %}
   </a>
 {% else %}
-  <button class="inline-flex items-center justify-center whitespace-nowrap  text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
-    {% if variant|default('') == 'secondary' %}
-      bg-secondary text-secondary-foreground hover:bg-secondary/80
-    {% elseif variant|default('') == 'outline' %}
-      border border-input bg-background hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'ghost' %}
-      hover:bg-accent hover:text-accent-foreground
-    {% elseif variant|default('') == 'destructive' %}
-      bg-destructive text-destructive-foreground hover:bg-destructive/90
-    {% else %}
-      bg-primary text-primary-foreground hover:bg-primary/90
-    {% endif %}
-    {% if size|default('') == 'sm' %}
-      h-8 px-3 py-1.5 text-xs
-    {% elseif size|default('') == 'lg' %}
-      h-12 px-6 py-3 text-lg
-    {% else %}
-      h-9 px-4 py-2
-    {% endif %}
-    {{ modifier|default('') ? ' ' ~ modifier|default('') : '' }}">
+  {# Pure button for non-URL cases #}
+  <button class="{{ button_classes }}">
     {{ text|default('') }}
     {% if icon|default('') %}
       <i data-lucide="{{ icon|default('') }}" width="18" height="18" class="ml-2 h-4 w-4"></i>

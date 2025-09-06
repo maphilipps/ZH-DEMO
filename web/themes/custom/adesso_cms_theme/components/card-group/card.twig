@@ -3,11 +3,39 @@
 		{% if media|default('') %}
 			<div class="relative">
 				{% if media_link %}
-					<a href="{{ media_link }}" class="block">
+					{# Apply Foundation Link security and accessibility features #}
+					{% set is_external = media_link|default('') starts with 'http' and not (media_link|default('') starts with 'https://zh-demo.ddev.site' or media_link|default('') starts with '/') %}
+					
+					{# Build secure media link attributes #}
+					{% set media_link_attributes = {
+						'href': media_link|default('')|escape('html_attr'),
+						'class': 'block hover:opacity-90 transition-opacity',
+						'aria-label': 'View media content'|t
+					} %}
+					
+					{# Add security attributes for external links #}
+					{% if is_external %}
+						{% set media_link_attributes = media_link_attributes|merge({
+							'target': '_blank',
+							'rel': 'noopener noreferrer'
+						}) %}
 					{% endif %}
-					{{ media|default('') }}
-					{% if media_link %}
+					
+					{# Add data attributes for JavaScript enhancement #}
+					{% set media_link_attributes = media_link_attributes|merge({
+						'data-adesso-media-link': 'true',
+						'data-external': is_external ? 'true' : 'false',
+						'data-municipality-compliant': 'true'
+					}) %}
+
+					<a{{ attributes(media_link_attributes) }}>
+						{{ media|default('') }}
+						{% if is_external %}
+							<span class="sr-only">{{ 'Opens in new window'|t }}</span>
+						{% endif %}
 					</a>
+				{% else %}
+					{{ media|default('') }}
 				{% endif %}
 			</div>
 		{% endif %}

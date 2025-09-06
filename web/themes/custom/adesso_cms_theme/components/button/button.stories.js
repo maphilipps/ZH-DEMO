@@ -194,6 +194,23 @@ export const AsLink = {
   },
 };
 
+// External link with security features
+export const ExternalLink = {
+  args: {
+    text: 'Visit External Site',
+    url: 'https://example.com',
+    variant: 'default',
+    icon: 'external-link',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'External link button with automatic security attributes (target="_blank", rel="noopener noreferrer") and screen reader accessibility.',
+      },
+    },
+  },
+};
+
 // Icon-only button
 export const IconOnly = {
   args: {
